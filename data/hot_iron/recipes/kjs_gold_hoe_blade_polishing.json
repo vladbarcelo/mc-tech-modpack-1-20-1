@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_gold_hoe_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:gold_hoe_blade"
+	}
+}

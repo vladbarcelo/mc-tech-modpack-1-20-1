@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_brass_ingot"
+		}
+	],
+	"output": {
+		"item": "create:brass_ingot",
+		"count": 1
+	}
+}

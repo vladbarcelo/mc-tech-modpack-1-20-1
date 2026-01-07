@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_zinc_ingot"
+		}
+	],
+	"output": {
+		"item": "create:zinc_ingot",
+		"count": 1
+	}
+}

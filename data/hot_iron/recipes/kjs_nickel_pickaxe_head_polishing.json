@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_nickel_pickaxe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:nickel_pickaxe_head"
+	}
+}

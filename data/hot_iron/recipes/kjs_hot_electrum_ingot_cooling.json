@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_electrum_ingot"
+		}
+	],
+	"output": {
+		"item": "createaddition:electrum_ingot",
+		"count": 1
+	}
+}

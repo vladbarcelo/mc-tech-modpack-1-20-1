@@ -1,0 +1,13 @@
+{
+	"type": "hot_iron:heating",
+	"ingredients": [
+		{
+			"item": "kubejs:copper_ingot_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:hot_copper_ingot_in_tongs",
+		"count": 1,
+		"nbt": "{\"ItemHeld\":\"kubejs:hot_copper_ingot\"}"
+	}
+}

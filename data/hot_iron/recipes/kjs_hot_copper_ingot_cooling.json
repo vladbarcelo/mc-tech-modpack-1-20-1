@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_copper_ingot"
+		}
+	],
+	"output": {
+		"item": "minecraft:copper_ingot",
+		"count": 1
+	}
+}

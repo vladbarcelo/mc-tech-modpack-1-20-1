@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_zinc_shovel_blade_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:zinc_shovel_blade_in_tongs",
+		"count": 1
+	}
+}

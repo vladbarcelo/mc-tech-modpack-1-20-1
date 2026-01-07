@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_gold_ingot"
+		}
+	],
+	"output": {
+		"item": "minecraft:gold_ingot",
+		"count": 1
+	}
+}

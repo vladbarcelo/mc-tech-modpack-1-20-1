@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_rhodium_sword_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:rhodium_sword_blade"
+	}
+}

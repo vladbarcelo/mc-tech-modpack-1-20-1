@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_aluminum_ingot"
+		}
+	],
+	"output": {
+		"item": "immersiveengineering:ingot_aluminum",
+		"count": 1
+	}
+}

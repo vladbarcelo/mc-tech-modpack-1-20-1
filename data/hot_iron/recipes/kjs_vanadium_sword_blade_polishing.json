@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_vanadium_sword_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:vanadium_sword_blade"
+	}
+}

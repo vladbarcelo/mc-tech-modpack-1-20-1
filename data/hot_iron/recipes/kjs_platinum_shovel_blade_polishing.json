@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_platinum_shovel_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:platinum_shovel_blade"
+	}
+}

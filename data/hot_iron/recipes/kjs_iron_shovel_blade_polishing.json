@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_iron_shovel_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:iron_shovel_blade"
+	}
+}

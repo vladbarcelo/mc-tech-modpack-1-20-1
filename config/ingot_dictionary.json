@@ -1,0 +1,22 @@
+{
+  "lead": "immersiveengineering:ingot_lead",
+  "zinc": "create:zinc_ingot",
+  "aluminum": "immersiveengineering:ingot_aluminum",
+  "brass": "create:brass_ingot",
+  "electrum": "createaddition:electrum_ingot",
+  "silver": "immersiveengineering:ingot_silver",
+  "gold": "minecraft:gold_ingot",
+  "copper": "minecraft:copper_ingot",
+  "cast_iron": "tfmg:cast_iron_ingot",
+  "uranium": "immersiveengineering:ingot_uranium",
+  "constantan": "immersiveengineering:ingot_constantan",
+  "nickel": "immersiveengineering:ingot_nickel",
+  "iron": "minecraft:iron_ingot",
+  "steel": "immersiveengineering:ingot_steel",
+  "palladium": "destroy:palladium_ingot",
+  "platinum": "destroy:platinum_ingot",
+  "chromium": "destroy:chromium_ingot",
+  "vanadium": "destroy:vanadium_ingot",
+  "rhodium": "destroy:rhodium_ingot",
+  "tungsten": "createmetallurgy:tungsten_ingot"
+}

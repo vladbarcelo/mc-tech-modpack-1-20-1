@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_gold_axe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:gold_axe_head"
+	}
+}

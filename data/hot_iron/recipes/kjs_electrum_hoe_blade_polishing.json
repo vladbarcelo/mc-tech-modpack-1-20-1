@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_electrum_hoe_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:electrum_hoe_blade"
+	}
+}

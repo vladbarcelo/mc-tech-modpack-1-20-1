@@ -1,0 +1,15 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_brass_axe_head"
+		}
+	],
+	"output": {
+		"item": "tconstruct:small_axe_head",
+		"count": 1,
+		"nbt": {
+			"Material": "tcintegrations:brass"
+		}
+	}
+}

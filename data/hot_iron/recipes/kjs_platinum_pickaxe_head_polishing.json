@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_platinum_pickaxe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:platinum_pickaxe_head"
+	}
+}

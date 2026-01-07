@@ -1,0 +1,13 @@
+{
+	"type": "hot_iron:heating",
+	"ingredients": [
+		{
+			"item": "kubejs:zinc_axe_head_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:hot_zinc_axe_headin_tongs",
+		"count": 1,
+		"nbt": "{\"ItemHeld\":\"kubejs:hot_zinc_axe_head\"}"
+	}
+}

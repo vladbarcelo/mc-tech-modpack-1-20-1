@@ -1,0 +1,15 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_iron_sword_blade"
+		}
+	],
+	"output": {
+		"item": "tconstruct:small_blade",
+		"count": 1,
+		"nbt": {
+			"Material": "tconstruct:iron"
+		}
+	}
+}

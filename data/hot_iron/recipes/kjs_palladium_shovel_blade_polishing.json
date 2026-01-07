@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_palladium_shovel_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:palladium_shovel_blade"
+	}
+}

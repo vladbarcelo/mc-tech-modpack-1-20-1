@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_aluminum_axe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:aluminum_axe_head"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_cast_iron_hoe_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:cast_iron_hoe_blade"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_rhodium_axe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:rhodium_axe_head"
+	}
+}

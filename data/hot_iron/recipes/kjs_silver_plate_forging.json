@@ -1,0 +1,36 @@
+{
+	"type": "hot_iron:forging",
+	"ingredients": [
+		{
+			"item": "hot_iron:jei_empty_tag"
+		},
+		{
+			"item": "immersiveengineering:ingot_silver"
+		},
+		{
+			"item": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		}
+	],
+	"output": {
+		"item": "immersiveengineering:plate_silver",
+		"count": 1
+	}
+}

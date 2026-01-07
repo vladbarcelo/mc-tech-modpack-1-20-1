@@ -1,0 +1,13 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_electrum_ingot_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:electrum_ingot_in_tongs",
+		"count": 1,
+		"nbt": "{\"ItemHeld\":\"createaddition:electrum_ingot\"}"
+	}
+}

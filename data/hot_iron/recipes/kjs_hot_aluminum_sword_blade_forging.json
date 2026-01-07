@@ -1,0 +1,36 @@
+{
+	"type": "hot_iron:forging",
+	"ingredients": [
+		{
+			"item": "hot_iron:jei_empty_tag"
+		},
+		{
+			"item": "kubejs:hot_aluminum_ingot"
+		},
+		{
+			"item": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "kubejs:hot_aluminum_ingot"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		}
+	],
+	"output": {
+		"item": "kubejs:hot_aluminum_sword_blade",
+		"count": 1
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_uranium_axe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:uranium_axe_head"
+	}
+}

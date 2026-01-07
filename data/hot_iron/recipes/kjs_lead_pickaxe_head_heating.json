@@ -1,0 +1,13 @@
+{
+	"type": "hot_iron:heating",
+	"ingredients": [
+		{
+			"item": "kubejs:lead_pickaxe_head_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:hot_lead_pickaxe_headin_tongs",
+		"count": 1,
+		"nbt": "{\"ItemHeld\":\"kubejs:hot_lead_pickaxe_head\"}"
+	}
+}

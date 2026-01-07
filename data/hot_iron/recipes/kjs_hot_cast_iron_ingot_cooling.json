@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_cast_iron_ingot"
+		}
+	],
+	"output": {
+		"item": "tfmg:cast_iron_ingot",
+		"count": 1
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_chromium_axe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:chromium_axe_head"
+	}
+}

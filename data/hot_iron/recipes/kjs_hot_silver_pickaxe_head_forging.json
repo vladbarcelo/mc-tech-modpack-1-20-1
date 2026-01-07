@@ -1,0 +1,36 @@
+{
+	"type": "hot_iron:forging",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_silver_ingot"
+		},
+		{
+			"item": "kubejs:hot_silver_ingot"
+		},
+		{
+			"item": "kubejs:hot_silver_ingot"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		}
+	],
+	"output": {
+		"item": "kubejs:hot_silver_pickaxe_head",
+		"count": 1
+	}
+}

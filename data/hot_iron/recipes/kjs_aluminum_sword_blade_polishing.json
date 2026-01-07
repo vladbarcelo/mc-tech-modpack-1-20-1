@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_aluminum_sword_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:aluminum_sword_blade"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_palladium_axe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:palladium_axe_head"
+	}
+}

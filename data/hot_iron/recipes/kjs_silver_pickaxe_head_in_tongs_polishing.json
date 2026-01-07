@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:silver_pickaxe_head_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:polished_silver_pickaxe_head_in_tongs",
+		"count": 1
+	}
+}

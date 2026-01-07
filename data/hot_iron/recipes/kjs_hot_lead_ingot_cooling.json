@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_lead_ingot"
+		}
+	],
+	"output": {
+		"item": "immersiveengineering:ingot_lead",
+		"count": 1
+	}
+}
