@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_platinum_ingot"
+		}
+	],
+	"output": {
+		"item": "kubejs:platinum_ingot",
+		"count": 1
+	}
+}

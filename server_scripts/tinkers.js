@@ -106,8 +106,15 @@ ServerEvents.recipes((event) => {
   event.blasting('tconstruct:seared_brick', 'tconstruct:grout', 0.35, 600)
 
   // compat
-  for (let metal of [].concat(global.smithableMetals, global.baseCastableMetals)) {
+  for (let metal of global.allMetals) {
     let moltenMetal = global.moltenMetals[metal]
+
+    event.remove({ id: `tconstruct:smeltery/casting/metal/${metal}/ingot_sand_cast` })
+    event.remove({ id: `tconstruct:smeltery/casting/metal/${metal}/ingot_gold_cast` })
+    event.remove({ id: `tconstruct:smeltery/casting/metal/${metal}/wire_sand_cast` })
+    event.remove({ id: `tconstruct:smeltery/casting/metal/${metal}/wire_gold_cast` })
+    event.remove({ id: `tconstruct:smeltery/casting/metal/${metal}/nugget_gold_cast` })
+    event.remove({ id: `tconstruct:smeltery/casting/metal/${metal}/plate_gold_cast` })
 
     // ingot
     event.custom({
@@ -122,7 +129,7 @@ ServerEvents.recipes((event) => {
         fluid: moltenMetal
       },
       result: {
-        tag: `forge:ingots/${metal}`
+        item: `kubejs:hot_${metal}_ingot`
       }
     })
     // rod
@@ -181,25 +188,9 @@ ServerEvents.recipes((event) => {
         tag: `forge:storage_blocks/${metal}`
       }
     })
-  }
 
-  // fuel
-  event.custom({
-    type: "tconstruct:melting_fuel",
-    duration: 100,
-    fluid: {
-      amount: 50,
-      fluid: "tfmg:molten_slag"
-    },
-    rate: 10,
-    temperature: 800
-  })
+    // melting
 
-  // cast iron
-  
-  
-
-  for (let metal of global.allMetals) {
     if (metal === 'iron') continue;
     
     let metalMaterial = metal === 'cast_iron' ? 'iron' : metal
@@ -301,4 +292,16 @@ ServerEvents.recipes((event) => {
       time: 90
     })
   }
+
+  // fuel
+  event.custom({
+    type: "tconstruct:melting_fuel",
+    duration: 100,
+    fluid: {
+      amount: 50,
+      fluid: "tfmg:molten_slag"
+    },
+    rate: 10,
+    temperature: 800
+  })
 });

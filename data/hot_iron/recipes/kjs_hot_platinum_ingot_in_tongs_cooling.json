@@ -1,0 +1,13 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_platinum_ingot_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:platinum_ingot_in_tongs",
+		"count": 1,
+		"nbt": "{\"ItemHeld\":\"kubejs:platinum_ingot\"}"
+	}
+}

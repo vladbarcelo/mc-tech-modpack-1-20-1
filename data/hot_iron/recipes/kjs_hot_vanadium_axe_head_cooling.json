@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_vanadium_axe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:rough_vanadium_axe_head",
+		"count": 1
+	}
+}

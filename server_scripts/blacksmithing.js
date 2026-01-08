@@ -166,19 +166,10 @@ ServerEvents.recipes((event) => {
       }
     });
     // %metal%_ingot_from_ingot_in_tongs.json
-    event.custom({
-      "type": "minecraft:crafting_shapeless",
-      "category": "misc",
-      "ingredients": [
-        {
-          "item": `kubejs:${metal}_ingot_in_tongs`
-        }
-      ],
-      "result": {
-        "item": global.ingotDictionary[metal],
-        "count": 1
-      }
-    });
+    event.shapeless(
+      Item.of(global.ingotDictionary[metal], 1),
+      [`kubejs:${metal}_ingot_in_tongs`]
+    ).customIngredientAction(`kubejs:${metal}_ingot_in_tongs`, 'keep_tongs');
     // %metal%_ingot_in_tongs.json
     event.custom({
       "type": "minecraft:crafting_shapeless",
@@ -199,6 +190,8 @@ ServerEvents.recipes((event) => {
     })
 
     event.recipes.createmetallurgy.casting_in_basin(Item.of(global.metalBlocks[metal]), Fluid.of(global.moltenMetals[metal], 810), 320)
+    event.remove({ id: `createmetallurgy:casting_in_table/${metal}/ingot` })
+    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMetals[metal], 90), `createmetallurgy:graphite_ingot_mold`], 120, false)
 
     // armor
     event.shaped(
@@ -262,9 +255,13 @@ ServerEvents.recipes((event) => {
       }
     )
 
+    event.recipes.create.splashing(global.ingotDictionary[metal], `kubejs:hot_${metal}_ingot`)
+
     // TOOL RECIPES
     for (let part of global.toolParts) {
       let resultTool = global.toolItems[metal][part] || `kubejs:${metal}_${part.split('_')[0]}`
+
+      event.recipes.create.splashing(`kubejs:rough_${metal}_${part}`, `kubejs:hot_${metal}_${part}`)
 
       if (global.tConstructToolParts[part]) {
         event.custom({
@@ -278,7 +275,7 @@ ServerEvents.recipes((event) => {
             amount: 90,
             fluid: global.moltenMetals[metal]
           },
-          result: `kubejs:rough_${metal}_${part}`,
+          result: `kubejs:hot_${metal}_${part}`,
           switch_slots: true
         })
       } else {
@@ -293,7 +290,7 @@ ServerEvents.recipes((event) => {
             amount: 90,
             fluid: global.moltenMetals[metal]
           },
-          result: `kubejs:rough_${metal}_${part}`,
+          result: `kubejs:hot_${metal}_${part}`,
           switch_slots: true
         })
         event.custom({
@@ -307,7 +304,7 @@ ServerEvents.recipes((event) => {
             amount: 90,
             fluid: global.moltenMetals[metal]
           },
-          result: `kubejs:rough_${metal}_${part}`,
+          result: `kubejs:hot_${metal}_${part}`,
           switch_slots: true
         })
       }
@@ -559,8 +556,15 @@ ServerEvents.recipes((event) => {
 
     event.recipes.createmetallurgy.casting_in_basin(Item.of(blockItem, 1), Fluid.of(global.moltenMetals[metal], 810), 320)
     // ingot
-    event.recipes.createmetallurgy.casting_in_table(global.ingotDictionary[metal], [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:ingot_sand_cast'], 120, true)
-    event.recipes.createmetallurgy.casting_in_table(global.ingotDictionary[metal], [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:ingot_red_sand_cast'], 120, true)
+    event.remove({ id: `createmetallurgy:casting_in_table/${metal}/ingot` })
+    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMetals[metal], 90), `createmetallurgy:graphite_ingot_mold`], 120, false)
+    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:ingot_sand_cast'], 120, true)
+    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:ingot_red_sand_cast'], 120, true)
+    // %metal%_ingot_from_ingot_in_tongs.json
+    event.shapeless(
+      Item.of(global.ingotDictionary[metal], 1),
+      [`kubejs:${metal}_ingot_in_tongs`]
+    ).customIngredientAction(`kubejs:${metal}_ingot_in_tongs`, 'keep_tongs');
     // rod
     if (global.metalRods[metal]) {
       event.recipes.createmetallurgy.casting_in_table(global.metalRods[metal], [Fluid.of(global.moltenMetals[metal], 45), 'tconstruct:rod_sand_cast'], 120, true)
@@ -633,10 +637,18 @@ ServerEvents.recipes((event) => {
       }
     )
 
+    event.recipes.create.splashing(global.ingotDictionary[metal], `kubejs:hot_${metal}_ingot`)
+    
     for (let part of global.toolParts) {
-      event.recipes.createmetallurgy.casting_in_table(`kubejs:rough_${metal}_${part}`, [Fluid.of(global.moltenMetals[metal], 120), `kubejs:graphite_${part}_mold`], 90, false)
-      event.recipes.createmetallurgy.casting_in_table(`kubejs:rough_${metal}_${part}`, [Fluid.of(global.moltenMetals[metal], 120), global.tConstructToolParts[part] ? `tconstruct:${global.tConstructToolParts[part]}_sand_cast` : `kubejs:${part}_sand_cast`], 90, true)
-      event.recipes.createmetallurgy.casting_in_table(`kubejs:rough_${metal}_${part}`, [Fluid.of(global.moltenMetals[metal], 120), global.tConstructToolParts[part] ? `tconstruct:${global.tConstructToolParts[part]}_red_sand_cast` : `kubejs:${part}_red_sand_cast`], 90, true)
+      event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMetals[metal], 120), `kubejs:graphite_${part}_mold`], 90, false)
+      event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMetals[metal], 120), global.tConstructToolParts[part] ? `tconstruct:${global.tConstructToolParts[part]}_sand_cast` : `kubejs:${part}_sand_cast`], 90, true)
+      event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMetals[metal], 120), global.tConstructToolParts[part] ? `tconstruct:${global.tConstructToolParts[part]}_red_sand_cast` : `kubejs:${part}_red_sand_cast`], 90, true)
+      event.shapeless(
+        Item.of(`kubejs:rough_${metal}_${part}`, 1),
+        [`kubejs:${metal}_${part}_in_tongs`]
+      ).customIngredientAction(`kubejs:${metal}_${part}_in_tongs`, 'keep_tongs');
+
+      event.recipes.create.splashing(`kubejs:rough_${metal}_${part}`, `kubejs:hot_${metal}_${part}`)
       
       if (global.metalHasTConstructItems[metal] && global.tConstructToolParts[part]) {
         event.custom({
@@ -692,12 +704,16 @@ ServerEvents.recipes((event) => {
 });
 
 ServerEvents.tags('item', event => {
-  for (let metal of global.smithableMetals) {
+  for (let metal of global.allMetals) {
+    // only put on anvil if it's smithable
+    if (global.smithableMetals.indexOf(metal) !== -1) event.add('hot_iron:anvil_placable_by_clicking', `kubejs:hot_${metal}_ingot_in_tongs`)
+    
     event.add('materials/hot', `kubejs:hot_${metal}_ingot`)
-    event.add('hot_iron:anvil_placable_by_clicking', `kubejs:hot_${metal}_ingot_in_tongs`)
-
+    
     for (let part of global.toolParts) {
       event.add('materials/hot', `kubejs:hot_${metal}_${part}`)
     }
   }
+
+  event.add('tools/smithing_tongs', 'hot_iron:smithing_tongs')
 });

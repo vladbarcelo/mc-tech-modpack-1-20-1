@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_uranium_axe_head_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:uranium_axe_head_in_tongs",
+		"count": 1
+	}
+}

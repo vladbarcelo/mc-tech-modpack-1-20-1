@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_cast_iron_shovel_blade_in_tongs"
+			"item": "kubejs:hot_cast_iron_shovel_blade"
 		}
 	],
 	"output": {
-		"item": "kubejs:cast_iron_shovel_blade_in_tongs",
+		"item": "kubejs:rough_cast_iron_shovel_blade",
 		"count": 1
 	}
 }

@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_nickel_hoe_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:rough_nickel_hoe_blade",
+		"count": 1
+	}
+}

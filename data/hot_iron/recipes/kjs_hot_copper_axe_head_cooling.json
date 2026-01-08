@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_copper_axe_head_in_tongs"
+			"item": "kubejs:hot_copper_axe_head"
 		}
 	],
 	"output": {
-		"item": "kubejs:copper_axe_head_in_tongs",
+		"item": "kubejs:rough_copper_axe_head",
 		"count": 1
 	}
 }

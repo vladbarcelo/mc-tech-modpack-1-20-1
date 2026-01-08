@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_rhodium_pickaxe_head"
+		}
+	],
+	"output": {
+		"item": "kubejs:rough_rhodium_pickaxe_head",
+		"count": 1
+	}
+}

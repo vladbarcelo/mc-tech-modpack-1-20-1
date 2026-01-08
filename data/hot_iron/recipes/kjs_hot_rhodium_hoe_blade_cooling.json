@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_rhodium_hoe_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:rough_rhodium_hoe_blade",
+		"count": 1
+	}
+}

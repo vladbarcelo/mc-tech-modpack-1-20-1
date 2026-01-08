@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_nickel_sword_blade_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:nickel_sword_blade_in_tongs",
+		"count": 1
+	}
+}

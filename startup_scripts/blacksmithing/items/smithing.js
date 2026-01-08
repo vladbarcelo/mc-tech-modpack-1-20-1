@@ -404,7 +404,7 @@ StartupEvents.registry('item', event => {
         }
       })
       // hot_%metal%_%tool%_cooling.json
-      JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_${part}_cooling.json`, {
+      JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_${part}_in_tongs_cooling.json`, {
         "type": "hot_iron:cooling",
         "ingredients": [
           {
@@ -413,6 +413,18 @@ StartupEvents.registry('item', event => {
         ],
         "output": {
           "item": `kubejs:${metal}_${part}_in_tongs`,
+          "count": 1
+        }
+      })
+      JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_${part}_cooling.json`, {
+        "type": "hot_iron:cooling",
+        "ingredients": [
+          {
+            "item": `kubejs:hot_${metal}_${part}`
+          }
+        ],
+        "output": {
+          "item": `kubejs:rough_${metal}_${part}`,
           "count": 1
         }
       })

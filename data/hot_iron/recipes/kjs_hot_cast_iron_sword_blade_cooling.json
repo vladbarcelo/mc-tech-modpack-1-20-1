@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_cast_iron_sword_blade_in_tongs"
+			"item": "kubejs:hot_cast_iron_sword_blade"
 		}
 	],
 	"output": {
-		"item": "kubejs:cast_iron_sword_blade_in_tongs",
+		"item": "kubejs:rough_cast_iron_sword_blade",
 		"count": 1
 	}
 }

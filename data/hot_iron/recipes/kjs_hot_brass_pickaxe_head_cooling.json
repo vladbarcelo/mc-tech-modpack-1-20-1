@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_brass_pickaxe_head_in_tongs"
+			"item": "kubejs:hot_brass_pickaxe_head"
 		}
 	],
 	"output": {
-		"item": "kubejs:brass_pickaxe_head_in_tongs",
+		"item": "kubejs:rough_brass_pickaxe_head",
 		"count": 1
 	}
 }

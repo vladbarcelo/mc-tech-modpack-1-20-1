@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_tungsten_ingot"
+		}
+	],
+	"output": {
+		"item": "createmetallurgy:tungsten_ingot",
+		"count": 1
+	}
+}

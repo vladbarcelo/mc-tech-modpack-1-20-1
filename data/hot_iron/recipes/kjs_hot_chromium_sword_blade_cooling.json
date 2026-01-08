@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_chromium_sword_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:rough_chromium_sword_blade",
+		"count": 1
+	}
+}

@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_zinc_pickaxe_head_in_tongs"
+			"item": "kubejs:hot_zinc_pickaxe_head"
 		}
 	],
 	"output": {
-		"item": "kubejs:zinc_pickaxe_head_in_tongs",
+		"item": "kubejs:rough_zinc_pickaxe_head",
 		"count": 1
 	}
 }

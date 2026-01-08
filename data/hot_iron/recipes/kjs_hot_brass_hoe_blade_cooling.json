@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_brass_hoe_blade_in_tongs"
+			"item": "kubejs:hot_brass_hoe_blade"
 		}
 	],
 	"output": {
-		"item": "kubejs:brass_hoe_blade_in_tongs",
+		"item": "kubejs:rough_brass_hoe_blade",
 		"count": 1
 	}
 }

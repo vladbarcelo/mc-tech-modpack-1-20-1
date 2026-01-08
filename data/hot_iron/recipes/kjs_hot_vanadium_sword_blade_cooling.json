@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_vanadium_sword_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:rough_vanadium_sword_blade",
+		"count": 1
+	}
+}

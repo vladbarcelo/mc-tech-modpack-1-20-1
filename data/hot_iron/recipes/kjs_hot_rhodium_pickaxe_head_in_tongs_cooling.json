@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_rhodium_pickaxe_head_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:rhodium_pickaxe_head_in_tongs",
+		"count": 1
+	}
+}

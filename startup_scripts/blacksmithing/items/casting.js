@@ -68,6 +68,35 @@ StartupEvents.registry('item', event => {
         .displayName(toSentenceCase(`${metal} Plate`))
     }
 
+    // json recipes
+    // %metal%_ingot_cooling.json
+    JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_ingot_cooling.json`, {
+      "type": "hot_iron:cooling",
+      "ingredients": [
+        {
+          "item": `kubejs:hot_${metal}_ingot`
+        }
+      ],
+      "output": {
+        "item": global.ingotDictionary[metal],
+        "count": 1,
+      }
+    })
+    // %metal%_ingot_in_tongs_cooling.json
+    JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_ingot_in_tongs_cooling.json`, {
+      "type": "hot_iron:cooling",
+      "ingredients": [
+        {
+          "item": `kubejs:hot_${metal}_ingot_in_tongs`
+        }
+      ],
+      "output": {
+        "item": `kubejs:${metal}_ingot_in_tongs`,
+        "count": 1,
+        "nbt": `{"ItemHeld":"${global.ingotDictionary[metal]}"}`
+      }
+    })
+
     for (let part of global.toolParts) {
       event
         .create(`hot_${metal}_${part}_in_tongs`)
@@ -100,7 +129,7 @@ StartupEvents.registry('item', event => {
         .displayName(toSentenceCase(`${metal} ${part}`))
 
       // hot_%metal%_%tool%_cooling.json
-      JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_${part}_cooling.json`, {
+      JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_${part}_in_tongs_cooling.json`, {
         "type": "hot_iron:cooling",
         "ingredients": [
           {
@@ -112,35 +141,18 @@ StartupEvents.registry('item', event => {
           "count": 1
         }
       })
-
-      // polishing
-      if (global.metalHasTConstructItems[metal] && global.tConstructToolParts[part]) {
-        JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_${metal}_${part}_polishing.json`, {
-          "type": "hot_iron:polishing",
-          "ingredients": [
-            {
-              "item": `kubejs:rough_${metal}_${part}`
-            }
-          ],
-          "output": {
-            "item": `tconstruct:${global.tConstructToolParts[part]}`,
-            "count": 1,
-            "nbt": {"Material":`${global.tConstructMetals[metal]}`}
+      JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_${part}_cooling.json`, {
+        "type": "hot_iron:cooling",
+        "ingredients": [
+          {
+            "item": `kubejs:hot_${metal}_${part}`
           }
-        })
-      } else {
-        JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_${metal}_${part}_polishing.json`, {
-          "type": "hot_iron:polishing",
-          "ingredients": [
-            {
-              "item": `kubejs:rough_${metal}_${part}`
-            }
-          ],
-          "output": {
-            "item": `kubejs:${metal}_${part}`,
-          }
-        })
-      }
+        ],
+        "output": {
+          "item": `kubejs:rough_${metal}_${part}`,
+          "count": 1
+        }
+      })
   
       // add missing tools
       if (global.toolItems[metal][part] === '') {

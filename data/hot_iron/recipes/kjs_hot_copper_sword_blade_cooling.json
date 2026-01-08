@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_copper_sword_blade_in_tongs"
+			"item": "kubejs:hot_copper_sword_blade"
 		}
 	],
 	"output": {
-		"item": "kubejs:copper_sword_blade_in_tongs",
+		"item": "kubejs:rough_copper_sword_blade",
 		"count": 1
 	}
 }

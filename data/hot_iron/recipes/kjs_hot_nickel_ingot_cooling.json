@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_nickel_ingot"
+		}
+	],
+	"output": {
+		"item": "immersiveengineering:ingot_nickel",
+		"count": 1
+	}
+}

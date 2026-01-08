@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_lead_hoe_blade_in_tongs"
+			"item": "kubejs:hot_lead_hoe_blade"
 		}
 	],
 	"output": {
-		"item": "kubejs:lead_hoe_blade_in_tongs",
+		"item": "kubejs:rough_lead_hoe_blade",
 		"count": 1
 	}
 }

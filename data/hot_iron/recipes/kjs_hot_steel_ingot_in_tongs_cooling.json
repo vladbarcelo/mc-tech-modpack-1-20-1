@@ -1,0 +1,13 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_steel_ingot_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:steel_ingot_in_tongs",
+		"count": 1,
+		"nbt": "{\"ItemHeld\":\"immersiveengineering:ingot_steel\"}"
+	}
+}

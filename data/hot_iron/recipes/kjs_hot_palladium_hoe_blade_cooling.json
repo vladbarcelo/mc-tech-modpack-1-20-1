@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_palladium_hoe_blade"
+		}
+	],
+	"output": {
+		"item": "kubejs:rough_palladium_hoe_blade",
+		"count": 1
+	}
+}

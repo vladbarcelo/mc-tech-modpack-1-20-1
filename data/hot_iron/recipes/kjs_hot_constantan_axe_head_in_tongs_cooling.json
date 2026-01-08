@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_constantan_axe_head_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:constantan_axe_head_in_tongs",
+		"count": 1
+	}
+}

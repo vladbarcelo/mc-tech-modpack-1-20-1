@@ -412,7 +412,6 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.lead, 10), '#forge:nuggets/lead', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.lead, 90), '#forge:ingots/lead', 40, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.lead, 90), 'create:crushed_raw_lead', 30, 'heated');
-  event.recipes.create.splashing(global.ingotDictionary.lead, 'kubejs:hot_lead_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.lead, '#forge:dusts/lead').heated()
 
   // Zinc
@@ -427,7 +426,6 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.zinc, 10), '#forge:nuggets/zinc', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.zinc, 90), '#forge:ingots/zinc', 40, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.zinc, 90), 'create:crushed_raw_zinc', 30, 'heated');
-  event.recipes.create.splashing(global.ingotDictionary.zinc, 'kubejs:hot_zinc_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.zinc, '#forge:dusts/zinc').heated()
 
   // Aluminum
@@ -442,7 +440,6 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.aluminum, 10), '#forge:nuggets/aluminum', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.aluminum, 90), '#forge:ingots/aluminum', 40, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.aluminum, 90), 'create:crushed_raw_aluminum', 30, 'heated');
-  event.recipes.create.splashing(global.ingotDictionary.aluminum, 'kubejs:hot_aluminum_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.aluminum, '#forge:dusts/aluminum').heated()
 
   // === Blast Furnace ===
@@ -452,7 +449,6 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.brass, 90), '#forge:dusts/brass', 30, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.brass, 10), '#forge:nuggets/brass', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.brass, 90), '#forge:ingots/brass', 40, 'heated')
-  event.recipes.create.splashing(global.ingotDictionary.brass, 'kubejs:hot_brass_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.brass, '#forge:dusts/brass').heated()
 
   // Electrum
@@ -462,7 +458,6 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.electrum, 90), '#forge:dusts/electrum', 30, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.electrum, 10), '#forge:nuggets/electrum', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.electrum, 90), '#forge:ingots/electrum', 40, 'heated')
-  event.recipes.create.splashing(global.ingotDictionary.electrum, 'kubejs:hot_electrum_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.electrum, '#forge:dusts/electrum').heated()
 
   // Silver
@@ -473,7 +468,6 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.silver, 10), '#forge:nuggets/silver', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.silver, 90), '#forge:ingots/silver', 40, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.silver, 90), 'create:crushed_raw_silver', 30, 'heated');
-  event.recipes.create.splashing(global.ingotDictionary.silver, 'kubejs:hot_silver_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.silver, '#forge:dusts/silver').heated()
 
   // Gold
@@ -484,7 +478,6 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.gold, 10), '#forge:nuggets/gold', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.gold, 90), '#forge:ingots/gold', 40, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.gold, 90), 'create:crushed_raw_gold', 30, 'heated');
-  event.recipes.create.splashing(global.ingotDictionary.gold, 'kubejs:hot_gold_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.gold, '#forge:dusts/gold').heated()
 
   // Copper
@@ -495,13 +488,11 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.copper, 10), '#forge:nuggets/copper', 4, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.copper, 90), '#forge:ingots/copper', 40, 'heated')
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.copper, 90), 'create:crushed_raw_copper', 30, 'heated');
-  event.recipes.create.splashing(global.ingotDictionary.copper, 'kubejs:hot_copper_ingot')
   // event.recipes.create.mixing(global.ingotDictionary.copper, '#forge:dusts/copper').heated()
 
   // Cast iron
   event.recipes.tfmg.industrial_blasting("#forge:ingots/cast_iron", [Fluid.of(global.moltenMetals.cast_iron, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
   event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.cast_iron, 90), '#forge:ingots/cast_iron', 40, 'heated')
-  event.recipes.create.splashing(global.ingotDictionary.cast_iron, 'kubejs:hot_cast_iron_ingot')
 
   // Metallurgy > 1100
   // Uranium

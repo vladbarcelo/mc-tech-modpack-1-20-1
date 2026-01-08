@@ -2,11 +2,11 @@
 	"type": "hot_iron:cooling",
 	"ingredients": [
 		{
-			"item": "kubejs:hot_electrum_axe_head_in_tongs"
+			"item": "kubejs:hot_electrum_axe_head"
 		}
 	],
 	"output": {
-		"item": "kubejs:electrum_axe_head_in_tongs",
+		"item": "kubejs:rough_electrum_axe_head",
 		"count": 1
 	}
 }
