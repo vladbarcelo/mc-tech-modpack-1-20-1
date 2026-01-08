@@ -31,7 +31,7 @@ global.metalTemps = {
   'gold': 1000,
   'copper': 1000,
   'cast_iron': 1000,
-  // tinkers melting disabled below
+  // tinkers melting not available without mods below
   'uranium': 1130,
   'constantan': 1220,
   'nickel': 1450,
@@ -168,3 +168,12 @@ global.darkMetalColors = {
   "rhodium": "#bab8c6",
   "tungsten": "#2e301b"
 }
+
+function isSmithable(metal) { return global.smithableMetals.indexOf(metal) !== -1 }
+function isCastable(metal) { return global.castableMetals.indexOf(metal) !== -1 }
+function isBaseCastable(metal) { return global.baseCastableMetals.indexOf(metal) !== -1 }
+function isHardCastable(metal) { return global.hardCastableMetals.indexOf(metal) !== -1 }
+global.isSmithable = isSmithable;
+global.isCastable = isCastable;
+global.isBaseCastable = isBaseCastable;
+global.isHardCastable = isHardCastable;

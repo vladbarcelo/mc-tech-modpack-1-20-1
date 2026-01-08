@@ -396,175 +396,293 @@ ServerEvents.recipes((event) => {
     'tconstruct:smeltery/melting/metal/tungsten/ore_sparse',
     'tconstruct:smeltery/melting/metal/tungsten/raw',
     'tconstruct:smeltery/melting/metal/tungsten/raw_block',
+    "immersiveengineering:alloysmelter/constantan",
+    "createaddition:compat/immersiveengineering/constantan",
+    "createloveandwar:mixing/steel_ingot",
+    "immersiveengineering:blastfurnace/steel",
   ]) {
     event.remove({ id: id })
   }
 
-  // Lead
-  event.smelting('kubejs:hot_lead_ingot', '#forge:dusts/lead')
-  event.smelting('kubejs:hot_lead_ingot', '#forge:raw_materials/lead')
-  event.smelting('kubejs:hot_lead_ingot', '#forge:ores/lead')
-  event.smelting('kubejs:hot_lead_ingot', 'create:crushed_raw_lead')
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/lead", [Fluid.of(global.moltenMetals.lead, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/lead", [Fluid.of(global.moltenMetals.lead, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("create:crushed_raw_lead", [Fluid.of(global.moltenMetals.lead, 90), Fluid.of("tfmg:molten_slag", 50)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.lead, 90), '#forge:dusts/lead', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.lead, 10), '#forge:nuggets/lead', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.lead, 90), '#forge:ingots/lead', 40, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.lead, 90), 'create:crushed_raw_lead', 30, 'heated');
-  // event.recipes.create.mixing(global.ingotDictionary.lead, '#forge:dusts/lead').heated()
+  for (let metal of global.allMetals) {
+    let isHardCastable = global.isHardCastable(metal)
 
-  // Zinc
-  event.smelting('kubejs:hot_zinc_ingot', '#forge:dusts/zinc')
-  event.smelting('kubejs:hot_zinc_ingot', '#forge:raw_materials/zinc')
-  event.smelting('kubejs:hot_zinc_ingot', '#forge:ores/zinc')
-  event.smelting('kubejs:hot_zinc_ingot', 'create:crushed_raw_zinc')
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/zinc", [Fluid.of(global.moltenMetals.zinc, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/zinc", [Fluid.of(global.moltenMetals.zinc, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("create:crushed_raw_zinc", [Fluid.of(global.moltenMetals.zinc, 90), Fluid.of("tfmg:molten_slag", 50)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.zinc, 90), '#forge:dusts/zinc', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.zinc, 10), '#forge:nuggets/zinc', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.zinc, 90), '#forge:ingots/zinc', 40, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.zinc, 90), 'create:crushed_raw_zinc', 30, 'heated');
-  // event.recipes.create.mixing(global.ingotDictionary.zinc, '#forge:dusts/zinc').heated()
+    let moltenMetal = global.moltenMetals[metal]
+    let metalTemp = global.metalTemps[metal]
+    let metalIngredientMaterial = metal
 
-  // Aluminum
-  event.smelting('kubejs:hot_aluminum_ingot', '#forge:dusts/aluminum')
-  event.smelting('kubejs:hot_aluminum_ingot', '#forge:raw_materials/aluminum')
-  event.smelting('kubejs:hot_aluminum_ingot', '#forge:ores/aluminum')
-  event.smelting('kubejs:hot_aluminum_ingot', 'create:crushed_raw_aluminum')
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/aluminum", [Fluid.of(global.moltenMetals.aluminum, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/aluminum", [Fluid.of(global.moltenMetals.aluminum, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("create:crushed_raw_aluminum", [Fluid.of(global.moltenMetals.aluminum, 90), Fluid.of("tfmg:molten_slag", 50)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.aluminum, 90), '#forge:dusts/aluminum', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.aluminum, 10), '#forge:nuggets/aluminum', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.aluminum, 90), '#forge:ingots/aluminum', 40, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.aluminum, 90), 'create:crushed_raw_aluminum', 30, 'heated');
-  // event.recipes.create.mixing(global.ingotDictionary.aluminum, '#forge:dusts/aluminum').heated()
+    addMeltingRecipes(
+      event,
+      metal,
+      metalIngredientMaterial,
+      metalTemp,
+      moltenMetal,
+      isHardCastable
+    )
+  }
 
-  // === Blast Furnace ===
-  // Brass
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/brass", [Fluid.of(global.moltenMetals.brass, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/brass", [Fluid.of(global.moltenMetals.brass, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.brass, 90), '#forge:dusts/brass', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.brass, 10), '#forge:nuggets/brass', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.brass, 90), '#forge:ingots/brass', 40, 'heated')
-  // event.recipes.create.mixing(global.ingotDictionary.brass, '#forge:dusts/brass').heated()
+  // additional compat
+  addMeltingRecipes(
+    event,
+    'tungsten',
+    'wolframite',
+    global.metalTemps.tungsten,
+    global.moltenMetals.tungsten,
+    true
+  )
 
-  // Electrum
-  event.remove({ id: 'createaddition:mixing/electrum' })
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/electrum", [Fluid.of(global.moltenMetals.electrum, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/electrum", [Fluid.of(global.moltenMetals.electrum, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.electrum, 90), '#forge:dusts/electrum', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.electrum, 10), '#forge:nuggets/electrum', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.electrum, 90), '#forge:ingots/electrum', 40, 'heated')
-  // event.recipes.create.mixing(global.ingotDictionary.electrum, '#forge:dusts/electrum').heated()
-
-  // Silver
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/silver", [Fluid.of(global.moltenMetals.silver, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/silver", [Fluid.of(global.moltenMetals.silver, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("create:crushed_raw_silver", [Fluid.of(global.moltenMetals.silver, 90), Fluid.of("tfmg:molten_slag", 50)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.silver, 90), '#forge:dusts/silver', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.silver, 10), '#forge:nuggets/silver', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.silver, 90), '#forge:ingots/silver', 40, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.silver, 90), 'create:crushed_raw_silver', 30, 'heated');
-  // event.recipes.create.mixing(global.ingotDictionary.silver, '#forge:dusts/silver').heated()
-
-  // Gold
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/gold", [Fluid.of(global.moltenMetals.gold, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/gold", [Fluid.of(global.moltenMetals.gold, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("create:crushed_raw_gold", [Fluid.of(global.moltenMetals.gold, 90), Fluid.of("tfmg:molten_slag", 50)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.gold, 90), '#forge:dusts/gold', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.gold, 10), '#forge:nuggets/gold', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.gold, 90), '#forge:ingots/gold', 40, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.gold, 90), 'create:crushed_raw_gold', 30, 'heated');
-  // event.recipes.create.mixing(global.ingotDictionary.gold, '#forge:dusts/gold').heated()
-
-  // Copper
-  event.recipes.tfmg.industrial_blasting("#forge:dusts/copper", [Fluid.of(global.moltenMetals.copper, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/copper", [Fluid.of(global.moltenMetals.copper, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.tfmg.industrial_blasting("create:crushed_raw_copper", [Fluid.of(global.moltenMetals.copper, 90), Fluid.of("tfmg:molten_slag", 50)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.copper, 90), '#forge:dusts/copper', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.copper, 10), '#forge:nuggets/copper', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.copper, 90), '#forge:ingots/copper', 40, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.copper, 90), 'create:crushed_raw_copper', 30, 'heated');
-  // event.recipes.create.mixing(global.ingotDictionary.copper, '#forge:dusts/copper').heated()
-
-  // Cast iron
-  event.recipes.tfmg.industrial_blasting("#forge:ingots/cast_iron", [Fluid.of(global.moltenMetals.cast_iron, 90), Fluid.of("tfmg:molten_slag", 10)], 1);
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.cast_iron, 90), '#forge:ingots/cast_iron', 40, 'heated')
-
-  // Metallurgy > 1100
-  // Uranium
-  // event.recipes.create.mixing(global.ingotDictionary.uranium, '#forge:dusts/uranium').heated()
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.uranium, 90), 'create:crushed_raw_uranium', 30, 'heated');
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.uranium, 90), '#forge:dusts/uranium', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.uranium, 10), '#forge:nuggets/uranium', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.uranium, 90), '#forge:ingots/uranium', 40, 'heated')
-
-  // Constantan
-  event.remove({ id: "immersiveengineering:alloysmelter/constantan" })
-  event.remove({ id: "createaddition:compat/immersiveengineering/constantan" })
-  // event.recipes.create.mixing(global.ingotDictionary.constantan, '#forge:dusts/constantan').heated()
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.constantan, 90), '#forge:dusts/constantan', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.constantan, 10), '#forge:nuggets/constantan', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.constantan, 90), '#forge:ingots/constantan', 40, 'heated')
-
-  // Nickel
-  // event.recipes.create.mixing(global.ingotDictionary.nickel, '#forge:dusts/nickel').heated()
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.nickel, 90), 'create:crushed_raw_nickel', 30, 'heated');
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.nickel, 90), '#forge:dusts/nickel', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.nickel, 10), '#forge:nuggets/nickel', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.nickel, 90), '#forge:ingots/nickel', 40, 'heated')
-
-  // Iron
-  // event.recipes.create.mixing(global.ingotDictionary.iron, '#forge:dusts/iron').heated()
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.iron, 90), 'create:crushed_raw_iron', 30, 'heated');
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.iron, 90), '#forge:dusts/iron', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.iron, 10), '#forge:nuggets/iron', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.iron, 90), '#forge:ingots/iron', 40, 'heated')
-
-  // Steel
-  event.remove({ id: "createloveandwar:mixing/steel_ingot" })
-  event.remove({ id: "immersiveengineering:blastfurnace/steel" })
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.steel, 90), '#forge:dusts/steel', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.steel, 10), '#forge:nuggets/steel', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.steel, 90), '#forge:ingots/steel', 40, 'heated')
-
-
-  // Palladium
-  // event.recipes.create.mixing(global.ingotDictionary.palladium, '#forge:dusts/palladium').heated()
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.palladium, 90), '#forge:dusts/palladium', 30, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.palladium, 10), '#forge:nuggets/palladium', 4, 'heated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.palladium, 90), '#forge:ingots/palladium', 40, 'heated')
-
-  // Superheated metallurgy > 1700
-  // Platinum
-  // event.recipes.create.mixing(global.ingotDictionary.platinum, '#forge:dusts/platinum').superheated()
-  event.recipes.createmetallurgy.melting(Fluid.of('kubejs:molten_platinum', 90), '#forge:dusts/platinum', 30, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.platinum, 10), '#forge:nuggets/platinum', 4, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.platinum, 90), '#forge:ingots/platinum', 40, 'superheated')
-
-  // Chromium
-  // event.recipes.create.mixing(global.ingotDictionary.chromium, '#forge:dusts/chromium').superheated()
-  event.recipes.createmetallurgy.melting(Fluid.of('kubejs:molten_chromium', 90), '#forge:dusts/chromium', 30, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.chromium, 10), '#forge:nuggets/chromium', 4, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.chromium, 90), '#forge:ingots/chromium', 40, 'superheated')
-
-  // Vanadium
-  // event.recipes.create.mixing(global.ingotDictionary.vanadium, '#forge:dusts/vanadium').superheated()
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.vanadium, 90), '#forge:dusts/vanadium', 30, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.vanadium, 10), '#forge:nuggets/vanadium', 4, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.vanadium, 90), '#forge:ingots/vanadium', 40, 'superheated')
-
-  // Rhodium
-  // event.recipes.create.mixing(global.ingotDictionary.rhodium, '#forge:dusts/rhodium').superheated()
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.rhodium, 90), '#forge:dusts/rhodium', 30, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.rhodium, 10), '#forge:nuggets/rhodium', 4, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.rhodium, 90), '#forge:ingots/rhodium', 40, 'superheated')
-
-  // Tungsten
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.tungsten, 90), '#forge:dusts/wolframite', 30, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.tungsten, 10), '#forge:nuggets/tungsten', 4, 'superheated')
-  event.recipes.createmetallurgy.melting(Fluid.of(global.moltenMetals.tungsten, 90), '#forge:ingots/tungsten', 40, 'superheated')
+  addTConstructMeltingRecipes(
+    event,
+    'iron',
+    global.moltenMetals.cast_iron,
+    global.metalTemps.cast_iron
+  )
+  addIEBlastingRecipes(
+    event,
+    'iron',
+    'cast_iron'
+  )
 });
+
+function addMeltingRecipes(
+  event,
+  metal,
+  metalIngredientMaterial,
+  metalTemp,
+  moltenMetal,
+  isHardCastable
+) {
+  // create metallurgy: available for all metals
+  addCreateMeltingRecipes(
+    event,
+    metalIngredientMaterial,
+    moltenMetal,
+    isHardCastable
+  )
+
+  if (metalTemp <= 700) {
+    // smelting: <= 700
+    addSmeltingRecipes(
+      event,
+      metalIngredientMaterial,
+      metal
+    )
+  }
+  
+  if (metalTemp <= 1000) {
+    // tconstruct: available for all metals within temperature range
+    addTConstructMeltingRecipes(
+      event,
+      metalIngredientMaterial,
+      moltenMetal,
+      metalTemp
+    )
+    // blasting: 700-1000
+    addIEBlastingRecipes(
+      event,
+      metalIngredientMaterial,
+      metal
+    )
+  }
+}
+
+function addCreateMeltingRecipes(
+  event,
+  metalIngredientMaterial,
+  moltenMetal,
+  superHeated
+) {
+  event.recipes.createmetallurgy.melting(Fluid.of(moltenMetal, 10), `#forge:nuggets/${metalIngredientMaterial}`, 4, superHeated ? 'superheated' : 'heated')
+  event.recipes.createmetallurgy.melting(Fluid.of(moltenMetal, 90), `#forge:dusts/${metalIngredientMaterial}`, 30, superHeated ? 'superheated' : 'heated')
+  event.recipes.createmetallurgy.melting(Fluid.of(moltenMetal, 90), `#forge:ingots/${metalIngredientMaterial}`, 40, superHeated ? 'superheated' : 'heated')
+  event.recipes.createmetallurgy.melting(Fluid.of(moltenMetal, 90), `#forge:ores/${metalIngredientMaterial}`, 40, superHeated ? 'superheated' : 'heated')
+  event.recipes.createmetallurgy.melting(Fluid.of(moltenMetal, 90), `#forge:raw_materials/${metalIngredientMaterial}`, 40, superHeated ? 'superheated' : 'heated')
+  event.recipes.createmetallurgy.melting(Fluid.of(moltenMetal, 90), `create:crushed_raw_${metalIngredientMaterial}`, 40, superHeated ? 'superheated' : 'heated')
+  event.recipes.createmetallurgy.melting(Fluid.of(moltenMetal, 810), `#forge:storage_blocks/raw_${metalIngredientMaterial}`, 40, superHeated ? 'superheated' : 'heated')
+}
+
+function addSmeltingRecipes(
+  event,
+  metalIngredientMaterial,
+  metal
+) {
+  event.smelting(`kubejs:hot_${metal}_ingot`, `#forge:dusts/${metalIngredientMaterial}`)
+  event.smelting(`kubejs:hot_${metal}_ingot`, `#forge:ores/${metalIngredientMaterial}`)
+  event.smelting(`kubejs:hot_${metal}_ingot`, `create:crushed_raw_${metalIngredientMaterial}`)
+  event.smelting(`kubejs:hot_${metal}_ingot`, `#forge:raw_materials/${metalIngredientMaterial}`)
+}
+
+function addTConstructMeltingRecipes(
+  event,
+  metalIngredientMaterial,
+  moltenMetal,
+  metalTemp
+) {
+  event.custom({
+    type: "tconstruct:melting",
+    ingredient: {
+      tag: `forge:nuggets/${metalIngredientMaterial}`
+    },
+    result: {
+      amount: 10,
+      fluid: moltenMetal
+    },
+    temperature: metalTemp,
+    time: 20
+  })
+  event.custom({
+    type: "tconstruct:melting",
+    ingredient: {
+      tag: `forge:dusts/${metalIngredientMaterial}`
+    },
+    result: {
+      amount: 90,
+      fluid: moltenMetal
+    },
+    temperature: metalTemp,
+    time: 60
+  })
+  event.custom({
+    type: "tconstruct:melting",
+    ingredient: {
+      tag: `forge:ingots/${metalIngredientMaterial}`
+    },
+    result: {
+      amount: 90,
+      fluid: moltenMetal
+    },
+    temperature: metalTemp,
+    time: 60
+  })
+  event.custom({
+    type: "tconstruct:ore_melting",
+    conditions: [
+      {
+        type: "mantle:tag_combination_filled",
+        ignore: "tconstruct:non_singular_ore_rates",
+        match: `forge:ores/${metalIngredientMaterial}`
+      }
+    ],
+    byproducts: metalTemp > 800 ? [
+      {
+        amount: 90,
+        rate: "metal",
+        fluid: "tfmg:molten_slag"
+      }
+    ] : [],
+    ingredient: {
+      type: "forge:difference",
+      base: {
+        tag: `forge:ores/${metalIngredientMaterial}`
+      },
+      subtracted: {
+        tag: "tconstruct:non_singular_ore_rates"
+      }
+    },
+    rate: "metal",
+    result: {
+      amount: 180,
+      fluid: moltenMetal
+    },
+    temperature: metalTemp,
+    time: 150
+  })
+  event.custom({
+    type: "tconstruct:ore_melting",
+    ingredient: {
+      tag: `forge:raw_materials/${metalIngredientMaterial}`
+    },
+    rate: "metal",
+    result: {
+      amount: 90,
+      fluid: moltenMetal
+    },
+    temperature: metalTemp,
+    time: 90
+  })
+  event.custom({
+    type: "tconstruct:ore_melting",
+    ingredient: {
+      tag: `forge:storage_blocks/raw_${metalIngredientMaterial}`
+    },
+    rate: "metal",
+    result: {
+      amount: 810,
+      fluid: moltenMetal
+    },
+    temperature: metalTemp,
+    time: 361
+  })
+  event.custom({
+    type: "tconstruct:ore_melting",
+    ingredient: {
+      item: `create:crushed_raw_${metalIngredientMaterial}`
+    },
+    rate: "metal",
+    result: {
+      amount: 90,
+      fluid: moltenMetal
+    },
+    temperature: metalTemp,
+    time: 90
+  })
+}
+
+function addIEBlastingRecipes(
+  event,
+  metalIngredientMaterial,
+  metal
+) {
+  event.custom({
+    type: "immersiveengineering:blast_furnace",
+    input: {
+      tag: `forge:dusts/${metalIngredientMaterial}`
+    },
+    result: {
+      item: `kubejs:hot_${metal}_ingot`
+    },
+    slag: {
+      tag: `forge:slag`
+    },
+    time: 1200
+  })
+  event.custom({
+    type: "immersiveengineering:blast_furnace",
+    input: {
+      tag: `forge:ores/${metalIngredientMaterial}`
+    },
+    result: {
+      item: `kubejs:hot_${metal}_ingot`
+    },
+    slag: {
+      tag: `forge:slag`
+    },
+    time: 1200
+  })
+  event.custom({
+    type: "immersiveengineering:blast_furnace",
+    input: {
+      item: `create:crushed_raw_${metalIngredientMaterial}`
+    },
+    result: {
+      item: `kubejs:hot_${metal}_ingot`
+    },
+    slag: {
+      tag: `forge:slag`
+    },
+    time: 1200
+  })
+  event.custom({
+    type: "immersiveengineering:blast_furnace",
+    input: {
+      tag: `forge:raw_materials/${metalIngredientMaterial}`
+    },
+    result: {
+      item: `kubejs:hot_${metal}_ingot`
+    },
+    slag: {
+      tag: `forge:slag`
+    },
+    time: 1200
+  })
+}

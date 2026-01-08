@@ -1,6 +1,6 @@
 StartupEvents.registry('block', event => {
-  for (let metal of global.castableMetals.concat(global.smithableMetals)) {
-    if (global.metalBlocks[metal] === '') {
+  for (let metal of global.allMetals) {
+    if (!global.metalBlocks[metal]) {
       event
         .create(`${metal}_block`)
         .textureAll(`minecraft:block/iron_block`)
@@ -12,6 +12,8 @@ StartupEvents.registry('block', event => {
         .tagBlock('minecraft:mineable/pickaxe')
         .tagBlock('minecraft:needs_iron_tool')
         .displayName(toSentenceCase(`${metal} Block`));
+
+      global.metalBlocks[metal] = `kubejs:${metal}_block`
     }
   }
 })
