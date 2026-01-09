@@ -8,8 +8,8 @@ StartupEvents.registry('item', event => {
 });
 
 function addTools(event, metal) {
-  // forging, available only for smithable metals
-  if (global.isSmithable(metal)) {
+  // forging, available only for smithable and base castable metals
+  if (global.isSmithable(metal) || global.isBaseCastable(metal)) {
     // hot_%metal%_pickaxe_head_forging.json
     JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_pickaxe_head_forging.json`, {
       "type": "hot_iron:forging",

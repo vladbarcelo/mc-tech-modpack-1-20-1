@@ -28,16 +28,6 @@ ServerEvents.recipes((event) => {
     'createlowheated:basic_burner',
     'createmetallurgy:foundry_basin',
     'createmetallurgy:foundry_lid',
-    'create:crafting/kinetics/fluid_pipe',
-    'create:crafting/kinetics/fluid_pipe_vertical',
-    'tfmg:crafting/pipes/steel_pipe_horizontal',
-    'tfmg:crafting/pipes/steel_pipe_vertical',
-    'tfmg:crafting/pipes/cast_iron_pipe_horizontal',
-    'tfmg:crafting/pipes/cast_iron_pipe_vertical',
-    'tfmg:crafting/pipes/brass_pipe_horizontal',
-    'tfmg:crafting/pipes/brass_pipe_vertical',
-    'tfmg:crafting/pipes/aluminum_pipe_horizontal',
-    'tfmg:crafting/pipes/aluminum_pipe_vertical',
     // tinkers
     // casting
     'tconstruct:tools/parts/casting/pick_head_sand_cast',

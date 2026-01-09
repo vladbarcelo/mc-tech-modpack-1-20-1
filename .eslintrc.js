@@ -6,7 +6,7 @@ module.exports = {
     es6: true
   },
   rules: {
-    'no-unused-vars': 'warn'
+    'no-unused-vars': 'warn',
   },
   globals: {
     'StartupEvents': true,
@@ -15,6 +15,10 @@ module.exports = {
     'Ingredient': true,
     'Fluid': true,
     'JsonIO': true,
+    'CreateEvents': true,
+    'Block': true,
+    'Blocks': true,
+    'BlockEntityEvents': true,
     // helpers
     'toSentenceCase': true,
     'darkenColor': true,
