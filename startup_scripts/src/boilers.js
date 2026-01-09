@@ -18,10 +18,6 @@ CreateEvents.boilerHeatHandler((event) => {
   });
 
   event.addAdvanced("steampowered:bronze_burner", (block) => {
-    let upperBlock = block.up.getId()
-
-    if (upperBlock !== 'create:fluid_tank') return -1
-
     let heatUnits = block.getEntityData().get('hu').toString()
 
     if (heatUnits > 1) return 1
@@ -30,10 +26,6 @@ CreateEvents.boilerHeatHandler((event) => {
   });
 
   event.addAdvanced("steampowered:cast_iron_burner", (block) => {
-    let upperBlock = block.up.getId()
-
-    if (upperBlock !== 'create:fluid_tank') return -1
-
     let heatUnits = block.getEntityData().get('hu').toString()
 
     if (heatUnits > 1) return 2
@@ -42,10 +34,6 @@ CreateEvents.boilerHeatHandler((event) => {
   });
 
   event.addAdvanced("steampowered:steel_burner", (block) => {
-    let upperBlock = block.up.getId()
-
-    if (upperBlock !== 'create:fluid_tank') return -1
-
     let heatUnits = block.getEntityData().get('hu').toString()
 
     if (heatUnits > 1) return 3
