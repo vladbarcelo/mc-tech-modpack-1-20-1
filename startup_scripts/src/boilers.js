@@ -24,8 +24,9 @@ CreateEvents.boilerHeatHandler((event) => {
 
     let heatUnits = block.getEntityData().get('hu').toString()
 
-    if (heatUnits > 0) return 1
-    else return 0
+    if (heatUnits > 1) return 1
+    else if (heatUnits === 1) return 0
+    else return -1
   });
 
   event.addAdvanced("steampowered:cast_iron_burner", (block) => {
@@ -35,8 +36,9 @@ CreateEvents.boilerHeatHandler((event) => {
 
     let heatUnits = block.getEntityData().get('hu').toString()
 
-    if (heatUnits > 0) return 2
-    else return 0
+    if (heatUnits > 1) return 2
+    else if (heatUnits === 1) return 1
+    else return -1
   });
 
   event.addAdvanced("steampowered:steel_burner", (block) => {
@@ -46,7 +48,8 @@ CreateEvents.boilerHeatHandler((event) => {
 
     let heatUnits = block.getEntityData().get('hu').toString()
 
-    if (heatUnits > 0) return 3
-    else return 0
+    if (heatUnits > 1) return 3
+    else if (heatUnits === 1) return 2
+    else return -1
   });
 });
