@@ -122,8 +122,16 @@ BlockEntityEvents.tick((event) => {
   if (!machineryFluid || checkableFluids.indexOf(machineryFluid) === -1) return
 
   if (machineryFluidCompatibility[block.id].indexOf(machineryFluid) === -1) {
+    // blockstate 1 corresponds to a almost-full fluid block (0 is full, 1 is almost-full, etc.)
     let fluidBlock = Block.getBlock(machineryFluid).getBlockStates()[1]
-    event.getLevel().setBlock(blockPosition, fluidBlock, 0, 0)
+    /**
+     * Value 1 (NOTIFY_NEIGHBORS): Triggers neighbor updates (e.g., updating redstone or observers).
+     * Value 2 (BLOCK_UPDATE / UPDATE_CLIENTS): Sends the change to the client to ensure the block is rendered correctly.
+     * Value 3 (1 + 2): The standard choice. Notifies neighbors and updates the client visuals.
+     * Value 4 (NO_RERENDER): Prevents the block from being re-rendered on the client.
+     * Value 16 (IS_MOVING): Used if the block is being moved (like by a piston) to prevent it from dropping as an item during the transition. 
+     */
+    event.getLevel().setBlock(blockPosition, fluidBlock, 3)
   }
 })
 

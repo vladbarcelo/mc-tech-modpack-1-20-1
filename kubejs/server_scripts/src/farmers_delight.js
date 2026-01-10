@@ -46,7 +46,7 @@ ServerEvents.recipes((event) => {
     [
       'A',
       'A',
-      'B ',
+      'B',
     ],
     {
       A: '#forge:plates/cast_iron',

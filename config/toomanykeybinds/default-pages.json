@@ -168,17 +168,16 @@
       ]
     },
     {
-      "name": "jei.key.category.mouse.hover",
+      "name": "jei.key.category.recipe.gui",
       "index": 14,
       "hidden": false,
       "keys": [
-        "key.jei.transferRecipeBookmark",
-        "key.jei.showUses2",
-        "key.jei.bookmark",
-        "key.jei.maxTransferRecipeBookmark",
-        "key.jei.showRecipe",
-        "key.jei.showUses",
-        "key.jei.showRecipe2"
+        "key.jei.closeRecipeGui",
+        "key.jei.nextCategory",
+        "key.jei.previousCategory",
+        "key.jei.previousRecipePage",
+        "key.jei.recipeBack",
+        "key.jei.nextRecipePage"
       ]
     },
     {
@@ -192,50 +191,41 @@
       ]
     },
     {
-      "name": "jei.key.category.cheat.mode",
+      "name": "jei.key.category.overlays",
       "index": 15,
       "hidden": false,
       "keys": [
-        "key.jei.toggleCheatMode",
-        "key.jei.cheatOneItem",
-        "key.jei.cheatOneItem2",
-        "key.jei.cheatItemStack",
-        "key.jei.cheatItemStack2"
+        "key.jei.focusSearch",
+        "key.jei.nextPage",
+        "key.jei.toggleBookmarkOverlay",
+        "key.jei.previousPage",
+        "key.jei.toggleOverlay"
       ]
     },
     {
-      "name": "jei.key.category.search",
+      "name": "jei.key.category.cheat.mode",
       "index": 16,
       "hidden": false,
       "keys": [
-        "key.jei.clearSearchBar",
-        "key.jei.previousSearch",
-        "key.jei.nextSearch"
+        "key.jei.toggleCheatMode",
+        "key.jei.cheatItemStack",
+        "key.jei.cheatItemStack2",
+        "key.jei.cheatOneItem2",
+        "key.jei.cheatOneItem"
       ]
     },
     {
-      "name": "jei.key.category.recipe.gui",
+      "name": "jei.key.category.mouse.hover",
       "index": 17,
       "hidden": false,
       "keys": [
-        "key.jei.previousRecipePage",
-        "key.jei.nextCategory",
-        "key.jei.previousCategory",
-        "key.jei.nextRecipePage",
-        "key.jei.closeRecipeGui",
-        "key.jei.recipeBack"
-      ]
-    },
-    {
-      "name": "jei.key.category.overlays",
-      "index": 18,
-      "hidden": false,
-      "keys": [
-        "key.jei.focusSearch",
-        "key.jei.toggleBookmarkOverlay",
-        "key.jei.nextPage",
-        "key.jei.previousPage",
-        "key.jei.toggleOverlay"
+        "key.jei.showRecipe",
+        "key.jei.bookmark",
+        "key.jei.maxTransferRecipeBookmark",
+        "key.jei.showUses",
+        "key.jei.transferRecipeBookmark",
+        "key.jei.showUses2",
+        "key.jei.showRecipe2"
       ]
     },
     {
@@ -244,8 +234,18 @@
       "hidden": false,
       "keys": [
         "key.jei.toggleEditMode",
-        "key.jei.toggleHideIngredient",
-        "key.jei.toggleWildcardHideIngredient"
+        "key.jei.toggleWildcardHideIngredient",
+        "key.jei.toggleHideIngredient"
+      ]
+    },
+    {
+      "name": "jei.key.category.search",
+      "index": 20,
+      "hidden": false,
+      "keys": [
+        "key.jei.previousSearch",
+        "key.jei.nextSearch",
+        "key.jei.clearSearchBar"
       ]
     },
     {
@@ -294,16 +294,16 @@
       "index": 24,
       "hidden": false,
       "keys": [
-        "xaeroplus.setting.map_art_grid",
+        "xaeroplus.setting.spawn_chunks",
+        "xaeroplus.setting.player_spawn_chunks",
+        "xaeroplus.keybind.switch_to_overworld",
+        "xaeroplus.keybind.world_map_baritone_path_here",
         "xaeroplus.keybind.switch_to_nether",
-        "xaeroplus.setting.show_render_distance",
-        "xaeroplus.setting.2b2t_highways_enabled",
-        "xaeroplus.setting.world_tools",
         "xaeroplus.keybind.world_map_baritone_goal_here",
         "xaeroplus.setting.old_chunks_highlighting",
-        "xaeroplus.setting.portal_skip_detection",
-        "xaeroplus.keybind.world_map_baritone_elytra_here",
-        "xaeroplus.keybind.switch_to_end"
+        "xaeroplus.setting.portals",
+        "xaeroplus.setting.2b2t_highways_enabled",
+        "xaeroplus.setting.new_chunks_highlighting"
       ]
     },
     {
@@ -311,14 +311,14 @@
       "index": 25,
       "hidden": false,
       "keys": [
-        "xaeroplus.setting.old_biomes_enabled",
-        "xaeroplus.setting.player_spawn_chunks",
-        "xaeroplus.setting.portals",
-        "xaeroplus.keybind.world_map_baritone_path_here",
-        "xaeroplus.setting.new_chunks_highlighting",
-        "xaeroplus.setting.spawn_chunks",
         "xaeroplus.setting.palette_new_chunks_highlighting",
-        "xaeroplus.keybind.switch_to_overworld"
+        "xaeroplus.setting.show_render_distance",
+        "xaeroplus.setting.world_tools",
+        "xaeroplus.setting.map_art_grid",
+        "xaeroplus.keybind.world_map_baritone_elytra_here",
+        "xaeroplus.setting.portal_skip_detection",
+        "xaeroplus.setting.old_biomes_enabled",
+        "xaeroplus.keybind.switch_to_end"
       ]
     },
     {

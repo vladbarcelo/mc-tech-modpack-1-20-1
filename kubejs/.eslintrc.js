@@ -13,6 +13,7 @@ module.exports = {
     'StartupEvents': true,
     'ServerEvents': true,
     'Item': true,
+    'ItemEvents': true,
     'Ingredient': true,
     'Fluid': true,
     'JsonIO': true,
@@ -21,6 +22,8 @@ module.exports = {
     'Blocks': true,
     'CreateHeatJS': true,
     'BlockEntityEvents': true,
+    'BlockEvents': true,
+    'BlockProperties': true,
     // helpers
     'toSentenceCase': true,
     'darkenColor': true,

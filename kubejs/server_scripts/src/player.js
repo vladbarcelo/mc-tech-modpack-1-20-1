@@ -1,5 +1,6 @@
 ServerEvents.tick(event => {
   event.server.players.forEach(player => {
+    if (event.server.getLevel('minecraft:overworld').levelData.getGameTime() % 20 !== 0) return
     if (!player.alive || player.isSpectator()) return;
 
     // hot ingots
