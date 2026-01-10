@@ -1,0 +1,17 @@
+{
+	"type": "createmetallurgy:casting_in_basin",
+	"ingredients": [
+		{
+			"item": "kubejs:cooking_pot_graphite_mold"
+		},
+		{
+			"amount": 200,
+			"fluid": "kubejs:molten_cast_iron",
+			"nbt": {}
+		}
+	],
+	"processingTime": 200,
+	"result": {
+		"item": "farmersdelight:cooking_pot"
+	}
+}

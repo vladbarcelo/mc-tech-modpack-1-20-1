@@ -9,6 +9,7 @@ module.exports = {
     'no-unused-vars': 'warn',
   },
   globals: {
+    'Java': true,
     'StartupEvents': true,
     'ServerEvents': true,
     'Item': true,
@@ -18,9 +19,11 @@ module.exports = {
     'CreateEvents': true,
     'Block': true,
     'Blocks': true,
+    'CreateHeatJS': true,
     'BlockEntityEvents': true,
     // helpers
     'toSentenceCase': true,
     'darkenColor': true,
+    'addMetalCastingRecipe': true,
   }
 }

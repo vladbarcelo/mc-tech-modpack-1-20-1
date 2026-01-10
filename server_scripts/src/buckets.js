@@ -1,4 +1,5 @@
 ServerEvents.recipes((event) => {
+  event.remove({ id: 'minecraft:bucket' })
   event.remove({ id: 'morebuckets:unfired_clay_bucket' })
   event.remove({ id: 'notreepunching:campfire/bucket' })
   event.remove({ id: 'notreepunching:smelting/bucket' })

@@ -120,6 +120,7 @@ ServerEvents.recipes((event) => {
     }
     // plate
     if (global.metalPlates[metal]) {
+      event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMetals[metal], 90), 'createmetallurgy:graphite_plate_mold'], 120, false)
       event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:plate_sand_cast'], 120, true)
       event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:plate_red_sand_cast'], 120, true)
       event.custom({

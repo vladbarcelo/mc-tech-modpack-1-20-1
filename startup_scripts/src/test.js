@@ -1,8 +1,19 @@
 /**
- * @param {import("packages/com/simibubi/create/content/fluids/$OpenEndedPipe").$OpenEndedPipe$Type} pipe 
- * @param {import("packages/dev/latvian/mods/kubejs/fluid/$FluidStackJS").$FluidStackJS$Type} fluid 
+ * WARNING: PREDICATES DO NOT WORK IN CREATE: METALLURGY!
+ * 
+ * none = no heating
+ * fading = transition state (removed?)
+ * smouldering = passive heating (removed by create low heated?)
+ * low = low heating
+ * kindled = active heating
+ * seething = super heating
  */
-function pipeHandler(pipe, fluid) {
-  let pipePosition = pipe.getPos()
-  pipe.getWorld().setBlock(pipePosition, Block.getBlock('minecraft:water').getBaseBlockState(), 0, 0)
-}
+
+// CreateHeatJS.registerHeatEvent((event) => {
+//   event
+//     .addHeatSource(
+//       "low",
+//       "minecraft:campfire"
+//     )
+//     .register()
+// })

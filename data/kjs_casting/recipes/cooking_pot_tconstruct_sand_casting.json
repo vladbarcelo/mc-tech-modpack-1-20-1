@@ -1,0 +1,15 @@
+{
+	"type": "tconstruct:casting_basin",
+	"cast": {
+		"item": "kubejs:cooking_pot_sand_cast"
+	},
+	"cast_consumed": true,
+	"cooling_time": 200,
+	"fluid": {
+		"amount": 200,
+		"fluid": "kubejs:molten_cast_iron"
+	},
+	"result": {
+		"item": "farmersdelight:cooking_pot"
+	}
+}

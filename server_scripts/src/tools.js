@@ -30,11 +30,11 @@ ServerEvents.recipes((event) => {
   event.shaped(
     Item.of('rechiseled:chisel', 1),
     [
-      ' A',
-      'B ',
+      'A',
+      'B',
     ],
     {
-      A: '#forge:ingots/cast_iron',
+      A: '#forge:plates/cast_iron',
       B: 'hot_iron:tool_handle',
     }
   )
