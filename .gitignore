@@ -1,7 +1,5 @@
 /*
 
-.DS_Store
-
 !config/
 !kubejs/
 !kubejs/config/
@@ -11,3 +9,5 @@
 !kubejs/startup_scripts/
 !.probe/
 !.vscode/
+
+.DS_Store
