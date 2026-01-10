@@ -1,0 +1,412 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "blasting_and_casting"
+	group: "576DDAF113CE81F1"
+	icon: "tconstruct:smeltery_controller"
+	id: "27E5EED1FB1CB9DA"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			disable_toast: true
+			id: "2F1D90ACA3A79039"
+			size: 2.0d
+			tasks: [{
+				id: "142A00ACB3A9C439"
+				item: {
+					Count: 1
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"62DF77B20EA4CA68"
+				"3821E84A645CCB4A"
+			]
+			id: "48CEC3B150C86EE7"
+			size: 2.0d
+			tasks: [{
+				advancement: "immersiveengineering:main/mb_blastfurnace"
+				criterion: ""
+				id: "296A09C909811044"
+				title: "Blast It!"
+				type: "advancement"
+			}]
+			x: 3.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2F1D90ACA3A79039"]
+			id: "62DF77B20EA4CA68"
+			tasks: [{
+				advancement: "immersiveengineering:main/mb_cokeoven"
+				criterion: ""
+				id: "197A11A1CA55E0F2"
+				title: "Time for some Coke"
+				type: "advancement"
+			}]
+			x: -1.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["2F1D90ACA3A79039"]
+			id: "3959FF510C9BB79F"
+			size: 2.0d
+			tasks: [{
+				count: 4L
+				id: "6596FF44D1DBE0AD"
+				item: { Count: 4, id: "immersiveengineering:alloybrick" }
+				type: "item"
+			}]
+			x: 3.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["3959FF510C9BB79F"]
+			id: "4FCFB073BE2D2819"
+			tasks: [{
+				id: "2F4F9F20896B6419"
+				item: "kubejs:borosilicate_glass"
+				type: "item"
+			}]
+			x: 17.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["3959FF510C9BB79F"]
+			id: "24119A4B490397A4"
+			size: 2.0d
+			tasks: [{
+				id: "38809FB178A028F8"
+				item: "create:andesite_alloy"
+				type: "item"
+			}]
+			title: "It's time to Create!"
+			x: 9.0d
+			y: 8.0d
+		}
+		{
+			dependencies: ["48CEC3B150C86EE7"]
+			id: "228ABDD9E8BA697B"
+			tasks: [{
+				id: "1D2E52FF1CA1CBC3"
+				item: "kubejs:hot_cast_iron_ingot"
+				type: "item"
+			}]
+			title: "Very Hot!"
+			x: 6.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["228ABDD9E8BA697B"]
+			id: "69F5A4300240441A"
+			size: 2.0d
+			tasks: [{
+				id: "198BBA35424775F0"
+				item: "tfmg:cast_iron_ingot"
+				type: "item"
+			}]
+			x: 9.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["01A7CEF12EAB90E4"]
+			id: "0DC28C5FCC081098"
+			size: 2.0d
+			tasks: [{
+				id: "3FB3124797EEA85B"
+				item: "minecraft:copper_ingot"
+				type: "item"
+			}]
+			x: 9.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["48CEC3B150C86EE7"]
+			id: "01A7CEF12EAB90E4"
+			tasks: [{
+				id: "26A7100C59935531"
+				item: "kubejs:hot_copper_ingot"
+				type: "item"
+			}]
+			title: "Still very hot!"
+			x: 6.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["69F5A4300240441A"]
+			id: "32B198BDEEB1E660"
+			size: 2.0d
+			tasks: [{
+				id: "574C208DDC41C9A5"
+				item: "minecraft:blast_furnace"
+				type: "item"
+			}]
+			x: 11.5d
+			y: -1.0d
+		}
+		{
+			id: "7233CDBB9C8159C1"
+			tasks: [{
+				id: "663D6C25B0739886"
+				item: "tconstruct:grout"
+				type: "item"
+			}]
+			x: 11.5d
+			y: -3.0d
+		}
+		{
+			dependencies: [
+				"32B198BDEEB1E660"
+				"7233CDBB9C8159C1"
+			]
+			id: "4C5F52E21414CAE9"
+			size: 1.0d
+			tasks: [{
+				id: "3705F5ECEAD3ECF7"
+				item: "tconstruct:seared_brick"
+				type: "item"
+			}]
+			x: 14.0d
+			y: -1.0d
+		}
+		{
+			dependencies: [
+				"4FCFB073BE2D2819"
+				"5A0B291C8A2FDAE0"
+				"67EAD29DA2618214"
+				"0DEC3EE6E81CA13E"
+			]
+			id: "5C09505948F02C4F"
+			size: 2.0d
+			tasks: [{
+				id: "5F9D2260DAA53EA1"
+				item: "tconstruct:smeltery_controller"
+				type: "item"
+			}]
+			x: 21.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0DC28C5FCC081098"]
+			id: "5A0B291C8A2FDAE0"
+			tasks: [{
+				id: "3A5B1196030C941A"
+				item: "createdeco:copper_bars"
+				type: "item"
+			}]
+			x: 17.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["4C5F52E21414CAE9"]
+			id: "67EAD29DA2618214"
+			tasks: [{
+				id: "2352BB7C5F36B12D"
+				item: "tconstruct:seared_bricks"
+				type: "item"
+			}]
+			x: 17.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["5C09505948F02C4F"]
+			id: "51A1602A886D5291"
+			size: 1.0d
+			tasks: [{
+				id: "7EC58B6E61A32FD8"
+				item: "tconstruct:seared_table"
+				type: "item"
+			}]
+			x: 22.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["5C09505948F02C4F"]
+			id: "61C88554CE01BE18"
+			size: 1.0d
+			tasks: [{
+				id: "2ED586ED5109DFE2"
+				item: "tconstruct:seared_faucet"
+				type: "item"
+			}]
+			x: 23.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0DC28C5FCC081098"]
+			id: "1D00495E7519ADF1"
+			tasks: [{
+				id: "7E172A8D792A918B"
+				item: "create:copper_sheet"
+				type: "item"
+			}]
+			x: 11.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1D00495E7519ADF1"]
+			id: "0DEC3EE6E81CA13E"
+			size: 2.0d
+			tasks: [{
+				id: "587B366BFD427603"
+				item: "create:fluid_pipe"
+				type: "item"
+			}]
+			x: 17.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["5C09505948F02C4F"]
+			id: "306D27580EB5329E"
+			size: 1.0d
+			tasks: [{
+				id: "04147C7CCA7D9028"
+				item: "tconstruct:seared_drain"
+				type: "item"
+			}]
+			x: 23.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["5C09505948F02C4F"]
+			id: "0FD1CEDD43C57BE8"
+			size: 1.0d
+			tasks: [{
+				id: "7F0C9697E9CAC020"
+				item: "tconstruct:seared_fuel_tank"
+				type: "item"
+			}]
+			x: 22.0d
+			y: 6.5d
+		}
+		{
+			dependencies: [
+				"51A1602A886D5291"
+				"306D27580EB5329E"
+				"61C88554CE01BE18"
+				"0FD1CEDD43C57BE8"
+				"5C09505948F02C4F"
+			]
+			icon: "tconstruct:foundry_controller"
+			id: "6A9023ED20F868CC"
+			size: 2.0d
+			tasks: [{
+				advancement: "tconstruct:smeltery/structure"
+				criterion: ""
+				id: "55729BFDFAF2AE1B"
+				type: "advancement"
+			}]
+			x: 27.0d
+			y: 3.5d
+		}
+		{
+			id: "3821E84A645CCB4A"
+			tasks: [{
+				id: "26A6D772E8313FAD"
+				item: "tfmg:fireproof_brick"
+				type: "item"
+			}]
+			x: -1.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["6A9023ED20F868CC"]
+			id: "33D29094A0CE35D1"
+			tasks: [{
+				id: "2A7BB54C6BEC1DED"
+				item: {
+					Count: 1
+					id: "rechiseled:chisel"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: 30.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["6A9023ED20F868CC"]
+			id: "5D2DA4E17E6D5CB0"
+			tasks: [{
+				id: "13207145530FD15E"
+				item: "tconstruct:blank_sand_cast"
+				type: "item"
+			}]
+			x: 30.0d
+			y: 2.0d
+		}
+		{
+			dependencies: [
+				"5D2DA4E17E6D5CB0"
+				"33D29094A0CE35D1"
+			]
+			id: "0EB9F0DB7B070ADE"
+			size: 1.0d
+			tasks: [{
+				id: "10566C9245642393"
+				item: "tconstruct:ingot_sand_cast"
+				type: "item"
+			}]
+			x: 32.5d
+			y: 3.5d
+		}
+		{
+			dependencies: ["0EB9F0DB7B070ADE"]
+			id: "041F7615553F885F"
+			size: 2.0d
+			tasks: [{
+				id: "794C92171EB64F1E"
+				item: "create:brass_ingot"
+				type: "item"
+			}]
+			x: 36.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0EB9F0DB7B070ADE"]
+			id: "36605EAA3934E78E"
+			size: 2.0d
+			tasks: [{
+				id: "73C8D7F2FD02EA72"
+				item: "immersiveengineering:ingot_electrum"
+				type: "item"
+			}]
+			x: 36.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["0EB9F0DB7B070ADE"]
+			id: "0C15745E9BD6783A"
+			size: 2.0d
+			tasks: [{
+				id: "2B125E8598AD1404"
+				item: "immersiveengineering:ingot_silver"
+				type: "item"
+			}]
+			x: 36.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["0EB9F0DB7B070ADE"]
+			id: "37B99EE1812A46CC"
+			size: 2.0d
+			tasks: [{
+				id: "2D2286195614F771"
+				item: "minecraft:gold_ingot"
+				type: "item"
+			}]
+			x: 36.0d
+			y: 7.5d
+		}
+	]
+	title: "Blasting and Casting"
+}

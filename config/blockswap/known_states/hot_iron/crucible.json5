@@ -1,0 +1,154 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "0"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "1"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "2"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "3"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "4"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "5"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "6"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "7"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "8"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "9"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "10"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "11"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "12"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "13"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "14"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "15"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "16"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "17"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "18"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"cooking_time_left": "19"
+		},
+		"Name": "hot_iron:crucible"
+	},
+	{
+		"Name": "hot_iron:crucible"
+	}
+]

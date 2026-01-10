@@ -1,0 +1,3604 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "true",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "false",
+			"facing": "up"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "true",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "down",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "down",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "down",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "down",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "down",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "up",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "up",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "up",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "up",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "up",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "north",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "north",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "north",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "north",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "north",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "south",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "south",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "south",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "south",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "south",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "west",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "west",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "west",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "west",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "west",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "0",
+			"output": "east",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "1",
+			"output": "east",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "2",
+			"output": "east",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "3",
+			"output": "east",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"type": "4",
+			"output": "east",
+			"open": "false",
+			"facing": "down"
+		},
+		"Name": "create_airducts:vent_splitter"
+	}
+]

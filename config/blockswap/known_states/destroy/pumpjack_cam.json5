@@ -1,0 +1,1444 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "front",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "back",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "middle",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "top",
+			"axis": "x"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "front",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "back",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "middle",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "top",
+			"axis": "y"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "front",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "back",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "middle",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "north",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "north",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "east",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "east",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "south",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "south",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "west",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "west",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "up",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "up",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"facing": "down",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"facing": "down",
+			"component": "top",
+			"axis": "z"
+		},
+		"Name": "destroy:pumpjack_cam"
+	}
+]

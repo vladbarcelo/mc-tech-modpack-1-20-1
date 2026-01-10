@@ -1,0 +1,198 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "east",
+			"component": "front"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "south",
+			"component": "front"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "west",
+			"component": "front"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "up",
+			"component": "front"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "down",
+			"component": "front"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "north",
+			"component": "back"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "east",
+			"component": "back"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "south",
+			"component": "back"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "west",
+			"component": "back"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "up",
+			"component": "back"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "down",
+			"component": "back"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "north",
+			"component": "middle"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "east",
+			"component": "middle"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "south",
+			"component": "middle"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "west",
+			"component": "middle"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "up",
+			"component": "middle"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "down",
+			"component": "middle"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "north",
+			"component": "top"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "east",
+			"component": "top"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "south",
+			"component": "top"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "west",
+			"component": "top"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "up",
+			"component": "top"
+		},
+		"Name": "destroy:pumpjack_structure"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"facing": "down",
+			"component": "top"
+		},
+		"Name": "destroy:pumpjack_structure"
+	}
+]

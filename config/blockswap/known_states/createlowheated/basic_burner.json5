@@ -1,0 +1,2115 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "true"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "north",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "south",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "west",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "true",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "true",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "none",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "smouldering",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "fading",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "kindled",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "seething",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"low": "low",
+			"lit": "false",
+			"fueled": "false",
+			"facing": "east",
+			"empowered": "false"
+		},
+		"Name": "createlowheated:basic_burner"
+	}
+]

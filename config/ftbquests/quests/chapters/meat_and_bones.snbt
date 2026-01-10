@@ -1,0 +1,222 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "meat_and_bones"
+	group: "4F06A4C880184E3E"
+	icon: "minecraft:beef"
+	id: "5F3EA1C188452595"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			hide_dependency_lines: false
+			id: "05A37C410730A75B"
+			size: 2.0d
+			subtitle: "Craft a &6Flint Knife&r"
+			tasks: [{
+				id: "5E862D894E472C44"
+				item: {
+					Count: 1
+					id: "farmersdelight:flint_knife"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -3.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["05A37C410730A75B"]
+			description: ["Where did you think meat comes from?"]
+			id: "17037F18A04455D7"
+			rewards: [{
+				id: "620698B34F23EDBF"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "Kill a mob and harvest its carcass"
+			tasks: [
+				{
+					id: "420CE94BFC3A3984"
+					item: "butchersdelight:dead_cow"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "569884C2BD2C712D"
+					item: "butchersdelight:deadpig"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "22F2ED4DDE984F5A"
+					item: "butchersdelight:deadsheep"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "45D2181401CDC554"
+					item: "butchersdelight:deadgoat"
+					type: "item"
+				}
+				{
+					id: "2EA58F264E44D0EE"
+					item: "butchersdelight:deadhoglin"
+					type: "item"
+				}
+				{
+					id: "5C4A3C865A141F18"
+					item: "butchersdelight:deadchiken"
+					type: "item"
+				}
+				{
+					id: "17D32588CE07D0D8"
+					item: "butchersdelight:deadrabbitbrown"
+					type: "item"
+				}
+				{
+					id: "500B845442E20C4D"
+					item: "butchersdelight:deadllama"
+					type: "item"
+				}
+			]
+			title: "Strong stomach"
+			x: 0.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["17037F18A04455D7"]
+			description: [""]
+			id: "4883BEC0A9C15C6D"
+			rewards: [{
+				id: "036434C00D9DB2EF"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "Craft and use a &6Roaster&r over a campfire"
+			tasks: [{
+				id: "750740392980A07F"
+				item: "butchersdelight:roaster"
+				type: "item"
+			}]
+			title: "Roasty and Toasty"
+			x: 1.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["17037F18A04455D7"]
+			id: "3A417D400310EB93"
+			rewards: [{
+				id: "33D31BC785F07E9D"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "Craft and use a &6Tanner&r"
+			tasks: [{
+				id: "6E286D4352EE4513"
+				item: "butchersdelight:rack"
+				type: "item"
+			}]
+			title: "No tannins needed!"
+			x: 1.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["3A417D400310EB93"]
+			id: "151F196A3B65CE1F"
+			rewards: [{
+				id: "1C475BF767E45700"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [
+				{
+					id: "6F70B1412D81015E"
+					item: "butchersdelight:cow_hide"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "12BF46173BAB4558"
+					item: "butchersdelight:hoglinskin"
+					optional_task: true
+					type: "item"
+				}
+			]
+			x: 5.5d
+			y: 0.5d
+		}
+		{
+			dependencies: ["4883BEC0A9C15C6D"]
+			id: "2279451FE23ED5DE"
+			rewards: [{
+				id: "2D6428B9C580F917"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [
+				{
+					id: "652DAA93D6ACBA3D"
+					item: "minecraft:cooked_beef"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "3B42C02E13271DFF"
+					item: "minecraft:cooked_porkchop"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "02FF0B976AF8EC50"
+					item: "minecraft:cooked_mutton"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "19CFB96BD7936477"
+					item: "minecraft:cooked_chicken"
+					optional_task: true
+					type: "item"
+				}
+			]
+			x: 5.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["17037F18A04455D7"]
+			id: "0A107A45272CB0A0"
+			rewards: [{
+				id: "5CD4CF4C93E67063"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "402DA5705467B90A"
+				item: "minecraft:bone"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0A107A45272CB0A0"]
+			id: "445D28BCF6F57E5F"
+			rewards: [{
+				id: "54D07A36864C109F"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "2AC9E82E50FC5611"
+				item: "minecraft:bone_meal"
+				type: "item"
+			}]
+			x: 5.5d
+			y: -1.0d
+		}
+	]
+	title: "Meat and bones"
+}

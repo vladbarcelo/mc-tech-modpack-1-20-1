@@ -1,0 +1,166 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfullsingle",
+			"facing": "north"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackempty",
+			"facing": "north"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfull",
+			"facing": "north"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackair",
+			"facing": "north"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackemptysingle",
+			"facing": "south"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfullsingle",
+			"facing": "south"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackempty",
+			"facing": "south"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfull",
+			"facing": "south"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackair",
+			"facing": "south"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackemptysingle",
+			"facing": "west"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfullsingle",
+			"facing": "west"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackempty",
+			"facing": "west"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfull",
+			"facing": "west"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackair",
+			"facing": "west"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackemptysingle",
+			"facing": "east"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfullsingle",
+			"facing": "east"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackempty",
+			"facing": "east"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackfull",
+			"facing": "east"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"variant": "blockrackair",
+			"facing": "east"
+		},
+		"Name": "minecolonies:blockminecoloniesrack"
+	}
+]

@@ -1,0 +1,271 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "water_and_lava"
+	group: "4F06A4C880184E3E"
+	icon: "morebuckets:ceramic_bucket"
+	id: "1679ADD2D7889C78"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			disable_toast: true
+			id: "266BF953852E99D0"
+			size: 2.0d
+			tasks: [{
+				id: "4BAFFA53AE2F93B9"
+				item: "minecraft:stick"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -0.5d
+		}
+		{
+			dependencies: [
+				"486EF1E7458233F3"
+				"266BF953852E99D0"
+			]
+			id: "7761309BC838DF07"
+			tasks: [{
+				id: "048A8F583B66FBA5"
+				item: {
+					Count: 1
+					id: "notreepunching:clay_tool"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 0.0d
+			y: -0.5d
+		}
+		{
+			id: "1402106753E180C8"
+			size: 2.0d
+			tasks: [{
+				id: "2CF9287B0442648C"
+				item: "minecraft:clay"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			disable_toast: true
+			id: "486EF1E7458233F3"
+			size: 2.0d
+			tasks: [{
+				id: "47D410E12E7B9C0D"
+				item: "minecraft:crafting_table"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -4.0d
+		}
+		{
+			dependencies: [
+				"1402106753E180C8"
+				"7761309BC838DF07"
+			]
+			id: "351CB3E0ACAB292A"
+			tasks: [{
+				id: "41AEBE6B9DABFE39"
+				item: "notreepunching:clay_bucket"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["351CB3E0ACAB292A"]
+			id: "084979B7BA24B26F"
+			optional: true
+			tasks: [{
+				id: "575F28597892BCD9"
+				item: "notreepunching:clay_large_vessel"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["351CB3E0ACAB292A"]
+			id: "50E38F8FFA4981D7"
+			optional: true
+			tasks: [{
+				id: "58749FFB8EAEC37D"
+				item: "notreepunching:clay_small_vessel"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["351CB3E0ACAB292A"]
+			id: "21F130DD0D0F2E91"
+			optional: true
+			tasks: [{
+				id: "4D7BCB9E479BCB3C"
+				item: "notreepunching:clay_flower_pot"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["351CB3E0ACAB292A"]
+			id: "236A5BCA3F5C79D9"
+			tasks: [{
+				id: "103627E3DE13629C"
+				item: "morebuckets:ceramic_bucket"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["236A5BCA3F5C79D9"]
+			id: "2BD43F913548D1FC"
+			size: 2.0d
+			tasks: [{
+				id: "36DB2EE4E7125935"
+				item: {
+					Count: 1
+					id: "morebuckets:ceramic_bucket"
+					tag: {
+						Fluid: {
+							Amount: 1000
+							FluidName: "minecraft:lava"
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 10.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["50E38F8FFA4981D7"]
+			id: "33A9F8004B18963E"
+			optional: true
+			tasks: [{
+				id: "558EFF1B68989673"
+				item: "notreepunching:ceramic_small_vessel"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["084979B7BA24B26F"]
+			id: "72399E4C0EC2F0DF"
+			optional: true
+			tasks: [{
+				id: "15895F8488ACFA60"
+				item: "notreepunching:ceramic_large_vessel"
+				type: "item"
+			}]
+			x: 7.5d
+			y: -3.5d
+		}
+		{
+			dependencies: ["351CB3E0ACAB292A"]
+			id: "2F56F4D8650C90C8"
+			optional: true
+			tasks: [{
+				id: "1AB65F5269A609CC"
+				item: "notreepunching:clay_brick"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 2.5d
+		}
+		{
+			dependencies: ["2F56F4D8650C90C8"]
+			id: "631E7C5ACC6F42B0"
+			optional: true
+			tasks: [{
+				id: "5590CF5DC4491412"
+				item: "minecraft:brick"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["21F130DD0D0F2E91"]
+			id: "551FFA72CD64E097"
+			optional: true
+			tasks: [{
+				id: "132858A4C4126321"
+				item: "minecraft:flower_pot"
+				type: "item"
+			}]
+			x: 7.5d
+			y: 1.0d
+		}
+		{
+			disable_toast: true
+			id: "42F28F3DF4F73844"
+			size: 2.0d
+			tasks: [{
+				id: "165E14B57347852F"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "minecraft:planks"
+					}
+				}
+				title: "Any #minecraft:planks"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -7.0d
+		}
+		{
+			dependencies: [
+				"486EF1E7458233F3"
+				"42F28F3DF4F73844"
+			]
+			id: "515ABF4FE570E886"
+			tasks: [{
+				id: "2AE4A704318922C4"
+				item: {
+					Count: 1
+					id: "morebuckets:wooden_bucket"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: -5.5d
+		}
+		{
+			dependencies: ["515ABF4FE570E886"]
+			id: "3F0DCD65D9100389"
+			size: 2.0d
+			tasks: [{
+				id: "6B1AC25C5CE59FDA"
+				item: {
+					Count: 1
+					id: "morebuckets:wooden_bucket"
+					tag: {
+						Damage: 0
+						Fluid: {
+							Amount: 1000
+							FluidName: "minecraft:water"
+						}
+					}
+				}
+				type: "item"
+			}]
+			x: 10.5d
+			y: -5.5d
+		}
+	]
+	title: "Water and Lava"
+}

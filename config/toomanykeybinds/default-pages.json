@@ -1,0 +1,690 @@
+{
+  "message": "Only change index and hidden - Can be used as list for custom keys",
+  "pages": [
+    {
+      "name": "key.categories.gameplay",
+      "index": 0,
+      "hidden": false,
+      "keys": [
+        "key.attack",
+        "key.use",
+        "key.pickItem",
+        "key.control",
+        "key.create_sa.increase_reach",
+        "key.create_sa.decrease_reach"
+      ]
+    },
+    {
+      "name": "key.categories.movement",
+      "index": 1,
+      "hidden": false,
+      "keys": [
+        "key.forward",
+        "key.left",
+        "key.back",
+        "key.right",
+        "key.jump",
+        "key.sneak",
+        "key.sprint",
+        "key.create_sa.flying"
+      ]
+    },
+    {
+      "name": "key.categories.inventory",
+      "index": 2,
+      "hidden": false,
+      "keys": [
+        "key.drop",
+        "key.inventory",
+        "key.swapOffhand",
+        "key.hotbar.1",
+        "key.hotbar.2",
+        "key.hotbar.3",
+        "key.hotbar.4",
+        "key.hotbar.5",
+        "key.hotbar.6",
+        "key.hotbar.7"
+      ]
+    },
+    {
+      "name": "key.categories.inventory",
+      "index": 3,
+      "hidden": false,
+      "keys": [
+        "key.hotbar.8",
+        "key.hotbar.9"
+      ]
+    },
+    {
+      "name": "key.categories.multiplayer",
+      "index": 4,
+      "hidden": false,
+      "keys": [
+        "key.chat",
+        "key.playerlist",
+        "key.command",
+        "key.socialInteractions"
+      ]
+    },
+    {
+      "name": "key.categories.misc",
+      "index": 5,
+      "hidden": false,
+      "keys": [
+        "key.screenshot",
+        "key.togglePerspective",
+        "key.smoothCamera",
+        "key.fullscreen",
+        "key.spectatorOutlines",
+        "key.advancements",
+        "key.dynamic_fps.toggle_forced",
+        "key.dynamic_fps.toggle_disabled"
+      ]
+    },
+    {
+      "name": "key.categories.creative",
+      "index": 6,
+      "hidden": false,
+      "keys": [
+        "key.saveToolbarActivator",
+        "key.loadToolbarActivator"
+      ]
+    },
+    {
+      "name": "key.modernfix",
+      "index": 7,
+      "hidden": false,
+      "keys": [
+        "key.modernfix.config"
+      ]
+    },
+    {
+      "name": "key.effortless.category.default",
+      "index": 8,
+      "hidden": false,
+      "keys": [
+        "key.effortless.settings.desc",
+        "key.effortless.build_mode_radial.desc",
+        "key.effortless.passive_build_modifier.desc",
+        "key.effortless.undo.desc",
+        "key.effortless.redo.desc",
+        "key.effortless.toggle_clipboard.desc",
+        "key.effortless.toggle_pattern.desc",
+        "key.effortless.toggle_replace.desc",
+        "key.effortless.edit_clipboard.desc",
+        "key.effortless.edit_pattern.desc"
+      ]
+    },
+    {
+      "name": "key.effortless.category.clipboard",
+      "index": 9,
+      "hidden": false,
+      "keys": [
+        "key.effortless.move_left.desc",
+        "key.effortless.move_right.desc",
+        "key.effortless.move_forward.desc",
+        "key.effortless.move_backward.desc",
+        "key.effortless.move_up.desc",
+        "key.effortless.move_down.desc",
+        "key.effortless.rotate_x.desc",
+        "key.effortless.rotate_y.desc",
+        "key.effortless.rotate_z.desc",
+        "key.effortless.mirror_x.desc"
+      ]
+    },
+    {
+      "name": "key.effortless.category.clipboard",
+      "index": 10,
+      "hidden": false,
+      "keys": [
+        "key.effortless.mirror_y.desc",
+        "key.effortless.mirror_z.desc"
+      ]
+    },
+    {
+      "name": "accessories.key.category.accessories",
+      "index": 11,
+      "hidden": false,
+      "keys": [
+        "accessories.key.open_accessories_screen"
+      ]
+    },
+    {
+      "name": "key.categories.movement.jetpack",
+      "index": 12,
+      "hidden": false,
+      "keys": [
+        "key.jetpack.toggle_active.description",
+        "key.jetpack.toggle_hover.description"
+      ]
+    },
+    {
+      "name": "X-Ray",
+      "index": 13,
+      "hidden": false,
+      "keys": [
+        "xray.config.toggle",
+        "xray.config.open"
+      ]
+    },
+    {
+      "name": "jei.key.category.mouse.hover",
+      "index": 14,
+      "hidden": false,
+      "keys": [
+        "key.jei.maxTransferRecipeBookmark",
+        "key.jei.showRecipe2",
+        "key.jei.bookmark",
+        "key.jei.showUses2",
+        "key.jei.showRecipe",
+        "key.jei.transferRecipeBookmark",
+        "key.jei.showUses"
+      ]
+    },
+    {
+      "name": "key.categories.immersiveengineering",
+      "index": 14,
+      "hidden": false,
+      "keys": [
+        "key.immersiveengineering.magnetEquip",
+        "key.immersiveengineering.railgunZoom",
+        "key.immersiveengineering.chemthrowerSwitch"
+      ]
+    },
+    {
+      "name": "jei.key.category.cheat.mode",
+      "index": 15,
+      "hidden": false,
+      "keys": [
+        "key.jei.toggleCheatMode",
+        "key.jei.cheatItemStack",
+        "key.jei.cheatOneItem",
+        "key.jei.cheatItemStack2",
+        "key.jei.cheatOneItem2"
+      ]
+    },
+    {
+      "name": "jei.key.category.search",
+      "index": 16,
+      "hidden": false,
+      "keys": [
+        "key.jei.clearSearchBar",
+        "key.jei.previousSearch",
+        "key.jei.nextSearch"
+      ]
+    },
+    {
+      "name": "jei.key.category.edit.mode",
+      "index": 17,
+      "hidden": false,
+      "keys": [
+        "key.jei.toggleWildcardHideIngredient",
+        "key.jei.toggleEditMode",
+        "key.jei.toggleHideIngredient"
+      ]
+    },
+    {
+      "name": "jei.key.category.recipe.gui",
+      "index": 18,
+      "hidden": false,
+      "keys": [
+        "key.jei.nextRecipePage",
+        "key.jei.recipeBack",
+        "key.jei.closeRecipeGui",
+        "key.jei.nextCategory",
+        "key.jei.previousRecipePage",
+        "key.jei.previousCategory"
+      ]
+    },
+    {
+      "name": "jei.key.category.overlays",
+      "index": 20,
+      "hidden": false,
+      "keys": [
+        "key.jei.previousPage",
+        "key.jei.nextPage",
+        "key.jei.toggleBookmarkOverlay",
+        "key.jei.focusSearch",
+        "key.jei.toggleOverlay"
+      ]
+    },
+    {
+      "name": "jei.key.category.dev.tools",
+      "index": 21,
+      "hidden": false,
+      "keys": [
+        "key.jei.copy.recipe.id"
+      ]
+    },
+    {
+      "name": "jei.key.category.hover.config.button",
+      "index": 22,
+      "hidden": false,
+      "keys": [
+        "key.jei.toggleCheatModeConfigButton"
+      ]
+    },
+    {
+      "name": "key.structurize.categories.general",
+      "index": 23,
+      "hidden": false,
+      "keys": [
+        "key.structurize.teleport",
+        "key.structurize.move_forward",
+        "key.structurize.move_back",
+        "key.structurize.move_left",
+        "key.structurize.move_right",
+        "key.structurize.move_up",
+        "key.structurize.move_down",
+        "key.structurize.rotate_cw",
+        "key.structurize.rotate_ccw",
+        "key.structurize.mirror"
+      ]
+    },
+    {
+      "name": "key.structurize.categories.general",
+      "index": 24,
+      "hidden": false,
+      "keys": [
+        "key.structurize.place"
+      ]
+    },
+    {
+      "name": "XaeroPlus",
+      "index": 24,
+      "hidden": false,
+      "keys": [
+        "xaeroplus.keybind.world_map_baritone_elytra_here",
+        "xaeroplus.setting.old_biomes_enabled",
+        "xaeroplus.setting.spawn_chunks",
+        "xaeroplus.keybind.world_map_baritone_path_here",
+        "xaeroplus.setting.palette_new_chunks_highlighting",
+        "xaeroplus.setting.new_chunks_highlighting",
+        "xaeroplus.setting.player_spawn_chunks",
+        "xaeroplus.keybind.switch_to_overworld",
+        "xaeroplus.setting.2b2t_highways_enabled",
+        "xaeroplus.keybind.switch_to_nether"
+      ]
+    },
+    {
+      "name": "XaeroPlus",
+      "index": 25,
+      "hidden": false,
+      "keys": [
+        "xaeroplus.setting.world_tools",
+        "xaeroplus.setting.show_render_distance",
+        "xaeroplus.keybind.switch_to_end",
+        "xaeroplus.setting.portal_skip_detection",
+        "xaeroplus.setting.portals",
+        "xaeroplus.keybind.world_map_baritone_goal_here",
+        "xaeroplus.setting.old_chunks_highlighting",
+        "xaeroplus.setting.map_art_grid"
+      ]
+    },
+    {
+      "name": "Xaero\u0027s Minimap",
+      "index": 26,
+      "hidden": false,
+      "keys": [
+        "gui.xaero_minimap_settings",
+        "gui.xaero_zoom_in",
+        "gui.xaero_zoom_out",
+        "gui.xaero_new_waypoint",
+        "gui.xaero_waypoints_key",
+        "gui.xaero_enlarge_map",
+        "gui.xaero_toggle_map",
+        "gui.xaero_toggle_waypoints",
+        "gui.xaero_toggle_map_waypoints",
+        "gui.xaero_toggle_slime"
+      ]
+    },
+    {
+      "name": "Xaero\u0027s Minimap",
+      "index": 27,
+      "hidden": false,
+      "keys": [
+        "gui.xaero_toggle_grid",
+        "gui.xaero_instant_waypoint",
+        "gui.xaero_switch_waypoint_set",
+        "gui.xaero_display_all_sets",
+        "gui.xaero_toggle_light_overlay",
+        "gui.xaero_toggle_entity_radar",
+        "gui.xaero_reverse_entity_radar",
+        "gui.xaero_toggle_manual_cave_mode",
+        "gui.xaero_alternative_list_players",
+        "gui.xaero_toggle_tracked_players_on_map"
+      ]
+    },
+    {
+      "name": "Xaero\u0027s Minimap",
+      "index": 28,
+      "hidden": false,
+      "keys": [
+        "gui.xaero_toggle_tracked_players_in_world",
+        "gui.xaero_toggle_pac_chunk_claims"
+      ]
+    },
+    {
+      "name": "key.categories.flansmod",
+      "index": 30,
+      "hidden": false,
+      "keys": [
+        "key.flansmod.look_at",
+        "key.flansmod.mode_toggle",
+        "key.flansmod.manual_reload",
+        "key.flansmod.strafe_down",
+        "key.flansmod.strafe_up",
+        "key.flansmod.yaw_right",
+        "key.flansmod.yaw_left",
+        "key.flansmod.pitch_up",
+        "key.flansmod.pitch_down",
+        "key.flansmod.roll_left"
+      ]
+    },
+    {
+      "name": "key.categories.flansmod",
+      "index": 31,
+      "hidden": false,
+      "keys": [
+        "key.flansmod.roll_right"
+      ]
+    },
+    {
+      "name": "key.categories.toomanykeybinds",
+      "index": 32,
+      "hidden": false,
+      "keys": [
+        "key.toomanykeybinds.open_tmk"
+      ]
+    },
+    {
+      "name": "Xaero\u0027s World Map",
+      "index": 32,
+      "hidden": false,
+      "keys": [
+        "gui.xaero_open_map",
+        "gui.xaero_open_settings",
+        "gui.xaero_map_zoom_in",
+        "gui.xaero_map_zoom_out",
+        "gui.xaero_quick_confirm",
+        "gui.xaero_toggle_dimension"
+      ]
+    },
+    {
+      "name": "keybind.sophisticatedbackpacks.category",
+      "index": 33,
+      "hidden": false,
+      "keys": [
+        "keybind.sophisticatedbackpacks.open_backpack",
+        "keybind.sophisticatedbackpacks.inventory_interaction",
+        "keybind.sophisticatedbackpacks.tool_swap",
+        "keybind.sophisticatedbackpacks.sort",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_1",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_2",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_3",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_4",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_5"
+      ]
+    },
+    {
+      "name": "Steam \u0027n\u0027 Rails",
+      "index": 35,
+      "hidden": false,
+      "keys": [
+        "railways.keyinfo.bogey_menu",
+        "railways.keyinfo.cycle_menu"
+      ]
+    },
+    {
+      "name": "key.carry.category",
+      "index": 36,
+      "hidden": false,
+      "keys": [
+        "key.carry.desc"
+      ]
+    },
+    {
+      "name": "key.categories.ftbteams",
+      "index": 36,
+      "hidden": false,
+      "keys": [
+        "key.ftbteams.open_gui"
+      ]
+    },
+    {
+      "name": "axiom.keybind",
+      "index": 36,
+      "hidden": false,
+      "keys": [
+        "axiom.keybind.context",
+        "axiom.keybind.builder_tool_slot",
+        "axiom.keybind.orbit_camera",
+        "axiom.keybind.jump_to_block",
+        "axiom.keybind.toggle_editor_ui"
+      ]
+    },
+    {
+      "name": "key.categories.ftbquests",
+      "index": 37,
+      "hidden": false,
+      "keys": [
+        "key.ftbquests.quests"
+      ]
+    },
+    {
+      "name": "axiom.keybind_capabilities",
+      "index": 37,
+      "hidden": false,
+      "keys": [
+        "axiom.keybind.toggle_no_clip_cap",
+        "axiom.keybind.toggle_angel_placement_cap",
+        "axiom.keybind.toggle_fast_place_cap",
+        "axiom.keybind.toggle_infinite_reach_cap",
+        "axiom.keybind.toggle_tinker_cap",
+        "axiom.keybind.toggle_no_updates_cap",
+        "axiom.keybind.toggle_force_place_cap",
+        "axiom.keybind.toggle_replace_mode_cap",
+        "axiom.keybind.toggle_bulldozer_cap"
+      ]
+    },
+    {
+      "name": "axiom.keybind_builder_tools",
+      "index": 38,
+      "hidden": false,
+      "keys": [
+        "axiom.keybind.nudge_with_scroll",
+        "axiom.keybind.nudge_forwards",
+        "axiom.keybind.nudge_backwards"
+      ]
+    },
+    {
+      "name": "dsurround.text.keybind.section",
+      "index": 39,
+      "hidden": false,
+      "keys": [
+        "dsurround.text.keybind.modConfigurationMenu",
+        "dsurround.text.keybind.individualSoundConfig",
+        "dsurround.text.keybind.diagnosticHud"
+      ]
+    },
+    {
+      "name": "key.category.presencefootsteps",
+      "index": 40,
+      "hidden": false,
+      "keys": [
+        "key.presencefootsteps.settings",
+        "key.presencefootsteps.toggle"
+      ]
+    },
+    {
+      "name": "itemGroup.mca.mca_tab",
+      "index": 41,
+      "hidden": false,
+      "keys": [
+        "key.mca.skin_library"
+      ]
+    },
+    {
+      "name": "Copycats",
+      "index": 42,
+      "hidden": false,
+      "keys": [
+        "keyinfo.copycats.fill_copycat"
+      ]
+    },
+    {
+      "name": "keybind.sophisticatedstorage.category",
+      "index": 43,
+      "hidden": false,
+      "keys": [
+        "keybind.sophisticatedstorage.sort"
+      ]
+    },
+    {
+      "name": "Create",
+      "index": 43,
+      "hidden": false,
+      "keys": [
+        "create.keyinfo.toolmenu",
+        "create.keyinfo.toolbelt",
+        "create.keyinfo.ponder"
+      ]
+    },
+    {
+      "name": "Petrolpark\u0027s Library",
+      "index": 44,
+      "hidden": false,
+      "keys": [
+        "petrolpark.key.tube.build",
+        "petrolpark.key.tube.delete_control_point",
+        "petrolpark.key.tube.add_control_point_after",
+        "petrolpark.key.tube.add_control_point_before",
+        "petrolpark.key.tube.cancel"
+      ]
+    },
+    {
+      "name": "key.categories.worldeditcui",
+      "index": 45,
+      "hidden": false,
+      "keys": [
+        "key.worldeditcui.toggle",
+        "key.worldeditcui.chunk",
+        "key.worldeditcui.clear"
+      ]
+    },
+    {
+      "name": "modmenu.nameTranslation.jade",
+      "index": 46,
+      "hidden": false,
+      "keys": [
+        "key.jade.config",
+        "key.jade.show_overlay",
+        "key.jade.toggle_liquid",
+        "key.jade.show_recipes",
+        "key.jade.show_uses",
+        "key.jade.narrate",
+        "key.jade.show_details"
+      ]
+    },
+    {
+      "name": "quark.gui.keygroup.misc",
+      "index": 47,
+      "hidden": false,
+      "keys": [
+        "quark.keybind.autorun",
+        "quark.keybind.back",
+        "quark.keybind.camera_mode",
+        "quark.keybind.change_hotbar",
+        "quark.keybind.lock_rotation",
+        "quark.keybind.narrator_readout",
+        "quark.keybind.narrator_full_readout",
+        "quark.keybind.variant_selector"
+      ]
+    },
+    {
+      "name": "key.categories.tconstruct",
+      "index": 48,
+      "hidden": false,
+      "keys": [
+        "key.tconstruct.helmet_interact",
+        "key.tconstruct.leggings_interact"
+      ]
+    },
+    {
+      "name": "quark.gui.keygroup.inv",
+      "index": 48,
+      "hidden": false,
+      "keys": [
+        "quark.keybind.transfer_insert",
+        "quark.keybind.transfer_extract",
+        "quark.keybind.shift_lock",
+        "quark.keybind.sort_player",
+        "quark.keybind.sort_container"
+      ]
+    },
+    {
+      "name": "quark.gui.keygroup.emote",
+      "index": 49,
+      "hidden": false,
+      "keys": [
+        "quark.emote.no",
+        "quark.emote.yes",
+        "quark.emote.wave",
+        "quark.emote.salute",
+        "quark.emote.cheer",
+        "quark.emote.clap",
+        "quark.emote.think",
+        "quark.emote.point",
+        "quark.emote.shrug",
+        "quark.emote.headbang"
+      ]
+    },
+    {
+      "name": "quark.gui.keygroup.emote",
+      "index": 50,
+      "hidden": false,
+      "keys": [
+        "quark.emote.weep",
+        "quark.emote.facepalm",
+        "quark.keybind.patreon_emote.dance",
+        "quark.keybind.patreon_emote.tpose",
+        "quark.keybind.patreon_emote.dab",
+        "quark.keybind.patreon_emote.jet",
+        "quark.keybind.patreon_emote.exorcist",
+        "quark.keybind.patreon_emote.zombie"
+      ]
+    },
+    {
+      "name": "supplementaries.gui.controls",
+      "index": 51,
+      "hidden": false,
+      "keys": [
+        "supplementaries.keybind.quiver"
+      ]
+    },
+    {
+      "name": "key.minecolonies.categories.general",
+      "index": 52,
+      "hidden": false,
+      "keys": [
+        "key.minecolonies.toggle_goggles"
+      ]
+    },
+    {
+      "name": "key.minecolonies_tweaks.categories.general",
+      "index": 54,
+      "hidden": false,
+      "keys": [
+        "key.minecolonies_tweaks.resourcescroll_book"
+      ]
+    },
+    {
+      "name": "Open Parties and Claims",
+      "index": 56,
+      "hidden": false,
+      "keys": [
+        "gui.xaero_pac_key_open_menu"
+      ]
+    }
+  ]
+}

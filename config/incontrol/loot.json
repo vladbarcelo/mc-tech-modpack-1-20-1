@@ -1,0 +1,27 @@
+[
+  {
+    "mob": "minecraft:cow",
+    "item": "minecraft:bone",
+    "itemcount": "8-10/10-12"
+  },
+  {
+    "mob": "minecraft:sheep",
+    "item": "minecraft:bone",
+    "itemcount": "6-8/8-10"
+  },
+  {
+    "mob": "minecraft:pig",
+    "item": "minecraft:bone",
+    "itemcount": "3-4/4-6"
+  },
+  {
+    "mob": "minecraft:wolf",
+    "item": "minecraft:bone",
+    "itemcount": "3-4/4-6"
+  },
+  {
+    "mob": "minecraft:chicken",
+    "item": "minecraft:bone",
+    "itemcount": "1-3"
+  }
+]

@@ -1,0 +1,365 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "true",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "0",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "false",
+			"facing": "north"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "0",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "true",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "0",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "false",
+			"facing": "south"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "0",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "true",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "0",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "false",
+			"facing": "west"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "0",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "true",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "0",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "1",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "2",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "3",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"progress": "4",
+			"open": "false",
+			"facing": "east"
+		},
+		"Name": "destroy:aging_barrel"
+	}
+]

@@ -1,0 +1,221 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "true",
+			"facing": "north"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "true",
+			"facing": "north"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "false",
+			"facing": "north"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "false",
+			"facing": "north"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "true",
+			"facing": "east"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "true",
+			"facing": "east"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "false",
+			"facing": "east"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "false",
+			"facing": "east"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "true",
+			"facing": "south"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "true",
+			"facing": "south"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "false",
+			"facing": "south"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "false",
+			"facing": "south"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "true",
+			"facing": "west"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "true",
+			"facing": "west"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "false",
+			"facing": "west"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "false",
+			"facing": "west"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "true",
+			"facing": "up"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "true",
+			"facing": "up"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "false",
+			"facing": "up"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "false",
+			"facing": "up"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "true",
+			"facing": "down"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "false",
+			"power": "true",
+			"facing": "down"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"waterlogged": "true",
+			"power": "false",
+			"facing": "down"
+		},
+		"Name": "rsgauges:industrial_green_led"
+	},
+	{
+		"Name": "rsgauges:industrial_green_led"
+	}
+]

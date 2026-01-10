@@ -1,0 +1,476 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "first_steps"
+	group: "4F06A4C880184E3E"
+	icon: "hot_iron:knapped_rock"
+	id: "1C397C87624F2B31"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"As you can see, you can no longer punch trees to gain wood."
+				""
+				"This is expected. Your first tools will be stone tools."
+				""
+				"First, you will need some flint."
+			]
+			id: "07139C4A6112D8B9"
+			rewards: [{
+				id: "6C9F406AE10C6F8E"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			size: 2.0d
+			subtitle: "Find some flint"
+			tasks: [{
+				id: "4CA621260FC74A8C"
+				item: "minecraft:flint"
+				type: "item"
+			}]
+			title: "Flint and... flint?"
+			x: -9.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["1AC48DE11CAE3F85"]
+			description: [
+				"Okay, caveman, you have some rocks. It is almost time to make the tech jump from a monkey to a human."
+				"{@pagebreak}"
+				"To make the rocks usable - bash them together, holding one rock in your off-hand, and the other - in your main hand. "
+			]
+			id: "5A90DBFA0583E62F"
+			rewards: [{
+				id: "1933E9DE31BC3175"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "Hit the rocks together!"
+			tasks: [{
+				id: "2FAD0C210167EFBD"
+				item: "hot_iron:knapped_rock"
+				type: "item"
+			}]
+			title: "Ooga booga!"
+			x: 12.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["5A90DBFA0583E62F"]
+			description: ["You can finally begin your ascend into civilization. Craft an axe's head using your knapped rocks."]
+			id: "5A346330F1640F8B"
+			rewards: [{
+				id: "3626114B3AF4E59E"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "Craft a stone axe head"
+			tasks: [{
+				id: "545436F1CFB39C22"
+				item: "hot_iron:stone_axe_head"
+				type: "item"
+			}]
+			title: "Your first head"
+			x: 14.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["3855A416E0405136"]
+			description: ["Now, when you have some flint, find yourself a good stone block and start hitting it with the flint. In just a few hits, you will get some rocks - your first material to craft tools with."]
+			id: "1AC48DE11CAE3F85"
+			rewards: [{
+				id: "073C969DF5521FA8"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "Hit a rock with your flint"
+			tasks: [{
+				id: "2B8C27AFAE464B1D"
+				item: "hot_iron:rock"
+				type: "item"
+			}]
+			title: "Ooga Booga?"
+			x: 10.5d
+			y: -5.0d
+		}
+		{
+			description: ["Sticks usually are found inside tree leaves and in forests. Come on, find one, its not rocket science."]
+			id: "567DE4735B6CC056"
+			rewards: [{
+				id: "266216B38CD7D7F2"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			size: 2.0d
+			subtitle: "Find a stick"
+			tasks: [{
+				id: "5FF512EF93864EC9"
+				item: "minecraft:stick"
+				type: "item"
+			}]
+			title: "The Stick"
+			x: -9.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["5A346330F1640F8B"]
+			id: "4036A906CA858CBD"
+			rewards: [{
+				id: "7DA721A6E246DCD4"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			size: 2.0d
+			subtitle: "Craft a stone axe"
+			tasks: [{
+				id: "5BB04DD62F7A9FE2"
+				item: {
+					Count: 1
+					id: "minecraft:stone_axe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "No longer bare-handed"
+			x: 18.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["4036A906CA858CBD"]
+			id: "26537DE386428479"
+			tasks: [{
+				id: "704C14514BEE25A2"
+				item: {
+					Count: 1
+					id: "minecraft:stone_sword"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 16.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["4036A906CA858CBD"]
+			id: "43ED68663ABAF7CF"
+			tasks: [{
+				id: "08D883C638817AC2"
+				item: {
+					Count: 1
+					id: "minecraft:stone_shovel"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 19.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4036A906CA858CBD"]
+			id: "2BC6375CC01B6CEC"
+			tasks: [{
+				id: "3EA8865300A6FDA1"
+				item: {
+					Count: 1
+					id: "minecraft:stone_hoe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 17.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["4036A906CA858CBD"]
+			id: "675E171B3652B17C"
+			tasks: [{
+				id: "089EA6D791191585"
+				item: {
+					Count: 1
+					id: "minecraft:stone_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 20.0d
+			y: -2.0d
+		}
+		{
+			dependencies: ["56DC05F6CCA67EB9"]
+			dependency_requirement: "one_completed"
+			description: ["Using your newly-created axe, you can now chop trees - take that, Mother Nature! Remember, you can chop the entire tree holding &6[Shift]&r during the chopping."]
+			id: "036EB443407CD2FA"
+			rewards: [{
+				id: "43E0C6F1A86E41C9"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			subtitle: "Gather some logs"
+			tasks: [{
+				id: "609CBBF6D13B0818"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "minecraft:logs"
+					}
+				}
+				title: "Any #minecraft:logs"
+				type: "item"
+			}]
+			title: "A gigantic log"
+			x: 14.5d
+			y: -7.5d
+		}
+		{
+			dependencies: [
+				"03639D4B9368AE7B"
+				"567DE4735B6CC056"
+			]
+			id: "5432F7E510600B71"
+			tasks: [{
+				id: "65070CF3DD6BF8FB"
+				item: {
+					Count: 1
+					id: "farmersdelight:flint_knife"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: -2.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5362802232D4B66A"]
+			id: "4D97FC004C9FD90E"
+			tasks: [{
+				id: "231E2B454010936D"
+				item: "notreepunching:plant_string"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5432F7E510600B71"]
+			id: "5362802232D4B66A"
+			tasks: [{
+				id: "3427AF3ECE4C72CD"
+				item: "notreepunching:plant_fiber"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["036EB443407CD2FA"]
+			id: "07AF518A817AE846"
+			size: 1.0d
+			tasks: [{
+				id: "33FCDC0B764851F6"
+				item: {
+					Count: 1
+					id: "itemfilters:tag"
+					tag: {
+						value: "minecraft:planks"
+					}
+				}
+				title: "Any #minecraft:planks"
+				type: "item"
+			}]
+			title: "Planks!"
+			x: 20.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["036EB443407CD2FA"]
+			id: "7582CB5F5FE10035"
+			tasks: [{
+				id: "0826ACE5F8150AAB"
+				item: "hot_iron:chopping_stump"
+				type: "item"
+			}]
+			x: 20.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["7582CB5F5FE10035"]
+			id: "0C220218F6FE1782"
+			shape: "circle"
+			size: 2.0d
+			tasks: [{
+				id: "3E32556517191C9B"
+				item: "hot_iron:timber"
+				type: "item"
+			}]
+			x: 23.5d
+			y: -8.0d
+		}
+		{
+			dependencies: ["07AF518A817AE846"]
+			id: "6F8312D5DF5E74F5"
+			rewards: [{
+				id: "05AA3DD097953515"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "269CC6DEF538ACCB"
+				item: "minecraft:crafting_table"
+				type: "item"
+			}]
+			x: 23.5d
+			y: -6.0d
+		}
+		{
+			dependencies: ["567DE4735B6CC056"]
+			id: "30FB432AA97A67BD"
+			tasks: [{
+				id: "0548457B08ACA715"
+				item: "better_campfires:campfire_stick"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["4D97FC004C9FD90E"]
+			id: "1D97675DC50F8575"
+			tasks: [{
+				id: "0E3171C16E7209C8"
+				item: {
+					Count: 1
+					id: "notreepunching:fire_starter"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: -9.0d
+		}
+		{
+			dependencies: [
+				"1D97675DC50F8575"
+				"30FB432AA97A67BD"
+			]
+			id: "66F8F5A1E7D1BE16"
+			rewards: [{
+				id: "7CCD82874FE7AFF9"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			size: 2.0d
+			tasks: [{
+				id: "42D88E97E8E9B079"
+				item: "minecraft:campfire"
+				only_from_crafting: false
+				type: "item"
+			}]
+			title: "Fire!"
+			x: 5.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["07139C4A6112D8B9"]
+			id: "03639D4B9368AE7B"
+			rewards: [{
+				id: "320D941E78D06F15"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			tasks: [{
+				id: "68752C3A4A9E05ED"
+				item: "notreepunching:flint_shard"
+				type: "item"
+			}]
+			x: -5.5d
+			y: -7.5d
+		}
+		{
+			dependencies: ["4D97FC004C9FD90E"]
+			id: "56DC05F6CCA67EB9"
+			size: 2.0d
+			tasks: [{
+				id: "5C00483440D93791"
+				item: {
+					Count: 1
+					id: "notreepunching:flint_axe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 8.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["56DC05F6CCA67EB9"]
+			id: "3855A416E0405136"
+			tasks: [{
+				id: "61FFEE8FC8999690"
+				item: {
+					Count: 1
+					id: "notreepunching:flint_pickaxe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 8.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["56DC05F6CCA67EB9"]
+			id: "6639F2E583713BF0"
+			tasks: [{
+				id: "6E988F018E64E235"
+				item: {
+					Count: 1
+					id: "notreepunching:flint_hoe"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 9.5d
+			y: -9.0d
+		}
+		{
+			dependencies: ["56DC05F6CCA67EB9"]
+			id: "34DBC9D767C5AF6C"
+			tasks: [{
+				id: "05BB2E37B8C90B2A"
+				item: {
+					Count: 1
+					id: "notreepunching:flint_shovel"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 8.0d
+			y: -9.5d
+		}
+	]
+	title: "Sticks and stones"
+}

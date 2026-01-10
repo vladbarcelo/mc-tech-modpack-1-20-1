@@ -1,4 +1,13 @@
-node_modules
-.yarn
+/*
+
 .DS_Store
-assets
+
+!config/
+!kubejs/
+!kubejs/config/
+!kubejs/data/
+!kubejs/server_scripts/
+!kubejs/client_scripts/
+!kubejs/startup_scripts/
+!.probe/
+!.vscode/

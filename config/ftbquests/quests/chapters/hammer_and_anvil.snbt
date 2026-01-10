@@ -1,0 +1,89 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "hammer_and_anvil"
+	group: "576DDAF113CE81F1"
+	icon: "hot_iron:hot_iron_ingot_in_tongs"
+	id: "09277AA0C51A39D5"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			disable_toast: true
+			id: "20A851470B26F644"
+			size: 2.0d
+			tasks: [{
+				id: "4E15170C28DB79CD"
+				item: "tfmg:cast_iron_ingot"
+				type: "item"
+			}]
+			x: -6.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["20A851470B26F644"]
+			id: "3B8AC2AEF941344F"
+			tasks: [{
+				id: "3EB08D4A63AD0E63"
+				item: "tfmg:cast_iron_block"
+				type: "item"
+			}]
+			x: -2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["20A851470B26F644"]
+			id: "78DB0EC87047ADD8"
+			size: 2.0d
+			tasks: [{
+				id: "4E94BF440D9C35B2"
+				item: {
+					Count: 1
+					id: "hot_iron:smithing_hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 1.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3B8AC2AEF941344F"]
+			id: "33DB0FFE313598BD"
+			size: 2.0d
+			tasks: [{
+				id: "60072C3D47F1B331"
+				item: "hot_iron:smithing_anvil"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["02A7C9C467E7B31C"]
+			id: "15FD6E3DD6902484"
+			size: 2.0d
+			tasks: [{
+				id: "074FBE29446DB860"
+				item: "hot_iron:smithing_tongs"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -0.5d
+		}
+		{
+			dependencies: ["20A851470B26F644"]
+			id: "02A7C9C467E7B31C"
+			tasks: [{
+				id: "0F7EFF65D4A0B79C"
+				item: "vintageimprovements:cast_iron_rod"
+				type: "item"
+			}]
+			x: -2.0d
+			y: -0.5d
+		}
+	]
+	title: "Hammer and Anvil"
+}

@@ -1,0 +1,73 @@
+
+[general]
+	#Bayou Config
+	#The weight of Catfish in vanilla's spawn rate. Default is 4
+	#Range: 0 ~ 300
+	"Catfish Spawn Weight" = 4
+	#The weight of Alligators in vanilla's spawn rate. Default is 20
+	#Range: 0 ~ 300
+	"Alligator Spawn Weight" = 20
+	#Beach Config
+	#The weight of Crabs in vanilla's spawn rate. Default is 5
+	#Range: 0 ~ 300
+	"Crab Spawn Weight" = 5
+	#The weight of Sea Lions in vanilla's spawn rate. Default is 10
+	#Range: 0 ~ 300
+	"Sea Lion Spawn Weight" = 10
+	#Ocean Config
+	#The weight of Anchovy in vanilla's spawn rate. Default is 1
+	#Range: 0 ~ 300
+	"Anchovy Spawn Weight" = 1
+	#The weight of Hammerhead Sharks in vanilla's spawn rate. Default is 5
+	#Range: 0 ~ 300
+	"Hammerhead Shark Spawn Weight" = 5
+	#The weight of Octopi in vanilla's spawn rate. Default is 3
+	#Range: 0 ~ 300
+	"Octopus Spawn Weight" = 3
+	#The weight of Jellyfish in vanilla's spawn rate. Default is 6
+	#Range: 0 ~ 300
+	"Jellyfish Spawn Weight" = 6
+	#Forest Config
+	#The weight of Grizzly Bears in vanilla's spawn rate. Default is 10
+	#Range: 0 ~ 300
+	"Grizzly Bear Spawn Weight" = 10
+	#Misc Config
+	#Even I don't know what this does. Default is false
+	"Super Secret Settings" = false
+	#Biome Modifications
+	#Coconut Trees will generate on beaches. Default is true
+	"Coconut Trees" = true
+	#Dolerite Disks will generate in oceans. Default is true
+	"Dolerite Disks" = true
+	#Dolerite Rocks will generate in oceans. Default is true
+	"Dolerite Rocks" = true
+	#Gabbro Disks will generate in oceans. Default is true
+	"Gabbro Disks" = true
+	#Gabbro Rocks will generate in oceans. Default is true
+	"Gabbro Rocks" = true
+	#Olivine Gabbro Rocks will generate in oceans. Default is true
+	"Olivine Gabbro Rocks" = true
+	#Fine Sand Disks will generate in oceans and beaches. Default is true
+	"Fine Sand Disks" = true
+	#Starfish will generate in oceans. Default is true
+	Stafish = true
+	#Urchins will generate in oceans. Default is true
+	Urchins = true
+	#Conglomerate Disks will generate in oceans. Default is true
+	"Conglomerate Disks" = true
+	#Conglomerate Rocks will generate in oceans. Default is true
+	"Conglomerate Rocks" = true
+	#Mud Disks will generate in swamps. Default is true
+	"Mud Disks" = true
+	#Biomes
+	#Burnt Forests will generate. Default is true
+	"Burnt Forest Generation" = true
+	#The weight of the Burnt Forest biome generating. Default is 1
+	#Range: 0 ~ 300
+	"Burnt Forest Biome Weight" = 1
+	#Bayous will generate. Default is true
+	"Bayou Generation" = true
+	#The weight of the Bayou biome generating. Default is 1
+	#Range: 0 ~ 300
+	"Bayou Biome Weight" = 1
+

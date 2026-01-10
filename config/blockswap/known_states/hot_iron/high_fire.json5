@@ -1,0 +1,1414 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "0"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "1"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "2"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "3"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "4"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "5"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "6"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "7"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "8"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "9"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "10"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "11"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "12"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "13"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "14"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "15"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "16"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "17"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "18"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "19"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "20"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "21"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "22"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "23"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "24"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "25"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "26"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "27"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "28"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "29"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "30"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "31"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "32"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "33"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "34"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "35"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "36"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "37"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "38"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "39"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "40"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "41"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "42"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "43"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "44"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "45"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "46"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "47"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "48"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "49"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "50"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "51"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "52"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "53"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "54"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "55"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "56"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "57"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "58"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "59"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "60"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "61"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "62"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "63"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "64"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "65"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "66"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "67"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "68"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "69"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "70"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "71"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "72"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "73"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "74"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "75"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "76"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "77"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "78"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "79"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "80"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "81"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "82"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "83"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "84"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "85"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "86"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "87"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "88"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "89"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "90"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "91"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "92"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "93"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "94"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "95"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "96"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "97"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "98"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "99"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "101"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "102"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "103"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "104"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "105"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "106"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "107"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "108"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "109"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "110"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "111"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "112"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "113"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "114"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "115"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "116"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "117"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "118"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "119"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "120"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "121"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "122"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "123"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "124"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "125"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "126"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "127"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "128"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "129"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "130"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "131"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "132"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "133"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "134"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "135"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "136"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "137"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "138"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "139"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "140"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "141"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "142"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "143"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "144"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "145"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "146"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "147"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "148"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "149"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "150"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "151"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "152"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "153"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "154"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "155"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "156"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "157"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "158"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "159"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "160"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "161"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "162"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "163"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "164"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "165"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "166"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "167"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "168"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "169"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "170"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "171"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "172"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "173"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "174"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "175"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "176"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "177"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "178"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "179"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "180"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "181"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "182"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "183"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "184"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "185"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "186"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "187"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "188"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "189"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "190"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "191"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "192"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "193"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "194"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "195"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "196"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "197"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "198"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "199"
+		},
+		"Name": "hot_iron:high_fire"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"life_time_left": "200"
+		},
+		"Name": "hot_iron:high_fire"
+	}
+]

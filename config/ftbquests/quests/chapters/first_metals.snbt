@@ -1,0 +1,114 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "first_metals"
+	group: "576DDAF113CE81F1"
+	icon: "immersiveengineering:ingot_lead"
+	id: "0DC381E94D689B2D"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["6C98218D97B9A675"]
+			id: "6180EAFA8DB605FB"
+			rewards: [{
+				id: "40BF9A3056B36109"
+				type: "xp_levels"
+				xp_levels: 1
+			}]
+			size: 1.0d
+			tasks: [{
+				id: "4652E5BF5AC437E3"
+				item: "immersiveengineering:raw_lead"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 2.0d
+		}
+		{
+			id: "6C98218D97B9A675"
+			size: 2.0d
+			tasks: [{
+				id: "670D1C9982A0D1CC"
+				item: "minecraft:furnace"
+				type: "item"
+			}]
+			x: -3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6180EAFA8DB605FB"]
+			id: "60CB878E573A6139"
+			tasks: [{
+				id: "138D4E75D9584A83"
+				item: "immersiveengineering:ingot_lead"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["43C45454A39A3F0E"]
+			id: "5C05CF4FA8553310"
+			tasks: [{
+				id: "555C47E588D4C8E1"
+				item: "immersiveengineering:ingot_aluminum"
+				type: "item"
+			}]
+			x: 5.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["6C98218D97B9A675"]
+			id: "43C45454A39A3F0E"
+			tasks: [{
+				id: "1D40E14CED54BC7C"
+				item: "immersiveengineering:raw_aluminum"
+				type: "item"
+			}]
+			x: 1.0d
+			y: 5.5d
+		}
+		{
+			dependencies: ["648607E8555EB8F9"]
+			id: "3DF90070AEBE7BE1"
+			tasks: [{
+				id: "20AA67E3FA8FDD4A"
+				item: "create:zinc_ingot"
+				type: "item"
+			}]
+			x: 5.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["6C98218D97B9A675"]
+			id: "648607E8555EB8F9"
+			tasks: [{
+				id: "5137A630AB4E2CD8"
+				item: "create:raw_zinc"
+				type: "item"
+			}]
+			x: 1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["60CB878E573A6139"]
+			id: "14020E10AC4934DF"
+			size: 2.0d
+			tasks: [{
+				id: "21CEFC70DA1A0A96"
+				item: {
+					Count: 1
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.0d
+		}
+	]
+	title: "First Metals"
+}

@@ -1,0 +1,105 @@
+[
+  {
+    "mob": "minecraft:wolf",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "angry": true,
+    "result": "allow"
+  },
+  {
+    "mob": "minecraft:zombie",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "customevent": "boar_instead",
+    "result": "deny_with_actions"
+  },
+  {
+    "mob": "minecraft:hoglin",
+    "when": "onjoin",
+    "dimension": "minecraft:overworld",
+    "mincount": {
+      "amount": 2
+    },
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:skeleton",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:wolf",
+    "mincount": {
+      "amount": 5
+    },
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:creeper",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "customevent": "snake_instead",
+    "result": "deny_with_actions"
+  },
+  {
+    "mob": "alexsmobs:rattlesnake",
+    "when": "onjoin",
+    "mincount": {
+      "amount": 10
+    },
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:enderman",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "customevent": "bear_instead",
+    "result": "deny_with_actions"
+  },
+  {
+    "mob": "alexsmobs:grizzly_bear",
+    "when": "onjoin",
+    "mincount": {
+      "amount": 1
+    },
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:vex",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:drowned",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:stray",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:husk",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "quark:forgotten",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "alexsmobs:murmur",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  }
+]

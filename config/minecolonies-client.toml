@@ -1,0 +1,18 @@
+
+#minecolonies.config.gameplay.comment
+[gameplay]
+	#minecolonies.config.enablecitizenvoices.comment minecolonies.config.default.boolean
+	enablecitizenvoices = true
+	#minecolonies.config.neighborbuildingrendering.comment minecolonies.config.default.boolean
+	neighborbuildingrendering = true
+	#minecolonies.config.neighborbuildingrange.comment minecolonies.config.default.int
+	#Range: -2 ~ 16
+	neighborbuildingrange = 4
+	#minecolonies.config.buildgogglerange.comment minecolonies.config.default.int
+	#Range: 1 ~ 250
+	buildgogglerange = 50
+	#minecolonies.config.colonyteamborders.comment minecolonies.config.default.boolean
+	colonyteamborders = true
+	#minecolonies.config.holidayfeatures.comment minecolonies.config.default.boolean
+	holidayfeatures = true
+
