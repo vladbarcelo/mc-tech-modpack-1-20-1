@@ -102,9 +102,9 @@ function tags(extra: "petrolpark:contaminant", handler: (event: TagEventProbe<(S
 function tags(extra: "petrolpark:shop", handler: (event: TagEventProbe<(Special.ShopTag), (Special.Shop)>) => void): void
 function tags(extra: "petrolpark:shop_offer_generator", handler: (event: TagEventProbe<(Special.ShopOfferGeneratorTag), (Special.ShopOfferGenerator)>) => void): void
 function tags(extra: "moonlight:soft_fluids", handler: (event: TagEventProbe<(Special.SoftFluidsTag), (Special.SoftFluids)>) => void): void
-function tags(extra: "forge:structure_modifier", handler: (event: TagEventProbe<(Special.StructureModifierTag), (Special.StructureModifier)>) => void): void
 function tags(extra: "moonlight:map_markers", handler: (event: TagEventProbe<(Special.MapMarkersTag), (Special.MapMarkers)>) => void): void
-function tags(extra: "forge:biome_modifier", handler: (event: TagEventProbe<(Special.BiomeModifierTag), (Special.BiomeModifier)>) => void): void
 function tags(extra: "lithostitched:worldgen_modifier", handler: (event: TagEventProbe<(Special.WorldgenModifierTag), (Special.WorldgenModifier)>) => void): void
+function tags(extra: "forge:biome_modifier", handler: (event: TagEventProbe<(Special.BiomeModifierTag), (Special.BiomeModifier)>) => void): void
+function tags(extra: "forge:structure_modifier", handler: (event: TagEventProbe<(Special.StructureModifierTag), (Special.StructureModifier)>) => void): void
 }
 }

@@ -10,8 +10,9 @@ BlockEvents.rightClicked('better_campfires:campfire_build', event => {
 
   if (event.block.properties.stage === '2') {
     event.player.mainHandItem.shrink(1)
-    let campfireBlock = Block.getBlock('hardcore_torches:hardcore_campfire').defaultBlockState()
-    campfireBlock.setValue(BlockProperties.FACING, event.player.facing)
-    event.getLevel().setBlock(event.block.pos, campfireBlock, 3)
+    event.server.scheduleInTicks(1, () => {
+      let campfireBlock = Block.getBlock('hardcore_torches:hardcore_campfire').defaultBlockState()
+      event.getLevel().setBlock(event.block.pos, campfireBlock, 3)
+    })
   }
 })

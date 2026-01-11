@@ -31,8 +31,8 @@ import {$MultifaceGrowthConfiguration, $MultifaceGrowthConfiguration$Type} from 
 import {$RootSystemConfiguration, $RootSystemConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RootSystemConfiguration"
 import {$UnderwaterMagmaConfiguration, $UnderwaterMagmaConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$UnderwaterMagmaConfiguration"
 import {$WorldGenLevel, $WorldGenLevel$Type} from "packages/net/minecraft/world/level/$WorldGenLevel"
-import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 import {$TwistingVinesConfig, $TwistingVinesConfig$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$TwistingVinesConfig"
 import {$FeaturePlaceContext, $FeaturePlaceContext$Type} from "packages/net/minecraft/world/level/levelgen/feature/$FeaturePlaceContext"
 import {$HugeMushroomFeatureConfiguration, $HugeMushroomFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$HugeMushroomFeatureConfiguration"
@@ -151,18 +151,18 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor($$0: $Codec$Type<($TreeFromStructureNBTConfig$Type)>)
 
-public static "getStructureInfosInStructurePalletteFromBlockList"(blocks: $Iterable$Type<($Block$Type)>, palette: $StructureTemplate$Palette$Type): $List<($StructureTemplate$StructureBlockInfo)>
-public static "placeLeavesWithCalculatedDistanceAndRotation"(leavesProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, origin: $BlockPos$Type, random: $RandomSource$Type, placeSettings: $StructurePlaceSettings$Type, leaves: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, leavePositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>, canopyCenterOffset: $BlockPos$Type, leavesPlacementFilter: $BlockPredicate$Type): void
-public static "fillLogsUnder"(logProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, random: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, centerOffset: $BlockPos$Type, logBuilders: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, maxTrunkBuildingDepth: integer, groundFilter: $BlockPredicate$Type, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>): void
-public static "placeLogsWithRotation"(logProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, random: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, centerOffset: $BlockPos$Type, logs: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>): void
-public static "intersectTrunk"(logProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, random: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, centerOffset: $BlockPos$Type, logBuilders: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, maxTrunkBuildingDepth: integer, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>): boolean
-public static "getTransformedState"(modifiedPos: $BlockPos$Type, state: $BlockState$Type, nbtState: $BlockState$Type, rotation: $Rotation$Type, level: $WorldGenLevel$Type): $BlockState
 public static "noTreePartPresent"(location: $ResourceLocation$Type): $IllegalArgumentException
 public static "getModifiedPos"(settings: $StructurePlaceSettings$Type, placing: $StructureTemplate$StructureBlockInfo$Type, partCenter: $BlockPos$Type, featureOrigin: $BlockPos$Type): $BlockPos
 public static "fillTrunkPositions"(logProvider: $BlockStateProvider$Type, leavesProvider: $BlockStateProvider$Type, config: $TreeFromStructureNBTConfig$Type, level: $WorldGenLevel$Type, randomSource: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, trunkBasePalette: $StructureTemplate$Palette$Type, centerOffset: $BlockPos$Type, logs: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, logBuilders: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, leavePositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>, maxTrunkBuildingDepth: integer): void
 public static "fillCanopyPositions"(logProvider: $BlockStateProvider$Type, leavesProvider: $BlockStateProvider$Type, config: $TreeFromStructureNBTConfig$Type, level: $WorldGenLevel$Type, randomSource: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, randomCanopyPalette: $StructureTemplate$Palette$Type, leavePositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>, trunkLength: integer): boolean
 public static "placeAdditional"(config: $TreeFromStructureNBTConfig$Type, level: $WorldGenLevel$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, palette: $StructureTemplate$Palette$Type, centerOffset: $BlockPos$Type): void
 public static "placeTreeDecorations"(treeDecorators: $Iterable$Type<($TreeDecorator$Type)>, level: $WorldGenLevel$Type, random: $RandomSource$Type, leavePositions: $Set$Type<($BlockPos$Type)>, trunkPositions: $Set$Type<($BlockPos$Type)>, decorationPositions: $Set$Type<($BlockPos$Type)>): void
+public static "fillLogsUnder"(logProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, random: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, centerOffset: $BlockPos$Type, logBuilders: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, maxTrunkBuildingDepth: integer, groundFilter: $BlockPredicate$Type, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>): void
+public static "placeLogsWithRotation"(logProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, random: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, centerOffset: $BlockPos$Type, logs: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>): void
+public static "intersectTrunk"(logProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, random: $RandomSource$Type, origin: $BlockPos$Type, placeSettings: $StructurePlaceSettings$Type, centerOffset: $BlockPos$Type, logBuilders: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, maxTrunkBuildingDepth: integer, trunkPositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>): boolean
+public static "getTransformedState"(modifiedPos: $BlockPos$Type, state: $BlockState$Type, nbtState: $BlockState$Type, rotation: $Rotation$Type, level: $WorldGenLevel$Type): $BlockState
+public static "getStructureInfosInStructurePalletteFromBlockList"(blocks: $Iterable$Type<($Block$Type)>, palette: $StructureTemplate$Palette$Type): $List<($StructureTemplate$StructureBlockInfo)>
+public static "placeLeavesWithCalculatedDistanceAndRotation"(leavesProvider: $BlockStateProvider$Type, level: $WorldGenLevel$Type, origin: $BlockPos$Type, random: $RandomSource$Type, placeSettings: $StructurePlaceSettings$Type, leaves: $List$Type<($StructureTemplate$StructureBlockInfo$Type)>, leavePositions: $Map$Type<($BlockPos$Type), ($BlockState$Type)>, canopyCenterOffset: $BlockPos$Type, leavesPlacementFilter: $BlockPredicate$Type): void
 public "place"(featurePlaceContext: $FeaturePlaceContext$Type<($TreeFromStructureNBTConfig$Type)>): boolean
 public static "isOnGround"(maxLogDepth: integer, level: $WorldGenLevel$Type, pos: $BlockPos$Type, growableOn: $BlockPredicate$Type): boolean
 }
@@ -209,9 +209,6 @@ constructor(baseLocation: $ResourceLocation$Type, canopyLocation: $ResourceLocat
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "height"(): $IntProvider
-public "placeFromNBT"(): $Set<($Block)>
-public "leavesTarget"(): $Set<($Block)>
 public "logProvider"(): $BlockStateProvider
 public "leavesProvider"(): $BlockStateProvider
 public "baseLocation"(): $ResourceLocation
@@ -219,6 +216,9 @@ public "canopyLocation"(): $ResourceLocation
 public "maxLogDepth"(): integer
 public "treeDecorators"(): $List<($TreeDecorator)>
 public "leavesPlacementFilter"(): $BlockPredicate
+public "placeFromNBT"(): $Set<($Block)>
+public "leavesTarget"(): $Set<($Block)>
+public "height"(): $IntProvider
 public "logTarget"(): $Set<($Block)>
 public "growableOn"(): $BlockPredicate
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>

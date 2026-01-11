@@ -3,7 +3,7 @@ ServerEvents.recipes((event) => {
     let isSmithable = global.isSmithable(metal)
     let isBaseCastable = global.isBaseCastable(metal)
 
-    let moltenMetal = global.moltenMetals[metal]
+    let moltenMetal = global.moltenMaterialFluids[metal]
 
 
     // hot_%metal%_ingot_from_ingot_in_tongs.json
@@ -57,7 +57,7 @@ ServerEvents.recipes((event) => {
     
     // 1. casting
     // blocks
-    event.recipes.createmetallurgy.casting_in_basin(Item.of(global.metalBlocks[metal]), Fluid.of(global.moltenMetals[metal], 810), 320)
+    event.recipes.createmetallurgy.casting_in_basin(Item.of(global.metalBlocks[metal]), Fluid.of(global.moltenMaterialFluids[metal], 810), 320)
     event.custom({
       type: "tconstruct:casting_basin",
       cooling_time: 180,
@@ -70,9 +70,9 @@ ServerEvents.recipes((event) => {
       }
     })
     // ingots, results in hot ingot
-    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMetals[metal], 90), `createmetallurgy:graphite_ingot_mold`], 120, false)
-    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:ingot_sand_cast'], 120, true)
-    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:ingot_red_sand_cast'], 120, true)
+    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMaterialFluids[metal], 90), `createmetallurgy:graphite_ingot_mold`], 120, false)
+    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMaterialFluids[metal], 90), 'tconstruct:ingot_sand_cast'], 120, true)
+    event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_ingot`, [Fluid.of(global.moltenMaterialFluids[metal], 90), 'tconstruct:ingot_red_sand_cast'], 120, true)
     event.custom({
       type: "tconstruct:casting_table",
       cast: {
@@ -94,8 +94,8 @@ ServerEvents.recipes((event) => {
 
     // rod
     if (global.metalRods[metal]) {
-      event.recipes.createmetallurgy.casting_in_table(global.metalRods[metal], [Fluid.of(global.moltenMetals[metal], 45), 'tconstruct:rod_sand_cast'], 120, true)
-      event.recipes.createmetallurgy.casting_in_table(global.metalRods[metal], [Fluid.of(global.moltenMetals[metal], 45), 'tconstruct:rod_red_sand_cast'], 120, true)
+      event.recipes.createmetallurgy.casting_in_table(global.metalRods[metal], [Fluid.of(global.moltenMaterialFluids[metal], 45), 'tconstruct:rod_sand_cast'], 120, true)
+      event.recipes.createmetallurgy.casting_in_table(global.metalRods[metal], [Fluid.of(global.moltenMaterialFluids[metal], 45), 'tconstruct:rod_red_sand_cast'], 120, true)
       event.custom({
         type: "tconstruct:casting_table",
         cast: {
@@ -120,9 +120,9 @@ ServerEvents.recipes((event) => {
     }
     // plate
     if (global.metalPlates[metal]) {
-      event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMetals[metal], 90), 'createmetallurgy:graphite_plate_mold'], 120, false)
-      event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:plate_sand_cast'], 120, true)
-      event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMetals[metal], 90), 'tconstruct:plate_red_sand_cast'], 120, true)
+      event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMaterialFluids[metal], 90), 'createmetallurgy:graphite_plate_mold'], 120, false)
+      event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMaterialFluids[metal], 90), 'tconstruct:plate_sand_cast'], 120, true)
+      event.recipes.createmetallurgy.casting_in_table(global.metalPlates[metal], [Fluid.of(global.moltenMaterialFluids[metal], 90), 'tconstruct:plate_red_sand_cast'], 120, true)
       event.custom({
         type: "tconstruct:casting_table",
         cast: {
@@ -158,7 +158,7 @@ ServerEvents.recipes((event) => {
           cooling_time: 57,
           fluid: {
             amount: 90,
-            fluid: global.moltenMetals[metal]
+            fluid: global.moltenMaterialFluids[metal]
           },
           result: `kubejs:hot_${metal}_${part}`,
           switch_slots: true
@@ -173,7 +173,7 @@ ServerEvents.recipes((event) => {
           cooling_time: 57,
           fluid: {
             amount: 90,
-            fluid: global.moltenMetals[metal]
+            fluid: global.moltenMaterialFluids[metal]
           },
           result: `kubejs:hot_${metal}_${part}`,
           switch_slots: true
@@ -187,7 +187,7 @@ ServerEvents.recipes((event) => {
           cooling_time: 57,
           fluid: {
             amount: 90,
-            fluid: global.moltenMetals[metal]
+            fluid: global.moltenMaterialFluids[metal]
           },
           result: `kubejs:hot_${metal}_${part}`,
           switch_slots: true

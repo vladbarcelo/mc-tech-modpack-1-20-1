@@ -11,9 +11,9 @@ ServerEvents.recipes((event) => {
   event.remove({ id: 'notreepunching:diamond_saw' })
   event.remove({ id: 'notreepunching:netherite_saw' })
 
-  event.recipes.createmetallurgy.casting_in_table(`immersiveengineering:sawblade`, [Fluid.of(global.moltenMetals.steel, 120), `kubejs:graphite_sawblade_mold`], 90, false)
-  event.recipes.createmetallurgy.casting_in_table(`immersiveengineering:sawblade`, [Fluid.of(global.moltenMetals.steel, 120), `kubejs:sawblade_sand_cast`], 90, true)
-  event.recipes.createmetallurgy.casting_in_table(`immersiveengineering:sawblade`, [Fluid.of(global.moltenMetals.steel, 120), `kubejs:sawblade_red_sand_cast`], 90, true)
+  event.recipes.createmetallurgy.casting_in_table(`immersiveengineering:sawblade`, [Fluid.of(global.moltenMaterialFluids.steel, 120), `kubejs:graphite_sawblade_mold`], 90, false)
+  event.recipes.createmetallurgy.casting_in_table(`immersiveengineering:sawblade`, [Fluid.of(global.moltenMaterialFluids.steel, 120), `kubejs:sawblade_sand_cast`], 90, true)
+  event.recipes.createmetallurgy.casting_in_table(`immersiveengineering:sawblade`, [Fluid.of(global.moltenMaterialFluids.steel, 120), `kubejs:sawblade_red_sand_cast`], 90, true)
 
   // iron saw
 

@@ -11,8 +11,8 @@ import {$RegistryObject, $RegistryObject$Type} from "packages/net/minecraftforge
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$CustomTabBehavior, $CustomTabBehavior$Type} from "packages/com/github/alexthe666/alexsmobs/item/$CustomTabBehavior"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$BlockItem, $BlockItem$Type} from "packages/net/minecraft/world/item/$BlockItem"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -38,16 +38,16 @@ readonly "canRepair": boolean
 
 constructor(arg0: $RegistryObject$Type<($Block$Type)>, arg1: $Item$Properties$Type)
 
-public "canFitInsideCraftingRemainingItems"(): boolean
 public "fillItemCategory"(arg0: $CreativeModeTab$Output$Type): void
+public "canFitInsideCraftingRemainingItems"(): boolean
 public "getBlock"(): $Block
-public "canBeHurtBy"(arg0: $DamageSource$Type): boolean
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "onDestroyed"(arg0: $ItemEntity$Type): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "canBeHurtBy"(arg0: $DamageSource$Type): boolean
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "block"(): $Block
 }
@@ -153,15 +153,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public static "shouldStoreInGhost"(arg0: $LivingEntity$Type, arg1: $ItemStack$Type): boolean
-public "damageItem"<T extends $LivingEntity>(arg0: $ItemStack$Type, arg1: integer, arg2: T, arg3: $Consumer$Type<(T)>): integer
+public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "onDestroyed"(arg0: $ItemEntity$Type): void
 public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
 public "mineBlock"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: $LivingEntity$Type): boolean
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public "damageItem"<T extends $LivingEntity>(arg0: $ItemStack$Type, arg1: integer, arg2: T, arg3: $Consumer$Type<(T)>): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -234,8 +234,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(props: $BlockBehaviour$Properties$Type)
 
-public "getShape"(state: $BlockState$Type, reader: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
+public "getShape"(state: $BlockState$Type, reader: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -355,38 +355,38 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
  "forgeFluidTypeHeight": $Object2DoubleMap<($FluidType)>
  "sodiumdynamiclights$luminance": integer
 
-constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
-constructor(arg0: $PlayMessages$SpawnEntity$Type, arg1: $Level$Type)
 constructor(arg0: $Level$Type, arg1: $ItemDimensionalCarver$Type)
+constructor(arg0: $PlayMessages$SpawnEntity$Type, arg1: $Level$Type)
+constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
 
-public "getDestination"(): $BlockPos
 public "link"(arg0: $EntityVoidPortal$Type): void
-public "getLifespan"(): integer
-public "getAttachmentFacing"(): $Direction
-public "getSisterId"(): $UUID
-public "clearObstructions"(): void
-public "createAndSetSister"(arg0: $Level$Type, arg1: $Direction$Type): void
-public "setSisterId"(arg0: $UUID$Type): void
-public "isShattered"(): boolean
-public "setDestination"(arg0: $BlockPos$Type, arg1: $Direction$Type): void
-public "setDestination"(arg0: $BlockPos$Type): void
+public "getDestination"(): $BlockPos
 public "setAttachmentFacing"(arg0: $Direction$Type): void
 public "setLifespan"(arg0: integer): void
 public "setShattered"(arg0: boolean): void
-public "tick"(): void
+public "setDestination"(arg0: $BlockPos$Type): void
+public "setDestination"(arg0: $BlockPos$Type, arg1: $Direction$Type): void
+public "getLifespan"(): integer
+public "getAttachmentFacing"(): $Direction
+public "clearObstructions"(): void
+public "getSisterId"(): $UUID
+public "createAndSetSister"(arg0: $Level$Type, arg1: $Direction$Type): void
+public "isShattered"(): boolean
+public "setSisterId"(arg0: $UUID$Type): void
 public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
+public "tick"(): void
 public "getSister"(): $Entity
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "destination"(): $BlockPos
-get "lifespan"(): integer
-get "attachmentFacing"(): $Direction
-get "sisterId"(): $UUID
-set "sisterId"(value: $UUID$Type)
-get "shattered"(): boolean
-set "destination"(value: $BlockPos$Type)
 set "attachmentFacing"(value: $Direction$Type)
 set "lifespan"(value: integer)
 set "shattered"(value: boolean)
+set "destination"(value: $BlockPos$Type)
+get "lifespan"(): integer
+get "attachmentFacing"(): $Direction
+get "sisterId"(): $UUID
+get "shattered"(): boolean
+set "sisterId"(value: $UUID$Type)
 get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
 get "sister"(): $Entity
 }
@@ -508,8 +508,8 @@ constructor(properties: $BlockBehaviour$Properties$Type, color: $DyeColor$Type)
 public static "getVaultBlockAxis"(state: $BlockState$Type): $Direction$Axis
 public "getBlockEntityType"(): $BlockEntityType<(any)>
 public static "getColor"(state: $BlockState$Type): $DyeColor
-public "isSameType"(other: $BlockState$Type): boolean
 public static "isLarge"(state: $BlockState$Type): boolean
+public "isSameType"(other: $BlockState$Type): boolean
 public static "isVault"(state: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -603,8 +603,8 @@ constructor(block: $Block$Type, props: $Item$Properties$Type)
 
 public "place"(ctx: $BlockPlaceContext$Type): $InteractionResult
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -671,10 +671,10 @@ export class $EffectFleetFooted extends $MobEffect {
 
 constructor()
 
+public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 public "getDescriptionId"(): string
 public "applyEffectTick"(arg0: $LivingEntity$Type, arg1: integer): void
 public "isDurationEffectTick"(arg0: integer, arg1: integer): boolean
-public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 get "descriptionId"(): string
 }
 /**
@@ -717,8 +717,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -741,12 +741,12 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export class $EffectDebilitatingSting extends $MobEffect {
 
 
+public "addAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
+public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 public "isEntityInsideOpaqueBlock"(arg0: $Entity$Type): boolean
 public "getDescriptionId"(): string
 public "applyEffectTick"(arg0: $LivingEntity$Type, arg1: integer): void
 public "isDurationEffectTick"(arg0: integer, arg1: integer): boolean
-public "addAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
-public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 get "descriptionId"(): string
 }
 /**
@@ -847,8 +847,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
@@ -1081,12 +1081,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "rotate"(state: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(state: $BlockState$Type, mirror: $Mirror$Type): $BlockState
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
@@ -1122,8 +1122,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -1144,8 +1144,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1158,6 +1158,136 @@ export type $ItemEnderiophageRocket$Type = ($ItemEnderiophageRocket);
  */
 declare global {
 export type $ItemEnderiophageRocket_ = $ItemEnderiophageRocket$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/block/$HardcoreWallTorchBlock" {
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$TorchGroup, $TorchGroup$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$TorchGroup"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$AbstractHardcoreTorchBlock, $AbstractHardcoreTorchBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/block/$AbstractHardcoreTorchBlock"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$SimpleParticleType, $SimpleParticleType$Type} from "packages/net/minecraft/core/particles/$SimpleParticleType"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$TorchBlockEntity, $TorchBlockEntity$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$TorchBlockEntity"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$Rotation, $Rotation$Type} from "packages/net/minecraft/world/level/block/$Rotation"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+
+export class $HardcoreWallTorchBlock extends $AbstractHardcoreTorchBlock {
+static readonly "FACING": $DirectionProperty
+ "fireParticle": $SimpleParticleType
+ "smokeParticle": $SimpleParticleType
+ "burnState": $ETorchState
+ "group": $TorchGroup
+static readonly "TICKER": $BlockEntityTicker<($TorchBlockEntity)>
+ "maxFuel": $IntSupplier
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $BlockBehaviour$Properties$Type, arg1: $SimpleParticleType$Type, arg2: $SimpleParticleType$Type, arg3: $ETorchState$Type, arg4: $TorchGroup$Type, arg5: $IntSupplier$Type)
+
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
+public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
+public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "isWall"(): boolean
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "wall"(): boolean
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $HardcoreWallTorchBlock$Type = ($HardcoreWallTorchBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $HardcoreWallTorchBlock_ = $HardcoreWallTorchBlock$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/util/$TorchGroup" {
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$HardcoreWallTorchBlock, $HardcoreWallTorchBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/block/$HardcoreWallTorchBlock"
+import {$HardcoreFloorTorchBlock, $HardcoreFloorTorchBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/block/$HardcoreFloorTorchBlock"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+
+export class $TorchGroup {
+readonly "name": string
+
+constructor(arg0: string, arg1: boolean)
+
+public "add"(arg0: $HardcoreWallTorchBlock$Type): void
+public "add"(arg0: $HardcoreFloorTorchBlock$Type): void
+public "add"(arg0: $Block$Type): void
+public "getWallTorch"(arg0: $ETorchState$Type): $HardcoreWallTorchBlock
+public "getStandingTorch"(arg0: $ETorchState$Type): $HardcoreFloorTorchBlock
+public "canSmolder"(): boolean
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $TorchGroup$Type = ($TorchGroup);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $TorchGroup_ = $TorchGroup$Type;
 }}
 declare module "packages/com/github/alexthe666/alexsmobs/item/$ItemSquidGrapple" {
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
@@ -1194,12 +1324,12 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public static "getPowerForTime"(arg0: integer): float
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "getUseDuration"(arg0: $ItemStack$Type): integer
 }
 /**
@@ -1277,11 +1407,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 
 public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1368,13 +1498,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(props: $BlockBehaviour$Properties$Type)
 
 public static "canPlaceCatwalk"(world: $Level$Type, pos: $BlockPos$Type): boolean
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onPlace"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, movedByPiston: boolean): void
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "getInteractionShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type): $VoxelShape
 public "getShape"(state: $BlockState$Type, reader: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(world: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, fluid: $Fluid$Type): boolean
 public static "isCatwalk"(test: $ItemStack$Type): boolean
 public static "isCatwalk"(test: $Block$Type): boolean
@@ -1469,10 +1599,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "isBarVisible"(arg0: $ItemStack$Type): boolean
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "getUseDuration"(arg0: $ItemStack$Type): integer
 public static "isUsable"(arg0: $ItemStack$Type): boolean
 public "findAmmo"(arg0: $Player$Type): $ItemStack
@@ -1539,11 +1669,11 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type, arg1: $AMArmorMaterial$Type)
 
-public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
-public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
 public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
 public "elytraFlightTick"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: integer): boolean
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
+public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public static "isUsable"(arg0: $ItemStack$Type): boolean
@@ -1630,14 +1760,14 @@ constructor(arg0: $RegistryObject$Type<(any)>)
 
 public static "hasProperHabitat"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): boolean
 public static "isProperHabitat"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): boolean
-public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
-public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
-public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
 public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
+public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1717,11 +1847,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 constructor(properties: $BlockBehaviour$Properties$Type, material: string)
 
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
+public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
 public "updateShape"(stateIn: $BlockState$Type, facing: $Direction$Type, facingState: $BlockState$Type, worldIn: $LevelAccessor$Type, currentPos: $BlockPos$Type, facingPos: $BlockPos$Type): $BlockState
 public "getFluidState"(pState: $BlockState$Type): $FluidState
 public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
-public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
 public "updateWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): void
 public "fluidState"(arg0: $BlockState$Type): $FluidState
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
@@ -1780,14 +1910,14 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public static "isItemInUse"(arg0: $ItemStack$Type): boolean
 public static "getPowerForTime"(arg0: integer): float
+public static "isItemInUse"(arg0: $ItemStack$Type): boolean
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "getUseDuration"(arg0: $ItemStack$Type): integer
 }
 /**
@@ -1836,13 +1966,13 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
-public "getColor"(arg0: $ItemStack$Type): integer
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getEnchantmentValue"(): integer
-public "setColor"(arg0: $ItemStack$Type, arg1: integer): void
-public static "dyeArmor"(arg0: $ItemStack$Type, arg1: $List$Type<($DyeItem$Type)>): $ItemStack
+public "getColor"(arg0: $ItemStack$Type): integer
 public "hasCustomColor"(arg0: $ItemStack$Type): boolean
 public "clearColor"(arg0: $ItemStack$Type): void
+public "setColor"(arg0: $ItemStack$Type, arg1: integer): void
+public static "dyeArmor"(arg0: $ItemStack$Type, arg1: $List$Type<($DyeItem$Type)>): $ItemStack
 get "enchantmentValue"(): integer
 }
 /**
@@ -1899,8 +2029,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
 import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
@@ -1945,9 +2075,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1985,6 +2115,68 @@ export type $EffectTigersBlessing$Type = ($EffectTigersBlessing);
  */
 declare global {
 export type $EffectTigersBlessing_ = $EffectTigersBlessing$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$TorchRecipe" {
+import {$RegistryAccess, $RegistryAccess$Type} from "packages/net/minecraft/core/$RegistryAccess"
+import {$ShapedRecipe, $ShapedRecipe$Type} from "packages/net/minecraft/world/item/crafting/$ShapedRecipe"
+import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
+import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$CraftingContainer, $CraftingContainer$Type} from "packages/net/minecraft/world/inventory/$CraftingContainer"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$CraftingBookCategory, $CraftingBookCategory$Type} from "packages/net/minecraft/world/item/crafting/$CraftingBookCategory"
+
+export class $TorchRecipe extends $ShapedRecipe {
+static "MAX_WIDTH": integer
+static "MAX_HEIGHT": integer
+readonly "width": integer
+readonly "height": integer
+readonly "recipeItems": $NonNullList<($Ingredient)>
+readonly "result": $ItemStack
+readonly "group": string
+readonly "category": $CraftingBookCategory
+readonly "showNotification": boolean
+
+constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: integer, arg3: integer, arg4: $ItemStack$Type, arg5: $NonNullList$Type<($Ingredient$Type)>)
+
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $TorchRecipe$Type = ($TorchRecipe);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $TorchRecipe_ = $TorchRecipe$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$IFuelBlockEntity" {
+export {} // Mark the file as a module, do not remove unless there are other import/exports!
+export interface $IFuelBlockEntity {
+
+ "setFuel"(arg0: integer): void
+ "getFuel"(): integer
+ "getMaxFuel"(): integer
+ "canAddFuel"(): boolean
+}
+
+export namespace $IFuelBlockEntity {
+const probejs$$marker: never
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $IFuelBlockEntity$Type = ($IFuelBlockEntity);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $IFuelBlockEntity_ = $IFuelBlockEntity$Type;
 }}
 declare module "packages/com/github/talrey/createdeco/blocks/$SupportBlock" {
 import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
@@ -2059,11 +2251,11 @@ constructor(props: $BlockBehaviour$Properties$Type)
 
 public static "isSupportBlock"(test: $ItemStack$Type): boolean
 public static "isSupportBlock"(test: $Block$Type): boolean
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "getShape"(state: $BlockState$Type, reader: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
 public "getVisualShape"(state: $BlockState$Type, getter: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(world: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, fluid: $Fluid$Type): boolean
 public "updateWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): void
 public "fluidState"(arg0: $BlockState$Type): $FluidState
@@ -2087,6 +2279,88 @@ export type $SupportBlock$Type = ($SupportBlock);
  */
 declare global {
 export type $SupportBlock_ = $SupportBlock$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/block/$LanternBlock" {
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$LanternGroup, $LanternGroup$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$LanternGroup"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$TagKey, $TagKey$Type} from "packages/net/minecraft/tags/$TagKey"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$AbstractLanternBlock, $AbstractLanternBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/block/$AbstractLanternBlock"
+
+export class $LanternBlock extends $AbstractLanternBlock {
+static readonly "HANGING": $BooleanProperty
+static readonly "WATERLOGGED": $BooleanProperty
+static readonly "LANTERN_LIGHT_LEVEL": integer
+ "isLit": boolean
+ "group": $LanternGroup
+ "maxFuel": $IntSupplier
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $BlockBehaviour$Properties$Type, arg1: boolean, arg2: $IntSupplier$Type)
+
+public "getFreeLightItems"(): $TagKey<(any)>
+public "getDamageLightItems"(): $TagKey<(any)>
+public "getConsumeLightItems"(): $TagKey<(any)>
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "freeLightItems"(): $TagKey<(any)>
+get "damageLightItems"(): $TagKey<(any)>
+get "consumeLightItems"(): $TagKey<(any)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $LanternBlock$Type = ($LanternBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $LanternBlock_ = $LanternBlock$Type;
 }}
 declare module "packages/com/github/talrey/createdeco/items/$RailingBlockItem" {
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
@@ -2121,8 +2395,8 @@ constructor(block: $CatwalkRailingBlock$Type, props: $Item$Properties$Type)
 
 public "useOn"(ctx: $UseOnContext$Type): $InteractionResult
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -2208,6 +2482,144 @@ export type $ItemPocketSand$Type = ($ItemPocketSand);
 declare global {
 export type $ItemPocketSand_ = $ItemPocketSand$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/block/$AbstractHardcoreTorchBlock" {
+import {$EntityBlock, $EntityBlock$Type} from "packages/net/minecraft/world/level/block/$EntityBlock"
+import {$TorchGroup, $TorchGroup$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$TorchGroup"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$IFuelBlock, $IFuelBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$IFuelBlock"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$TagKey, $TagKey$Type} from "packages/net/minecraft/tags/$TagKey"
+import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$SimpleParticleType, $SimpleParticleType$Type} from "packages/net/minecraft/core/particles/$SimpleParticleType"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$TorchBlockEntity, $TorchBlockEntity$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$TorchBlockEntity"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BaseEntityBlock, $BaseEntityBlock$Type} from "packages/net/minecraft/world/level/block/$BaseEntityBlock"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+import {$RenderShape, $RenderShape$Type} from "packages/net/minecraft/world/level/block/$RenderShape"
+
+export class $AbstractHardcoreTorchBlock extends $BaseEntityBlock implements $IFuelBlock, $EntityBlock {
+ "fireParticle": $SimpleParticleType
+ "smokeParticle": $SimpleParticleType
+ "burnState": $ETorchState
+ "group": $TorchGroup
+static readonly "TICKER": $BlockEntityTicker<($TorchBlockEntity)>
+ "maxFuel": $IntSupplier
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $BlockBehaviour$Properties$Type, arg1: $SimpleParticleType$Type, arg2: $SimpleParticleType$Type, arg3: $ETorchState$Type, arg4: $TorchGroup$Type, arg5: $IntSupplier$Type)
+
+public "getStack"(arg0: $Level$Type, arg1: $BlockPos$Type): $ItemStack
+public "isSoulVariant"(): boolean
+public "attemptLight"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type, arg4: $ItemStack$Type, arg5: $InteractionHand$Type): $InteractionResult
+public static "getSingleFueledTorch"(arg0: $ItemStack$Type, arg1: $Block$Type, arg2: $BlockEntity$Type): $ItemStack
+public static "isLightItem"(arg0: $ItemStack$Type): boolean
+public "changeTorch"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $ETorchState$Type): void
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "extinguish"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): void
+public "light"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
+public "isWall"(): boolean
+public "isLit"(): boolean
+public "takeTorch"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $InteractionHand$Type): void
+public "smother"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
+public "burnOut"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): void
+public "getMaxFuel"(): integer
+public "canLight"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
+public "outOfFuel"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
+public "attemptUseItem"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ETorchState$Type): boolean
+public "getFreeLightItems"(): $TagKey<(any)>
+public "getDamageLightItems"(): $TagKey<(any)>
+public "getConsumeLightItems"(): $TagKey<(any)>
+public "isValidStack"(arg0: $ItemStack$Type, arg1: $TagKey$Type<(any)>, arg2: $TagKey$Type<(any)>, arg3: $TagKey$Type<(any)>): boolean
+public "getFreeSmotherItems"(): $TagKey<(any)>
+public "getDamageSmotherItems"(): $TagKey<(any)>
+public "getConsumeSmotherItems"(): $TagKey<(any)>
+public "getFreeExtinguishItems"(): $TagKey<(any)>
+public "getDamageExtinguishItems"(): $TagKey<(any)>
+public "getConsumeExtinguishItems"(): $TagKey<(any)>
+public "itemValid"(arg0: $ItemStack$Type, arg1: $ETorchState$Type): boolean
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "soulVariant"(): boolean
+get "wall"(): boolean
+get "lit"(): boolean
+get "maxFuel"(): integer
+get "freeLightItems"(): $TagKey<(any)>
+get "damageLightItems"(): $TagKey<(any)>
+get "consumeLightItems"(): $TagKey<(any)>
+get "freeSmotherItems"(): $TagKey<(any)>
+get "damageSmotherItems"(): $TagKey<(any)>
+get "consumeSmotherItems"(): $TagKey<(any)>
+get "freeExtinguishItems"(): $TagKey<(any)>
+get "damageExtinguishItems"(): $TagKey<(any)>
+get "consumeExtinguishItems"(): $TagKey<(any)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $AbstractHardcoreTorchBlock$Type = ($AbstractHardcoreTorchBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $AbstractHardcoreTorchBlock_ = $AbstractHardcoreTorchBlock$Type;
+}}
 declare module "packages/com/github/alexthe666/alexsmobs/block/$BlockTransmutationTable" {
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -2281,13 +2693,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "onDestroyedByPlayer"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: boolean, arg5: $FluidState$Type): boolean
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $MenuProvider
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -2377,9 +2789,9 @@ constructor(props: $BlockBehaviour$Properties$Type, metal: string)
 public static "isCatwalkStair"(test: $Block$Type): boolean
 public static "isCatwalkStair"(test: $ItemStack$Type): boolean
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(world: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, fluid: $Fluid$Type): boolean
 public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
@@ -2476,14 +2888,14 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "skipRendering"(arg0: $BlockState$Type, arg1: $BlockState$Type, arg2: $Direction$Type): boolean
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -2627,8 +3039,8 @@ constructor(arg0: $RegistryObject$Type<($Block$Type)>, arg1: $Item$Properties$Ty
 public "getDescriptionId"(): string
 public "place"(arg0: $BlockPlaceContext$Type): $InteractionResult
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "descriptionId"(): string
 }
@@ -2654,10 +3066,10 @@ export class $EffectClinging extends $MobEffect {
 constructor()
 
 public static "isUpsideDown"(arg0: $LivingEntity$Type): boolean
+public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 public "getDescriptionId"(): string
 public "applyEffectTick"(arg0: $LivingEntity$Type, arg1: integer): void
 public "isDurationEffectTick"(arg0: integer, arg1: integer): boolean
-public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 get "descriptionId"(): string
 }
 /**
@@ -2671,6 +3083,37 @@ export type $EffectClinging$Type = ($EffectClinging);
  */
 declare global {
 export type $EffectClinging_ = $EffectClinging$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$TorchRecipe$Serializer" {
+import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
+import {$RecipeSerializer, $RecipeSerializer$Type} from "packages/net/minecraft/world/item/crafting/$RecipeSerializer"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$ICondition$IContext, $ICondition$IContext$Type} from "packages/net/minecraftforge/common/crafting/conditions/$ICondition$IContext"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$TorchRecipe, $TorchRecipe$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$TorchRecipe"
+import {$Recipe, $Recipe$Type} from "packages/net/minecraft/world/item/crafting/$Recipe"
+
+export class $TorchRecipe$Serializer implements $RecipeSerializer<($TorchRecipe)> {
+
+constructor()
+
+public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $TorchRecipe
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $TorchRecipe
+public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $TorchRecipe$Type): void
+public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $TorchRecipe
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $TorchRecipe$Serializer$Type = ($TorchRecipe$Serializer);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $TorchRecipe$Serializer_ = $TorchRecipe$Serializer$Type;
 }}
 declare module "packages/com/github/alexthe666/alexsmobs/effect/$EffectBugPheromones" {
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -2696,6 +3139,296 @@ export type $EffectBugPheromones$Type = ($EffectBugPheromones);
  */
 declare global {
 export type $EffectBugPheromones_ = $EffectBugPheromones$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/world/$ReplaceAllFeature" {
+import {$BonusChestFeature, $BonusChestFeature$Type} from "packages/net/minecraft/world/level/levelgen/feature/$BonusChestFeature"
+import {$RandomFeatureConfiguration, $RandomFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RandomFeatureConfiguration"
+import {$ChunkGenerator, $ChunkGenerator$Type} from "packages/net/minecraft/world/level/chunk/$ChunkGenerator"
+import {$SpikeConfiguration, $SpikeConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SpikeConfiguration"
+import {$LakeFeature$Configuration, $LakeFeature$Configuration$Type} from "packages/net/minecraft/world/level/levelgen/feature/$LakeFeature$Configuration"
+import {$BlockColumnConfiguration, $BlockColumnConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$BlockColumnConfiguration"
+import {$MultifaceGrowthConfiguration, $MultifaceGrowthConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$MultifaceGrowthConfiguration"
+import {$RootSystemConfiguration, $RootSystemConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RootSystemConfiguration"
+import {$UnderwaterMagmaConfiguration, $UnderwaterMagmaConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$UnderwaterMagmaConfiguration"
+import {$WorldGenLevel, $WorldGenLevel$Type} from "packages/net/minecraft/world/level/$WorldGenLevel"
+import {$RandomPatchConfiguration, $RandomPatchConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RandomPatchConfiguration"
+import {$ProbabilityFeatureConfiguration, $ProbabilityFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ProbabilityFeatureConfiguration"
+import {$Codec, $Codec$Type} from "packages/com/mojang/serialization/$Codec"
+import {$TreeConfiguration, $TreeConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$TreeConfiguration"
+import {$TwistingVinesConfig, $TwistingVinesConfig$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$TwistingVinesConfig"
+import {$FeaturePlaceContext, $FeaturePlaceContext$Type} from "packages/net/minecraft/world/level/levelgen/feature/$FeaturePlaceContext"
+import {$DripstoneClusterConfiguration, $DripstoneClusterConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$DripstoneClusterConfiguration"
+import {$LayerConfiguration, $LayerConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$LayerConfiguration"
+import {$HugeMushroomFeatureConfiguration, $HugeMushroomFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$HugeMushroomFeatureConfiguration"
+import {$ReplaceBlockConfiguration, $ReplaceBlockConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ReplaceBlockConfiguration"
+import {$BlockStateConfiguration, $BlockStateConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$BlockStateConfiguration"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$SimpleBlockConfiguration, $SimpleBlockConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SimpleBlockConfiguration"
+import {$HugeFungusConfiguration, $HugeFungusConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/$HugeFungusConfiguration"
+import {$DiskConfiguration, $DiskConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$DiskConfiguration"
+import {$SeagrassFeature, $SeagrassFeature$Type} from "packages/net/minecraft/world/level/levelgen/feature/$SeagrassFeature"
+import {$ReplaceSphereConfiguration, $ReplaceSphereConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ReplaceSphereConfiguration"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$FossilFeatureConfiguration, $FossilFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/$FossilFeatureConfiguration"
+import {$DeltaFeatureConfiguration, $DeltaFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$DeltaFeatureConfiguration"
+import {$PointedDripstoneConfiguration, $PointedDripstoneConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$PointedDripstoneConfiguration"
+import {$SpringConfiguration, $SpringConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SpringConfiguration"
+import {$BlockPileConfiguration, $BlockPileConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$BlockPileConfiguration"
+import {$OreConfiguration, $OreConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$OreConfiguration"
+import {$SimpleRandomFeatureConfiguration, $SimpleRandomFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SimpleRandomFeatureConfiguration"
+import {$SculkPatchConfiguration, $SculkPatchConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SculkPatchConfiguration"
+import {$NetherForestVegetationConfig, $NetherForestVegetationConfig$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$NetherForestVegetationConfig"
+import {$GeodeConfiguration, $GeodeConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$GeodeConfiguration"
+import {$LargeDripstoneConfiguration, $LargeDripstoneConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$LargeDripstoneConfiguration"
+import {$RandomBooleanFeatureConfiguration, $RandomBooleanFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RandomBooleanFeatureConfiguration"
+import {$ColumnFeatureConfiguration, $ColumnFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ColumnFeatureConfiguration"
+import {$CountConfiguration, $CountConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$CountConfiguration"
+import {$VegetationPatchConfiguration, $VegetationPatchConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$VegetationPatchConfiguration"
+import {$Feature, $Feature$Type} from "packages/net/minecraft/world/level/levelgen/feature/$Feature"
+import {$NoneFeatureConfiguration, $NoneFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$NoneFeatureConfiguration"
+import {$EndGatewayConfiguration, $EndGatewayConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$EndGatewayConfiguration"
+
+export class $ReplaceAllFeature extends $Feature<($NoneFeatureConfiguration)> {
+static readonly "NO_OP": $Feature<($NoneFeatureConfiguration)>
+static readonly "TREE": $Feature<($TreeConfiguration)>
+static readonly "FLOWER": $Feature<($RandomPatchConfiguration)>
+static readonly "NO_BONEMEAL_FLOWER": $Feature<($RandomPatchConfiguration)>
+static readonly "RANDOM_PATCH": $Feature<($RandomPatchConfiguration)>
+static readonly "BLOCK_PILE": $Feature<($BlockPileConfiguration)>
+static readonly "SPRING": $Feature<($SpringConfiguration)>
+static readonly "CHORUS_PLANT": $Feature<($NoneFeatureConfiguration)>
+static readonly "REPLACE_SINGLE_BLOCK": $Feature<($ReplaceBlockConfiguration)>
+static readonly "VOID_START_PLATFORM": $Feature<($NoneFeatureConfiguration)>
+static readonly "DESERT_WELL": $Feature<($NoneFeatureConfiguration)>
+static readonly "FOSSIL": $Feature<($FossilFeatureConfiguration)>
+static readonly "HUGE_RED_MUSHROOM": $Feature<($HugeMushroomFeatureConfiguration)>
+static readonly "HUGE_BROWN_MUSHROOM": $Feature<($HugeMushroomFeatureConfiguration)>
+static readonly "ICE_SPIKE": $Feature<($NoneFeatureConfiguration)>
+static readonly "GLOWSTONE_BLOB": $Feature<($NoneFeatureConfiguration)>
+static readonly "FREEZE_TOP_LAYER": $Feature<($NoneFeatureConfiguration)>
+static readonly "VINES": $Feature<($NoneFeatureConfiguration)>
+static readonly "BLOCK_COLUMN": $Feature<($BlockColumnConfiguration)>
+static readonly "VEGETATION_PATCH": $Feature<($VegetationPatchConfiguration)>
+static readonly "WATERLOGGED_VEGETATION_PATCH": $Feature<($VegetationPatchConfiguration)>
+static readonly "ROOT_SYSTEM": $Feature<($RootSystemConfiguration)>
+static readonly "MULTIFACE_GROWTH": $Feature<($MultifaceGrowthConfiguration)>
+static readonly "UNDERWATER_MAGMA": $Feature<($UnderwaterMagmaConfiguration)>
+static readonly "MONSTER_ROOM": $Feature<($NoneFeatureConfiguration)>
+static readonly "BLUE_ICE": $Feature<($NoneFeatureConfiguration)>
+static readonly "ICEBERG": $Feature<($BlockStateConfiguration)>
+static readonly "FOREST_ROCK": $Feature<($BlockStateConfiguration)>
+static readonly "DISK": $Feature<($DiskConfiguration)>
+static readonly "LAKE": $Feature<($LakeFeature$Configuration)>
+static readonly "ORE": $Feature<($OreConfiguration)>
+static readonly "END_SPIKE": $Feature<($SpikeConfiguration)>
+static readonly "END_ISLAND": $Feature<($NoneFeatureConfiguration)>
+static readonly "END_GATEWAY": $Feature<($EndGatewayConfiguration)>
+static readonly "SEAGRASS": $SeagrassFeature
+static readonly "KELP": $Feature<($NoneFeatureConfiguration)>
+static readonly "CORAL_TREE": $Feature<($NoneFeatureConfiguration)>
+static readonly "CORAL_MUSHROOM": $Feature<($NoneFeatureConfiguration)>
+static readonly "CORAL_CLAW": $Feature<($NoneFeatureConfiguration)>
+static readonly "SEA_PICKLE": $Feature<($CountConfiguration)>
+static readonly "SIMPLE_BLOCK": $Feature<($SimpleBlockConfiguration)>
+static readonly "BAMBOO": $Feature<($ProbabilityFeatureConfiguration)>
+static readonly "HUGE_FUNGUS": $Feature<($HugeFungusConfiguration)>
+static readonly "NETHER_FOREST_VEGETATION": $Feature<($NetherForestVegetationConfig)>
+static readonly "WEEPING_VINES": $Feature<($NoneFeatureConfiguration)>
+static readonly "TWISTING_VINES": $Feature<($TwistingVinesConfig)>
+static readonly "BASALT_COLUMNS": $Feature<($ColumnFeatureConfiguration)>
+static readonly "DELTA_FEATURE": $Feature<($DeltaFeatureConfiguration)>
+static readonly "REPLACE_BLOBS": $Feature<($ReplaceSphereConfiguration)>
+static readonly "FILL_LAYER": $Feature<($LayerConfiguration)>
+static readonly "BONUS_CHEST": $BonusChestFeature
+static readonly "BASALT_PILLAR": $Feature<($NoneFeatureConfiguration)>
+static readonly "SCATTERED_ORE": $Feature<($OreConfiguration)>
+static readonly "RANDOM_SELECTOR": $Feature<($RandomFeatureConfiguration)>
+static readonly "SIMPLE_RANDOM_SELECTOR": $Feature<($SimpleRandomFeatureConfiguration)>
+static readonly "RANDOM_BOOLEAN_SELECTOR": $Feature<($RandomBooleanFeatureConfiguration)>
+static readonly "GEODE": $Feature<($GeodeConfiguration)>
+static readonly "DRIPSTONE_CLUSTER": $Feature<($DripstoneClusterConfiguration)>
+static readonly "LARGE_DRIPSTONE": $Feature<($LargeDripstoneConfiguration)>
+static readonly "POINTED_DRIPSTONE": $Feature<($PointedDripstoneConfiguration)>
+static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
+
+constructor(arg0: $Codec$Type<(any)>)
+
+public "place"(arg0: $NoneFeatureConfiguration$Type, arg1: $WorldGenLevel$Type, arg2: $ChunkGenerator$Type, arg3: $RandomSource$Type, arg4: $BlockPos$Type): boolean
+public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ReplaceAllFeature$Type = ($ReplaceAllFeature);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ReplaceAllFeature_ = $ReplaceAllFeature$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/block/$HardcoreCampfire" {
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$IFuelBlock, $IFuelBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$IFuelBlock"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$TagKey, $TagKey$Type} from "packages/net/minecraft/tags/$TagKey"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$CampfireBlock, $CampfireBlock$Type} from "packages/net/minecraft/world/level/block/$CampfireBlock"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+
+export class $HardcoreCampfire extends $CampfireBlock implements $IFuelBlock {
+static readonly "SHAPE": $VoxelShape
+static readonly "LIT": $BooleanProperty
+static readonly "SIGNAL_FIRE": $BooleanProperty
+static readonly "WATERLOGGED": $BooleanProperty
+static readonly "FACING": $DirectionProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: boolean, arg1: integer, arg2: $BlockBehaviour$Properties$Type)
+
+public "getStack"(arg0: $Level$Type, arg1: $BlockPos$Type): $ItemStack
+public static "litBlockEmission"(arg0: integer): $ToIntFunction<($BlockState)>
+public "isSoulVariant"(): boolean
+public "attemptLight"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type, arg4: $ItemStack$Type, arg5: $InteractionHand$Type): $InteractionResult
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "extinguish"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): void
+public "light"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
+public "light"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
+public "isLit"(): boolean
+public "getFuel"(arg0: $Level$Type, arg1: $BlockPos$Type): integer
+public "getMaxFuel"(): integer
+public "needsFuel"(arg0: $Player$Type): $InteractionResult
+public "canLight"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
+public "outOfFuel"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
+public "attemptUseItem"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ETorchState$Type): boolean
+public "getFreeLightItems"(): $TagKey<(any)>
+public "getDamageLightItems"(): $TagKey<(any)>
+public "getConsumeLightItems"(): $TagKey<(any)>
+public "isValidStack"(arg0: $ItemStack$Type, arg1: $TagKey$Type<(any)>, arg2: $TagKey$Type<(any)>, arg3: $TagKey$Type<(any)>): boolean
+public "getFreeSmotherItems"(): $TagKey<(any)>
+public "getDamageSmotherItems"(): $TagKey<(any)>
+public "getConsumeSmotherItems"(): $TagKey<(any)>
+public "getFreeExtinguishItems"(): $TagKey<(any)>
+public "getDamageExtinguishItems"(): $TagKey<(any)>
+public "getConsumeExtinguishItems"(): $TagKey<(any)>
+public "itemValid"(arg0: $ItemStack$Type, arg1: $ETorchState$Type): boolean
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "soulVariant"(): boolean
+get "lit"(): boolean
+get "maxFuel"(): integer
+get "freeLightItems"(): $TagKey<(any)>
+get "damageLightItems"(): $TagKey<(any)>
+get "consumeLightItems"(): $TagKey<(any)>
+get "freeSmotherItems"(): $TagKey<(any)>
+get "damageSmotherItems"(): $TagKey<(any)>
+get "consumeSmotherItems"(): $TagKey<(any)>
+get "freeExtinguishItems"(): $TagKey<(any)>
+get "damageExtinguishItems"(): $TagKey<(any)>
+get "consumeExtinguishItems"(): $TagKey<(any)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $HardcoreCampfire$Type = ($HardcoreCampfire);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $HardcoreCampfire_ = $HardcoreCampfire$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$TorchBlockEntity" {
+import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/fabric/api/attachment/v1/$AttachmentTarget"
+import {$FuelBlockEntity, $FuelBlockEntity$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$FuelBlockEntity"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $TorchBlockEntity extends $FuelBlockEntity {
+ "level": $Level
+ "worldPosition": $BlockPos
+ "remove": boolean
+ "blockState": $BlockState
+
+constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
+
+public "tick"(): void
+public "getMaxFuel"(): integer
+public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
+get "maxFuel"(): integer
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $TorchBlockEntity$Type = ($TorchBlockEntity);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $TorchBlockEntity_ = $TorchBlockEntity$Type;
 }}
 declare module "packages/com/github/alexthe666/alexsmobs/item/$ItemStinkRay" {
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
@@ -2732,9 +3465,9 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public static "getPowerForTime"(arg0: integer): float
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "isBarVisible"(arg0: $ItemStack$Type): boolean
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
@@ -2754,6 +3487,124 @@ export type $ItemStinkRay$Type = ($ItemStinkRay);
  */
 declare global {
 export type $ItemStinkRay_ = $ItemStinkRay$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/compat/farmersdelight/$HardcoreStove" {
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+import {$StoveBlock, $StoveBlock$Type} from "packages/vectorwing/farmersdelight/common/block/$StoveBlock"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+
+export class $HardcoreStove extends $StoveBlock {
+static readonly "LIT": $BooleanProperty
+static readonly "FACING": $DirectionProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $BlockBehaviour$Properties$Type, arg1: boolean)
+
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $HardcoreStove$Type = ($HardcoreStove);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $HardcoreStove_ = $HardcoreStove$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$OilCanRecipe" {
+import {$RegistryAccess, $RegistryAccess$Type} from "packages/net/minecraft/core/$RegistryAccess"
+import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
+import {$ShapelessRecipe, $ShapelessRecipe$Type} from "packages/net/minecraft/world/item/crafting/$ShapelessRecipe"
+import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$CraftingContainer, $CraftingContainer$Type} from "packages/net/minecraft/world/inventory/$CraftingContainer"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$CraftingBookCategory, $CraftingBookCategory$Type} from "packages/net/minecraft/world/item/crafting/$CraftingBookCategory"
+
+export class $OilCanRecipe extends $ShapelessRecipe {
+readonly "group": string
+readonly "category": $CraftingBookCategory
+readonly "result": $ItemStack
+readonly "ingredients": $NonNullList<($Ingredient)>
+
+constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: $ItemStack$Type, arg3: $NonNullList$Type<($Ingredient$Type)>, arg4: integer)
+
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $OilCanRecipe$Type = ($OilCanRecipe);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $OilCanRecipe_ = $OilCanRecipe$Type;
 }}
 declare module "packages/com/github/alexthe666/citadel/item/$ItemCitadelDebug" {
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
@@ -2837,6 +3688,63 @@ export type $ItemLeafcutterPupa$Type = ($ItemLeafcutterPupa);
  */
 declare global {
 export type $ItemLeafcutterPupa_ = $ItemLeafcutterPupa$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/item/$SoulLanternItem" {
+import {$ICurio, $ICurio$Type} from "packages/top/theillusivec4/curios/api/type/capability/$ICurio"
+import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$List, $List$Type} from "packages/java/util/$List"
+import {$AdditionalItemPlacement, $AdditionalItemPlacement$Type} from "packages/net/mehvahdjukaar/moonlight/api/item/additional_placements/$AdditionalItemPlacement"
+import {$LanternItem, $LanternItem$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/item/$LanternItem"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $SoulLanternItem extends $LanternItem {
+static "CURIO_CAPABILITY": $Capability<($ICurio)>
+ "isLit": boolean
+ "maxFuel": $IntSupplier
+static readonly "BLOCK_ENTITY_TAG": string
+static readonly "BLOCK_STATE_TAG": string
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
+
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$setClientAnimationExtension"(arg0: any): void
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SoulLanternItem$Type = ($SoulLanternItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SoulLanternItem_ = $SoulLanternItem$Type;
 }}
 declare module "packages/com/github/talrey/createdeco/blocks/$DecalBlock" {
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
@@ -3006,13 +3914,13 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getXpRepairRatio"(arg0: $ItemStack$Type): float
-public "onPortalOpen"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $EntityVoidPortal$Type, arg3: $Direction$Type): void
 public "getItemStackLimit"(arg0: $ItemStack$Type): integer
+public "onPortalOpen"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $EntityVoidPortal$Type, arg3: $Direction$Type): void
+public "getXpRepairRatio"(arg0: $ItemStack$Type): float
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "getUseDuration"(arg0: $ItemStack$Type): integer
 }
 /**
@@ -3061,8 +3969,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Supplier$Type<(any)>, arg1: $Fluid$Type, arg2: $Item$Properties$Type)
 
-public "checkExtraContent"(arg0: $Player$Type, arg1: $Level$Type, arg2: $ItemStack$Type, arg3: $BlockPos$Type): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "checkExtraContent"(arg0: $Player$Type, arg1: $Level$Type, arg2: $ItemStack$Type, arg3: $BlockPos$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3150,12 +4058,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(props: $BlockBehaviour$Properties$Type, color: $Vector3f$Type)
 
 public static "shouldBeLit"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): boolean
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(pState: $BlockState$Type, pFacing: $Direction$Type, pFacingState: $BlockState$Type, pLevel: $LevelAccessor$Type, pCurrentPos: $BlockPos$Type, pFacingPos: $BlockPos$Type): $BlockState
 public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, neighbor: $Block$Type, neighborPos: $BlockPos$Type, bool: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getFluidState"(pState: $BlockState$Type): $FluidState
 public "getShape"(state: $BlockState$Type, getter: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "updateWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): void
 public "fluidState"(arg0: $BlockState$Type): $FluidState
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
@@ -3316,6 +4224,31 @@ export type $ItemMaraca$Type = ($ItemMaraca);
 declare global {
 export type $ItemMaraca_ = $ItemMaraca$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/util/$LanternGroup" {
+import {$AbstractLanternBlock, $AbstractLanternBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/block/$AbstractLanternBlock"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+
+export class $LanternGroup {
+readonly "name": string
+
+constructor(arg0: string)
+
+public "add"(arg0: $AbstractLanternBlock$Type): void
+public "add"(arg0: $Block$Type): void
+public "getLanternBlock"(arg0: boolean): $AbstractLanternBlock
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $LanternGroup$Type = ($LanternGroup);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $LanternGroup_ = $LanternGroup$Type;
+}}
 declare module "packages/com/github/alexthe666/alexsmobs/item/$ItemAnimalEgg" {
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
@@ -3371,8 +4304,8 @@ readonly "category": $EnchantmentCategory
  "descriptionId": string
 
 
-public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type): boolean
 public "isAllowedOnBooks"(): boolean
+public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type): boolean
 public "getMaxLevel"(): integer
 public "getMinCost"(arg0: integer): integer
 public "getMaxCost"(arg0: integer): integer
@@ -3394,6 +4327,71 @@ export type $StraddleEnchantment$Type = ($StraddleEnchantment);
  */
 declare global {
 export type $StraddleEnchantment_ = $StraddleEnchantment$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/item/$LanternItem" {
+import {$ICurio, $ICurio$Type} from "packages/top/theillusivec4/curios/api/type/capability/$ICurio"
+import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$BlockItem, $BlockItem$Type} from "packages/net/minecraft/world/item/$BlockItem"
+import {$ICapabilityProvider, $ICapabilityProvider$Type} from "packages/net/minecraftforge/common/capabilities/$ICapabilityProvider"
+import {$AdditionalItemPlacement, $AdditionalItemPlacement$Type} from "packages/net/mehvahdjukaar/moonlight/api/item/additional_placements/$AdditionalItemPlacement"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $LanternItem extends $BlockItem {
+static "CURIO_CAPABILITY": $Capability<($ICurio)>
+ "isLit": boolean
+ "maxFuel": $IntSupplier
+static readonly "BLOCK_ENTITY_TAG": string
+static readonly "BLOCK_STATE_TAG": string
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
+
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "isBarVisible"(arg0: $ItemStack$Type): boolean
+public "getBarWidth"(arg0: $ItemStack$Type): integer
+public "getBarColor"(arg0: $ItemStack$Type): integer
+public static "addFuel"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: integer): $ItemStack
+public static "getFuel"(arg0: $ItemStack$Type): integer
+public "getMaxFuel"(): integer
+public static "stateStack"(arg0: $ItemStack$Type, arg1: boolean): $ItemStack
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$setClientAnimationExtension"(arg0: any): void
+get "maxFuel"(): integer
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $LanternItem$Type = ($LanternItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $LanternItem_ = $LanternItem$Type;
 }}
 declare module "packages/com/github/alexthe666/alexsmobs/block/$BlockGustmaker" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
@@ -3460,11 +4458,11 @@ constructor()
 
 public static "getDispensePosition"(arg0: $BlockPos$Type, arg1: $Direction$Type): $Vec3
 public "tickGustmaker"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3492,8 +4490,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$PushReaction, $PushReaction$Type} from "packages/net/minecraft/world/level/material/$PushReaction"
-import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
+import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
@@ -3552,6 +4550,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
@@ -3561,8 +4561,6 @@ public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $Bloc
  * @deprecated
  */
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "useItem"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: boolean): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -3642,12 +4640,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
-public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
 public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -3711,8 +4709,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $AMArmorMaterial$Type, arg1: $ArmorItem$Type$Type)
 
-public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getDefaultAttributeModifiers"(arg0: $EquipmentSlot$Type): $Multimap<($Attribute), ($AttributeModifier)>
 public static "get"(arg0: $ItemStack$Type): $Equipable
@@ -3767,6 +4765,153 @@ export type $ItemFuel$Type = ($ItemFuel);
  */
 declare global {
 export type $ItemFuel_ = $ItemFuel$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/item/$FireStarterItem" {
+import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$List, $List$Type} from "packages/java/util/$List"
+import {$UseAnim, $UseAnim$Type} from "packages/net/minecraft/world/item/$UseAnim"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $FireStarterItem extends $Item {
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(arg0: $Item$Properties$Type)
+
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
+public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "getUseDuration"(arg0: $ItemStack$Type): integer
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $FireStarterItem$Type = ($FireStarterItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $FireStarterItem_ = $FireStarterItem$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/block/$HardcoreFloorTorchBlock" {
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$TorchGroup, $TorchGroup$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$TorchGroup"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$AbstractHardcoreTorchBlock, $AbstractHardcoreTorchBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/block/$AbstractHardcoreTorchBlock"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$SimpleParticleType, $SimpleParticleType$Type} from "packages/net/minecraft/core/particles/$SimpleParticleType"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$TorchBlockEntity, $TorchBlockEntity$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$TorchBlockEntity"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+
+export class $HardcoreFloorTorchBlock extends $AbstractHardcoreTorchBlock {
+ "fireParticle": $SimpleParticleType
+ "smokeParticle": $SimpleParticleType
+ "burnState": $ETorchState
+ "group": $TorchGroup
+static readonly "TICKER": $BlockEntityTicker<($TorchBlockEntity)>
+ "maxFuel": $IntSupplier
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $BlockBehaviour$Properties$Type, arg1: $SimpleParticleType$Type, arg2: $SimpleParticleType$Type, arg3: $ETorchState$Type, arg4: $TorchGroup$Type, arg5: $IntSupplier$Type)
+
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "isWall"(): boolean
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "wall"(): boolean
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $HardcoreFloorTorchBlock$Type = ($HardcoreFloorTorchBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $HardcoreFloorTorchBlock_ = $HardcoreFloorTorchBlock$Type;
 }}
 declare module "packages/com/github/talrey/createdeco/blocks/$CatwalkRailingBlock" {
 import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
@@ -3844,14 +4989,14 @@ public static "isEmpty"(state: $BlockState$Type): boolean
 public static "fromDirection"(face: $Direction$Type): $BooleanProperty
 public "getRotatedBlockState"(originalState: $BlockState$Type, targetedFace: $Direction$Type): $BlockState
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, neighborBlock: $Block$Type, neighborPos: $BlockPos$Type, movedByPiston: boolean): void
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "getInteractionShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type): $VoxelShape
 public "getShape"(state: $BlockState$Type, reader: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(world: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, fluid: $Fluid$Type): boolean
-public static "isRailing"(test: $ItemStack$Type): boolean
 public static "isRailing"(test: $Block$Type): boolean
+public static "isRailing"(test: $ItemStack$Type): boolean
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
@@ -3920,13 +5065,13 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "getDamage"(): float
+public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "getDefaultAttributeModifiers"(arg0: $EquipmentSlot$Type): $Multimap<($Attribute), ($AttributeModifier)>
+public "getDamage"(): float
 public "getUseDuration"(arg0: $ItemStack$Type): integer
 get "damage"(): float
 }
@@ -4032,11 +5177,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 
 public "updateState"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -4113,10 +5258,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4192,8 +5337,8 @@ readonly "properties": $BlockBehaviour$Properties
  "drops": $ResourceLocation
 
 
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4233,6 +5378,37 @@ export type $EffectMosquitoRepellent$Type = ($EffectMosquitoRepellent);
 declare global {
 export type $EffectMosquitoRepellent_ = $EffectMosquitoRepellent$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$DamageLightRecipe$Serializer" {
+import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
+import {$RecipeSerializer, $RecipeSerializer$Type} from "packages/net/minecraft/world/item/crafting/$RecipeSerializer"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$DamageLightRecipe, $DamageLightRecipe$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$DamageLightRecipe"
+import {$ICondition$IContext, $ICondition$IContext$Type} from "packages/net/minecraftforge/common/crafting/conditions/$ICondition$IContext"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Recipe, $Recipe$Type} from "packages/net/minecraft/world/item/crafting/$Recipe"
+
+export class $DamageLightRecipe$Serializer implements $RecipeSerializer<($DamageLightRecipe)> {
+
+constructor()
+
+public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $DamageLightRecipe
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $DamageLightRecipe
+public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $DamageLightRecipe$Type): void
+public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $DamageLightRecipe
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $DamageLightRecipe$Serializer$Type = ($DamageLightRecipe$Serializer);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $DamageLightRecipe$Serializer_ = $DamageLightRecipe$Serializer$Type;
+}}
 declare module "packages/com/github/alexthe666/alexsmobs/effect/$EffectPowerDown" {
 import {$AttributeMap, $AttributeMap$Type} from "packages/net/minecraft/world/entity/ai/attributes/$AttributeMap"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -4242,11 +5418,11 @@ export class $EffectPowerDown extends $MobEffect {
 
 
 public "getActiveTime"(): integer
+public "addAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
+public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 public "getDescriptionId"(): string
 public "applyEffectTick"(arg0: $LivingEntity$Type, arg1: integer): void
 public "isDurationEffectTick"(arg0: integer, arg1: integer): boolean
-public "addAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
-public "removeAttributeModifiers"(arg0: $LivingEntity$Type, arg1: $AttributeMap$Type, arg2: integer): void
 get "activeTime"(): integer
 get "descriptionId"(): string
 }
@@ -4365,8 +5541,8 @@ constructor(block: $CatwalkStairBlock$Type, props: $Item$Properties$Type)
 
 public "useOn"(ctx: $UseOnContext$Type): $InteractionResult
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4494,10 +5670,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public static "getCustomDisplayEntityString"(arg0: $ItemStack$Type): string
-public static "getEntityType"(arg0: $CompoundTag$Type): $EntityType<(any)>
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public static "hasCustomEntityDisplay"(arg0: $ItemStack$Type): boolean
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public static "getEntityType"(arg0: $CompoundTag$Type): $EntityType<(any)>
+public static "getCustomDisplayEntityString"(arg0: $ItemStack$Type): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4514,15 +5690,15 @@ export type $ItemTabIcon_ = $ItemTabIcon$Type;
 declare module "packages/com/github/alexthe666/alexsmobs/item/$ItemShatteredDimensionalCarver" {
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
-import {$IClientItemExtensions, $IClientItemExtensions$Type} from "packages/net/minecraftforge/client/extensions/common/$IClientItemExtensions"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$IClientItemExtensions, $IClientItemExtensions$Type} from "packages/net/minecraftforge/client/extensions/common/$IClientItemExtensions"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$EntityVoidPortal, $EntityVoidPortal$Type} from "packages/com/github/alexthe666/alexsmobs/entity/$EntityVoidPortal"
+import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$ItemDimensionalCarver, $ItemDimensionalCarver$Type} from "packages/com/github/alexthe666/alexsmobs/item/$ItemDimensionalCarver"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
@@ -4543,8 +5719,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "onPortalOpen"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $EntityVoidPortal$Type, arg3: $Direction$Type): void
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4871,6 +6047,11 @@ constructor()
 
 public static "hasProperHabitat"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): boolean
 public static "isProperHabitat"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): boolean
+public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
@@ -4878,11 +6059,6 @@ public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): b
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -4979,6 +6155,162 @@ export type $DyedPlacardBlock$Type = ($DyedPlacardBlock);
 declare global {
 export type $DyedPlacardBlock_ = $DyedPlacardBlock$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/block/$AbstractLanternBlock" {
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$SoundEvent, $SoundEvent$Type} from "packages/net/minecraft/sounds/$SoundEvent"
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
+import {$EntityBlock, $EntityBlock$Type} from "packages/net/minecraft/world/level/block/$EntityBlock"
+import {$LanternGroup, $LanternGroup$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$LanternGroup"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$SimpleWaterloggedBlock, $SimpleWaterloggedBlock$Type} from "packages/net/minecraft/world/level/block/$SimpleWaterloggedBlock"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$IFuelBlock, $IFuelBlock$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$IFuelBlock"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$PushReaction, $PushReaction$Type} from "packages/net/minecraft/world/level/material/$PushReaction"
+import {$TagKey, $TagKey$Type} from "packages/net/minecraft/tags/$TagKey"
+import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
+import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
+import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
+import {$BaseEntityBlock, $BaseEntityBlock$Type} from "packages/net/minecraft/world/level/block/$BaseEntityBlock"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+import {$RenderShape, $RenderShape$Type} from "packages/net/minecraft/world/level/block/$RenderShape"
+
+export class $AbstractLanternBlock extends $BaseEntityBlock implements $EntityBlock, $IFuelBlock, $SimpleWaterloggedBlock {
+static readonly "HANGING": $BooleanProperty
+static readonly "WATERLOGGED": $BooleanProperty
+static readonly "LANTERN_LIGHT_LEVEL": integer
+ "isLit": boolean
+ "group": $LanternGroup
+ "maxFuel": $IntSupplier
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+
+public "getStack"(arg0: $Level$Type, arg1: $BlockPos$Type): $ItemStack
+public "setState"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: boolean): void
+public "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
+public "isSoulVariant"(): boolean
+public "attemptLight"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type, arg4: $ItemStack$Type, arg5: $InteractionHand$Type): $InteractionResult
+public "isLightItem"(arg0: $ItemStack$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
+public "getFluidState"(arg0: $BlockState$Type): $FluidState
+public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "extinguish"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): void
+public "light"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
+public "isLit"(): boolean
+public "getMaxFuel"(): integer
+public "canLight"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
+public "outOfFuel"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
+public "attemptUseItem"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ETorchState$Type): boolean
+public "getFreeLightItems"(): $TagKey<(any)>
+public "getDamageLightItems"(): $TagKey<(any)>
+public "getConsumeLightItems"(): $TagKey<(any)>
+public "isValidStack"(arg0: $ItemStack$Type, arg1: $TagKey$Type<(any)>, arg2: $TagKey$Type<(any)>, arg3: $TagKey$Type<(any)>): boolean
+public "getFreeSmotherItems"(): $TagKey<(any)>
+public "getDamageSmotherItems"(): $TagKey<(any)>
+public "getConsumeSmotherItems"(): $TagKey<(any)>
+public "getFreeExtinguishItems"(): $TagKey<(any)>
+public "getDamageExtinguishItems"(): $TagKey<(any)>
+public "getConsumeExtinguishItems"(): $TagKey<(any)>
+public "itemValid"(arg0: $ItemStack$Type, arg1: $ETorchState$Type): boolean
+public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
+public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
+public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "getPickupSound"(): $Optional<($SoundEvent)>
+public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "soulVariant"(): boolean
+get "lit"(): boolean
+get "maxFuel"(): integer
+get "freeLightItems"(): $TagKey<(any)>
+get "damageLightItems"(): $TagKey<(any)>
+get "consumeLightItems"(): $TagKey<(any)>
+get "freeSmotherItems"(): $TagKey<(any)>
+get "damageSmotherItems"(): $TagKey<(any)>
+get "consumeSmotherItems"(): $TagKey<(any)>
+get "freeExtinguishItems"(): $TagKey<(any)>
+get "damageExtinguishItems"(): $TagKey<(any)>
+get "consumeExtinguishItems"(): $TagKey<(any)>
+get "pickupSound"(): $Optional<($SoundEvent)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $AbstractLanternBlock$Type = ($AbstractLanternBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $AbstractLanternBlock_ = $AbstractLanternBlock$Type;
+}}
 declare module "packages/com/github/alexthe666/citadel/server/entity/$ICitadelDataEntity" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 
@@ -5002,6 +6334,63 @@ export type $ICitadelDataEntity$Type = ($ICitadelDataEntity);
  */
 declare global {
 export type $ICitadelDataEntity_ = $ICitadelDataEntity$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/item/$BasicLanternItem" {
+import {$ICurio, $ICurio$Type} from "packages/top/theillusivec4/curios/api/type/capability/$ICurio"
+import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$List, $List$Type} from "packages/java/util/$List"
+import {$AdditionalItemPlacement, $AdditionalItemPlacement$Type} from "packages/net/mehvahdjukaar/moonlight/api/item/additional_placements/$AdditionalItemPlacement"
+import {$LanternItem, $LanternItem$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/item/$LanternItem"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $BasicLanternItem extends $LanternItem {
+static "CURIO_CAPABILITY": $Capability<($ICurio)>
+ "isLit": boolean
+ "maxFuel": $IntSupplier
+static readonly "BLOCK_ENTITY_TAG": string
+static readonly "BLOCK_STATE_TAG": string
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
+
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$setClientAnimationExtension"(arg0: any): void
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $BasicLanternItem$Type = ($BasicLanternItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $BasicLanternItem_ = $BasicLanternItem$Type;
 }}
 declare module "packages/com/github/alexthe666/alexsmobs/effect/$EffectOiled" {
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -5098,13 +6487,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "updateState"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -5154,10 +6543,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "isBarVisible"(arg0: $ItemStack$Type): boolean
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "getUseDuration"(arg0: $ItemStack$Type): integer
 public static "isUsable"(arg0: $ItemStack$Type): boolean
 public "findAmmo"(arg0: $Player$Type): $ItemStack
@@ -5236,10 +6625,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -5350,6 +6739,57 @@ export type $CitadelLecternBlock$Type = ($CitadelLecternBlock);
 declare global {
 export type $CitadelLecternBlock_ = $CitadelLecternBlock$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$IFuelBlock" {
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$TagKey, $TagKey$Type} from "packages/net/minecraft/tags/$TagKey"
+
+export interface $IFuelBlock {
+
+ "getStack"(arg0: $Level$Type, arg1: $BlockPos$Type): $ItemStack
+ "attemptUseItem"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ETorchState$Type): boolean
+ "getFreeLightItems"(): $TagKey<(any)>
+ "getDamageLightItems"(): $TagKey<(any)>
+ "getConsumeLightItems"(): $TagKey<(any)>
+ "isValidStack"(arg0: $ItemStack$Type, arg1: $TagKey$Type<(any)>, arg2: $TagKey$Type<(any)>, arg3: $TagKey$Type<(any)>): boolean
+ "isSoulVariant"(): boolean
+ "attemptLight"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type, arg4: $ItemStack$Type, arg5: $InteractionHand$Type): $InteractionResult
+ "getFreeSmotherItems"(): $TagKey<(any)>
+ "getDamageSmotherItems"(): $TagKey<(any)>
+ "getConsumeSmotherItems"(): $TagKey<(any)>
+ "getFreeExtinguishItems"(): $TagKey<(any)>
+ "getDamageExtinguishItems"(): $TagKey<(any)>
+ "getConsumeExtinguishItems"(): $TagKey<(any)>
+ "extinguish"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): void
+ "light"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+ "isLit"(): boolean
+ "getMaxFuel"(): integer
+ "canLight"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
+ "outOfFuel"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
+ "itemValid"(arg0: $ItemStack$Type, arg1: $ETorchState$Type): boolean
+}
+
+export namespace $IFuelBlock {
+const probejs$$marker: never
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $IFuelBlock$Type = ($IFuelBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $IFuelBlock_ = $IFuelBlock$Type;
+}}
 declare module "packages/com/github/talrey/createdeco/items/$CatwalkBlockItem" {
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$CatwalkBlock, $CatwalkBlock$Type} from "packages/com/github/talrey/createdeco/blocks/$CatwalkBlock"
@@ -5383,8 +6823,8 @@ constructor(block: $CatwalkBlock$Type, props: $Item$Properties$Type)
 
 public "useOn"(ctx: $UseOnContext$Type): $InteractionResult
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -5612,6 +7052,54 @@ export type $BlockSkunkSpray$Type = ($BlockSkunkSpray);
 declare global {
 export type $BlockSkunkSpray_ = $BlockSkunkSpray$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/item/$OilCanItem" {
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$IFuelBlockEntity, $IFuelBlockEntity$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$IFuelBlockEntity"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $OilCanItem extends $Item {
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(arg0: $Item$Properties$Type)
+
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "isBarVisible"(arg0: $ItemStack$Type): boolean
+public "getBarWidth"(arg0: $ItemStack$Type): integer
+public "getBarColor"(arg0: $ItemStack$Type): integer
+public static "setFuel"(arg0: $ItemStack$Type, arg1: integer): $ItemStack
+public static "addFuel"(arg0: $ItemStack$Type, arg1: integer): $ItemStack
+public static "fuelBlock"(arg0: $IFuelBlockEntity$Type, arg1: $Level$Type, arg2: $ItemStack$Type): boolean
+public static "getFuel"(arg0: $ItemStack$Type): integer
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $OilCanItem$Type = ($OilCanItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $OilCanItem_ = $OilCanItem$Type;
+}}
 declare module "packages/com/github/alexthe666/alexsmobs/effect/$EffectOrcaMight" {
 import {$MobEffect, $MobEffect$Type} from "packages/net/minecraft/world/effect/$MobEffect"
 
@@ -5634,6 +7122,83 @@ export type $EffectOrcaMight$Type = ($EffectOrcaMight);
  */
 declare global {
 export type $EffectOrcaMight_ = $EffectOrcaMight$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/item/$TorchItem" {
+import {$TorchGroup, $TorchGroup$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$TorchGroup"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$IntSupplier, $IntSupplier$Type} from "packages/java/util/function/$IntSupplier"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$Slot, $Slot$Type} from "packages/net/minecraft/world/inventory/$Slot"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ClickAction, $ClickAction$Type} from "packages/net/minecraft/world/inventory/$ClickAction"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$StandingAndWallBlockItem, $StandingAndWallBlockItem$Type} from "packages/net/minecraft/world/item/$StandingAndWallBlockItem"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$ETorchState, $ETorchState$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$SlotAccess, $SlotAccess$Type} from "packages/net/minecraft/world/entity/$SlotAccess"
+import {$AdditionalItemPlacement, $AdditionalItemPlacement$Type} from "packages/net/mehvahdjukaar/moonlight/api/item/additional_placements/$AdditionalItemPlacement"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $TorchItem extends $StandingAndWallBlockItem {
+ "burnState": $ETorchState
+ "torchGroup": $TorchGroup
+ "maxFuel": $IntSupplier
+readonly "wallBlock": $Block
+static readonly "BLOCK_ENTITY_TAG": string
+static readonly "BLOCK_STATE_TAG": string
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(arg0: $Block$Type, arg1: $Block$Type, arg2: $Item$Properties$Type, arg3: $Direction$Type)
+
+public "lightCursorStack"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Slot$Type, arg3: $ClickAction$Type, arg4: $Player$Type, arg5: $SlotAccess$Type): boolean
+public "sameTorchGroup"(arg0: $TorchItem$Type, arg1: $TorchItem$Type): boolean
+public static "changedCopy"(arg0: $ItemStack$Type, arg1: $Item$Type): $ItemStack
+public "addToLitStack"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Slot$Type, arg3: $ClickAction$Type, arg4: $Player$Type, arg5: $SlotAccess$Type): boolean
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "isBarVisible"(arg0: $ItemStack$Type): boolean
+public "getBarWidth"(arg0: $ItemStack$Type): integer
+public "getBarColor"(arg0: $ItemStack$Type): integer
+public "overrideOtherStackedOnMe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Slot$Type, arg3: $ClickAction$Type, arg4: $Player$Type, arg5: $SlotAccess$Type): boolean
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public static "setFuel"(arg0: $ItemStack$Type, arg1: integer): $ItemStack
+public static "addFuel"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: integer): $ItemStack
+public static "getFuel"(arg0: $ItemStack$Type): integer
+public "getMaxFuel"(): integer
+public static "stateStack"(arg0: $ItemStack$Type, arg1: $ETorchState$Type): $ItemStack
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$setClientAnimationExtension"(arg0: any): void
+get "maxFuel"(): integer
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $TorchItem$Type = ($TorchItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $TorchItem_ = $TorchItem$Type;
 }}
 declare module "packages/com/github/alexthe666/alexsmobs/block/$BlockBananaSlugSlime" {
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
@@ -5697,12 +7262,12 @@ constructor()
 public "isSlimeBlock"(arg0: $BlockState$Type): boolean
 public "isStickyBlock"(arg0: $BlockState$Type): boolean
 public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -5822,8 +7387,8 @@ constructor(arg0: $RegistryObject$Type<($Block$Type)>, arg1: $Item$Properties$Ty
 
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -5837,6 +7402,39 @@ export type $BlockItemAMRender$Type = ($BlockItemAMRender);
  */
 declare global {
 export type $BlockItemAMRender_ = $BlockItemAMRender$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$DamageLightRecipe" {
+import {$RegistryAccess, $RegistryAccess$Type} from "packages/net/minecraft/core/$RegistryAccess"
+import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
+import {$ShapelessRecipe, $ShapelessRecipe$Type} from "packages/net/minecraft/world/item/crafting/$ShapelessRecipe"
+import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$CraftingContainer, $CraftingContainer$Type} from "packages/net/minecraft/world/inventory/$CraftingContainer"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$CraftingBookCategory, $CraftingBookCategory$Type} from "packages/net/minecraft/world/item/crafting/$CraftingBookCategory"
+
+export class $DamageLightRecipe extends $ShapelessRecipe {
+readonly "group": string
+readonly "category": $CraftingBookCategory
+readonly "result": $ItemStack
+readonly "ingredients": $NonNullList<($Ingredient)>
+
+constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: $ItemStack$Type, arg3: $NonNullList$Type<($Ingredient$Type)>, arg4: integer)
+
+public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemStack)>
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $DamageLightRecipe$Type = ($DamageLightRecipe);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $DamageLightRecipe_ = $DamageLightRecipe$Type;
 }}
 declare module "packages/com/github/alexthe666/alexsmobs/item/$CustomTabBehavior" {
 import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
@@ -5912,6 +7510,86 @@ export type $ItemFlutterPot$Type = ($ItemFlutterPot);
 declare global {
 export type $ItemFlutterPot_ = $ItemFlutterPot$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$FuelBlockEntity" {
+import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$Connection, $Connection$Type} from "packages/net/minecraft/network/$Connection"
+import {$Packet, $Packet$Type} from "packages/net/minecraft/network/protocol/$Packet"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$ClientboundBlockEntityDataPacket, $ClientboundBlockEntityDataPacket$Type} from "packages/net/minecraft/network/protocol/game/$ClientboundBlockEntityDataPacket"
+import {$IFuelBlockEntity, $IFuelBlockEntity$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/blockentity/$IFuelBlockEntity"
+import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/fabric/api/attachment/v1/$AttachmentTarget"
+import {$ClientGamePacketListener, $ClientGamePacketListener$Type} from "packages/net/minecraft/network/protocol/game/$ClientGamePacketListener"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $FuelBlockEntity extends $BlockEntity implements $IFuelBlockEntity {
+ "level": $Level
+ "worldPosition": $BlockPos
+ "remove": boolean
+ "blockState": $BlockState
+
+constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
+
+public "onDataPacket"(arg0: $Connection$Type, arg1: $ClientboundBlockEntityDataPacket$Type): void
+public "saveAdditional"(arg0: $CompoundTag$Type): void
+public "getUpdatePacket"(): $Packet<($ClientGamePacketListener)>
+public "load"(arg0: $CompoundTag$Type): void
+public "setFuel"(arg0: integer): void
+public "getFuel"(): integer
+public "getMaxFuel"(): integer
+public "canAddFuel"(): boolean
+public "changeFuel"(arg0: integer): void
+public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
+get "updatePacket"(): $Packet<($ClientGamePacketListener)>
+set "fuel"(value: integer)
+get "fuel"(): integer
+get "maxFuel"(): integer
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $FuelBlockEntity$Type = ($FuelBlockEntity);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $FuelBlockEntity_ = $FuelBlockEntity$Type;
+}}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$OilCanRecipe$Serializer" {
+import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
+import {$RecipeSerializer, $RecipeSerializer$Type} from "packages/net/minecraft/world/item/crafting/$RecipeSerializer"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$OilCanRecipe, $OilCanRecipe$Type} from "packages/com/github/wolfiewaffle/hardcore_torches/recipe/$OilCanRecipe"
+import {$ICondition$IContext, $ICondition$IContext$Type} from "packages/net/minecraftforge/common/crafting/conditions/$ICondition$IContext"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Recipe, $Recipe$Type} from "packages/net/minecraft/world/item/crafting/$Recipe"
+
+export class $OilCanRecipe$Serializer implements $RecipeSerializer<($OilCanRecipe)> {
+
+constructor()
+
+public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $OilCanRecipe
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $OilCanRecipe
+public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $OilCanRecipe$Type): void
+public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $OilCanRecipe
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $OilCanRecipe$Serializer$Type = ($OilCanRecipe$Serializer);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $OilCanRecipe$Serializer_ = $OilCanRecipe$Serializer$Type;
+}}
 declare module "packages/com/github/alexthe666/alexsmobs/item/$ItemRainbowJelly" {
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
@@ -5959,6 +7637,31 @@ export type $ItemRainbowJelly$Type = ($ItemRainbowJelly);
 declare global {
 export type $ItemRainbowJelly_ = $ItemRainbowJelly$Type;
 }}
+declare module "packages/com/github/wolfiewaffle/hardcore_torches/util/$ETorchState" {
+import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
+
+export class $ETorchState extends $Enum<($ETorchState)> {
+static readonly "LIT": $ETorchState
+static readonly "UNLIT": $ETorchState
+static readonly "SMOLDERING": $ETorchState
+static readonly "BURNT": $ETorchState
+
+
+public static "values"(): ($ETorchState)[]
+public static "valueOf"(arg0: string): $ETorchState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ETorchState$Type = (("smoldering") | ("lit") | ("unlit") | ("burnt")) | ($ETorchState);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ETorchState_ = $ETorchState$Type;
+}}
 declare module "packages/com/github/alexthe666/alexsmobs/item/$ItemTendonWhip" {
 import {$Multimap, $Multimap$Type} from "packages/com/google/common/collect/$Multimap"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
@@ -5997,11 +7700,11 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public static "isActive"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
-public "onLeftClick"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "launchTendonsAt"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: $Entity$Type): boolean
+public "onLeftClick"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
+public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "getMaxDamage"(arg0: $ItemStack$Type): integer
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "hurtEnemy"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: $LivingEntity$Type): boolean
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "getDefaultAttributeModifiers"(arg0: $EquipmentSlot$Type): $Multimap<($Attribute), ($AttributeModifier)>

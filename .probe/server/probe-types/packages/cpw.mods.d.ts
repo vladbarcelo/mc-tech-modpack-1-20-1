@@ -117,8 +117,8 @@ export interface $SecureJar$ModuleDataProvider {
  "uri"(): $URI
  "open"(arg0: string): $Optional<($InputStream)>
  "getManifest"(): $Manifest
- "findFile"(arg0: string): $Optional<($URI)>
  "verifyAndGetSigners"(arg0: string, arg1: (byte)[]): ($CodeSigner)[]
+ "findFile"(arg0: string): $Optional<($URI)>
 }
 
 export namespace $SecureJar$ModuleDataProvider {
@@ -157,7 +157,6 @@ export interface $SecureJar {
  "name"(): string
  "getPackages"(): $Set<(string)>
  "getPath"(arg0: string, ...arg1: (string)[]): $Path
- "verifyPath"(arg0: $Path$Type): $SecureJar$Status
  "moduleDataProvider"(): $SecureJar$ModuleDataProvider
  "getPrimaryPath"(): $Path
  "getManifestSigners"(): ($CodeSigner)[]
@@ -165,14 +164,15 @@ export interface $SecureJar {
  "getTrustedManifestEntries"(arg0: string): $Attributes
  "hasSecurityData"(): boolean
  "getRootPath"(): $Path
+ "verifyPath"(arg0: $Path$Type): $SecureJar$Status
 }
 
 export namespace $SecureJar {
-function from(...arg0: ($Path$Type)[]): $SecureJar
-function from(arg0: $Supplier$Type<($Manifest$Type)>, arg1: $Function$Type<($SecureJar$Type), ($JarMetadata$Type)>, arg2: $BiPredicate$Type<(string), (string)>, ...arg3: ($Path$Type)[]): $SecureJar
-function from(arg0: $BiPredicate$Type<(string), (string)>, ...arg1: ($Path$Type)[]): $SecureJar
-function from(arg0: $Function$Type<($SecureJar$Type), ($JarMetadata$Type)>, ...arg1: ($Path$Type)[]): $SecureJar
 function from(arg0: $Supplier$Type<($Manifest$Type)>, arg1: $Function$Type<($SecureJar$Type), ($JarMetadata$Type)>, ...arg2: ($Path$Type)[]): $SecureJar
+function from(...arg0: ($Path$Type)[]): $SecureJar
+function from(arg0: $Function$Type<($SecureJar$Type), ($JarMetadata$Type)>, ...arg1: ($Path$Type)[]): $SecureJar
+function from(arg0: $BiPredicate$Type<(string), (string)>, ...arg1: ($Path$Type)[]): $SecureJar
+function from(arg0: $Supplier$Type<($Manifest$Type)>, arg1: $Function$Type<($SecureJar$Type), ($JarMetadata$Type)>, arg2: $BiPredicate$Type<(string), (string)>, ...arg3: ($Path$Type)[]): $SecureJar
 function from(arg0: $Function$Type<($SecureJar$Type), ($JarMetadata$Type)>, arg1: $BiPredicate$Type<(string), (string)>, ...arg2: ($Path$Type)[]): $SecureJar
 }
 /**
@@ -197,11 +197,11 @@ export class $SecureJar$Provider extends $Record {
 
 constructor(serviceName: string, providers: $List$Type<(string)>)
 
-public "serviceName"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "providers"(): $List<(string)>
+public "serviceName"(): string
 public static "fromPath"(arg0: $Path$Type, arg1: $BiPredicate$Type<(string), (string)>): $SecureJar$Provider
 }
 /**

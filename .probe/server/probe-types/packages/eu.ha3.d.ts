@@ -5,8 +5,8 @@ import {$SoundEngine, $SoundEngine$Type} from "packages/eu/ha3/presencefootsteps
 
 export interface $StepSoundSource {
 
- "isStepBlocked"(): boolean
  "getStepGenerator"(arg0: $SoundEngine$Type): $Optional<($StepSoundGenerator)>
+ "isStepBlocked"(): boolean
 }
 
 export namespace $StepSoundSource {
@@ -38,12 +38,12 @@ static readonly "VALUES": ($EntitySelector)[]
 
 public static "values"(): ($EntitySelector)[]
 public static "valueOf"(name: string): $EntitySelector
+public static "isEqual"<T>(arg0: any): $Predicate<($Entity)>
+public "test"(arg0: $Entity$Type): boolean
 public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($Entity)>
 public "negate"(): $Predicate<($Entity)>
 public "and"(arg0: $Predicate$Type<(any)>): $Predicate<($Entity)>
 public static "not"<T>(arg0: $Predicate$Type<(any)>): $Predicate<($Entity)>
-public static "isEqual"<T>(arg0: any): $Predicate<($Entity)>
-public "test"(arg0: $Entity$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -68,17 +68,17 @@ constructor(generator: $TerrestrialStepSoundGenerator$Type)
 
 public "getSpeedScalingRatio"(entity: $LivingEntity$Type): float
 public "getHorizontalSpeed"(): double
-public "simulateMotionData"(ply: $LivingEntity$Type): void
 public "isStationary"(): boolean
+public "simulateMotionData"(ply: $LivingEntity$Type): void
 public "pickState"(ply: $LivingEntity$Type, walk: $State$Type, run: $State$Type): $State
-public "getMotionX"(): double
 public "getMotionZ"(): double
 public "getMotionY"(): double
+public "getMotionX"(): double
 get "horizontalSpeed"(): double
 get "stationary"(): boolean
-get "motionX"(): double
 get "motionZ"(): double
 get "motionY"(): double
+get "motionX"(): double
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -214,7 +214,6 @@ static readonly "DEFAULT": $Range
 
 constructor(min: float, max: float)
 
-public "random"(rand: $Random$Type): float
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -223,6 +222,7 @@ public "max"(): float
 public "write"(writer: $JsonObjectWriter$Type): void
 public "read"(name: string, json: $JsonObject$Type): $Range
 public "on"(value: float): float
+public "random"(rand: $Random$Type): float
 public static "exactly"(value: float): $Range
 }
 /**
@@ -290,41 +290,41 @@ import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$Executor, $Executor$Type} from "packages/java/util/concurrent/$Executor"
 import {$Solver, $Solver$Type} from "packages/eu/ha3/presencefootsteps/world/$Solver"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
-import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$SoundSource, $SoundSource$Type} from "packages/net/minecraft/sounds/$SoundSource"
+import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$ProfilerFiller, $ProfilerFiller$Type} from "packages/net/minecraft/util/profiling/$ProfilerFiller"
 import {$Holder, $Holder$Type} from "packages/net/minecraft/core/$Holder"
 import {$Minecraft, $Minecraft$Type} from "packages/net/minecraft/client/$Minecraft"
 import {$PreparableReloadListener$PreparationBarrier, $PreparableReloadListener$PreparationBarrier$Type} from "packages/net/minecraft/server/packs/resources/$PreparableReloadListener$PreparationBarrier"
 import {$PFConfig, $PFConfig$Type} from "packages/eu/ha3/presencefootsteps/$PFConfig"
-import {$Isolator, $Isolator$Type} from "packages/eu/ha3/presencefootsteps/sound/$Isolator"
 import {$ResourceManager, $ResourceManager$Type} from "packages/net/minecraft/server/packs/resources/$ResourceManager"
+import {$Isolator, $Isolator$Type} from "packages/eu/ha3/presencefootsteps/sound/$Isolator"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 
 export class $SoundEngine implements $IdentifiableResourceReloadListener {
 
 constructor(config: $PFConfig$Type)
 
-public "hasData"(): boolean
-public "reload"(): void
 public "shutdown"(): void
-public "getConfig"(): $PFConfig
-public "isRunning"(client: $Minecraft$Type): boolean
-public "getSolver"(): $Solver
-public "getFabricId"(): $ResourceLocation
-public "getIsolator"(): $Isolator
+public "reload"(): void
+public "hasData"(): boolean
+public "onSoundRecieved"(event: $Holder$Type<($SoundEvent$Type)>, category: $SoundSource$Type): boolean
 public "getVolumeForSource"(source: $LivingEntity$Type): float
 public "reloadEverything"(manager: $ResourceManager$Type): void
 public "isEnabledFor"(entity: $Entity$Type): boolean
-public "onSoundRecieved"(event: $Holder$Type<($SoundEvent$Type)>, category: $SoundSource$Type): boolean
+public "getIsolator"(): $Isolator
+public "getFabricId"(): $ResourceLocation
+public "isRunning"(client: $Minecraft$Type): boolean
+public "getConfig"(): $PFConfig
 public "reload"(sync: $PreparableReloadListener$PreparationBarrier$Type, sender: $ResourceManager$Type, serverProfiler: $ProfilerFiller$Type, clientProfiler: $ProfilerFiller$Type, serverExecutor: $Executor$Type, clientExecutor: $Executor$Type): $CompletableFuture<(void)>
+public "getSolver"(): $Solver
 public "onFrame"(client: $Minecraft$Type, cameraEntity: $Entity$Type): void
 public "getFabricDependencies"(): $Collection<($ResourceLocation)>
 public "getName"(): string
+get "isolator"(): $Isolator
+get "fabricId"(): $ResourceLocation
 get "config"(): $PFConfig
 get "solver"(): $Solver
-get "fabricId"(): $ResourceLocation
-get "isolator"(): $Isolator
 get "fabricDependencies"(): $Collection<($ResourceLocation)>
 get "name"(): string
 }
@@ -670,15 +670,15 @@ import {$Version, $Version$Type} from "packages/net/fabricmc/loader/api/$Version
 
 export class $TargettedVersion extends $Record {
 
-constructor(json: $JsonObject$Type)
 constructor(minecraft: $Version$Type, version: $Version$Type)
 constructor(modid: string)
+constructor(json: $JsonObject$Type)
 
-public static "getVersion"(modid: string): $Version
 public "equals"(o: any): boolean
 public "toString"(): string
 public "version"(): $Version
 public "hashCode"(): integer
+public static "getVersion"(modid: string): $Version
 public "minecraft"(): $Version
 }
 /**
@@ -705,18 +705,18 @@ static readonly "LAVAFINE": $SoundsKey
 
 constructor(raw: string, names: (string)[])
 
-public "raw"(): string
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "of"(names: string): $SoundsKey
 public "names"(): (string)[]
-public "isResult"(): boolean
+public "raw"(): string
 public "isSilent"(): boolean
 public "isEmitter"(): boolean
-get "result"(): boolean
+public "isResult"(): boolean
 get "silent"(): boolean
 get "emitter"(): boolean
+get "result"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -765,9 +765,9 @@ public "load"(manager: $ResourceManager$Type): boolean
 public "writeToReport"(full: boolean, writer: $JsonObjectWriter$Type, groups: $Map$Type<(string), ($SoundType$Type)>): void
 public "locomotions"(): $Index<($Entity), ($Locomotion)>
 public "heuristics"(): $HeuristicStateLookup
+public "acoustics"(): $AcousticLibrary
 public "golems"(): $Lookup<($EntityType<(any)>)>
 public "variator"(): $Variator
-public "acoustics"(): $AcousticLibrary
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -879,18 +879,18 @@ static readonly "MOD_NAME": $Component
 constructor()
 
 public static "getInstance"(): $PresenceFootsteps
-public "getConfig"(): $PFConfig
-public "onInitializeClient"(): void
 public "getDebugHud"(): $PFDebugHud
 public "getOptionsKeyBinding"(): $KeyMapping
 public "getUpdateChecker"(): $UpdateChecker
 public "showSystemToast"(title: $Component$Type, body: $Component$Type): void
+public "onInitializeClient"(): void
+public "getConfig"(): $PFConfig
 public "getEngine"(): $SoundEngine
 get "instance"(): $PresenceFootsteps
-get "config"(): $PFConfig
 get "debugHud"(): $PFDebugHud
 get "optionsKeyBinding"(): $KeyMapping
 get "updateChecker"(): $UpdateChecker
+get "config"(): $PFConfig
 get "engine"(): $SoundEngine
 }
 /**
@@ -981,10 +981,10 @@ import {$Options$FloatSupplier, $Options$FloatSupplier$Type} from "packages/eu/h
 
 export interface $Options {
 
- "and"(other: $Options$Type): $Options
  "get"(arg0: string): float
  "containsKey"(arg0: string): boolean
  "getOrDefault"(option: string, defaultValue: float): float
+ "and"(other: $Options$Type): $Options
 }
 
 export namespace $Options {
@@ -1159,13 +1159,13 @@ public "source"(): $LivingEntity
 public "pos"(): $BlockPos
 public "state"(): $BlockState
 public "dataEquals"(other: $Association$Type): boolean
-public "isResult"(): boolean
 public "isSilent"(): boolean
 public "dry"(): $SoundsKey
 public "wet"(): $SoundsKey
 public "foliage"(): $SoundsKey
-get "result"(): boolean
+public "isResult"(): boolean
 get "silent"(): boolean
+get "result"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1212,20 +1212,20 @@ import {$JsonObjectWriter$WriteAction, $JsonObjectWriter$WriteAction$Type} from 
 
 export interface $JsonObjectWriter extends $AutoCloseable {
 
- "object"(action: $JsonObjectWriter$WriteAction$Type): void
- "object"(name: string, action: $JsonObjectWriter$WriteAction$Type): void
- "field"(name: string, data: string): void
- "field"(name: string, action: $JsonObjectWriter$WriteAction$Type): void
- "field"(name: string, data: float): void
  "field"(name: string, data: long): void
+ "field"(name: string, data: float): void
+ "field"(name: string, action: $JsonObjectWriter$WriteAction$Type): void
  "field"(name: string, data: integer): void
- "array"(name: string, action: $JsonObjectWriter$WriteAction$Type): void
+ "field"(name: string, data: string): void
  "array"(action: $JsonObjectWriter$WriteAction$Type): void
+ "array"(name: string, action: $JsonObjectWriter$WriteAction$Type): void
  "close"(): void
  "writer"(): $JsonWriter
  "each"<T>(iterable: $Iterable$Type<(T)>, action: $JsonObjectWriter$WriteConsumer$Type<(T)>): void
+ "object"(name: string, action: $JsonObjectWriter$WriteAction$Type): void
+ "object"(action: $JsonObjectWriter$WriteAction$Type): void
 
-(action: $JsonObjectWriter$WriteAction$Type): void
+(writer: $JsonWriter$Type): $JsonObjectWriter
 }
 
 export namespace $JsonObjectWriter {
@@ -1263,6 +1263,7 @@ export class $PFConfig extends $JsonFile {
 
 constructor(file: $Path$Type, pf: $PresenceFootsteps$Type)
 
+public "toggleDisabled"(): boolean
 public "getDisabled"(): boolean
 public "getGlobalVolume"(): integer
 public "setGlobalVolume"(volume: float): float
@@ -1282,7 +1283,6 @@ public "setDisabled"(disabled: boolean): boolean
 public "isVisualiserRunning"(): boolean
 public "getMaxSteppingEntities"(): integer
 public "populateCrashReport"(section: $CrashReportCategory$Type): void
-public "toggleDisabled"(): boolean
 public "getEnabled"(): boolean
 get "disabled"(): boolean
 get "globalVolume"(): integer

@@ -62,9 +62,9 @@ readonly "pitch": float
 
 constructor(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $Vec3$Type, arg3: $Vec3$Type, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float)
 
+public "getLocal"(arg0: $Vec3$Type): $Vec3
 public "getGlobal"(arg0: float, arg1: float): $Vec3
 public "getGlobal"(arg0: $Vec3$Type): $Vec3
-public "getLocal"(arg0: $Vec3$Type): $Vec3
 public "getLocalRotation"(arg0: $Vec3$Type): $Pair<(float), (float)>
 }
 /**
@@ -84,21 +84,21 @@ import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/leve
 import {$Mob, $Mob$Type} from "packages/net/minecraft/world/entity/$Mob"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
-import {$BlockPathTypes, $BlockPathTypes$Type} from "packages/net/minecraft/world/level/pathfinder/$BlockPathTypes"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockPathTypes, $BlockPathTypes$Type} from "packages/net/minecraft/world/level/pathfinder/$BlockPathTypes"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Node, $Node$Type} from "packages/net/minecraft/world/level/pathfinder/$Node"
 
 export interface $IAdvancedPathFindingEntity {
 
- "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
- "getMaxStuckCheckTicks"(): integer
- "pathFinderCleanup"(): void
  "getBridgePathingMalus"(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
  "onPathingObstructed"(arg0: $Direction$Type): void
  "getGroundSide"(): $Direction
+ "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
+ "getMaxStuckCheckTicks"(): integer
+ "pathFinderCleanup"(): void
 
-(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
+(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
 }
 
 export namespace $IAdvancedPathFindingEntity {
@@ -123,8 +123,8 @@ import {$MoverType, $MoverType$Type} from "packages/net/minecraft/world/entity/$
 
 export interface $IEntityMovementHook {
 
- "getAdjustedCanTriggerWalking"(arg0: boolean): boolean
  "getAdjustedOnPosition"(arg0: $BlockPos$Type): $BlockPos
+ "getAdjustedCanTriggerWalking"(arg0: boolean): boolean
  "onMove"(arg0: $MoverType$Type, arg1: $Vec3$Type, arg2: boolean): boolean
 }
 
@@ -195,8 +195,8 @@ declare module "packages/com/nyfaria/nyfsspiders/common/entity/mob/$ILivingEntit
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ILivingEntityRotationHook {
 
- "getTargetYaw"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): float
  "getTargetPitch"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): float
+ "getTargetYaw"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): float
  "getTargetHeadYaw"(arg0: float, arg1: integer): float
 }
 
@@ -311,20 +311,6 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IClimberEntity extends $IAdvancedPathFindingEntity {
 
- "getCollisionsInclusionRange"(): float
- "setCollisionsInclusionRange"(arg0: float): void
- "getCollisionsSmoothingRange"(): float
- "setCollisionsSmoothingRange"(arg0: float): void
- "getRenderOrientation"(): $Orientation
- "getAttachmentOffset"(arg0: $Direction$Axis$Type, arg1: float): float
- "getTrackedMovementTarget"(): $Vec3
- "getTrackedPathingTargets"(): $List<($PathingTarget)>
- "getVerticalOffset"(arg0: float): float
- "setJumpDirection"(arg0: $Vec3$Type): void
- "getBlockSlipperiness"(arg0: $BlockPos$Type): float
- "canClimberTriggerWalking"(): boolean
- "canClimbOnBlock"(arg0: $BlockState$Type, arg1: $BlockPos$Type): boolean
- "setRenderOrientation"(arg0: $Orientation$Type): void
  "canClimbInWater"(): boolean
  "canClimbInLava"(): boolean
  "calculateOrientation"(arg0: float): $Orientation
@@ -334,12 +320,26 @@ export interface $IClimberEntity extends $IAdvancedPathFindingEntity {
  "setCanClimbInLava"(arg0: boolean): void
  "getMovementSpeed"(): float
  "getOrientation"(): $Orientation
- "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
- "getMaxStuckCheckTicks"(): integer
- "pathFinderCleanup"(): void
+ "setRenderOrientation"(arg0: $Orientation$Type): void
+ "getRenderOrientation"(): $Orientation
+ "getAttachmentOffset"(arg0: $Direction$Axis$Type, arg1: float): float
+ "getTrackedMovementTarget"(): $Vec3
+ "getTrackedPathingTargets"(): $List<($PathingTarget)>
+ "getVerticalOffset"(arg0: float): float
+ "setJumpDirection"(arg0: $Vec3$Type): void
+ "getBlockSlipperiness"(arg0: $BlockPos$Type): float
+ "canClimberTriggerWalking"(): boolean
+ "canClimbOnBlock"(arg0: $BlockState$Type, arg1: $BlockPos$Type): boolean
+ "getCollisionsInclusionRange"(): float
+ "setCollisionsInclusionRange"(arg0: float): void
+ "getCollisionsSmoothingRange"(): float
+ "setCollisionsSmoothingRange"(arg0: float): void
  "getBridgePathingMalus"(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
  "onPathingObstructed"(arg0: $Direction$Type): void
  "getGroundSide"(): $Direction
+ "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
+ "getMaxStuckCheckTicks"(): integer
+ "pathFinderCleanup"(): void
 }
 
 export namespace $IClimberEntity {

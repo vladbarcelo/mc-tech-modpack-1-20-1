@@ -357,8 +357,8 @@ public "maxLength"(): $IntProvider
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "canPlaceOn"(arg0: $BlockState$Type): boolean
 public "canPlaceOn"(): $Optional<($HolderSet<($Block)>)>
+public "canPlaceOn"(arg0: $BlockState$Type): boolean
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -617,17 +617,17 @@ constructor(stateProvider: $BlockStateProvider$Type, replaceableBlocks: $HolderS
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "maxColumnRadiusToCaveHeightRatio"(): float
-public "windSpeed"(): $FloatProvider
-public "minRadiusForWind"(): integer
-public "minBluntnessForWind"(): float
 public "replaceableBlocks"(): $HolderSet<($Block)>
+public "floorToCeilingSearchRange"(): integer
+public "columnRadius"(): $IntProvider
 public "heightScale"(): $FloatProvider
 public "stalactiteBluntness"(): $FloatProvider
 public "stalagmiteBluntness"(): $FloatProvider
-public "floorToCeilingSearchRange"(): integer
-public "columnRadius"(): $IntProvider
+public "minRadiusForWind"(): integer
+public "minBluntnessForWind"(): float
 public "stateProvider"(): $BlockStateProvider
+public "maxColumnRadiusToCaveHeightRatio"(): float
+public "windSpeed"(): $FloatProvider
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -787,9 +787,9 @@ constructor(template: $ResourceLocation$Type, processors: $Holder$Type<($Structu
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "startJigsawName"(): $Optional<($ResourceLocation)>
 public "template"(): $ResourceLocation
 public "processors"(): $Holder<($StructureProcessorList)>
-public "startJigsawName"(): $Optional<($ResourceLocation)>
 public "rotation"(): $Optional<($Rotation)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -824,10 +824,10 @@ static readonly "CODEC": $Codec<($SelectConfig)>
 
 constructor(features: $List$Type<($Pair$Type<($BlockPredicate$Type), ($Holder$Type<($PlacedFeature$Type)>)>)>)
 
-public "features"(): $List<($Pair<($BlockPredicate), ($Holder<($PlacedFeature)>)>)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "features"(): $List<($Pair<($BlockPredicate), ($Holder<($PlacedFeature)>)>)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
 /**
@@ -1015,10 +1015,10 @@ static readonly "CODEC": $Codec<($WeightedSelectorConfig)>
 
 constructor(features: $SimpleWeightedRandomList$Type<($Holder$Type<($PlacedFeature$Type)>)>)
 
-public "features"(): $SimpleWeightedRandomList<($Holder<($PlacedFeature)>)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "features"(): $SimpleWeightedRandomList<($Holder<($PlacedFeature)>)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
 /**
@@ -1044,10 +1044,10 @@ static readonly "CODEC": $Codec<($OreConfig$Target)>
 
 constructor(predicate: $BlockPredicate$Type, stateProvider: $BlockStateProvider$Type)
 
-public "predicate"(): $BlockPredicate
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "predicate"(): $BlockPredicate
 public "stateProvider"(): $BlockStateProvider
 }
 /**
@@ -1351,16 +1351,16 @@ static readonly "CODEC": $Codec<($WellConfig)>
 
 constructor(groundProvider: $BlockStateProvider$Type, suspiciousProvider: $BlockStateProvider$Type, standardProvider: $BlockStateProvider$Type, slabProvider: $BlockStateProvider$Type, fluidProvider: $BlockStateProvider$Type, suspiciousPlacements: $IntProvider$Type, suspiciousLootTable: $ResourceLocation$Type)
 
-public "standardProvider"(): $BlockStateProvider
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "groundProvider"(): $BlockStateProvider
-public "fluidProvider"(): $BlockStateProvider
+public "standardProvider"(): $BlockStateProvider
+public "suspiciousLootTable"(): $ResourceLocation
 public "slabProvider"(): $BlockStateProvider
 public "suspiciousPlacements"(): $IntProvider
+public "groundProvider"(): $BlockStateProvider
+public "fluidProvider"(): $BlockStateProvider
 public "suspiciousProvider"(): $BlockStateProvider
-public "suspiciousLootTable"(): $ResourceLocation
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -1391,10 +1391,10 @@ static readonly "CODEC": $Codec<($CompositeConfig)>
 
 constructor(features: $HolderSet$Type<($PlacedFeature$Type)>, placementType: $CompositeConfig$Type$Type)
 
-public "features"(): $HolderSet<($PlacedFeature)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "features"(): $HolderSet<($PlacedFeature)>
 public "placementType"(): $CompositeConfig$Type
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -1448,9 +1448,9 @@ import {$StructureTemplate, $StructureTemplate$Type} from "packages/net/minecraf
 
 export interface $SinglePoolElementAccessor {
 
- "getProcessors"(): $Holder<($StructureProcessorList)>
- "getTemplate"(): $Either<($ResourceLocation), ($StructureTemplate)>
  "setProcessors"(arg0: $Holder$Type<($StructureProcessorList$Type)>): void
+ "getTemplate"(): $Either<($ResourceLocation), ($StructureTemplate)>
+ "getProcessors"(): $Holder<($StructureProcessorList)>
 }
 
 export namespace $SinglePoolElementAccessor {
@@ -1490,11 +1490,11 @@ constructor(minOpenings: integer, maxOpenings: integer, radius: $IntProvider$Typ
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "wallProvider"(): $BlockStateProvider
-public "spawnerMobs"(): $SimpleWeightedRandomList<($EntityType<(any)>)>
-public "minOpenings"(): integer
 public "floorProvider"(): $BlockStateProvider
 public "maxOpenings"(): integer
+public "minOpenings"(): integer
+public "spawnerMobs"(): $SimpleWeightedRandomList<($EntityType<(any)>)>
+public "wallProvider"(): $BlockStateProvider
 public "dungeonInvalidBlocks"(): $TagKey<($Block)>
 public "radius"(): $IntProvider
 public "lootTable"(): $ResourceLocation
@@ -1517,8 +1517,8 @@ export type $DungeonConfig_ = $DungeonConfig$Type;
 declare module "packages/dev/worldgen/lithostitched/worldgen/structure/$LithostitchedTemplates" {
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$StructurePoolElement, $StructurePoolElement$Type} from "packages/net/minecraft/world/level/levelgen/structure/pools/$StructurePoolElement"
 import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 import {$Spliterator, $Spliterator$Type} from "packages/java/util/$Spliterator"
@@ -1528,10 +1528,10 @@ export class $LithostitchedTemplates implements $Iterable<($StructurePoolElement
 
 constructor()
 
-public "shuffle"(arg0: $RandomSource$Type): $List<($StructurePoolElement)>
 public "add"(arg0: $StructurePoolElement$Type, arg1: integer): $LithostitchedTemplates
 public "iterator"(): $Iterator<($StructurePoolElement)>
 public "stream"(): $Stream<($StructurePoolElement)>
+public "shuffle"(arg0: $RandomSource$Type): $List<($StructurePoolElement)>
 public "spliterator"(): $Spliterator<($StructurePoolElement)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 [Symbol.iterator](): IterableIterator<$StructurePoolElement>;

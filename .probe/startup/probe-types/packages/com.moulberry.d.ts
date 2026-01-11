@@ -64,18 +64,18 @@ export class $ClientWorldProperty<T> {
 
 constructor(id: $ResourceLocation$Type, name: string, localizeName: boolean, initialValue: T)
 
-public "getLocalizedName"(): string
 public static "read"(friendlyByteBuf: $FriendlyByteBuf$Type): $ClientWorldProperty<(any)>
 public "getId"(): $ResourceLocation
 public "getType"(): $WorldPropertyDataType<(T)>
+public "getLocalizedName"(): string
 public "ackChangesUpTo"(updateId: integer): void
 public "setRemoteValue"(bytes: (byte)[]): void
 public "renderImgui"(): void
 public "getLocalValue"(): T
 public "changeLocalValue"(value: T): void
-get "localizedName"(): string
 get "id"(): $ResourceLocation
 get "type"(): $WorldPropertyDataType<(T)>
+get "localizedName"(): string
 set "remoteValue"(value: (byte)[])
 get "localValue"(): T
 }
@@ -121,12 +121,12 @@ import {$DifficultyInstance, $DifficultyInstance$Type} from "packages/net/minecr
 import {$LevelHeightAccessor, $LevelHeightAccessor$Type} from "packages/net/minecraft/world/level/$LevelHeightAccessor"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$ClipBlockStateContext, $ClipBlockStateContext$Type} from "packages/net/minecraft/world/level/$ClipBlockStateContext"
-import {$ChunkSource, $ChunkSource$Type} from "packages/net/minecraft/world/level/chunk/$ChunkSource"
 import {$Heightmap$Types, $Heightmap$Types$Type} from "packages/net/minecraft/world/level/levelgen/$Heightmap$Types"
+import {$ChunkSource, $ChunkSource$Type} from "packages/net/minecraft/world/level/chunk/$ChunkSource"
 import {$ChunkAccess, $ChunkAccess$Type} from "packages/net/minecraft/world/level/chunk/$ChunkAccess"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
-import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$BiomeManager, $BiomeManager$Type} from "packages/net/minecraft/world/level/biome/$BiomeManager"
 import {$RenderTarget, $RenderTarget$Type} from "packages/com/mojang/blaze3d/pipeline/$RenderTarget"
@@ -136,10 +136,10 @@ import {$Direction$Axis, $Direction$Axis$Type} from "packages/net/minecraft/core
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$Quaternionf, $Quaternionf$Type} from "packages/org/joml/$Quaternionf"
 import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecraft/world/level/$BlockAndTintGetter"
-import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
-import {$EntityTypeTest, $EntityTypeTest$Type} from "packages/net/minecraft/world/level/entity/$EntityTypeTest"
 import {$ChunkStatus, $ChunkStatus$Type} from "packages/net/minecraft/world/level/chunk/$ChunkStatus"
 import {$LevelLightEngine, $LevelLightEngine$Type} from "packages/net/minecraft/world/level/lighting/$LevelLightEngine"
+import {$EntityTypeTest, $EntityTypeTest$Type} from "packages/net/minecraft/world/level/entity/$EntityTypeTest"
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$Camera, $Camera$Type} from "packages/net/minecraft/client/$Camera"
 import {$LevelTickAccess, $LevelTickAccess$Type} from "packages/net/minecraft/world/ticks/$LevelTickAccess"
@@ -175,10 +175,9 @@ static readonly "SOLID_RENDER_LIMIT": integer
 static readonly "TRANSLUCENT_RENDER_LIMIT": integer
  "uniqueBlockState": $BlockState
 
-constructor(drawOutlineForNonBlockingMotion: boolean)
 constructor()
+constructor(drawOutlineForNonBlockingMotion: boolean)
 
-public "rotate"(axis: $Direction$Axis$Type, count: integer): $ChunkedBlockRegion
 public "min"(): $BlockPos
 public "max"(): $BlockPos
 public "clear"(): void
@@ -187,37 +186,37 @@ public "count"(): integer
 public "save"(list: $ListTag$Type): void
 public "forEachEntry"(consumer: $PositionConsumer$Type<($BlockState$Type)>): void
 public "flip"(axis: $Direction$Axis$Type): $ChunkedBlockRegion
-public "render"(camera: $Camera$Type, translation: $Vec3$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float): void
-public "render"(camera: $Camera$Type, translation: $Vec3$Type, rotation: $Quaternionf$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float, polygonOffset: boolean, renderTarget: $RenderTarget$Type): void
-public "render"(camera: $Camera$Type, translation: $Vec3$Type, rotation: $Quaternionf$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float): void
-public "render"(camera: $Camera$Type, translation: $Vec3$Type, rotation: $Quaternionf$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float, polygonOffset: boolean): void
-public "chunkKeySet"(): $LongSet
-public "forEachChunk"(consumer: $PositionConsumer$Type<(($BlockState$Type)[])>): void
+public "rotate"(axis: $Direction$Axis$Type, count: integer): $ChunkedBlockRegion
 public "getBlockStateOrAir"(x: integer, y: integer, z: integer): $BlockState
 public "copyBlockData"(): $Position2ObjectMap<($BlockState)>
 public "addBlockIfNotPresent"(x: integer, y: integer, z: integer, block: $BlockState$Type): void
 public "addBlockWithoutDirty"(x: integer, y: integer, z: integer, block: $BlockState$Type): void
 public "getBlockStateOrDelegate"(blockPos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getBlockStateOrNull"(x: integer, y: integer, z: integer): $BlockState
+public "forEachChunk"(consumer: $PositionConsumer$Type<(($BlockState$Type)[])>): void
+public "chunkKeySet"(): $LongSet
+public "render"(camera: $Camera$Type, translation: $Vec3$Type, rotation: $Quaternionf$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float): void
+public "render"(camera: $Camera$Type, translation: $Vec3$Type, rotation: $Quaternionf$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float, polygonOffset: boolean): void
+public "render"(camera: $Camera$Type, translation: $Vec3$Type, rotation: $Quaternionf$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float, polygonOffset: boolean, renderTarget: $RenderTarget$Type): void
+public "render"(camera: $Camera$Type, translation: $Vec3$Type, matrix: $PoseStack$Type, projection: $Matrix4f$Type, blockOpacity: float, outlineOpacity: float): void
+public "getBrightness"(type: $LightLayer$Type, pos: $BlockPos$Type): integer
 public "isClientSide"(): boolean
-public "setBlock"(blockPos: $BlockPos$Type, blockState: $BlockState$Type, i: integer, j: integer): boolean
-public "getChunkSource"(): $ChunkSource
-public "enabledFeatures"(): $FeatureFlagSet
-public "getWorldBorder"(): $WorldBorder
-public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
-public "getLevelData"(): $LevelData
-public "getFluidTicks"(): $LevelTickAccess<($Fluid)>
-public "getEntities"(entity: $Entity$Type, aABB: $AABB$Type, predicate: $Predicate$Type<(any)>): $List<($Entity)>
-public "getRawBrightness"(pos: $BlockPos$Type, ambientDarkness: integer): integer
-public "scheduleTick"(blockPos: $BlockPos$Type, fluid: $Fluid$Type, i: integer, tickPriority: $TickPriority$Type): void
-public "scheduleTick"(blockPos: $BlockPos$Type, fluid: $Fluid$Type, i: integer): void
-public "gameEvent"(gameEvent: $GameEvent$Type, vec3: $Vec3$Type, context: $GameEvent$Context$Type): void
 public "playSound"(player: $Player$Type, blockPos: $BlockPos$Type, soundEvent: $SoundEvent$Type, soundSource: $SoundSource$Type, f: float, g: float): void
+public "setBlock"(blockPos: $BlockPos$Type, blockState: $BlockState$Type, i: integer, j: integer): boolean
+public "levelEvent"(player: $Player$Type, i: integer, blockPos: $BlockPos$Type, j: integer): void
+public "getFluidState"(pos: $BlockPos$Type): $FluidState
+public "getChunk"(i: integer, j: integer, chunkStatus: $ChunkStatus$Type, bl: boolean): $ChunkAccess
+public "removeBlock"(blockPos: $BlockPos$Type, bl: boolean): boolean
+public "getHeight"(types: $Heightmap$Types$Type, i: integer, j: integer): integer
+public "getMinBuildHeight"(): integer
+public "getSeaLevel"(): integer
+public "getLightEngine"(): $LevelLightEngine
 public "addParticle"(particleOptions: $ParticleOptions$Type, d: double, e: double, f: double, g: double, h: double, i: double): void
 public "getEntities"<T extends $Entity>(entityTypeTest: $EntityTypeTest$Type<($Entity$Type), (T)>, aABB: $AABB$Type, predicate: $Predicate$Type<(any)>): $List<(T)>
 public "canSeeSky"(pos: $BlockPos$Type): boolean
 public "getCurrentDifficultyAt"(blockPos: $BlockPos$Type): $DifficultyInstance
-public "getSkyDarken"(): integer
+public "dimensionType"(): $DimensionType
+public "getServer"(): $MinecraftServer
 public "getRandom"(): $RandomSource
 public "isStateAtPosition"(blockPos: $BlockPos$Type, predicate: $Predicate$Type<($BlockState$Type)>): boolean
 public "isFluidAtPosition"(blockPos: $BlockPos$Type, predicate: $Predicate$Type<($FluidState$Type)>): boolean
@@ -228,26 +227,27 @@ public "players"(): $List<(any)>
 public "getBlockTicks"(): $LevelTickAccess<($Block)>
 public "scheduleTick"(blockPos: $BlockPos$Type, block: $Block$Type, i: integer, tickPriority: $TickPriority$Type): void
 public "scheduleTick"(blockPos: $BlockPos$Type, block: $Block$Type, i: integer): void
-public "getServer"(): $MinecraftServer
-public "getChunk"(i: integer, j: integer, chunkStatus: $ChunkStatus$Type, bl: boolean): $ChunkAccess
-public "removeBlock"(blockPos: $BlockPos$Type, bl: boolean): boolean
-public "getHeight"(types: $Heightmap$Types$Type, i: integer, j: integer): integer
-public "getMinBuildHeight"(): integer
-public "getSeaLevel"(): integer
-public "levelEvent"(player: $Player$Type, i: integer, blockPos: $BlockPos$Type, j: integer): void
-public "getFluidState"(pos: $BlockPos$Type): $FluidState
-public "dimensionType"(): $DimensionType
+public "getFluidTicks"(): $LevelTickAccess<($Fluid)>
+public "scheduleTick"(blockPos: $BlockPos$Type, fluid: $Fluid$Type, i: integer, tickPriority: $TickPriority$Type): void
+public "scheduleTick"(blockPos: $BlockPos$Type, fluid: $Fluid$Type, i: integer): void
+public "gameEvent"(gameEvent: $GameEvent$Type, vec3: $Vec3$Type, context: $GameEvent$Context$Type): void
 public "getBlockTint"(pos: $BlockPos$Type, colorResolver: $ColorResolver$Type): integer
 public "getUncachedNoiseBiome"(i: integer, j: integer, k: integer): $Holder<($Biome)>
 public "getHeight"(): integer
-public "getBrightness"(type: $LightLayer$Type, pos: $BlockPos$Type): integer
+public "getRawBrightness"(pos: $BlockPos$Type, ambientDarkness: integer): integer
 public "getShade"(direction: $Direction$Type, shaded: boolean): float
-public "getLightEngine"(): $LevelLightEngine
+public "getLevelData"(): $LevelData
+public "getChunkSource"(): $ChunkSource
+public "enabledFeatures"(): $FeatureFlagSet
+public "getWorldBorder"(): $WorldBorder
+public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
+public "getSkyDarken"(): integer
 public "getBlockState"(pos: $BlockPos$Type): $BlockState
 public "destroyBlock"(blockPos: $BlockPos$Type, bl: boolean, entity: $Entity$Type, i: integer): boolean
+public "getEntities"(entity: $Entity$Type, aABB: $AABB$Type, predicate: $Predicate$Type<(any)>): $List<($Entity)>
 public "dirtyAll"(): void
-public "addBlock"(pos: $BlockPos$Type, block: $BlockState$Type): void
 public "addBlock"(x: integer, y: integer, z: integer, block: $BlockState$Type): void
+public "addBlock"(pos: $BlockPos$Type, block: $BlockState$Type): void
 public "getChunk"(cx: integer, cy: integer, cz: integer): ($BlockState)[]
 public "getCenter"(): $BlockPos
 /**
@@ -258,18 +258,18 @@ public "getBlockEntityRenderAttachment"(pos: $BlockPos$Type): any
 public "getBlockEntityRenderData"(pos: $BlockPos$Type): any
 public "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
 public "hasBiomes"(): boolean
-public "playSound"(arg0: $Player$Type, arg1: $BlockPos$Type, arg2: $SoundEvent$Type, arg3: $SoundSource$Type): void
-public "gameEvent"(arg0: $Entity$Type, arg1: $GameEvent$Type, arg2: $Vec3$Type): void
 public "gameEvent"(arg0: $Entity$Type, arg1: $GameEvent$Type, arg2: $BlockPos$Type): void
-public "getDifficulty"(): $Difficulty
-public "dayTime"(): long
+public "gameEvent"(arg0: $GameEvent$Type, arg1: $BlockPos$Type, arg2: $GameEvent$Context$Type): void
 public "blockUpdated"(arg0: $BlockPos$Type, arg1: $Block$Type): void
 public "levelEvent"(arg0: integer, arg1: $BlockPos$Type, arg2: integer): void
 public "neighborShapeChanged"(arg0: $Direction$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type, arg4: integer, arg5: integer): void
 public "hasChunk"(arg0: integer, arg1: integer): boolean
-public "gameEvent"(arg0: $GameEvent$Type, arg1: $BlockPos$Type, arg2: $GameEvent$Context$Type): void
-public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
+public "getDifficulty"(): $Difficulty
+public "dayTime"(): long
+public "playSound"(arg0: $Player$Type, arg1: $BlockPos$Type, arg2: $SoundEvent$Type, arg3: $SoundSource$Type): void
+public "gameEvent"(arg0: $Entity$Type, arg1: $GameEvent$Type, arg2: $Vec3$Type): void
 public "getMaxLightLevel"(): integer
+public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
 public "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
 public "getLightEmission"(arg0: $BlockPos$Type): integer
 public "isBlockInLine"(arg0: $ClipBlockStateContext$Type): $BlockHitResult
@@ -279,12 +279,14 @@ public "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $
 public "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
 public "getBlockFloorHeight"(arg0: $BlockPos$Type): double
 public "getShade"(arg0: float, arg1: float, arg2: float, arg3: boolean): float
-public "isUnobstructed"(arg0: $Entity$Type, arg1: $VoxelShape$Type): boolean
 public "getHeightmapPos"(arg0: $Heightmap$Types$Type, arg1: $BlockPos$Type): $BlockPos
+public "isUnobstructed"(arg0: $Entity$Type, arg1: $VoxelShape$Type): boolean
 public "getEntityCollisions"(arg0: $Entity$Type, arg1: $AABB$Type): $List<($VoxelShape)>
 public "getMoonPhase"(): integer
 public "getTimeOfDay"(arg0: float): float
 public "getMoonBrightness"(): float
+public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
+public "getMaxBuildHeight"(): integer
 public "getSectionsCount"(): integer
 public "getMaxSection"(): integer
 public "getMinSection"(): integer
@@ -293,13 +295,8 @@ public "getSectionIndex"(arg0: integer): integer
 public "getSectionIndexFromSectionY"(arg0: integer): integer
 public "getSectionYFromSectionIndex"(arg0: integer): integer
 public static "create"(arg0: integer, arg1: integer): $LevelHeightAccessor
-public "getMaxBuildHeight"(): integer
-public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
-public "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
 public "getModelDataManager"(): $ModelDataManager
-public "getEntitiesOfClass"<T extends $Entity>(arg0: $Class$Type<(T)>, arg1: $AABB$Type): $List<(T)>
-public "getEntities"(arg0: $Entity$Type, arg1: $AABB$Type): $List<($Entity)>
-public "getNearestPlayer"(arg0: $Entity$Type, arg1: double): $Player
+public "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
 public "getEntitiesOfClass"<T extends $Entity>(arg0: $Class$Type<(T)>, arg1: $AABB$Type, arg2: $Predicate$Type<(any)>): $List<(T)>
 public "getNearestPlayer"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: $Predicate$Type<($Entity$Type)>): $Player
 public "getNearestPlayer"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: boolean): $Player
@@ -312,9 +309,25 @@ public "getNearestEntity"<T extends $LivingEntity>(arg0: $Class$Type<(any)>, arg
 public "getNearbyPlayers"(arg0: $TargetingConditions$Type, arg1: $LivingEntity$Type, arg2: $AABB$Type): $List<($Player)>
 public "getNearbyEntities"<T extends $LivingEntity>(arg0: $Class$Type<(T)>, arg1: $TargetingConditions$Type, arg2: $LivingEntity$Type, arg3: $AABB$Type): $List<(T)>
 public "getPlayerByUUID"(arg0: $UUID$Type): $Player
+public "getNearestPlayer"(arg0: $Entity$Type, arg1: double): $Player
+public "getEntitiesOfClass"<T extends $Entity>(arg0: $Class$Type<(T)>, arg1: $AABB$Type): $List<(T)>
+public "getEntities"(arg0: $Entity$Type, arg1: $AABB$Type): $List<($Entity)>
 public "isAreaLoaded"(arg0: $BlockPos$Type, arg1: integer): boolean
-public "getBiome"(arg0: $BlockPos$Type): $Holder<($Biome)>
-public "isEmptyBlock"(arg0: $BlockPos$Type): boolean
+public "getChunk"(arg0: integer, arg1: integer): $ChunkAccess
+public "getChunk"(arg0: integer, arg1: integer, arg2: $ChunkStatus$Type): $ChunkAccess
+public "getChunkForCollisions"(arg0: integer, arg1: integer): $BlockGetter
+/**
+ * 
+ * @deprecated
+ */
+public "hasChunkAt"(arg0: $BlockPos$Type): boolean
+public "getBlockStatesIfLoaded"(arg0: $AABB$Type): $Stream<($BlockState)>
+/**
+ * 
+ * @deprecated
+ */
+public "hasChunksAt"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): boolean
+public "getNoiseBiome"(arg0: integer, arg1: integer, arg2: integer): $Holder<($Biome)>
 public "canSeeSkyFromBelowWater"(arg0: $BlockPos$Type): boolean
 public "getPathfindingCostFromLightLevels"(arg0: $BlockPos$Type): float
 /**
@@ -343,21 +356,8 @@ public "hasChunksAt"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): boolean
  */
 public "hasChunksAt"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): boolean
 public "holderLookup"<T>(arg0: $ResourceKey$Type<(any)>): $HolderLookup<(T)>
-public "getChunkForCollisions"(arg0: integer, arg1: integer): $BlockGetter
-/**
- * 
- * @deprecated
- */
-public "hasChunkAt"(arg0: $BlockPos$Type): boolean
-public "getChunk"(arg0: integer, arg1: integer): $ChunkAccess
-public "getChunk"(arg0: integer, arg1: integer, arg2: $ChunkStatus$Type): $ChunkAccess
-public "getBlockStatesIfLoaded"(arg0: $AABB$Type): $Stream<($BlockState)>
-/**
- * 
- * @deprecated
- */
-public "hasChunksAt"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): boolean
-public "getNoiseBiome"(arg0: integer, arg1: integer, arg2: integer): $Holder<($Biome)>
+public "getBiome"(arg0: $BlockPos$Type): $Holder<($Biome)>
+public "isEmptyBlock"(arg0: $BlockPos$Type): boolean
 public "isUnobstructed"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $CollisionContext$Type): boolean
 public "isUnobstructed"(arg0: $Entity$Type): boolean
 public "noCollision"(arg0: $AABB$Type): boolean
@@ -381,28 +381,28 @@ public "setBlock"(arg0: $BlockPos$Type, arg1: $BlockState$Type, arg2: integer): 
 public "addFreshEntity"(arg0: $Entity$Type): boolean
 get "empty"(): boolean
 get "clientSide"(): boolean
-get "chunkSource"(): $ChunkSource
-get "worldBorder"(): $WorldBorder
-get "levelData"(): $LevelData
-get "fluidTicks"(): $LevelTickAccess<($Fluid)>
-get "skyDarken"(): integer
+get "minBuildHeight"(): integer
+get "seaLevel"(): integer
+get "lightEngine"(): $LevelLightEngine
+get "server"(): $MinecraftServer
 get "random"(): $RandomSource
 get "biomeManager"(): $BiomeManager
 get "blockTicks"(): $LevelTickAccess<($Block)>
-get "server"(): $MinecraftServer
-get "minBuildHeight"(): integer
-get "seaLevel"(): integer
+get "fluidTicks"(): $LevelTickAccess<($Fluid)>
 get "height"(): integer
-get "lightEngine"(): $LevelLightEngine
+get "levelData"(): $LevelData
+get "chunkSource"(): $ChunkSource
+get "worldBorder"(): $WorldBorder
+get "skyDarken"(): integer
 get "center"(): $BlockPos
 get "difficulty"(): $Difficulty
 get "maxLightLevel"(): integer
 get "moonPhase"(): integer
 get "moonBrightness"(): float
+get "maxBuildHeight"(): integer
 get "sectionsCount"(): integer
 get "maxSection"(): integer
 get "minSection"(): integer
-get "maxBuildHeight"(): integer
 get "modelDataManager"(): $ModelDataManager
 }
 /**
@@ -468,8 +468,8 @@ declare module "packages/com/moulberry/axiom/hooks/$WindowExt" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $WindowExt {
 
- "axiom$refreshFramebufferSize"(): void
  "axiom$resize"(arg0: long, arg1: integer, arg2: integer): void
+ "axiom$refreshFramebufferSize"(): void
 }
 
 export namespace $WindowExt {
@@ -496,23 +496,23 @@ export class $Position2ObjectMap<T> {
 
 constructor(defaultChunkSupplier: $LongFunction$Type<((T)[])>)
 
-public "getOrCreate"(x: integer, y: integer, z: integer): T
 public "get"(x: integer, y: integer, z: integer): T
 public "put"(x: integer, y: integer, z: integer, v: T): void
 public "clear"(): void
 public "copy"(): $Position2ObjectMap<(T)>
 public "forEachEntry"(consumer: $PositionConsumer$Type<(T)>): void
-public "getOrCreateChunk"(pos: long): (T)[]
-public "getOrCreateChunk"(xC: integer, yC: integer, zC: integer): (T)[]
-public "calculateChunksChanged"(other: $Position2ObjectMap$Type<(T)>): $LongSet
-public "chunkKeySet"(): $LongSet
+public "getOrCreate"(x: integer, y: integer, z: integer): T
+public "mergeAllFrom"(other: $Position2ObjectMap$Type<(T)>, keys: $LongSet$Type): void
 public "forEachChunk"(consumer: $PositionConsumer$Type<((T)[])>): void
 public "removeChunk"(xC: integer, yC: integer, zC: integer): (T)[]
 public "removeChunk"(pos: long): (T)[]
-public "mergeAllFrom"(other: $Position2ObjectMap$Type<(T)>, keys: $LongSet$Type): void
+public "getOrCreateChunk"(xC: integer, yC: integer, zC: integer): (T)[]
+public "getOrCreateChunk"(pos: long): (T)[]
+public "calculateChunksChanged"(other: $Position2ObjectMap$Type<(T)>): $LongSet
+public "chunkKeySet"(): $LongSet
 public "getAndPut"(x: integer, y: integer, z: integer, v: T): T
-public "putChunk"(xC: integer, yC: integer, zC: integer, array: (T)[]): void
 public "putChunk"(pos: long, array: (T)[]): void
+public "putChunk"(xC: integer, yC: integer, zC: integer, array: (T)[]): void
 public "getChunk"(pos: long): (T)[]
 public "getChunk"(xC: integer, yC: integer, zC: integer): (T)[]
 }
@@ -567,8 +567,8 @@ static "EMPTY": $WorldPropertyDataType<($Unit)>
 
 constructor()
 
-public "serialize"(arg0: T): (byte)[]
 public "deserialize"(arg0: (byte)[]): T
+public "serialize"(arg0: T): (byte)[]
 public "getTypeId"(): integer
 get "typeId"(): integer
 }
@@ -594,15 +594,15 @@ export class $CompressedBlockEntity extends $Record {
 
 constructor(originalSize: integer, compressionDict: byte, compressed: (byte)[])
 
-public "originalSize"(): integer
-public "compressed"(): (byte)[]
-public "decompress"(): $CompoundTag
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "compress"(tag: $CompoundTag$Type, baos: $ByteArrayOutputStream$Type): $CompressedBlockEntity
 public "write"(friendlyByteBuf: $FriendlyByteBuf$Type): void
 public static "read"(friendlyByteBuf: $FriendlyByteBuf$Type): $CompressedBlockEntity
+public "compressed"(): (byte)[]
+public "decompress"(): $CompoundTag
+public "originalSize"(): integer
 public "compressionDict"(): byte
 }
 /**
@@ -650,10 +650,10 @@ export interface $CustomBlockState extends $CustomBlockStateOrTombstone {
 
  "getProperty"<T extends $Comparable<(T)>>(arg0: $Property$Type<(T)>): T
  "getProperties"(): $Collection<($Property<(any)>)>
- "getCustomBlock"(): $CustomBlock
  "axiomHasProperty"<T extends $Comparable<(T)>>(arg0: $Property$Type<(T)>): boolean
  "setPropertyUnsafe"<T extends $Comparable<(T)>>(arg0: $Property$Type<(T)>, arg1: $Comparable$Type<(any)>): $CustomBlockState
  "getVanillaState"(): $BlockState
+ "getCustomBlock"(): $CustomBlock
 }
 
 export namespace $CustomBlockState {
@@ -722,9 +722,9 @@ export type $NativeImageExt_ = $NativeImageExt$Type;
 declare module "packages/com/moulberry/axiomclientapi/regions/$BlockRegion" {
 import {$PoseStack, $PoseStack$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack"
 import {$Camera, $Camera$Type} from "packages/net/minecraft/client/$Camera"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Matrix4f, $Matrix4f$Type} from "packages/org/joml/$Matrix4f"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $BlockRegion {
@@ -734,8 +734,8 @@ export interface $BlockRegion {
  "clear"(): void
  "isEmpty"(): boolean
  "count"(): integer
- "render"(arg0: $Camera$Type, arg1: $Vec3$Type, arg2: $PoseStack$Type, arg3: $Matrix4f$Type, arg4: float, arg5: float): void
  "addBlockIfNotPresent"(arg0: integer, arg1: integer, arg2: integer, arg3: $BlockState$Type): void
+ "render"(arg0: $Camera$Type, arg1: $Vec3$Type, arg2: $PoseStack$Type, arg3: $Matrix4f$Type, arg4: float, arg5: float): void
  "addBlock"(arg0: integer, arg1: integer, arg2: integer, arg3: $BlockState$Type): void
 }
 
@@ -759,11 +759,11 @@ import {$ServerWorldPropertiesRegistry, $ServerWorldPropertiesRegistry$Type} fro
 
 export interface $ServerLevelExt {
 
- "axiom$relightChunkStarlight"(arg0: integer, arg1: integer): void
- "axiom$getPendingLightUpdates"(arg0: integer, arg1: integer, arg2: integer): (short)[]
- "axiom$processTasks"(): void
  "axiom$getWorldProperties"(): $ServerWorldPropertiesRegistry
  "axiom$markChunkDirty"(arg0: integer, arg1: integer): void
+ "axiom$processTasks"(): void
+ "axiom$getPendingLightUpdates"(arg0: integer, arg1: integer, arg2: integer): (short)[]
+ "axiom$relightChunkStarlight"(arg0: integer, arg1: integer): void
 }
 
 export namespace $ServerLevelExt {
@@ -792,10 +792,10 @@ export interface $ClipboardObject {
 
  "entities"(): $List<($CompoundTag)>
  "name"(): string
+ "blockRegion"(): $ChunkedBlockRegion
  "thumbnailTextureId"(): integer
  "containsAir"(): boolean
  "placementDescription"(): string
- "blockRegion"(): $ChunkedBlockRegion
  "blockEntities"(): $Long2ObjectMap<($CompressedBlockEntity)>
 }
 
@@ -903,9 +903,9 @@ readonly "propertyMap": $Map<($ResourceLocation), ($ServerWorldProperty<(any)>)>
 constructor(serverLevel: $ServerLevel$Type)
 
 public "clear"(): void
-public "registerDefault"(serverLevel: $ServerLevel$Type): void
-public "registerFor"(serverPlayer: $ServerPlayer$Type): void
 public "addCategory"(category: $WorldPropertyCategory$Type, properties: $List$Type<($ServerWorldProperty$Type<(any)>)>): void
+public "registerFor"(serverPlayer: $ServerPlayer$Type): void
+public "registerDefault"(serverLevel: $ServerLevel$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -927,13 +927,13 @@ export class $WorldPropertyCategory extends $Record {
 
 constructor(name: string, localizeName: boolean)
 
-public "getLocalizedName"(): string
 public "name"(): string
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "write"(friendlyByteBuf: $FriendlyByteBuf$Type): void
 public static "read"(friendlyByteBuf: $FriendlyByteBuf$Type): $WorldPropertyCategory
+public "getLocalizedName"(): string
 public "localizeName"(): boolean
 get "localizedName"(): string
 }
@@ -956,22 +956,22 @@ import {$List, $List$Type} from "packages/java/util/$List"
 import {$CustomBlockState, $CustomBlockState$Type} from "packages/com/moulberry/axiom/custom_blocks/$CustomBlockState"
 import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
 
 export interface $CustomBlock {
 
- "axiom$getPossibleCustomStates"(): $List<($CustomBlockState)>
- "axiom$customPickBlockStack"(): $ItemStack
- "doNormalInteractions"(): boolean
- "customShapeUpdate"(blockState: $CustomBlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): $CustomBlockState
- "getCustomStateForPlacement"(blockPlaceContext: $BlockPlaceContext$Type): $CustomBlockState
  "axiom$getResourceLocation"(): $ResourceLocation
  "axiom$translationKey"(): string
  "axiom$defaultCustomState"(): $CustomBlockState
  "axiom$getProperties"(): $Collection<($Property<(any)>)>
  "axiom$asItemStack"(): $ItemStack
+ "doNormalInteractions"(): boolean
+ "customShapeUpdate"(blockState: $CustomBlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): $CustomBlockState
+ "getCustomStateForPlacement"(blockPlaceContext: $BlockPlaceContext$Type): $CustomBlockState
+ "axiom$customPickBlockStack"(): $ItemStack
+ "axiom$getPossibleCustomStates"(): $List<($CustomBlockState)>
 }
 
 export namespace $CustomBlock {
@@ -1051,8 +1051,8 @@ declare module "packages/com/moulberry/axiom/hooks/$ClientLevelExt" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ClientLevelExt {
 
- "axiom$setTimeFrozen"(arg0: boolean): void
  "axiom$isTimeFrozen"(): boolean
+ "axiom$setTimeFrozen"(arg0: boolean): void
 }
 
 export namespace $ClientLevelExt {
@@ -1078,10 +1078,10 @@ import {$RenderTarget, $RenderTarget$Type} from "packages/com/mojang/blaze3d/pip
 
 export interface $MinecraftExt {
 
- "axiom$getRightClickDelay"(): integer
  "axiom$pushMainRenderTarget"(arg0: $RenderTarget$Type): void
- "axiom$setRightClickDelay"(arg0: integer): void
  "axiom$popMainRenderTarget"(): void
+ "axiom$setRightClickDelay"(arg0: integer): void
+ "axiom$getRightClickDelay"(): integer
  "axiom$addCustomNbtData"(arg0: $ItemStack$Type, arg1: $BlockEntity$Type, arg2: $RegistryAccess$Type): void
 }
 

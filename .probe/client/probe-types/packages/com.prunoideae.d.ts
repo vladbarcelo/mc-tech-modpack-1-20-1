@@ -13,9 +13,9 @@ export class $CapabilityFluid$CustomTankBuilderItemStack extends $CapabilityBuil
 constructor()
 
 public "getCapacity"(getCapacity: $ToIntFunction$Type<($ItemStack$Type)>): $CapabilityFluid$CustomTankBuilderItemStack
+public "acceptFluid"(fluid: $Fluid$Type): $CapabilityFluid$CustomTankBuilderItemStack
 public "isFluidGood"(isFluidGood: $BiPredicate$Type<($ItemStack$Type), ($FluidStackJS$Type)>): $CapabilityFluid$CustomTankBuilderItemStack
 public "withCapacity"(capacity: integer): $CapabilityFluid$CustomTankBuilderItemStack
-public "acceptFluid"(fluid: $Fluid$Type): $CapabilityFluid$CustomTankBuilderItemStack
 public "onFill"(onFill: $CapabilityFluid$FluidIOItemStack$Type): $CapabilityFluid$CustomTankBuilderItemStack
 public "onDrain"(onDrain: $CapabilityFluid$FluidIOItemStack$Type): $CapabilityFluid$CustomTankBuilderItemStack
 }
@@ -41,8 +41,8 @@ export class $CapabilityForgeEnergy$ItemStorageBuilder extends $CapabilityBuilde
 constructor(capacity: integer, canExtract: boolean, canReceive: boolean)
 
 public "getCapability"(instance: $ItemStack$Type): $IEnergyStorage
-public "extractRate"(extractRate: integer): $CapabilityForgeEnergy$ItemStorageBuilder
 public "receiveRate"(receiveRate: integer): $CapabilityForgeEnergy$ItemStorageBuilder
+public "extractRate"(extractRate: integer): $CapabilityForgeEnergy$ItemStorageBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -202,8 +202,8 @@ export class $CapabilityFluid {
 
 constructor()
 
-public "customItemStack"(): $CapabilityFluid$CustomTankBuilderItemStack
 public "customBlockEntity"(): $CapabilityFluid$CustomTankBuilderBlockEntity
+public "customItemStack"(): $CapabilityFluid$CustomTankBuilderItemStack
 public "itemStack"(capacity: integer): $CapabilityFluid$NormalTankBuilderItemStack
 }
 /**
@@ -236,9 +236,9 @@ export class $CapabilityCurios$ItemStackBuilder extends $CapabilityBuilderForge<
 
 constructor()
 
-public "getCapability"(instance: $ItemStack$Type): $ICurio
 public "modifyAttribute"(attribute: $ResourceLocation$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): $CapabilityCurios$ItemStackBuilder
 public "getDropRule"(getDropRule: $CapabilityCurios$ShouldDrop$Type): $CapabilityCurios$ItemStackBuilder
+public "getCapability"(instance: $ItemStack$Type): $ICurio
 public "dynamicAttribute"(context: $Consumer$Type<($CapabilityCurios$AttributeModificationContext$Type)>): $CapabilityCurios$ItemStackBuilder
 public "canEquip"(canEquip: $BiPredicate$Type<($ItemStack$Type), ($SlotContext$Type)>): $CapabilityCurios$ItemStackBuilder
 public "onEquip"(onEquip: $CapabilityCurios$EquipCallback$Type): $CapabilityCurios$ItemStackBuilder
@@ -292,9 +292,9 @@ export class $CapabilityForgeEnergy$BlockEntityBuilder extends $CapabilityBuilde
 constructor()
 
 public "receiveEnergy"(receiveEnergy: $CapabilityForgeEnergy$EnergyIOBlockEntity$Type): $CapabilityForgeEnergy$BlockEntityBuilder
+public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOBlockEntity$Type): $CapabilityForgeEnergy$BlockEntityBuilder
 public "getMaxEnergyStored"(getMaxEnergyStored: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
 public "getEnergyStored"(getEnergyStored: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
-public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOBlockEntity$Type): $CapabilityForgeEnergy$BlockEntityBuilder
 public "withCapacity"(capacity: integer): $CapabilityForgeEnergy$BlockEntityBuilder
 public "canExtract"(canExtract: $Predicate$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
 public "canReceive"(canReceive: $Predicate$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
@@ -389,8 +389,8 @@ export type $CapabilitiesIE_ = $CapabilitiesIE$Type;
 declare module "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityFluid$CustomTankBuilderBlockEntity" {
 import {$IFluidHandler, $IFluidHandler$Type} from "packages/net/minecraftforge/fluids/capability/$IFluidHandler"
 import {$CapabilityFluid$FluidIOBlockEntity, $CapabilityFluid$FluidIOBlockEntity$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityFluid$FluidIOBlockEntity"
-import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$BiPredicate, $BiPredicate$Type} from "packages/java/util/function/$BiPredicate"
+import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$CapabilityBuilderForge, $CapabilityBuilderForge$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityBuilderForge"
@@ -402,8 +402,8 @@ constructor()
 
 public "getCapacity"(getCapacity: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityFluid$CustomTankBuilderBlockEntity
 public "getCapability"(instance: $BlockEntity$Type): $IFluidHandler
-public "getFluid"(getFluid: $Function$Type<($BlockEntity$Type), ($FluidStackJS$Type)>): $CapabilityFluid$CustomTankBuilderBlockEntity
 public "isFluidGood"(isFluidGood: $BiPredicate$Type<($BlockEntity$Type), ($FluidStackJS$Type)>): $CapabilityFluid$CustomTankBuilderBlockEntity
+public "getFluid"(getFluid: $Function$Type<($BlockEntity$Type), ($FluidStackJS$Type)>): $CapabilityFluid$CustomTankBuilderBlockEntity
 public "onFill"(onFill: $CapabilityFluid$FluidIOBlockEntity$Type): $CapabilityFluid$CustomTankBuilderBlockEntity
 public "onDrain"(onDrain: $CapabilityFluid$FluidIOBlockEntity$Type): $CapabilityFluid$CustomTankBuilderBlockEntity
 }
@@ -428,9 +428,9 @@ export class $CapabilityForgeEnergy {
 
 constructor()
 
-public "normalItemStack"(capacity: integer, canExtract: boolean, canReceive: boolean): $CapabilityForgeEnergy$ItemStorageBuilder
-public "customItemStack"(): $CapabilityForgeEnergy$ItemStackBuilder
 public "customBlockEntity"(): $CapabilityForgeEnergy$BlockEntityBuilder
+public "customItemStack"(): $CapabilityForgeEnergy$ItemStackBuilder
+public "normalItemStack"(capacity: integer, canExtract: boolean, canReceive: boolean): $CapabilityForgeEnergy$ItemStorageBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -699,8 +699,8 @@ export class $CapabilityBuilder<I, T, K> {
 
 constructor()
 
-public "side"(direction: $Direction$Type): $CapabilityBuilder<(I), (T), (K)>
 public "availableOn"(isAvailable: $BiPredicate$Type<(I), ($Direction$Type)>): $CapabilityBuilder<(I), (T), (K)>
+public "side"(direction: $Direction$Type): $CapabilityBuilder<(I), (T), (K)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -810,8 +810,8 @@ export type $DynamicEntityEventJS_ = $DynamicEntityEventJS$Type;
 declare module "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityItem$BlockEntityBuilder" {
 import {$CapabilityItem$IsItemValid, $CapabilityItem$IsItemValid$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityItem$IsItemValid"
 import {$CapabilityItem$InsertItem, $CapabilityItem$InsertItem$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityItem$InsertItem"
-import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
 import {$CapabilityBuilderForge, $CapabilityBuilderForge$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityBuilderForge"
 import {$CapabilityItem$ExtractItem, $CapabilityItem$ExtractItem$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/$CapabilityItem$ExtractItem"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
@@ -823,12 +823,12 @@ export class $CapabilityItem$BlockEntityBuilder extends $CapabilityBuilderForge<
 
 constructor()
 
-public "getSlots"(getSlots: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityItem$BlockEntityBuilder
 public "getStackInSlot"(getStackInSlot: $BiFunction$Type<($BlockEntity$Type), (integer), ($ItemStack$Type)>): $CapabilityItem$BlockEntityBuilder
 public "extractItem"(extractItem: $CapabilityItem$ExtractItem$Type): $CapabilityItem$BlockEntityBuilder
 public "getSlotLimit"(getSlotLimit: $ToIntBiFunction$Type<($BlockEntity$Type), (integer)>): $CapabilityItem$BlockEntityBuilder
 public "isItemValid"(isItemValid: $CapabilityItem$IsItemValid$Type): $CapabilityItem$BlockEntityBuilder
 public "getCapability"(instance: $BlockEntity$Type): $IItemHandler
+public "getSlots"(getSlots: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityItem$BlockEntityBuilder
 public "insertItem"(insertItem: $CapabilityItem$InsertItem$Type): $CapabilityItem$BlockEntityBuilder
 }
 /**
@@ -937,9 +937,9 @@ export class $CapabilityForgeEnergy$ItemStackBuilder extends $CapabilityBuilderF
 constructor()
 
 public "receiveEnergy"(receiveEnergy: $CapabilityForgeEnergy$EnergyIOItemStack$Type): $CapabilityForgeEnergy$ItemStackBuilder
+public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOItemStack$Type): $CapabilityForgeEnergy$ItemStackBuilder
 public "getMaxEnergyStored"(getMaxEnergyStored: $ToIntFunction$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
 public "getEnergyStored"(getEnergyStored: $ToIntFunction$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
-public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOItemStack$Type): $CapabilityForgeEnergy$ItemStackBuilder
 public "withCapacity"(capacity: integer): $CapabilityForgeEnergy$ItemStackBuilder
 public "canExtract"(canExtract: $Predicate$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
 public "canReceive"(canReceive: $Predicate$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
@@ -1015,8 +1015,8 @@ export class $CapabilityRotationAcceptor$BlockEntityBuilder extends $CapabilityB
 
 constructor()
 
-public "inputRotation"(inputRotation: $BiConsumer$Type<($BlockEntity$Type), (double)>): $CapabilityRotationAcceptor$BlockEntityBuilder
 public "getCapability"(instance: $BlockEntity$Type): $IRotationAcceptor
+public "inputRotation"(inputRotation: $BiConsumer$Type<($BlockEntity$Type), (double)>): $CapabilityRotationAcceptor$BlockEntityBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

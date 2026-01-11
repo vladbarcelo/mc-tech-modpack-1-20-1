@@ -30,8 +30,6 @@ import {$Runnable, $Runnable$Type} from "packages/java/lang/$Runnable"
 
 export interface $GuiExtensions {
 
- "connector_beforeDebugEnabled"(arg0: $GuiGraphics$Type, arg1: float): void
- "connector_wrapCancellableCall"(arg0: string, arg1: $Runnable$Type): boolean
  "connector_getRenderState"(arg0: string): boolean
  "connector_setRenderState"(arg0: string, arg1: boolean): void
  "connector_preRender"(arg0: $GuiGraphics$Type, arg1: float): void
@@ -40,6 +38,8 @@ export interface $GuiExtensions {
  "connector_renderArmor"(arg0: $GuiGraphics$Type): void
  "connector_renderHotbar"(arg0: $GuiGraphics$Type, arg1: float): void
  "connector_renderEffects"(arg0: $GuiGraphics$Type, arg1: float): void
+ "connector_beforeDebugEnabled"(arg0: $GuiGraphics$Type, arg1: float): void
+ "connector_wrapCancellableCall"(arg0: string, arg1: $Runnable$Type): boolean
 }
 
 export namespace $GuiExtensions {

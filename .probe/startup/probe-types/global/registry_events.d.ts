@@ -281,9 +281,9 @@ function registry(extra: "petrolpark:shop_offer_generator", handler: (event: Sho
 function registry(extra: "petrolpark:team_data_type", handler: (event: TeamDataType) => void): void
 function registry(extra: "petrolpark:team_type", handler: (event: TeamType) => void): void
 function registry(extra: "moonlight:soft_fluids", handler: (event: SoftFluids) => void): void
-function registry(extra: "forge:structure_modifier", handler: (event: StructureModifier) => void): void
 function registry(extra: "moonlight:map_markers", handler: (event: MapMarkers) => void): void
-function registry(extra: "forge:biome_modifier", handler: (event: BiomeModifier) => void): void
 function registry(extra: "lithostitched:worldgen_modifier", handler: (event: WorldgenModifier) => void): void
+function registry(extra: "forge:biome_modifier", handler: (event: BiomeModifier) => void): void
+function registry(extra: "forge:structure_modifier", handler: (event: StructureModifier) => void): void
 }
 }

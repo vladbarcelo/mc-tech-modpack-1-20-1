@@ -31,31 +31,31 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
 public "getState"(arg0: $ItemStack$Type): $CompassState
 public "fail"(arg0: $ItemStack$Type, arg1: integer, arg2: integer): void
 public "isActive"(arg0: $ItemStack$Type): boolean
+public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
+public "setSearching"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
+public "setDisplayCoordinates"(arg0: $ItemStack$Type, arg1: boolean): void
+public "setNotFound"(arg0: $ItemStack$Type, arg1: integer, arg2: integer): void
+public "setInactive"(arg0: $ItemStack$Type, arg1: $Player$Type): void
+public "setSearchRadius"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
+public "getSearchRadius"(arg0: $ItemStack$Type): integer
+public "getDistanceToBiome"(arg0: $Player$Type, arg1: $ItemStack$Type): integer
+public "shouldDisplayCoordinates"(arg0: $ItemStack$Type): boolean
+public "getStructureKey"(arg0: $ItemStack$Type): $ResourceLocation
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "searchForStructure"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ResourceLocation$Type, arg3: $List$Type<($ResourceLocation$Type)>, arg4: $BlockPos$Type, arg5: $ItemStack$Type): void
 public "setFoundStructureX"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
 public "setFoundStructureZ"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
 public "setStructureKey"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
 public "getFoundStructureX"(arg0: $ItemStack$Type): integer
 public "getFoundStructureZ"(arg0: $ItemStack$Type): integer
-public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getStructureKey"(arg0: $ItemStack$Type): $ResourceLocation
-public "setNotFound"(arg0: $ItemStack$Type, arg1: integer, arg2: integer): void
-public "setInactive"(arg0: $ItemStack$Type, arg1: $Player$Type): void
-public "getDistanceToBiome"(arg0: $Player$Type, arg1: $ItemStack$Type): integer
-public "setSearchRadius"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
-public "getSearchRadius"(arg0: $ItemStack$Type): integer
-public "shouldDisplayCoordinates"(arg0: $ItemStack$Type): boolean
-public "setSearching"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
-public "setDisplayCoordinates"(arg0: $ItemStack$Type, arg1: boolean): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "setSamples"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
-public "getSamples"(arg0: $ItemStack$Type): integer
 public "succeed"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: integer, arg3: integer, arg4: integer, arg5: boolean): void
 public "setFound"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: integer, arg3: integer, arg4: integer): void
+public "setSamples"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
+public "getSamples"(arg0: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -102,31 +102,31 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
 public "getState"(arg0: $ItemStack$Type): $CompassState
 public "fail"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: integer, arg3: integer): void
 public "isActive"(arg0: $ItemStack$Type): boolean
-public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getBiomeKey"(arg0: $ItemStack$Type): $ResourceLocation
+public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
+public "searchForBiome"(arg0: $ServerLevel$Type, arg1: $Player$Type, arg2: $ResourceLocation$Type, arg3: $BlockPos$Type, arg4: $ItemStack$Type): void
+public "setSearching"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
+public "setDisplayCoordinates"(arg0: $ItemStack$Type, arg1: boolean): void
 public "setNotFound"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: integer, arg3: integer): void
 public "setInactive"(arg0: $ItemStack$Type, arg1: $Player$Type): void
 public "setFoundBiomeX"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
 public "setFoundBiomeZ"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
-public "getDistanceToBiome"(arg0: $Player$Type, arg1: $ItemStack$Type): integer
-public "getFoundBiomeX"(arg0: $ItemStack$Type): integer
 public "setBiomeKey"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
 public "setSearchRadius"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
+public "getFoundBiomeX"(arg0: $ItemStack$Type): integer
 public "getFoundBiomeZ"(arg0: $ItemStack$Type): integer
 public "getSearchRadius"(arg0: $ItemStack$Type): integer
+public "getDistanceToBiome"(arg0: $Player$Type, arg1: $ItemStack$Type): integer
 public "shouldDisplayCoordinates"(arg0: $ItemStack$Type): boolean
-public "setSearching"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
-public "setDisplayCoordinates"(arg0: $ItemStack$Type, arg1: boolean): void
-public "searchForBiome"(arg0: $ServerLevel$Type, arg1: $Player$Type, arg2: $ResourceLocation$Type, arg3: $BlockPos$Type, arg4: $ItemStack$Type): void
+public "getBiomeKey"(arg0: $ItemStack$Type): $ResourceLocation
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "setSamples"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
-public "getSamples"(arg0: $ItemStack$Type): integer
 public "succeed"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: integer, arg3: integer, arg4: integer, arg5: boolean): void
 public "setFound"(arg0: $ItemStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: $Player$Type): void
+public "setSamples"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
+public "getSamples"(arg0: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

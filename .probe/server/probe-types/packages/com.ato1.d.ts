@@ -77,24 +77,24 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getProcType"(): $IntegerProperty
-public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "getBlockEntityClass"(): $Class<($SplitterVentBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
+public "getProcType"(): $IntegerProperty
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SplitterVentBlockEntity
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($SplitterVentBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($SplitterVentBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($SplitterVentBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SplitterVentBlockEntity
 public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "procType"(): $IntegerProperty
 get "blockEntityClass"(): $Class<($SplitterVentBlockEntity)>
 get "blockEntityType"(): $BlockEntityType<(any)>
+get "procType"(): $IntegerProperty
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -187,24 +187,24 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getProcType"(): $IntegerProperty
-public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "getBlockEntityClass"(): $Class<($SideSplitVentBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
+public "getProcType"(): $IntegerProperty
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SideSplitVentBlockEntity
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($SideSplitVentBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($SideSplitVentBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($SideSplitVentBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SideSplitVentBlockEntity
 public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "procType"(): $IntegerProperty
 get "blockEntityClass"(): $Class<($SideSplitVentBlockEntity)>
 get "blockEntityType"(): $BlockEntityType<(any)>
+get "procType"(): $IntegerProperty
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -248,9 +248,11 @@ export class $InfuserVentBlockEntity extends $KineticBlockEntity implements $Ven
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "tick"(): void
 public "remove"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "tick"(): void
+public "onSpeedChanged"(arg0: float): void
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
 public "getAirCurrent"(): $VentAirCurrent
 public "getAirCurrentWorld"(): $Level
 public "getAirCurrentPos"(): $BlockPos
@@ -261,8 +263,6 @@ public "getAirFlowDirection"(): $Direction
 public "isSourceRemoved"(): boolean
 public "updateChute"(): void
 public "blockInFrontChanged"(): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "onSpeedChanged"(arg0: float): void
 public "getSpeed"(): float
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "airCurrent"(): $VentAirCurrent
@@ -318,9 +318,11 @@ export class $StraightVentBlockEntity extends $KineticBlockEntity implements $Ve
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "tick"(): void
 public "remove"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "tick"(): void
+public "onSpeedChanged"(arg0: float): void
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
 public "getAirCurrent"(): $VentAirCurrent
 public "getAirCurrentWorld"(): $Level
 public "getAirCurrentPos"(): $BlockPos
@@ -332,8 +334,6 @@ public "getAirFlowDirection"(): $Direction
 public "isSourceRemoved"(): boolean
 public "updateChute"(): void
 public "blockInFrontChanged"(): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "onSpeedChanged"(arg0: float): void
 public "getSpeed"(): float
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "airCurrent"(): $VentAirCurrent
@@ -433,23 +433,23 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getProcType"(): $IntegerProperty
-public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getBlockEntityClass"(): $Class<($StraightVentBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
+public "getProcType"(): $IntegerProperty
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $StraightVentBlockEntity
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($StraightVentBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($StraightVentBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($StraightVentBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $StraightVentBlockEntity
 public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "procType"(): $IntegerProperty
 get "blockEntityClass"(): $Class<($StraightVentBlockEntity)>
 get "blockEntityType"(): $BlockEntityType<(any)>
+get "procType"(): $IntegerProperty
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -542,24 +542,24 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getProcType"(): $IntegerProperty
-public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getBlockEntityClass"(): $Class<($InfuserVentBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
-public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
+public "getProcType"(): $IntegerProperty
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $InfuserVentBlockEntity
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($InfuserVentBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($InfuserVentBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($InfuserVentBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $InfuserVentBlockEntity
 public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "procType"(): $IntegerProperty
 get "blockEntityClass"(): $Class<($InfuserVentBlockEntity)>
 get "blockEntityType"(): $BlockEntityType<(any)>
+get "procType"(): $IntegerProperty
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -605,10 +605,11 @@ export class $SplitterVentBlockEntity extends $KineticBlockEntity implements $Ve
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "tick"(): void
 public "remove"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getAirCurrents"(): $List<($VentAirCurrent)>
+public "tick"(): void
+public "onSpeedChanged"(arg0: float): void
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
 public "getAirCurrent"(): $VentAirCurrent
 public "getAirCurrentWorld"(): $Level
 public "getAirCurrentPos"(): $BlockPos
@@ -619,11 +620,9 @@ public "getMaxDistance"(): float
 public "getAirFlowDirection"(): $Direction
 public "isSourceRemoved"(): boolean
 public "blockInFrontChanged"(): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "onSpeedChanged"(arg0: float): void
+public "getAirCurrents"(): $List<($VentAirCurrent)>
 public "getSpeed"(): float
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "airCurrents"(): $List<($VentAirCurrent)>
 get "airCurrent"(): $VentAirCurrent
 get "airCurrentWorld"(): $Level
 get "airCurrentPos"(): $BlockPos
@@ -631,6 +630,7 @@ get "airflowOriginSide"(): $Direction
 get "maxDistance"(): float
 get "airFlowDirection"(): $Direction
 get "sourceRemoved"(): boolean
+get "airCurrents"(): $List<($VentAirCurrent)>
 get "speed"(): float
 }
 /**
@@ -677,9 +677,11 @@ export class $KneeVentBlockEntity extends $KineticBlockEntity implements $VentCu
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "tick"(): void
 public "remove"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "tick"(): void
+public "onSpeedChanged"(arg0: float): void
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
 public "getAirCurrent"(): $VentAirCurrent
 public "getAirCurrentWorld"(): $Level
 public "getAirCurrentPos"(): $BlockPos
@@ -691,8 +693,6 @@ public "getAirFlowDirection"(): $Direction
 public "isSourceRemoved"(): boolean
 public "updateChute"(): void
 public "blockInFrontChanged"(): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "onSpeedChanged"(arg0: float): void
 public "getSpeed"(): float
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "airCurrent"(): $VentAirCurrent
@@ -795,24 +795,24 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getProcType"(): $IntegerProperty
-public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "getBlockEntityClass"(): $Class<($KneeVentBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
+public "getProcType"(): $IntegerProperty
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $KneeVentBlockEntity
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($KneeVentBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($KneeVentBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($KneeVentBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $KneeVentBlockEntity
 public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "procType"(): $IntegerProperty
 get "blockEntityClass"(): $Class<($KneeVentBlockEntity)>
 get "blockEntityType"(): $BlockEntityType<(any)>
+get "procType"(): $IntegerProperty
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -858,10 +858,11 @@ export class $SideSplitVentBlockEntity extends $KineticBlockEntity implements $V
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "tick"(): void
 public "remove"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getAirCurrents"(): $List<($VentAirCurrent)>
+public "tick"(): void
+public "onSpeedChanged"(arg0: float): void
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
 public "getAirCurrent"(): $VentAirCurrent
 public "getAirCurrentWorld"(): $Level
 public "getAirCurrentPos"(): $BlockPos
@@ -872,11 +873,9 @@ public "getMaxDistance"(): float
 public "getAirFlowDirection"(): $Direction
 public "isSourceRemoved"(): boolean
 public "blockInFrontChanged"(): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "onSpeedChanged"(arg0: float): void
+public "getAirCurrents"(): $List<($VentAirCurrent)>
 public "getSpeed"(): float
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "airCurrents"(): $List<($VentAirCurrent)>
 get "airCurrent"(): $VentAirCurrent
 get "airCurrentWorld"(): $Level
 get "airCurrentPos"(): $BlockPos
@@ -884,6 +883,7 @@ get "airflowOriginSide"(): $Direction
 get "maxDistance"(): float
 get "airFlowDirection"(): $Direction
 get "sourceRemoved"(): boolean
+get "airCurrents"(): $List<($VentAirCurrent)>
 get "speed"(): float
 }
 /**

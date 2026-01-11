@@ -7,19 +7,19 @@ import {$AlgorithmParameterSpec, $AlgorithmParameterSpec$Type} from "packages/ja
 export class $ExemptionMechanism {
 
 
+public "getProvider"(): $Provider
+public "genExemptionBlob"(arg0: (byte)[], arg1: integer): integer
+public "genExemptionBlob"(): (byte)[]
+public "genExemptionBlob"(arg0: (byte)[]): integer
 public "isCryptoAllowed"(arg0: $Key$Type): boolean
 public "getOutputSize"(arg0: integer): integer
-public "getProvider"(): $Provider
 public "getName"(): string
+public static "getInstance"(arg0: string, arg1: $Provider$Type): $ExemptionMechanism
 public static "getInstance"(arg0: string): $ExemptionMechanism
 public static "getInstance"(arg0: string, arg1: string): $ExemptionMechanism
-public static "getInstance"(arg0: string, arg1: $Provider$Type): $ExemptionMechanism
 public "init"(arg0: $Key$Type, arg1: $AlgorithmParameters$Type): void
 public "init"(arg0: $Key$Type, arg1: $AlgorithmParameterSpec$Type): void
 public "init"(arg0: $Key$Type): void
-public "genExemptionBlob"(arg0: (byte)[], arg1: integer): integer
-public "genExemptionBlob"(arg0: (byte)[]): integer
-public "genExemptionBlob"(): (byte)[]
 get "provider"(): $Provider
 get "name"(): string
 }
@@ -55,7 +55,8 @@ static readonly "PRIVATE_KEY": integer
 static readonly "SECRET_KEY": integer
 
 
-public "getBlockSize"(): integer
+public "getProvider"(): $Provider
+public "getAlgorithm"(): string
 public static "getMaxAllowedKeyLength"(arg0: string): integer
 public "getExemptionMechanism"(): $ExemptionMechanism
 public "updateAAD"(arg0: (byte)[], arg1: integer, arg2: integer): void
@@ -63,22 +64,20 @@ public "updateAAD"(arg0: $ByteBuffer$Type): void
 public "updateAAD"(arg0: (byte)[]): void
 public "getOutputSize"(arg0: integer): integer
 public "getIV"(): (byte)[]
-public "doFinal"(arg0: $ByteBuffer$Type, arg1: $ByteBuffer$Type): integer
-public "doFinal"(arg0: (byte)[], arg1: integer): integer
-public "doFinal"(arg0: (byte)[]): (byte)[]
-public "doFinal"(arg0: (byte)[], arg1: integer, arg2: integer): (byte)[]
-public "doFinal"(arg0: (byte)[], arg1: integer, arg2: integer, arg3: (byte)[]): integer
 public "doFinal"(arg0: (byte)[], arg1: integer, arg2: integer, arg3: (byte)[], arg4: integer): integer
+public "doFinal"(arg0: (byte)[], arg1: integer, arg2: integer, arg3: (byte)[]): integer
+public "doFinal"(arg0: (byte)[], arg1: integer, arg2: integer): (byte)[]
+public "doFinal"(arg0: (byte)[]): (byte)[]
 public "doFinal"(): (byte)[]
+public "doFinal"(arg0: (byte)[], arg1: integer): integer
+public "doFinal"(arg0: $ByteBuffer$Type, arg1: $ByteBuffer$Type): integer
 public static "getMaxAllowedParameterSpec"(arg0: string): $AlgorithmParameterSpec
-public "getProvider"(): $Provider
-public "getAlgorithm"(): string
 public "toString"(): string
-public "update"(arg0: (byte)[], arg1: integer, arg2: integer, arg3: (byte)[]): integer
-public "update"(arg0: (byte)[]): (byte)[]
 public "update"(arg0: (byte)[], arg1: integer, arg2: integer, arg3: (byte)[], arg4: integer): integer
+public "update"(arg0: (byte)[], arg1: integer, arg2: integer, arg3: (byte)[]): integer
 public "update"(arg0: $ByteBuffer$Type, arg1: $ByteBuffer$Type): integer
 public "update"(arg0: (byte)[], arg1: integer, arg2: integer): (byte)[]
+public "update"(arg0: (byte)[]): (byte)[]
 public "wrap"(arg0: $Key$Type): (byte)[]
 public static "getInstance"(arg0: string, arg1: $Provider$Type): $Cipher
 public static "getInstance"(arg0: string): $Cipher
@@ -86,19 +85,20 @@ public static "getInstance"(arg0: string, arg1: string): $Cipher
 public "init"(arg0: integer, arg1: $Key$Type): void
 public "init"(arg0: integer, arg1: $Key$Type, arg2: $AlgorithmParameterSpec$Type, arg3: $SecureRandom$Type): void
 public "init"(arg0: integer, arg1: $Certificate$Type, arg2: $SecureRandom$Type): void
+public "init"(arg0: integer, arg1: $Key$Type, arg2: $AlgorithmParameters$Type): void
 public "init"(arg0: integer, arg1: $Key$Type, arg2: $AlgorithmParameters$Type, arg3: $SecureRandom$Type): void
 public "init"(arg0: integer, arg1: $Certificate$Type): void
-public "init"(arg0: integer, arg1: $Key$Type, arg2: $AlgorithmParameters$Type): void
 public "init"(arg0: integer, arg1: $Key$Type, arg2: $SecureRandom$Type): void
 public "init"(arg0: integer, arg1: $Key$Type, arg2: $AlgorithmParameterSpec$Type): void
 public "getParameters"(): $AlgorithmParameters
 public "unwrap"(arg0: (byte)[], arg1: string, arg2: integer): $Key
-get "blockSize"(): integer
-get "exemptionMechanism"(): $ExemptionMechanism
-get "iV"(): (byte)[]
+public "getBlockSize"(): integer
 get "provider"(): $Provider
 get "algorithm"(): string
+get "exemptionMechanism"(): $ExemptionMechanism
+get "iV"(): (byte)[]
 get "parameters"(): $AlgorithmParameters
+get "blockSize"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

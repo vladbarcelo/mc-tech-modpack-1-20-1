@@ -9,11 +9,11 @@ export class $Padding {
 constructor(top: integer, left: integer, bottom: integer, right: integer)
 
 public "setAll"(padding: integer): void
-public "setHorizontal"(padding: integer): void
 public "setVertical"(padding: integer): void
+public "setHorizontal"(padding: integer): void
 set "all"(value: integer)
-set "horizontal"(value: integer)
 set "vertical"(value: integer)
+set "horizontal"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -53,8 +53,8 @@ declare global {
 export type $MixinPlayerSkinProvider_ = $MixinPlayerSkinProvider$Type;
 }}
 declare module "packages/com/minelittlepony/common/client/gui/$IViewRoot" {
-import {$GuiEventListener, $GuiEventListener$Type} from "packages/net/minecraft/client/gui/components/events/$GuiEventListener"
 import {$Padding, $Padding$Type} from "packages/com/minelittlepony/common/client/gui/dimension/$Padding"
+import {$GuiEventListener, $GuiEventListener$Type} from "packages/net/minecraft/client/gui/components/events/$GuiEventListener"
 import {$IBounded, $IBounded$Type} from "packages/com/minelittlepony/common/client/gui/dimension/$IBounded"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$Renderable, $Renderable$Type} from "packages/net/minecraft/client/gui/components/$Renderable"
@@ -65,13 +65,13 @@ import {$ScreenInitCallback$ButtonList, $ScreenInitCallback$ButtonList$Type} fro
 
 export interface $IViewRoot extends $IBounded, $ScreenInitCallback$ButtonList {
 
- "getChildElements"(): $List<($GuiEventListener)>
- "getContentPadding"(): $Padding
- "getContentBounds"(): $Bounds
  "getAllBounds"(): $Set<($Bounds)>
+ "getContentBounds"(): $Bounds
+ "getContentPadding"(): $Padding
+ "getChildElements"(): $List<($GuiEventListener)>
+ "buttons"<T extends ($GuiEventListener) & ($Renderable) & ($NarratableEntry)>(): $List<($NarratableEntry)>
  "getScrollY"(): integer
  "getScrollX"(): integer
- "buttons"<T extends ($GuiEventListener) & ($Renderable) & ($NarratableEntry)>(): $List<($NarratableEntry)>
  "getBounds"(): $Bounds
  "setBounds"(arg0: $Bounds$Type): void
  "addButton"<T extends ($GuiEventListener) & ($Renderable) & ($NarratableEntry)>(arg0: T): T
@@ -262,7 +262,6 @@ export class $Bounds {
 constructor(top: integer, left: integer, width: integer, height: integer)
 
 public "bottom"(): integer
-public "right"(): integer
 public "add"(other: $Padding$Type): $Bounds
 public "add"(other: $Bounds$Type): $Bounds
 public "equals"(o: any): boolean
@@ -272,11 +271,12 @@ public "offset"(other: $Padding$Type): $Bounds
 public "contains"(x: double, y: double): boolean
 public static "empty"(): $Bounds
 public "copy"(other: $Bounds$Type): void
-public "translate"(matrices: $PoseStack$Type): void
-public "draw"(context: $GuiGraphics$Type, tint: integer): void
+public "right"(): integer
 public "debugMeasure"(context: $GuiGraphics$Type): void
-public "containsX"(x: double): boolean
+public "draw"(context: $GuiGraphics$Type, tint: integer): void
+public "translate"(matrices: $PoseStack$Type): void
 public "containsY"(y: double): boolean
+public "containsX"(x: double): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

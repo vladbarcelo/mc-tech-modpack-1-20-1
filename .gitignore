@@ -9,5 +9,6 @@
 !kubejs/startup_scripts/
 !.probe/
 !.vscode/
+!modlist.json
 
 .DS_Store

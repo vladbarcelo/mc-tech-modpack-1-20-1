@@ -3,6 +3,10 @@ import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 
 export interface $IPlayerLanternDataAccessor {
 
+ "immersiveLanterns$getXVel"(): float
+ "immersiveLanterns$setXVel"(arg0: float): void
+ "immersiveLanterns$getZVel"(): float
+ "immersiveLanterns$setZVel"(arg0: float): void
  "immersiveLanterns$setLastHipPosition"(arg0: $Vec3$Type): void
  "immersiveLanterns$getLastHipPosition"(): $Vec3
  "immersiveLanterns$setWasCrouching"(arg0: boolean): void
@@ -11,10 +15,6 @@ export interface $IPlayerLanternDataAccessor {
  "immersiveLanterns$getZAngle"(): float
  "immersiveLanterns$setXAngle"(arg0: float): void
  "immersiveLanterns$getXAngle"(): float
- "immersiveLanterns$setZVel"(arg0: float): void
- "immersiveLanterns$getZVel"(): float
- "immersiveLanterns$setXVel"(arg0: float): void
- "immersiveLanterns$getXVel"(): float
 }
 
 export namespace $IPlayerLanternDataAccessor {

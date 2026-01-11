@@ -2,8 +2,8 @@ declare module "packages/corgitaco/blockswap/util/$TickHelper" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $TickHelper {
 
- "markTickDirty"(): boolean
  "setTickDirty"(): void
+ "markTickDirty"(): boolean
 }
 
 export namespace $TickHelper {
@@ -26,8 +26,8 @@ import {$MapCodec, $MapCodec$Type} from "packages/com/mojang/serialization/$MapC
 
 export interface $StateHolderAccess<O, S> {
 
- "blockSwap_getPropertiesCodec"(): $MapCodec<(S)>
  "blockSwap_GetOwner"(): O
+ "blockSwap_getPropertiesCodec"(): $MapCodec<(S)>
 }
 
 export namespace $StateHolderAccess {

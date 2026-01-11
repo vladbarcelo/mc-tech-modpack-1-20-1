@@ -34,6 +34,12 @@ ServerEvents.recipes((event) => {
   )
 
   // stone recipes
+  event.shapeless(
+    Item.of('hot_iron:rock'),
+    [
+      '#notreepunching:loose_rocks'
+    ]
+  )
   event.shaped(
     Item.of('minecraft:stone_axe', 1),
     [

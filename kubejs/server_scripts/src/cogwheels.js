@@ -16,7 +16,7 @@ let maxStressPerCogWheel = {
 }
 
 BlockEntityEvents.tick((event) => {
-  if (event.level.levelData.getGameTime() % 20 !== 0) return
+  if (event.level.levelData.getGameTime() % 60 !== 0) return
 
   let level = event.getLevel();
   let blockPosition = event.getPos()

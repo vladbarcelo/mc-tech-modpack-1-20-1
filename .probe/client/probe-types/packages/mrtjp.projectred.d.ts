@@ -3,15 +3,15 @@ import {$Transformation, $Transformation$Type} from "packages/codechicken/lib/ve
 
 export interface $IOrientableFacePart {
 
- "absoluteDir"(arg0: integer): integer
- "absoluteRot"(arg0: integer): integer
- "getSide"(): integer
- "setSide"(arg0: integer): void
  "setRotation"(arg0: integer): void
  "getRotation"(): integer
+ "getSide"(): integer
+ "setSide"(arg0: integer): void
  "onOrientationChange"(): void
  "toInternalMask"(arg0: integer): integer
  "toAbsoluteMask"(arg0: integer): integer
+ "absoluteDir"(arg0: integer): integer
+ "absoluteRot"(arg0: integer): integer
  "toInternal"(arg0: integer): integer
  "rotationT"(): $Transformation
  "toAbsolute"(arg0: integer): integer
@@ -84,19 +84,19 @@ static readonly "FABRICATED_GATE": $GateType
 public "getItem"(): $Item
 public static "values"(): ($GateType)[]
 public static "valueOf"(arg0: string): $GateType
+public "getUnlocalizedName"(): string
 public "inject"(arg0: string, arg1: $Function$Type<($GateType$Type), ($GatePart$Type)>, arg2: $RegistryObject$Type<(any)>, arg3: $RegistryObject$Type<($MultipartType$Type<($GatePart$Type)>)>): void
 public "isExternalGate"(): boolean
 public "registerParts"(arg0: $DeferredRegister$Type<($MultipartType$Type<(any)>)>, arg1: $DeferredRegister$Type<($Item$Type)>): void
 public "getItemRegistryObject"(): $RegistryObject<(any)>
 public "getPartType"(): $MultipartType<($GatePart)>
-public "getUnlocalizedName"(): string
-public "makeStack"(): $ItemStack
 public "newPart"(): $GatePart
+public "makeStack"(): $ItemStack
 get "item"(): $Item
+get "unlocalizedName"(): string
 get "externalGate"(): boolean
 get "itemRegistryObject"(): $RegistryObject<(any)>
 get "partType"(): $MultipartType<($GatePart)>
-get "unlocalizedName"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -132,27 +132,27 @@ constructor(arg0: $WireType$Type)
 
 public "getBounds"(): $Cuboid6
 public "getType"(): $MultipartType<(any)>
-public "getRenderHue"(): integer
-public "useStaticRenderer"(): boolean
+public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
+public "getWireType"(): $WireType
 public "getIcon"(): $TextureAtlasSprite
 public "preparePlacement"(arg0: $Direction$Type): void
 public "getBreakingIcon"(arg0: $PartRayTraceResult$Type): $TextureAtlasSprite
 public "getBrokenIcon"(arg0: integer): $TextureAtlasSprite
-public "getWireType"(): $WireType
-public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
+public "getRenderHue"(): integer
+public "useStaticRenderer"(): boolean
 public "getDrops"(): $Iterable<($ItemStack)>
 public "readUpdate"(arg0: $MCDataInput$Type): void
 public "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
-public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
-public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type): void
-public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type, arg2: boolean): void
 public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public static "addHitEffects"(arg0: $IconHitEffectsPart$Type, arg1: $PartRayTraceResult$Type, arg2: $ParticleEngine$Type): void
+public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type, arg2: boolean): void
+public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type): void
+public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 get "bounds"(): $Cuboid6
 get "type"(): $MultipartType<(any)>
-get "renderHue"(): integer
-get "icon"(): $TextureAtlasSprite
 get "wireType"(): $WireType
+get "icon"(): $TextureAtlasSprite
+get "renderHue"(): integer
 get "drops"(): $Iterable<($ItemStack)>
 }
 /**
@@ -411,11 +411,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -590,8 +590,8 @@ import {$IOrientableFacePart, $IOrientableFacePart$Type} from "packages/mrtjp/pr
 import {$IConnectable, $IConnectable$Type} from "packages/mrtjp/projectred/api/$IConnectable"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -604,27 +604,34 @@ export class $GatePart extends $BaseMultipart implements $IConnectableFacePart, 
 
 constructor(arg0: $GateType$Type)
 
-public "readDesc"(arg0: $MCDataInput$Type): void
-public "tick"(): void
-public "getShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "shape"(): integer
 public "load"(arg0: $CompoundTag$Type): void
 public "getBounds"(): $Cuboid6
 public "save"(arg0: $CompoundTag$Type): void
 public "getType"(): $MultipartType<(any)>
-public "canConnectPart"(arg0: $IConnectable$Type, arg1: integer): boolean
-public "canConnectCorner"(arg0: integer): boolean
+public "shape"(): integer
+public "tick"(): void
+public "getShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "readDesc"(arg0: $MCDataInput$Type): void
+public "getBlockSupportShape"(): $VoxelShape
+public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
+public "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
+public "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
+public "onPartChanged"(arg0: $MultiPart$Type): void
+public "getSlotMask"(): integer
+public "getOcclusionShape"(): $VoxelShape
+public "onChunkLoad"(arg0: $LevelChunk$Type): void
+public "scheduleTick"(arg0: integer): void
+public "scheduledTick"(): void
+public "setRotation"(arg0: integer): void
+public "getOrientation"(): integer
+public "getRotation"(): integer
+public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+public "getLightEmission"(): integer
 public "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
 public "getSide"(): integer
 public "setSide"(arg0: integer): void
-public "setRotation"(arg0: integer): void
-public "scheduleTick"(arg0: integer): void
-public "scheduledTick"(): void
-public "onChunkLoad"(arg0: $LevelChunk$Type): void
-public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
-public "getOrientation"(): integer
-public "getLightEmission"(): integer
-public "getRotation"(): integer
+public "canConnectPart"(arg0: $IConnectable$Type, arg1: integer): boolean
+public "canConnectCorner"(arg0: integer): boolean
 public "preparePlacement"(arg0: $MultipartPlaceContext$Type): boolean
 public "getGateType"(): $GateType
 public "getRenderIndex"(): integer
@@ -634,16 +641,9 @@ public "setRenderFlag"(arg0: $IConnectable$Type): boolean
 public "discoverOpen"(arg0: integer): boolean
 public "getBreakingIcon"(arg0: $PartRayTraceResult$Type): $TextureAtlasSprite
 public "getBrokenIcon"(arg0: integer): $TextureAtlasSprite
-public "getOcclusionShape"(): $VoxelShape
-public "getBlockSupportShape"(): $VoxelShape
-public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
-public "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
-public "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
-public "onPartChanged"(arg0: $MultiPart$Type): void
-public "getSlotMask"(): integer
 public "getDrops"(): $Iterable<($ItemStack)>
-public "setShape"(arg0: integer): void
 public "onAdded"(): void
+public "setShape"(arg0: integer): void
 public "writeDesc"(arg0: $MCDataOutput$Type): void
 public "readUpdate"(arg0: $MCDataInput$Type): void
 public "onRemoved"(): void
@@ -651,21 +651,6 @@ public "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
 public "getConnMap"(): integer
 public "setConnMap"(arg0: integer): void
 public "getInternal"(arg0: integer): $IConnectable
-public static "absoluteDir"(arg0: $IConnectableFacePart$Type, arg1: integer): integer
-public static "absoluteRot"(arg0: $IConnectableFacePart$Type, arg1: integer): integer
-public "rotFromInternal"(arg0: integer): integer
-public "maskConnectsInside"(arg0: integer): boolean
-public "maskConnectsCenter"(): boolean
-public "insideCornerEdgeOpen"(arg0: integer): boolean
-public "discoverCornerOverride"(arg0: integer): boolean
-public "discoverStraightOverride"(arg0: integer): boolean
-public "discoverInternal"(arg0: integer): boolean
-public "discoverInternalOverride"(arg0: integer): boolean
-public "discoverCenter"(): boolean
-public "shouldDiscoverCenter"(): boolean
-public "updateOpenConns"(): boolean
-public "updateExternalConns"(): boolean
-public "updateInternalConns"(): boolean
 public "posOfStraight"(arg0: integer): $BlockPos
 public "posOfCorner"(arg0: integer): $BlockPos
 public "rotFromStraight"(arg0: integer): integer
@@ -684,14 +669,29 @@ public "discoverCorner"(arg0: integer): integer
 public "connectCorner"(arg0: $IConnectable$Type, arg1: integer, arg2: integer): boolean
 public "connectInternal"(arg0: $IConnectable$Type, arg1: integer): boolean
 public "notifyAllExternals"(): void
+public static "absoluteDir"(arg0: $IConnectableFacePart$Type, arg1: integer): integer
+public static "absoluteRot"(arg0: $IConnectableFacePart$Type, arg1: integer): integer
+public "rotFromInternal"(arg0: integer): integer
+public "maskConnectsInside"(arg0: integer): boolean
+public "maskConnectsCenter"(): boolean
+public "insideCornerEdgeOpen"(arg0: integer): boolean
+public "discoverCornerOverride"(arg0: integer): boolean
+public "discoverStraightOverride"(arg0: integer): boolean
+public "discoverInternal"(arg0: integer): boolean
+public "discoverInternalOverride"(arg0: integer): boolean
+public "discoverCenter"(): boolean
+public "shouldDiscoverCenter"(): boolean
+public "updateOpenConns"(): boolean
+public "updateExternalConns"(): boolean
+public "updateInternalConns"(): boolean
 public "getCenter"(): $IConnectable
-public "maskOpen"(arg0: integer): boolean
 public "getCorner"(arg0: integer): $IConnectable
-public "absoluteDir"(arg0: integer): integer
-public "absoluteRot"(arg0: integer): integer
+public "maskOpen"(arg0: integer): boolean
 public "onOrientationChange"(): void
 public "toInternalMask"(arg0: integer): integer
 public "toAbsoluteMask"(arg0: integer): integer
+public "absoluteDir"(arg0: integer): integer
+public "absoluteRot"(arg0: integer): integer
 public "toInternal"(arg0: integer): integer
 public "rotationT"(): $Transformation
 public "toAbsolute"(arg0: integer): integer
@@ -699,11 +699,11 @@ public static "shiftMask"(arg0: integer, arg1: integer): integer
 public static "flipMaskZ"(arg0: integer): integer
 public "redstoneConductionMap"(): integer
 public "occlusionTest"(arg0: $MultiPart$Type): boolean
-public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
-public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type): void
-public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type, arg2: boolean): void
 public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public static "addHitEffects"(arg0: $IconHitEffectsPart$Type, arg1: $PartRayTraceResult$Type, arg2: $ParticleEngine$Type): void
+public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type, arg2: boolean): void
+public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type): void
+public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public "state"(): integer
 public "isPointerStarted"(): boolean
 public "pointerValue"(): integer
@@ -712,8 +712,8 @@ public "bottomSignal"(): byte
 public "topSignalConnMask"(): integer
 public "getGateName"(): string
 public "hasRuntimeError"(): boolean
-public "state2"(): integer
 public "worldPos"(): $BlockPos
+public "state2"(): integer
 public "pointerMax"(): integer
 public "bOutput0"(): short
 public "bOutput1"(): short
@@ -731,19 +731,19 @@ public "updateOutside"(): void
 public "updateInsideAndOutside"(): void
 get "bounds"(): $Cuboid6
 get "type"(): $MultipartType<(any)>
-get "side"(): integer
-set "side"(value: integer)
+get "blockSupportShape"(): $VoxelShape
+get "slotMask"(): integer
+get "occlusionShape"(): $VoxelShape
 set "rotation"(value: integer)
 get "orientation"(): integer
-get "lightEmission"(): integer
 get "rotation"(): integer
+get "lightEmission"(): integer
+get "side"(): integer
+set "side"(value: integer)
 get "gateType"(): $GateType
 get "renderIndex"(): integer
 get "tickScheduled"(): boolean
 set "renderFlag"(value: $IConnectable$Type)
-get "occlusionShape"(): $VoxelShape
-get "blockSupportShape"(): $VoxelShape
-get "slotMask"(): integer
 get "drops"(): $Iterable<($ItemStack)>
 get "connMap"(): integer
 set "connMap"(value: integer)
@@ -808,10 +808,9 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IGateRenderData {
 
- "shape"(): integer
  "state"(): integer
+ "shape"(): integer
  "getOrientation"(): integer
- "getRenderIndex"(): integer
  "isPointerStarted"(): boolean
  "pointerValue"(): integer
  "segmentColour"(): byte
@@ -819,8 +818,9 @@ export interface $IGateRenderData {
  "topSignalConnMask"(): integer
  "getGateName"(): string
  "hasRuntimeError"(): boolean
- "state2"(): integer
+ "getRenderIndex"(): integer
  "worldPos"(): $BlockPos
+ "state2"(): integer
  "pointerMax"(): integer
  "bOutput0"(): short
  "bOutput1"(): short
@@ -908,8 +908,8 @@ import {$IConnectable, $IConnectable$Type} from "packages/mrtjp/projectred/api/$
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$IConnectablePart, $IConnectablePart$Type} from "packages/mrtjp/projectred/core/part/$IConnectablePart"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
@@ -924,6 +924,28 @@ import {$MCDataOutput, $MCDataOutput$Type} from "packages/codechicken/lib/data/$
 export interface $IConnectableFacePart extends $MultiPart, $IConnectablePart {
 
  "getInternal"(arg0: integer): $IConnectable
+ "posOfStraight"(arg0: integer): $BlockPos
+ "posOfCorner"(arg0: integer): $BlockPos
+ "rotFromStraight"(arg0: integer): integer
+ "rotFromCorner"(arg0: integer): integer
+ "notifyStraight"(arg0: integer): void
+ "notifyCorner"(arg0: integer): void
+ "maskConnects"(arg0: integer): boolean
+ "notifyExternals"(arg0: integer): void
+ "getStraight"(arg0: integer): $IConnectable
+ "getSide"(): integer
+ "maskConnectsStraight"(arg0: integer): boolean
+ "maskConnectsCorner"(arg0: integer): boolean
+ "outsideCornerEdgeOpen"(arg0: integer): boolean
+ "canConnectPart"(arg0: $IConnectable$Type, arg1: integer): boolean
+ "connectStraight"(arg0: $IConnectable$Type, arg1: integer, arg2: integer): boolean
+ "discoverStraight"(arg0: integer): boolean
+ "discoverCorner"(arg0: integer): integer
+ "connectCorner"(arg0: $IConnectable$Type, arg1: integer, arg2: integer): boolean
+ "connectInternal"(arg0: $IConnectable$Type, arg1: integer): boolean
+ "notifyAllExternals"(): void
+ "setRenderFlag"(arg0: $IConnectable$Type): boolean
+ "discoverOpen"(arg0: integer): boolean
  "rotFromInternal"(arg0: integer): integer
  "maskConnectsInside"(arg0: integer): boolean
  "maskConnectsCenter"(): boolean
@@ -937,57 +959,21 @@ export interface $IConnectableFacePart extends $MultiPart, $IConnectablePart {
  "updateOpenConns"(): boolean
  "updateExternalConns"(): boolean
  "updateInternalConns"(): boolean
- "posOfStraight"(arg0: integer): $BlockPos
- "posOfCorner"(arg0: integer): $BlockPos
- "rotFromStraight"(arg0: integer): integer
- "rotFromCorner"(arg0: integer): integer
- "notifyStraight"(arg0: integer): void
- "notifyCorner"(arg0: integer): void
- "maskConnects"(arg0: integer): boolean
- "notifyExternals"(arg0: integer): void
- "getStraight"(arg0: integer): $IConnectable
- "maskConnectsStraight"(arg0: integer): boolean
- "maskConnectsCorner"(arg0: integer): boolean
- "outsideCornerEdgeOpen"(arg0: integer): boolean
- "canConnectPart"(arg0: $IConnectable$Type, arg1: integer): boolean
- "connectStraight"(arg0: $IConnectable$Type, arg1: integer, arg2: integer): boolean
- "discoverStraight"(arg0: integer): boolean
- "discoverCorner"(arg0: integer): integer
- "connectCorner"(arg0: $IConnectable$Type, arg1: integer, arg2: integer): boolean
- "connectInternal"(arg0: $IConnectable$Type, arg1: integer): boolean
- "getSide"(): integer
- "notifyAllExternals"(): void
- "setRenderFlag"(arg0: $IConnectable$Type): boolean
- "discoverOpen"(arg0: integer): boolean
  "getCenter"(): $IConnectable
- "maskOpen"(arg0: integer): boolean
  "getCorner"(arg0: integer): $IConnectable
- "readDesc"(arg0: $MCDataInput$Type): void
- "getShape"(arg0: $CollisionContext$Type): $VoxelShape
+ "maskOpen"(arg0: integer): boolean
  "level"(): $Level
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "scheduleTick"(arg0: integer): void
- "scheduledTick"(): void
- "onChunkUnload"(): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onWorldJoin"(): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
+ "getShape"(arg0: $CollisionContext$Type): $VoxelShape
+ "readDesc"(arg0: $MCDataInput$Type): void
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
  "getBlockSupportShape"(): $VoxelShape
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
+ "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
  "occlusionTest"(arg0: $MultiPart$Type): boolean
@@ -998,9 +984,23 @@ export interface $IConnectableFacePart extends $MultiPart, $IConnectablePart {
  "onEntityStanding"(arg0: $Entity$Type): void
  "onPartChanged"(arg0: $MultiPart$Type): void
  "getRenderBounds"(): $Cuboid6
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "onChunkUnload"(): void
+ "scheduleTick"(arg0: integer): void
+ "scheduledTick"(): void
+ "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "getLightEmission"(): integer
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "onWorldJoin"(): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
  "tile"(): $TileMultipart
- "onMoved"(): void
  "getDrops"(): $Iterable<($ItemStack)>
+ "onMoved"(): void
  "onAdded"(): void
  "writeDesc"(arg0: $MCDataOutput$Type): void
  "hasTile"(): boolean
@@ -1122,14 +1122,14 @@ import {$IConnectable, $IConnectable$Type} from "packages/mrtjp/projectred/api/$
 
 export interface $IConnectablePart extends $IConnectable {
 
- "updateOpenConns"(): boolean
- "updateExternalConns"(): boolean
- "updateInternalConns"(): boolean
  "updateOutward"(): void
  "updateOutside"(): void
  "updateInsideAndOutside"(): void
  "notifyAllExternals"(): void
  "maskChangeEvent"(arg0: boolean, arg1: boolean): void
+ "updateOpenConns"(): boolean
+ "updateExternalConns"(): boolean
+ "updateInternalConns"(): boolean
  "getConnMap"(): integer
  "setConnMap"(arg0: integer): void
  "connectStraight"(arg0: $IConnectable$Type, arg1: integer, arg2: integer): boolean
@@ -1246,28 +1246,28 @@ static readonly "FRAMED_COLOURED_BUNDLED_WIRES": ($WireType)[]
 public "getItem"(): $Item
 public static "values"(): ($WireType)[]
 public static "valueOf"(arg0: string): $WireType
+public "getUnlocalizedName"(): string
+public "getTextures"(): $List<($TextureAtlasSprite)>
+public "registerParts"(arg0: $DeferredRegister$Type<($MultipartType$Type<(any)>)>, arg1: $DeferredRegister$Type<($Item$Type)>): void
+public "getItemRegistryObject"(): $RegistryObject<($Item)>
+public "getPartType"(): $MultipartType<($BaseWirePart)>
 public "isCenterPart"(): boolean
 public "getColourIdx"(): integer
 public "getThickness"(): integer
 public "getItemColour"(): integer
 public "onTextureStitchEvent"(arg0: $TextureStitchEvent$Post$Type): void
-public "getTextures"(): $List<($TextureAtlasSprite)>
-public "registerParts"(arg0: $DeferredRegister$Type<($MultipartType$Type<(any)>)>, arg1: $DeferredRegister$Type<($Item$Type)>): void
-public "getItemRegistryObject"(): $RegistryObject<($Item)>
-public "getPartType"(): $MultipartType<($BaseWirePart)>
-public "getUnlocalizedName"(): string
 public "getColour"(): $EnumColour
-public "makeStack"(): $ItemStack
 public "newPart"(): $BaseWirePart
+public "makeStack"(): $ItemStack
 get "item"(): $Item
+get "unlocalizedName"(): string
+get "textures"(): $List<($TextureAtlasSprite)>
+get "itemRegistryObject"(): $RegistryObject<($Item)>
+get "partType"(): $MultipartType<($BaseWirePart)>
 get "centerPart"(): boolean
 get "colourIdx"(): integer
 get "thickness"(): integer
 get "itemColour"(): integer
-get "textures"(): $List<($TextureAtlasSprite)>
-get "itemRegistryObject"(): $RegistryObject<($Item)>
-get "partType"(): $MultipartType<($BaseWirePart)>
-get "unlocalizedName"(): string
 get "colour"(): $EnumColour
 }
 /**

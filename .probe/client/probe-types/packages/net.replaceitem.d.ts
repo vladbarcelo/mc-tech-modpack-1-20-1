@@ -19,16 +19,16 @@ public static "values"(): ($FlatDirection)[]
 public static "valueOf"(name: string): $FlatDirection
 public "getIndex"(): integer
 public "getOffset"(): $Vec3i
-public "toVanillaDirection"(): $Direction
 public "toVanillaDirection"(facing: $Direction$Type): $Direction
+public "toVanillaDirection"(): $Direction
 public "toVanillaDirection"(circuit: $BlockState$Type): $Direction
 public static "fromVanillaDirection"(facing: $Direction$Type, direction: $Direction$Type): $FlatDirection
 public static "fromVanillaDirection"(direction: $Direction$Type): $FlatDirection
 public static "fromVanillaDirection"(circuit: $BlockState$Type, direction: $Direction$Type): $FlatDirection
 public "getOpposite"(): $FlatDirection
 public "rotatedCounterclockwise"(times: integer): $FlatDirection
-public "getAxis"(): $FlatDirection$Axis
 public "rotated"(times: integer): $FlatDirection
+public "getAxis"(): $FlatDirection$Axis
 public static "forAxis"(axis: $FlatDirection$Axis$Type): ($FlatDirection)[]
 get "index"(): integer
 get "offset"(): $Vec3i
@@ -200,6 +200,9 @@ constructor(settings: $BlockBehaviour$Properties$Type)
 public "updateTarget"(world: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
 public "getInputPower"(view: $SignalGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, dir: $FlatDirection$Type): integer
 public "getPortRenderStrength"(view: $BlockAndTintGetter$Type, pos: $BlockPos$Type, circuitDirection: $FlatDirection$Type): integer
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, itemStack: $ItemStack$Type): void
+public "playerWillDestroy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
 public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "neighborChanged"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, sourceBlock: $Block$Type, sourcePos: $BlockPos$Type, notify: boolean): void
 public "onPlace"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, notify: boolean): void
@@ -212,9 +215,6 @@ public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $Block
 public "tick"(state: $BlockState$Type, world: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getSignal"(state: $BlockState$Type, view: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
 public "getDirectSignal"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, itemStack: $ItemStack$Type): void
-public "playerWillDestroy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
 public static "fromColor"(color: $DyeColor$Type): $IntegratedCircuitBlock
 public "newBlockEntity"(pos: $BlockPos$Type, state: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
@@ -265,8 +265,8 @@ constructor(block: $IntegratedCircuitBlock$Type)
 
 public "getName"(stack: $ItemStack$Type): $Component
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**

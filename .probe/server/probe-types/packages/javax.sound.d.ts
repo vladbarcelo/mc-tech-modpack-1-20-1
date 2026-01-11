@@ -8,22 +8,22 @@ constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: 
 constructor(arg0: float, arg1: integer, arg2: integer, arg3: boolean, arg4: boolean)
 constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: integer, arg4: integer, arg5: float, arg6: boolean, arg7: $Map$Type<(string), (any)>)
 
-public "getEncoding"(): $AudioFormat$Encoding
+public "getFrameRate"(): float
 public "getProperty"(arg0: string): any
 public "toString"(): string
 public "matches"(arg0: $AudioFormat$Type): boolean
 public "properties"(): $Map<(string), (any)>
 public "isBigEndian"(): boolean
-public "getFrameRate"(): float
-public "getChannels"(): integer
+public "getEncoding"(): $AudioFormat$Encoding
 public "getFrameSize"(): integer
+public "getChannels"(): integer
 public "getSampleSizeInBits"(): integer
 public "getSampleRate"(): float
-get "encoding"(): $AudioFormat$Encoding
-get "bigEndian"(): boolean
 get "frameRate"(): float
-get "channels"(): integer
+get "bigEndian"(): boolean
+get "encoding"(): $AudioFormat$Encoding
 get "frameSize"(): integer
+get "channels"(): integer
 get "sampleSizeInBits"(): integer
 get "sampleRate"(): float
 }

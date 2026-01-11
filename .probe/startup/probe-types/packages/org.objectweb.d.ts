@@ -37,6 +37,24 @@ public static "getInternalName"(arg0: $Class$Type<(any)>): string
 public "getSort"(): integer
 public "getArgumentsAndReturnSizes"(): integer
 public static "getArgumentsAndReturnSizes"(arg0: string): integer
+public "equals"(arg0: any): boolean
+public "toString"(): string
+public "hashCode"(): integer
+public "getDescriptor"(): string
+public static "getDescriptor"(arg0: $Class$Type<(any)>): string
+public static "getReturnType"(arg0: $Method$Type): $Type
+public static "getReturnType"(arg0: string): $Type
+public "getReturnType"(): $Type
+public static "getType"(arg0: $Class$Type<(any)>): $Type
+public static "getType"(arg0: $Method$Type): $Type
+public static "getType"(arg0: $Constructor$Type<(any)>): $Type
+public static "getType"(arg0: string): $Type
+public "getSize"(): integer
+public static "getMethodType"(arg0: string): $Type
+public static "getMethodType"(arg0: $Type$Type, ...arg1: ($Type$Type)[]): $Type
+public static "getMethodDescriptor"(arg0: $Method$Type): string
+public static "getMethodDescriptor"(arg0: $Type$Type, ...arg1: ($Type$Type)[]): string
+public "getClassName"(): string
 public "getArgumentTypes"(): ($Type)[]
 public static "getArgumentTypes"(arg0: $Method$Type): ($Type)[]
 public static "getArgumentTypes"(arg0: string): ($Type)[]
@@ -45,36 +63,18 @@ public "getDimensions"(): integer
 public "getElementType"(): $Type
 public static "getObjectType"(arg0: string): $Type
 public "getOpcode"(arg0: integer): integer
-public "equals"(arg0: any): boolean
-public "toString"(): string
-public "hashCode"(): integer
-public "getDescriptor"(): string
-public static "getDescriptor"(arg0: $Class$Type<(any)>): string
-public "getReturnType"(): $Type
-public static "getReturnType"(arg0: $Method$Type): $Type
-public static "getReturnType"(arg0: string): $Type
-public static "getType"(arg0: $Method$Type): $Type
-public static "getType"(arg0: $Constructor$Type<(any)>): $Type
-public static "getType"(arg0: $Class$Type<(any)>): $Type
-public static "getType"(arg0: string): $Type
-public "getSize"(): integer
-public static "getMethodType"(arg0: string): $Type
-public static "getMethodType"(arg0: $Type$Type, ...arg1: ($Type$Type)[]): $Type
-public static "getMethodDescriptor"(arg0: $Method$Type): string
-public static "getMethodDescriptor"(arg0: $Type$Type, ...arg1: ($Type$Type)[]): string
-public "getClassName"(): string
 public "getArgumentCount"(): integer
 public static "getArgumentCount"(arg0: string): integer
 get "internalName"(): string
 get "sort"(): integer
 get "argumentsAndReturnSizes"(): integer
-get "argumentTypes"(): ($Type)[]
-get "dimensions"(): integer
-get "elementType"(): $Type
 get "descriptor"(): string
 get "returnType"(): $Type
 get "size"(): integer
 get "className"(): string
+get "argumentTypes"(): ($Type)[]
+get "dimensions"(): integer
+get "elementType"(): $Type
 get "argumentCount"(): integer
 }
 /**

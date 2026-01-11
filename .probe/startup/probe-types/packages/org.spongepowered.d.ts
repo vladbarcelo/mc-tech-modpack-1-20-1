@@ -19,26 +19,26 @@ constructor(arg0: string, arg1: boolean, arg2: byte)
 constructor(arg0: string, arg1: boolean, arg2: character)
 constructor(arg0: string, arg1: boolean, arg2: double)
 
-public "getReturnValue"(): R
-public "getReturnValueC"(): character
 public "getReturnValueB"(): byte
+public "getReturnValueC"(): character
 public "getReturnValueD"(): double
-public "getReturnValueI"(): integer
 public "getReturnValueF"(): float
-public "getReturnValueS"(): short
+public "getReturnValueI"(): integer
 public "getReturnValueJ"(): long
+public "getReturnValueS"(): short
 public "getReturnValueZ"(): boolean
 public "setReturnValue"(arg0: R): void
-get "returnValue"(): R
-get "returnValueC"(): character
+public "getReturnValue"(): R
 get "returnValueB"(): byte
+get "returnValueC"(): character
 get "returnValueD"(): double
-get "returnValueI"(): integer
 get "returnValueF"(): float
-get "returnValueS"(): short
+get "returnValueI"(): integer
 get "returnValueJ"(): long
+get "returnValueS"(): short
 get "returnValueZ"(): boolean
 set "returnValue"(value: R)
+get "returnValue"(): R
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -67,13 +67,13 @@ constructor(arg0: string, arg1: boolean)
 
 public "toString"(): string
 public "getId"(): string
-public "cancel"(): void
-public "isCancelled"(): boolean
-public "isCancellable"(): boolean
 public static "getCallInfoClassName"(arg0: $Type$Type): string
+public "isCancellable"(): boolean
+public "isCancelled"(): boolean
+public "cancel"(): void
 get "id"(): string
-get "cancelled"(): boolean
 get "cancellable"(): boolean
+get "cancelled"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -96,9 +96,9 @@ export {} // Mark the file as a module, do not remove unless there are other imp
  */
 export interface $Cancellable {
 
- "cancel"(): void
- "isCancelled"(): boolean
  "isCancellable"(): boolean
+ "isCancelled"(): boolean
+ "cancel"(): void
 }
 
 export namespace $Cancellable {

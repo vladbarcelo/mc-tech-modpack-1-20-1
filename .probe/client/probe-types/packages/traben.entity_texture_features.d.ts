@@ -49,8 +49,8 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 import {$ETFEntity, $ETFEntity$Type} from "packages/traben/entity_texture_features/utils/$ETFEntity"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Team, $Team$Type} from "packages/net/minecraft/world/scores/$Team"
-import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Pose, $Pose$Type} from "packages/net/minecraft/world/entity/$Pose"
 import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
@@ -62,12 +62,15 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $ETFPlayerEntity extends $ETFEntity {
 
- "etf$getEntity"(): $Entity
- "etf$isTeammate"(arg0: $Player$Type): boolean
- "etf$getInventory"(): $Inventory
- "etf$isPartVisible"(arg0: $PlayerModelPart$Type): boolean
- "etf$getName"(): $Component
  "etf$getUuidAsString"(): string
+ "etf$getName"(): $Component
+ "etf$isPartVisible"(arg0: $PlayerModelPart$Type): boolean
+ "etf$getInventory"(): $Inventory
+ "etf$isTeammate"(arg0: $Player$Type): boolean
+ "etf$getEntity"(): $Entity
+ "etf$getEntityKey"(): string
+ "etf$getBlockPos"(): $BlockPos
+ "etf$getWorld"(): $Level
  "etf$getType"(): $EntityType<(any)>
  "etf$getUuid"(): $UUID
  "etf$getOptifineId"(): integer
@@ -87,9 +90,6 @@ export interface $ETFPlayerEntity extends $ETFEntity {
  "etf$getPose"(): $Pose
  "etf$canBeBright"(): boolean
  "etf$isBlockEntity"(): boolean
- "etf$getEntityKey"(): string
- "etf$getWorld"(): $Level
- "etf$getBlockPos"(): $BlockPos
  "etf$getNbt"(): $CompoundTag
 }
 
@@ -124,8 +124,8 @@ export interface $ETFApi$ETFVariantSuffixProvider {
  "entityCanUpdate"(arg0: $UUID$Type): boolean
  "getAllSuffixes"(): $IntOpenHashSet
  "getSuffixForEntity"(entityToBeTested: $Entity$Type): integer
- "setRandomSupplier"(arg0: $ETFApi$ETFVariantSuffixProvider$EntityRandomSeedFunction$Type): void
  "getSuffixForBlockEntity"(entityToBeTested: $BlockEntity$Type): integer
+ "setRandomSupplier"(arg0: $ETFApi$ETFVariantSuffixProvider$EntityRandomSeedFunction$Type): void
 }
 
 export namespace $ETFApi$ETFVariantSuffixProvider {
@@ -165,8 +165,8 @@ public static "values"(): ($ETFConfigScreenSkinTool$NoseType)[]
 public static "valueOf"(name: string): $ETFConfigScreenSkinTool$NoseType
 public "next"(): $ETFConfigScreenSkinTool$NoseType
 public "getButtonText"(): $Component
-public "appliesTextureOverlay"(): boolean
 public "getNosePixelColour"(): integer
+public "appliesTextureOverlay"(): boolean
 public "getByColorId"(id: integer): $ETFConfigScreenSkinTool$NoseType
 get "buttonText"(): $Component
 get "nosePixelColour"(): integer
@@ -271,8 +271,8 @@ import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$Compo
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Team, $Team$Type} from "packages/net/minecraft/world/scores/$Team"
-import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Pose, $Pose$Type} from "packages/net/minecraft/world/entity/$Pose"
 import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
@@ -282,6 +282,9 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $ETFEntity {
 
+ "etf$getEntityKey"(): string
+ "etf$getBlockPos"(): $BlockPos
+ "etf$getWorld"(): $Level
  "etf$getType"(): $EntityType<(any)>
  "etf$getUuid"(): $UUID
  "etf$getOptifineId"(): integer
@@ -301,9 +304,6 @@ export interface $ETFEntity {
  "etf$getPose"(): $Pose
  "etf$canBeBright"(): boolean
  "etf$isBlockEntity"(): boolean
- "etf$getEntityKey"(): string
- "etf$getWorld"(): $Level
- "etf$getBlockPos"(): $BlockPos
  "etf$getNbt"(): $CompoundTag
 }
 
@@ -404,28 +404,28 @@ constructor(variantIdentifier: $ResourceLocation$Type)
 public "toString"(): string
 public "exists"(): boolean
 public static "patchTextureToRemoveZFightingWithOtherTexture"(baseImage: $NativeImage$Type, otherImage: $NativeImage$Type): void
-public static "ofUnmodifiable"(identifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type): $ETFTexture
-public "getPaintingSprite"(originalSprite: $TextureAtlasSprite$Type, originalID: $ResourceLocation$Type): $ETFSprite
+public "isEnchanted"(): boolean
+public "assertPatchedTextures"(): void
+public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type): void
+public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, modelPart: $ModelPart$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): void
+public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): void
+public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, modelPart: $ModelPart$Type): void
+public "getTextureIdentifier"(entity: $ETFEntity$Type): $ResourceLocation
+public "setGUIBlink"(): void
 public "getEmissiveIdentifierOfCurrentState"(): $ResourceLocation
 public "getEnchantIdentifierOfCurrentState"(): $ResourceLocation
-public "setGUIBlink"(): void
-public "getTextureIdentifier"(entity: $ETFEntity$Type): $ResourceLocation
-public "isEnchanted"(): boolean
-public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): void
-public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, modelPart: $ModelPart$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): void
-public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type): void
-public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, modelPart: $ModelPart$Type): void
-public "assertPatchedTextures"(): void
+public static "ofUnmodifiable"(identifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type): $ETFTexture
+public "getPaintingSprite"(originalSprite: $TextureAtlasSprite$Type, originalID: $ResourceLocation$Type): $ETFSprite
 public "getEmissiveVertexConsumer"(vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): $VertexConsumer
-public static "manual"(modifiedSkinIdentifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type, enchantIdentifier: $ResourceLocation$Type): $ETFTexture
 public static "manual"(modifiedSkinIdentifier: $ResourceLocation$Type, blinkIdentifier: $ResourceLocation$Type, blink2Identifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type, blinkEmissiveIdentifier: $ResourceLocation$Type, blink2EmissiveIdentifier: $ResourceLocation$Type, enchantIdentifier: $ResourceLocation$Type, blinkenchantIdentifier: $ResourceLocation$Type, blink2enchantIdentifier: $ResourceLocation$Type, patchIdentifier: $ResourceLocation$Type, blinkpatchIdentifier: $ResourceLocation$Type, blink2patchIdentifier: $ResourceLocation$Type): $ETFTexture
+public static "manual"(modifiedSkinIdentifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type, enchantIdentifier: $ResourceLocation$Type): $ETFTexture
 public "isEmissive"(): boolean
 public "canPatch"(): boolean
 public "doesBlink"(): boolean
 public "doesBlink2"(): boolean
+get "enchanted"(): boolean
 get "emissiveIdentifierOfCurrentState"(): $ResourceLocation
 get "enchantIdentifierOfCurrentState"(): $ResourceLocation
-get "enchanted"(): boolean
 get "emissive"(): boolean
 }
 /**
@@ -527,18 +527,18 @@ static "remappingETFSkin": boolean
 constructor()
 constructor(player: $ETFPlayerEntity$Type, rendererGivenSkin: $ResourceLocation$Type)
 
-public "getBaseTextureEmissiveIdentifierOrNullForNone"(): $ResourceLocation
-public "getBaseHeadTextureIdentifierOrNullForVanilla"(): $ResourceLocation
-public "canUseFeaturesForThisPlayer"(): boolean
-public "getBaseTextureIdentifierOrNullForVanilla"(player: $ETFPlayerEntity$Type): $ResourceLocation
-public "getBaseTextureIdentifierOrNullForVanilla"(player: $Player$Type): $ResourceLocation
 public "changeSkinToThisForTool"(image: $NativeImage$Type): void
-public "isCorrectObjectForThisSkin"(check: $ResourceLocation$Type): boolean
+public "getBaseTextureIdentifierOrNullForVanilla"(player: $Player$Type): $ResourceLocation
+public "getBaseTextureIdentifierOrNullForVanilla"(player: $ETFPlayerEntity$Type): $ResourceLocation
+public "canUseFeaturesForThisPlayer"(): boolean
+public "getBaseHeadTextureIdentifierOrNullForVanilla"(): $ResourceLocation
+public "getBaseTextureEmissiveIdentifierOrNullForNone"(): $ResourceLocation
 public "checkTexture"(skipSkinLoad: boolean): void
-public static "getSkinNumberToPixelColour"(color: integer): integer
 public static "getSkinPixelColourToNumber"(color: integer): integer
-get "baseTextureEmissiveIdentifierOrNullForNone"(): $ResourceLocation
+public static "getSkinNumberToPixelColour"(color: integer): integer
+public "isCorrectObjectForThisSkin"(check: $ResourceLocation$Type): boolean
 get "baseHeadTextureIdentifierOrNullForVanilla"(): $ResourceLocation
+get "baseTextureEmissiveIdentifierOrNullForNone"(): $ResourceLocation
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

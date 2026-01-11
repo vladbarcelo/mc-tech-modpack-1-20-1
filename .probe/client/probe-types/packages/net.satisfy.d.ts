@@ -248,29 +248,29 @@ constructor(worldIn: $Level$Type, shooter: $LivingEntity$Type)
 constructor(entityType: $EntityType$Type<(any)>, level: $Level$Type)
 
 public "setIgnoreInvulnerability"(ignoreInvulnerability: boolean): void
-public "attack"(source: $DamageSource$Type, amount: float): boolean
-public "tick"(): void
-public "shootFromRotation"(shooter: $Entity$Type, xRot: float, yRot: float, p_37255_: float, speed: float, spread: float): void
-public "setDamage"(damage: double): void
+public "getDamage"(): double
 public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
+public "attack"(source: $DamageSource$Type, amount: float): boolean
 public "isPickable"(): boolean
 public "addAdditionalSaveData"(compound: $CompoundTag$Type): void
 public "readAdditionalSaveData"(compound: $CompoundTag$Type): void
-public "getDamage"(): double
-public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
-public "sdl$shouldUpdateDynamicLight"(): boolean
-public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
+public "tick"(): void
+public "shootFromRotation"(shooter: $Entity$Type, xRot: float, yRot: float, p_37255_: float, speed: float, spread: float): void
+public "setDamage"(damage: double): void
 public "sdl$getDynamicLightX"(): double
 public "sdl$getDynamicLightY"(): double
 public "sdl$getDynamicLightZ"(): double
 public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$shouldUpdateDynamicLight"(): boolean
+public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
+public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 set "ignoreInvulnerability"(value: boolean)
-set "damage"(value: double)
+get "damage"(): double
 get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
 get "pickable"(): boolean
-get "damage"(): double
+set "damage"(value: double)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -349,13 +349,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public "getRenderTexture"(): $ResourceLocation
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPossibleToRespawnInThis"(blockState: $BlockState$Type): boolean
 public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
 public "rotate"(blockState: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(blockState: $BlockState$Type, mirror: $Mirror$Type): $BlockState
 public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
 public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "isPossibleToRespawnInThis"(blockState: $BlockState$Type): boolean
 public "newBlockEntity"(blockPos: $BlockPos$Type, blockState: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "renderTexture"(): $ResourceLocation
@@ -518,8 +518,8 @@ export class $TrufflingRecipe$Serializer implements $RecipeSerializer<($Trufflin
 
 constructor()
 
-public "fromJson"(recipeId: $ResourceLocation$Type, json: $JsonObject$Type): $TrufflingRecipe
 public "fromNetwork"(recipeID: $ResourceLocation$Type, buffer: $FriendlyByteBuf$Type): $TrufflingRecipe
+public "fromJson"(recipeId: $ResourceLocation$Type, json: $JsonObject$Type): $TrufflingRecipe
 public "toNetwork"(buffer: $FriendlyByteBuf$Type, recipe: $TrufflingRecipe$Type): void
 public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
 public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $TrufflingRecipe
@@ -634,10 +634,10 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(settings: $BlockBehaviour$Properties$Type)
 
 public static "getBoundingShape"(state: $BlockState$Type): $VoxelShape
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "canSurvive"(state: $BlockState$Type, world: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -750,10 +750,10 @@ constructor(id: $ResourceLocation$Type, group: string, ingredients: $NonNullList
 
 public "matches"(craftingContainer: $CraftingContainer$Type, level: $Level$Type): boolean
 public "getRemainingItems"(pContainer: $CraftingContainer$Type): $NonNullList<($ItemStack)>
+public "assemble"(craftingContainer: $CraftingContainer$Type, registryAccess: $RegistryAccess$Type): $ItemStack
 public "canCraftInDimensions"(width: integer, height: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "assemble"(craftingContainer: $CraftingContainer$Type, registryAccess: $RegistryAccess$Type): $ItemStack
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
 }
@@ -881,12 +881,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
 public "rotate"(blockState: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(blockState: $BlockState$Type, mirror: $Mirror$Type): $BlockState
 public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
 public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "getDescriptionId"(): string
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "descriptionId"(): string
@@ -936,25 +936,25 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "getInaccuracy"(): double
+public "getDamageMultiplier"(): double
 public "shouldConsumeAmmo"(): boolean
 public "getFireDelay"(): integer
 public "getProjectileSpeed"(): double
 public "getBonusDamage"(): double
-public "getDamageMultiplier"(): double
-public "getDefaultProjectileRange"(): integer
+public "getInaccuracy"(): double
 public "use"(world: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getUseAnimation"(stack: $ItemStack$Type): $UseAnim
 public "getEnchantmentValue"(): integer
 public "isValidRepairItem"(toRepair: $ItemStack$Type, repair: $ItemStack$Type): boolean
+public "getDefaultProjectileRange"(): integer
 public "getAllSupportedProjectiles"(): $Predicate<($ItemStack)>
-get "inaccuracy"(): double
+get "damageMultiplier"(): double
 get "fireDelay"(): integer
 get "projectileSpeed"(): double
 get "bonusDamage"(): double
-get "damageMultiplier"(): double
-get "defaultProjectileRange"(): integer
+get "inaccuracy"(): double
 get "enchantmentValue"(): integer
+get "defaultProjectileRange"(): integer
 get "allSupportedProjectiles"(): $Predicate<($ItemStack)>
 }
 /**
@@ -1033,9 +1033,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
+public "getCloneItemStack"(arg: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): $ItemStack
 public "use"(arg: $BlockState$Type, arg2: $Level$Type, arg3: $BlockPos$Type, arg4: $Player$Type, arg5: $InteractionHand$Type, arg6: $BlockHitResult$Type): $InteractionResult
 public "entityInside"(arg: $BlockState$Type, arg2: $Level$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): void
-public "getCloneItemStack"(arg: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): $ItemStack
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1084,10 +1084,10 @@ readonly "canRepair": boolean
 
 constructor(pMaterial: $ArmorMaterial$Type, pType: $ArmorItem$Type$Type, pProperties: $Item$Properties$Type)
 
-public static "isEquippedBy"(player: $Player$Type): boolean
 public "getEquipmentSlot"(): $EquipmentSlot
-public static "get"(arg0: $ItemStack$Type): $Equipable
+public static "isEquippedBy"(player: $Player$Type): boolean
 public "getEquipSound"(): $SoundEvent
+public static "get"(arg0: $ItemStack$Type): $Equipable
 public "swapWithEquipmentSlot"(arg0: $Item$Type, arg1: $Level$Type, arg2: $Player$Type, arg3: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 get "equipmentSlot"(): $EquipmentSlot
 get "equipSound"(): $SoundEvent
@@ -1223,15 +1223,15 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getTicker"<T extends $BlockEntity>(level: $Level$Type, blockState: $BlockState$Type, blockEntityType: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
+public "playerWillDestroy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
 public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean): void
 public "use"(blockState: $BlockState$Type, level: $Level$Type, originalBlockPos: $BlockPos$Type, player: $Player$Type, interactionHand: $InteractionHand$Type, blockHitResult: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(blockState: $BlockState$Type): $RenderShape
 public "getMenuProvider"(blockState: $BlockState$Type, level: $Level$Type, blockPos: $BlockPos$Type): $MenuProvider
 public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
-public "playerWillDestroy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
+public "getTicker"<T extends $BlockEntity>(level: $Level$Type, blockState: $BlockState$Type, blockEntityType: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(blockPos: $BlockPos$Type, blockState: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -1291,13 +1291,13 @@ readonly "canRepair": boolean
 
 constructor(armorMaterial: $ArmorMaterial$Type, type: $ArmorItem$Type$Type, properties: $Item$Properties$Type, hatTexture: $ResourceLocation$Type)
 
-public "getHatTexture"(): $ResourceLocation
-public "getArmorTexture"(stack: $ItemStack$Type, entity: $Entity$Type, slot: $EquipmentSlot$Type, type: string): string
 public "initializeClient"(consumer: $Consumer$Type<(any)>): void
+public "getArmorTexture"(stack: $ItemStack$Type, entity: $Entity$Type, slot: $EquipmentSlot$Type, type: string): string
 public "getEquipmentSlot"(): $EquipmentSlot
+public "getHatTexture"(): $ResourceLocation
 public static "get"(arg0: $ItemStack$Type): $Equipable
-get "hatTexture"(): $ResourceLocation
 get "equipmentSlot"(): $EquipmentSlot
+get "hatTexture"(): $ResourceLocation
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

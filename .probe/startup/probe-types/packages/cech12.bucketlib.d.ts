@@ -12,8 +12,8 @@ static readonly "INSTANCE": $BucketFillingShapedRecipe$Serializer
 
 constructor()
 
-public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $BucketFillingShapedRecipe
 public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $BucketFillingShapedRecipe
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $BucketFillingShapedRecipe
 public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $BucketFillingShapedRecipe$Type): void
 public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
 public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $BucketFillingShapedRecipe
@@ -72,16 +72,16 @@ declare global {
 export type $BucketFillingShapelessRecipe_ = $BucketFillingShapelessRecipe$Type;
 }}
 declare module "packages/cech12/bucketlib/api/item/$UniversalBucketItem" {
-import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
+import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$EntityType, $EntityType$Type} from "packages/net/minecraft/world/entity/$EntityType"
-import {$RecipeType, $RecipeType$Type} from "packages/net/minecraft/world/item/crafting/$RecipeType"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$RecipeType, $RecipeType$Type} from "packages/net/minecraft/world/item/crafting/$RecipeType"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 import {$UniversalBucketItem$Properties, $UniversalBucketItem$Properties$Type} from "packages/cech12/bucketlib/api/item/$UniversalBucketItem$Properties"
@@ -114,26 +114,17 @@ readonly "canRepair": boolean
 
 constructor(arg0: $UniversalBucketItem$Properties$Type)
 
-public "isCracked"(arg0: $ItemStack$Type): boolean
-public "getUpperBreakTemperature"(): integer
-public "getMaxTemperature"(): integer
-public "getLowerBreakTemperature"(): integer
-public "getBurningTemperature"(): integer
-public "getDurability"(): integer
-public "getMinTemperature"(): integer
-public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
-public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
-public "getMaxDamage"(arg0: $ItemStack$Type): integer
-public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
-public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "isDamageable"(arg0: $ItemStack$Type): boolean
-public "getMaxStackSize"(arg0: $ItemStack$Type): integer
 public "getCreativeTab"(): $ResourceKey<($CreativeModeTab)>
 public "canHoldFluid"(arg0: $Fluid$Type): boolean
 public "canHoldEntity"(arg0: $EntityType$Type<(any)>): boolean
 public "canHoldBlock"(arg0: $Block$Type): boolean
 public "getDefaultColor"(): integer
+public "getUpperBreakTemperature"(): integer
+public "getLowerBreakTemperature"(): integer
+public "getMaxTemperature"(): integer
+public "getMinTemperature"(): integer
+public "getDurability"(): integer
+public "getBurningTemperature"(): integer
 public "isBurningFluid"(arg0: $Fluid$Type): boolean
 public "isBurningBlock"(arg0: $Block$Type): boolean
 public "getFreezingTemperature"(): integer
@@ -141,6 +132,14 @@ public "isFreezingFluid"(arg0: $Fluid$Type): boolean
 public "isFreezingBlock"(arg0: $Block$Type): boolean
 public "spawnEntityFromBucket"(arg0: $Player$Type, arg1: $Level$Type, arg2: $ItemStack$Type, arg3: $BlockPos$Type, arg4: boolean): $ItemStack
 public "canMilkEntities"(): boolean
+public "getMaxStackSize"(arg0: $ItemStack$Type): integer
+public "isDamageable"(arg0: $ItemStack$Type): boolean
+public "getMaxDamage"(arg0: $ItemStack$Type): integer
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
+public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
+public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
+public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "finishUsingItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type): $ItemStack
 public "interactLivingEntity"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $LivingEntity$Type, arg3: $InteractionHand$Type): $InteractionResult
@@ -149,14 +148,15 @@ public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 public "getName"(arg0: $ItemStack$Type): $Component
 public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "isDyeable"(): boolean
-get "upperBreakTemperature"(): integer
-get "maxTemperature"(): integer
-get "lowerBreakTemperature"(): integer
-get "burningTemperature"(): integer
-get "durability"(): integer
-get "minTemperature"(): integer
+public "isCracked"(arg0: $ItemStack$Type): boolean
 get "creativeTab"(): $ResourceKey<($CreativeModeTab)>
 get "defaultColor"(): integer
+get "upperBreakTemperature"(): integer
+get "lowerBreakTemperature"(): integer
+get "maxTemperature"(): integer
+get "minTemperature"(): integer
+get "durability"(): integer
+get "burningTemperature"(): integer
 get "freezingTemperature"(): integer
 get "dyeable"(): boolean
 }
@@ -186,8 +186,8 @@ static readonly "INSTANCE": $BucketFillingShapelessRecipe$Serializer
 
 constructor()
 
-public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $BucketFillingShapelessRecipe
 public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $BucketFillingShapelessRecipe
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $BucketFillingShapelessRecipe
 public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $BucketFillingShapelessRecipe$Type): void
 public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
 public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $BucketFillingShapelessRecipe
@@ -281,16 +281,45 @@ export class $UniversalBucketItem$Properties {
 constructor()
 
 public "tab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $UniversalBucketItem$Properties
-/**
- * 
- * @deprecated
- */
-public "blockedBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
-/**
- * 
- * @deprecated
- */
-public "blockedBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "allowedFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "allowedFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "deniedFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "deniedFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "maxTemperature"(arg0: integer): $UniversalBucketItem$Properties
+public "maxTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
+public "minTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
+public "minTemperature"(arg0: integer): $UniversalBucketItem$Properties
+public "allowedEntities"(arg0: $TagKey$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
+public "allowedEntities"(arg0: $List$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
+public "deniedEntities"(arg0: $List$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
+public "deniedEntities"(arg0: $TagKey$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
+public "allowedBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "allowedBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "deniedBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "deniedBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "burningTemperature"(arg0: integer): $UniversalBucketItem$Properties
+public "burningTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
+public "freezingTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
+public "freezingTemperature"(arg0: integer): $UniversalBucketItem$Properties
+public "crackingFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "crackingFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "burningFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "burningFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "burningBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "burningBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "freezingFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "freezingFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
+public "freezingBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "freezingBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
+public "entityObtaining"(arg0: $ForgeConfigSpec$BooleanValue$Type): $UniversalBucketItem$Properties
+public "blockObtaining"(arg0: $ForgeConfigSpec$BooleanValue$Type): $UniversalBucketItem$Properties
+public "upperCrackingTemperature"(arg0: integer): $UniversalBucketItem$Properties
+public "upperCrackingTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
+public "lowerCrackingTemperature"(arg0: integer): $UniversalBucketItem$Properties
+public "lowerCrackingTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
+public "disableEntityObtaining"(): $UniversalBucketItem$Properties
+public "disableBlockObtaining"(): $UniversalBucketItem$Properties
+public "disableMilking"(): $UniversalBucketItem$Properties
 /**
  * 
  * @deprecated
@@ -305,56 +334,27 @@ public "blockedFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$
  * 
  * @deprecated
  */
+public "blockedEntities"(arg0: $List$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
+/**
+ * 
+ * @deprecated
+ */
 public "blockedEntities"(arg0: $TagKey$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
 /**
  * 
  * @deprecated
  */
-public "blockedEntities"(arg0: $List$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
-public "minTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
-public "minTemperature"(arg0: integer): $UniversalBucketItem$Properties
-public "maxTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
-public "maxTemperature"(arg0: integer): $UniversalBucketItem$Properties
-public "deniedFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "deniedFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "allowedEntities"(arg0: $TagKey$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
-public "allowedEntities"(arg0: $List$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
-public "allowedFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "allowedFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "allowedBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "allowedBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "deniedEntities"(arg0: $TagKey$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
-public "deniedEntities"(arg0: $List$Type<($EntityType$Type<(any)>)>): $UniversalBucketItem$Properties
-public "deniedBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "deniedBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "burningTemperature"(arg0: integer): $UniversalBucketItem$Properties
-public "burningTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
-public "freezingTemperature"(arg0: integer): $UniversalBucketItem$Properties
-public "freezingTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
-public "crackingFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "crackingFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "burningFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "burningFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "burningBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "burningBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "freezingFluids"(arg0: $TagKey$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "freezingFluids"(arg0: $List$Type<($Fluid$Type)>): $UniversalBucketItem$Properties
-public "freezingBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "freezingBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
-public "entityObtaining"(arg0: $ForgeConfigSpec$BooleanValue$Type): $UniversalBucketItem$Properties
-public "blockObtaining"(arg0: $ForgeConfigSpec$BooleanValue$Type): $UniversalBucketItem$Properties
-public "upperCrackingTemperature"(arg0: integer): $UniversalBucketItem$Properties
-public "upperCrackingTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
-public "lowerCrackingTemperature"(arg0: integer): $UniversalBucketItem$Properties
-public "lowerCrackingTemperature"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
-public "disableEntityObtaining"(): $UniversalBucketItem$Properties
-public "disableBlockObtaining"(): $UniversalBucketItem$Properties
-public "disableMilking"(): $UniversalBucketItem$Properties
+public "blockedBlocks"(arg0: $TagKey$Type<($Block$Type)>): $UniversalBucketItem$Properties
+/**
+ * 
+ * @deprecated
+ */
+public "blockedBlocks"(arg0: $List$Type<($Block$Type)>): $UniversalBucketItem$Properties
 public "dyeable"(arg0: integer, arg1: integer, arg2: integer): $UniversalBucketItem$Properties
 public "dyeable"(arg0: integer): $UniversalBucketItem$Properties
 public "milking"(arg0: $ForgeConfigSpec$BooleanValue$Type): $UniversalBucketItem$Properties
-public "durability"(arg0: integer): $UniversalBucketItem$Properties
 public "durability"(arg0: $ForgeConfigSpec$IntValue$Type): $UniversalBucketItem$Properties
+public "durability"(arg0: integer): $UniversalBucketItem$Properties
 public "stacksTo"(arg0: integer): $UniversalBucketItem$Properties
 }
 /**
@@ -386,9 +386,9 @@ constructor(arg0: $ResourceLocation$Type, arg1: $CraftingBookCategory$Type)
 
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemStack)>
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 get "serializer"(): $RecipeSerializer<(any)>
 }
 /**

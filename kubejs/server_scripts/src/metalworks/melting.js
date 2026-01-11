@@ -407,8 +407,8 @@ ServerEvents.recipes((event) => {
   for (let metal of global.allMetals) {
     let isHardCastable = global.isHardCastable(metal)
 
-    let moltenMetal = global.moltenMetals[metal]
-    let metalTemp = global.metalTemps[metal]
+    let moltenMetal = global.moltenMaterialFluids[metal]
+    let metalTemp = global.materialMeltingPointTemps[metal]
     let metalIngredientMaterial = metal
 
     addMeltingRecipes(
@@ -426,16 +426,16 @@ ServerEvents.recipes((event) => {
     event,
     'tungsten',
     'wolframite',
-    global.metalTemps.tungsten,
-    global.moltenMetals.tungsten,
+    global.materialMeltingPointTemps.tungsten,
+    global.moltenMaterialFluids.tungsten,
     true
   )
 
   addTConstructMeltingRecipes(
     event,
     'iron',
-    global.moltenMetals.cast_iron,
-    global.metalTemps.cast_iron
+    global.moltenMaterialFluids.cast_iron,
+    global.materialMeltingPointTemps.cast_iron
   )
   addIEBlastingRecipes(
     event,

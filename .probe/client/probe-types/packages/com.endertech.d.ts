@@ -1,7 +1,7 @@
 declare module "packages/com/endertech/minecraft/forge/data/$ServerCommand" {
 import {$AbstractForgeMod, $AbstractForgeMod$Type} from "packages/com/endertech/minecraft/forge/core/$AbstractForgeMod"
-import {$ServerCommand$Task, $ServerCommand$Task$Type} from "packages/com/endertech/minecraft/forge/data/$ServerCommand$Task"
 import {$ServerCommand$OpLevel, $ServerCommand$OpLevel$Type} from "packages/com/endertech/minecraft/forge/data/$ServerCommand$OpLevel"
+import {$ServerCommand$Task, $ServerCommand$Task$Type} from "packages/com/endertech/minecraft/forge/data/$ServerCommand$Task"
 import {$CommandSourceStack, $CommandSourceStack$Type} from "packages/net/minecraft/commands/$CommandSourceStack"
 import {$CommandDispatcher, $CommandDispatcher$Type} from "packages/com/mojang/brigadier/$CommandDispatcher"
 
@@ -9,10 +9,10 @@ export class $ServerCommand {
 
 constructor(arg0: string, arg1: $CommandDispatcher$Type<($CommandSourceStack$Type)>)
 
-public "task"(arg0: string): $ServerCommand$Task
-public "requires"(arg0: $ServerCommand$OpLevel$Type): $ServerCommand
 public "register"(): void
 public static "create"(arg0: $AbstractForgeMod$Type, arg1: $CommandDispatcher$Type<($CommandSourceStack$Type)>): $ServerCommand
+public "requires"(arg0: $ServerCommand$OpLevel$Type): $ServerCommand
+public "task"(arg0: string): $ServerCommand$Task
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -31,10 +31,10 @@ import {$Comparable, $Comparable$Type} from "packages/java/lang/$Comparable"
 
 export interface $Ordered<T> extends $Comparable<(T)> {
 
- "isLessThan"(arg0: T): boolean
  "isLessOrEqualTo"(arg0: T): boolean
  "isGreaterThan"(arg0: T): boolean
  "isGreaterOrEqualTo"(arg0: T): boolean
+ "isLessThan"(arg0: T): boolean
  "compareTo"(arg0: T): integer
 
 (arg0: T, arg1: T): T
@@ -308,33 +308,33 @@ static readonly "DESCRIPTION_COMMON": string
 static readonly "DESCRIPTION_FOR_SMOKE": string
 
 
-public static "parse"(arg0: string): $ColorARGB
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "blend"(arg0: $Map$Type<($ColorARGB$Type), (integer)>): $ColorARGB
-public static "from"(arg0: $Color$Type): $ColorARGB
-public static "from"(arg0: integer): $ColorARGB
 public static "from"(arg0: string): $ColorARGB
+public static "from"(arg0: integer): $ColorARGB
+public static "from"(arg0: $Color$Type): $ColorARGB
 public "isOpaque"(): boolean
+public static "parse"(arg0: string): $ColorARGB
 public "isCompletelyTransparent"(): boolean
 public "getAlpha"(): $ColorARGB$Channel
-public "getHexARGB"(): string
 public "getARGB"(): integer
+public "getHexARGB"(): string
 public "getRed"(): $ColorARGB$Channel
 public "getGreen"(): $ColorARGB$Channel
 public "getBlue"(): $ColorARGB$Channel
 public "withAlpha"(arg0: $ColorARGB$Channel$Type): $ColorARGB
-public "approxTo"(arg0: $ColorARGB$Type, arg1: float): $ColorARGB
-public "maxOpaque"(): $ColorARGB
 public "withRed"(arg0: $ColorARGB$Channel$Type): $ColorARGB
 public "withGreen"(arg0: $ColorARGB$Channel$Type): $ColorARGB
 public "withBlue"(arg0: $ColorARGB$Channel$Type): $ColorARGB
+public "maxOpaque"(): $ColorARGB
+public "approxTo"(arg0: $ColorARGB$Type, arg1: float): $ColorARGB
 get "opaque"(): boolean
 get "completelyTransparent"(): boolean
 get "alpha"(): $ColorARGB$Channel
-get "hexARGB"(): string
 get "aRGB"(): integer
+get "hexARGB"(): string
 get "red"(): $ColorARGB$Channel
 get "green"(): $ColorARGB$Channel
 get "blue"(): $ColorARGB$Channel
@@ -372,11 +372,7 @@ constructor(arg0: string, arg1: $ConfigCategory$Type)
 constructor(arg0: string)
 
 public "setComment"(arg0: string): void
-public "getComment"(): string
-public "getChildren"(): $Set<($ConfigCategory)>
 public "removeChild"(arg0: $ConfigCategory$Type): void
-public "getQualifiedName"(): string
-public static "getQualifiedName"(arg0: string, arg1: $ConfigCategory$Type): string
 public "getName"(): string
 public static "name"(): $CommonString$Joiner
 public "get"(arg0: any): $Property
@@ -391,27 +387,31 @@ public "size"(): integer
 public "entrySet"(): $Set<($Map$Entry<(string), ($Property)>)>
 public "putAll"(arg0: $Map$Type<(any), (any)>): void
 public "write"(arg0: $BufferedWriter$Type, arg1: integer): void
-public "containsKey"(arg0: any): boolean
 public "containsKey"(arg0: string): boolean
+public "containsKey"(arg0: any): boolean
 public "keySet"(): $Set<(string)>
 public "containsValue"(arg0: any): boolean
-public "showInGui"(): boolean
-public "isChild"(): boolean
-public "getLanguagekey"(): string
+public static "getQualifiedName"(arg0: string, arg1: $ConfigCategory$Type): string
+public "getQualifiedName"(): string
+public "getComment"(): string
+public "getChildren"(): $Set<($ConfigCategory)>
 public "getFirstParent"(): $ConfigCategory
 public "getOrderedValues"(): $List<($Property)>
 public "getConfigEntryClass"(): $Class<(any)>
+public "getLanguagekey"(): string
 public "setShowInGui"(arg0: boolean): $ConfigCategory
 public "getPropertyOrder"(): $List<(string)>
+public "setPropertyOrder"(arg0: $List$Type<(string)>): $ConfigCategory
 public "setLanguageKey"(arg0: string): $ConfigCategory
 public "setConfigEntryClass"(arg0: $Class$Type<(any)>): $ConfigCategory
 public "setRequiresWorldRestart"(arg0: boolean): $ConfigCategory
+public "requiresMcRestart"(): boolean
 public "requiresWorldRestart"(): boolean
 public "setRequiresMcRestart"(arg0: boolean): $ConfigCategory
-public "requiresMcRestart"(): boolean
-public "setPropertyOrder"(arg0: $List$Type<(string)>): $ConfigCategory
+public "isChild"(): boolean
 public "getValues"(): $Map<(string), ($Property)>
 public "hasChanged"(): boolean
+public "showInGui"(): boolean
 public "remove"(arg0: any, arg1: any): boolean
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(string), ($Property)>
 public "replace"(arg0: string, arg1: $Property$Type): $Property
@@ -439,19 +439,19 @@ public "computeIfPresent"(arg0: string, arg1: $BiFunction$Type<(any), (any), (an
 public static "ofEntries"<K, V>(...arg0: ($Map$Entry$Type<(any), (any)>)[]): $Map<(string), ($Property)>
 [index: string | number]: $Property
 set "comment"(value: string)
+get "empty"(): boolean
+get "qualifiedName"(): string
 get "comment"(): string
 get "children"(): $Set<($ConfigCategory)>
-get "qualifiedName"(): string
-get "empty"(): boolean
-get "child"(): boolean
-get "languagekey"(): string
 get "firstParent"(): $ConfigCategory
 get "orderedValues"(): $List<($Property)>
 get "configEntryClass"(): $Class<(any)>
+get "languagekey"(): string
 get "propertyOrder"(): $List<(string)>
+set "propertyOrder"(value: $List$Type<(string)>)
 set "languageKey"(value: string)
 set "configEntryClass"(value: $Class$Type<(any)>)
-set "propertyOrder"(value: $List$Type<(string)>)
+get "child"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -478,15 +478,15 @@ export class $ServerCommand$Msg {
 
 constructor(arg0: string)
 
-public static "error"(arg0: string): $ServerCommand$Msg
 public static "emitter"(arg0: string, arg1: $IEmitter$Type, arg2: boolean): $ServerCommand$Msg
-public static "bool"(arg0: boolean): $ServerCommand$Msg
-public static "unit"(arg0: string, arg1: $ChatFormatting$Type, arg2: $UnitId$Type): $ServerCommand$Msg
 public static "clazz"(arg0: $Class$Type<(any)>, arg1: boolean): $ServerCommand$Msg
 public "toString"(): string
 public static "of"(arg0: string): $ServerCommand$Msg
-public static "nbt"(arg0: $INBTSerializable$Type<($CompoundTag$Type)>, arg1: $Predicate$Type<(string)>): $ServerCommand$Msg
+public static "unit"(arg0: string, arg1: $ChatFormatting$Type, arg2: $UnitId$Type): $ServerCommand$Msg
+public static "error"(arg0: string): $ServerCommand$Msg
+public static "bool"(arg0: boolean): $ServerCommand$Msg
 public static "noUnitInSight"(arg0: string): $ServerCommand$Msg
+public static "nbt"(arg0: $INBTSerializable$Type<($CompoundTag$Type)>, arg1: $Predicate$Type<(string)>): $ServerCommand$Msg
 public static "colored"(arg0: string, arg1: $ChatFormatting$Type): $ServerCommand$Msg
 }
 /**
@@ -534,42 +534,42 @@ constructor(arg0: $File$Type)
 
 public static "getTimeInMillis"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $CommonTime$Interval$Type, arg4: string): $CommonTime$Interval
 public "getTimeInMillis"(arg0: string, arg1: string, arg2: $CommonTime$Interval$Type, arg3: string): $CommonTime$Interval
-public static "getDescription"(arg0: string, arg1: string, arg2: boolean): string
 public static "getInt"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: integer, arg4: $IntBounds$Type, arg5: string): integer
 public "getInt"(arg0: string, arg1: string, arg2: integer, arg3: $IntBounds$Type, arg4: string): integer
-public static "getFloat"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: float, arg4: $FloatBounds$Type, arg5: string): float
 public "getFloat"(arg0: string, arg1: string, arg2: float, arg3: $FloatBounds$Type, arg4: string): float
+public static "getFloat"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: float, arg4: $FloatBounds$Type, arg5: string): float
 public static "in"(arg0: $Path$Type, arg1: string, arg2: string): $UnitConfig
 public static "in"(arg0: $Path$Type, arg1: string): $UnitConfig
 public static "save"(arg0: $UnitConfig$Type): void
 public "save"(): void
-public "getConfigDir"(): $Path
-public "getPercentage"(arg0: string, arg1: string, arg2: $Percentage$Type, arg3: $FloatBounds$Type, arg4: string): $Percentage
-public static "getPercentage"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $Percentage$Type, arg4: $FloatBounds$Type, arg5: string): $Percentage
+public static "getDescription"(arg0: string, arg1: string, arg2: boolean): string
 public static "alreadyExists"(arg0: $Path$Type, arg1: string): boolean
 public static "listCustomConfigs"(arg0: $Path$Type, arg1: $Class$Type<(any)>): $List<($Path)>
 public static "readConfigEnabled"(arg0: $UnitConfig$Type, arg1: boolean): boolean
-public static "getIntBounds"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $IntBounds$Type, arg4: $IntBounds$Type, arg5: string): $IntBounds
 public "getIntBounds"(arg0: string, arg1: string, arg2: $IntBounds$Type, arg3: $IntBounds$Type, arg4: string): $IntBounds
-public "getFloatBounds"(arg0: string, arg1: string, arg2: $FloatBounds$Type, arg3: $FloatBounds$Type, arg4: string): $FloatBounds
+public static "getIntBounds"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $IntBounds$Type, arg4: $IntBounds$Type, arg5: string): $IntBounds
 public static "getFloatBounds"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $FloatBounds$Type, arg4: $FloatBounds$Type, arg5: string): $FloatBounds
-public static "getColorARGB"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $ColorARGB$Type, arg4: string): $ColorARGB
+public "getFloatBounds"(arg0: string, arg1: string, arg2: $FloatBounds$Type, arg3: $FloatBounds$Type, arg4: string): $FloatBounds
 public "getColorARGB"(arg0: string, arg1: string, arg2: $ColorARGB$Type, arg3: string): $ColorARGB
+public static "getColorARGB"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $ColorARGB$Type, arg4: string): $ColorARGB
 public static "getKeyValuePair"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $KeyValuePair$Type, arg4: string): $KeyValuePair
 public "getKeyValuePair"(arg0: string, arg1: string, arg2: $KeyValuePair$Type, arg3: string): $KeyValuePair
 public "getTimeInSeconds"(arg0: string, arg1: string, arg2: $CommonTime$Interval$Type, arg3: string): $CommonTime$Interval
 public static "getTimeInSeconds"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $CommonTime$Interval$Type, arg4: string): $CommonTime$Interval
-public static "getStrArray"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: (string)[], arg4: string): (string)[]
 public "getStrArray"(arg0: string, arg1: string, arg2: (string)[], arg3: string): (string)[]
+public static "getStrArray"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: (string)[], arg4: string): (string)[]
+public static "getPercentage"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $Percentage$Type, arg4: $FloatBounds$Type, arg5: string): $Percentage
+public "getPercentage"(arg0: string, arg1: string, arg2: $Percentage$Type, arg3: $FloatBounds$Type, arg4: string): $Percentage
+public "getConfigDir"(): $Path
 public static "getSyntax"(...arg0: (any)[]): string
-public static "getBool"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: boolean, arg4: string): boolean
 public "getBool"(arg0: string, arg1: string, arg2: boolean, arg3: string): boolean
-public "getStr"(arg0: string, arg1: string, arg2: string, arg3: string): string
+public static "getBool"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: boolean, arg4: string): boolean
+public static "buildPath"(arg0: $Path$Type, arg1: string, arg2: string): $Path
+public static "buildPath"(arg0: $Path$Type, arg1: string): $Path
 public static "getStr"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: string, arg4: string): string
+public "getStr"(arg0: string, arg1: string, arg2: string, arg3: string): string
 public "getUnitId"(arg0: string, arg1: string, arg2: $UnitId$Type, arg3: string): $UnitId
 public static "getUnitId"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: $UnitId$Type, arg4: string): $UnitId
-public static "buildPath"(arg0: $Path$Type, arg1: string): $Path
-public static "buildPath"(arg0: $Path$Type, arg1: string, arg2: string): $Path
 get "configDir"(): $Path
 }
 /**
@@ -668,7 +668,6 @@ export class $CommonCollect$WeightedList<T extends $CommonCollect$IWeighted> {
 
 constructor()
 
-public "getElements"(): $List<(T)>
 public "getRandom"(): $Optional<(T)>
 public "getRandom"(arg0: $Random$Type): $Optional<(T)>
 /**
@@ -682,11 +681,12 @@ public "clear"(): void
 public "isEmpty"(): boolean
 public "size"(): integer
 public "contains"(arg0: T): boolean
-public static "withElements"<T extends $CommonCollect$IWeighted>(...arg0: (T)[]): $CommonCollect$WeightedList<(T)>
+public "getElements"(): $List<(T)>
 public "getTotalWeight"(): long
-get "elements"(): $List<(T)>
+public static "withElements"<T extends $CommonCollect$IWeighted>(...arg0: (T)[]): $CommonCollect$WeightedList<(T)>
 get "random"(): $Optional<(T)>
 get "empty"(): boolean
+get "elements"(): $List<(T)>
 get "totalWeight"(): long
 }
 /**
@@ -714,11 +714,11 @@ static readonly "HALF_WIDTH": integer
 static readonly "SQUARE": integer
 
 
-public "getCapacity"(): integer
-public static "from"(arg0: $LevelChunk$Type): $ChunkBounds
 public static "from"(arg0: $LevelChunk$Type, arg1: $IntBounds$Type): $ChunkBounds
-public static "from"(arg0: $ChunkPos$Type, arg1: $IntBounds$Type): $ChunkBounds
+public static "from"(arg0: $LevelChunk$Type): $ChunkBounds
 public static "from"(arg0: $LevelHeightAccessor$Type, arg1: $ChunkPos$Type): $ChunkBounds
+public static "from"(arg0: $ChunkPos$Type, arg1: $IntBounds$Type): $ChunkBounds
+public "getCapacity"(): integer
 get "capacity"(): integer
 }
 /**
@@ -740,108 +740,108 @@ import {$Class, $Class$Type} from "packages/java/lang/$Class"
 
 export class $Property {
 
+constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: boolean)
 constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: string)
 constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: (string)[])
-constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: boolean)
 constructor(arg0: string, arg1: string, arg2: $Property$Type$Type)
-constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: boolean, arg4: string)
-constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: (string)[], arg4: string)
-constructor(arg0: string, arg1: (string)[], arg2: $Property$Type$Type, arg3: string)
 constructor(arg0: string, arg1: (string)[], arg2: $Property$Type$Type)
+constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: (string)[], arg4: string)
+constructor(arg0: string, arg1: string, arg2: $Property$Type$Type, arg3: boolean, arg4: string)
+constructor(arg0: string, arg1: (string)[], arg2: $Property$Type$Type, arg3: string)
 
 public "setValues"(arg0: (integer)[]): $Property
-public "setValues"(arg0: (double)[]): $Property
-public "setValues"(arg0: (string)[]): $Property
 public "setValues"(arg0: (boolean)[]): $Property
+public "setValues"(arg0: (string)[]): $Property
+public "setValues"(arg0: (double)[]): $Property
 public "getMinValue"(): string
 public "getMaxValue"(): string
-public "setComment"(arg0: string): void
-public "isIntValue"(): boolean
-public "getComment"(): string
 public "getString"(): string
+public "isIntValue"(): boolean
+public "setComment"(arg0: string): void
+public "getDefaults"(): (string)[]
 public "getName"(): string
 public "getBoolean"(): boolean
 public "getBoolean"(arg0: boolean): boolean
 public "getInt"(): integer
 public "getInt"(arg0: integer): integer
-public "getLong"(arg0: long): long
 public "getLong"(): long
+public "getLong"(arg0: long): long
 public "getDouble"(arg0: double): double
 public "getDouble"(): double
 public "getDefault"(): string
-public "set"(arg0: (integer)[]): void
 public "set"(arg0: double): void
 public "set"(arg0: (double)[]): void
 public "set"(arg0: integer): void
-public "set"(arg0: string): void
-public "set"(arg0: boolean): void
-public "set"(arg0: (string)[]): void
 public "set"(arg0: long): void
+public "set"(arg0: boolean): void
+public "set"(arg0: string): void
+public "set"(arg0: (string)[]): void
 public "set"(arg0: (boolean)[]): void
+public "set"(arg0: (integer)[]): void
 public "setName"(arg0: string): void
-public "setValue"(arg0: boolean): $Property
-public "setValue"(arg0: string): $Property
 public "setValue"(arg0: double): $Property
 public "setValue"(arg0: integer): $Property
+public "setValue"(arg0: string): $Property
+public "setValue"(arg0: boolean): $Property
 public "getType"(): $Property$Type
 public "isDefault"(): boolean
-public "getDefaults"(): (string)[]
-public "showInGui"(): boolean
-public "setToDefault"(): $Property
-public "getBooleanList"(): (boolean)[]
-public "getDoubleList"(): (double)[]
-public "getStringList"(): (string)[]
+public "getComment"(): string
 public "getConfigEntryClass"(): $Class<(any)>
 public "setShowInGui"(arg0: boolean): $Property
-public "getLanguageKey"(): string
-public "setDefaultValue"(arg0: integer): $Property
-public "setDefaultValue"(arg0: string): $Property
-public "setDefaultValue"(arg0: double): $Property
-public "setDefaultValue"(arg0: boolean): $Property
-public "isBooleanValue"(): boolean
-public "setDefaultValues"(arg0: (double)[]): $Property
-public "setDefaultValues"(arg0: (integer)[]): $Property
-public "setDefaultValues"(arg0: (boolean)[]): $Property
-public "setDefaultValues"(arg0: (string)[]): $Property
-public "setIsListLengthFixed"(arg0: boolean): $Property
-public "setMaxListLength"(arg0: integer): $Property
-public "isBooleanList"(): boolean
-public "isListLengthFixed"(): boolean
-public "setMinValue"(arg0: integer): $Property
-public "setMinValue"(arg0: double): $Property
-public "setMaxValue"(arg0: double): $Property
-public "setMaxValue"(arg0: integer): $Property
-public "isDoubleValue"(): boolean
-public "isDoubleList"(): boolean
-public "setValidationPattern"(arg0: $Pattern$Type): $Property
-public "setValidValues"(arg0: (string)[]): $Property
-public "setLanguageKey"(arg0: string): $Property
-public "setConfigEntryClass"(arg0: $Class$Type<(any)>): $Property
-public "setRequiresWorldRestart"(arg0: boolean): $Property
-public "requiresWorldRestart"(): boolean
-public "setRequiresMcRestart"(arg0: boolean): $Property
-public "requiresMcRestart"(): boolean
 public "getMaxListLength"(): integer
 public "setArrayEntryClass"(arg0: $Class$Type<(any)>): $Property
 public "getArrayEntryClass"(): $Class<(any)>
 public "getValidationPattern"(): $Pattern
 public "getValidValues"(): (string)[]
 public "isLongValue"(): boolean
+public "setValidValues"(arg0: (string)[]): $Property
+public "setValidationPattern"(arg0: $Pattern$Type): $Property
+public "isDoubleList"(): boolean
+public "isBooleanValue"(): boolean
+public "setDefaultValues"(arg0: (double)[]): $Property
+public "setDefaultValues"(arg0: (string)[]): $Property
+public "setDefaultValues"(arg0: (boolean)[]): $Property
+public "setDefaultValues"(arg0: (integer)[]): $Property
+public "setIsListLengthFixed"(arg0: boolean): $Property
+public "setMinValue"(arg0: double): $Property
+public "setMinValue"(arg0: integer): $Property
+public "setMaxListLength"(arg0: integer): $Property
+public "isBooleanList"(): boolean
+public "isListLengthFixed"(): boolean
+public "setMaxValue"(arg0: double): $Property
+public "setMaxValue"(arg0: integer): $Property
+public "isDoubleValue"(): boolean
+public "setDefaultValue"(arg0: boolean): $Property
+public "setDefaultValue"(arg0: double): $Property
+public "setDefaultValue"(arg0: integer): $Property
+public "setDefaultValue"(arg0: string): $Property
+public "getLanguageKey"(): string
+public "getBooleanList"(): (boolean)[]
+public "getDoubleList"(): (double)[]
+public "getStringList"(): (string)[]
+public "setLanguageKey"(arg0: string): $Property
+public "setConfigEntryClass"(arg0: $Class$Type<(any)>): $Property
+public "setRequiresWorldRestart"(arg0: boolean): $Property
+public "requiresMcRestart"(): boolean
+public "requiresWorldRestart"(): boolean
+public "setRequiresMcRestart"(arg0: boolean): $Property
+public "setToDefault"(): $Property
 public "isList"(): boolean
 public "getIntList"(): (integer)[]
+public "hasChanged"(): boolean
+public "showInGui"(): boolean
 public "wasRead"(): boolean
 public "isIntList"(): boolean
-public "hasChanged"(): boolean
 set "values"(value: (integer)[])
-set "values"(value: (double)[])
-set "values"(value: (string)[])
 set "values"(value: (boolean)[])
+set "values"(value: (string)[])
+set "values"(value: (double)[])
 get "minValue"(): string
 get "maxValue"(): string
-set "comment"(value: string)
-get "intValue"(): boolean
-get "comment"(): string
 get "string"(): string
+get "intValue"(): boolean
+set "comment"(value: string)
+get "defaults"(): (string)[]
 get "name"(): string
 get "boolean"(): boolean
 get "int"(): integer
@@ -849,46 +849,46 @@ get "long"(): long
 get "double"(): double
 get "default"(): string
 set "name"(value: string)
-set "value"(value: boolean)
-set "value"(value: string)
 set "value"(value: double)
 set "value"(value: integer)
+set "value"(value: string)
+set "value"(value: boolean)
 get "type"(): $Property$Type
 get "default"(): boolean
-get "defaults"(): (string)[]
-get "booleanList"(): (boolean)[]
-get "doubleList"(): (double)[]
-get "stringList"(): (string)[]
+get "comment"(): string
 get "configEntryClass"(): $Class<(any)>
-get "languageKey"(): string
-set "defaultValue"(value: integer)
-set "defaultValue"(value: string)
-set "defaultValue"(value: double)
-set "defaultValue"(value: boolean)
-get "booleanValue"(): boolean
-set "defaultValues"(value: (double)[])
-set "defaultValues"(value: (integer)[])
-set "defaultValues"(value: (boolean)[])
-set "defaultValues"(value: (string)[])
-set "maxListLength"(value: integer)
-get "booleanList"(): boolean
-get "listLengthFixed"(): boolean
-set "minValue"(value: integer)
-set "minValue"(value: double)
-set "maxValue"(value: double)
-set "maxValue"(value: integer)
-get "doubleValue"(): boolean
-get "doubleList"(): boolean
-set "validationPattern"(value: $Pattern$Type)
-set "validValues"(value: (string)[])
-set "languageKey"(value: string)
-set "configEntryClass"(value: $Class$Type<(any)>)
 get "maxListLength"(): integer
 set "arrayEntryClass"(value: $Class$Type<(any)>)
 get "arrayEntryClass"(): $Class<(any)>
 get "validationPattern"(): $Pattern
 get "validValues"(): (string)[]
 get "longValue"(): boolean
+set "validValues"(value: (string)[])
+set "validationPattern"(value: $Pattern$Type)
+get "doubleList"(): boolean
+get "booleanValue"(): boolean
+set "defaultValues"(value: (double)[])
+set "defaultValues"(value: (string)[])
+set "defaultValues"(value: (boolean)[])
+set "defaultValues"(value: (integer)[])
+set "minValue"(value: double)
+set "minValue"(value: integer)
+set "maxListLength"(value: integer)
+get "booleanList"(): boolean
+get "listLengthFixed"(): boolean
+set "maxValue"(value: double)
+set "maxValue"(value: integer)
+get "doubleValue"(): boolean
+set "defaultValue"(value: boolean)
+set "defaultValue"(value: double)
+set "defaultValue"(value: integer)
+set "defaultValue"(value: string)
+get "languageKey"(): string
+get "booleanList"(): (boolean)[]
+get "doubleList"(): (double)[]
+get "stringList"(): (string)[]
+set "languageKey"(value: string)
+set "configEntryClass"(value: $Class$Type<(any)>)
 get "list"(): boolean
 get "intList"(): (integer)[]
 get "intList"(): boolean
@@ -924,9 +924,9 @@ constructor(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: (string)[]
 
 public "add"(arg0: $BlockStatesSet$Type, arg1: $WeightedOre$Type): void
 public "isEmpty"(): boolean
-public static "custom"(arg0: $UnitConfig$Type, arg1: string, arg2: (string)[], arg3: $Function$Type<($UnitId$Type), ($Optional$Type<($BlockState$Type)>)>): $Replacements
-public "haveReplacementFor"(arg0: $BlockState$Type): boolean
 public "containOreWith"(arg0: $BlockState$Type): boolean
+public "haveReplacementFor"(arg0: $BlockState$Type): boolean
+public static "custom"(arg0: $UnitConfig$Type, arg1: string, arg2: (string)[], arg3: $Function$Type<($UnitId$Type), ($Optional$Type<($BlockState$Type)>)>): $Replacements
 public "pickOreFor"(arg0: $BlockState$Type, arg1: $Random$Type): $Optional<($WeightedOre)>
 public "getOres"(): $Set<($BlockState)>
 get "empty"(): boolean
@@ -1011,17 +1011,17 @@ export interface $IEmitter extends $IRelatedUnit, $IPostInit {
  "getType"(): $IEmitter$Type
  "isActive"(arg0: $INBTSerializable$Type<($CompoundTag$Type)>): boolean
  "isActive"(arg0: $LevelReader$Type, arg1: $BlockPos$Type): boolean
- "getActiveTag"(): string
- "getIdentityTag"(): $KeyValuePair
  "getRelatedBlocks"(): $Set<($BlockState)>
  "isIdentified"(arg0: $INBTSerializable$Type<($CompoundTag$Type)>): boolean
+ "getActiveTag"(): string
+ "getIdentityTag"(): $KeyValuePair
  "getRelatedId"(): $UnitId
  "onPostInit"(): void
- "getConfig"(): $UnitConfig
  "getClassCategory"(arg0: string): string
  "getClassCategory"(): string
  "expandClassCategory"(arg0: string, arg1: string): string
  "expandClassCategory"(arg0: string): string
+ "getConfig"(): $UnitConfig
  "saveConfig"(): void
 }
 
@@ -1035,8 +1035,8 @@ const TAG_HARDCODED: string
 function getClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 function getClassCategory(arg0: $Class$Type<(any)>): string
 function expandCategory(arg0: string, arg1: string): string
-function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string, arg2: string): string
+function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1091,16 +1091,16 @@ import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$ModConfig, $ModConfig$Type} from "packages/net/minecraftforge/fml/config/$ModConfig"
 import {$CommandBuildContext, $CommandBuildContext$Type} from "packages/net/minecraft/commands/$CommandBuildContext"
 import {$Logger, $Logger$Type} from "packages/org/slf4j/$Logger"
-import {$ItemModel$Properties, $ItemModel$Properties$Type} from "packages/com/endertech/minecraft/forge/client/$ItemModel$Properties"
 import {$PlayerRenderer, $PlayerRenderer$Type} from "packages/net/minecraft/client/renderer/entity/player/$PlayerRenderer"
+import {$ItemModel$Properties, $ItemModel$Properties$Type} from "packages/com/endertech/minecraft/forge/client/$ItemModel$Properties"
 import {$AbstractClientPlayer, $AbstractClientPlayer$Type} from "packages/net/minecraft/client/player/$AbstractClientPlayer"
 import {$AbstractForgeMod$RequiredSide, $AbstractForgeMod$RequiredSide$Type} from "packages/com/endertech/minecraft/forge/core/$AbstractForgeMod$RequiredSide"
 import {$RenderLayer, $RenderLayer$Type} from "packages/net/minecraft/client/renderer/entity/layers/$RenderLayer"
 import {$Path, $Path$Type} from "packages/java/nio/file/$Path"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
-import {$RegisterParticleProvidersEvent, $RegisterParticleProvidersEvent$Type} from "packages/net/minecraftforge/client/event/$RegisterParticleProvidersEvent"
 import {$RegisterKeyMappingsEvent, $RegisterKeyMappingsEvent$Type} from "packages/net/minecraftforge/client/event/$RegisterKeyMappingsEvent"
 import {$AbstractForgeMod$ConfigValueBuilder, $AbstractForgeMod$ConfigValueBuilder$Type} from "packages/com/endertech/minecraft/forge/core/$AbstractForgeMod$ConfigValueBuilder"
+import {$RegisterParticleProvidersEvent, $RegisterParticleProvidersEvent$Type} from "packages/net/minecraftforge/client/event/$RegisterParticleProvidersEvent"
 import {$PlayerModel, $PlayerModel$Type} from "packages/net/minecraft/client/model/$PlayerModel"
 import {$Connection, $Connection$Type} from "packages/com/endertech/minecraft/forge/network/$Connection"
 import {$DataCollector, $DataCollector$Type} from "packages/com/endertech/minecraft/forge/data/$DataCollector"
@@ -1109,15 +1109,11 @@ import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 export class $AbstractForgeMod {
 
 
-public static "isLoaded"(arg0: string): boolean
 public "getNamespace"(): $Namespace
-public "getConnection"(): $Connection
 public "getLogger"(): $Logger
 public "getId"(): string
-public "clientRegisterParticleProviders"(arg0: $RegisterParticleProvidersEvent$Type): void
-public "clientRegisterItemModelProperties"(arg0: $ItemModel$Properties$Type<(any)>): void
-public "getModEventBus"(): $IEventBus
-public "registerCommands"(arg0: $ServerCommand$Type, arg1: $CommandBuildContext$Type): void
+public static "isLoaded"(arg0: string): boolean
+public "getConnection"(): $Connection
 public "getForgeEventBus"(): $IEventBus
 public "getRequiredSide"(): $AbstractForgeMod$RequiredSide
 public "isClientSide"(): boolean
@@ -1138,18 +1134,22 @@ public "setRenderLayer"(arg0: $Block$Type, arg1: $RenderType$Type): void
 public "addPlayerRenderLayer"(arg0: $Function$Type<($PlayerRenderer$Type), ($RenderLayer$Type<($AbstractClientPlayer$Type), ($PlayerModel$Type<($AbstractClientPlayer$Type)>)>)>): void
 public static "singletonInstance"<T>(arg0: string, arg1: $Class$Type<(T)>): $Lazy<($Optional<(T)>)>
 public "getConfigsDir"(): $Path
+public "getModEventBus"(): $IEventBus
+public "registerCommands"(arg0: $ServerCommand$Type, arg1: $CommandBuildContext$Type): void
+public "clientRegisterParticleProviders"(arg0: $RegisterParticleProvidersEvent$Type): void
+public "clientRegisterItemModelProperties"(arg0: $ItemModel$Properties$Type<(any)>): void
 public "gatherData"(arg0: $DataCollector$Type): void
 public "clientInit"(): void
 public "commonInit"(): void
 get "namespace"(): $Namespace
-get "connection"(): $Connection
 get "logger"(): $Logger
 get "id"(): string
-get "modEventBus"(): $IEventBus
+get "connection"(): $Connection
 get "forgeEventBus"(): $IEventBus
 get "requiredSide"(): $AbstractForgeMod$RequiredSide
 get "clientSide"(): boolean
 get "configsDir"(): $Path
+get "modEventBus"(): $IEventBus
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1180,9 +1180,9 @@ export class $AbstractOre$Properties<T extends $AbstractOre$Properties<(T)>> ext
 
 
 public "dimension"(arg0: $Dimensions$Type): T
+public "replaceableBlocks"(...arg0: (string)[]): T
 public "allowedDimensions"(...arg0: (string)[]): T
 public "customReplacements"(...arg0: (string)[]): T
-public "replaceableBlocks"(...arg0: (string)[]): T
 public "deepslate"(arg0: string): T
 public "altitude"(arg0: integer, arg1: integer): T
 public "exposed"(arg0: boolean): T
@@ -1284,8 +1284,8 @@ export type $ForgeNetMsg$IWriter_<T> = $ForgeNetMsg$IWriter$Type<(T)>;
 declare module "packages/com/endertech/minecraft/forge/core/$AbstractForgeMod$ConfigValueBuilder" {
 import {$IntBounds, $IntBounds$Type} from "packages/com/endertech/common/$IntBounds"
 import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
-import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$FloatBounds, $FloatBounds$Type} from "packages/com/endertech/common/$FloatBounds"
+import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$ForgeConfigSpec$ConfigValue, $ForgeConfigSpec$ConfigValue$Type} from "packages/net/minecraftforge/common/$ForgeConfigSpec$ConfigValue"
 import {$ForgeConfigSpec$Builder, $ForgeConfigSpec$Builder$Type} from "packages/net/minecraftforge/common/$ForgeConfigSpec$Builder"
@@ -1296,19 +1296,19 @@ readonly "builder": $ForgeConfigSpec$Builder
 
 constructor()
 
-public "push"(arg0: string): $AbstractForgeMod$ConfigValueBuilder
-public "pop"(): $AbstractForgeMod$ConfigValueBuilder
 public "comment"(arg0: string): $AbstractForgeMod$ConfigValueBuilder
 public "shared"(arg0: string): void
-public "define"(arg0: string, arg1: boolean): $ForgeConfigSpec$ConfigValue<(boolean)>
+public "push"(arg0: string): $AbstractForgeMod$ConfigValueBuilder
+public "pop"(): $AbstractForgeMod$ConfigValueBuilder
+public "defineFactor"(arg0: string, arg1: float): $ForgeConfigSpec$ConfigValue<(double)>
+public "worldRestart"(): $AbstractForgeMod$ConfigValueBuilder
+public "defineInRange"(arg0: string, arg1: float, arg2: $FloatBounds$Type): $ForgeConfigSpec$ConfigValue<(double)>
+public "defineInRange"(arg0: string, arg1: integer, arg2: $IntBounds$Type): $ForgeConfigSpec$ConfigValue<(integer)>
 public "define"(arg0: string, arg1: $ColorARGB$Type): $ForgeConfigSpec$ConfigValue<(integer)>
+public "define"(arg0: string, arg1: boolean): $ForgeConfigSpec$ConfigValue<(boolean)>
 public "defineList"(arg0: string, arg1: (string)[], arg2: $Predicate$Type<(string)>): $ForgeConfigSpec$ConfigValue<($List<(any)>)>
 public "defineEnum"<T extends $Enum<(T)>>(arg0: string, arg1: T, arg2: $Predicate$Type<(T)>): $ForgeConfigSpec$ConfigValue<(T)>
 public "defineEnum"<T extends $Enum<(T)>>(arg0: string, arg1: T): $ForgeConfigSpec$ConfigValue<(T)>
-public "defineInRange"(arg0: string, arg1: float, arg2: $FloatBounds$Type): $ForgeConfigSpec$ConfigValue<(double)>
-public "defineInRange"(arg0: string, arg1: integer, arg2: $IntBounds$Type): $ForgeConfigSpec$ConfigValue<(integer)>
-public "worldRestart"(): $AbstractForgeMod$ConfigValueBuilder
-public "defineFactor"(arg0: string, arg1: float): $ForgeConfigSpec$ConfigValue<(double)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1391,30 +1391,30 @@ export class $AbstractOre implements $IHaveConfig {
 constructor(arg0: $UnitConfig$Type, arg1: $AbstractOre$Properties$Type<(any)>)
 
 public "isValid"(): boolean
-public "getConfig"(): $UnitConfig
+public "getAltitude"(): $IntBounds
+public "getReplacements"(): $Replacements
+public "inAllowedDimenstion"(arg0: $ServerLevelAccessor$Type): boolean
 public static "inAdjacentChunk"(arg0: $BlockPos$Type, arg1: $ChunkPos$Type, arg2: boolean): boolean
 public static "withinGenRegion"(arg0: $ChunkPos$Type, arg1: $ChunkPos$Type): boolean
 public static "withinRadius"(arg0: $ChunkPos$Type, arg1: $ChunkPos$Type, arg2: integer): boolean
 public "inAllowedBiome"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "canBeReplaced"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: boolean): boolean
-public "getReplacements"(): $Replacements
-public "inAllowedDimenstion"(arg0: $ServerLevelAccessor$Type): boolean
-public "getAltitude"(): $IntBounds
 public "isValidPosition"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type, arg4: boolean): boolean
+public "getConfig"(): $UnitConfig
 public static "getClassCategory"(arg0: $Class$Type<(any)>, arg1: string): string
+public static "getClassCategory"(arg0: $Class$Type<(any)>): string
 public "getClassCategory"(arg0: string): string
 public "getClassCategory"(): string
-public static "getClassCategory"(arg0: $Class$Type<(any)>): string
 public static "expandCategory"(arg0: string, arg1: string): string
 public "expandClassCategory"(arg0: string, arg1: string): string
-public static "expandClassCategory"(arg0: $Class$Type<(any)>, arg1: string): string
 public "expandClassCategory"(arg0: string): string
 public static "expandClassCategory"(arg0: $Class$Type<(any)>, arg1: string, arg2: string): string
+public static "expandClassCategory"(arg0: $Class$Type<(any)>, arg1: string): string
 public "saveConfig"(): void
 get "valid"(): boolean
-get "config"(): $UnitConfig
-get "replacements"(): $Replacements
 get "altitude"(): $IntBounds
+get "replacements"(): $Replacements
+get "config"(): $UnitConfig
 get "classCategory"(): string
 }
 /**
@@ -1496,9 +1496,6 @@ import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 export class $WorldBounds {
 
 
-public "relative"(arg0: $BlockPos$Type): $BlockPos
-public "getX"(): $IntBounds
-public "getY"(): $IntBounds
 public "getHeight"(): integer
 public "min"(): $BlockPos
 public "max"(): $BlockPos
@@ -1507,26 +1504,29 @@ public static "from"(arg0: $IntBounds$Type, arg1: $IntBounds$Type, arg2: $IntBou
 public static "from"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $WorldBounds
 public static "from"(arg0: $BlockPos$Type, arg1: integer): $WorldBounds
 public "forEach"(arg0: $Consumer$Type<(any)>): void
-public "reduce"(arg0: integer, arg1: integer, arg2: integer): $WorldBounds
 public "reduce"(arg0: integer): $WorldBounds
-public "edge"(arg0: $BlockPos$Type): boolean
-public static "chunksAround"(arg0: $LevelHeightAccessor$Type, arg1: $ChunkPos$Type): $WorldBounds
+public "reduce"(arg0: integer, arg1: integer, arg2: integer): $WorldBounds
+public "getX"(): $IntBounds
+public "relative"(arg0: $BlockPos$Type): $BlockPos
+public "getY"(): $IntBounds
 public static "getHeightBounds"(arg0: $LevelHeightAccessor$Type): $IntBounds
+public static "chunksAround"(arg0: $LevelHeightAccessor$Type, arg1: $ChunkPos$Type): $WorldBounds
 public "face"(arg0: $BlockPos$Type): boolean
 public "getZ"(): $IntBounds
-public "extend"(arg0: integer, arg1: integer, arg2: integer): $WorldBounds
-public "extend"(arg0: integer): $WorldBounds
-public "extend"(arg0: $Direction$Type, arg1: integer): $WorldBounds
 public "encloses"(arg0: $BlockPos$Type): boolean
+public "edge"(arg0: $BlockPos$Type): boolean
+public "extend"(arg0: $Direction$Type, arg1: integer): $WorldBounds
+public "extend"(arg0: integer): $WorldBounds
+public "extend"(arg0: integer, arg1: integer, arg2: integer): $WorldBounds
 public "within"(arg0: $WorldBounds$Type): boolean
 public "vertex"(arg0: $BlockPos$Type): boolean
 public "randomPos"(arg0: $Random$Type): $BlockPos
 public "toAABB"(): $AABB
 public static "vertPlane"(arg0: $BlockPos$Type, arg1: integer, arg2: $Direction$Type): $WorldBounds
 public static "horizPlane"(arg0: $BlockPos$Type, arg1: integer): $WorldBounds
+get "height"(): integer
 get "x"(): $IntBounds
 get "y"(): $IntBounds
-get "height"(): integer
 get "z"(): $IntBounds
 }
 /**
@@ -1551,8 +1551,8 @@ export class $Miscellaneous$Properties<T extends $Miscellaneous$Properties<(T)>>
 
 
 public static "of"(): $Miscellaneous$Properties<(any)>
-public "proportions"(arg0: float): T
 public "strictBounds"(): T
+public "proportions"(arg0: float): T
 public "exposed"(arg0: boolean): T
 }
 /**
@@ -1569,6 +1569,7 @@ export type $Miscellaneous$Properties_<T> = $Miscellaneous$Properties$Type<(T)>;
 }}
 declare module "packages/com/endertech/common/$FloatBounds" {
 import {$CommonMath$Interpolation, $CommonMath$Interpolation$Type} from "packages/com/endertech/common/$CommonMath$Interpolation"
+import {$Random, $Random$Type} from "packages/java/util/$Random"
 import {$IBounds, $IBounds$Type} from "packages/com/endertech/common/$IBounds"
 
 export class $FloatBounds implements $IBounds<(float)> {
@@ -1578,7 +1579,6 @@ static readonly "FLOAT_POSITIVE": $FloatBounds
 
 constructor(arg0: float, arg1: float)
 
-public static "between"(arg0: float, arg1: float): $FloatBounds
 public "equals"(arg0: any): boolean
 public "length"(): float
 public "toString"(): string
@@ -1588,20 +1588,22 @@ public static "of"(arg0: float): $FloatBounds
 public static "of"(arg0: $IBounds$Type<(any)>): $FloatBounds
 public "offset"(arg0: float): $FloatBounds
 public "reduce"(arg0: float): $FloatBounds
-public "getMin"(): float
-public "fit"(arg0: $IBounds$Type<(float)>): $FloatBounds
+public static "between"(arg0: float, arg1: float): $FloatBounds
 public "randomBetween"(): float
+public "randomBetween"(arg0: $Random$Type): float
 public "interpolateUp"(arg0: float): float
-public "interpolateDown"(arg0: float): float
 public "interpolationFactor"(arg0: float): float
-public "extend"(arg0: float): $FloatBounds
+public "getMax"(): float
+public "getMin"(): float
 public "encloses"(arg0: float): boolean
+public "extend"(arg0: float): $FloatBounds
 public "within"(arg0: $IBounds$Type<(float)>): boolean
 public "corners"(arg0: float): boolean
 public "enclose"(arg0: float): float
 public "unite"(arg0: $IBounds$Type<(float)>): $FloatBounds
 public "randomFits"(arg0: float): boolean
 public "interpolateTo"(arg0: $IBounds$Type<(float)>): $CommonMath$Interpolation<(float)>
+get "max"(): float
 get "min"(): float
 }
 /**
@@ -1632,11 +1634,10 @@ readonly "deferred": integer
 constructor(arg0: string, arg1: $BlockPos$Type, arg2: integer, arg3: integer)
 
 public "writeTo"(arg0: $CompoundTag$Type): $CompoundTag
-public "readFrom"(arg0: $CompoundTag$Type): $DepositGenResult
 public "toString"(): string
 public "isEmpty"(): boolean
-public "isComplete"(): boolean
 public "completeness"(): $Percentage
+public "isComplete"(): boolean
 get "empty"(): boolean
 get "complete"(): boolean
 }
@@ -1673,15 +1674,14 @@ constructor(arg0: $DimensionId$Type, arg1: $ChunkPos$Type)
 
 public "writeTo"(arg0: $FriendlyByteBuf$Type): $FriendlyByteBuf
 public "writeTo"(arg0: $CompoundTag$Type): $CompoundTag
-public "readFrom"(arg0: $CompoundTag$Type): $ChunkLoc
-public "readFrom"(arg0: $FriendlyByteBuf$Type): $ChunkLoc
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "contains"(arg0: $Entity$Type): boolean
-public static "from"(arg0: $LevelChunk$Type): $ChunkLoc
 public static "from"(arg0: $Level$Type, arg1: $ChunkPos$Type): $ChunkLoc
+public static "from"(arg0: $LevelChunk$Type): $ChunkLoc
 public "getBounds"(arg0: $LevelHeightAccessor$Type): $ChunkBounds
+public "readFrom"(arg0: $CompoundTag$Type): $ChunkLoc
 public "getDimensionId"(): $DimensionId
 public "getPos"(): $ChunkPos
 public "getChunk"(arg0: $Level$Type): $Optional<($LevelChunk)>
@@ -1800,18 +1800,18 @@ export interface $IBounds<T extends number> {
  "length"(): T
  "offset"(arg0: T): $IBounds<(T)>
  "reduce"(arg0: T): $IBounds<(T)>
- "getMax"(): T
- "getMin"(): T
- "fit"(arg0: $IBounds$Type<(T)>): $IBounds<(T)>
- "randomBetween"(arg0: $Random$Type): T
  "randomBetween"(): T
+ "randomBetween"(arg0: $Random$Type): T
  "interpolateUp"(arg0: float): T
  "interpolateDown"(arg0: float): T
  "interpolateTo"(arg0: $IBounds$Type<(T)>): $CommonMath$Interpolation<(T)>
  "interpolationFactor"(arg0: T): float
- "extend"(arg0: T): $IBounds<(T)>
- "encloses"(arg0: T): boolean
+ "fit"(arg0: $IBounds$Type<(T)>): $IBounds<(T)>
  "center"(): T
+ "getMax"(): T
+ "getMin"(): T
+ "encloses"(arg0: T): boolean
+ "extend"(arg0: T): $IBounds<(T)>
  "within"(arg0: $IBounds$Type<(T)>): boolean
  "corners"(arg0: T): boolean
  "enclose"(arg0: T): T
@@ -1838,8 +1838,8 @@ declare module "packages/com/endertech/minecraft/forge/units/$UnitId" {
 import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
 import {$Path, $Path$Type} from "packages/java/nio/file/$Path"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
-import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
@@ -1847,8 +1847,8 @@ import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$Pattern, $Pattern$Type} from "packages/java/util/regex/$Pattern"
 import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
-import {$StateHolder, $StateHolder$Type} from "packages/net/minecraft/world/level/block/state/$StateHolder"
 import {$BlockStatesSet, $BlockStatesSet$Type} from "packages/com/endertech/minecraft/forge/blocks/$BlockStatesSet"
+import {$StateHolder, $StateHolder$Type} from "packages/net/minecraft/world/level/block/state/$StateHolder"
 
 export class $UnitId {
 static readonly "EMPTY": $UnitId
@@ -1878,22 +1878,33 @@ public "hashCode"(): integer
 public "isEmpty"(): boolean
 public "matches"(arg0: $BlockState$Type): boolean
 public "matches"(arg0: $Item$Type): boolean
-public static "from"(arg0: $Item$Type): $UnitId
-public static "from"(arg0: $ResourceLocation$Type): $UnitId
 public static "from"(arg0: $ResourceLocation$Type, arg1: string): $UnitId
-public static "from"(arg0: string, arg1: string, arg2: integer): $UnitId
-public static "from"(arg0: string, arg1: string): $UnitId
-public static "from"(arg0: $Fluid$Type, arg1: string): $UnitId
 public static "from"(arg0: $BlockState$Type): $UnitId
-public static "from"(arg0: $Block$Type): $UnitId
-public static "from"(arg0: $Block$Type, arg1: string): $UnitId
-public static "from"(arg0: $FluidState$Type): $UnitId
-public static "from"(arg0: string): $UnitId
-public static "from"(arg0: $Enum$Type<(any)>, arg1: string): $UnitId
-public static "from"(arg0: $Path$Type): $UnitId
 public static "from"(arg0: string, ...arg1: (string)[]): $UnitId
-public "getBlockProperties"(): $BlockBehaviour$Properties
-public "hasProperties"(): boolean
+public static "from"(arg0: string, arg1: string): $UnitId
+public static "from"(arg0: $Block$Type, arg1: string): $UnitId
+public static "from"(arg0: $Item$Type): $UnitId
+public static "from"(arg0: $Block$Type): $UnitId
+public static "from"(arg0: $ResourceLocation$Type): $UnitId
+public static "from"(arg0: string, arg1: string, arg2: integer): $UnitId
+public static "from"(arg0: $FluidState$Type): $UnitId
+public static "from"(arg0: $Fluid$Type, arg1: string): $UnitId
+public static "from"(arg0: $Path$Type): $UnitId
+public static "from"(arg0: $Enum$Type<(any)>, arg1: string): $UnitId
+public static "from"(arg0: string): $UnitId
+public "getMetaData"(): string
+public "hasMetaData"(): boolean
+public "getFirstMatchedState"(): $BlockState
+public "getAllMatchedBlockStates"(): $BlockStatesSet
+public "withMetaData"(arg0: string): $UnitId
+public "withMetaAll"(): $UnitId
+public "withNameSuffix"(arg0: string): $UnitId
+public "toConfigName"(): string
+public static "isNullOrEmpty"(arg0: $UnitId$Type): boolean
+public "getModId"(): string
+public "notEmpty"(): boolean
+public "withName"(arg0: string): $UnitId
+public "withName"(...arg0: (string)[]): $UnitId
 public static "capitalizeWords"(...arg0: (string)[]): (string)[]
 public static "buildRegName"(...arg0: (string)[]): string
 public static "buildDictName"(...arg0: (string)[]): string
@@ -1901,41 +1912,30 @@ public static "splitRegName"(arg0: string, arg1: boolean, arg2: boolean): (strin
 public static "splitDictName"(arg0: string): (string)[]
 public static "regToDictName"(arg0: string): string
 public static "dictToRegName"(arg0: string): string
-public static "statePropsAsString"(arg0: $StateHolder$Type<(any), (any)>): string
 public static "getClassRegName"(arg0: $Class$Type<(any)>): string
-public "getFirstMatchedItem"(): $Item
+public static "statePropsAsString"(arg0: $StateHolder$Type<(any), (any)>): string
 public "getAllMatchedItems"(): $Collection<($Item)>
+public "getFirstMatchedItem"(): $Item
 public "getAllMatchedFluids"(): $Collection<($Fluid)>
-public "getFirstMatchedFluid"(): $Fluid
+public "getBlockProperties"(): $BlockBehaviour$Properties
+public "hasProperties"(): boolean
 public "withNamePrefix"(arg0: string): $UnitId
-public "withNameSuffix"(arg0: string): $UnitId
-public "toConfigName"(): string
-public "withName"(arg0: string): $UnitId
-public "withName"(...arg0: (string)[]): $UnitId
-public "notEmpty"(): boolean
-public "getModId"(): string
-public static "isNullOrEmpty"(arg0: $UnitId$Type): boolean
-public "getMetaData"(): string
-public "getFirstMatchedState"(): $BlockState
-public "getAllMatchedBlockStates"(): $BlockStatesSet
-public "hasMetaData"(): boolean
-public "withMetaData"(arg0: string): $UnitId
-public "withMetaAll"(): $UnitId
+public "getFirstMatchedFluid"(): $Fluid
 public "getMeta"(): integer
 public "isTag"(): boolean
 public "getRegName"(): string
 public "toResLoc"(): $ResourceLocation
 public static "joinWords"(arg0: string, ...arg1: (string)[]): string
 get "empty"(): boolean
-get "blockProperties"(): $BlockBehaviour$Properties
-get "firstMatchedItem"(): $Item
-get "allMatchedItems"(): $Collection<($Item)>
-get "allMatchedFluids"(): $Collection<($Fluid)>
-get "firstMatchedFluid"(): $Fluid
-get "modId"(): string
 get "metaData"(): string
 get "firstMatchedState"(): $BlockState
 get "allMatchedBlockStates"(): $BlockStatesSet
+get "modId"(): string
+get "allMatchedItems"(): $Collection<($Item)>
+get "firstMatchedItem"(): $Item
+get "allMatchedFluids"(): $Collection<($Fluid)>
+get "blockProperties"(): $BlockBehaviour$Properties
+get "firstMatchedFluid"(): $Fluid
 get "meta"(): integer
 get "tag"(): boolean
 get "regName"(): string
@@ -1964,10 +1964,8 @@ import {$ColorARGB, $ColorARGB$Type} from "packages/com/endertech/minecraft/forg
 export class $ServerCommand$Arg<T> {
 
 
-public static "word"(arg0: string, arg1: $SuggestionProvider$Type<($CommandSourceStack$Type)>): $ServerCommand$Arg<(string)>
-public static "word"(arg0: string): $ServerCommand$Arg<(string)>
-public static "string"(arg0: string, arg1: $SuggestionProvider$Type<($CommandSourceStack$Type)>): $ServerCommand$Arg<(string)>
 public static "string"(arg0: string): $ServerCommand$Arg<(string)>
+public static "string"(arg0: string, arg1: $SuggestionProvider$Type<($CommandSourceStack$Type)>): $ServerCommand$Arg<(string)>
 public "getName"(): string
 public static "of"<T>(arg0: string, arg1: $ArgumentType$Type<(T)>): $ServerCommand$Arg<(T)>
 public static "of"<T>(arg0: string, arg1: $ArgumentType$Type<(T)>, arg2: $SuggestionProvider$Type<($CommandSourceStack$Type)>): $ServerCommand$Arg<(T)>
@@ -1975,6 +1973,8 @@ public static "bounds"(arg0: string, arg1: $FloatBounds$Type): $ServerCommand$Ar
 public static "bounds"(arg0: string, arg1: $IntBounds$Type): $ServerCommand$Arg<($IntBounds)>
 public "getType"(): $ArgumentType<(T)>
 public static "color"(arg0: string): $ServerCommand$Arg<($ColorARGB)>
+public static "word"(arg0: string, arg1: $SuggestionProvider$Type<($CommandSourceStack$Type)>): $ServerCommand$Arg<(string)>
+public static "word"(arg0: string): $ServerCommand$Arg<(string)>
 public static "integer"(arg0: string, arg1: $IntBounds$Type): $ServerCommand$Arg<(integer)>
 public "getCustomSuggestions"(): $Optional<($SuggestionProvider<($CommandSourceStack)>)>
 public static "floatt"(arg0: string, arg1: $FloatBounds$Type): $ServerCommand$Arg<(float)>
@@ -2003,11 +2003,11 @@ import {$IHaveConfig, $IHaveConfig$Type} from "packages/com/endertech/minecraft/
 export interface $IRelatedUnit extends $IHaveConfig {
 
  "getRelatedId"(): $UnitId
- "getConfig"(): $UnitConfig
  "getClassCategory"(arg0: string): string
  "getClassCategory"(): string
  "expandClassCategory"(arg0: string, arg1: string): string
  "expandClassCategory"(arg0: string): string
+ "getConfig"(): $UnitConfig
  "saveConfig"(): void
 }
 
@@ -2015,8 +2015,8 @@ export namespace $IRelatedUnit {
 function getClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 function getClassCategory(arg0: $Class$Type<(any)>): string
 function expandCategory(arg0: string, arg1: string): string
-function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string, arg2: string): string
+function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2059,25 +2059,25 @@ static "globalSpawnRateMultiplier": $ForgeConfigSpec$ConfigValue<(double)>
 
 constructor(arg0: $UnitConfig$Type, arg1: $Deposit$Properties$Type<(any)>)
 
-public "isValid"(): boolean
-public "isEnabled"(): boolean
 public "getName"(): string
 public static "in"(arg0: $Path$Type, arg1: $Deposit$Properties$Type<(any)>): $Deposit
-public "placeIndicator"(arg0: $WorldGenLevel$Type, arg1: $DepositGenResult$Type, arg2: boolean): boolean
+public "isEnabled"(): boolean
+public "isValid"(): boolean
 public static "parseOresFrom"(arg0: (string)[], arg1: $Function$Type<($UnitId$Type), ($Optional$Type<($BlockState$Type)>)>): $CommonCollect$WeightedList<($WeightedOre)>
-public "isOreBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeIndicator"(arg0: $WorldGenLevel$Type, arg1: $DepositGenResult$Type, arg2: boolean): boolean
 public "getChance"(): $Percentage
+public "isOreBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "generateAt"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean, arg4: $Random$Type): $DepositGenResult
 public "generateAt"(arg0: $WorldGenLevel$Type, arg1: integer, arg2: integer, arg3: $Random$Type): $DepositGenResult
 public "generateAt"(arg0: $WorldGenLevel$Type, arg1: $ChunkPos$Type, arg2: $Random$Type): $DepositGenResult
 public static "getClassCategory"(arg0: $Class$Type<(any)>, arg1: string): string
 public static "getClassCategory"(arg0: $Class$Type<(any)>): string
 public static "expandCategory"(arg0: string, arg1: string): string
-public static "expandClassCategory"(arg0: $Class$Type<(any)>, arg1: string): string
 public static "expandClassCategory"(arg0: $Class$Type<(any)>, arg1: string, arg2: string): string
-get "valid"(): boolean
-get "enabled"(): boolean
+public static "expandClassCategory"(arg0: $Class$Type<(any)>, arg1: string): string
 get "name"(): string
+get "enabled"(): boolean
+get "valid"(): boolean
 get "chance"(): $Percentage
 }
 /**
@@ -2125,13 +2125,13 @@ static readonly "SEPARATOR": string
 
 constructor(key: string, value: string)
 
-public static "parse"(arg0: string): $KeyValuePair
 public "value"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "isEmpty"(): boolean
 public "key"(): string
+public static "parse"(arg0: string): $KeyValuePair
 get "empty"(): boolean
 }
 /**
@@ -2188,8 +2188,6 @@ static readonly "HUNDRED": $Percentage
 
 constructor(arg0: float)
 
-public static "parse"(arg0: string): $Percentage
-public "multiply"(arg0: float): $Percentage
 public static "value"(arg0: float): $Percentage
 public "equals"(arg0: any): boolean
 public "toString"(): string
@@ -2198,6 +2196,8 @@ public "compareTo"(arg0: $Percentage$Type): integer
 public "getValue"(): float
 public static "from"(arg0: float): $Percentage
 public static "from"(arg0: integer, arg1: integer): $Percentage
+public "multiply"(arg0: float): $Percentage
+public static "parse"(arg0: string): $Percentage
 public "toColoredText"(): string
 public "randomResult"(): boolean
 public "getGrade"(): $Percentage$Grade
@@ -2206,10 +2206,10 @@ public "takeChance"(arg0: $Random$Type): boolean
 public "toFraction"(): float
 public static "min"<T extends $Comparable<(T)>>(arg0: $Percentage$Type, arg1: $Percentage$Type): $Percentage
 public static "max"<T extends $Comparable<(T)>>(arg0: $Percentage$Type, arg1: $Percentage$Type): $Percentage
-public "isLessThan"(arg0: $Percentage$Type): boolean
 public "isLessOrEqualTo"(arg0: $Percentage$Type): boolean
 public "isGreaterThan"(arg0: $Percentage$Type): boolean
 public "isGreaterOrEqualTo"(arg0: $Percentage$Type): boolean
+public "isLessThan"(arg0: $Percentage$Type): boolean
 get "grade"(): $Percentage$Grade
 }
 /**
@@ -2251,7 +2251,6 @@ export type $ServerCommand$Task_ = $ServerCommand$Task$Type;
 declare module "packages/com/endertech/common/$IntBounds" {
 import {$CommonMath$Interpolation, $CommonMath$Interpolation$Type} from "packages/com/endertech/common/$CommonMath$Interpolation"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
-import {$Random, $Random$Type} from "packages/java/util/$Random"
 import {$IBounds, $IBounds$Type} from "packages/com/endertech/common/$IBounds"
 import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 import {$Spliterator, $Spliterator$Type} from "packages/java/util/$Spliterator"
@@ -2265,34 +2264,32 @@ static readonly "INTEGER_POSITIVE": $IntBounds
 constructor(arg0: integer, arg1: integer)
 constructor(arg0: integer)
 
-public static "between"(arg0: integer, arg1: integer): $IntBounds
 public "equals"(arg0: any): boolean
 public "length"(): integer
 public "toString"(): string
 public "hashCode"(): integer
 public "iterator"(): $Iterator<(integer)>
-public static "of"(arg0: $IBounds$Type<(any)>): $IntBounds
 public static "of"(arg0: integer): $IntBounds
+public static "of"(arg0: $IBounds$Type<(any)>): $IntBounds
 public "offset"(arg0: integer): $IntBounds
 public "reduce"(arg0: integer): $IntBounds
-public "getMin"(): integer
-public "randomBetween"(arg0: $Random$Type): integer
+public static "between"(arg0: integer, arg1: integer): $IntBounds
 public "interpolateUp"(arg0: float): integer
 public "interpolateDown"(arg0: float): integer
 public "interpolationFactor"(arg0: integer): float
-public "extend"(arg0: integer): $IntBounds
+public "fit"(arg0: $IBounds$Type<(integer)>): $IntBounds
+public "getMax"(): integer
 public "encloses"(arg0: integer): boolean
-public "center"(): integer
+public "extend"(arg0: integer): $IntBounds
 public "within"(arg0: $IBounds$Type<(integer)>): boolean
 public "corners"(arg0: integer): boolean
 public "enclose"(arg0: integer): integer
-public "unite"(arg0: $IBounds$Type<(integer)>): $IntBounds
 public "randomFits"(arg0: integer): boolean
 public "interpolateTo"(arg0: $IBounds$Type<(integer)>): $CommonMath$Interpolation<(integer)>
 public "spliterator"(): $Spliterator<(integer)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 [Symbol.iterator](): IterableIterator<integer>;
-get "min"(): integer
+get "max"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2427,8 +2424,8 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $AbstractForgeMod$Type)
 
-public "modify"(arg0: $Holder$Type<($Biome$Type)>, arg1: $BiomeModifier$Phase$Type, arg2: $ModifiableBiomeInfo$BiomeInfo$Builder$Type): void
 public "loadFeatures"(): void
+public "modify"(arg0: $Holder$Type<($Biome$Type)>, arg1: $BiomeModifier$Phase$Type, arg2: $ModifiableBiomeInfo$BiomeInfo$Builder$Type): void
 public "codec"(): $Codec<(any)>
 public "generateAt"(arg0: $WorldGenLevel$Type, arg1: $ChunkPos$Type, arg2: $Random$Type): boolean
 }
@@ -2498,11 +2495,11 @@ readonly "fileHelper": $ExistingFileHelper
 
 constructor(arg0: $AbstractForgeMod$Type, arg1: $GatherDataEvent$Type)
 
+public "addBlockAndItemTags"(arg0: $DataCollector$BlockTagsProviderFactory$Type<(any)>, arg1: $DataCollector$ItemTagsProviderFactory$Type<(any)>): $DataCollector
 public "addLootTables"(arg0: $DataProvider$Factory$Type<(any)>): $DataCollector
 public "addBlockStates"(arg0: $DataCollector$ClientDataProviderFactory$Type<(any)>): $DataCollector
-public "addBlockAndItemTags"(arg0: $DataCollector$BlockTagsProviderFactory$Type<(any)>, arg1: $DataCollector$ItemTagsProviderFactory$Type<(any)>): $DataCollector
-public "addLanguageUS"(arg0: $DataCollector$LanguageProviderFactory$Type<(any)>): $DataCollector
 public "addItemModels"(arg0: $DataCollector$ClientDataProviderFactory$Type<(any)>): $DataCollector
+public "addLanguageUS"(arg0: $DataCollector$LanguageProviderFactory$Type<(any)>): $DataCollector
 public "addRecipes"(arg0: $DataProvider$Factory$Type<(any)>): $DataCollector
 }
 /**
@@ -2532,11 +2529,10 @@ static readonly "SECONDS_IN_HOUR": integer
 static readonly "SECONDS_IN_DAY": integer
 
 
-public static "days"(arg0: integer): $CommonTime$Interval
 public static "hours"(arg0: double): $CommonTime$Interval
 public static "minutes"(arg0: double): $CommonTime$Interval
 public static "seconds"(arg0: double): $CommonTime$Interval
-public "mult"(arg0: double): $CommonTime$Interval
+public static "days"(arg0: integer): $CommonTime$Interval
 public "add"(arg0: $CommonTime$Interval$Type): $CommonTime$Interval
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
@@ -2544,16 +2540,17 @@ public "compareTo"(arg0: $CommonTime$Interval$Type): integer
 public static "of"(arg0: $CommonTime$IMessure$Type, arg1: double): $CommonTime$Interval
 public "in"(arg0: $CommonTime$IMessure$Type): double
 public static "millis"(arg0: long): $CommonTime$Interval
-public "moreThan"(arg0: $CommonTime$Interval$Type): boolean
+public "mult"(arg0: double): $CommonTime$Interval
 public "lessThan"(arg0: $CommonTime$Interval$Type): boolean
+public "moreThan"(arg0: $CommonTime$Interval$Type): boolean
+public "inSeconds"(): double
+public "inMillis"(): long
 public static "leftTo"(arg0: $CommonTime$Stamp$Type): $CommonTime$Interval
 public static "passedFrom"(arg0: $CommonTime$Stamp$Type): $CommonTime$Interval
 public "inMinutes"(): double
 public "inHours"(): double
 public "inDays"(): double
 public "substract"(arg0: $CommonTime$Interval$Type): $CommonTime$Interval
-public "inSeconds"(): double
-public "inMillis"(): long
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2575,8 +2572,8 @@ import {$File, $File$Type} from "packages/java/io/$File"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$CharMatcher, $CharMatcher$Type} from "packages/com/google/common/base/$CharMatcher"
 import {$Property, $Property$Type} from "packages/com/endertech/minecraft/forge/configs/$Property"
-import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$List, $List$Type} from "packages/java/util/$List"
+import {$Class, $Class$Type} from "packages/java/lang/$Class"
 
 export class $Configuration {
 static readonly "CATEGORY_GENERAL": string
@@ -2590,82 +2587,82 @@ static readonly "ALLOWED_PROPERTIES": $CharMatcher
  "defaultEncoding": string
  "isChild": boolean
 
+constructor()
 constructor(arg0: $File$Type)
 constructor(arg0: $File$Type, arg1: string)
 constructor(arg0: $File$Type, arg1: string, arg2: boolean)
 constructor(arg0: $File$Type, arg1: boolean)
-constructor()
 
-public "getCategoryNames"(): $Set<(string)>
-public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string): string
-public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: $Pattern$Type): string
 public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: $Pattern$Type): string
+public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: $Pattern$Type): string
+public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string): string
+public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: (string)[]): string
 public "getString"(arg0: string, arg1: string, arg2: string, arg3: string): string
 public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: (string)[], arg5: string): string
-public "getString"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: (string)[]): string
+public "get"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: $Pattern$Type): $Property
 public "get"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: (string)[]): $Property
 public "get"(arg0: string, arg1: string, arg2: (string)[]): $Property
 public "get"(arg0: string, arg1: string, arg2: (string)[], arg3: string): $Property
-public "get"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: $Pattern$Type): $Property
+public "get"(arg0: string, arg1: string, arg2: (double)[], arg3: string, arg4: double, arg5: double): $Property
 public "get"(arg0: string, arg1: string, arg2: (double)[], arg3: string, arg4: double, arg5: double, arg6: boolean, arg7: integer): $Property
 public "get"(arg0: string, arg1: string, arg2: string): $Property
 public "get"(arg0: string, arg1: string, arg2: string, arg3: string): $Property
-public "get"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: $Pattern$Type): $Property
-public "get"(arg0: string, arg1: string, arg2: (boolean)[], arg3: string): $Property
+public "get"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: $Property$Type$Type): $Property
+public "get"(arg0: string, arg1: string, arg2: (boolean)[]): $Property
 public "get"(arg0: string, arg1: string, arg2: boolean): $Property
 public "get"(arg0: string, arg1: string, arg2: boolean, arg3: string): $Property
-public "get"(arg0: string, arg1: string, arg2: (boolean)[]): $Property
-public "get"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: $Property$Type$Type): $Property
 public "get"(arg0: string, arg1: string, arg2: string, arg3: string, arg4: $Property$Type$Type): $Property
 public "get"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: boolean, arg5: integer, arg6: $Pattern$Type): $Property
+public "get"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: $Pattern$Type): $Property
+public "get"(arg0: string, arg1: string, arg2: integer, arg3: string): $Property
 public "get"(arg0: string, arg1: string, arg2: integer, arg3: string, arg4: integer, arg5: integer): $Property
 public "get"(arg0: string, arg1: string, arg2: (integer)[]): $Property
 public "get"(arg0: string, arg1: string, arg2: (integer)[], arg3: string): $Property
-public "get"(arg0: string, arg1: string, arg2: (integer)[], arg3: string, arg4: integer, arg5: integer): $Property
-public "get"(arg0: string, arg1: string, arg2: integer, arg3: string): $Property
 public "get"(arg0: string, arg1: string, arg2: integer): $Property
 public "get"(arg0: string, arg1: string, arg2: (boolean)[], arg3: string, arg4: boolean, arg5: integer): $Property
+public "get"(arg0: string, arg1: string, arg2: (boolean)[], arg3: string): $Property
+public "get"(arg0: string, arg1: string, arg2: double, arg3: string): $Property
 public "get"(arg0: string, arg1: string, arg2: double, arg3: string, arg4: double, arg5: double): $Property
 public "get"(arg0: string, arg1: string, arg2: (double)[]): $Property
 public "get"(arg0: string, arg1: string, arg2: (double)[], arg3: string): $Property
-public "get"(arg0: string, arg1: string, arg2: (double)[], arg3: string, arg4: double, arg5: double): $Property
-public "get"(arg0: string, arg1: string, arg2: double): $Property
 public "get"(arg0: string, arg1: string, arg2: (integer)[], arg3: string, arg4: integer, arg5: integer, arg6: boolean, arg7: integer): $Property
-public "get"(arg0: string, arg1: string, arg2: double, arg3: string): $Property
+public "get"(arg0: string, arg1: string, arg2: double): $Property
+public "get"(arg0: string, arg1: string, arg2: (integer)[], arg3: string, arg4: integer, arg5: integer): $Property
 public "toString"(): string
-public "getBoolean"(arg0: string, arg1: string, arg2: boolean, arg3: string): boolean
 public "getBoolean"(arg0: string, arg1: string, arg2: boolean, arg3: string, arg4: string): boolean
+public "getBoolean"(arg0: string, arg1: string, arg2: boolean, arg3: string): boolean
 public "getInt"(arg0: string, arg1: string, arg2: integer, arg3: integer, arg4: integer, arg5: string, arg6: string): integer
 public "getInt"(arg0: string, arg1: string, arg2: integer, arg3: integer, arg4: integer, arg5: string): integer
 public "getFloat"(arg0: string, arg1: string, arg2: float, arg3: float, arg4: float, arg5: string): float
 public "getFloat"(arg0: string, arg1: string, arg2: float, arg3: float, arg4: float, arg5: string, arg6: string): float
 public "load"(): void
 public "save"(): void
-public "setCategoryConfigEntryClass"(arg0: string, arg1: $Class$Type<(any)>): $Configuration
-public "setCategoryRequiresWorldRestart"(arg0: string, arg1: boolean): $Configuration
-public "setCategoryRequiresMcRestart"(arg0: string, arg1: boolean): $Configuration
-public "getCategory"(arg0: string): $ConfigCategory
-public "getStringList"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: (string)[]): (string)[]
-public "getStringList"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: (string)[], arg5: string): (string)[]
-public "getStringList"(arg0: string, arg1: string, arg2: (string)[], arg3: string): (string)[]
-public "getConfigFile"(): $File
+public "getCategoryNames"(): $Set<(string)>
+public "hasCategory"(arg0: string): boolean
 public "getDefinedConfigVersion"(): string
 public "getLoadedConfigVersion"(): string
-public "hasCategory"(arg0: string): boolean
-public "removeCategory"(arg0: $ConfigCategory$Type): void
-public "setCategoryComment"(arg0: string, arg1: string): $Configuration
-public "addCustomCategoryComment"(arg0: string, arg1: string): void
-public "setCategoryLanguageKey"(arg0: string, arg1: string): $Configuration
-public "setCategoryPropertyOrder"(arg0: string, arg1: $List$Type<(string)>): $Configuration
 public "renameProperty"(arg0: string, arg1: string, arg2: string): boolean
 public "moveProperty"(arg0: string, arg1: string, arg2: string): boolean
 public "copyCategoryProps"(arg0: $Configuration$Type, arg1: (string)[]): void
-public "hasKey"(arg0: string, arg1: string): boolean
+public "getConfigFile"(): $File
+public "getStringList"(arg0: string, arg1: string, arg2: (string)[], arg3: string): (string)[]
+public "getStringList"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: (string)[]): (string)[]
+public "getStringList"(arg0: string, arg1: string, arg2: (string)[], arg3: string, arg4: (string)[], arg5: string): (string)[]
+public "getCategory"(arg0: string): $ConfigCategory
+public "setCategoryLanguageKey"(arg0: string, arg1: string): $Configuration
+public "addCustomCategoryComment"(arg0: string, arg1: string): void
+public "removeCategory"(arg0: $ConfigCategory$Type): void
+public "setCategoryComment"(arg0: string, arg1: string): $Configuration
+public "setCategoryPropertyOrder"(arg0: string, arg1: $List$Type<(string)>): $Configuration
+public "setCategoryConfigEntryClass"(arg0: string, arg1: $Class$Type<(any)>): $Configuration
+public "setCategoryRequiresWorldRestart"(arg0: string, arg1: boolean): $Configuration
+public "setCategoryRequiresMcRestart"(arg0: string, arg1: boolean): $Configuration
 public "hasChanged"(): boolean
+public "hasKey"(arg0: string, arg1: string): boolean
 get "categoryNames"(): $Set<(string)>
-get "configFile"(): $File
 get "definedConfigVersion"(): string
 get "loadedConfigVersion"(): string
+get "configFile"(): $File
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2721,12 +2718,12 @@ public static "valueOf"(arg0: string): $IEmitter$Type
 public static "getByName"(arg0: string): $Optional<($IEmitter$Type)>
 public "isBlock"(): boolean
 public "isFuel"(): boolean
-public "isTile"(): boolean
 public "isEntity"(): boolean
+public "isTile"(): boolean
 get "block"(): boolean
 get "fuel"(): boolean
-get "tile"(): boolean
 get "entity"(): boolean
+get "tile"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2787,9 +2784,9 @@ readonly "name": string
 
 
 public "size"(arg0: integer, arg1: integer): T
-public "vanilla"(): T
 public static "overworld"(arg0: string): $Deposit$Properties<(any)>
 public "rarity"(arg0: integer): T
+public "vanilla"(): T
 public "ores"(...arg0: (string)[]): T
 public static "nether"(arg0: string): $Deposit$Properties<(any)>
 public static "deposit"(arg0: string): $Deposit$Properties<(any)>
@@ -2839,8 +2836,8 @@ export class $BlockStatesSet extends $AbstractSet<($BlockState)> {
 
 constructor()
 
-public "add"(arg0: $UnitId$Type): boolean
 public "add"(arg0: $BlockState$Type): boolean
+public "add"(arg0: $UnitId$Type): boolean
 public "remove"(arg0: any): boolean
 public "clear"(): void
 public "isEmpty"(): boolean
@@ -2849,9 +2846,9 @@ public "iterator"(): $Iterator<($BlockState)>
 public "contains"(arg0: any): boolean
 public "addAll"(arg0: $Collection$Type<(any)>): boolean
 public "removeAll"(arg0: $Collection$Type<(any)>): boolean
+public "getBlocksWithAllStates"(): $Collection<($Block)>
 public "getFirstFor"(arg0: $Block$Type): $Optional<($BlockState)>
 public "hasAllStates"(arg0: $Block$Type): boolean
-public "getBlocksWithAllStates"(): $Collection<($Block)>
 public static "parseFrom"(arg0: (string)[]): $BlockStatesSet
 public "addAllFor"(arg0: $Block$Type): boolean
 public static "copyOf"<E>(arg0: $Collection$Type<(any)>): $Set<(E)>
@@ -2907,21 +2904,21 @@ readonly "source": $CommandSourceStack
 constructor(arg0: $CommandContext$Type<($CommandSourceStack$Type)>)
 
 public "getEntity"(): $Entity
-public "getLevel"(): $ServerLevel
-public "getArgument"<V>(arg0: string, arg1: $Class$Type<(V)>): V
-public "sendMessage"(arg0: string): void
-public "sendMessage"(arg0: $ServerCommand$Msg$Type): void
-public "getBlockPos"(): $BlockPos
 public "rayTraceBlockBeingLookedAt"(arg0: boolean): $Optional<($BlockHitResult)>
-public "setReachDistance"(arg0: float): void
+public "getBlockPos"(): $BlockPos
+public "sendMessage"(arg0: $ServerCommand$Msg$Type): void
+public "sendMessage"(arg0: string): void
+public "getArgument"<V>(arg0: string, arg1: $Class$Type<(V)>): V
+public "getLevel"(): $ServerLevel
+public "getTargetEntityInfo"(arg0: boolean, arg1: boolean, arg2: $Optional$Type<($Predicate$Type<(string)>)>): $Optional<($Pair<($Entity), ($ServerCommand$Msg)>)>
 public "getTargetBlockInfo"(arg0: boolean): $Optional<($Pair<($BlockPos), ($ServerCommand$Msg)>)>
 public "getTargetTileInfo"(arg0: $Predicate$Type<(string)>, arg1: boolean): $Optional<($Pair<($BlockPos), ($ServerCommand$Msg)>)>
-public "getTargetEntityInfo"(arg0: boolean, arg1: boolean, arg2: $Optional$Type<($Predicate$Type<(string)>)>): $Optional<($Pair<($Entity), ($ServerCommand$Msg)>)>
 public "getTargetFluidInfo"(arg0: boolean): $Optional<($Pair<($BlockPos), ($ServerCommand$Msg)>)>
 public "getHeldItemInfo"(arg0: $InteractionHand$Type, arg1: boolean): $Optional<($Pair<($Item), ($ServerCommand$Msg)>)>
+public "setReachDistance"(arg0: float): void
 get "entity"(): $Entity
-get "level"(): $ServerLevel
 get "blockPos"(): $BlockPos
+get "level"(): $ServerLevel
 set "reachDistance"(value: float)
 }
 /**
@@ -2972,8 +2969,8 @@ export class $RelatedUnit$Properties<T extends $RelatedUnit$Properties<(T)>> ext
 public static "of"(): $RelatedUnit$Properties<(any)>
 public "id"(arg0: string): T
 public "id"(arg0: $UnitId$Type): T
-public "metadata"(arg0: string): T
 public "emptyToEnumId"(arg0: $Enum$Type<(any)>, arg1: boolean): T
+public "metadata"(arg0: string): T
 public "enumId"(arg0: string): T
 public "metaAll"(): T
 }
@@ -2997,8 +2994,8 @@ export class $AbstractParsableList implements $IReloadableData {
 
 constructor(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: (string)[])
 
-public "addDefaultValues"(...arg0: (string)[]): void
 public "loadData"(): void
+public "addDefaultValues"(...arg0: (string)[]): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3023,10 +3020,10 @@ readonly "dest": $IBounds<(T)>
 
 constructor(arg0: $IBounds$Type<(T)>, arg1: $IBounds$Type<(T)>)
 
-public static "down"(arg0: float, arg1: $FloatBounds$Type): float
-public static "down"(arg0: float, arg1: $IntBounds$Type): integer
 public static "up"(arg0: float, arg1: $FloatBounds$Type): float
 public static "up"(arg0: float, arg1: $IntBounds$Type): integer
+public static "down"(arg0: float, arg1: $FloatBounds$Type): float
+public static "down"(arg0: float, arg1: $IntBounds$Type): integer
 public "backward"(arg0: T): T
 public static "backward"(arg0: float, arg1: float, arg2: float): float
 public "straight"(arg0: T): T
@@ -3224,19 +3221,19 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $AbstractForgeMod$Type)
 
-public "tryGenerateDeferredDeposits"(arg0: $WorldGenLevel$Type, arg1: $ChunkPos$Type, arg2: $Random$Type): boolean
-public "modify"(arg0: $Holder$Type<($Biome$Type)>, arg1: $BiomeModifier$Phase$Type, arg2: $ModifiableBiomeInfo$BiomeInfo$Builder$Type): void
 public "tryGenerateNewDeposits"(arg0: $WorldGenLevel$Type, arg1: $ChunkPos$Type, arg2: $Random$Type): boolean
 public "findDepositBy"(arg0: string): $Optional<($Deposit)>
 public "createVanillaDeposit"(arg0: $Path$Type, arg1: string, arg2: $DepositSample$Type, arg3: float, arg4: (string)[]): $Deposit
-public "createCustomDeposit"(arg0: $Path$Type, arg1: string, arg2: $DepositSample$Type, arg3: float, arg4: (string)[]): $Deposit
 public "createCustomDeposit"(arg0: $Path$Type, arg1: string, arg2: $Deposit$Size$Type, arg3: $Deposit$Altitude$Type, arg4: integer, arg5: (string)[]): $Deposit
+public "createCustomDeposit"(arg0: $Path$Type, arg1: string, arg2: $DepositSample$Type, arg3: float, arg4: (string)[]): $Deposit
 public "createCustomDeposit"(arg0: $Path$Type, arg1: string, arg2: $Deposit$Size$Type, arg3: $Deposit$Altitude$Type, arg4: integer, arg5: (string)[], arg6: (string)[]): $Deposit
 public "createVanillaNetherDeposit"(arg0: $Path$Type, arg1: string, arg2: $Deposit$Size$Type, arg3: integer, arg4: boolean, arg5: (string)[]): $Deposit
-public "getDeposits"(): $List<($Deposit)>
 public "loadDeposits"(): void
+public "getDeposits"(): $List<($Deposit)>
 public "removeDeposit"(arg0: $Deposit$Type): boolean
 public "getConfigsDir"(): $Path
+public "modify"(arg0: $Holder$Type<($Biome$Type)>, arg1: $BiomeModifier$Phase$Type, arg2: $ModifiableBiomeInfo$BiomeInfo$Builder$Type): void
+public "tryGenerateDeferredDeposits"(arg0: $WorldGenLevel$Type, arg1: $ChunkPos$Type, arg2: $Random$Type): boolean
 public "codec"(): $Codec<(any)>
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "isOreBlock"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
@@ -3263,22 +3260,22 @@ import {$Class, $Class$Type} from "packages/java/lang/$Class"
 
 export interface $IHaveConfig {
 
- "getConfig"(): $UnitConfig
  "getClassCategory"(arg0: string): string
  "getClassCategory"(): string
  "expandClassCategory"(arg0: string, arg1: string): string
  "expandClassCategory"(arg0: string): string
+ "getConfig"(): $UnitConfig
  "saveConfig"(): void
 
-(): $UnitConfig
+(arg0: $Class$Type<(any)>, arg1: string): string
 }
 
 export namespace $IHaveConfig {
 function getClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 function getClassCategory(arg0: $Class$Type<(any)>): string
 function expandCategory(arg0: string, arg1: string): string
-function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string, arg2: string): string
+function expandClassCategory(arg0: $Class$Type<(any)>, arg1: string): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3391,17 +3388,17 @@ export class $Connection {
 
 constructor(arg0: string, arg1: $AbstractForgeMod$RequiredSide$Type)
 
-public "sendToPlayer"<MSG>(arg0: MSG, arg1: $ServerPlayer$Type): void
-public "sendToAllObservingChunk"<MSG>(arg0: MSG, arg1: $LevelChunk$Type): void
+public "getServerPlayers"(): $List<($ServerPlayer)>
+public "sendToAllInDimension"<MSG>(arg0: MSG, arg1: $DimensionId$Type): void
 public "sendToAllInChunk"<MSG>(arg0: MSG, arg1: $ChunkLoc$Type): void
-public "toVanillaPacket"<MSG>(arg0: MSG, arg1: $NetworkDirection$Type): $Packet<(any)>
-public "sendToServer"<MSG>(arg0: MSG): void
 public "sendToAllAround"<MSG>(arg0: MSG, arg1: $PacketDistributor$TargetPoint$Type): void
 public "sendToAllAround"<MSG>(arg0: MSG, arg1: $ServerLevelAccessor$Type, arg2: $BlockPos$Type, arg3: integer): void
-public "sendToAllInDimension"<MSG>(arg0: MSG, arg1: $DimensionId$Type): void
-public "getServerPlayers"(): $List<($ServerPlayer)>
-public static "acceptMissingIf"(arg0: boolean): $Predicate<(string)>
+public "sendToAllObservingChunk"<MSG>(arg0: MSG, arg1: $LevelChunk$Type): void
+public "sendToPlayer"<MSG>(arg0: MSG, arg1: $ServerPlayer$Type): void
 public "registerNetMessage"<MSG extends $ForgeNetMsg<(MSG)>>(arg0: MSG): void
+public "toVanillaPacket"<MSG>(arg0: MSG, arg1: $NetworkDirection$Type): $Packet<(any)>
+public "sendToServer"<MSG>(arg0: MSG): void
+public static "acceptMissingIf"(arg0: boolean): $Predicate<(string)>
 public "sendToAll"<MSG>(arg0: MSG): void
 get "serverPlayers"(): $List<($ServerPlayer)>
 }
@@ -3459,12 +3456,12 @@ readonly "replaceableBlockId": $UnitId
 static readonly "DIM_LIST_SYNTAX": string
 
 
-public static "findByName"(arg0: string): $Optional<($DimensionId)>
-public static "readFrom"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: string, arg4: (string)[]): $List<($DimensionId)>
 public static "values"(): ($Dimensions)[]
 public static "valueOf"(arg0: string): $Dimensions
-public static "from"(arg0: $UnitConfig$Type, arg1: string, arg2: string): $CommonCollect$BlackWhiteList<($DimensionId)>
 public static "from"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: (string)[], arg4: (string)[]): $CommonCollect$BlackWhiteList<($DimensionId)>
+public static "from"(arg0: $UnitConfig$Type, arg1: string, arg2: string): $CommonCollect$BlackWhiteList<($DimensionId)>
+public static "findByName"(arg0: string): $Optional<($DimensionId)>
+public static "readFrom"(arg0: $UnitConfig$Type, arg1: string, arg2: string, arg3: string, arg4: (string)[]): $List<($DimensionId)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3600,8 +3597,8 @@ constructor(arg0: $AbstractForgeMod$Type)
 public "modify"(arg0: $Holder$Type<($Biome$Type)>, arg1: $BiomeModifier$Phase$Type, arg2: $ModifiableBiomeInfo$BiomeInfo$Builder$Type): void
 public "codec"(): $Codec<(any)>
 public "unloadOres"(): void
-public "generateAt"(arg0: $WorldGenLevel$Type, arg1: $ChunkPos$Type, arg2: $Random$Type): boolean
 public "loadOres"(): void
+public "generateAt"(arg0: $WorldGenLevel$Type, arg1: $ChunkPos$Type, arg2: $Random$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3622,8 +3619,8 @@ import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/ne
 import {$ForgeNetMsg$IReader, $ForgeNetMsg$IReader$Type} from "packages/com/endertech/minecraft/forge/network/$ForgeNetMsg$IReader"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$ForgeNetMsg$IWriter, $ForgeNetMsg$IWriter$Type} from "packages/com/endertech/minecraft/forge/network/$ForgeNetMsg$IWriter"
-import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$LogicalSide, $LogicalSide$Type} from "packages/net/minecraftforge/fml/$LogicalSide"
 
 export class $ForgeNetMsg<MSG extends $ForgeNetMsg<(MSG)>> {
@@ -3632,11 +3629,11 @@ constructor()
 
 public "decode"(arg0: $FriendlyByteBuf$Type): MSG
 public "encode"(arg0: MSG, arg1: $FriendlyByteBuf$Type): void
-public "handle"(arg0: $Level$Type, arg1: $Player$Type): void
 public "handle"(arg0: MSG, arg1: $Supplier$Type<($NetworkEvent$Context$Type)>): void
+public "handle"(arg0: $Level$Type, arg1: $Player$Type): void
 public "create"(): MSG
-public "getSide"(arg0: $NetworkEvent$Context$Type): $LogicalSide
 public "getClientPlayer"(): $Player
+public "getSide"(arg0: $NetworkEvent$Context$Type): $LogicalSide
 public static "addFieldHandler"<T>(arg0: $Class$Type<(T)>, arg1: $ForgeNetMsg$IReader$Type<(T)>, arg2: $ForgeNetMsg$IWriter$Type<(T)>): void
 public "getPlayer"(arg0: $NetworkEvent$Context$Type): $Player
 get "clientPlayer"(): $Player

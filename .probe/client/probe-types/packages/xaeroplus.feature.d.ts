@@ -27,8 +27,8 @@ import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
 
 export interface $CustomMapProcessor {
 
- "xaeroPlus$getCurrentDimensionActualDimSignal"(): $ThreadLocal<(boolean)>
  "xaeroPlus$getLeafRegionActualDimSignal"(): $ThreadLocal<(boolean)>
+ "xaeroPlus$getCurrentDimensionActualDimSignal"(): $ThreadLocal<(boolean)>
 }
 
 export namespace $CustomMapProcessor {

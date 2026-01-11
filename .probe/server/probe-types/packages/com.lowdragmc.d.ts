@@ -17,25 +17,25 @@ constructor(name: string)
 constructor(name: string, isCollapse: boolean)
 
 public "init"(width: integer): void
-public "setConfiguratorContainer"(configuratorContainer: $IConfiguratorContainer$Type): void
-public "computeHeight"(): void
 public "setCollapse"(collapse: boolean): void
 public "setCanCollapse"(canCollapse: boolean): void
+public "setConfiguratorContainer"(configuratorContainer: $IConfiguratorContainer$Type): void
+public "computeHeight"(): void
 public "addConfigurator"(index: integer, configurator: $Configurator$Type): void
 public "removeConfigurator"(configurator: $Configurator$Type): void
 public "removeAllConfigurators"(): void
 public "getConfigurators"(): $List<($Configurator)>
-public "addConfigurators"(...configurators: ($Configurator$Type)[]): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "addConfigurators"(...configurators: ($Configurator$Type)[]): void
 public "isCollapse"(): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
-set "configuratorContainer"(value: $IConfiguratorContainer$Type)
 set "collapse"(value: boolean)
 set "canCollapse"(value: boolean)
+set "configuratorContainer"(value: $IConfiguratorContainer$Type)
 get "configurators"(): $List<($Configurator)>
 get "collapse"(): boolean
 }
@@ -65,32 +65,31 @@ export class $ItemStackTransfer implements $IItemTransfer, $ITagSerializable<($C
 
 constructor()
 constructor(stack: $ItemStack$Type)
-constructor(size: integer)
 constructor(stacks: $NonNullList$Type<($ItemStack$Type)>)
+constructor(size: integer)
 
 public "setSize"(size: integer): void
 public "copy"(): $ItemStackTransfer
-public "getOnContentsChanged"(): $Runnable
-public "setOnContentsChanged"(onContentsChanged: $Runnable$Type): void
-public "getSlots"(): integer
-public "setFilter"(filter: $Function$Type<($ItemStack$Type), (boolean)>): void
-public "createSnapshot"(): any
+public "onContentsChanged"(): void
+public "onContentsChanged"(slot: integer): void
+public "restoreFromSnapshot"(snapshot: any): void
 public "getStackInSlot"(slot: integer): $ItemStack
 public "extractItem"(slot: integer, amount: integer, simulate: boolean, notifyChanges: boolean): $ItemStack
 public "getSlotLimit"(slot: integer): integer
 public "isItemValid"(slot: integer, stack: $ItemStack$Type): boolean
 public "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
-public "serializeNBT"(): $CompoundTag
+public "createSnapshot"(): any
 public "deserializeNBT"(nbt: $CompoundTag$Type): void
-public "onContentsChanged"(slot: integer): void
-public "onContentsChanged"(): void
-public "restoreFromSnapshot"(snapshot: any): void
+public "setFilter"(filter: $Function$Type<($ItemStack$Type), (boolean)>): void
+public "getOnContentsChanged"(): $Runnable
+public "setOnContentsChanged"(onContentsChanged: $Runnable$Type): void
+public "getSlots"(): integer
 public "insertItem"(slot: integer, stack: $ItemStack$Type, simulate: boolean, notifyChanges: boolean): $ItemStack
 public "extractItem"(slot: integer, amount: integer, simulate: boolean): $ItemStack
 public "insertItem"(slot: integer, stack: $ItemStack$Type, simulate: boolean): $ItemStack
 set "size"(value: integer)
-get "slots"(): integer
 set "filter"(value: $Function$Type<($ItemStack$Type), (boolean)>)
+get "slots"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -141,16 +140,16 @@ import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui
 
 export interface $IGuiTexture extends $IConfigurable {
 
- "rotate"(degree: float): $IGuiTexture
  "setColor"(color: integer): $IGuiTexture
  "scale"(scale: float): $IGuiTexture
  "transform"(xOffset: integer, yOffset: integer): $IGuiTexture
  "copy"(): $IGuiTexture
- "draw"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float, arg4: float, arg5: integer, arg6: integer): void
+ "rotate"(degree: float): $IGuiTexture
  "drawSubArea"(graphics: $GuiGraphics$Type, x: float, y: float, width: float, height: float, drawnU: float, drawnV: float, drawnWidth: float, drawnHeight: float): void
  "createPreview"(father: $ConfiguratorGroup$Type): void
  "setUIResource"(texturesResource: $Resource$Type<($IGuiTexture$Type)>): void
  "buildConfigurator"(father: $ConfiguratorGroup$Type): void
+ "draw"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float, arg4: float, arg5: integer, arg6: integer): void
  "updateTick"(): void
  "name"(): string
  "group"(): string
@@ -159,7 +158,7 @@ export interface $IGuiTexture extends $IConfigurable {
  "getChatComponent"(): $Component
  "isLDLRegister"(): boolean
 
-(degree: float): $IGuiTexture
+(color: integer): $IGuiTexture
 }
 
 export namespace $IGuiTexture {
@@ -188,28 +187,28 @@ import {$IFluidTransfer, $IFluidTransfer$Type} from "packages/com/lowdragmc/lowd
 export interface $IFluidStorage extends $IFluidTransfer {
 
  "getCapacity"(): long
- "getFluidInTank"(tank: integer): $FluidStack
- "isFluidValid"(arg0: $FluidStack$Type): boolean
- "isFluidValid"(tank: integer, stack: $FluidStack$Type): boolean
  "getFluidAmount"(): long
  "getTankCapacity"(tank: integer): long
  "setFluidInTank"(tank: integer, fluidStack: $FluidStack$Type): void
+ "isFluidValid"(tank: integer, stack: $FluidStack$Type): boolean
+ "isFluidValid"(arg0: $FluidStack$Type): boolean
+ "getFluidInTank"(tank: integer): $FluidStack
  "getFluid"(): $FluidStack
  "getTanks"(): integer
  "setFluid"(arg0: $FluidStack$Type): void
- "drain"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): $FluidStack
- "drain"(resource: $FluidStack$Type, simulate: boolean): $FluidStack
- "drain"(maxDrain: long, simulate: boolean, notifyChanges: boolean): $FluidStack
- "drain"(maxDrain: long, simulate: boolean): $FluidStack
- "drain"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): $FluidStack
+ "fill"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): long
  "fill"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): long
  "fill"(resource: $FluidStack$Type, simulate: boolean): long
- "fill"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): long
- "createSnapshot"(): any
- "supportsFill"(arg0: integer): boolean
- "supportsDrain"(arg0: integer): boolean
+ "drain"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): $FluidStack
+ "drain"(resource: $FluidStack$Type, simulate: boolean): $FluidStack
+ "drain"(maxDrain: long, simulate: boolean): $FluidStack
+ "drain"(maxDrain: long, simulate: boolean, notifyChanges: boolean): $FluidStack
+ "drain"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): $FluidStack
  "onContentsChanged"(): void
  "restoreFromSnapshot"(arg0: any): void
+ "supportsFill"(arg0: integer): boolean
+ "supportsDrain"(arg0: integer): boolean
+ "createSnapshot"(): any
 }
 
 export namespace $IFluidStorage {
@@ -267,37 +266,14 @@ import {$StyleManager, $StyleManager$Type} from "packages/com/lowdragmc/lowdragl
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$StyledLine, $StyledLine$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/$StyledLine"
 import {$ILanguageDefinition, $ILanguageDefinition$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/language/$ILanguageDefinition"
-import {$FoldingManager, $FoldingManager$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/language/$FoldingManager"
 import {$Cursor, $Cursor$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/$Cursor"
+import {$FoldingManager, $FoldingManager$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/language/$FoldingManager"
 
 export class $CodeEditor {
 
 constructor()
 
 public "getDocument"(): $Document
-public "setCursorLine"(line: integer): void
-public "setCursorColumn"(column: integer): void
-public "cutSelection"(): string
-public "replaceSelection"(text: string): void
-public "getSyntaxParser"(): $SyntaxParser
-public "getStyleManager"(): $StyleManager
-public "getFoldingManager"(): $FoldingManager
-public "getVisibleLinesCache"(): $List<($StyledLine)>
-public "getStyledLines"(): $List<($StyledLine)>
-public "setIndentString"(indentString: string): void
-/**
- * Sets the formatter to unformatted text
- */
-public "setLanguageDefinitionUnformatted"(): void
-public "getLines"(): $List<(string)>
-public "enter"(): void
-public "getCursor"(): $Cursor
-/**
- * Sets the formatter to use the provided languageDef.
- * Use with any of `EditorLanguages.`, or with `new EditorLanguageDefinition(...)`.
- */
-public "setLanguageDefinition"(languageDefinition: $ILanguageDefinition$Type): void
-public "clearSelection"(): void
 public "getVisibleStyledLines"(): $List<($StyledLine)>
 public "startSelection"(): void
 public "isSelecting"(): boolean
@@ -315,31 +291,54 @@ public "moveCursorStart"(): void
 public "moveCursorEnd"(): void
 public "isSelectionValid"(): boolean
 public "getSelection"(): $Selection
-public "setCursor"(line: integer, column: integer): void
+public "clearSelection"(): void
+/**
+ * Sets the formatter to use the provided languageDef.
+ * Use with any of `EditorLanguages.`, or with `new EditorLanguageDefinition(...)`.
+ */
+public "setLanguageDefinition"(languageDefinition: $ILanguageDefinition$Type): void
+public "getCursor"(): $Cursor
+public "getLines"(): $List<(string)>
+public "enter"(): void
+/**
+ * Sets the formatter to unformatted text
+ */
+public "setLanguageDefinitionUnformatted"(): void
+public "setCursorLine"(line: integer): void
+public "setCursorColumn"(column: integer): void
+public "cutSelection"(): string
+public "replaceSelection"(text: string): void
+public "getSyntaxParser"(): $SyntaxParser
+public "getStyleManager"(): $StyleManager
+public "getFoldingManager"(): $FoldingManager
+public "getStyledLines"(): $List<($StyledLine)>
+public "getVisibleLinesCache"(): $List<($StyledLine)>
+public "setIndentString"(indentString: string): void
 public "setCursor"(cursor: $Cursor$Type): void
-public "backspace"(): void
+public "setCursor"(line: integer, column: integer): void
 public "insertText"(text: string): void
 public "selectAll"(): void
+public "backspace"(): void
 public "setLines"(lines: $List$Type<(string)>): void
 public "deleteText"(): void
 public "pasteText"(text: string): void
 get "document"(): $Document
-set "cursorLine"(value: integer)
-set "cursorColumn"(value: integer)
-get "syntaxParser"(): $SyntaxParser
-get "styleManager"(): $StyleManager
-get "foldingManager"(): $FoldingManager
-get "visibleLinesCache"(): $List<($StyledLine)>
-get "styledLines"(): $List<($StyledLine)>
-set "indentString"(value: string)
-get "lines"(): $List<(string)>
-get "cursor"(): $Cursor
-set "languageDefinition"(value: $ILanguageDefinition$Type)
 get "visibleStyledLines"(): $List<($StyledLine)>
 get "selecting"(): boolean
 get "indentString"(): string
 get "selectionValid"(): boolean
 get "selection"(): $Selection
+set "languageDefinition"(value: $ILanguageDefinition$Type)
+get "cursor"(): $Cursor
+get "lines"(): $List<(string)>
+set "cursorLine"(value: integer)
+set "cursorColumn"(value: integer)
+get "syntaxParser"(): $SyntaxParser
+get "styleManager"(): $StyleManager
+get "foldingManager"(): $FoldingManager
+get "styledLines"(): $List<($StyledLine)>
+get "visibleLinesCache"(): $List<($StyledLine)>
+set "indentString"(value: string)
 set "cursor"(value: $Cursor$Type)
 set "lines"(value: $List$Type<(string)>)
 }
@@ -413,12 +412,12 @@ export class $Editor$HistoryItem extends $Record {
 
 constructor(name: string, date: $CompoundTag$Type, source: any)
 
-public "date"(): $CompoundTag
 public "name"(): string
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "source"(): any
+public "date"(): $CompoundTag
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -452,16 +451,16 @@ export class $FluidTransferHelperImpl extends $FluidTransferHelper {
 
 constructor()
 
-public static "exportToTarget"(source: $IFluidTransfer$Type, maxAmount: integer, filter: $Predicate$Type<($FluidStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
+public static "getFluidTransfer"(itemTransfer: $IItemTransfer$Type, slot: integer): $IFluidTransfer
+public static "getFluidTransfer"(player: $Player$Type, screenHandler: $AbstractContainerMenu$Type): $IFluidTransfer
+public static "getFluidTransfer"(player: $Player$Type, hand: $InteractionHand$Type): $IFluidTransfer
+public static "getFluidTransfer"(player: $Player$Type, slot: integer): $IFluidTransfer
+public static "getFluidTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IFluidTransfer
 public static "importToTarget"(target: $IFluidTransfer$Type, maxAmount: integer, filter: $Predicate$Type<($FluidStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
+public static "exportToTarget"(source: $IFluidTransfer$Type, maxAmount: integer, filter: $Predicate$Type<($FluidStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
 public static "toFluidHandler"(fluidTransfer: $IFluidTransfer$Type): $IFluidHandler
 public static "toFluidTransfer"(handler: $IFluidHandler$Type): $IFluidTransfer
 public static "getContainerItem"(copyContainer: $ItemStackTransfer$Type, handler: $IFluidTransfer$Type): $ItemStack
-public static "getFluidTransfer"(player: $Player$Type, slot: integer): $IFluidTransfer
-public static "getFluidTransfer"(player: $Player$Type, screenHandler: $AbstractContainerMenu$Type): $IFluidTransfer
-public static "getFluidTransfer"(player: $Player$Type, hand: $InteractionHand$Type): $IFluidTransfer
-public static "getFluidTransfer"(itemTransfer: $IItemTransfer$Type, slot: integer): $IFluidTransfer
-public static "getFluidTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IFluidTransfer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -522,28 +521,28 @@ constructor(position: $Position$Type, size: $Size$Type)
 constructor(position: $Position$Type)
 constructor(x: integer, y: integer, width: integer, height: integer)
 
-public "isSelected"(): boolean
-public "setOverlayUnderWidgets"(overlayUnderWidgets: boolean): void
-public "isOverlayUnderWidgets"(): boolean
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "onUnSelected"(): void
 public "setOnUnSelected"(onUnSelected: $Consumer$Type<($SelectableWidgetGroup$Type)>): $SelectableWidgetGroup
-public "allowSelected"(mouseX: double, mouseY: double, button: integer): boolean
-public "setSelectedTexture"(selectedTexture: $IGuiTexture$Type): $SelectableWidgetGroup
 public "setSelectedTexture"(border: integer, color: integer): $SelectableWidgetGroup
+public "setSelectedTexture"(selectedTexture: $IGuiTexture$Type): $SelectableWidgetGroup
 public "setOnSelected"(onSelected: $Consumer$Type<($SelectableWidgetGroup$Type)>): $SelectableWidgetGroup
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "setOverlayUnderWidgets"(overlayUnderWidgets: boolean): void
+public "isOverlayUnderWidgets"(): boolean
+public "allowSelected"(mouseX: double, mouseY: double, button: integer): boolean
+public "isSelected"(): boolean
 public "getPrefab"<T>(): T
 public "setPrefab"(prefab: any): void
 public "onSelected"(): void
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
-get "selected"(): boolean
+set "selectedTexture"(value: $IGuiTexture$Type)
 set "overlayUnderWidgets"(value: boolean)
 get "overlayUnderWidgets"(): boolean
-set "selectedTexture"(value: $IGuiTexture$Type)
+get "selected"(): boolean
 get "prefab"(): T
 set "prefab"(value: any)
 }
@@ -595,19 +594,17 @@ static readonly "ITEM_SLOT_TEXTURE": $ResourceBorderTexture
  "drawHoverOverlay": boolean
  "drawHoverTips": boolean
 
-constructor(inventory: $Container$Type, slotIndex: integer, xPosition: integer, yPosition: integer)
 constructor(itemHandler: $IItemTransfer$Type, slotIndex: integer, xPosition: integer, yPosition: integer)
-constructor(itemHandler: $IItemTransfer$Type, slotIndex: integer, xPosition: integer, yPosition: integer, canTakeItems: boolean, canPutItems: boolean)
-constructor(inventory: $Container$Type, slotIndex: integer, xPosition: integer, yPosition: integer, canTakeItems: boolean, canPutItems: boolean)
+constructor(inventory: $Container$Type, slotIndex: integer, xPosition: integer, yPosition: integer)
 constructor()
+constructor(inventory: $Container$Type, slotIndex: integer, xPosition: integer, yPosition: integer, canTakeItems: boolean, canPutItems: boolean)
+constructor(itemHandler: $IItemTransfer$Type, slotIndex: integer, xPosition: integer, yPosition: integer, canTakeItems: boolean, canPutItems: boolean)
 
 public "setSize"(size: $Size$Type): void
-public "getHandler"(): $Slot
 public "getItem"(): $ItemStack
+public "getHandler"(): $Slot
 public "isEnabled"(): boolean
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "getTooltipTexts"(): $List<($Component)>
 public "setBackgroundTexture"(backgroundTexture: $IGuiTexture$Type): $SlotWidget
 public "setContainerSlot"(inventory: $Container$Type, slotIndex: integer): $SlotWidget
 public "setHandlerSlot"(itemHandler: $IItemTransfer$Type, slotIndex: integer): $SlotWidget
@@ -633,30 +630,32 @@ public "setIngredientIO"(ingredientIO: $IngredientIO$Type): $SlotWidget
 public "setXEIChance"(XEIChance: float): $SlotWidget
 public "getLastItem"(): $ItemStack
 public "setHandlerSlot"(itemHandler: $IItemHandlerModifiable$Type, slot: integer): void
-public "getTooltipTexts"(): $List<($Component)>
-public "initTemplate"(): void
-public "getXEIIngredientOverMouse"(mouseX: double, mouseY: double): any
-public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
 public "updateScreen"(): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "initTemplate"(): void
+public "getXEIIngredientOverMouse"(mouseX: double, mouseY: double): any
+public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
 public "detectAndSendChanges"(): void
 public "canMergeSlot"(stack: $ItemStack$Type): boolean
-public "setItem"(stack: $ItemStack$Type): void
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
 public "setItem"(stack: $ItemStack$Type, notify: boolean): void
-public "setGui"(gui: $ModularUI$Type): void
+public "setItem"(stack: $ItemStack$Type): void
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "slotClick"(dragType: integer, clickTypeIn: $ClickType$Type, player: $Player$Type): $ItemStack
+public "setGui"(gui: $ModularUI$Type): void
 public "self"(): $Widget
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public "handleDragging"(dragging: any): boolean
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "handleDragging"(dragging: any): boolean
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "kjs$self"(): $SlotWidget
@@ -667,9 +666,10 @@ public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
 set "size"(value: $Size$Type)
-get "handler"(): $Slot
 get "item"(): $ItemStack
+get "handler"(): $Slot
 get "enabled"(): boolean
+get "tooltipTexts"(): $List<($Component)>
 set "backgroundTexture"(value: $IGuiTexture$Type)
 get "fullTooltipTexts"(): $List<($Component)>
 get "xEICurrentIngredient"(): any
@@ -686,7 +686,6 @@ set "itemHook"(value: $Function$Type<($ItemStack$Type), ($ItemStack$Type)>)
 set "ingredientIO"(value: $IngredientIO$Type)
 set "xEIChance"(value: float)
 get "lastItem"(): $ItemStack
-get "tooltipTexts"(): $List<($Component)>
 set "item"(value: $ItemStack$Type)
 set "gui"(value: $ModularUI$Type)
 get "registerUI"(): $LDLRegister
@@ -768,16 +767,16 @@ export class $Document {
 
 constructor()
 
-public "getLineCount"(): integer
-public "getLines"(): $List<(string)>
 public "getLine"(line: integer): string
+public "getLines"(): $List<(string)>
+public "getLineCount"(): integer
 public "setLine"(index: integer, text: string): void
 public "insertText"(line: integer, column: integer, text: string): void
 public "deleteText"(line: integer, column: integer, length: integer): void
 public "insertLine"(index: integer, text: string): void
 public "deleteLine"(index: integer): void
-get "lineCount"(): integer
 get "lines"(): $List<(string)>
+get "lineCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -862,10 +861,9 @@ export class $ShaderTexture extends $TransformTexture {
 
 constructor()
 
+public "setColor"(color: integer): $ShaderTexture
 public "dispose"(): void
 public static "clearCache"(): void
-public "bindTexture"(samplerName: string, id: integer): void
-public "bindTexture"(samplerName: string, location: $ResourceLocation$Type): void
 public "updateShader"(location: $ResourceLocation$Type): void
 public "updateRawShader"(rawShader: string): void
 public "getRawShader"(): string
@@ -874,8 +872,11 @@ public static "createRawShader"(rawShader: string): $ShaderTexture
 public "setUniformCache"(uniformCache: $Consumer$Type<($UniformCache$Type)>): $ShaderTexture
 public "setResolution"(resolution: float): $ShaderTexture
 public "getResolution"(): float
+public "bindTexture"(samplerName: string, id: integer): void
+public "bindTexture"(samplerName: string, location: $ResourceLocation$Type): void
 public static "serializeWrapper"(texture: $IGuiTexture$Type): $CompoundTag
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IGuiTexture
+set "color"(value: integer)
 get "rawShader"(): string
 set "uniformCache"(value: $Consumer$Type<($UniformCache$Type)>)
 set "resolution"(value: float)
@@ -928,9 +929,9 @@ readonly "height": integer
 
 constructor(width: integer, height: integer)
 
+public "subtract"(other: $Size$Type): $Size
 public "getWidth"(): integer
 public "getHeight"(): integer
-public "subtract"(other: $Size$Type): $Size
 public static "add"(position: $Position$Type): $Size
 public "add"(other: $Size$Type): $Size
 public "add"(width: integer, height: integer): $Size
@@ -1065,27 +1066,27 @@ static readonly "FLUID_SLOT_TEXTURE": $ResourceBorderTexture
 constructor()
 constructor(fluidTank: $IFluidTransfer$Type, tank: integer, x: integer, y: integer, width: integer, height: integer, phantomFluidGetter: $Supplier$Type<($FluidStack$Type)>, phantomFluidSetter: $Consumer$Type<($FluidStack$Type)>)
 
+public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "getPhantomTargets"(ingredient: any): $List<($Target)>
+public "setAllowClickFilled"(v: boolean): $PhantomFluidWidget
+public static "checkJEIIngredient"(ingredient: any): any
+public "detectAndSendChanges"(): void
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "setPhantomFluidGetter"(phantomFluidGetter: $Supplier$Type<($FluidStack$Type)>): void
 public "setPhantomFluidSetter"(phantomFluidSetter: $Consumer$Type<($FluidStack$Type)>): void
 public "getLastPhantomStack"(): $FluidStack
-public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public static "checkJEIIngredient"(ingredient: any): any
-public "getPhantomTargets"(ingredient: any): $List<($Target)>
-public "setAllowClickFilled"(v: boolean): $PhantomFluidWidget
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "detectAndSendChanges"(): void
 public static "drainFrom"(ingredient: any): $FluidStack
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
 public "initTemplate"(): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+set "allowClickFilled"(value: boolean)
 set "phantomFluidGetter"(value: $Supplier$Type<($FluidStack$Type)>)
 set "phantomFluidSetter"(value: $Consumer$Type<($FluidStack$Type)>)
 get "lastPhantomStack"(): $FluidStack
-set "allowClickFilled"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1127,9 +1128,8 @@ readonly "widgets": $List<($Widget)>
 constructor(resource: $Resource$Type<(T)>, panel: $ResourcePanel$Type)
 
 public "getResource"(): $Resource<(T)>
-public "getWidgets"(): $Map<($Either<(string), ($File)>), (C)>
-public "getSelected"(): $Either<(string), ($File)>
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "updateScreen"(): void
+public "setOnRemove"(onRemove: $Consumer$Type<($Either$Type<(string), ($File$Type)>)>): $ResourceContainer<(T), (C)>
 public "getWidgetSupplier"(): $Function<($Either<(string), ($File)>), (C)>
 public "setCanRemove"(canRemove: $Predicate$Type<($Either$Type<(string), ($File$Type)>)>): $ResourceContainer<(T), (C)>
 public "setCanGlobalChange"(canGlobalChange: $Predicate$Type<($Either$Type<(string), ($File$Type)>)>): $ResourceContainer<(T), (C)>
@@ -1139,23 +1139,23 @@ public "setRenamePredicate"(renamePredicate: $Predicate$Type<(string)>): $Resour
 public "setWidgetSupplier"(widgetSupplier: $Function$Type<($Either$Type<(string), ($File$Type)>), (C)>): $ResourceContainer<(T), (C)>
 public "setDragging"<D>(draggingMapping: $Function$Type<($Either$Type<(string), ($File$Type)>), (D)>, draggingRenderer: $TriFunction$Type<($Either$Type<(string), ($File$Type)>), (D), ($Position$Type), ($IGuiTexture$Type)>): $ResourceContainer<(T), (C)>
 public "setDragging"<D>(draggingMapping: $Function$Type<($Either$Type<(string), ($File$Type)>), (D)>, draggingRenderer: $Function$Type<(D), ($IGuiTexture$Type)>): $ResourceContainer<(T), (C)>
-public "setOnRemove"(onRemove: $Consumer$Type<($Either$Type<(string), ($File$Type)>)>): $ResourceContainer<(T), (C)>
-public "updateScreen"(): void
-public "initWidget"(): void
+public "getSelected"(): $Either<(string), ($File)>
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "getWidgets"(): $Map<($Either<(string), ($File)>), (C)>
+public "setOnAdd"(onAdd: $Function$Type<(string), (T)>): $ResourceContainer<(T), (C)>
+public "getPanel"(): $ResourcePanel
 public "setOnEdit"(onEdit: $Consumer$Type<($Either$Type<(string), ($File$Type)>)>): $ResourceContainer<(T), (C)>
+public "initWidget"(): void
 public "reBuild"(): void
 public "setCanEdit"(canEdit: $Predicate$Type<($Either$Type<(string), ($File$Type)>)>): $ResourceContainer<(T), (C)>
 public "setOnMenu"(onMenu: $BiConsumer$Type<($Either$Type<(string), ($File$Type)>), ($TreeBuilder$Menu$Type)>): $ResourceContainer<(T), (C)>
-public "getPanel"(): $ResourcePanel
-public "setOnAdd"(onAdd: $Function$Type<(string), (T)>): $ResourceContainer<(T), (C)>
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 get "resource"(): $Resource<(T)>
-get "widgets"(): $Map<($Either<(string), ($File)>), (C)>
-get "selected"(): $Either<(string), ($File)>
+set "onRemove"(value: $Consumer$Type<($Either$Type<(string), ($File$Type)>)>)
 get "widgetSupplier"(): $Function<($Either<(string), ($File)>), (C)>
 set "canRemove"(value: $Predicate$Type<($Either$Type<(string), ($File$Type)>)>)
 set "canGlobalChange"(value: $Predicate$Type<($Either$Type<(string), ($File$Type)>)>)
@@ -1163,12 +1163,13 @@ set "onGlobalChange"(value: $Consumer$Type<($Either$Type<(string), ($File$Type)>
 set "nameSupplier"(value: $Supplier$Type<(string)>)
 set "renamePredicate"(value: $Predicate$Type<(string)>)
 set "widgetSupplier"(value: $Function$Type<($Either$Type<(string), ($File$Type)>), (C)>)
-set "onRemove"(value: $Consumer$Type<($Either$Type<(string), ($File$Type)>)>)
+get "selected"(): $Either<(string), ($File)>
+get "widgets"(): $Map<($Either<(string), ($File)>), (C)>
+set "onAdd"(value: $Function$Type<(string), (T)>)
+get "panel"(): $ResourcePanel
 set "onEdit"(value: $Consumer$Type<($Either$Type<(string), ($File$Type)>)>)
 set "canEdit"(value: $Predicate$Type<($Either$Type<(string), ($File$Type)>)>)
 set "onMenu"(value: $BiConsumer$Type<($Either$Type<(string), ($File$Type)>), ($TreeBuilder$Menu$Type)>)
-get "panel"(): $ResourcePanel
-set "onAdd"(value: $Function$Type<(string), (T)>)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1257,7 +1258,6 @@ readonly "screenExecutor": $Executor
 
 constructor(modularUI: $ModularUI$Type, windowId: integer)
 
-public "isButtonPressed"(button: integer): boolean
 public "handleWidgetUpdate"(packet: $SPacketUIWidgetUpdate$Type): void
 public "setHoverTooltip"(tooltipTexts: $List$Type<($Component$Type)>, tooltipStack: $ItemStack$Type, tooltipFont: $Font$Type, tooltipComponent: $TooltipComponent$Type): void
 public "setDraggingElement"(element: any, renderer: $IGuiTexture$Type): boolean
@@ -1276,17 +1276,18 @@ public "superKeyReleased"(keyCode: integer, scanCode: integer, modifiers: intege
 public "superCharTyped"(codePoint: character, modifiers: integer): boolean
 public "superMouseMoved"(mouseX: double, mouseY: double): void
 public "getGuiExtraAreas"(): $List<($Rect2i)>
-public "removed"(): void
-public "render"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "mouseClicked"(mouseX: double, mouseY: double, pButton: integer): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, pButton: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, pButton: integer, pDragX: double, pDragY: double): boolean
+public "isButtonPressed"(button: integer): boolean
 public "mouseScrolled"(mouseX: double, mouseY: double, wheelDelta: double): boolean
 public "keyReleased"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "charTyped"(codePoint: character, modifiers: integer): boolean
 public "mouseMoved"(mouseX: double, mouseY: double): void
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "init"(): void
+public "render"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "removed"(): void
+public "mouseClicked"(mouseX: double, mouseY: double, pButton: integer): boolean
+public "mouseReleased"(mouseX: double, mouseY: double, pButton: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, pButton: integer, pDragX: double, pDragY: double): boolean
 public "containerTick"(): void
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "draggingElement"(): any
@@ -1356,50 +1357,50 @@ readonly "holder": $IUIHolder
 readonly "entityPlayer": $Player
 
 constructor(size: $Size$Type, holder: $IUIHolder$Type, entityPlayer: $Player$Type)
-constructor(holder: $IUIHolder$Type, entityPlayer: $Player$Type)
 constructor(width: integer, height: integer, holder: $IUIHolder$Type, entityPlayer: $Player$Type)
 constructor(mainGroup: $WidgetGroup$Type, holder: $IUIHolder$Type, entityPlayer: $Player$Type)
+constructor(holder: $IUIHolder$Type, entityPlayer: $Player$Type)
 
 public "setSize"(width: integer, height: integer): void
 public "getWidth"(): integer
 public "getHeight"(): integer
-public "setFullScreen"(): void
-public "getFlatWidgetCollection"(): $List<($Widget)>
-public "toScreenCoords"(widgetRect: $Rectangle$Type): $Rectangle
-public "isFullScreen"(): boolean
-public "getFlatVisibleWidgetCollection"(): $List<($Widget)>
-public "background"(...textures: ($IGuiTexture$Type)[]): $ModularUI
-public "getTickCount"(): long
+public "getModularUIGui"(): $ModularUIGuiContainer
 public "registerCloseListener"(runnable: $Runnable$Type): void
 public "getScreenWidth"(): integer
 public "getScreenHeight"(): integer
 public "removeNativeSlot"(slotHandle: $Slot$Type): void
 public "addNativeSlot"(slotHandle: $Slot$Type, slotWidget: $SlotWidget$Type): void
 public "getModularUIContainer"(): $ModularUIContainer
-public "getModularUIGui"(): $ModularUIGuiContainer
-public "getFirstWidgetById"(regex: string): $Widget
-public "getWidgetsById"(regex: string): $List<($Widget)>
-public "initWidgets"(): void
 public "setModularUIGui"(modularUIGuiContainer: $ModularUIGuiContainer$Type): void
 public "updateScreenSize"(screenWidth: integer, screenHeight: integer): void
+public "getFirstWidgetById"(regex: string): $Widget
+public "getWidgetsById"(regex: string): $List<($Widget)>
+public "getTickCount"(): long
+public "initWidgets"(): void
 public "setModularUIContainer"(container: $ModularUIContainer$Type): void
 public "triggerCloseListeners"(): void
+public "background"(...textures: ($IGuiTexture$Type)[]): $ModularUI
+public "getFlatVisibleWidgetCollection"(): $List<($Widget)>
+public "setFullScreen"(): void
+public "getFlatWidgetCollection"(): $List<($Widget)>
+public "toScreenCoords"(widgetRect: $Rectangle$Type): $Rectangle
+public "isFullScreen"(): boolean
 public "widget"(widget: $Widget$Type): $ModularUI
 public "getGuiLeft"(): integer
 public "getGuiTop"(): integer
 public "getSlotMap"(): $HashMap<($Slot), ($SlotWidget)>
 get "width"(): integer
 get "height"(): integer
-get "flatWidgetCollection"(): $List<($Widget)>
-get "fullScreen"(): boolean
-get "flatVisibleWidgetCollection"(): $List<($Widget)>
-get "tickCount"(): long
+get "modularUIGui"(): $ModularUIGuiContainer
 get "screenWidth"(): integer
 get "screenHeight"(): integer
 get "modularUIContainer"(): $ModularUIContainer
-get "modularUIGui"(): $ModularUIGuiContainer
 set "modularUIGui"(value: $ModularUIGuiContainer$Type)
+get "tickCount"(): long
 set "modularUIContainer"(value: $ModularUIContainer$Type)
+get "flatVisibleWidgetCollection"(): $List<($Widget)>
+get "flatWidgetCollection"(): $List<($Widget)>
+get "fullScreen"(): boolean
 get "guiLeft"(): integer
 get "guiTop"(): integer
 get "slotMap"(): $HashMap<($Slot), ($SlotWidget)>
@@ -1427,12 +1428,12 @@ export class $StyledLine extends $Record {
 
 constructor(line: integer, text: $List$Type<($StyledText$Type)>)
 
-public "text"(): $List<($StyledText)>
 public "getWidth"(font: $Font$Type, style: $Style$Type): integer
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "line"(): integer
+public "text"(): $List<($StyledText)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1462,14 +1463,16 @@ public "getHeight"(): integer
 public static "of"(position: $Position$Type, size: $Size$Type): $Rect
 public "expand"(x: integer, y: integer): $Rect
 public "expand"(expand: integer): $Rect
+public "getHeightCenter"(): integer
+public "getWidthCenter"(): integer
 public "toLeftCenter"(): $Position
 public "toDownCenter"(): $Position
 public "toRightDown"(): $Position
 public "toRightCenter"(): $Position
 public "horizontalExpand"(x: integer): $Rect
 public "horizontalExpand"(left: integer, right: integer): $Rect
-public "verticalExpand"(up: integer, down: integer): $Rect
 public "verticalExpand"(y: integer): $Rect
+public "verticalExpand"(up: integer, down: integer): $Rect
 public "expandRight"(expand: integer): $Rect
 public "withLeftFixedWidth"(width: integer): $Rect
 public "withRightFixedWidth"(width: integer): $Rect
@@ -1477,8 +1480,6 @@ public "withUpFixedHeight"(height: integer): $Rect
 public "withDownFixedHeight"(height: integer): $Rect
 public "moveHorizontal"(delta: integer): $Rect
 public "moveVertical"(delta: integer): $Rect
-public "getHeightCenter"(): integer
-public "getWidthCenter"(): integer
 public static "ofRelative"(left: integer, width: integer, up: integer, height: integer): $Rect
 public static "ofAbsolute"(left: integer, right: integer, up: integer, down: integer): $Rect
 public "toLeftUp"(): $Position
@@ -1546,9 +1547,9 @@ import {$Tag, $Tag$Type} from "packages/net/minecraft/nbt/$Tag"
 import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$Either, $Either$Type} from "packages/com/mojang/datafixers/util/$Either"
 import {$ResourceContainer, $ResourceContainer$Type} from "packages/com/lowdragmc/lowdraglib/gui/editor/ui/resource/$ResourceContainer"
-import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 import {$StaticResource, $StaticResource$Type} from "packages/com/lowdragmc/lowdraglib/gui/editor/data/resource/$StaticResource"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
+import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Resource<T> {
 
@@ -1559,19 +1560,9 @@ public "name"(): string
 public "toString"(): string
 public "getResource"(key: $Either$Type<(string), ($File$Type)>): T
 public "merge"(resource: $Resource$Type<(T)>): void
-public "loadAndUpdateStaticResource"(): boolean
-public "getBuiltinResourceOrDefault"(key: string, defaultValue: T): T
-public "onLoad"(): void
-public "serialize"(arg0: T): $Tag
-public "allResources"(): $Stream<($Map$Entry<($Either<(string), ($File)>), (T)>)>
-public "deserialize"(arg0: $Tag$Type): T
-public "addResource"(key: $Either$Type<(string), ($File$Type)>, resource: T): void
-public "getResourceName"(key: $Either$Type<(string), ($File$Type)>): string
-public "serializeNBT"(): $CompoundTag
-public "deserializeNBT"(nbt: $CompoundTag$Type): void
 public "buildDefault"(): void
-public "getStaticResource"(): $StaticResource<(T)>
 public "getStaticResource"(file: $File$Type): T
+public "getStaticResource"(): $StaticResource<(T)>
 public "supportStaticResource"(): boolean
 public "removeBuiltinResource"(key: string): T
 public "removeStaticResource"(file: $File$Type): T
@@ -1591,6 +1582,16 @@ public "getStaticResourceSuffix"(): string
 public "getStaticResourceFile"(name: string): $File
 public "getBuiltinResources"(): $Map<(string), (T)>
 public "getStaticLocation"(): $File
+public "allResources"(): $Stream<($Map$Entry<($Either<(string), ($File)>), (T)>)>
+public "serializeNBT"(): $CompoundTag
+public "deserializeNBT"(nbt: $CompoundTag$Type): void
+public "getResourceName"(key: $Either$Type<(string), ($File$Type)>): string
+public "addResource"(key: $Either$Type<(string), ($File$Type)>, resource: T): void
+public "deserialize"(arg0: $Tag$Type): T
+public "onLoad"(): void
+public "serialize"(arg0: T): $Tag
+public "loadAndUpdateStaticResource"(): boolean
+public "getBuiltinResourceOrDefault"(key: string, defaultValue: T): T
 public "unLoad"(): void
 get "staticResource"(): $StaticResource<(T)>
 get "staticResourceSuffix"(): string
@@ -1624,11 +1625,11 @@ import {$Resources, $Resources$Type} from "packages/com/lowdragmc/lowdraglib/gui
 
 export interface $IConfigurableWidget extends $IConfigurable {
 
- "handleDragging"(dragging: any): boolean
  "initTemplate"(): void
  "serializeInnerNBT"(): $CompoundTag
  "serializeWrapper"(): $CompoundTag
  "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
+ "handleDragging"(dragging: any): boolean
  "widget"(): $Widget
  "canDragIn"(dragging: any): boolean
  "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -1642,11 +1643,11 @@ export interface $IConfigurableWidget extends $IConfigurable {
 
 export namespace $IConfigurableWidget {
 const CACHE: $Function<(string), ($AnnotationDetector$Wrapper<($LDLRegister), ($IConfigurableWidget)>)>
-function serializeNBT(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+function deserializeWrapper(tag: $CompoundTag$Type): $IConfigurableWidget
 function serializeNBT(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+function serializeNBT(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 function deserializeNBT(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 function deserializeNBT(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-function deserializeWrapper(tag: $CompoundTag$Type): $IConfigurableWidget
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1696,10 +1697,10 @@ import {$TreeBuilder$Menu, $TreeBuilder$Menu$Type} from "packages/com/lowdragmc/
 export class $MenuTab implements $ILDLRegister {
 
 
-public "serializeNBT"(): $CompoundTag
-public "deserializeNBT"(nbt: $CompoundTag$Type): void
 public static "registerMenuHook"(menuName: string, consumer: $BiConsumer$Type<($MenuTab$Type), ($TreeBuilder$Menu$Type)>): void
 public "createTabWidget"(): $Widget
+public "serializeNBT"(): $CompoundTag
+public "deserializeNBT"(nbt: $CompoundTag$Type): void
 public "appendMenu"(menu: $TreeBuilder$Menu$Type): $TreeBuilder$Menu
 public "name"(): string
 public "group"(): string
@@ -1747,33 +1748,33 @@ constructor(position: $Position$Type)
 constructor(x: integer, y: integer, width: integer, height: integer)
 constructor()
 
-public "isSelected"(): boolean
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "onUnSelected"(): void
 public "setOnUnSelected"(onUnSelected: $Consumer$Type<($DraggableWidgetGroup$Type)>): $DraggableWidgetGroup
 public "setOnStartDrag"(onStartDrag: $Consumer$Type<($DraggableWidgetGroup$Type)>): $DraggableWidgetGroup
 public "setOnDragging"(onDragging: $Consumer$Type<($DraggableWidgetGroup$Type)>): $DraggableWidgetGroup
 public "setOnEndDrag"(onEndDrag: $Consumer$Type<($DraggableWidgetGroup$Type)>): $DraggableWidgetGroup
-public "allowSelected"(mouseX: double, mouseY: double, button: integer): boolean
 public "setSelectedTexture"(selectedTexture: $IGuiTexture$Type): $DraggableWidgetGroup
 public "setSelectedTexture"(border: integer, color: integer): $DraggableWidgetGroup
 public "setOnSelected"(onSelected: $Consumer$Type<($DraggableWidgetGroup$Type)>): $DraggableWidgetGroup
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "allowSelected"(mouseX: double, mouseY: double, button: integer): boolean
+public "isSelected"(): boolean
 public "dragging"(mouseX: double, mouseY: double, deltaX: double, deltaY: double): boolean
 public "startDrag"(mouseX: double, mouseY: double): void
 public "endDrag"(mouseX: double, mouseY: double): void
 public "onSelected"(): void
 public "canDragOutRange"(): boolean
 public "allowDrag"(mouseX: double, mouseY: double, button: integer): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
-get "selected"(): boolean
 set "onStartDrag"(value: $Consumer$Type<($DraggableWidgetGroup$Type)>)
 set "onDragging"(value: $Consumer$Type<($DraggableWidgetGroup$Type)>)
 set "onEndDrag"(value: $Consumer$Type<($DraggableWidgetGroup$Type)>)
 set "selectedTexture"(value: $IGuiTexture$Type)
+get "selected"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1789,8 +1790,8 @@ export type $DraggableWidgetGroup_ = $DraggableWidgetGroup$Type;
 }}
 declare module "packages/com/lowdragmc/lowdraglib/client/renderer/$IRenderer" {
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$BakedModel, $BakedModel$Type} from "packages/net/minecraft/client/resources/model/$BakedModel"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
@@ -1804,15 +1805,11 @@ import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$Ra
 import {$MultiBufferSource, $MultiBufferSource$Type} from "packages/net/minecraft/client/renderer/$MultiBufferSource"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecraft/world/level/$BlockAndTintGetter"
-import {$BakedQuad, $BakedQuad$Type} from "packages/net/minecraft/client/renderer/block/model/$BakedQuad"
 import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlasSprite"
+import {$BakedQuad, $BakedQuad$Type} from "packages/net/minecraft/client/renderer/block/model/$BakedQuad"
 
 export interface $IRenderer {
 
- "render"(blockEntity: $BlockEntity$Type, partialTicks: float, stack: $PoseStack$Type, buffer: $MultiBufferSource$Type, combinedLight: integer, combinedOverlay: integer): void
- "useBlockLight"(stack: $ItemStack$Type): boolean
- "renderModel"(level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, side: $Direction$Type, rand: $RandomSource$Type): $List<($BakedQuad)>
- "registerEvent"(): void
  "onPrepareTextureAtlas"(atlasName: $ResourceLocation$Type, register: $Consumer$Type<($ResourceLocation$Type)>): void
  "isGlobalRenderer"(blockEntity: $BlockEntity$Type): boolean
  "getViewDistance"(): integer
@@ -1821,11 +1818,15 @@ export interface $IRenderer {
  "reBakeCustomQuads"(): boolean
  "reBakeCustomQuadsOffset"(): float
  "onAdditionalModel"(registry: $Consumer$Type<($ResourceLocation$Type)>): void
+ "useBlockLight"(stack: $ItemStack$Type): boolean
+ "renderModel"(level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, side: $Direction$Type, rand: $RandomSource$Type): $List<($BakedQuad)>
+ "registerEvent"(): void
+ "render"(blockEntity: $BlockEntity$Type, partialTicks: float, stack: $PoseStack$Type, buffer: $MultiBufferSource$Type, combinedLight: integer, combinedOverlay: integer): void
  "isRaw"(): boolean
  "renderItem"(stack: $ItemStack$Type, transformType: $ItemDisplayContext$Type, leftHand: boolean, poseStack: $PoseStack$Type, buffer: $MultiBufferSource$Type, combinedLight: integer, combinedOverlay: integer, model: $BakedModel$Type): void
  "hasTESR"(blockEntity: $BlockEntity$Type): boolean
- "useAO"(state: $BlockState$Type): boolean
  "useAO"(): boolean
+ "useAO"(state: $BlockState$Type): boolean
  "isGui3d"(): boolean
 }
 
@@ -1883,14 +1884,9 @@ export class $TreeListWidget<K, T> extends $Widget {
 
 constructor(xPosition: integer, yPosition: integer, width: integer, height: integer, root: $TreeNode$Type<(K), (T)>, onSelected: $Consumer$Type<($TreeNode$Type<(K), (T)>)>)
 
-public "setContentNameSupplier"(contentNameSupplier: $Function$Type<(T), (string)>): $TreeListWidget<(K), (T)>
-public "setLineHeight"(lineHeight: integer): $TreeListWidget<(K), (T)>
-public "setBackground"(background: $IGuiTexture$Type): $TreeListWidget<(K), (T)>
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "setContentIconSupplier"(contentIconSupplier: $Function$Type<(T), ($IGuiTexture$Type)>): $TreeListWidget<(K), (T)>
 public "canSelectNode"(canSelectNode: boolean): $TreeListWidget<(K), (T)>
 public "setOnDoubleClickLeaf"(onDoubleClickLeaf: $Consumer$Type<($TreeNode$Type<(K), (T)>)>): $TreeListWidget<(K), (T)>
-public "setOnSelected"(onSelected: $Consumer$Type<($TreeNode$Type<(K), (T)>)>): $TreeListWidget<(K), (T)>
 public "setNodeTexture"(nodeTexture: $IGuiTexture$Type): $TreeListWidget<(K), (T)>
 public "setLeafTexture"(leafTexture: $IGuiTexture$Type): $TreeListWidget<(K), (T)>
 public "setKeyIconSupplier"(keyIconSupplier: $Function$Type<(K), ($IGuiTexture$Type)>): $TreeListWidget<(K), (T)>
@@ -1898,17 +1894,22 @@ public "setKeyNameSupplier"(keyNameSupplier: $Function$Type<(K), (string)>): $Tr
 public "updateScreen"(): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
+public "setOnSelected"(onSelected: $Consumer$Type<($TreeNode$Type<(K), (T)>)>): $TreeListWidget<(K), (T)>
+public "setBackground"(background: $IGuiTexture$Type): $TreeListWidget<(K), (T)>
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "setContentNameSupplier"(contentNameSupplier: $Function$Type<(T), (string)>): $TreeListWidget<(K), (T)>
+public "setLineHeight"(lineHeight: integer): $TreeListWidget<(K), (T)>
 public "jumpTo"(path: $List$Type<(K)>): $TreeNode<(K), (T)>
-set "contentNameSupplier"(value: $Function$Type<(T), (string)>)
-set "lineHeight"(value: integer)
-set "background"(value: $IGuiTexture$Type)
 set "contentIconSupplier"(value: $Function$Type<(T), ($IGuiTexture$Type)>)
 set "onDoubleClickLeaf"(value: $Consumer$Type<($TreeNode$Type<(K), (T)>)>)
-set "onSelected"(value: $Consumer$Type<($TreeNode$Type<(K), (T)>)>)
 set "nodeTexture"(value: $IGuiTexture$Type)
 set "leafTexture"(value: $IGuiTexture$Type)
 set "keyIconSupplier"(value: $Function$Type<(K), ($IGuiTexture$Type)>)
 set "keyNameSupplier"(value: $Function$Type<(K), (string)>)
+set "onSelected"(value: $Consumer$Type<($TreeNode$Type<(K), (T)>)>)
+set "background"(value: $IGuiTexture$Type)
+set "contentNameSupplier"(value: $Function$Type<(T), (string)>)
+set "lineHeight"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2019,12 +2020,12 @@ readonly "color": integer
 
 public static "values"(): ($ColorPattern)[]
 public static "valueOf"(name: string): $ColorPattern
-public static "rainbowRectTexture"(border: integer): $ColorBorderTexture
-public static "rainbowRectTexture"(): $ColorRectTexture
-public static "generateRainbowColor"(tick: long): integer
-public static "generateRainbowColor"(): integer
 public "rectTexture"(): $ColorRectTexture
 public "borderTexture"(border: integer): $ColorBorderTexture
+public static "generateRainbowColor"(tick: long): integer
+public static "generateRainbowColor"(): integer
+public static "rainbowRectTexture"(border: integer): $ColorBorderTexture
+public static "rainbowRectTexture"(): $ColorRectTexture
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2111,24 +2112,24 @@ constructor(world: $Level$Type)
 
 public "clear"(): void
 public "getSize"(): $Vector3f
-public "removeBlock"(pos: $BlockPos$Type): $BlockInfo
-public "setParticleManager"(particleManager: $ParticleManager$Type): void
 public "setInnerBlockEntity"(pBlockEntity: $BlockEntity$Type): void
 public static "withUnsafeNBTDiscarded"(stack: $ItemStack$Type): $ItemStack
 public static "isUnsafeItemNBTKey"(name: string): boolean
 public "getAllEntities"(): $List<($Entity)>
 public "setRenderFilter"(renderFilter: $Predicate$Type<($BlockPos$Type)>): void
-public "getParticleManager"(): $ParticleManager
 public "getRenderedBlocks"(): $Map<($BlockPos), ($BlockInfo)>
+public "setParticleManager"(particleManager: $ParticleManager$Type): void
+public "getParticleManager"(): $ParticleManager
+public "removeBlock"(pos: $BlockPos$Type): $BlockInfo
 public "setBlock"(pos: $BlockPos$Type, state: $BlockState$Type, a: integer, b: integer): boolean
-public "getBiome"(pos: $BlockPos$Type): $Holder<($Biome)>
-public "getChunkSource"(): $ChunkSource
-public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
+public "getFluidState"(pPos: $BlockPos$Type): $FluidState
 public "setBlockEntity"(pBlockEntity: $BlockEntity$Type): void
 public "getEntity"(id: integer): $Entity
 public "tickWorld"(): void
-public "getFluidState"(pPos: $BlockPos$Type): $FluidState
 public "getBlockTint"(blockPos: $BlockPos$Type, colorResolver: $ColorResolver$Type): integer
+public "getBiome"(pos: $BlockPos$Type): $Holder<($Biome)>
+public "getChunkSource"(): $ChunkSource
+public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
 public "getBlockState"(pos: $BlockPos$Type): $BlockState
 public "addFreshEntity"(entity: $Entity$Type): boolean
 public "getMaxPos"(): $Vector3f
@@ -2139,14 +2140,14 @@ public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTa
 public static "traverseBlocks"<T, C>(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: C, arg3: $BiFunction$Type<(C), ($BlockPos$Type), (T)>, arg4: $Function$Type<(C), (T)>): T
 public static "create"(arg0: integer, arg1: integer): $LevelHeightAccessor
 get "size"(): $Vector3f
-set "particleManager"(value: $ParticleManager$Type)
 set "innerBlockEntity"(value: $BlockEntity$Type)
 get "allEntities"(): $List<($Entity)>
 set "renderFilter"(value: $Predicate$Type<($BlockPos$Type)>)
-get "particleManager"(): $ParticleManager
 get "renderedBlocks"(): $Map<($BlockPos), ($BlockInfo)>
-get "chunkSource"(): $ChunkSource
+set "particleManager"(value: $ParticleManager$Type)
+get "particleManager"(): $ParticleManager
 set "blockEntity"(value: $BlockEntity$Type)
+get "chunkSource"(): $ChunkSource
 get "maxPos"(): $Vector3f
 get "minPos"(): $Vector3f
 }
@@ -2189,19 +2190,19 @@ constructor(blockState: $BlockState$Type)
 constructor(blockState: $BlockState$Type, hasBlockEntity: boolean)
 
 public "apply"(world: $Level$Type, pos: $BlockPos$Type): void
-public "getBlockState"(): $BlockState
+public static "fromBlockState"(state: $BlockState$Type): $BlockInfo
 public "getBlockEntity"(level: $Level$Type, pos: $BlockPos$Type): $BlockEntity
 public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
 public "setBlockState"(blockState: $BlockState$Type): void
-public static "fromBlockState"(state: $BlockState$Type): $BlockInfo
 public "setItemStack"(itemStack: $ItemStack$Type): void
+public "getBlockState"(): $BlockState
 public "hasBlockEntity"(): boolean
-public "getItemStackForm"(): $ItemStack
-public "getItemStackForm"(level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): $ItemStack
 public "setHasBlockEntity"(hasBlockEntity: boolean): void
 public "setPostCreate"(postCreate: $Consumer$Type<($BlockEntity$Type)>): void
-public "setTag"(tag: $CompoundTag$Type): void
+public "getItemStackForm"(level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): $ItemStack
+public "getItemStackForm"(): $ItemStack
 public "clearBlockEntityCache"(): void
+public "setTag"(tag: $CompoundTag$Type): void
 public static "fromBlock"(block: $Block$Type): $BlockInfo
 public "deserializeNBT"(tag: $CompoundTag$Type): void
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -2211,11 +2212,11 @@ public "getRegisterUI"(): $LDLRegister
 public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
-get "blockState"(): $BlockState
 set "blockState"(value: $BlockState$Type)
 set "itemStack"(value: $ItemStack$Type)
-get "itemStackForm"(): $ItemStack
+get "blockState"(): $BlockState
 set "postCreate"(value: $Consumer$Type<($BlockEntity$Type)>)
+get "itemStackForm"(): $ItemStack
 set "tag"(value: $CompoundTag$Type)
 get "registerUI"(): $LDLRegister
 get "translateKey"(): string
@@ -2250,26 +2251,27 @@ constructor(imageLocation: $ResourceLocation$Type)
 
 public "getFrom"(): integer
 public "setColor"(color: integer): $AnimationTexture
+public "copy"(): $AnimationTexture
+public "getAnimation"(): integer
+public "createPreview"(father: $ConfiguratorGroup$Type): void
 public "setCellSize"(cellSize: integer): $AnimationTexture
 public "setAnimation"(animation: integer): $AnimationTexture
 public "setAnimation"(from: integer, to: integer): $AnimationTexture
 public "getCellSize"(): integer
-public "createPreview"(father: $ConfiguratorGroup$Type): void
-public "getAnimation"(): integer
-public "getColor"(): integer
 public "getTo"(): integer
-public "setTexture"(imageLocation: string): $AnimationTexture
+public "getColor"(): integer
 public "updateTick"(): void
+public "setTexture"(imageLocation: string): $AnimationTexture
 public static "serializeWrapper"(texture: $IGuiTexture$Type): $CompoundTag
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IGuiTexture
 get "from"(): integer
 set "color"(value: integer)
+get "animation"(): integer
 set "cellSize"(value: integer)
 set "animation"(value: integer)
 get "cellSize"(): integer
-get "animation"(): integer
-get "color"(): integer
 get "to"(): integer
+get "color"(): integer
 set "texture"(value: string)
 }
 /**
@@ -2296,20 +2298,20 @@ readonly "y": integer
 
 constructor(x: integer, y: integer)
 
-public "getX"(): integer
-public "getY"(): integer
 public "subtract"(other: $Position$Type): $Position
-public "add"(x: integer, y: integer): $Position
-public "add"(other: $Position$Type): $Position
 public "add"(size: $Size$Type): $Position
+public "add"(other: $Position$Type): $Position
+public "add"(x: integer, y: integer): $Position
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "of"(x: integer, y: integer): $Position
+public "getX"(): integer
+public "getY"(): integer
 public "vec2"(): $Vec2
-public "vector2f"(): $Vector2f
 public "addX"(x: integer): $Position
 public "addY"(y: integer): $Position
+public "vector2f"(): $Vector2f
 get "x"(): integer
 get "y"(): integer
 }
@@ -2384,7 +2386,6 @@ readonly "widgets": $List<($Widget)>
 constructor(xPosition: integer, yPosition: integer, nodeHeight: integer, root: $TreeNode$Type<(K), (T)>)
 
 public "close"(): void
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "setNodeTexture"(nodeTexture: $IGuiTexture$Type): $MenuWidget<(K), (T)>
 public "setLeafTexture"(leafTexture: $IGuiTexture$Type): $MenuWidget<(K), (T)>
 public "setNodeHoverTexture"(nodeHoverTexture: $IGuiTexture$Type): $MenuWidget<(K), (T)>
@@ -2393,14 +2394,15 @@ public "setKeyIconSupplier"(keyIconSupplier: $Function$Type<(K), ($IGuiTexture$T
 public "setKeyNameSupplier"(keyNameSupplier: $Function$Type<(K), (string)>): $MenuWidget<(K), (T)>
 public "setOnNodeClicked"(onNodeClicked: $Consumer$Type<($TreeNode$Type<(K), (T)>)>): $MenuWidget<(K), (T)>
 public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "setAutoClose"(autoClose: boolean): $MenuWidget<(K), (T)>
 public "initWidget"(): void
 public "mouseMoved"(mouseX: double, mouseY: double): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 set "nodeTexture"(value: $IGuiTexture$Type)
 set "leafTexture"(value: $IGuiTexture$Type)
 set "nodeHoverTexture"(value: $IGuiTexture$Type)
@@ -2450,26 +2452,26 @@ constructor(editor: $Editor$Type)
 public "setSize"(size: $Size$Type): void
 public "getToolBoxes"(): $List<($Widget)>
 public "getTabContainer"(): $TabContainer
-public "addNewToolBox"(name: string, texture: $ResourceTexture$Type, toolBoxSupplier: $Function$Type<($Size$Type), ($WidgetGroup$Type)>): void
+public "clearAllWidgets"(): void
 /**
  * 
  * @deprecated
  */
 public "addNewToolBox"(name: string, texture: $ResourceTexture$Type, toolBox: $WidgetGroup$Type): void
-public "clearAllWidgets"(): void
-public "hide"(): void
+public "addNewToolBox"(name: string, texture: $ResourceTexture$Type, toolBoxSupplier: $Function$Type<($Size$Type), ($WidgetGroup$Type)>): void
 public "hide"(animate: boolean): void
+public "hide"(): void
 public "show"(): void
 public "show"(animate: boolean): void
 public "isShow"(): boolean
-public "initWidget"(): void
 public "getEditor"(): $Editor
+public "initWidget"(): void
 public "setTitle"(title: string): void
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 set "size"(value: $Size$Type)
 get "toolBoxes"(): $List<($Widget)>
 get "tabContainer"(): $TabContainer
@@ -2551,11 +2553,11 @@ export class $SyntaxParser {
 
 constructor()
 
-public "getLanguageDefinition"(): $ILanguageDefinition
-public "parseLine"(lineText: string): $List<($Token)>
 public "setLanguageDefinition"(languageDefinition: $ILanguageDefinition$Type): void
-get "languageDefinition"(): $ILanguageDefinition
+public "parseLine"(lineText: string): $List<($Token)>
+public "getLanguageDefinition"(): $ILanguageDefinition
 set "languageDefinition"(value: $ILanguageDefinition$Type)
+get "languageDefinition"(): $ILanguageDefinition
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2617,24 +2619,24 @@ readonly "widgets": $List<($Widget)>
 constructor(editor: $Editor$Type, tabs: $List$Type<($ConfigPanel$Tab$Type)>)
 constructor(editor: $Editor$Type)
 
-public "onConfiguratorChangeUpdate"(tab: $ConfigPanel$Tab$Type, configurator: $Configurator$Type): void
-public "openConfigurator"(tab: $ConfigPanel$Tab$Type, configurable: $IConfigurable$Type): void
 public "clearAllConfigurators"(): void
 public "clearAllConfigurators"(tab: $ConfigPanel$Tab$Type): void
 public "computeLayout"(tab: $ConfigPanel$Tab$Type): void
+public "openConfigurator"(tab: $ConfigPanel$Tab$Type, configurable: $IConfigurable$Type): void
+public "onConfiguratorChangeUpdate"(tab: $ConfigPanel$Tab$Type, configurator: $Configurator$Type): void
 public "getPalette"(): $HsbColorWidget
+public "switchTag"(tab: $ConfigPanel$Tab$Type): void
+public "getEditor"(): $Editor
 public "reloadTabs"(tabs: $List$Type<($ConfigPanel$Tab$Type)>): void
 public "getFocus"(): $Map<($ConfigPanel$Tab), ($IConfigurable)>
-public "getEditor"(): $Editor
-public "switchTag"(tab: $ConfigPanel$Tab$Type): void
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 get "palette"(): $HsbColorWidget
-get "focus"(): $Map<($ConfigPanel$Tab), ($IConfigurable)>
 get "editor"(): $Editor
+get "focus"(): $Map<($ConfigPanel$Tab), ($IConfigurable)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2654,12 +2656,12 @@ export class $FoldableRegion {
 
 constructor(startLine: integer, endLine: integer)
 
-public "isCollapsed"(): boolean
 public "getStartLine"(): integer
+public "isCollapsed"(): boolean
 public "toggle"(): void
 public "getEndLine"(): integer
-get "collapsed"(): boolean
 get "startLine"(): integer
+get "collapsed"(): boolean
 get "endLine"(): integer
 }
 /**
@@ -2739,9 +2741,9 @@ constructor(fluidTank: $IFluidStorage$Type, x: integer, y: integer, width: integ
 constructor(fluidTank: $IFluidStorage$Type, x: integer, y: integer, allowClickContainerFilling: boolean, allowClickContainerEmptying: boolean)
 constructor()
 
+public "setClientSideWidget"(): $TankWidget
+public "getTooltipTexts"(): $List<($Component)>
 public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "setBackground"(background: $IGuiTexture$Type): $TankWidget
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "getFullTooltipTexts"(): $List<($Component)>
 public "getXEICurrentIngredient"(): any
 public "getIngredientIO"(): $IngredientIO
@@ -2754,8 +2756,9 @@ public "setChangeListener"(changeListener: $Runnable$Type): $TankWidget
 public "setOnAddedTooltips"(onAddedTooltips: $BiConsumer$Type<($TankWidget$Type), ($List$Type<($Component$Type)>)>): $TankWidget
 public "setIngredientIO"(ingredientIO: $IngredientIO$Type): $TankWidget
 public "setXEIChance"(XEIChance: float): $TankWidget
-public "setClientSideWidget"(): $TankWidget
-public "getTooltipTexts"(): $List<($Component)>
+public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "initTemplate"(): void
 public "getXEIIngredientOverMouse"(mouseX: double, mouseY: double): any
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -2770,25 +2773,24 @@ public "getLastFluidInTank"(): $FluidStack
 public "getLastTankCapacity"(): long
 public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
 public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
-public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "detectAndSendChanges"(): void
+public "setBackground"(background: $IGuiTexture$Type): $TankWidget
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "getFluid"(): $FluidStack
-public "setFluid"(fluidStack: $FluidStack$Type): $TankWidget
-public "setFluid"(fluidStack: $FluidStack$Type, notify: boolean): $TankWidget
-public "getTank"(): integer
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
+public "setFluid"(fluidStack: $FluidStack$Type, notify: boolean): $TankWidget
+public "setFluid"(fluidStack: $FluidStack$Type): $TankWidget
+public "getTank"(): integer
 public "self"(): $Widget
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public "handleDragging"(dragging: any): boolean
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "handleDragging"(dragging: any): boolean
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "name"(): string
@@ -2797,7 +2799,7 @@ public "getRegisterUI"(): $LDLRegister
 public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
-set "background"(value: $IGuiTexture$Type)
+get "tooltipTexts"(): $List<($Component)>
 get "fullTooltipTexts"(): $List<($Component)>
 get "xEICurrentIngredient"(): any
 get "ingredientIO"(): $IngredientIO
@@ -2809,7 +2811,6 @@ set "changeListener"(value: $Runnable$Type)
 set "onAddedTooltips"(value: $BiConsumer$Type<($TankWidget$Type), ($List$Type<($Component$Type)>)>)
 set "ingredientIO"(value: $IngredientIO$Type)
 set "xEIChance"(value: float)
-get "tooltipTexts"(): $List<($Component)>
 set "fillDirection"(value: $ProgressTexture$FillDirection$Type)
 set "fluidTank"(value: $IFluidStorage$Type)
 set "allowClickDrained"(value: boolean)
@@ -2818,6 +2819,7 @@ get "fluidTank"(): $IFluidTransfer
 set "showAmount"(value: boolean)
 get "lastFluidInTank"(): $FluidStack
 get "lastTankCapacity"(): long
+set "background"(value: $IGuiTexture$Type)
 get "fluid"(): $FluidStack
 set "fluid"(value: $FluidStack$Type)
 get "tank"(): integer
@@ -2882,15 +2884,15 @@ public "position"(position: $Position$Type): $Animation
 public "size"(size: $Size$Type): $Animation
 public "delay"(delay: long): $Animation
 public "getOnFinish"(): $Runnable
-public "appendOnFinish"(onFinish: $Runnable$Type): $Animation
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "onFinish"(onFinish: $Runnable$Type): $Animation
+public "appendOnFinish"(onFinish: $Runnable$Type): $Animation
 public "getWidget"(): $Widget
+public "onFinish"(onFinish: $Runnable$Type): $Animation
+public "onUpdate"(onUpdate: $FloatConsumer$Type): $Animation
 public "setWidget"(widget: $Widget$Type): $Animation
 public "isFinish"(): boolean
 public "ease"(ease: $IEase$Type): $Animation
-public "onUpdate"(onUpdate: $FloatConsumer$Type): $Animation
 get "widget"(): $Widget
 set "widget"(value: $Widget$Type)
 get "finish"(): boolean
@@ -2916,20 +2918,20 @@ readonly "name": string
 
 constructor(name: string)
 
-public "getPattern"(): string
 public "equals"(obj: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "test"(matcher: $Matcher$Type): boolean
+public "getPattern"(): string
 public "setPattern"(pattern: string): $TokenType
 public "hasPattern"(): boolean
 public "getMatcher"(): $Predicate<($Matcher)>
 public "setMatcher"(matcher: $Predicate$Type<($Matcher$Type)>): $TokenType
+public static "isEqual"<T>(arg0: any): $Predicate<($Matcher)>
 public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($Matcher)>
 public "negate"(): $Predicate<($Matcher)>
 public "and"(arg0: $Predicate$Type<(any)>): $Predicate<($Matcher)>
 public static "not"<T>(arg0: $Predicate$Type<(any)>): $Predicate<($Matcher)>
-public static "isEqual"<T>(arg0: any): $Predicate<($Matcher)>
 get "pattern"(): string
 set "pattern"(value: string)
 get "matcher"(): $Predicate<($Matcher)>
@@ -2969,10 +2971,6 @@ constructor()
 constructor(border: integer, color: integer)
 constructor(border: integer, color: $Color$Type)
 
-public "setLeftRadius"(radius: float): $ColorBorderTexture
-public "setRightRadius"(radius: float): $ColorBorderTexture
-public "setTopRadius"(radius: float): $ColorBorderTexture
-public "setBottomRadius"(radius: float): $ColorBorderTexture
 public "setLeftRadiusInner"(radius: float): $ColorBorderTexture
 public "setLeftRadiusOuter"(radius: float): $ColorBorderTexture
 public "setRightRadiusInner"(radius: float): $ColorBorderTexture
@@ -2989,14 +2987,14 @@ public "setRadiusLTOuter"(radiusLTOuter: float): void
 public "setRadiusLBOuter"(radiusLBOuter: float): void
 public "setRadiusRTOuter"(radiusRTOuter: float): void
 public "setRadiusRBOuter"(radiusRBOuter: float): void
-public "setBorder"(border: integer): $ColorBorderTexture
+public "setLeftRadius"(radius: float): $ColorBorderTexture
+public "setRightRadius"(radius: float): $ColorBorderTexture
+public "setTopRadius"(radius: float): $ColorBorderTexture
+public "setBottomRadius"(radius: float): $ColorBorderTexture
 public "setRadius"(radius: float): $ColorBorderTexture
+public "setBorder"(border: integer): $ColorBorderTexture
 public static "serializeWrapper"(texture: $IGuiTexture$Type): $CompoundTag
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IGuiTexture
-set "leftRadius"(value: float)
-set "rightRadius"(value: float)
-set "topRadius"(value: float)
-set "bottomRadius"(value: float)
 set "leftRadiusInner"(value: float)
 set "leftRadiusOuter"(value: float)
 set "rightRadiusInner"(value: float)
@@ -3013,8 +3011,12 @@ set "radiusLTOuter"(value: float)
 set "radiusLBOuter"(value: float)
 set "radiusRTOuter"(value: float)
 set "radiusRBOuter"(value: float)
-set "border"(value: integer)
+set "leftRadius"(value: float)
+set "rightRadius"(value: float)
+set "topRadius"(value: float)
+set "bottomRadius"(value: float)
 set "radius"(value: float)
+set "border"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3043,9 +3045,9 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$PoseStack, $PoseStack$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack"
 import {$ISceneEntityRenderHook, $ISceneEntityRenderHook$Type} from "packages/com/lowdragmc/lowdraglib/client/scene/$ISceneEntityRenderHook"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ParticleManager, $ParticleManager$Type} from "packages/com/lowdragmc/lowdraglib/client/scene/$ParticleManager"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$MultiBufferSource, $MultiBufferSource$Type} from "packages/net/minecraft/client/renderer/$MultiBufferSource"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecraft/world/level/$BlockAndTintGetter"
@@ -3057,6 +3059,25 @@ readonly "renderedBlocksMap": $Map<($Collection<($BlockPos)>), ($ISceneBlockRend
 
 constructor(world: $Level$Type)
 
+public "useCacheBuffer"(useCache: boolean): $WorldSceneRenderer
+public "setBeforeWorldRender"(callback: $Consumer$Type<($WorldSceneRenderer$Type)>): $WorldSceneRenderer
+public "setAfterWorldRender"(callback: $Consumer$Type<($WorldSceneRenderer$Type)>): $WorldSceneRenderer
+public "deleteCacheBuffer"(): $WorldSceneRenderer
+public "needCompileCache"(): $WorldSceneRenderer
+public "setBeforeBatchEnd"(beforeBatchEnd: $BiConsumer$Type<($MultiBufferSource$Type), (float)>): void
+public "setCameraLookAt"(eyePos: $Vector3f$Type, lookAt: $Vector3f$Type, worldUp: $Vector3f$Type): void
+public "setCameraLookAt"(lookAt: $Vector3f$Type, radius: double, rotationPitch: double, rotationYaw: double): void
+public "setClearColor"(clearColor: integer): void
+public "addRenderedBlocks"(blocks: $Collection$Type<($BlockPos$Type)>, renderHook: $ISceneBlockRenderHook$Type): $WorldSceneRenderer
+public "setCameraOrtho"(x: float, y: float, z: float): void
+public "setCameraOrtho"(minX: float, maxX: float, minY: float, maxY: float, minZ: float, maxZ: float): void
+public "getLastTraceResult"(): $BlockHitResult
+public "isCompiling"(): boolean
+public "getCompileProgress"(): double
+public "setOnLookingAt"(onLookingAt: $Consumer$Type<($BlockHitResult$Type)>): $WorldSceneRenderer
+public "setParticleManager"(particleManager: $ParticleManager$Type): $WorldSceneRenderer
+public "getParticleManager"(): $ParticleManager
+public "render"(poseStack: $PoseStack$Type, x: float, y: float, width: float, height: float, mouseX: integer, mouseY: integer): void
 public "getPositionedRect"(x: integer, y: integer, width: integer, height: integer): $PositionedRect
 public "getPositionRectRevert"(windowX: integer, windowY: integer, windowWidth: integer, windowHeight: integer): $PositionedRect
 public static "setDefaultRenderLayerState"(layer: $RenderType$Type): void
@@ -3065,25 +3086,6 @@ public static "renderBlocksForge"(blockRenderDispatcher: $BlockRenderDispatcher$
 public "isEndBatchLast"(): boolean
 public "setEndBatchLast"(endBatchLast: boolean): void
 public "setSceneEntityRenderHook"(sceneEntityRenderHook: $ISceneEntityRenderHook$Type): void
-public "render"(poseStack: $PoseStack$Type, x: float, y: float, width: float, height: float, mouseX: integer, mouseY: integer): void
-public "setBeforeBatchEnd"(beforeBatchEnd: $BiConsumer$Type<($MultiBufferSource$Type), (float)>): void
-public "setCameraLookAt"(lookAt: $Vector3f$Type, radius: double, rotationPitch: double, rotationYaw: double): void
-public "setCameraLookAt"(eyePos: $Vector3f$Type, lookAt: $Vector3f$Type, worldUp: $Vector3f$Type): void
-public "setClearColor"(clearColor: integer): void
-public "addRenderedBlocks"(blocks: $Collection$Type<($BlockPos$Type)>, renderHook: $ISceneBlockRenderHook$Type): $WorldSceneRenderer
-public "setCameraOrtho"(x: float, y: float, z: float): void
-public "setCameraOrtho"(minX: float, maxX: float, minY: float, maxY: float, minZ: float, maxZ: float): void
-public "getLastTraceResult"(): $BlockHitResult
-public "isCompiling"(): boolean
-public "getCompileProgress"(): double
-public "setParticleManager"(particleManager: $ParticleManager$Type): $WorldSceneRenderer
-public "useCacheBuffer"(useCache: boolean): $WorldSceneRenderer
-public "setBeforeWorldRender"(callback: $Consumer$Type<($WorldSceneRenderer$Type)>): $WorldSceneRenderer
-public "setAfterWorldRender"(callback: $Consumer$Type<($WorldSceneRenderer$Type)>): $WorldSceneRenderer
-public "deleteCacheBuffer"(): $WorldSceneRenderer
-public "needCompileCache"(): $WorldSceneRenderer
-public "getParticleManager"(): $ParticleManager
-public "setOnLookingAt"(onLookingAt: $Consumer$Type<($BlockHitResult$Type)>): $WorldSceneRenderer
 public "project"(pos: $Vector3f$Type): $Vector3f
 public "getFov"(): float
 public "rayTrace"(hitPos: $Vector3f$Type): $BlockHitResult
@@ -3097,20 +3099,20 @@ public "getLookAt"(): $Vector3f
 public "getWorldUp"(): $Vector3f
 public "setFov"(fov: float): void
 public "getLastHit"(): $Vector3f
-set "defaultRenderLayerState"(value: $RenderType$Type)
-get "endBatchLast"(): boolean
-set "endBatchLast"(value: boolean)
-set "sceneEntityRenderHook"(value: $ISceneEntityRenderHook$Type)
+set "beforeWorldRender"(value: $Consumer$Type<($WorldSceneRenderer$Type)>)
+set "afterWorldRender"(value: $Consumer$Type<($WorldSceneRenderer$Type)>)
 set "beforeBatchEnd"(value: $BiConsumer$Type<($MultiBufferSource$Type), (float)>)
 set "clearColor"(value: integer)
 get "lastTraceResult"(): $BlockHitResult
 get "compiling"(): boolean
 get "compileProgress"(): double
-set "particleManager"(value: $ParticleManager$Type)
-set "beforeWorldRender"(value: $Consumer$Type<($WorldSceneRenderer$Type)>)
-set "afterWorldRender"(value: $Consumer$Type<($WorldSceneRenderer$Type)>)
-get "particleManager"(): $ParticleManager
 set "onLookingAt"(value: $Consumer$Type<($BlockHitResult$Type)>)
+set "particleManager"(value: $ParticleManager$Type)
+get "particleManager"(): $ParticleManager
+set "defaultRenderLayerState"(value: $RenderType$Type)
+get "endBatchLast"(): boolean
+set "endBatchLast"(value: boolean)
+set "sceneEntityRenderHook"(value: $ISceneEntityRenderHook$Type)
 get "fov"(): float
 get "eyePos"(): $Vector3f
 get "useCache"(): boolean
@@ -3154,8 +3156,6 @@ readonly "widgets": $List<($Widget)>
 
 constructor(x: integer, y: integer, width: integer, height: integer)
 
-public "getLines"(): $List<(string)>
-public "getCursor"(mouseX: double, mouseY: double): $Cursor
 public "isHoveringXBar"(): boolean
 public "isHoveringYBar"(): boolean
 public "isDraggingXBar"(): boolean
@@ -3165,17 +3165,19 @@ public "notifyChanged"(): void
 public "adaptCursor"(): void
 public "getCodeEditor"(): $CodeEditor
 public "getOnTextChanged"(): $Consumer<($List<(string)>)>
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
-public "getLastDeltaX"(): double
-public "getLastDeltaY"(): double
-public "getScrollXOffset"(): integer
-public "getScrollYOffset"(): integer
-public "setOnTextChanged"(onTextChanged: $Consumer$Type<($List$Type<(string)>)>): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
 public "keyReleased"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
+public "setOnTextChanged"(onTextChanged: $Consumer$Type<($List$Type<(string)>)>): void
+public "getScrollXOffset"(): integer
+public "getScrollYOffset"(): integer
+public "getLastDeltaX"(): double
+public "getLastDeltaY"(): double
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
+public "getCursor"(mouseX: double, mouseY: double): $Cursor
+public "getLines"(): $List<(string)>
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "charTyped"(codePoint: character, modifiers: integer): boolean
 public "setLines"(lines: $List$Type<(string)>): void
@@ -3183,23 +3185,23 @@ public "getXBarB"(): $IGuiTexture
 public "getXBarF"(): $IGuiTexture
 public "getYBarB"(): $IGuiTexture
 public "getYBarF"(): $IGuiTexture
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
-get "lines"(): $List<(string)>
 get "hoveringXBar"(): boolean
 get "hoveringYBar"(): boolean
 get "draggingXBar"(): boolean
 get "draggingYBar"(): boolean
 get "codeEditor"(): $CodeEditor
 get "onTextChanged"(): $Consumer<($List<(string)>)>
-get "lastDeltaX"(): double
-get "lastDeltaY"(): double
+set "onTextChanged"(value: $Consumer$Type<($List$Type<(string)>)>)
 get "scrollXOffset"(): integer
 get "scrollYOffset"(): integer
-set "onTextChanged"(value: $Consumer$Type<($List$Type<(string)>)>)
+get "lastDeltaX"(): double
+get "lastDeltaY"(): double
+get "lines"(): $List<(string)>
 set "lines"(value: $List$Type<(string)>)
 get "xBarB"(): $IGuiTexture
 get "xBarF"(): $IGuiTexture
@@ -3226,16 +3228,16 @@ export class $Selection {
 constructor(start: $Cursor$Type, end: $Cursor$Type)
 
 public "clear"(): void
-public "setSelecting"(isSelecting: boolean): void
-public "hasSelection"(): boolean
 public "isSelecting"(): boolean
 public "getSelectionRange"(): (integer)[]
+public "hasSelection"(): boolean
+public "setSelecting"(isSelecting: boolean): void
 public "getStart"(): $Cursor
 public "updateEnd"(newEnd: $Cursor$Type): void
 public "getEnd"(): $Cursor
-set "selecting"(value: boolean)
 get "selecting"(): boolean
 get "selectionRange"(): (integer)[]
+set "selecting"(value: boolean)
 get "start"(): $Cursor
 get "end"(): $Cursor
 }
@@ -3256,16 +3258,16 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 
 export interface $IItemTransfer {
 
- "getSlots"(): integer
- "createSnapshot"(): any
+ "onContentsChanged"(): void
+ "restoreFromSnapshot"(arg0: any): void
  "getStackInSlot"(arg0: integer): $ItemStack
  "extractItem"(arg0: integer, arg1: integer, arg2: boolean, arg3: boolean): $ItemStack
  "extractItem"(slot: integer, amount: integer, simulate: boolean): $ItemStack
  "getSlotLimit"(arg0: integer): integer
  "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
  "setStackInSlot"(index: integer, stack: $ItemStack$Type): void
- "onContentsChanged"(): void
- "restoreFromSnapshot"(arg0: any): void
+ "createSnapshot"(): any
+ "getSlots"(): integer
  "insertItem"(slot: integer, stack: $ItemStack$Type, simulate: boolean): $ItemStack
  "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean, arg3: boolean): $ItemStack
 }
@@ -3293,10 +3295,10 @@ export class $TreeBuilder<K, V> {
 
 constructor(key: K)
 
-public "branch"(key: K, builderConsumer: $Consumer$Type<($TreeBuilder$Type<(K), (V)>)>): $TreeBuilder<(K), (V)>
-public "build"(): $TreeNode<(K), (V)>
 public "remove"(key: K): $TreeBuilder<(K), (V)>
 public static "start"<K, V>(key: K): $TreeBuilder<(K), (V)>
+public "build"(): $TreeNode<(K), (V)>
+public "branch"(key: K, builderConsumer: $Consumer$Type<($TreeBuilder$Type<(K), (V)>)>): $TreeBuilder<(K), (V)>
 public "startBranch"(key: K): $TreeBuilder<(K), (V)>
 public "leaf"(key: K, content: V): $TreeBuilder<(K), (V)>
 public "endBranch"(): $TreeBuilder<(K), (V)>
@@ -3320,14 +3322,14 @@ export class $Token {
 
 constructor(text: string, type: $TokenType$Type, startIndex: integer, endIndex: integer)
 
-public "getEndIndex"(): integer
 public "getType"(): $TokenType
-public "getText"(): string
+public "getEndIndex"(): integer
 public "getStartIndex"(): integer
-get "endIndex"(): integer
+public "getText"(): string
 get "type"(): $TokenType
-get "text"(): string
+get "endIndex"(): integer
 get "startIndex"(): integer
+get "text"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3409,11 +3411,11 @@ export interface $IConfigurableWidgetGroup extends $IConfigurableWidget {
  "canWidgetAccepted"(widget: $IConfigurableWidget$Type): boolean
  "acceptWidget"(widget: $IConfigurableWidget$Type): void
  "onWidgetRemoved"(widget: $IConfigurableWidget$Type): void
- "handleDragging"(dragging: any): boolean
  "initTemplate"(): void
  "serializeInnerNBT"(): $CompoundTag
  "serializeWrapper"(): $CompoundTag
  "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
+ "handleDragging"(dragging: any): boolean
  "canDragIn"(dragging: any): boolean
  "buildConfigurator"(father: $ConfiguratorGroup$Type): void
  "name"(): string
@@ -3425,11 +3427,11 @@ export interface $IConfigurableWidgetGroup extends $IConfigurableWidget {
 }
 
 export namespace $IConfigurableWidgetGroup {
-function serializeNBT(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+function deserializeWrapper(tag: $CompoundTag$Type): $IConfigurableWidget
 function serializeNBT(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+function serializeNBT(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 function deserializeNBT(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 function deserializeNBT(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-function deserializeWrapper(tag: $CompoundTag$Type): $IConfigurableWidget
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3472,6 +3474,11 @@ constructor()
 constructor(itemHandler: $IItemTransfer$Type, slotIndex: integer, xPosition: integer, yPosition: integer)
 
 public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "canPutStack"(stack: $ItemStack$Type): boolean
+public "canTakeStack"(player: $Player$Type): boolean
+public "setCanTakeItems"(v: boolean): $PhantomSlotWidget
+public "getPhantomTargets"(ingredient: any): $List<($Target)>
+public "canMergeSlot"(stack: $ItemStack$Type): boolean
 public "getMaxStackSize"(): integer
 public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "setClearSlotOnRightClick"(clearSlotOnRightClick: boolean): $PhantomSlotWidget
@@ -3479,17 +3486,14 @@ public "slotClickPhantom"(slot: $Slot$Type, mouseButton: integer, clickTypeIn: $
 public "areItemsEqual"(itemStack1: $ItemStack$Type, itemStack2: $ItemStack$Type): boolean
 public "isClearSlotOnRightClick"(): boolean
 public "setMaxStackSize"(maxStackSize: integer): void
-public "canPutStack"(stack: $ItemStack$Type): boolean
-public "canTakeStack"(player: $Player$Type): boolean
-public "getPhantomTargets"(ingredient: any): $List<($Target)>
-public "canMergeSlot"(stack: $ItemStack$Type): boolean
 public "slotClick"(dragType: integer, clickTypeIn: $ClickType$Type, player: $Player$Type): $ItemStack
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
 public "initTemplate"(): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+set "canTakeItems"(value: boolean)
 get "maxStackSize"(): integer
 set "clearSlotOnRightClick"(value: boolean)
 get "clearSlotOnRightClick"(): boolean
@@ -3546,13 +3550,13 @@ export class $ParticleManager {
 
 constructor()
 
-public "tick"(): void
 public "setLevel"(level: $Level$Type): void
-public "clearAllParticles"(): void
-public static "makeParticleRenderTypeComparator"(renderOrder: $List$Type<($ParticleRenderType$Type)>): $Comparator<($ParticleRenderType)>
-public "render"(pMatrixStack: $PoseStack$Type, pActiveRenderInfo: $Camera$Type, pPartialTicks: float): void
-public "addParticle"(particle: $Particle$Type): void
+public "tick"(): void
 public "getParticleAmount"(): integer
+public "addParticle"(particle: $Particle$Type): void
+public "render"(pMatrixStack: $PoseStack$Type, pActiveRenderInfo: $Camera$Type, pPartialTicks: float): void
+public static "makeParticleRenderTypeComparator"(renderOrder: $List$Type<($ParticleRenderType$Type)>): $Comparator<($ParticleRenderType)>
+public "clearAllParticles"(): void
 set "level"(value: $Level$Type)
 get "particleAmount"(): integer
 }
@@ -3589,24 +3593,24 @@ constructor(xPosition: integer, yPosition: integer, width: integer, height: inte
 constructor()
 
 public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "initTemplate"(): void
+public "setOnPressCallback"(onPressCallback: $Consumer$Type<($ClickData$Type)>): $ButtonWidget
+public "setHoverBorderTexture"(border: integer, color: integer): $ButtonWidget
 public "setButtonTexture"(...buttonTexture: ($IGuiTexture$Type)[]): $ButtonWidget
 public "setClickedTexture"(...clickedTexture: ($IGuiTexture$Type)[]): $ButtonWidget
 public "setHoverTexture"(...hoverTexture: ($IGuiTexture$Type)[]): $ButtonWidget
-public "setHoverBorderTexture"(border: integer, color: integer): $ButtonWidget
-public "setOnPressCallback"(onPressCallback: $Consumer$Type<($ClickData$Type)>): $ButtonWidget
-public "initTemplate"(): void
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "isClicked"(): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public "handleDragging"(dragging: any): boolean
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "handleDragging"(dragging: any): boolean
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -3616,10 +3620,10 @@ public "getRegisterUI"(): $LDLRegister
 public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
+set "onPressCallback"(value: $Consumer$Type<($ClickData$Type)>)
 set "buttonTexture"(value: ($IGuiTexture$Type)[])
 set "clickedTexture"(value: ($IGuiTexture$Type)[])
 set "hoverTexture"(value: ($IGuiTexture$Type)[])
-set "onPressCallback"(value: $Consumer$Type<($ClickData$Type)>)
 get "clicked"(): boolean
 get "registerUI"(): $LDLRegister
 get "translateKey"(): string
@@ -3653,9 +3657,9 @@ constructor()
 
 public "scale"(scale: float): $TransformTexture
 public "transform"(xOffset: float, yOffset: float): $TransformTexture
-public "draw"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, x: float, y: float, width: integer, height: integer): void
-public "getRotation"(): float
 public "drawSubArea"(graphics: $GuiGraphics$Type, x: float, y: float, width: float, height: float, drawnU: float, drawnV: float, drawnWidth: float, drawnHeight: float): void
+public "getRotation"(): float
+public "draw"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, x: float, y: float, width: integer, height: integer): void
 public "getScale"(): float
 public "getXOffset"(): float
 public "getYOffset"(): float
@@ -3763,8 +3767,8 @@ import {$Resource, $Resource$Type} from "packages/com/lowdragmc/lowdraglib/gui/e
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$Widget, $Widget$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$Widget"
 import {$Resources, $Resources$Type} from "packages/com/lowdragmc/lowdraglib/gui/editor/data/$Resources"
-import {$Layout, $Layout$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/layout/$Layout"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$Layout, $Layout$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/layout/$Layout"
 import {$Target, $Target$Type} from "packages/com/lowdragmc/lowdraglib/gui/ingredient/$Target"
 import {$ModularUI, $ModularUI$Type} from "packages/com/lowdragmc/lowdraglib/gui/modular/$ModularUI"
 import {$IGuiTexture, $IGuiTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$IGuiTexture"
@@ -3777,22 +3781,18 @@ constructor(position: $Position$Type)
 constructor(x: integer, y: integer, width: integer, height: integer)
 constructor()
 
-public "setAllowXEIIngredientOverMouse"(allowXEIIngredientOverMouse: boolean): void
-public "isAllowXEIIngredientOverMouse"(): boolean
-public "setLayout"(layout: $Layout$Type): void
-public "getLayout"(): $Layout
-public "isChild"(widget: $Widget$Type): boolean
-public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "drawOverlay"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "removeWidget"(widget: $Widget$Type): void
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
-public "setClientSideWidget"(): $WidgetGroup
 public "isMouseOverElement"(mouseX: double, mouseY: double): boolean
 public "getHoverElement"(mouseX: double, mouseY: double): $Widget
 public "onScreenSizeUpdate"(screenWidth: integer, screenHeight: integer): void
 public "isDynamicSized"(): boolean
+public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "updateScreen"(): void
+public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
+public "keyReleased"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
+public "getGuiExtraAreas"(guiRect: $Rect2i$Type, list: $List$Type<($Rect2i$Type)>): $List<($Rect2i)>
 public "waitToRemoved"(widget: $Widget$Type): void
 public "waitToAdded"(widget: $Widget$Type): void
 public "initTemplate"(): void
@@ -3815,32 +3815,35 @@ public "onWidgetRemoved"(widget: $IConfigurableWidget$Type): void
 public "serializeInnerNBT"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public "getLayoutPadding"(): integer
+public "removeWidget"(widget: $Widget$Type): void
 public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
 public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
-public "updateScreen"(): void
-public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
-public "keyReleased"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
-public "getGuiExtraAreas"(guiRect: $Rect2i$Type, list: $List$Type<($Rect2i$Type)>): $List<($Rect2i)>
 public "detectAndSendChanges"(): void
-public "addWidgets"(...widgets: ($Widget$Type)[]): $WidgetGroup
-public "setGui"(gui: $ModularUI$Type): void
-public "initWidget"(): void
+public "drawOverlay"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
+public "isChild"(widget: $Widget$Type): boolean
+public "getLayout"(): $Layout
+public "setLayout"(layout: $Layout$Type): void
+public "setAllowXEIIngredientOverMouse"(allowXEIIngredientOverMouse: boolean): void
+public "isAllowXEIIngredientOverMouse"(): boolean
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "charTyped"(codePoint: character, modifiers: integer): boolean
-public "addWidget"<T extends $Widget>(widget: T, callback: $Consumer$Type<(T)>): $WidgetGroup
-public "addWidget"(widget: $Widget$Type): $WidgetGroup
-public "addWidget"(index: integer, widget: $Widget$Type): $WidgetGroup
+public "setGui"(gui: $ModularUI$Type): void
+public "initWidget"(): void
+public "addWidgets"(...widgets: ($Widget$Type)[]): $WidgetGroup
 public "mouseMoved"(mouseX: double, mouseY: double): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public "addWidget"<T extends $Widget>(widget: T, callback: $Consumer$Type<(T)>): $WidgetGroup
+public "addWidget"(index: integer, widget: $Widget$Type): $WidgetGroup
+public "addWidget"(widget: $Widget$Type): $WidgetGroup
+public "serializeWrapper"(): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
 public "handleDragging"(dragging: any): boolean
-public "serializeWrapper"(): $CompoundTag
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public "canDragIn"(dragging: any): boolean
 public "name"(): string
 public "group"(): string
@@ -3848,15 +3851,15 @@ public "getRegisterUI"(): $LDLRegister
 public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
-set "allowXEIIngredientOverMouse"(value: boolean)
-get "allowXEIIngredientOverMouse"(): boolean
-set "layout"(value: $Layout$Type)
-get "layout"(): $Layout
 get "dynamicSized"(): boolean
 set "layoutPadding"(value: integer)
 set "dynamicSized"(value: boolean)
 get "allWidgetSize"(): integer
 get "layoutPadding"(): integer
+get "layout"(): $Layout
+set "layout"(value: $Layout$Type)
+set "allowXEIIngredientOverMouse"(value: boolean)
+get "allowXEIIngredientOverMouse"(): boolean
 set "gui"(value: $ModularUI$Type)
 get "registerUI"(): $LDLRegister
 get "translateKey"(): string
@@ -3896,32 +3899,33 @@ export class $SwitchWidget extends $Widget implements $IConfigurableWidget {
 constructor(xPosition: integer, yPosition: integer, width: integer, height: integer, onPressed: $BiConsumer$Type<($ClickData$Type), (boolean)>)
 constructor()
 
-public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
 public "setSupplier"(supplier: $Supplier$Type<(boolean)>): $SwitchWidget
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "setHoverBorderTexture"(border: integer, color: integer): $SwitchWidget
-public "setBaseTexture"(...baseTexture: ($IGuiTexture$Type)[]): $SwitchWidget
-public "setPressedTexture"(...pressedTexture: ($IGuiTexture$Type)[]): $SwitchWidget
-public "setOnPressCallback"(onPressCallback: $BiConsumer$Type<($ClickData$Type), (boolean)>): void
-public "initTemplate"(): void
-public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
-public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
+public "setHoverTexture"(...hoverTexture: ($IGuiTexture$Type)[]): $SwitchWidget
+public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
 public "updateScreen"(): void
 public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "initTemplate"(): void
+public "setOnPressCallback"(onPressCallback: $BiConsumer$Type<($ClickData$Type), (boolean)>): void
+public "setHoverBorderTexture"(border: integer, color: integer): $SwitchWidget
+public "setBaseTexture"(...baseTexture: ($IGuiTexture$Type)[]): $SwitchWidget
+public "setPressedTexture"(...pressedTexture: ($IGuiTexture$Type)[]): $SwitchWidget
+public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
+public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
 public "detectAndSendChanges"(): void
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "isPressed"(): boolean
 public "setPressed"(isPressed: boolean): $SwitchWidget
 public "setTexture"(baseTexture: $IGuiTexture$Type, pressedTexture: $IGuiTexture$Type): $SwitchWidget
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public "handleDragging"(dragging: any): boolean
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "handleDragging"(dragging: any): boolean
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -3932,9 +3936,10 @@ public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
 set "supplier"(value: $Supplier$Type<(boolean)>)
+set "hoverTexture"(value: ($IGuiTexture$Type)[])
+set "onPressCallback"(value: $BiConsumer$Type<($ClickData$Type), (boolean)>)
 set "baseTexture"(value: ($IGuiTexture$Type)[])
 set "pressedTexture"(value: ($IGuiTexture$Type)[])
-set "onPressCallback"(value: $BiConsumer$Type<($ClickData$Type), (boolean)>)
 get "pressed"(): boolean
 set "pressed"(value: boolean)
 get "registerUI"(): $LDLRegister
@@ -3969,35 +3974,36 @@ constructor(capacity: long)
 constructor(fluidStack: $FluidStack$Type)
 constructor(capacity: long, validator: $Predicate$Type<($FluidStack$Type)>)
 
-public "setCapacity"(capacity: long): void
-public "drain"(tank: integer, resource: $FluidStack$Type, simulate: boolean, notifyChange: boolean): $FluidStack
-public "getCapacity"(): long
 public "fill"(tank: integer, resource: $FluidStack$Type, simulate: boolean, notifyChange: boolean): long
 public "copy"(): $FluidStorage
-public "getOnContentsChanged"(): $Runnable
-public "setOnContentsChanged"(onContentsChanged: $Runnable$Type): void
-public "createSnapshot"(): any
-public "deserializeNBT"(nbt: $CompoundTag$Type): void
-public "setValidator"(validator: $Predicate$Type<($FluidStack$Type)>): void
+public "setCapacity"(capacity: long): void
+public "getCapacity"(): long
+public "drain"(tank: integer, resource: $FluidStack$Type, simulate: boolean, notifyChange: boolean): $FluidStack
+public "onContentsChanged"(): void
+public "restoreFromSnapshot"(snapshot: any): void
 public "isFluidValid"(stack: $FluidStack$Type): boolean
 public "supportsFill"(tank: integer): boolean
 public "supportsDrain"(tank: integer): boolean
-public "onContentsChanged"(): void
-public "restoreFromSnapshot"(snapshot: any): void
+public "setValidator"(validator: $Predicate$Type<($FluidStack$Type)>): void
+public "createSnapshot"(): any
+public "serializeNBT"(): $CompoundTag
+public "deserializeNBT"(nbt: $CompoundTag$Type): void
+public "getOnContentsChanged"(): $Runnable
+public "setOnContentsChanged"(onContentsChanged: $Runnable$Type): void
 public "getFluid"(): $FluidStack
 public "setFluid"(fluid: $FluidStack$Type): void
-public "getFluidInTank"(tank: integer): $FluidStack
-public "isFluidValid"(tank: integer, stack: $FluidStack$Type): boolean
 public "getFluidAmount"(): long
 public "getTankCapacity"(tank: integer): long
 public "setFluidInTank"(tank: integer, fluidStack: $FluidStack$Type): void
+public "isFluidValid"(tank: integer, stack: $FluidStack$Type): boolean
+public "getFluidInTank"(tank: integer): $FluidStack
 public "getTanks"(): integer
-public "drain"(resource: $FluidStack$Type, simulate: boolean): $FluidStack
-public "drain"(maxDrain: long, simulate: boolean, notifyChanges: boolean): $FluidStack
-public "drain"(maxDrain: long, simulate: boolean): $FluidStack
-public "drain"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): $FluidStack
 public "fill"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): long
 public "fill"(resource: $FluidStack$Type, simulate: boolean): long
+public "drain"(resource: $FluidStack$Type, simulate: boolean): $FluidStack
+public "drain"(maxDrain: long, simulate: boolean): $FluidStack
+public "drain"(maxDrain: long, simulate: boolean, notifyChanges: boolean): $FluidStack
+public "drain"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): $FluidStack
 set "capacity"(value: long)
 get "capacity"(): long
 set "validator"(value: $Predicate$Type<($FluidStack$Type)>)
@@ -4058,38 +4064,38 @@ import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/ne
 export class $FluidStack {
 
 
-public "getTag"(): $CompoundTag
 public "getDisplayName"(): $Component
+public "getTag"(): $CompoundTag
 public "isEmpty"(): boolean
 public static "empty"(): $FluidStack
-public "copy"(amount: long): $FluidStack
 public "copy"(): $FluidStack
-public static "create"(stack: $FluidStack$Type, amount: long): $FluidStack
+public "copy"(amount: long): $FluidStack
 public static "create"(fluid: $Fluid$Type, amount: long, nbt: $CompoundTag$Type): $FluidStack
+public static "create"(stack: $FluidStack$Type, amount: long): $FluidStack
 public static "create"(fluid: $Fluid$Type, amount: long): $FluidStack
 public "grow"(amount: long): void
 public "isFluidEqual"(other: $FluidStack$Type): boolean
-public static "loadFromTag"(nbt: $CompoundTag$Type): $FluidStack
-public static "readFromBuf"(buf: $FriendlyByteBuf$Type): $FluidStack
 public "getRawFluid"(): $Fluid
+public static "readFromBuf"(buf: $FriendlyByteBuf$Type): $FluidStack
 public "isFluidStackEqual"(other: $FluidStack$Type): boolean
+public static "loadFromTag"(nbt: $CompoundTag$Type): $FluidStack
 public "getFluid"(): $Fluid
-public "shrink"(amount: long): void
 public "setTag"(tag: $CompoundTag$Type): void
+public "shrink"(amount: long): void
 public "hasTag"(): boolean
 public "getAmount"(): long
-public "setFluid"(fluid: $Fluid$Type): void
-public "writeToBuf"(buf: $FriendlyByteBuf$Type): void
-public "setAmount"(amount: long): void
 public "saveToTag"(nbt: $CompoundTag$Type): $CompoundTag
-get "tag"(): $CompoundTag
+public "setAmount"(amount: long): void
+public "writeToBuf"(buf: $FriendlyByteBuf$Type): void
+public "setFluid"(fluid: $Fluid$Type): void
 get "displayName"(): $Component
+get "tag"(): $CompoundTag
 get "rawFluid"(): $Fluid
 get "fluid"(): $Fluid
 set "tag"(value: $CompoundTag$Type)
 get "amount"(): long
-set "fluid"(value: $Fluid$Type)
 set "amount"(value: long)
+set "fluid"(value: $Fluid$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4177,13 +4183,15 @@ import {$IGuiTexture, $IGuiTexture$Type} from "packages/com/lowdragmc/lowdraglib
 export class $LabelWidget extends $Widget implements $IConfigurableWidget {
 
 constructor()
-constructor(xPosition: integer, yPosition: integer, text: string)
-constructor(xPosition: integer, yPosition: integer, component: $Component$Type)
 constructor(xPosition: integer, yPosition: integer, text: $Supplier$Type<(string)>)
+constructor(xPosition: integer, yPosition: integer, component: $Component$Type)
+constructor(xPosition: integer, yPosition: integer, text: string)
 
 public "setColor"(color: integer): void
 public "setText"(text: string): void
-public "setComponent"(component: $Component$Type): void
+public "updateScreen"(): void
+public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "setTextSupplier"(textSupplier: $Supplier$Type<(string)>): void
 /**
  * 
@@ -4196,22 +4204,20 @@ public "setTextColor"(color: integer): $LabelWidget
  */
 public "setDropShadow"(dropShadow: boolean): $LabelWidget
 public "setTextProvider"(textProvider: $Supplier$Type<(string)>): void
-public "handleDragging"(dragging: any): boolean
 public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
 public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
-public "updateScreen"(): void
-public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "detectAndSendChanges"(): void
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "setComponent"(component: $Component$Type): void
+public "handleDragging"(dragging: any): boolean
 public "initTemplate"(): void
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -4223,11 +4229,11 @@ public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
 set "color"(value: integer)
 set "text"(value: string)
-set "component"(value: $Component$Type)
 set "textSupplier"(value: $Supplier$Type<(string)>)
 set "textColor"(value: integer)
 set "dropShadow"(value: boolean)
 set "textProvider"(value: $Supplier$Type<(string)>)
+set "component"(value: $Component$Type)
 get "registerUI"(): $LDLRegister
 get "translateKey"(): string
 get "chatComponent"(): $Component
@@ -4262,30 +4268,29 @@ export class $ResourceTexture extends $TransformTexture {
 
 constructor(imageLocation: $ResourceLocation$Type, offsetX: float, offsetY: float, width: float, height: float)
 constructor()
-constructor(imageLocation: string)
 constructor(imageLocation: $ResourceLocation$Type)
+constructor(imageLocation: string)
 
 public "setColor"(color: integer): $ResourceTexture
-public "copy"(): $ResourceTexture
-public "setImageWidthHeight"(width: float, height: float): $ResourceTexture
-public "setImageOffsetY"(y: float): $ResourceTexture
-public "setDynamicColor"(color: $IntSupplier$Type): $ResourceTexture
-public "setImageWidth"(width: float): $ResourceTexture
-public "setImageHeight"(height: float): $ResourceTexture
+public "createPreview"(father: $ConfiguratorGroup$Type): void
 public "setImageOffset"(x: float, y: float): $ResourceTexture
 public "setImageOffsetX"(x: float): $ResourceTexture
+public "setImageWidth"(width: float): $ResourceTexture
+public "setImageHeight"(height: float): $ResourceTexture
+public "setDynamicColor"(color: $IntSupplier$Type): $ResourceTexture
 public "getSubTexture"(offsetX: double, offsetY: double, width: double, height: double): $ResourceTexture
 public "getSubTexture"(offsetX: float, offsetY: float, width: float, height: float): $ResourceTexture
-public "createPreview"(father: $ConfiguratorGroup$Type): void
+public "setImageWidthHeight"(width: float, height: float): $ResourceTexture
+public "setImageOffsetY"(y: float): $ResourceTexture
 public static "fromSpirit"(texture: $ResourceLocation$Type): $ResourceTexture
 public static "serializeWrapper"(texture: $IGuiTexture$Type): $CompoundTag
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IGuiTexture
 set "color"(value: integer)
-set "imageOffsetY"(value: float)
-set "dynamicColor"(value: $IntSupplier$Type)
+set "imageOffsetX"(value: float)
 set "imageWidth"(value: float)
 set "imageHeight"(value: float)
-set "imageOffsetX"(value: float)
+set "dynamicColor"(value: $IntSupplier$Type)
+set "imageOffsetY"(value: float)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4312,15 +4317,15 @@ export class $ItemTransferHelper {
 
 constructor()
 
-public static "exportToTarget"(source: $IItemTransfer$Type, maxAmount: integer, predicate: $Predicate$Type<($ItemStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
+public static "getItemTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IItemTransfer
+public static "copyStackWithSize"(stack: $ItemStack$Type, size: integer): $ItemStack
 public static "importToTarget"(target: $IItemTransfer$Type, maxAmount: integer, predicate: $Predicate$Type<($ItemStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
-public static "canItemStacksStackRelaxed"(a: $ItemStack$Type, b: $ItemStack$Type): boolean
-public static "insertItemStacked"(inventory: $IItemTransfer$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
 public static "canItemStacksStack"(first: $ItemStack$Type, second: $ItemStack$Type): boolean
+public static "exportToTarget"(source: $IItemTransfer$Type, maxAmount: integer, predicate: $Predicate$Type<($ItemStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
 public static "giveItemToPlayer"(player: $Player$Type, stack: $ItemStack$Type): void
 public static "giveItemToPlayer"(player: $Player$Type, stack: $ItemStack$Type, preferredSlot: integer): void
-public static "copyStackWithSize"(stack: $ItemStack$Type, size: integer): $ItemStack
-public static "getItemTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IItemTransfer
+public static "canItemStacksStackRelaxed"(a: $ItemStack$Type, b: $ItemStack$Type): boolean
+public static "insertItemStacked"(inventory: $IItemTransfer$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
 public static "insertItem"(dest: $IItemTransfer$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
 }
 /**
@@ -4354,24 +4359,24 @@ constructor(xPosition: integer, yPosition: integer, width: integer, height: inte
 constructor(xPosition: integer, yPosition: integer, width: integer, height: integer, area: $IGuiTexture$Type)
 constructor()
 
-public "getImage"(): $IGuiTexture
-public "getBorderColor"(): integer
 public "updateScreen"(): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "setBorder"(border: integer, color: integer): $ImageWidget
+public "getBorderColor"(): integer
+public "getImage"(): $IGuiTexture
+public "getBorder"(): integer
 public "setImage"(area: $IGuiTexture$Type): $ImageWidget
 public "setImage"(textureSupplier: $Supplier$Type<($IGuiTexture$Type)>): $ImageWidget
-public "getBorder"(): integer
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public "handleDragging"(dragging: any): boolean
+public "setBorder"(border: integer, color: integer): $ImageWidget
 public "initTemplate"(): void
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "handleDragging"(dragging: any): boolean
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -4381,11 +4386,11 @@ public "getRegisterUI"(): $LDLRegister
 public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
-get "image"(): $IGuiTexture
 get "borderColor"(): integer
+get "image"(): $IGuiTexture
+get "border"(): integer
 set "image"(value: $IGuiTexture$Type)
 set "image"(value: $Supplier$Type<($IGuiTexture$Type)>)
-get "border"(): integer
 get "registerUI"(): $LDLRegister
 get "translateKey"(): string
 get "chatComponent"(): $Component
@@ -4424,16 +4429,16 @@ constructor(editor: $Editor$Type)
 
 public "saveMenuData"(): void
 public "getTab"<T extends $MenuTab>(name: string): T
+public "getEditor"(): $Editor
 public "initWidget"(): void
 public "getTabs"(): $Map<(string), ($MenuTab)>
-public "getEditor"(): $Editor
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
-get "tabs"(): $Map<(string), ($MenuTab)>
 get "editor"(): $Editor
+get "tabs"(): $Map<(string), ($MenuTab)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4461,14 +4466,14 @@ public "dispose"(): void
 public "load"(): void
 public static "of"(...resources: ($Resource$Type<(any)>)[]): $Resources
 public "merge"(resources: $Resources$Type): void
+public static "emptyResource"(): $Resources
+public "serializeNBT"(): $CompoundTag
+public "deserializeNBT"(nbt: $CompoundTag$Type): void
 /**
  * 
  * @deprecated
  */
 public static "defaultResource"(): $Resources
-public "serializeNBT"(): $CompoundTag
-public "deserializeNBT"(nbt: $CompoundTag$Type): void
-public static "emptyResource"(): $Resources
 public static "fromNBT"(tag: $CompoundTag$Type): $Resources
 }
 /**
@@ -4543,19 +4548,19 @@ export class $PositionedRect {
 readonly "position": $Position
 readonly "size": $Size
 
-constructor(x: integer, y: integer, width: integer, height: integer)
-constructor(position: $Position$Type, size: $Size$Type)
 constructor(pos1: $Position$Type, pos2: $Position$Type)
+constructor(position: $Position$Type, size: $Size$Type)
+constructor(x: integer, y: integer, width: integer, height: integer)
 
-public "getPosition"(): $Position
-public "intersects"(other: $Position$Type): boolean
-public "intersects"(other: $PositionedRect$Type): boolean
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getSize"(): $Size
-get "position"(): $Position
+public "intersects"(other: $Position$Type): boolean
+public "intersects"(other: $PositionedRect$Type): boolean
+public "getPosition"(): $Position
 get "size"(): $Size
+get "position"(): $Position
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4596,15 +4601,15 @@ export type $ServerPlayerAccessor_ = $ServerPlayerAccessor$Type;
 }}
 declare module "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/language/$ILanguageDefinition" {
 import {$Matcher, $Matcher$Type} from "packages/java/util/regex/$Matcher"
-import {$Pattern, $Pattern$Type} from "packages/java/util/regex/$Pattern"
 import {$TokenType, $TokenType$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/language/$TokenType"
+import {$Pattern, $Pattern$Type} from "packages/java/util/regex/$Pattern"
 
 export interface $ILanguageDefinition {
 
  "getName"(): string
+ "getTokenType"(arg0: $Matcher$Type): $TokenType
  "shouldIncreaseIndentation"(arg0: string): boolean
  "getTokenPattern"(): $Pattern
- "getTokenType"(arg0: $Matcher$Type): $TokenType
 }
 
 export namespace $ILanguageDefinition {
@@ -4689,8 +4694,8 @@ public "getRenderer"(state: $BlockState$Type): $IRenderer
 public "newBlockEntity"(pPos: $BlockPos$Type, pState: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
-public "getModelState"(world: $BlockAndTintGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ModelState
 public "getLightMap"(world: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): integer
+public "getModelState"(world: $BlockAndTintGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ModelState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4773,17 +4778,18 @@ export class $TreeBuilder$Menu extends $TreeBuilder<($Tuple<($IGuiTexture), (str
 static "CROSS_LINE": $Tuple<($IGuiTexture), (string)>
 
 
-public "branch"(name: string, menuConsumer: $Consumer$Type<($TreeBuilder$Menu$Type)>): $TreeBuilder$Menu
-public "branch"(icon: $IGuiTexture$Type, name: string, menuConsumer: $Consumer$Type<($TreeBuilder$Menu$Type)>): $TreeBuilder$Menu
 public static "getName"(key: $Tuple$Type<($IGuiTexture$Type), (string)>): string
 public "remove"(name: string): $TreeBuilder$Menu
 public static "start"(): $TreeBuilder$Menu
 public static "handle"(node: $TreeNode$Type<($Tuple$Type<($IGuiTexture$Type), (string)>), ($Runnable$Type)>): void
-public static "getIcon"(key: $Tuple$Type<($IGuiTexture$Type), (string)>): $IGuiTexture
+public "branch"(icon: $IGuiTexture$Type, name: string, menuConsumer: $Consumer$Type<($TreeBuilder$Menu$Type)>): $TreeBuilder$Menu
+public "branch"(name: string, menuConsumer: $Consumer$Type<($TreeBuilder$Menu$Type)>): $TreeBuilder$Menu
 public static "isCrossLine"(key: $Tuple$Type<($IGuiTexture$Type), (string)>): boolean
+public static "getIcon"(key: $Tuple$Type<($IGuiTexture$Type), (string)>): $IGuiTexture
 public "leaf"(name: string, runnable: $Runnable$Type): $TreeBuilder$Menu
 public "leaf"(icon: $IGuiTexture$Type, name: string, runnable: $Runnable$Type): $TreeBuilder$Menu
 public "crossLine"(): $TreeBuilder$Menu
+public "endBranch"(): $TreeBuilder$Menu
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4804,8 +4810,8 @@ import {$Position, $Position$Type} from "packages/com/lowdragmc/lowdraglib/utils
 import {$Size, $Size$Type} from "packages/com/lowdragmc/lowdraglib/utils/$Size"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$WidgetGroup, $WidgetGroup$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$WidgetGroup"
-import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui/$GuiGraphics"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
+import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui/$GuiGraphics"
 import {$Align, $Align$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/layout/$Align"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
@@ -4824,23 +4830,11 @@ constructor(x: integer, y: integer, width: integer, height: integer)
 
 public "setSize"(size: $Size$Type): void
 public "setSize"(width: integer, height: integer): void
-public "getPosition"(): $Position
 public "getParent"(): $WidgetGroup
 public "getId"(): string
 public "getSize"(): $Size
 public "isActive"(): boolean
-public "setId"(id: string): $Widget
-public "setActive"(isActive: boolean): $Widget
-public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "isInitialized"(): boolean
-public "isMouseDown"(button: integer): boolean
-public static "isShiftDown"(): boolean
-public "drawOverlay"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "setBackground"(...backgroundTexture: ($IGuiTexture$Type)[]): $Widget
-public static "isMouseOver"(x: integer, y: integer, width: integer, height: integer, mouseX: double, mouseY: double): boolean
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "getPosition"(): $Position
 public "setClientSideWidget"(): $Widget
 public "appendHoverTooltips"(tooltipText: $List$Type<($Component$Type)>): $Widget
 public "appendHoverTooltips"(...tooltipText: ($Component$Type)[]): $Widget
@@ -4851,8 +4845,8 @@ public "setHoverTexture"(...hoverTexture: ($IGuiTexture$Type)[]): $Widget
 public "setDraggingProvider"<T>(draggingProvider: $Supplier$Type<(T)>, draggingRenderer: $BiFunction$Type<(T), ($Position$Type), ($IGuiTexture$Type)>): $Widget
 public "setDraggingConsumer"(draggingAccept: $Predicate$Type<(any)>, draggingIn: $Consumer$Type<(any)>, draggingOut: $Consumer$Type<(any)>, draggingSuccess: $Consumer$Type<(any)>): $Widget
 public "setParentPosition"(parentPosition: $Position$Type): void
-public "setSelfPosition"(x: integer, y: integer): void
 public "setSelfPosition"(selfPosition: $Position$Type): void
+public "setSelfPosition"(x: integer, y: integer): void
 public "setSelfPositionX"(x: integer): void
 public "getSelfPosition"(): $Position
 public "setSelfPositionY"(y: integer): void
@@ -4874,8 +4868,7 @@ public "getParentPosition"(): $Position
 public "getTooltipTexts"(): $List<($Component)>
 public "getBackgroundTexture"(): $IGuiTexture
 public "getAnimation"(): $Animation
-public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
-public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
+public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
 public "updateScreen"(): void
 public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
@@ -4885,15 +4878,31 @@ public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boo
 public "keyReleased"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "getGuiExtraAreas"(guiRect: $Rect2i$Type, list: $List$Type<($Rect2i$Type)>): $List<($Rect2i)>
 public "toRectangleBox"(): $Rect2i
+public static "isMouseOver"(x: integer, y: integer, width: integer, height: integer, mouseX: double, mouseY: double): boolean
+public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
+public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
 public "setUiAccess"(uiAccess: $WidgetUIAccess$Type): $Widget
 public "detectAndSendChanges"(): void
+public "isMouseDown"(button: integer): boolean
+public static "isShiftDown"(): boolean
+public "setBackground"(...backgroundTexture: ($IGuiTexture$Type)[]): $Widget
+public "drawOverlay"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
+public "isInitialized"(): boolean
+public "setActive"(isActive: boolean): $Widget
+public "setId"(id: string): $Widget
 public "setAlign"(align: $Align$Type): $Widget
-public "setVisible"(isVisible: boolean): $Widget
 public "animation"(animation: $Animation$Type): void
-public "isVisible"(): boolean
+public "setVisible"(isVisible: boolean): $Widget
 public static "isKeyDown"(keyCode: integer): boolean
+public "isVisible"(): boolean
 public static "isCtrlDown"(): boolean
 public "isFocus"(): boolean
+public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
+public "charTyped"(codePoint: character, modifiers: integer): boolean
+public "setFocus"(focus: boolean): void
 public "inAnimate"(): boolean
 public "setGui"(gui: $ModularUI$Type): void
 public "isParent"(widgetGroup: $WidgetGroup$Type): boolean
@@ -4903,23 +4912,15 @@ public "getGui"(): $ModularUI
 public "getAlign"(): $Align
 public "getOverlay"(): $IGuiTexture
 public "setOverlay"(overlay: $IGuiTexture$Type): $Widget
-public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
-public "charTyped"(codePoint: character, modifiers: integer): boolean
-public "setFocus"(focus: boolean): void
-public static "isAltDown"(): boolean
 public "mouseMoved"(mouseX: double, mouseY: double): boolean
 public "isRemote"(): boolean
+public static "isAltDown"(): boolean
 set "size"(value: $Size$Type)
-get "position"(): $Position
 get "parent"(): $WidgetGroup
 get "id"(): string
 get "size"(): $Size
 get "active"(): boolean
-set "id"(value: string)
-set "active"(value: boolean)
-get "initialized"(): boolean
-get "shiftDown"(): boolean
-set "background"(value: ($IGuiTexture$Type)[])
+get "position"(): $Position
 set "hoverTooltips"(value: ($Component$Type)[])
 set "drawBackgroundWhenHover"(value: boolean)
 set "hoverTexture"(value: ($IGuiTexture$Type)[])
@@ -4941,20 +4942,25 @@ get "tooltipTexts"(): $List<($Component)>
 get "backgroundTexture"(): $IGuiTexture
 get "clientSideWidget"(): boolean
 set "uiAccess"(value: $WidgetUIAccess$Type)
+get "shiftDown"(): boolean
+set "background"(value: ($IGuiTexture$Type)[])
+get "initialized"(): boolean
+set "active"(value: boolean)
+set "id"(value: string)
 set "align"(value: $Align$Type)
 set "visible"(value: boolean)
 get "visible"(): boolean
 get "ctrlDown"(): boolean
 get "focus"(): boolean
+set "focus"(value: boolean)
 set "gui"(value: $ModularUI$Type)
 get "rect"(): $Rect
 get "gui"(): $ModularUI
 get "align"(): $Align
 get "overlay"(): $IGuiTexture
 set "overlay"(value: $IGuiTexture$Type)
-set "focus"(value: boolean)
-get "altDown"(): boolean
 get "remote"(): boolean
+get "altDown"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5052,8 +5058,6 @@ constructor()
 public "getWidth"(): integer
 public "getName"(): string
 public "init"(width: integer): void
-public "addListener"(listener: $Consumer$Type<($Configurator$Type)>): void
-public "getListeners"(): $List<($Consumer<($Configurator)>)>
 /**
  * 
  * @deprecated
@@ -5073,6 +5077,8 @@ public "getConfiguratorContainer"(): $IConfiguratorContainer
 public "getLeftWidth"(): integer
 public "getRightWidth"(): integer
 public "getNameWidget"(): $LabelWidget
+public "getListeners"(): $List<($Consumer<($Configurator)>)>
+public "addListener"(listener: $Consumer$Type<($Configurator$Type)>): void
 /**
  * 
  * @deprecated
@@ -5080,20 +5086,20 @@ public "getNameWidget"(): $LabelWidget
 public "getTab"(): $ConfigPanel$Tab
 public "setTips"(...tips: (string)[]): void
 public "isInit"(): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 get "width"(): integer
 get "name"(): string
-get "listeners"(): $List<($Consumer<($Configurator)>)>
 get "configPanel"(): $ConfigPanel
 set "configuratorContainer"(value: $IConfiguratorContainer$Type)
 get "configuratorContainer"(): $IConfiguratorContainer
 get "leftWidth"(): integer
 get "rightWidth"(): integer
 get "nameWidget"(): $LabelWidget
+get "listeners"(): $List<($Consumer<($Configurator)>)>
 get "tab"(): $ConfigPanel$Tab
 set "tips"(value: (string)[])
 }
@@ -5157,12 +5163,12 @@ constructor(level: $Level$Type, pos: $BlockPos$Type, block: $BlockContainerJS$Ty
 
 public "getBlock"(): $BlockContainerJS
 public "getLevel"(): $Level
-public "getPos"(): $BlockPos
 public "getPlayer"(): $Player
+public "getPos"(): $BlockPos
 get "block"(): $BlockContainerJS
 get "level"(): $Level
-get "pos"(): $BlockPos
 get "player"(): $Player
+get "pos"(): $BlockPos
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5189,11 +5195,11 @@ export class $UIEvents$ItemUIEventJS extends $EventJS {
 
 constructor(player: $Player$Type, hand: $InteractionHand$Type, held: $ItemStack$Type)
 
-public "getHand"(): $InteractionHand
 public "getPlayer"(): $Player
+public "getHand"(): $InteractionHand
 public "getHeld"(): $ItemStack
-get "hand"(): $InteractionHand
 get "player"(): $Player
+get "hand"(): $InteractionHand
 get "held"(): $ItemStack
 }
 /**
@@ -5263,33 +5269,33 @@ constructor(progressSupplier: $DoubleSupplier$Type, x: integer, y: integer, widt
 constructor(progressSupplier: $DoubleSupplier$Type, x: integer, y: integer, width: integer, height: integer, fullImage: $ResourceTexture$Type)
 constructor()
 
+public "updateScreen"(): void
+public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
+public "setFillDirection"(fillDirection: $ProgressTexture$FillDirection$Type): $ProgressWidget
 public "setProgressTexture"(emptyBarArea: $IGuiTexture$Type, filledBarArea: $IGuiTexture$Type): $ProgressWidget
 public "setProgressTexture"(progressTexture: $IGuiTexture$Type): $ProgressWidget
 public "setProgressSupplier"(progressSupplier: $DoubleSupplier$Type): $ProgressWidget
 public "setDynamicHoverTips"(dynamicHoverTips: $Function$Type<(double), (string)>): $ProgressWidget
 public "setOverlayTexture"(overlayTexture: $IGuiTexture$Type): $ProgressWidget
 public "getLastProgressValue"(): double
-public "handleDragging"(dragging: any): boolean
-public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
-public "setFillDirection"(fillDirection: $ProgressTexture$FillDirection$Type): $ProgressWidget
 public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
 public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
-public "updateScreen"(): void
-public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "detectAndSendChanges"(): void
-public "initWidget"(): void
+public "handleDragging"(dragging: any): boolean
 public "canDragIn"(dragging: any): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "initWidget"(): void
 public "initTemplate"(): void
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
 public "widget"(): $Widget
 public "name"(): string
 public "group"(): string
@@ -5297,12 +5303,12 @@ public "getRegisterUI"(): $LDLRegister
 public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
+set "fillDirection"(value: $ProgressTexture$FillDirection$Type)
 set "progressTexture"(value: $IGuiTexture$Type)
 set "progressSupplier"(value: $DoubleSupplier$Type)
 set "dynamicHoverTips"(value: $Function$Type<(double), (string)>)
 set "overlayTexture"(value: $IGuiTexture$Type)
 get "lastProgressValue"(): double
-set "fillDirection"(value: $ProgressTexture$FillDirection$Type)
 get "registerUI"(): $LDLRegister
 get "translateKey"(): string
 get "chatComponent"(): $Component
@@ -5330,20 +5336,20 @@ export class $UniformCache {
 constructor(programId: integer)
 
 public "invalidate"(): void
-public "glUniform4I"(location: string, v0: integer, v1: integer, v2: integer, v3: integer): void
-public "glUniformMatrix"(location: string, callback: $IntConsumer$Type, transpose: boolean, matrix: $FloatBuffer$Type): void
-public "glUniformBoolean"(location: string, value: boolean): void
-public "glUniform3I"(location: string, v0: integer, v1: integer, v2: integer): void
-public "glUniform2I"(location: string, v0: integer, v1: integer): void
-public "glUniform3F"(location: string, v0: float, v1: float, v2: float): void
-public "fillRGBAColor"(location: string, color: integer): void
-public "glUniform4F"(location: string, v0: float, v1: float, v2: float, v3: float): void
-public "glUniform1I"(location: string, v0: integer): void
-public "glUniformMatrix2"(location: string, transpose: boolean, matrix: $FloatBuffer$Type): void
-public "glUniformMatrix4"(location: string, transpose: boolean, matrix: $FloatBuffer$Type): void
 public "glUniformMatrix4F"(location: string, matrix4f: $Matrix4f$Type): void
 public "glUniform2F"(location: string, v0: float, v1: float): void
 public "glUniform1F"(location: string, v0: float): void
+public "glUniformMatrix2"(location: string, transpose: boolean, matrix: $FloatBuffer$Type): void
+public "glUniformMatrix4"(location: string, transpose: boolean, matrix: $FloatBuffer$Type): void
+public "glUniform3F"(location: string, v0: float, v1: float, v2: float): void
+public "glUniform4F"(location: string, v0: float, v1: float, v2: float, v3: float): void
+public "fillRGBAColor"(location: string, color: integer): void
+public "glUniform1I"(location: string, v0: integer): void
+public "glUniform2I"(location: string, v0: integer, v1: integer): void
+public "glUniform3I"(location: string, v0: integer, v1: integer, v2: integer): void
+public "glUniform4I"(location: string, v0: integer, v1: integer, v2: integer, v3: integer): void
+public "glUniformMatrix"(location: string, callback: $IntConsumer$Type, transpose: boolean, matrix: $FloatBuffer$Type): void
+public "glUniformBoolean"(location: string, value: boolean): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5384,6 +5390,7 @@ export type $SlotAccessor_ = $SlotAccessor$Type;
 }}
 declare module "packages/com/lowdragmc/lowdraglib/gui/animation/$Transform" {
 import {$Position, $Position$Type} from "packages/com/lowdragmc/lowdraglib/utils/$Position"
+import {$IEase, $IEase$Type} from "packages/com/lowdragmc/lowdraglib/utils/interpolate/$IEase"
 import {$Size, $Size$Type} from "packages/com/lowdragmc/lowdraglib/utils/$Size"
 import {$Animation, $Animation$Type} from "packages/com/lowdragmc/lowdraglib/gui/animation/$Animation"
 import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui/$GuiGraphics"
@@ -5393,20 +5400,22 @@ export class $Transform extends $Animation {
 
 constructor()
 
-public "post"(graphics: $GuiGraphics$Type): void
 public "duration"(duration: long): $Transform
-public "setScale"(scale: float): $Transform
-public "pre"(graphics: $GuiGraphics$Type): void
+public "post"(graphics: $GuiGraphics$Type): void
 public "scale"(scale: float): $Transform
 public "position"(position: $Position$Type): $Animation
 public "size"(size: $Size$Type): $Animation
 public "offset"(xOffset: integer, yOffset: integer): $Transform
 public "setIn"(): $Animation
 public "setOut"(): $Animation
+public "delay"(delay: long): $Transform
+public "pre"(graphics: $GuiGraphics$Type): void
+public "setScale"(scale: float): $Transform
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "onFinish"(onFinish: $Runnable$Type): $Animation
 public "isIn"(): boolean
+public "ease"(ease: $IEase$Type): $Transform
 public "isOut"(): boolean
 get "in"(): boolean
 get "out"(): boolean
@@ -5444,17 +5453,18 @@ constructor(tag: $CompoundTag$Type)
 constructor(resources: $Resources$Type, root: $WidgetGroup$Type)
 
 public "getResources"(): $Resources
-public "onLoad"(editor: $Editor$Type): void
-public "deserializeNBT"(tag: $CompoundTag$Type): void
 public static "loadUIFromTag"(tag: $CompoundTag$Type): $Supplier<($WidgetGroup)>
 public static "loadUIFromFile"(location: $ResourceLocation$Type): $Supplier<($WidgetGroup)>
+public "serializeNBT"(): $CompoundTag
+public "deserializeNBT"(tag: $CompoundTag$Type): void
+public "onLoad"(editor: $Editor$Type): void
 public "getSuffix"(): string
-public "loadResources"(tag: $CompoundTag$Type): $Resources
 public "loadProject"(file: $File$Type): $IProject
 public "saveProject"(file: $File$Type): void
 public "getProjectWorkSpace"(editor: $Editor$Type): $File
-public "onClosed"(editor: $Editor$Type): void
+public "loadResources"(tag: $CompoundTag$Type): $Resources
 public "attachMenu"(editor: $Editor$Type, name: string, menu: $TreeBuilder$Menu$Type): void
+public "onClosed"(editor: $Editor$Type): void
 public "name"(): string
 public "group"(): string
 public "getRegisterUI"(): $LDLRegister
@@ -5494,13 +5504,13 @@ export class $GuiTextureGroup extends $TransformTexture {
 constructor()
 constructor(...textures: ($IGuiTexture$Type)[])
 
-public "setTextures"(...textures: ($IGuiTexture$Type)[]): $GuiTextureGroup
 public "setUIResource"(texturesResource: $Resource$Type<($IGuiTexture$Type)>): void
+public "setTextures"(...textures: ($IGuiTexture$Type)[]): $GuiTextureGroup
 public "updateTick"(): void
 public static "serializeWrapper"(texture: $IGuiTexture$Type): $CompoundTag
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IGuiTexture
-set "textures"(value: ($IGuiTexture$Type)[])
 set "uIResource"(value: $Resource$Type<($IGuiTexture$Type)>)
+set "textures"(value: ($IGuiTexture$Type)[])
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5523,11 +5533,11 @@ import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecr
 
 export interface $IBlockRendererProvider {
 
+ "getLightMap"(world: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): integer
  "getRenderer"(arg0: $BlockState$Type): $IRenderer
  "getModelState"(world: $BlockAndTintGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ModelState
- "getLightMap"(world: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): integer
 
-(arg0: $BlockState$Type): $IRenderer
+(world: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): integer
 }
 
 export namespace $IBlockRendererProvider {
@@ -5588,25 +5598,25 @@ constructor()
 constructor(emptyBarArea: $IGuiTexture$Type, filledBarArea: $IGuiTexture$Type)
 
 public "getProgress"(): double
+public "setUIResource"(texturesResource: $Resource$Type<($IGuiTexture$Type)>): void
+public "setFillDirection"(fillDirection: $ProgressTexture$FillDirection$Type): $ProgressTexture
 public "setProgress"(progress: double): void
 public "getFillDirection"(): $ProgressTexture$FillDirection
 public "getEmptyBarArea"(): $IGuiTexture
 public "getFilledBarArea"(): $IGuiTexture
 public "isSmoothProgress"(): boolean
-public "setUIResource"(texturesResource: $Resource$Type<($IGuiTexture$Type)>): void
-public "setFillDirection"(fillDirection: $ProgressTexture$FillDirection$Type): $ProgressTexture
-public "setTexture"(emptyBarArea: $IGuiTexture$Type, filledBarArea: $IGuiTexture$Type): $ProgressTexture
 public "updateTick"(): void
+public "setTexture"(emptyBarArea: $IGuiTexture$Type, filledBarArea: $IGuiTexture$Type): $ProgressTexture
 public static "serializeWrapper"(texture: $IGuiTexture$Type): $CompoundTag
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IGuiTexture
 get "progress"(): double
+set "uIResource"(value: $Resource$Type<($IGuiTexture$Type)>)
+set "fillDirection"(value: $ProgressTexture$FillDirection$Type)
 set "progress"(value: double)
 get "fillDirection"(): $ProgressTexture$FillDirection
 get "emptyBarArea"(): $IGuiTexture
 get "filledBarArea"(): $IGuiTexture
 get "smoothProgress"(): boolean
-set "uIResource"(value: $Resource$Type<($IGuiTexture$Type)>)
-set "fillDirection"(value: $ProgressTexture$FillDirection$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5625,23 +5635,23 @@ import {$FluidStack, $FluidStack$Type} from "packages/com/lowdragmc/lowdraglib/s
 
 export interface $IFluidTransfer {
 
- "drain"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): $FluidStack
- "drain"(resource: $FluidStack$Type, simulate: boolean): $FluidStack
- "drain"(maxDrain: long, simulate: boolean, notifyChanges: boolean): $FluidStack
- "drain"(maxDrain: long, simulate: boolean): $FluidStack
- "drain"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): $FluidStack
+ "fill"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): long
  "fill"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): long
  "fill"(resource: $FluidStack$Type, simulate: boolean): long
- "fill"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): long
- "createSnapshot"(): any
- "getFluidInTank"(arg0: integer): $FluidStack
- "isFluidValid"(arg0: integer, arg1: $FluidStack$Type): boolean
- "supportsFill"(arg0: integer): boolean
- "supportsDrain"(arg0: integer): boolean
+ "drain"(arg0: integer, arg1: $FluidStack$Type, arg2: boolean, arg3: boolean): $FluidStack
+ "drain"(resource: $FluidStack$Type, simulate: boolean): $FluidStack
+ "drain"(maxDrain: long, simulate: boolean): $FluidStack
+ "drain"(maxDrain: long, simulate: boolean, notifyChanges: boolean): $FluidStack
+ "drain"(resource: $FluidStack$Type, simulate: boolean, notifyChanges: boolean): $FluidStack
  "onContentsChanged"(): void
  "restoreFromSnapshot"(arg0: any): void
  "getTankCapacity"(arg0: integer): long
  "setFluidInTank"(arg0: integer, arg1: $FluidStack$Type): void
+ "isFluidValid"(arg0: integer, arg1: $FluidStack$Type): boolean
+ "supportsFill"(arg0: integer): boolean
+ "supportsDrain"(arg0: integer): boolean
+ "getFluidInTank"(arg0: integer): $FluidStack
+ "createSnapshot"(): any
  "getTanks"(): integer
 }
 
@@ -5673,12 +5683,12 @@ export class $LanguageDefinition implements $ILanguageDefinition {
 constructor(name: string, typesInOrder: $List$Type<($TokenType$Type)>, indentations: $Set$Type<(string)>)
 
 public "getName"(): string
+public "getTokenType"(matcher: $Matcher$Type): $TokenType
 public "shouldIncreaseIndentation"(trimmedLine: string): boolean
+public "compileTokenPattern"(): $LanguageDefinition
 public "getTokenPattern"(): $Pattern
 public "getTypesInOrder"(): $List<($TokenType)>
 public "getIndentations"(): $Set<(string)>
-public "compileTokenPattern"(): $LanguageDefinition
-public "getTokenType"(matcher: $Matcher$Type): $TokenType
 get "name"(): string
 get "tokenPattern"(): $Pattern
 get "typesInOrder"(): $List<($TokenType)>
@@ -5732,8 +5742,12 @@ constructor(x: integer, y: integer, width: integer, height: integer, world: $Lev
 constructor(x: integer, y: integer, width: integer, height: integer, world: $Level$Type)
 
 public "getRange"(): float
-public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "getRenderer"(): $WorldSceneRenderer
+public "useCacheBuffer"(autoReleased: boolean): $SceneWidget
+public "useCacheBuffer"(): $SceneWidget
+public "setBeforeWorldRender"(beforeWorldRender: $Consumer$Type<($SceneWidget$Type)>): $SceneWidget
+public "setAfterWorldRender"(afterWorldRender: $Consumer$Type<($SceneWidget$Type)>): $SceneWidget
+public "releaseCacheBuffer"(): void
+public "needCompileCache"(): void
 public "renderBlockOverLay"(renderer: $WorldSceneRenderer$Type): void
 public "getDummyWorld"(): $TrackedDummyWorld
 public "setClearColor"(color: integer): $SceneWidget
@@ -5756,21 +5770,13 @@ public "getHoverPosFace"(): $BlockPosFace
 public "getSelectedPosFace"(): $BlockPosFace
 public "getHoverItem"(): $ItemStack
 public "isAutoReleased"(): boolean
-public "useCacheBuffer"(): $SceneWidget
-public "useCacheBuffer"(autoReleased: boolean): $SceneWidget
-public "setBeforeWorldRender"(beforeWorldRender: $Consumer$Type<($SceneWidget$Type)>): $SceneWidget
-public "setAfterWorldRender"(afterWorldRender: $Consumer$Type<($SceneWidget$Type)>): $SceneWidget
-public "releaseCacheBuffer"(): void
-public "needCompileCache"(): void
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
-public "getParticleManager"(): $ParticleManager
-public "getOnSelected"(): $BiConsumer<($BlockPos), ($Direction)>
-public "setScalable"(scalable: boolean): $SceneWidget
-public "setIntractable"(intractable: boolean): $SceneWidget
-public "setDraggable"(draggable: boolean): $SceneWidget
-public "isDraggable"(): boolean
+public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "setOnAddedTooltips"(onAddedTooltips: $BiConsumer$Type<($SceneWidget$Type), ($List$Type<($Component$Type)>)>): $SceneWidget
+public "updateScreen"(): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
+public "getXEIIngredientOverMouse"(mouseX: double, mouseY: double): any
 public "setRenderFacing"(renderFacing: boolean): $SceneWidget
 public "setRenderSelect"(renderSelect: boolean): $SceneWidget
 public "createScene"(world: $Level$Type, useFBOSceneRenderer: boolean): void
@@ -5778,16 +5784,20 @@ public "createScene"(world: $Level$Type): void
 public "setRenderedCore"(blocks: $Collection$Type<($BlockPos$Type)>): $SceneWidget
 public "setRenderedCore"(blocks: $Collection$Type<($BlockPos$Type)>, renderHook: $ISceneBlockRenderHook$Type): $SceneWidget
 public "setOnSelected"(onSelected: $BiConsumer$Type<($BlockPos$Type), ($Direction$Type)>): $SceneWidget
-public "setOnAddedTooltips"(onAddedTooltips: $BiConsumer$Type<($SceneWidget$Type), ($List$Type<($Component$Type)>)>): $SceneWidget
-public "getXEIIngredientOverMouse"(mouseX: double, mouseY: double): any
-public "updateScreen"(): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
+public "setDraggable"(draggable: boolean): $SceneWidget
+public "isDraggable"(): boolean
+public "setScalable"(scalable: boolean): $SceneWidget
+public "setIntractable"(intractable: boolean): $SceneWidget
+public "getOnSelected"(): $BiConsumer<($BlockPos), ($Direction)>
+public "getParticleManager"(): $ParticleManager
+public "getRenderer"(): $WorldSceneRenderer
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
 public "getCenter"(): $Vector3f
-public "setGui"(gui: $ModularUI$Type): void
-public "isDragging"(): boolean
 public "setCenter"(center: $Vector3f$Type): $SceneWidget
+public "isDragging"(): boolean
+public "setGui"(gui: $ModularUI$Type): void
 public "useOrtho"(useOrtho: boolean): $SceneWidget
 public "useOrtho"(): $SceneWidget
 public "camZoom"(): float
@@ -5797,13 +5807,14 @@ public "getZoom"(): float
 public "getCore"(): $Set<($BlockPos)>
 public "isUseCache"(): boolean
 public "isUseOrtho"(): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 get "range"(): float
-get "renderer"(): $WorldSceneRenderer
+set "beforeWorldRender"(value: $Consumer$Type<($SceneWidget$Type)>)
+set "afterWorldRender"(value: $Consumer$Type<($SceneWidget$Type)>)
 get "dummyWorld"(): $TrackedDummyWorld
 set "clearColor"(value: integer)
 set "hoverTips"(value: boolean)
@@ -5821,23 +5832,22 @@ get "hoverPosFace"(): $BlockPosFace
 get "selectedPosFace"(): $BlockPosFace
 get "hoverItem"(): $ItemStack
 get "autoReleased"(): boolean
-set "beforeWorldRender"(value: $Consumer$Type<($SceneWidget$Type)>)
-set "afterWorldRender"(value: $Consumer$Type<($SceneWidget$Type)>)
-get "particleManager"(): $ParticleManager
-get "onSelected"(): $BiConsumer<($BlockPos), ($Direction)>
-set "scalable"(value: boolean)
-set "intractable"(value: boolean)
-set "draggable"(value: boolean)
-get "draggable"(): boolean
+set "onAddedTooltips"(value: $BiConsumer$Type<($SceneWidget$Type), ($List$Type<($Component$Type)>)>)
 set "renderFacing"(value: boolean)
 set "renderSelect"(value: boolean)
 set "renderedCore"(value: $Collection$Type<($BlockPos$Type)>)
 set "onSelected"(value: $BiConsumer$Type<($BlockPos$Type), ($Direction$Type)>)
-set "onAddedTooltips"(value: $BiConsumer$Type<($SceneWidget$Type), ($List$Type<($Component$Type)>)>)
+set "draggable"(value: boolean)
+get "draggable"(): boolean
+set "scalable"(value: boolean)
+set "intractable"(value: boolean)
+get "onSelected"(): $BiConsumer<($BlockPos), ($Direction)>
+get "particleManager"(): $ParticleManager
+get "renderer"(): $WorldSceneRenderer
 get "center"(): $Vector3f
-set "gui"(value: $ModularUI$Type)
-get "dragging"(): boolean
 set "center"(value: $Vector3f$Type)
+get "dragging"(): boolean
+set "gui"(value: $ModularUI$Type)
 set "zoom"(value: float)
 get "scalable"(): boolean
 get "zoom"(): float
@@ -5878,34 +5888,34 @@ constructor(x: integer, y: integer, width: integer, height: integer)
 
 public "setColor"(argb: integer): $HsbColorWidget
 public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "updateScreen"(): void
+public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "setOnChanged"(onChanged: $IntConsumer$Type): $HsbColorWidget
+public "setColorSupplier"(colorSupplier: $IntSupplier$Type): $HsbColorWidget
 public "isMouseOverMain"(mouseX: double, mouseY: double): boolean
 public "isMouseOverColorSlider"(mouseX: double, mouseY: double): boolean
 public "isMouseOverAlphaSlider"(mouseX: double, mouseY: double): boolean
 public "setBarWidth"(barWidth: integer): $HsbColorWidget
 public "setShowAlpha"(showAlpha: boolean): $HsbColorWidget
 public "isShowAlpha"(): boolean
-public "setOnChanged"(onChanged: $IntConsumer$Type): $HsbColorWidget
-public "setColorSupplier"(colorSupplier: $IntSupplier$Type): $HsbColorWidget
-public "updateScreen"(): void
-public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "detectAndSendChanges"(): void
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
 public "setGap"(gap: integer): $HsbColorWidget
 public "setShowRGB"(showRGB: boolean): $HsbColorWidget
 public "isShowRGB"(): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public "handleDragging"(dragging: any): boolean
 public "initTemplate"(): void
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "handleDragging"(dragging: any): boolean
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -5916,11 +5926,11 @@ public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
 set "color"(value: integer)
+set "onChanged"(value: $IntConsumer$Type)
+set "colorSupplier"(value: $IntSupplier$Type)
 set "barWidth"(value: integer)
 set "showAlpha"(value: boolean)
 get "showAlpha"(): boolean
-set "onChanged"(value: $IntConsumer$Type)
-set "colorSupplier"(value: $IntSupplier$Type)
 set "gap"(value: integer)
 set "showRGB"(value: boolean)
 get "showRGB"(): boolean
@@ -5971,37 +5981,37 @@ constructor(parent: $WidgetGroup$Type, isClient: boolean)
 constructor(x: integer, y: integer, width: integer, height: integer)
 
 public "close"(): void
-public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public static "createButton"(parent: $WidgetGroup$Type, x: integer, y: integer, width: integer, height: integer, text: string, onClick: $Runnable$Type): $ButtonWidget
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
 public "setOnClosed"(onClosed: $Runnable$Type): $DialogWidget
 public "setParentInVisible"(): $DialogWidget
 public static "createTextField"(parent: $WidgetGroup$Type, x: integer, y: integer, width: integer, height: integer): $TextFieldWidget
 public static "showItemSelector"(parent: $WidgetGroup$Type, title: string, init: $ItemStack$Type, itemConsumer: $Consumer$Type<($Item$Type)>): $DialogWidget
-public static "createContainer"(dialog: $DialogWidget$Type, x: integer, y: integer, width: integer, height: integer, titleText: string): $WidgetGroup
-public static "createContainer"(dialog: $DialogWidget$Type, width: integer, height: integer, titleText: string): $WidgetGroup
-public static "showStringEditorDialog"(parent: $WidgetGroup$Type, title: string, initial: string, predicate: $Predicate$Type<(string)>, result: $Consumer$Type<(string)>): $DialogWidget
-public static "showCheckBox"(parent: $WidgetGroup$Type, title: string, info: string, width: integer, height: integer, onClosed: $BooleanConsumer$Type): $DialogWidget
+public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
 public static "showCheckBox"(parent: $WidgetGroup$Type, title: string, info: string, onClosed: $BooleanConsumer$Type): $DialogWidget
+public static "showCheckBox"(parent: $WidgetGroup$Type, title: string, info: string, width: integer, height: integer, onClosed: $BooleanConsumer$Type): $DialogWidget
 public static "showNotification"(parent: $WidgetGroup$Type, title: string, info: string): $DialogWidget
 public static "showNotification"(parent: $WidgetGroup$Type, title: string, info: string, width: integer, height: integer, onClosed: $Runnable$Type): $DialogWidget
 public static "suffixFilter"(...suffixes: (string)[]): $Predicate<($TreeNode<($File), ($File)>)>
 public static "showFileDialog"(parent: $WidgetGroup$Type, title: string, dir: $File$Type, isSelector: boolean, valid: $Predicate$Type<($TreeNode$Type<($File$Type), ($File$Type)>)>, result: $Consumer$Type<($File$Type)>): $DialogWidget
-public "setClickClose"(clickClose: boolean): void
 public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
 public "keyReleased"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
+public "setClickClose"(clickClose: boolean): void
+public static "showStringEditorDialog"(parent: $WidgetGroup$Type, title: string, initial: string, predicate: $Predicate$Type<(string)>, result: $Consumer$Type<(string)>): $DialogWidget
+public static "createContainer"(dialog: $DialogWidget$Type, x: integer, y: integer, width: integer, height: integer, titleText: string): $WidgetGroup
+public static "createContainer"(dialog: $DialogWidget$Type, width: integer, height: integer, titleText: string): $WidgetGroup
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
+public static "createButton"(parent: $WidgetGroup$Type, x: integer, y: integer, width: integer, height: integer, text: string, onClick: $Runnable$Type): $ButtonWidget
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "charTyped"(codePoint: character, modifiers: integer): boolean
-public static "createText"(parent: $WidgetGroup$Type, x: integer, y: integer, width: integer, height: integer): $TextTexture
 public "mouseMoved"(mouseX: double, mouseY: double): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "createText"(parent: $WidgetGroup$Type, x: integer, y: integer, width: integer, height: integer): $TextTexture
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 set "onClosed"(value: $Runnable$Type)
 set "clickClose"(value: boolean)
 }
@@ -6101,11 +6111,12 @@ constructor(xPosition: integer, yPosition: integer, width: integer, height: inte
 
 public "setContainer"(container: $TabContainer$Type): void
 public "onPressed"(clickData: $ClickData$Type, isPressed: boolean): void
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public "setTexture"(baseTexture: $IGuiTexture$Type, pressedTexture: $IGuiTexture$Type): $TabButton
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 set "container"(value: $TabContainer$Type)
 }
 /**
@@ -6280,18 +6291,18 @@ public "loadResource"(resources: $Resources$Type, merge: boolean): void
 public "hide"(): void
 public "show"(): void
 public "isShow"(): boolean
+public "getEditor"(): $Editor
 public "setGui"(gui: $ModularUI$Type): void
 public "initWidget"(): void
-public "getEditor"(): $Editor
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 get "resources"(): $Resources
 get "containerMap"(): $Map<($Resource), ($ResourceContainer)>
-set "gui"(value: $ModularUI$Type)
 get "editor"(): $Editor
+set "gui"(value: $ModularUI$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6358,20 +6369,20 @@ constructor()
 constructor(x: integer, y: integer, width: integer, height: integer)
 
 public "getHoverElement"(mouseX: double, mouseY: double): $Widget
+public "setOnChanged"(onChanged: $BiConsumer$Type<($WidgetGroup$Type), ($WidgetGroup$Type)>): $TabContainer
 public "initTemplate"(): void
 public "clearAllWidgets"(): void
 public "acceptWidget"(widget: $IConfigurableWidget$Type): void
 public "serializeInnerNBT"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
-public "setOnChanged"(onChanged: $BiConsumer$Type<($WidgetGroup$Type), ($WidgetGroup$Type)>): $TabContainer
 public "addTab"(tabButton: $TabButton$Type, tabWidget: $WidgetGroup$Type): void
 public "switchTag"(tabWidget: $WidgetGroup$Type): void
 public "removeTab"(tabButton: $TabButton$Type): void
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 set "onChanged"(value: $BiConsumer$Type<($WidgetGroup$Type), ($WidgetGroup$Type)>)
 }
 /**
@@ -6399,8 +6410,8 @@ import {$BiConsumer, $BiConsumer$Type} from "packages/java/util/function/$BiCons
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$IGuiTexture, $IGuiTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$IGuiTexture"
-import {$DraggableScrollableWidgetGroup$ScrollWheelDirection, $DraggableScrollableWidgetGroup$ScrollWheelDirection$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$DraggableScrollableWidgetGroup$ScrollWheelDirection"
 import {$Rect2i, $Rect2i$Type} from "packages/net/minecraft/client/renderer/$Rect2i"
+import {$DraggableScrollableWidgetGroup$ScrollWheelDirection, $DraggableScrollableWidgetGroup$ScrollWheelDirection$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$DraggableScrollableWidgetGroup$ScrollWheelDirection"
 
 export class $DraggableScrollableWidgetGroup extends $WidgetGroup {
 readonly "widgets": $List<($Widget)>
@@ -6409,12 +6420,18 @@ constructor()
 constructor(x: integer, y: integer, width: integer, height: integer)
 
 public "setSize"(size: $Size$Type): void
-public "drawOverlay"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "setBackground"(background: $IGuiTexture$Type): $DraggableScrollableWidgetGroup
-public "removeWidget"(widget: $Widget$Type): void
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, deltaX: double, deltaY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "setSelected"(widget: $Widget$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
+public "getGuiExtraAreas"(guiRect: $Rect2i$Type, list: $List$Type<($Rect2i$Type)>): $List<($Rect2i)>
+public "initTemplate"(): void
+public "clearAllWidgets"(): void
+public "serializeInnerNBT"(): $CompoundTag
+public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
+public "setYScrollBarWidth"(yBar: integer): $DraggableScrollableWidgetGroup
+public "setYBarStyle"(background: $IGuiTexture$Type, bar: $IGuiTexture$Type): $DraggableScrollableWidgetGroup
+public "setScrollYOffset"(scrollYOffset: integer): void
 public "setXScrollBarHeight"(xBar: integer): $DraggableScrollableWidgetGroup
 public "setXBarStyle"(background: $IGuiTexture$Type, bar: $IGuiTexture$Type): $DraggableScrollableWidgetGroup
 public "getWidgetBottomHeight"(): integer
@@ -6430,28 +6447,24 @@ public "setScrollWheelDirection"(scrollWheelDirection: $DraggableScrollableWidge
 public "isUseScissor"(): boolean
 public "setUseScissor"(useScissor: boolean): $DraggableScrollableWidgetGroup
 public "getMoveCallbacks"(): $Set<($BiConsumer<(integer), (integer)>)>
-public "setYScrollBarWidth"(yBar: integer): $DraggableScrollableWidgetGroup
-public "setYBarStyle"(background: $IGuiTexture$Type, bar: $IGuiTexture$Type): $DraggableScrollableWidgetGroup
-public "setScrollYOffset"(scrollYOffset: integer): void
-public "initTemplate"(): void
-public "clearAllWidgets"(): void
-public "serializeInnerNBT"(): $CompoundTag
-public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
-public "setSelected"(widget: $Widget$Type): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
-public "getGuiExtraAreas"(guiRect: $Rect2i$Type, list: $List$Type<($Rect2i$Type)>): $List<($Rect2i)>
-public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
+public "removeWidget"(widget: $Widget$Type): void
+public "setBackground"(background: $IGuiTexture$Type): $DraggableScrollableWidgetGroup
+public "drawOverlay"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, deltaX: double, deltaY: double): boolean
 public "computeMax"(): void
+public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "addWidget"(index: integer, widget: $Widget$Type): $WidgetGroup
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 set "size"(value: $Size$Type)
-set "background"(value: $IGuiTexture$Type)
+set "selected"(value: $Widget$Type)
+set "yScrollBarWidth"(value: integer)
+set "scrollYOffset"(value: integer)
 set "xScrollBarHeight"(value: integer)
 get "widgetBottomHeight"(): integer
 set "scrollXOffset"(value: integer)
@@ -6466,9 +6479,7 @@ set "scrollWheelDirection"(value: $DraggableScrollableWidgetGroup$ScrollWheelDir
 get "useScissor"(): boolean
 set "useScissor"(value: boolean)
 get "moveCallbacks"(): $Set<($BiConsumer<(integer), (integer)>)>
-set "yScrollBarWidth"(value: integer)
-set "scrollYOffset"(value: integer)
-set "selected"(value: $Widget$Type)
+set "background"(value: $IGuiTexture$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6514,21 +6525,21 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$ItemTransferHelper, $ItemTransferHelper$Type} from "packages/com/lowdragmc/lowdraglib/side/item/$ItemTransferHelper"
 
 export class $ItemTransferHelperImpl extends $ItemTransferHelper {
 
 constructor()
 
-public static "exportToTarget"(source: $IItemTransfer$Type, maxAmount: integer, predicate: $Predicate$Type<($ItemStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
-public static "importToTarget"(target: $IItemTransfer$Type, maxAmount: integer, predicate: $Predicate$Type<($ItemStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
-public static "toItemHandler"(itemTransfer: $IItemTransfer$Type): $IItemHandler
-public static "insertToEmpty"(handler: $IItemTransfer$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
-public static "insertToEmpty"(handler: $IItemHandler$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
-public static "getItemTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IItemTransfer
 public static "toItemTransfer"(handler: $IItemHandler$Type): $IItemTransfer
+public static "getItemTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IItemTransfer
+public static "importToTarget"(target: $IItemTransfer$Type, maxAmount: integer, predicate: $Predicate$Type<($ItemStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
+public static "exportToTarget"(source: $IItemTransfer$Type, maxAmount: integer, predicate: $Predicate$Type<($ItemStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
+public static "insertToEmpty"(handler: $IItemHandler$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
+public static "insertToEmpty"(handler: $IItemTransfer$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
+public static "toItemHandler"(itemTransfer: $IItemTransfer$Type): $IItemHandler
 public static "insertItem"(handler: $IItemHandler$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
 public static "insertItem"(handler: $IItemTransfer$Type, stack: $ItemStack$Type, simulate: boolean): $ItemStack
 }
@@ -6566,37 +6577,39 @@ export class $TextTexture extends $TransformTexture {
  "supplier": $Supplier<(string)>
 
 constructor()
-constructor(text: string, color: integer)
-constructor(text: string)
-constructor(text: $Supplier$Type<(string)>)
 constructor(text: string, backgroundTexture: $IGuiTexture$Type)
+constructor(text: string)
+constructor(text: string, color: integer)
+constructor(text: $Supplier$Type<(string)>)
 
+public "setColor"(color: integer): $TextTexture
 public "setType"(type: $TextTexture$TextType$Type): $TextTexture
-public "getLines"(): integer
 public "setSupplier"(supplier: $Supplier$Type<(string)>): $TextTexture
-public "setDropShadow"(dropShadow: boolean): $TextTexture
+public "getBackgroundTexture"(): $IGuiTexture
+public "setBackgroundTexture"(backgroundTexture: $IGuiTexture$Type): $TextTexture
 public "setUIResource"(texturesResource: $Resource$Type<($IGuiTexture$Type)>): void
+public "setDropShadow"(dropShadow: boolean): $TextTexture
 public "setBackgroundColor"(color: integer): $TextTexture
 public "setInflateBackgroundY"(inflateBackgroundX: integer, inflateBackgroundY: integer): $TextTexture
 public "setInflateBackgroundY"(inflateBackground: integer): $TextTexture
 public "setRollSpeed"(rollSpeed: float): void
-public "setBackgroundTexture"(backgroundTexture: $IGuiTexture$Type): $TextTexture
-public "getBackgroundTexture"(): $IGuiTexture
+public "getLines"(): integer
 public "updateText"(text: string): void
 public "updateTick"(): void
 public "setWidth"(width: integer): $TextTexture
 public static "serializeWrapper"(texture: $IGuiTexture$Type): $CompoundTag
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IGuiTexture
+set "color"(value: integer)
 set "type"(value: $TextTexture$TextType$Type)
-get "lines"(): integer
 set "supplier"(value: $Supplier$Type<(string)>)
-set "dropShadow"(value: boolean)
+get "backgroundTexture"(): $IGuiTexture
+set "backgroundTexture"(value: $IGuiTexture$Type)
 set "uIResource"(value: $Resource$Type<($IGuiTexture$Type)>)
+set "dropShadow"(value: boolean)
 set "backgroundColor"(value: integer)
 set "inflateBackgroundY"(value: integer)
 set "rollSpeed"(value: float)
-set "backgroundTexture"(value: $IGuiTexture$Type)
-get "backgroundTexture"(): $IGuiTexture
+get "lines"(): integer
 set "width"(value: integer)
 }
 /**
@@ -6633,28 +6646,28 @@ readonly "content": $List<(string)>
  "isShadow": boolean
  "isCenter": boolean
 
-constructor(x: integer, y: integer, width: integer, content: $List$Type<(string)>)
 constructor()
+constructor(x: integer, y: integer, width: integer, content: $List$Type<(string)>)
 
 public "setSize"(size: $Size$Type): void
 public "setShadow"(shadow: boolean): $TextBoxWidget
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "initTemplate"(): void
 public "setFontColor"(fontColor: integer): $TextBoxWidget
 public "setFontSize"(fontSize: integer): $TextBoxWidget
 public "getMaxContentWidth"(): integer
 public "handleDragging"(dragging: any): boolean
-public "initTemplate"(): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
 public "setContent"(content: $List$Type<(string)>): $TextBoxWidget
 public "setSpace"(space: integer): $TextBoxWidget
 public "setCenter"(center: boolean): $TextBoxWidget
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -6714,8 +6727,8 @@ export type $DraggableScrollableWidgetGroup$ScrollWheelDirection_ = $DraggableSc
 }}
 declare module "packages/com/lowdragmc/lowdraglib/utils/$DummyWorld" {
 import {$SoundEvent, $SoundEvent$Type} from "packages/net/minecraft/sounds/$SoundEvent"
-import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
 import {$LevelLightEngine, $LevelLightEngine$Type} from "packages/net/minecraft/world/level/lighting/$LevelLightEngine"
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$LevelTickAccess, $LevelTickAccess$Type} from "packages/net/minecraft/world/ticks/$LevelTickAccess"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
@@ -6740,8 +6753,8 @@ import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 import {$GameEvent$Context, $GameEvent$Context$Type} from "packages/net/minecraft/world/level/gameevent/$GameEvent$Context"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$ParticleOptions, $ParticleOptions$Type} from "packages/net/minecraft/core/particles/$ParticleOptions"
-import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 import {$LightLayer, $LightLayer$Type} from "packages/net/minecraft/world/level/$LightLayer"
+import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 import {$BlockSnapshot, $BlockSnapshot$Type} from "packages/net/minecraftforge/common/util/$BlockSnapshot"
 import {$LevelHeightAccessor, $LevelHeightAccessor$Type} from "packages/net/minecraft/world/level/$LevelHeightAccessor"
 import {$ChunkSource, $ChunkSource$Type} from "packages/net/minecraft/world/level/chunk/$ChunkSource"
@@ -6789,20 +6802,18 @@ readonly "isClientSide": boolean
 
 constructor(level: $Level$Type)
 
-public "getLevel"(): $Level
-public "getBlockState"(x: integer, y: integer, z: integer): $BlockState
 public "getAsClientWorld"(): $Supplier<($ClientLevel)>
 public "setParticleManager"(particleManager: $ParticleManager$Type): void
 public "getParticleManager"(): $ParticleManager
-public "setBlock"(pPos: $BlockPos$Type, pState: $BlockState$Type, pFlags: integer, pRecursionLeft: integer): boolean
-public "getBiome"(pPos: $BlockPos$Type): $Holder<($Biome)>
-public "getChunkSource"(): $ChunkSource
-public "enabledFeatures"(): $FeatureFlagSet
-public "getBlockEntity"(pPos: $BlockPos$Type): $BlockEntity
-public "getFluidTicks"(): $LevelTickAccess<($Fluid)>
-public "getRawBrightness"(pos: $BlockPos$Type, p_226659_2_: integer): integer
-public "gameEvent"(event: $GameEvent$Type, position: $Vec3$Type, context: $GameEvent$Context$Type): void
+public "getBlockState"(x: integer, y: integer, z: integer): $BlockState
+public "getLevel"(): $Level
+public "getBrightness"(pLightType: $LightLayer$Type, pBlockPos: $BlockPos$Type): integer
 public "gameEvent"(pEntity: $Entity$Type, pEvent: $GameEvent$Type, pPos: $BlockPos$Type): void
+public "setBlock"(pPos: $BlockPos$Type, pState: $BlockState$Type, pFlags: integer, pRecursionLeft: integer): boolean
+public "levelEvent"(pPlayer: $Player$Type, pType: integer, pPos: $BlockPos$Type, pData: integer): void
+public "getFluidState"(pPos: $BlockPos$Type): $FluidState
+public "sendBlockUpdated"(pos: $BlockPos$Type, oldState: $BlockState$Type, newState: $BlockState$Type, flags: integer): void
+public "getLightEngine"(): $LevelLightEngine
 public "playSound"(pPlayer: $Player$Type, pX: double, pY: double, pZ: double, pSound: $SoundEvent$Type, pCategory: $SoundSource$Type, pVolume: float, pPitch: float): void
 public "playSeededSound"(player: $Player$Type, x: double, y: double, z: double, sound: $Holder$Type<($SoundEvent$Type)>, source: $SoundSource$Type, volume: float, pitch: float, seed: long): void
 public "playSeededSound"(player: $Player$Type, x: double, y: double, z: double, soundEvent: $SoundEvent$Type, soundSource: $SoundSource$Type, volume: float, pitch: float, seed: long): void
@@ -6827,31 +6838,33 @@ public "getBiomeManager"(): $BiomeManager
 public "registryAccess"(): $RegistryAccess
 public "players"(): $List<(any)>
 public "getBlockTicks"(): $LevelTickAccess<($Block)>
-public "sendBlockUpdated"(pos: $BlockPos$Type, oldState: $BlockState$Type, newState: $BlockState$Type, flags: integer): void
-public "levelEvent"(pPlayer: $Player$Type, pType: integer, pPos: $BlockPos$Type, pData: integer): void
-public "getFluidState"(pPos: $BlockPos$Type): $FluidState
+public "getFluidTicks"(): $LevelTickAccess<($Fluid)>
+public "gameEvent"(event: $GameEvent$Type, position: $Vec3$Type, context: $GameEvent$Context$Type): void
 public "getNoiseBiome"(pX: integer, pY: integer, pZ: integer): $Holder<($Biome)>
 public "getUncachedNoiseBiome"(pX: integer, pY: integer, pZ: integer): $Holder<($Biome)>
-public "getBrightness"(pLightType: $LightLayer$Type, pBlockPos: $BlockPos$Type): integer
+public "getRawBrightness"(pos: $BlockPos$Type, p_226659_2_: integer): integer
 public "getShade"(direction: $Direction$Type, b: boolean): float
-public "getLightEngine"(): $LevelLightEngine
+public "getBiome"(pPos: $BlockPos$Type): $Holder<($Biome)>
+public "getChunkSource"(): $ChunkSource
+public "enabledFeatures"(): $FeatureFlagSet
+public "getBlockEntity"(pPos: $BlockPos$Type): $BlockEntity
 public "getBlockState"(pPos: $BlockPos$Type): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 public static "traverseBlocks"<T, C>(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: C, arg3: $BiFunction$Type<(C), ($BlockPos$Type), (T)>, arg4: $Function$Type<(C), (T)>): T
 public static "create"(arg0: integer, arg1: integer): $LevelHeightAccessor
-get "level"(): $Level
 get "asClientWorld"(): $Supplier<($ClientLevel)>
 set "particleManager"(value: $ParticleManager$Type)
 get "particleManager"(): $ParticleManager
-get "chunkSource"(): $ChunkSource
-get "fluidTicks"(): $LevelTickAccess<($Fluid)>
+get "level"(): $Level
+get "lightEngine"(): $LevelLightEngine
 set "blockEntity"(value: $BlockEntity$Type)
 get "freeMapId"(): integer
 get "scoreboard"(): $Scoreboard
 get "recipeManager"(): $RecipeManager
 get "biomeManager"(): $BiomeManager
 get "blockTicks"(): $LevelTickAccess<($Block)>
-get "lightEngine"(): $LevelLightEngine
+get "fluidTicks"(): $LevelTickAccess<($Fluid)>
+get "chunkSource"(): $ChunkSource
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6874,20 +6887,20 @@ readonly "dimension": integer
 
 constructor(dimension: integer, key: T)
 
-public "getChild"(key: T): $TreeNode<(T), (K)>
-public "getChildren"(): $List<($TreeNode<(T), (K)>)>
 public "removeChild"(key: T): void
 public "toString"(): string
 public "getKey"(): T
 public "getContent"(): K
-public "getOrCreateChild"(childKey: T): $TreeNode<(T), (K)>
+public "getChildren"(): $List<($TreeNode<(T), (K)>)>
+public "getChild"(key: T): $TreeNode<(T), (K)>
 public "createChild"(childKey: T): $TreeNode<(T), (K)>
+public "getOrCreateChild"(childKey: T): $TreeNode<(T), (K)>
 public "setValid"(valid: $Predicate$Type<($TreeNode$Type<(T), (K)>)>): $TreeNode<(T), (K)>
 public "isLeaf"(): boolean
 public "addContent"(key: T, content: K): void
-get "children"(): $List<($TreeNode<(T), (K)>)>
 get "key"(): T
 get "content"(): K
+get "children"(): $List<($TreeNode<(T), (K)>)>
 set "valid"(value: $Predicate$Type<($TreeNode$Type<(T), (K)>)>)
 get "leaf"(): boolean
 }
@@ -6936,12 +6949,12 @@ readonly "widgets": $List<($Widget)>
 constructor(modID: string)
 constructor(workSpace: $File$Type)
 
-public "getHistory"(): $List<($Editor$HistoryItem)>
+public "onScreenSizeUpdate"(screenWidth: integer, screenHeight: integer): void
 public "isWaitingForSave"(): boolean
 public "initEditorViews"(): void
 public "loadProject"(project: $IProject$Type): void
-public "addRawHistory"(name: string, date: $CompoundTag$Type): void
 public "addRawHistory"(name: string, date: $CompoundTag$Type, source: any): void
+public "addRawHistory"(name: string, date: $CompoundTag$Type): void
 public "addAutoHistory"(name: string, source: any): void
 public "jumpToHistory"(historyItem: $Editor$HistoryItem$Type): void
 public "ifCopiedPresent"(copyType: string, consumer: $Consumer$Type<(any)>): void
@@ -6961,20 +6974,19 @@ public "getToolPanel"(): $ToolPanel
 public "getCopyType"(): string
 public "getCurrentHistory"(): $Editor$HistoryItem
 public "setCurrentProjectFile"(currentProjectFile: $File$Type): void
-public "onScreenSizeUpdate"(screenWidth: integer, screenHeight: integer): void
-public "setGui"(gui: $ModularUI$Type): void
+public "getHistory"(): $List<($Editor$HistoryItem)>
+public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "openDialog"(dialog: $DialogWidget$Type): $DialogWidget
 public "openMenu"<T, C>(posX: double, posY: double, menuNode: $TreeNode$Type<(T), (C)>): $MenuWidget<(T), (C)>
 public "openMenu"(posX: double, posY: double, menuBuilder: $TreeBuilder$Menu$Type): void
 public "setCopy"(copyType: string, copied: any): void
 public "getCopied"(): any
-public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public "setGui"(gui: $ModularUI$Type): void
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
-get "history"(): $List<($Editor$HistoryItem)>
 get "waitingForSave"(): boolean
 get "currentProjectSaved"(): boolean
 get "workSpace"(): $File
@@ -6989,8 +7001,9 @@ get "toolPanel"(): $ToolPanel
 get "copyType"(): string
 get "currentHistory"(): $Editor$HistoryItem
 set "currentProjectFile"(value: $File$Type)
-set "gui"(value: $ModularUI$Type)
+get "history"(): $List<($Editor$HistoryItem)>
 get "copied"(): any
+set "gui"(value: $ModularUI$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7019,23 +7032,22 @@ export class $WorldSceneRenderer$VertexConsumerWrapper implements $VertexConsume
 constructor(builder: $VertexConsumer$Type)
 
 public "setColor"(r: float, g: float, b: float, a: float): void
-public "uv2"(u: integer, v: integer): $VertexConsumer
-public "normal"(x: float, y: float, z: float): $VertexConsumer
-public "overlayCoords"(u: integer, v: integer): $VertexConsumer
+public "addOffset"(offsetX: double, offsetY: double, offsetZ: double): void
+public "defaultColor"(defaultR: integer, defaultG: integer, defaultB: integer, defaultA: integer): void
+public "unsetDefaultColor"(): void
 public "vertex"(x: double, y: double, z: double): $VertexConsumer
 public "uv"(u: float, v: float): $VertexConsumer
 public "endVertex"(): void
 public "color"(red: integer, green: integer, blue: integer, alpha: integer): $VertexConsumer
-public "defaultColor"(defaultR: integer, defaultG: integer, defaultB: integer, defaultA: integer): void
-public "unsetDefaultColor"(): void
-public "addOffset"(offsetX: double, offsetY: double, offsetZ: double): void
+public "overlayCoords"(u: integer, v: integer): $VertexConsumer
+public "uv2"(u: integer, v: integer): $VertexConsumer
+public "normal"(x: float, y: float, z: float): $VertexConsumer
 public "clearColor"(): void
 public "clerOffset"(): void
 public "setOffsetX"(offsetX: double): void
 public "setOffsetY"(offsetY: double): void
 public "setOffsetZ"(offsetZ: double): void
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: float, arg7: (integer)[], arg8: integer, arg9: boolean): void
-public "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
 public "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
 public "overlayCoords"(arg0: integer): $VertexConsumer
 public "uv2"(arg0: integer): $VertexConsumer
@@ -7044,9 +7056,10 @@ public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: fl
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: (integer)[], arg7: integer, arg8: boolean): void
 public "vertex"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
 public "normal"(arg0: $Matrix3f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
-public "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
+public "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: float, arg6: integer, arg7: integer, arg8: boolean): void
 public "applyBakedLighting"(arg0: integer, arg1: $ByteBuffer$Type): integer
+public "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
 public "misc"(arg0: $VertexFormatElement$Type, ...arg1: (integer)[]): $VertexConsumer
 set "offsetX"(value: double)
 set "offsetY"(value: double)
@@ -7085,11 +7098,22 @@ export class $TextFieldWidget extends $Widget implements $IConfigurableWidget {
 constructor()
 constructor(xPosition: integer, yPosition: integer, width: integer, height: integer, textSupplier: $Supplier$Type<(string)>, textResponder: $Consumer$Type<(string)>)
 
+public "onFocusChanged"(lastFocus: $Widget$Type, focus: $Widget$Type): void
 public "handleClientAction"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "setBackground"(background: $IGuiTexture$Type): $TextFieldWidget
-public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
-public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
-public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "setCurrentString"(currentString: any): $TextFieldWidget
+public "setBordered"(bordered: boolean): $TextFieldWidget
+public "setResourceLocationOnly"(): $TextFieldWidget
+public "setCompoundTagOnly"(): $TextFieldWidget
+public "updateScreen"(): void
+public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
+public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
+public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
+public "setNumbersOnlyInt"(minValue: integer, maxValue: integer): $TextFieldWidget
+public "setNumbersOnlyLong"(minValue: long, maxValue: long): $TextFieldWidget
+public "setNumbersOnlyFloat"(minValue: float, maxValue: float): $TextFieldWidget
+public "setWheelDur"(digits: integer, wheelDur: float): $TextFieldWidget
+public "setWheelDur"(wheelDur: float): $TextFieldWidget
 public "setTextSupplier"(textSupplier: $Supplier$Type<(string)>): $TextFieldWidget
 public "setTextResponder"(textResponder: $Consumer$Type<(string)>): $TextFieldWidget
 public "getCurrentString"(): string
@@ -7097,36 +7121,25 @@ public "getRawCurrentString"(): string
 public "setTextColor"(textColor: integer): $TextFieldWidget
 public "setMaxStringLength"(maxStringLength: integer): $TextFieldWidget
 public "setValidator"(validator: $Function$Type<(string), (string)>): $TextFieldWidget
-public "setCurrentString"(currentString: any): $TextFieldWidget
-public "setBordered"(bordered: boolean): $TextFieldWidget
-public "setResourceLocationOnly"(): $TextFieldWidget
-public "setCompoundTagOnly"(): $TextFieldWidget
-public "onFocusChanged"(lastFocus: $Widget$Type, focus: $Widget$Type): void
 public "writeInitialData"(buffer: $FriendlyByteBuf$Type): void
 public "readInitialData"(buffer: $FriendlyByteBuf$Type): void
-public "setNumbersOnlyFloat"(minValue: float, maxValue: float): $TextFieldWidget
-public "setNumbersOnlyInt"(minValue: integer, maxValue: integer): $TextFieldWidget
-public "setNumbersOnlyLong"(minValue: long, maxValue: long): $TextFieldWidget
-public "setWheelDur"(wheelDur: float): $TextFieldWidget
-public "setWheelDur"(digits: integer, wheelDur: float): $TextFieldWidget
-public "updateScreen"(): void
-public "readUpdateInfo"(id: integer, buffer: $FriendlyByteBuf$Type): void
-public "drawInBackground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "drawInForeground"(graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, partialTicks: float): void
-public "mouseWheelMove"(mouseX: double, mouseY: double, wheelDelta: double): boolean
 public "detectAndSendChanges"(): void
+public "setBackground"(background: $IGuiTexture$Type): $TextFieldWidget
+public "mouseReleased"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
+public "mouseDragged"(mouseX: double, mouseY: double, button: integer, dragX: double, dragY: double): boolean
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "charTyped"(codePoint: character, modifiers: integer): boolean
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
-public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public "handleDragging"(dragging: any): boolean
 public "initTemplate"(): void
 public "serializeInnerNBT"(): $CompoundTag
 public "serializeWrapper"(): $CompoundTag
 public "deserializeInnerNBT"(nbt: $CompoundTag$Type): void
 public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
+public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
+public "handleDragging"(dragging: any): boolean
 public "widget"(): $Widget
 public "canDragIn"(dragging: any): boolean
 public "buildConfigurator"(father: $ConfiguratorGroup$Type): void
@@ -7136,7 +7149,9 @@ public "getRegisterUI"(): $LDLRegister
 public "getTranslateKey"(): string
 public "getChatComponent"(): $Component
 public "isLDLRegister"(): boolean
-set "background"(value: $IGuiTexture$Type)
+set "currentString"(value: any)
+set "bordered"(value: boolean)
+set "wheelDur"(value: float)
 set "textSupplier"(value: $Supplier$Type<(string)>)
 set "textResponder"(value: $Consumer$Type<(string)>)
 get "currentString"(): string
@@ -7144,9 +7159,7 @@ get "rawCurrentString"(): string
 set "textColor"(value: integer)
 set "maxStringLength"(value: integer)
 set "validator"(value: $Function$Type<(string), (string)>)
-set "currentString"(value: any)
-set "bordered"(value: boolean)
-set "wheelDur"(value: float)
+set "background"(value: $IGuiTexture$Type)
 get "registerUI"(): $LDLRegister
 get "translateKey"(): string
 get "chatComponent"(): $Component
@@ -7214,13 +7227,13 @@ public "attemptMergeStack"(itemStack: $ItemStack$Type, fromContainer: boolean, s
 public static "mergeItemStack"(itemStack: $ItemStack$Type, slots: $List$Type<($Slot$Type)>, simulate: boolean): boolean
 public "writeClientAction"(widget: $Widget$Type, updateId: integer, payloadWriter: $Consumer$Type<($FriendlyByteBuf$Type)>): void
 public "writeUpdateInfo"(widget: $Widget$Type, updateId: integer, payloadWriter: $Consumer$Type<($FriendlyByteBuf$Type)>): void
-public "stillValid"(playerIn: $Player$Type): boolean
-public "removed"(playerIn: $Player$Type): void
 public "addSlot"(slotHandle: $Slot$Type): $Slot
 public "addSlotListener"(pListener: $ContainerListener$Type): void
 public "quickMoveStack"(player: $Player$Type, index: integer): $ItemStack
 public "clicked"(slotId: integer, dragType: integer, clickTypeIn: $ClickType$Type, player: $Player$Type): void
 public "canTakeItemForPickAll"(stack: $ItemStack$Type, slotIn: $Slot$Type): boolean
+public "stillValid"(playerIn: $Player$Type): boolean
+public "removed"(playerIn: $Player$Type): void
 public "broadcastChanges"(): void
 public "removeSlot"(slotHandle: $Slot$Type): void
 get "modularUI"(): $ModularUI
@@ -7256,33 +7269,33 @@ export class $FluidTransferHelper {
 
 constructor()
 
-public static "exportToTarget"(source: $IFluidTransfer$Type, maxAmount: integer, filter: $Predicate$Type<($FluidStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
-public static "importToTarget"(target: $IFluidTransfer$Type, maxAmount: integer, filter: $Predicate$Type<($FluidStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
-public static "transferFluids"(sourceHandler: $IFluidTransfer$Type, destHandler: $IFluidTransfer$Type, transferLimit: long, fluidFilter: $Predicate$Type<($FluidStack$Type)>): long
-public static "tryFluidTransfer"(fluidDestination: $IFluidTransfer$Type, fluidSource: $IFluidTransfer$Type, maxAmount: integer, doTransfer: boolean): $FluidStack
-public static "tryFluidTransfer"(fluidDestination: $IFluidTransfer$Type, fluidSource: $IFluidTransfer$Type, resource: $FluidStack$Type, doTransfer: boolean): $FluidStack
-public static "tryEmptyContainerAndStow"(container: $ItemStack$Type, fluidDestination: $IFluidTransfer$Type, inventory: $IItemTransfer$Type, maxAmount: integer, player: $Player$Type, doDrain: boolean): $FluidActionResult
-public static "tryFillContainerAndStow"(container: $ItemStack$Type, fluidSource: $IFluidTransfer$Type, inventory: $IItemTransfer$Type, maxAmount: integer, player: $Player$Type, doFill: boolean): $FluidActionResult
-public static "getContainerItem"(copyContainer: $ItemStackTransfer$Type, handler: $IFluidTransfer$Type): $ItemStack
-public static "destroyBlockOnFluidPlacement"(level: $Level$Type, pos: $BlockPos$Type): void
-public static "getFluidContained"(container: $ItemStack$Type): $FluidStack
-public static "interactWithFluidHandler"(player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, pos: $BlockPos$Type, side: $Direction$Type): boolean
 public static "interactWithFluidHandler"(player: $Player$Type, hand: $InteractionHand$Type, handler: $IFluidTransfer$Type): boolean
-public static "tryPickUpFluid"(emptyContainer: $ItemStack$Type, playerIn: $Player$Type, level: $Level$Type, pos: $BlockPos$Type, side: $Direction$Type): $FluidActionResult
-public static "tryPlaceFluid"(player: $Player$Type, level: $Level$Type, hand: $InteractionHand$Type, pos: $BlockPos$Type, fluidSource: $IFluidTransfer$Type, resource: $FluidStack$Type): boolean
-public static "tryPlaceFluid"(player: $Player$Type, level: $Level$Type, hand: $InteractionHand$Type, pos: $BlockPos$Type, container: $ItemStack$Type, resource: $FluidStack$Type): $FluidActionResult
-public static "getFluidTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IFluidTransfer
-public static "getFluidTransfer"(itemTransfer: $IItemTransfer$Type, slot: integer): $IFluidTransfer
-public static "getFluidTransfer"(player: $Player$Type, screenHandler: $AbstractContainerMenu$Type): $IFluidTransfer
+public static "interactWithFluidHandler"(player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, pos: $BlockPos$Type, side: $Direction$Type): boolean
 /**
  * 
  * @deprecated
  */
 public static "getFluidTransfer"(itemStack: $ItemStack$Type): $IFluidTransfer
-public static "getFluidTransfer"(player: $Player$Type, slot: integer): $IFluidTransfer
+public static "getFluidTransfer"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $IFluidTransfer
+public static "getFluidTransfer"(itemTransfer: $IItemTransfer$Type, slot: integer): $IFluidTransfer
+public static "getFluidTransfer"(player: $Player$Type, screenHandler: $AbstractContainerMenu$Type): $IFluidTransfer
 public static "getFluidTransfer"(player: $Player$Type, hand: $InteractionHand$Type): $IFluidTransfer
+public static "getFluidTransfer"(player: $Player$Type, slot: integer): $IFluidTransfer
 public static "tryFillContainer"(container: $ItemStack$Type, fluidSource: $IFluidTransfer$Type, maxAmount: integer, player: $Player$Type, doFill: boolean): $FluidActionResult
 public static "tryEmptyContainer"(container: $ItemStack$Type, fluidDestination: $IFluidTransfer$Type, maxAmount: integer, player: $Player$Type, doDrain: boolean): $FluidActionResult
+public static "tryPickUpFluid"(emptyContainer: $ItemStack$Type, playerIn: $Player$Type, level: $Level$Type, pos: $BlockPos$Type, side: $Direction$Type): $FluidActionResult
+public static "tryPlaceFluid"(player: $Player$Type, level: $Level$Type, hand: $InteractionHand$Type, pos: $BlockPos$Type, container: $ItemStack$Type, resource: $FluidStack$Type): $FluidActionResult
+public static "tryPlaceFluid"(player: $Player$Type, level: $Level$Type, hand: $InteractionHand$Type, pos: $BlockPos$Type, fluidSource: $IFluidTransfer$Type, resource: $FluidStack$Type): boolean
+public static "importToTarget"(target: $IFluidTransfer$Type, maxAmount: integer, filter: $Predicate$Type<($FluidStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
+public static "exportToTarget"(source: $IFluidTransfer$Type, maxAmount: integer, filter: $Predicate$Type<($FluidStack$Type)>, level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
+public static "getFluidContained"(container: $ItemStack$Type): $FluidStack
+public static "transferFluids"(sourceHandler: $IFluidTransfer$Type, destHandler: $IFluidTransfer$Type, transferLimit: long, fluidFilter: $Predicate$Type<($FluidStack$Type)>): long
+public static "destroyBlockOnFluidPlacement"(level: $Level$Type, pos: $BlockPos$Type): void
+public static "getContainerItem"(copyContainer: $ItemStackTransfer$Type, handler: $IFluidTransfer$Type): $ItemStack
+public static "tryFluidTransfer"(fluidDestination: $IFluidTransfer$Type, fluidSource: $IFluidTransfer$Type, resource: $FluidStack$Type, doTransfer: boolean): $FluidStack
+public static "tryFluidTransfer"(fluidDestination: $IFluidTransfer$Type, fluidSource: $IFluidTransfer$Type, maxAmount: integer, doTransfer: boolean): $FluidStack
+public static "tryEmptyContainerAndStow"(container: $ItemStack$Type, fluidDestination: $IFluidTransfer$Type, inventory: $IItemTransfer$Type, maxAmount: integer, player: $Player$Type, doDrain: boolean): $FluidActionResult
+public static "tryFillContainerAndStow"(container: $ItemStack$Type, fluidSource: $IFluidTransfer$Type, inventory: $IItemTransfer$Type, maxAmount: integer, player: $Player$Type, doFill: boolean): $FluidActionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7307,8 +7320,8 @@ constructor()
 
 public "updateFoldingRegions"(document: $Document$Type): void
 public "isLineVisible"(line: integer): boolean
-public "toggleFold"(line: integer): void
 public "getRegions"(): $List<($FoldableRegion)>
+public "toggleFold"(line: integer): void
 get "regions"(): $List<($FoldableRegion)>
 }
 /**
@@ -7411,8 +7424,8 @@ export class $StyleManager {
 
 constructor()
 
-public "getStyleForTokenType"(type: $TokenType$Type): $Style
 public "getDefaultStyle"(): $Style
+public "getStyleForTokenType"(type: $TokenType$Type): $Style
 public "setDefaultStyle"(defaultStyle: $Style$Type): void
 public "getStyleMap"(): $Map<(string), ($Style)>
 get "defaultStyle"(): $Style
@@ -7461,34 +7474,34 @@ readonly "widgets": $List<($Widget)>
 
 constructor(editor: $Editor$Type)
 
+public "getTabIndex"(group: $WidgetGroup$Type): integer
+public "getTabIndex"(): integer
+public "switchTabIndex"(index: integer): void
+public "setOnChanged"(onChanged: $BiConsumer$Type<($WidgetGroup$Type), ($WidgetGroup$Type)>): $TabContainer
+public "clearAllWidgets"(): void
 public "calculateTabSize"(): void
 public "getOnSelected"(): $Map<($WidgetGroup), ($Runnable)>
 public "getOnDeselected"(): $Map<($WidgetGroup), ($Runnable)>
 public "getOnChanged"(): $BiConsumer<($WidgetGroup), ($WidgetGroup)>
 public "getTabGroups"(): $List<($WidgetGroup)>
-public "getTabIndex"(group: $WidgetGroup$Type): integer
-public "getTabIndex"(): integer
-public "switchTabIndex"(index: integer): void
-public "clearAllWidgets"(): void
-public "setOnChanged"(onChanged: $BiConsumer$Type<($WidgetGroup$Type), ($WidgetGroup$Type)>): $TabContainer
-public "getEditor"(): $Editor
-public "addTab"(icon: $IGuiTexture$Type, name: string, group: $WidgetGroup$Type, onSelected: $Runnable$Type, onDeselected: $Runnable$Type, onRemoved: $Runnable$Type): void
-public "addTab"(name: string, group: $WidgetGroup$Type, onSelected: $Runnable$Type, onDeselected: $Runnable$Type): void
 public "addTab"(name: string, group: $WidgetGroup$Type, onSelected: $Runnable$Type): void
-public "addTab"(name: string, group: $WidgetGroup$Type): void
 public "addTab"(tabButton: $TabButton$Type, tabWidget: $WidgetGroup$Type): void
+public "addTab"(icon: $IGuiTexture$Type, name: string, group: $WidgetGroup$Type, onSelected: $Runnable$Type, onDeselected: $Runnable$Type, onRemoved: $Runnable$Type): void
+public "addTab"(name: string, group: $WidgetGroup$Type): void
+public "addTab"(name: string, group: $WidgetGroup$Type, onSelected: $Runnable$Type, onDeselected: $Runnable$Type): void
+public "getEditor"(): $Editor
 public "removeTab"(tabButton: $TabButton$Type): void
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
+get "tabIndex"(): integer
+set "onChanged"(value: $BiConsumer$Type<($WidgetGroup$Type), ($WidgetGroup$Type)>)
 get "onSelected"(): $Map<($WidgetGroup), ($Runnable)>
 get "onDeselected"(): $Map<($WidgetGroup), ($Runnable)>
 get "onChanged"(): $BiConsumer<($WidgetGroup), ($WidgetGroup)>
 get "tabGroups"(): $List<($WidgetGroup)>
-get "tabIndex"(): integer
-set "onChanged"(value: $BiConsumer$Type<($WidgetGroup$Type), ($WidgetGroup$Type)>)
 get "editor"(): $Editor
 }
 /**
@@ -7523,11 +7536,11 @@ constructor(x: integer, y: integer, width: integer, isState: boolean)
 public "getBlock"(): $BlockState
 public "setOnBlockStateUpdate"(onBlockStateUpdate: $Consumer$Type<($BlockState$Type)>): $BlockSelectorWidget
 public "setBlock"(blockState: $BlockState$Type): $BlockSelectorWidget
-public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
+public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resources$Type, isProject: boolean): $CompoundTag
+public static "serializeNBT"(widget: $IConfigurableWidget$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): $CompoundTag
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resource$Type<($IGuiTexture$Type)>, isProject: boolean): void
 public static "deserializeNBT"(widget: $IConfigurableWidget$Type, tag: $CompoundTag$Type, resources: $Resources$Type, isProject: boolean): void
-public static "deserializeWrapper"(tag: $CompoundTag$Type): $IConfigurableWidget
 get "block"(): $BlockState
 set "onBlockStateUpdate"(value: $Consumer$Type<($BlockState$Type)>)
 set "block"(value: $BlockState$Type)
@@ -7557,16 +7570,16 @@ import {$Resources, $Resources$Type} from "packages/com/lowdragmc/lowdraglib/gui
 
 export interface $IProject extends $ILDLRegister, $ITagSerializable<($CompoundTag)> {
 
- "getSuffix"(): string
  "getResources"(): $Resources
- "onLoad"(editor: $Editor$Type): void
- "newEmptyProject"(): $IProject
- "loadResources"(tag: $CompoundTag$Type): $Resources
+ "getSuffix"(): string
  "loadProject"(file: $File$Type): $IProject
  "saveProject"(file: $File$Type): void
  "getProjectWorkSpace"(editor: $Editor$Type): $File
- "onClosed"(editor: $Editor$Type): void
+ "newEmptyProject"(): $IProject
+ "loadResources"(tag: $CompoundTag$Type): $Resources
+ "onLoad"(editor: $Editor$Type): void
  "attachMenu"(editor: $Editor$Type, name: string, menu: $TreeBuilder$Menu$Type): void
+ "onClosed"(editor: $Editor$Type): void
  "name"(): string
  "group"(): string
  "getRegisterUI"(): $LDLRegister

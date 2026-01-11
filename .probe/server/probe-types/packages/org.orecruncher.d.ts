@@ -26,14 +26,14 @@ export type $IMatcher_<T> = $IMatcher$Type<(T)>;
 declare module "packages/org/orecruncher/dsurround/mixins/core/$MixinParticleManager" {
 import {$Particle, $Particle$Type} from "packages/net/minecraft/client/particle/$Particle"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
-import {$SpriteSet, $SpriteSet$Type} from "packages/net/minecraft/client/particle/$SpriteSet"
 import {$ParticleOptions, $ParticleOptions$Type} from "packages/net/minecraft/core/particles/$ParticleOptions"
+import {$SpriteSet, $SpriteSet$Type} from "packages/net/minecraft/client/particle/$SpriteSet"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $MixinParticleManager {
 
- "dsurround_getSpriteAwareFactories"(): $Map<($ResourceLocation), ($SpriteSet)>
  "dsurround_createParticle"<T extends $ParticleOptions>(arg0: T, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double, arg6: double): $Particle
+ "dsurround_getSpriteAwareFactories"(): $Map<($ResourceLocation), ($SpriteSet)>
 }
 
 export namespace $MixinParticleManager {
@@ -181,18 +181,18 @@ static readonly "DEFAULT_SOUND_CHANCE": $Script
 constructor(version: integer, id: $ResourceLocation$Type, name: string, traits: $BiomeTraits$Type)
 constructor(version: integer, id: $ResourceLocation$Type, name: string, traits: $BiomeTraits$Type, biome: $Biome$Type)
 
-public "getVersion"(): integer
 public "toString"(): string
 public "compareTo"(o: $BiomeInfo$Type): integer
 public "update"(entry: $BiomeConfigRule$Type): void
 public "trim"(): void
-public "getFogColor"(): $TextColor
-public "getBackgroundMusic"(random: $IRandomizer$Type): $Optional<($Music)>
+public "getVersion"(): integer
 public "isDeepOcean"(): boolean
 public "findBiomeSoundMatches"(): $Collection<($ISoundFactory)>
 public "getExtraSound"(type: $SoundEventType$Type, random: $IRandomizer$Type): $Optional<($ISoundFactory)>
 public "getBiomeName"(): string
 public "mergeTraits"(configRule: $BiomeConfigRule$Type): void
+public "getBackgroundMusic"(random: $IRandomizer$Type): $Optional<($Music)>
+public "getFogColor"(): $TextColor
 public "getTraits"(): $BiomeTraits
 public "hasTrait"(trait: string): boolean
 public "isRiver"(): boolean
@@ -200,9 +200,9 @@ public "isOcean"(): boolean
 public "isCave"(): boolean
 public "getBiomeId"(): $ResourceLocation
 get "version"(): integer
-get "fogColor"(): $TextColor
 get "deepOcean"(): boolean
 get "biomeName"(): string
+get "fogColor"(): $TextColor
 get "traits"(): $BiomeTraits
 get "river"(): boolean
 get "ocean"(): boolean
@@ -229,7 +229,6 @@ export interface $IRandomizer extends $RandomSource {
 
  "nextFloat"(min: float, max: float): float
  "triangle"(midPoint: integer, range: integer): integer
- "nextInt"(arg0: integer): integer
  "fork"(): $RandomSource
  "forkPositional"(): $PositionalRandomFactory
  "setSeed"(arg0: long): void
@@ -239,6 +238,7 @@ export interface $IRandomizer extends $RandomSource {
  "triangle"(arg0: double, arg1: double): double
  "consumeCount"(arg0: integer): void
  "nextInt"(arg0: integer, arg1: integer): integer
+ "nextInt"(arg0: integer): integer
  "nextFloat"(): float
  "nextDouble"(): double
  "nextLong"(): long
@@ -246,10 +246,10 @@ export interface $IRandomizer extends $RandomSource {
 }
 
 export namespace $IRandomizer {
-function createThreadSafe(): $RandomSource
 function create(): $RandomSource
 function createNewThreadLocalInstance(): $RandomSource
 function create(arg0: long): $RandomSource
+function createThreadSafe(): $RandomSource
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -302,17 +302,17 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export interface $ISoundFactory {
 
  "getLocation"(): $ResourceLocation
- "createBackgroundSoundLoop"(): $BackgroundSoundLoop
- "createAtLocation"(pos: $BlockPos$Type): $SimpleSoundInstance
- "createAtLocation"(pos: $BlockPos$Type, volumeScale: float): $SimpleSoundInstance
- "createAtLocation"(entity: $Entity$Type): $SimpleSoundInstance
- "createAtLocation"(position: $Vec3$Type): $SimpleSoundInstance
- "createAtLocation"(arg0: $Vec3$Type, arg1: float): $SimpleSoundInstance
- "createAsMusic"(): $Music
- "createBackgroundSoundLoopAt"(arg0: $BlockPos$Type): $BackgroundSoundLoop
- "createAsAdditional"(): $SimpleSoundInstance
  "createAsMood"(entity: $Entity$Type, minRange: integer, maxRange: integer): $SimpleSoundInstance
  "attachToEntity"(arg0: $Entity$Type): $EntityBoundSoundInstance
+ "createAsAdditional"(): $SimpleSoundInstance
+ "createBackgroundSoundLoopAt"(arg0: $BlockPos$Type): $BackgroundSoundLoop
+ "createAsMusic"(): $Music
+ "createBackgroundSoundLoop"(): $BackgroundSoundLoop
+ "createAtLocation"(position: $Vec3$Type): $SimpleSoundInstance
+ "createAtLocation"(arg0: $Vec3$Type, arg1: float): $SimpleSoundInstance
+ "createAtLocation"(pos: $BlockPos$Type): $SimpleSoundInstance
+ "createAtLocation"(entity: $Entity$Type): $SimpleSoundInstance
+ "createAtLocation"(pos: $BlockPos$Type, volumeScale: float): $SimpleSoundInstance
 }
 
 export namespace $ISoundFactory {
@@ -369,21 +369,21 @@ export class $BlockInfo {
 constructor(version: integer)
 constructor(version: integer, state: $BlockState$Type)
 
-public "getVersion"(): integer
 public "toString"(): string
 public "update"(config: $BlockConfigRule$Type): void
 public "trim"(): void
 public "isDefault"(): boolean
+public "getVersion"(): integer
+public "getSoundReflectivity"(): float
+public "getSoundOcclusion"(): float
 public "hasSoundsOrEffects"(): boolean
 public "getSoundToPlay"(random: $IRandomizer$Type): $Optional<($ISoundFactory)>
 public "getEffectProducers"(): $Collection<($IBlockEffectProducer)>
-public "getSoundReflectivity"(): float
-public "getSoundOcclusion"(): float
-get "version"(): integer
 get "default"(): boolean
-get "effectProducers"(): $Collection<($IBlockEffectProducer)>
+get "version"(): integer
 get "soundReflectivity"(): float
 get "soundOcclusion"(): float
+get "effectProducers"(): $Collection<($IBlockEffectProducer)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -434,9 +434,9 @@ import {$IRandomizer, $IRandomizer$Type} from "packages/org/orecruncher/dsurroun
 
 export interface $IBiomeSoundProvider {
 
- "getBackgroundMusic"(arg0: $IRandomizer$Type): $Optional<($Music)>
  "findBiomeSoundMatches"(): $Collection<($ISoundFactory)>
  "getExtraSound"(arg0: $SoundEventType$Type, arg1: $IRandomizer$Type): $Optional<($ISoundFactory)>
+ "getBackgroundMusic"(arg0: $IRandomizer$Type): $Optional<($Music)>
 }
 
 export namespace $IBiomeSoundProvider {
@@ -458,9 +458,9 @@ declare module "packages/org/orecruncher/dsurround/mixinutils/$IMusicManager" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $IMusicManager {
 
+ "dsurround_getDiagnosticText"(): string
  "dsurround_reset"(): void
  "dsurround_setPaused"(arg0: boolean): void
- "dsurround_getDiagnosticText"(): string
 }
 
 export namespace $IMusicManager {
@@ -521,8 +521,8 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "match"(state: $BlockState$Type): boolean
-public "soundChance"(): $Optional<($Script)>
 public "clearSounds"(): boolean
+public "soundChance"(): $Optional<($Script)>
 public "effects"(): $List<($BlockEffectConfigRule)>
 public "acoustics"(): $List<($AcousticConfig)>
 }
@@ -573,11 +573,11 @@ import {$EntityEffectInfo, $EntityEffectInfo$Type} from "packages/org/orecrunche
 
 export interface $ILivingEntityExtended {
 
- "dsurround_getPotionSwirlColor"(): integer
- "dsurround_setPotionSwirlColor"(arg0: integer): void
  "dsurround_getEffectInfo"(): $EntityEffectInfo
  "dsurround_setEffectInfo"(arg0: $EntityEffectInfo$Type): void
  "dsurround_isJumping"(): boolean
+ "dsurround_getPotionSwirlColor"(): integer
+ "dsurround_setPotionSwirlColor"(arg0: integer): void
 }
 
 export namespace $ILivingEntityExtended {
@@ -610,14 +610,14 @@ static readonly "FIREFLY": $BlockEffectType
 static readonly "CODEC": $Codec<($BlockEffectType)>
 
 
-public "isEnabled"(): boolean
-public "createInstance"(chance: $Script$Type, conditions: $Script$Type): $Optional<($IBlockEffectProducer)>
 public "getName"(): string
 public static "values"(): ($BlockEffectType)[]
 public static "valueOf"(name: string): $BlockEffectType
+public "isEnabled"(): boolean
+public "createInstance"(chance: $Script$Type, conditions: $Script$Type): $Optional<($IBlockEffectProducer)>
 public static "byName"(name: string): $BlockEffectType
-get "enabled"(): boolean
 get "name"(): string
+get "enabled"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -637,8 +637,8 @@ import {$ByteBuffer, $ByteBuffer$Type} from "packages/java/nio/$ByteBuffer"
 
 export interface $MixinSoundBuffer {
 
- "dsurround_getSample"(): $ByteBuffer
  "dsurround_getFormat"(): $AudioFormat
+ "dsurround_getSample"(): $ByteBuffer
  "dsurround_setFormat"(arg0: $AudioFormat$Type): void
 }
 
@@ -671,9 +671,9 @@ constructor(effect: $BlockEffectType$Type, conditions: $Script$Type, spawnChance
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "conditions"(): $Script
 public "spawnChance"(): $Script
 public "effect"(): $BlockEffectType
+public "conditions"(): $Script
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -791,16 +791,16 @@ export type $MixinSoundManagerAccessor_ = $MixinSoundManagerAccessor$Type;
 declare module "packages/org/orecruncher/dsurround/mixinutils/$IBiomeExtended" {
 import {$Biome$ClimateSettings, $Biome$ClimateSettings$Type} from "packages/net/minecraft/world/level/biome/$Biome$ClimateSettings"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$BiomeSpecialEffects, $BiomeSpecialEffects$Type} from "packages/net/minecraft/world/level/biome/$BiomeSpecialEffects"
 import {$BiomeInfo, $BiomeInfo$Type} from "packages/org/orecruncher/dsurround/config/biome/$BiomeInfo"
+import {$BiomeSpecialEffects, $BiomeSpecialEffects$Type} from "packages/net/minecraft/world/level/biome/$BiomeSpecialEffects"
 
 export interface $IBiomeExtended {
 
- "dsurround_getSpecialEffects"(): $BiomeSpecialEffects
  "dsurround_getInfo"(): $BiomeInfo
  "dsurround_setInfo"(arg0: $BiomeInfo$Type): void
  "dsurround_getWeather"(): $Biome$ClimateSettings
  "dsurround_getTemperature"(arg0: $BlockPos$Type): float
+ "dsurround_getSpecialEffects"(): $BiomeSpecialEffects
 }
 
 export namespace $IBiomeExtended {
@@ -935,9 +935,9 @@ import {$SoundInstance, $SoundInstance$Type} from "packages/net/minecraft/client
 export interface $IEntityEffect {
 
  "tick"(manager: $EntityEffectInfo$Type): void
+ "addParticle"(particle: $Particle$Type): void
  "activate"(manager: $EntityEffectInfo$Type): void
  "deactivate"(manager: $EntityEffectInfo$Type): void
- "addParticle"(particle: $Particle$Type): void
  "playSound"(sound: $SoundInstance$Type): void
 }
 
@@ -966,20 +966,20 @@ export class $EntityEffectInfo {
 constructor(version: integer, entity: $LivingEntity$Type, effects: $Collection$Type<($IEntityEffect$Type)>)
 
 public "getEntity"(): $LivingEntity
-public "tick"(): void
-public "getVersion"(): integer
 public "isAlive"(): boolean
 public "isDefault"(): boolean
-public "isCurrentPlayer"(player: $LivingEntity$Type): boolean
+public "getVersion"(): integer
+public "tick"(): void
+public static "createDefault"(version: integer): $EntityEffectInfo
 public "activate"(): void
 public "deactivate"(): void
-public static "createDefault"(version: integer): $EntityEffectInfo
+public "isCurrentPlayer"(player: $LivingEntity$Type): boolean
 public "isRemoved"(): boolean
 public "getEffects"(): $Collection<($IEntityEffect)>
 get "entity"(): $LivingEntity
-get "version"(): integer
 get "alive"(): boolean
 get "default"(): boolean
+get "version"(): integer
 get "removed"(): boolean
 get "effects"(): $Collection<($IEntityEffect)>
 }
@@ -1001,10 +1001,10 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IBlockEffect {
 
- "isDone"(): boolean
- "tick"(): void
- "getPosition"(): $Vec3
  "remove"(): void
+ "getPosition"(): $Vec3
+ "tick"(): void
+ "isDone"(): boolean
  "getPosIndex"(): long
  "getPos"(): $BlockPos
 }
@@ -1044,11 +1044,11 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "comment"(): $Optional<(string)>
+public "clearSounds"(): boolean
+public "biomeSelector"(): $Script
+public "traits"(): $List<($BiomeTrait)>
 public "additionalSoundChance"(): $Optional<($Script)>
 public "moodSoundChance"(): $Optional<($Script)>
-public "traits"(): $List<($BiomeTrait)>
-public "biomeSelector"(): $Script
-public "clearSounds"(): boolean
 public "acoustics"(): $List<($AcousticConfig)>
 public "fogColor"(): $Optional<($TextColor)>
 }
@@ -1096,8 +1096,8 @@ import {$Button$OnPress, $Button$OnPress$Type} from "packages/net/minecraft/clie
 
 export interface $MixinButtonWidget {
 
- "dsurround_getNarrationSupplier"(): $Button$CreateNarration
  "dsurround_getPressAction"(): $Button$OnPress
+ "dsurround_getNarrationSupplier"(): $Button$CreateNarration
 }
 
 export namespace $MixinButtonWidget {
@@ -1145,9 +1145,9 @@ constructor(soundEvent: $SoundEvent$Type, pos: $BlockPos$Type)
 
 public "toString"(): string
 public "setScaleTarget"(target: float): void
-public "getPos"(): $BlockPos
-public "getVolume"(): float
 public "setPitch"(pitch: float): $BackgroundSoundLoop
+public "getVolume"(): float
+public "getPos"(): $BlockPos
 public "isFading"(): boolean
 public "fadeIn"(): void
 public "fadeOut"(): void
@@ -1155,9 +1155,9 @@ public "tick"(): void
 public "setVolume"(volume: float): $BackgroundSoundLoop
 public static "createUnseededRandom"(): $RandomSource
 set "scaleTarget"(value: float)
-get "pos"(): $BlockPos
-get "volume"(): float
 set "pitch"(value: float)
+get "volume"(): float
+get "pos"(): $BlockPos
 get "fading"(): boolean
 set "volume"(value: float)
 }
@@ -1236,35 +1236,35 @@ export class $SourceContext implements $Callable<(void)> {
 
 constructor(sourceId: integer)
 
-public "enable"(): void
-public "tick"(): void
-public "isEnabled"(): boolean
-public "getPosition"(): $Vec3
-public "sync"(): any
-public "call"(): void
 public "toString"(): string
 public "getId"(): integer
 public "exec"(): void
-public "getCategory"(): $SoundSource
+public "call"(): void
+public "sync"(): any
+public "isEnabled"(): boolean
+public "getPosition"(): $Vec3
+public "tick"(): void
+public "enable"(): void
 public "shouldExecute"(): boolean
-public "getSound"(): $SoundInstance
+public "getCategory"(): $SoundSource
 public "attachSound"(sound: $SoundInstance$Type): void
-public "getLowPass0"(): $LowPassData
+public "getAirAbsorb"(): $SourcePropertyFloat
+public "getLowPass3"(): $LowPassData
 public "getLowPass1"(): $LowPassData
 public "getLowPass2"(): $LowPassData
-public "getLowPass3"(): $LowPassData
-public "getAirAbsorb"(): $SourcePropertyFloat
+public "getLowPass0"(): $LowPassData
+public "getSound"(): $SoundInstance
 public "getDirect"(): $LowPassData
+get "id"(): integer
 get "enabled"(): boolean
 get "position"(): $Vec3
-get "id"(): integer
 get "category"(): $SoundSource
-get "sound"(): $SoundInstance
-get "lowPass0"(): $LowPassData
+get "airAbsorb"(): $SourcePropertyFloat
+get "lowPass3"(): $LowPassData
 get "lowPass1"(): $LowPassData
 get "lowPass2"(): $LowPassData
-get "lowPass3"(): $LowPassData
-get "airAbsorb"(): $SourcePropertyFloat
+get "lowPass0"(): $LowPassData
+get "sound"(): $SoundInstance
 get "direct"(): $LowPassData
 }
 /**

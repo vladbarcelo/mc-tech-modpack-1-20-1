@@ -109,12 +109,12 @@ constructor(insideStructure: boolean, insideStructurePiece: boolean)
 
 public "isInsideStructurePiece"(): boolean
 public "isInsideStructure"(): boolean
-public "setInsideStructurePiece"(insideStructurePiece: boolean): $IsInsideStructureTracker$IsInside
 public "setInsideStructure"(insideStructure: boolean): $IsInsideStructureTracker$IsInside
+public "setInsideStructurePiece"(insideStructurePiece: boolean): $IsInsideStructureTracker$IsInside
 get "insideStructurePiece"(): boolean
 get "insideStructure"(): boolean
-set "insideStructurePiece"(value: boolean)
 set "insideStructure"(value: boolean)
+set "insideStructurePiece"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

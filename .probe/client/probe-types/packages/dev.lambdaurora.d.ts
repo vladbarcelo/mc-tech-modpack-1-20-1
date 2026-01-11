@@ -12,9 +12,9 @@ export interface $DynamicLightHandler<T> {
 }
 
 export namespace $DynamicLightHandler {
+function makeLivingEntityHandler<T>(handler: $DynamicLightHandler$Type<(T)>): $DynamicLightHandler<(T)>
 function makeHandler<T>(luminance: $Function$Type<(T), (integer)>, waterSensitive: $Function$Type<(T), (boolean)>): $DynamicLightHandler<(T)>
 function makeCreeperEntityHandler<T>(handler: $DynamicLightHandler$Type<(T)>): $DynamicLightHandler<(T)>
-function makeLivingEntityHandler<T>(handler: $DynamicLightHandler$Type<(T)>): $DynamicLightHandler<(T)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

@@ -38,7 +38,7 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.casting_in_table(
     'vintageimprovements:platinum_rod',
     [
-      Fluid.of(global.moltenMetals.platinum, 45),
+      Fluid.of(global.moltenMaterialFluids.platinum, 45),
       'createmetallurgy:graphite_rod_mold',
     ],
     30,
@@ -50,7 +50,7 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.casting_in_table(
     'vintageimprovements:vanadium_rod',
     [
-      Fluid.of(global.moltenMetals.vanadium, 45),
+      Fluid.of(global.moltenMaterialFluids.vanadium, 45),
       'createmetallurgy:graphite_rod_mold',
     ],
     30,
@@ -62,7 +62,7 @@ ServerEvents.recipes((event) => {
   event.recipes.createmetallurgy.casting_in_table(
     'vintageimprovements:rhodium_rod',
     [
-      Fluid.of(global.moltenMetals.rhodium, 45),
+      Fluid.of(global.moltenMaterialFluids.rhodium, 45),
       'createmetallurgy:graphite_rod_mold',
     ],
     30,

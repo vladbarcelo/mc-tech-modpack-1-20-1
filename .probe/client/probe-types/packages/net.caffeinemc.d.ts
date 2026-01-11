@@ -13,12 +13,12 @@ export interface $VertexBufferWriter {
  */
  "isFullWriter"(): boolean
 
-(arg0: $MemoryStack$Type, arg1: long, arg2: integer, arg3: $VertexFormatDescription$Type): void
+(arg0: $VertexConsumer$Type): $VertexBufferWriter
 }
 
 export namespace $VertexBufferWriter {
-function copyInto(arg0: $VertexBufferWriter$Type, arg1: $MemoryStack$Type, arg2: long, arg3: integer, arg4: $VertexFormatDescription$Type): void
 function of(arg0: $VertexConsumer$Type): $VertexBufferWriter
+function copyInto(arg0: $VertexBufferWriter$Type, arg1: $MemoryStack$Type, arg2: long, arg3: integer, arg4: $VertexFormatDescription$Type): void
 function tryOf(arg0: $VertexConsumer$Type): $VertexBufferWriter
 }
 /**
@@ -47,9 +47,9 @@ static readonly "NORMAL": $CommonVertexAttribute
 static readonly "COUNT": integer
 
 
-public "getByteLength"(): integer
 public static "values"(): ($CommonVertexAttribute)[]
 public static "valueOf"(arg0: string): $CommonVertexAttribute
+public "getByteLength"(): integer
 public static "getCommonType"(arg0: $VertexFormatElement$Type): $CommonVertexAttribute
 get "byteLength"(): integer
 }
@@ -72,9 +72,9 @@ export interface $VertexFormatDescription {
 
  "id"(): integer
  "stride"(): integer
+ "isSimpleFormat"(): boolean
  "containsElement"(arg0: $CommonVertexAttribute$Type): boolean
  "getElementOffset"(arg0: $CommonVertexAttribute$Type): integer
- "isSimpleFormat"(): boolean
 }
 
 export namespace $VertexFormatDescription {

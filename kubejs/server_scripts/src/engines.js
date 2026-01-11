@@ -23,12 +23,12 @@ ServerEvents.recipes((event) => {
   // piston
   event.remove({ id: 'createdieselgenerators:crafting/engine_piston_from_rods' })
   event.remove({ id: 'createdieselgenerators:crafting/engine_piston' })
-  event.recipes.createmetallurgy.casting_in_basin('createdieselgenerators:engine_piston', [Fluid.of(global.moltenMetals.steel, 500), `kubejs:graphite_engine_piston_mold`], 90, true)
+  event.recipes.createmetallurgy.casting_in_basin('createdieselgenerators:engine_piston', [Fluid.of(global.moltenMaterialFluids.steel, 500), `kubejs:graphite_engine_piston_mold`], 90, true)
   event.stonecutting(`kubejs:graphite_engine_piston_mold`, 'createmetallurgy:graphite_blank_mold')
   
   // chamber
   event.remove({id: 'tfmg:mechanical_crafting/engine_chamber'})
-  event.recipes.createmetallurgy.casting_in_basin('tfmg:engine_chamber', [Fluid.of(global.moltenMetals.steel, 1000), `kubejs:graphite_engine_chamber_mold`], 90, true)
+  event.recipes.createmetallurgy.casting_in_basin('tfmg:engine_chamber', [Fluid.of(global.moltenMaterialFluids.steel, 1000), `kubejs:graphite_engine_chamber_mold`], 90, true)
   event.stonecutting(`kubejs:graphite_engine_chamber_mold`, 'createmetallurgy:graphite_blank_mold')
   
   // spark plug

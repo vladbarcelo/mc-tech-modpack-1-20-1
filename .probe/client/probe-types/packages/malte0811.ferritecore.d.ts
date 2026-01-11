@@ -62,11 +62,11 @@ export class $FastMap<Value> {
 
 constructor(arg0: $Collection$Type<($Property$Type<(any)>)>, arg1: $Map$Type<($Map$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>), (Value)>, arg2: boolean)
 
-public "getEntry"(arg0: integer, arg1: integer): $Map$Entry<($Property<(any)>), ($Comparable<(any)>)>
 public "with"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>, arg2: T): Value
-public "getValue"(arg0: integer, arg1: any): $Comparable<(any)>
 public "getValue"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>): T
+public "getValue"(arg0: integer, arg1: any): $Comparable<(any)>
 public "getKey"(arg0: integer): $FastMapKey<(any)>
+public "getEntry"(arg0: integer, arg1: integer): $Map$Entry<($Property<(any)>), ($Comparable<(any)>)>
 public "numProperties"(): integer
 public "isSingleState"(): boolean
 public "getPropertySet"(): $ImmutableSet<($Property<(any)>)>
@@ -92,12 +92,12 @@ import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/s
 
 export interface $BlockStateCacheAccess {
 
+ "getCollisionShape"(): $VoxelShape
  "setCollisionShape"(arg0: $VoxelShape$Type): void
  "getOcclusionShapes"(): ($VoxelShape)[]
  "setOcclusionShapes"(arg0: ($VoxelShape$Type)[]): void
  "getFaceSturdy"(): (boolean)[]
  "setFaceSturdy"(arg0: (boolean)[]): void
- "getCollisionShape"(): $VoxelShape
 }
 
 export namespace $BlockStateCacheAccess {
@@ -124,14 +124,14 @@ import {$ImmutableMap, $ImmutableMap$Type} from "packages/com/google/common/coll
 
 export interface $FastMapStateHolder<S> {
 
+ "getVanillaPropertyMap"(): $ImmutableMap<($Property<(any)>), ($Comparable<(any)>)>
+ "setNeighborTable"(arg0: $Table$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>), (S)>): void
+ "getNeighborTable"(): $Table<($Property<(any)>), ($Comparable<(any)>), (S)>
+ "setStateMap"(arg0: $FastMap$Type<(S)>): void
+ "setStateIndex"(arg0: integer): void
+ "getStateMap"(): $FastMap<(S)>
  "getStateIndex"(): integer
  "replacePropertyMap"(arg0: $ImmutableMap$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>): void
- "getNeighborTable"(): $Table<($Property<(any)>), ($Comparable<(any)>), (S)>
- "setStateIndex"(arg0: integer): void
- "setNeighborTable"(arg0: $Table$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>), (S)>): void
- "setStateMap"(arg0: $FastMap$Type<(S)>): void
- "getVanillaPropertyMap"(): $ImmutableMap<($Property<(any)>), ($Comparable<(any)>)>
- "getStateMap"(): $FastMap<(S)>
 }
 
 export namespace $FastMapStateHolder {
@@ -156,9 +156,9 @@ import {$Property, $Property$Type} from "packages/net/minecraft/world/level/bloc
 export class $FastMapKey<T extends $Comparable<(T)>> {
 
 
-public "numValues"(): integer
 public "getProperty"(): $Property<(T)>
 public "getValue"(arg0: integer): T
+public "numValues"(): integer
 get "property"(): $Property<(T)>
 }
 /**

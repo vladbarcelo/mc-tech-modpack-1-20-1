@@ -65,7 +65,7 @@ function addMetalCastingRecipe(
       },
       {
         "amount": fluidAmountMb,
-        "fluid": global.moltenMetals[metal],
+        "fluid": global.moltenMaterialFluids[metal],
         "nbt": {}
       }
     ],
@@ -82,7 +82,7 @@ function addMetalCastingRecipe(
       },
       {
         "amount": fluidAmountMb,
-        "fluid": global.moltenMetals[metal],
+        "fluid": global.moltenMaterialFluids[metal],
         "nbt": {}
       }
     ],
@@ -100,7 +100,7 @@ function addMetalCastingRecipe(
       },
       {
         "amount": fluidAmountMb,
-        "fluid": global.moltenMetals[metal],
+        "fluid": global.moltenMaterialFluids[metal],
         "nbt": {}
       }
     ],
@@ -120,7 +120,7 @@ function addMetalCastingRecipe(
     cooling_time: processingTimeTicks,
     fluid: {
       amount: fluidAmountMb,
-      fluid: global.moltenMetals[metal]
+      fluid: global.moltenMaterialFluids[metal]
     },
     result: {
       item: outputItem
@@ -135,7 +135,7 @@ function addMetalCastingRecipe(
     cooling_time: processingTimeTicks,
     fluid: {
       amount: fluidAmountMb,
-      fluid: global.moltenMetals[metal]
+      fluid: global.moltenMaterialFluids[metal]
     },
     result: {
       item: outputItem
@@ -150,7 +150,7 @@ function addMetalCastingRecipe(
     cooling_time: processingTimeTicks,
     fluid: {
       amount: fluidAmountMb,
-      fluid: global.moltenMetals[metal]
+      fluid: global.moltenMaterialFluids[metal]
     },
     result: {
       item: outputItem

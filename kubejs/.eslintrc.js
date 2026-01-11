@@ -10,6 +10,7 @@ module.exports = {
   },
   globals: {
     'Java': true,
+    'ClientEvents': true,
     'StartupEvents': true,
     'ServerEvents': true,
     'Item': true,

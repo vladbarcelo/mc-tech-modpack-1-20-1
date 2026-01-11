@@ -4647,11 +4647,11 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $FoliagePlacer$FoliageSetter$Type, arg3: FC): boolean
 public "placeAltLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $FoliagePlacer$FoliageSetter$Type, arg3: FC): boolean
 public "setTrunkFruit"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: FC): boolean
-public static "isFree"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Direction$Axis$Type, arg3: $BiConsumer$Type<($BlockPos$Type), ($BlockState$Type)>, arg4: FC): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BiConsumer$Type<($BlockPos$Type), ($BlockState$Type)>, arg3: FC): boolean
 public "setVine"(arg0: $LevelAccessor$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: integer, arg5: FC): boolean
 public "setHanging"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: FC): boolean
+public static "isFree"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8220,10 +8220,10 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($BayouTreeConfiguration$Type)>)
 
-public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $FoliagePlacer$FoliageSetter$Type, arg3: $BayouTreeConfiguration$Type): boolean
 public "generateLeafLayer"(arg0: $LevelAccessor$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: integer, arg4: $FoliagePlacer$FoliageSetter$Type, arg5: $BayouTreeConfiguration$Type): void
 public "generateBranch"(arg0: $LevelAccessor$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: integer, arg5: $BiConsumer$Type<($BlockPos$Type), ($BlockState$Type)>, arg6: $FoliagePlacer$FoliageSetter$Type, arg7: $BayouTreeConfiguration$Type): void
 public static "placeSpanishMossColumn"(arg0: $LevelAccessor$Type, arg1: $RandomSource$Type, arg2: $BlockPos$MutableBlockPos$Type, arg3: integer, arg4: integer, arg5: integer): void
+public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $FoliagePlacer$FoliageSetter$Type, arg3: $BayouTreeConfiguration$Type): boolean
 public "checkSpace"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: integer, arg3: integer, arg4: $BayouTreeConfiguration$Type): boolean
 }
 /**

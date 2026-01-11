@@ -40,22 +40,22 @@ constructor(arg0: boolean, arg1: $Set$Type<(any)>, arg2: $Set$Type<(any)>, arg3:
  * @deprecated
  */
 public static "getSubject"(arg0: $AccessControlContext$Type): $Subject
-public static "doAs"<T>(arg0: $Subject$Type, arg1: $PrivilegedAction$Type<(T)>): T
 public static "doAs"<T>(arg0: $Subject$Type, arg1: $PrivilegedExceptionAction$Type<(T)>): T
-/**
- * 
- * @deprecated
- */
-public static "doAsPrivileged"<T>(arg0: $Subject$Type, arg1: $PrivilegedExceptionAction$Type<(T)>, arg2: $AccessControlContext$Type): T
+public static "doAs"<T>(arg0: $Subject$Type, arg1: $PrivilegedAction$Type<(T)>): T
 /**
  * 
  * @deprecated
  */
 public static "doAsPrivileged"<T>(arg0: $Subject$Type, arg1: $PrivilegedAction$Type<(T)>, arg2: $AccessControlContext$Type): T
+/**
+ * 
+ * @deprecated
+ */
+public static "doAsPrivileged"<T>(arg0: $Subject$Type, arg1: $PrivilegedExceptionAction$Type<(T)>, arg2: $AccessControlContext$Type): T
 public "getPublicCredentials"<T>(arg0: $Class$Type<(T)>): $Set<(T)>
 public "getPublicCredentials"(): $Set<(any)>
-public "getPrivateCredentials"(): $Set<(any)>
 public "getPrivateCredentials"<T>(arg0: $Class$Type<(T)>): $Set<(T)>
+public "getPrivateCredentials"(): $Set<(any)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
