@@ -8,4 +8,8 @@ ServerEvents.recipes((event) => {
   Ingredient.registerCustomIngredientAction("keep_bucket", () => {
     return Item.of('minecraft:bucket', 1);
   })
+  // TODO
+  // Ingredient.registerCustomIngredientAction("keep", (item) => {
+  //   return Item.of(item., 1);
+  // })
 });

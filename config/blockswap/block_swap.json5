@@ -89,6 +89,7 @@ to make editing this file much easier.
 		"minecraft:soul_campfire": "kubejs:smouldering_block",
 		"minecraft:torch": "hardcore_torches:lit_torch",
 		"minecraft:lantern": "hardcore_torches:lit_lantern",
-		"minecraft:soul_lantern": "hardcore_torches:lit_lantern"
+		"minecraft:soul_lantern": "hardcore_torches:lit_lantern",
+		"farmersdelight:stove": "hardcore_torches:stove",
 	}
 }

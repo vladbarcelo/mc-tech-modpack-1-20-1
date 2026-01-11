@@ -1,4 +1,5 @@
 ServerEvents.recipes((event) => {
+  // fuels
   event.custom({
     type: "tconstruct:melting_fuel",
     duration: 100,

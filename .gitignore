@@ -10,5 +10,6 @@
 !.probe/
 !.vscode/
 !modlist.json
+!options.txt
 
 .DS_Store

@@ -35,6 +35,12 @@ ServerEvents.recipes((event) => {
 
   // stone recipes
   event.shapeless(
+    Item.of('hot_iron:rock', 4),
+    [
+      '#forge:cobblestone'
+    ]
+  )
+  event.shapeless(
     Item.of('hot_iron:rock'),
     [
       '#notreepunching:loose_rocks'

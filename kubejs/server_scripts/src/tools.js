@@ -38,4 +38,24 @@ ServerEvents.recipes((event) => {
       B: 'hot_iron:tool_handle',
     }
   )
+
+  // canteen
+  event.remove({ id: 'thirstcanteen:leather_canteen' })
+  event.shaped(
+    Item.of('thirstcanteen:leather_canteen', 1),
+    [
+      'A A',
+      ' A ',
+    ],
+    {
+      A: '#forge:leather',
+    }
+  )
+  event.shapeless(
+    Item.of('thirstcanteen:leather_canteen', 1),
+    [
+      '#forge:leather',
+      'minecraft:glass_bottle'
+    ]
+  )
 });

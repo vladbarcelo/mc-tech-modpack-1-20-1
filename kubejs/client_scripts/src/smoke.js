@@ -1,15 +1,16 @@
 ClientEvents.tick(event => {
-  const range = 2
-  const { player, level } = event
-  const { block, age } = player
-  const pos = block.pos
-
+  let { player, level } = event
+  let { block, age } = player
+  
   if (age % 30) return
 
-  const radiusOf = n => Array.from(Array(2 * n + 1).keys()).map(i => i - n)
+  let chunkRange = 2
+  let pos = block.pos
 
-  radiusOf(range).forEach(dx =>
-    radiusOf(range).forEach(dz => {
+  let radiusOf = n => Array.from(Array(2 * n + 1).keys()).map(i => i - n)
+
+  radiusOf(chunkRange).forEach(dx =>
+    radiusOf(chunkRange).forEach(dz => {
       level
         .getChunkAt(pos.offset(dx * 16, 0, dz * 16))['findBlocks(java.util.function.BiPredicate,java.util.function.BiConsumer)'](
           predicate,
@@ -18,8 +19,9 @@ ClientEvents.tick(event => {
            * @param {Internal.BlockState} blockState
            */
           (blockPos, blockState) => {
-            if (pos.distManhattan(blockPos) > range * 3 * 16) return
-            const { x, y, z } = blockPos
+            if (pos.distManhattan(blockPos) > chunkRange * 3 * 16) return
+
+            let { x, y, z } = blockPos
             level.spawnParticles(
               /* options: */ 'minecraft:campfire_signal_smoke',
               /* overrideLimiter: */ true,
@@ -29,6 +31,8 @@ ClientEvents.tick(event => {
               /* vx: */ 0,
               /* vy: */ 1,
               /* vz: */ 0,
+              // Count = 0 spawns 1 particle that obeys the direction vector
+              // Otherwise the particles spawn in an area and have random direction vectors
               /* count: */ 0,
               /* speed: */ 0.03
             )
