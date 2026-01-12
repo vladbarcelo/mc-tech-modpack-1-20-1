@@ -10,11 +10,11 @@ constructor(entity: $VillagerEntityMCA$Type)
 
 public "readFromNbt"(nbt: $CompoundTag$Type): void
 public "getMemory"(id: string): long
-public "writeToNbt"(nbt: $CompoundTag$Type): void
 public "remember"(id: string, time: long): void
 public "remember"(id: string): void
-public "hasMemory"(id: string): boolean
+public "writeToNbt"(nbt: $CompoundTag$Type): void
 public static "parseId"(json: $JsonObject$Type, player: $ServerPlayer$Type): string
+public "hasMemory"(id: string): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -44,18 +44,18 @@ export class $Residency {
 constructor(entity: $VillagerEntityMCA$Type)
 
 public "tick"(): void
-public "getWorkplace"(): $BlockPos
 public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
-public "setWorkplace"(player: $ServerPlayer$Type): void
 public "getHomeVillage"(): $Optional<($Village)>
+public "setWorkplace"(player: $ServerPlayer$Type): void
+public "getWorkplace"(): $BlockPos
 public "leaveHome"(): void
 public "setHome"(player: $ServerPlayer$Type): void
 public "goHome"(player: $Player$Type): void
 public "seekHome"(): void
 public "getHome"(): $Optional<($GlobalPos)>
-get "workplace"(): $BlockPos
-set "workplace"(value: $ServerPlayer$Type)
 get "homeVillage"(): $Optional<($Village)>
+set "workplace"(value: $ServerPlayer$Type)
+get "workplace"(): $BlockPos
 set "home"(value: $ServerPlayer$Type)
 get "home"(): $Optional<($GlobalPos)>
 }
@@ -82,9 +82,9 @@ export class $CDataManager$Builder<E extends $Entity> {
 
 constructor(type: $Class$Type<(E)>)
 
+public "build"(): $CDataManager<(E)>
 public "add"(subType: $Function$Type<($CDataManager$Builder$Type<(E)>), ($CDataManager$Builder$Type<(E)>)>): $CDataManager$Builder<(E)>
 public "addAll"(...params: ($CParameter$Type<(any), (any)>)[]): $CDataManager$Builder<(E)>
-public "build"(): $CDataManager<(E)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -110,24 +110,24 @@ export class $Memories {
 
 constructor(brain: $VillagerBrain$Type<(any)>, time: long, uuid: $UUID$Type)
 
-public "getInteractionFatigue"(): integer
-public "setInteractionFatigue"(value: integer): void
-public "modInteractionFatigue"(value: integer): void
 public "getPlayerUUID"(): $UUID
 public "getDialogueType"(): $DialogueType
 public "setDialogueType"(dialogueType: $DialogueType$Type): void
+public "getInteractionFatigue"(): integer
+public "setInteractionFatigue"(value: integer): void
+public "modInteractionFatigue"(value: integer): void
 public "getLastSeen"(): long
 public "setLastSeen"(lastSeen: integer): void
+public "modHearts"(value: integer): void
 public "setHearts"(value: integer): void
 public "getHearts"(): integer
-public "modHearts"(value: integer): void
 public static "fromCNBT"<E extends ($Mob) & ($VillagerLike<(E)>)>(villager: E, tag: $CompoundTag$Type): $Memories
 public "toCNBT"(): $CompoundTag
-get "interactionFatigue"(): integer
-set "interactionFatigue"(value: integer)
 get "playerUUID"(): $UUID
 get "dialogueType"(): $DialogueType
 set "dialogueType"(value: $DialogueType$Type)
+get "interactionFatigue"(): integer
+set "interactionFatigue"(value: integer)
 get "lastSeen"(): long
 set "lastSeen"(value: integer)
 set "hearts"(value: integer)
@@ -273,9 +273,9 @@ export class $VillageGuardsManager {
 
 constructor(village: $Village$Type)
 
-public "getGuardEquipment"(profession: $VillagerProfession$Type, dominantHand: $InteractionHand$Type): $EquipmentSet
-public static "getEquipmentFor"(dominantHand: $InteractionHand$Type, rightSet: $EquipmentSet$Type, leftSet: $EquipmentSet$Type): $EquipmentSet
 public "spawnGuards"(world: $ServerLevel$Type): void
+public static "getEquipmentFor"(dominantHand: $InteractionHand$Type, rightSet: $EquipmentSet$Type, leftSet: $EquipmentSet$Type): $EquipmentSet
+public "getGuardEquipment"(profession: $VillagerProfession$Type, dominantHand: $InteractionHand$Type): $EquipmentSet
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -506,20 +506,20 @@ export class $VillageManager extends $SavedData implements $Iterable<($Village)>
 readonly "cache": $Set<($BlockPos)>
 
 
+public "tick"(): void
 public static "get"(world: $ServerLevel$Type): $VillageManager
 public "iterator"(): $Iterator<($Village)>
 public "merge"(into: $Village$Type, from: $Village$Type): void
-public "tick"(): void
+public "isWithinHorizontalBoundaries"(p: $BlockPos$Type): boolean
 public "getReaperSpawner"(): $ReaperSpawner
-public "reportBuilding"(pos: $BlockPos$Type): void
-public "findNearestVillage"(p: $BlockPos$Type, margin: integer): $Optional<($Village)>
-public "findNearestVillage"(entity: $Entity$Type): $Optional<($Village)>
 public "processBuilding"(pos: $BlockPos$Type, enforce: boolean, strictScan: boolean): $Building$validationResult
 public "processBuilding"(pos: $BlockPos$Type): $Building$validationResult
-public "isWithinHorizontalBoundaries"(p: $BlockPos$Type): boolean
+public "findNearestVillage"(entity: $Entity$Type): $Optional<($Village)>
+public "findNearestVillage"(p: $BlockPos$Type, margin: integer): $Optional<($Village)>
+public "reportBuilding"(pos: $BlockPos$Type): void
+public "setBuildingCooldown"(buildingCooldown: integer): void
 public "removeVillage"(id: integer): boolean
 public "findVillages"(predicate: $Predicate$Type<($Village$Type)>): $Stream<($Village)>
-public "setBuildingCooldown"(buildingCooldown: integer): void
 public "save"(nbt: $CompoundTag$Type): $CompoundTag
 public "getOrEmpty"(id: integer): $Optional<($Village)>
 public "spliterator"(): $Spliterator<($Village)>
@@ -642,9 +642,9 @@ export class $ConversationManager {
 
 constructor(entity: $VillagerEntityMCA$Type)
 
-public "getCurrentMessage"(): $Optional<($ConversationManager$Message)>
-public "addMessage"(receiver: $Entity$Type, message: $MutableComponent$Type): void
 public "addMessage"(message: $ConversationManager$Message$Type): void
+public "addMessage"(receiver: $Entity$Type, message: $MutableComponent$Type): void
+public "getCurrentMessage"(): $Optional<($ConversationManager$Message)>
 get "currentMessage"(): $Optional<($ConversationManager$Message)>
 }
 /**
@@ -669,8 +669,8 @@ import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packa
 import {$SimpleWaterloggedBlock, $SimpleWaterloggedBlock$Type} from "packages/net/minecraft/world/level/block/$SimpleWaterloggedBlock"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -741,13 +741,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type, lineWidth: integer, maxNameHeight: integer, nameplateOffset: $Vec3$Type, rotation: float, requiresSolid: boolean, baseShape: $VoxelShape$Type)
 
-public "getLineWidth"(): integer
 public "getRotation"(): float
+public "getLineWidth"(): integer
 public "getMaxNameHeight"(): integer
 public "getNameplateOffset"(): $Vec3
-public "animateTick"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
+public "getSignal"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
+public "getDirectSignal"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
+public "getTicker"<T extends $BlockEntity>(world: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 /**
  * 
  * @deprecated
@@ -780,9 +780,9 @@ public "canSurvive"(state: $BlockState$Type, world: $LevelReader$Type, pos: $Blo
  * @deprecated
  */
 public "getShape"(state: $BlockState$Type, view: $BlockGetter$Type, pos: $BlockPos$Type, ePos: $CollisionContext$Type): $VoxelShape
-public "getSignal"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
-public "getDirectSignal"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
-public "getTicker"<T extends $BlockEntity>(world: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
+public "animateTick"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(pos: $BlockPos$Type, state: $BlockState$Type): $BlockEntity
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -790,8 +790,8 @@ public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Blo
 public "getPickupSound"(): $Optional<($SoundEvent)>
 public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "lineWidth"(): integer
 get "rotation"(): float
+get "lineWidth"(): integer
 get "maxNameHeight"(): integer
 get "nameplateOffset"(): $Vec3
 get "pickupSound"(): $Optional<($SoundEvent)>
@@ -930,8 +930,8 @@ export class $Mood {
 
 
 public "getName"(): string
-public "getParticle"(): $SimpleParticleType
 public "getBuilding"(): string
+public "getParticle"(): $SimpleParticleType
 public "getText"(): $Component
 public "getParticleInterval"(): integer
 public "getSoundInterval"(): integer
@@ -939,8 +939,8 @@ public "getSoundMale"(): $SoundEvent
 public "getSoundFemale"(): $SoundEvent
 public "getColor"(): $ChatFormatting
 get "name"(): string
-get "particle"(): $SimpleParticleType
 get "building"(): string
+get "particle"(): $SimpleParticleType
 get "text"(): $Component
 get "particleInterval"(): integer
 get "soundInterval"(): integer
@@ -968,8 +968,8 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export class $ReaperSpawner {
 
-constructor(manager: $VillageManager$Type)
 constructor(manager: $VillageManager$Type, nbt: $CompoundTag$Type)
+constructor(manager: $VillageManager$Type)
 
 public "tick"(world: $ServerLevel$Type): void
 public "trySpawnReaper"(world: $ServerLevel$Type, pos: $BlockPos$Type): void
@@ -1008,6 +1008,17 @@ export class $VillagerBrain<E extends ($Mob) & ($VillagerLike<(E)>)> {
 constructor(entity: E)
 
 public "getMemories"(): $Map<($UUID), ($Memories)>
+public "modifyMoodValue"(mood: integer): void
+public static "createTrackedData"<E2 extends $Entity>(builder: $CDataManager$Builder$Type<(E2)>): $CDataManager$Builder<(E2)>
+public "getPersonality"(): $Personality
+public "getMemoriesForPlayer"(player: $Player$Type): $Memories
+public "isPanicking"(): boolean
+public "getMoodValue"(): integer
+public "getMoveState"(): $MoveState
+public "getCurrentJob"(): $Chore
+public "getArmorWear"(): boolean
+public "setArmorWear"(s: boolean): void
+public "setMoveState"(state: $MoveState$Type, leader: $Player$Type): void
 public "updateMoveState"(): void
 public "getJobAssigner"(): $Optional<($Player)>
 public "setPersonality"(p: $Personality$Type): void
@@ -1016,32 +1027,21 @@ public "setGrieving"(): void
 public "justGrieved"(): void
 public "shouldGrieve"(): boolean
 public "rewardHearts"(player: $ServerPlayer$Type, hearts: integer): void
-public static "createTrackedData"<E2 extends $Entity>(builder: $CDataManager$Builder$Type<(E2)>): $CDataManager$Builder<(E2)>
-public "getPersonality"(): $Personality
-public "getMemoriesForPlayer"(player: $Player$Type): $Memories
-public "modifyMoodValue"(mood: integer): void
-public "getArmorWear"(): boolean
-public "setArmorWear"(s: boolean): void
-public "setMoveState"(state: $MoveState$Type, leader: $Player$Type): void
-public "isPanicking"(): boolean
-public "getMoodValue"(): integer
-public "getMoveState"(): $MoveState
-public "getCurrentJob"(): $Chore
 public "think"(): void
 public "randomize"(): void
 public "getMood"(): $Mood
 public "abandonJob"(): void
 public "assignJob"(chore: $Chore$Type, player: $Player$Type): void
 get "memories"(): $Map<($UUID), ($Memories)>
-get "jobAssigner"(): $Optional<($Player)>
-set "personality"(value: $Personality$Type)
 get "personality"(): $Personality
-get "armorWear"(): boolean
-set "armorWear"(value: boolean)
 get "panicking"(): boolean
 get "moodValue"(): integer
 get "moveState"(): $MoveState
 get "currentJob"(): $Chore
+get "armorWear"(): boolean
+set "armorWear"(value: boolean)
+get "jobAssigner"(): $Optional<($Player)>
+set "personality"(value: $Personality$Type)
 get "mood"(): $Mood
 }
 /**
@@ -1073,29 +1073,29 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $EntityRelationship {
 
- "getFamily"(parents: integer, children: integer): $Stream<($Entity)>
  "promise"(spouse: $Entity$Type): void
+ "getFamily"(parents: integer, children: integer): $Stream<($Entity)>
  "getParents"(): $Stream<($Entity)>
+ "getFamilyEntry"(): $FamilyTreeNode
+ "isMarriedTo"(uuid: $UUID$Type): boolean
+ "isEngagedWith"(uuid: $UUID$Type): boolean
+ "endRelationShip"(newState: $RelationshipState$Type): void
  "getFamilyTree"(): $FamilyTree
  "getRelationshipStream"(uuids: $Stream$Type<($UUID$Type)>): $Stream<($EntityRelationship)>
  "getRelationshipState"(): $RelationshipState
  "getPartnerUUID"(): $Optional<($UUID)>
  "getPartnerName"(): $Optional<($Component)>
  "isPromisedTo"(uuid: $UUID$Type): boolean
- "getFamilyEntry"(): $FamilyTreeNode
- "isMarriedTo"(uuid: $UUID$Type): boolean
- "isEngagedWith"(uuid: $UUID$Type): boolean
- "endRelationShip"(newState: $RelationshipState$Type): void
  "getWorld"(): $ServerLevel
  "getUUID"(): $UUID
- "getGender"(): $Gender
  "isMarried"(): boolean
- "isEngaged"(): boolean
  "marry"(spouse: $Entity$Type): void
+ "isEngaged"(): boolean
+ "engage"(spouse: $Entity$Type): void
+ "getGender"(): $Gender
  "getPartner"(): $Optional<($Entity)>
  "onTragedy"(cause: $DamageSource$Type, burialSite: $BlockPos$Type, type: $RelationshipType$Type, victim: $Entity$Type): void
  "isPromised"(): boolean
- "engage"(spouse: $Entity$Type): void
 }
 
 export namespace $EntityRelationship {
@@ -1142,9 +1142,9 @@ readonly "screenExecutor": $Executor
 constructor(book: $Book$Type)
 
 public "getTextRenderer"(): $Font
+public "render"(context: $GuiGraphics$Type, mouseX: integer, mouseY: integer, delta: float): void
 public "keyPressed"(keyCode: integer, scanCode: integer, modifiers: integer): boolean
 public "handleComponentClicked"(style: $Style$Type): boolean
-public "render"(context: $GuiGraphics$Type, mouseX: integer, mouseY: integer, delta: float): void
 public "mouseClicked"(mouseX: double, mouseY: double, button: integer): boolean
 public "setPage"(index: integer): boolean
 public "getBook"(): $Book
@@ -1234,17 +1234,17 @@ static readonly "FEMALE": $Gender
 static readonly "NEUTRAL": $Gender
 
 
-public static "getRandom"(): $Gender
 public "binary"(): $Gender
+public static "getRandom"(): $Gender
 public static "values"(): ($Gender)[]
 public static "valueOf"(name: string): $Gender
 public "getId"(): integer
 public "getHorizontalScaleFactor"(): float
 public static "getText"(t: $Gender$Type): $Component
-public "getDataName"(): string
-public "getScaleFactor"(): float
 public "getVillagerType"(): $EntityType<($VillagerEntityMCA)>
+public "getScaleFactor"(): float
 public "getZombieType"(): $EntityType<($ZombieVillagerEntityMCA)>
+public "getDataName"(): string
 public "opposite"(): $Gender
 public "getColor"(): integer
 public static "byName"(name: string): $Gender
@@ -1252,10 +1252,10 @@ public static "byId"(id: integer): $Gender
 get "random"(): $Gender
 get "id"(): integer
 get "horizontalScaleFactor"(): float
-get "dataName"(): string
-get "scaleFactor"(): float
 get "villagerType"(): $EntityType<($VillagerEntityMCA)>
+get "scaleFactor"(): float
 get "zombieType"(): $EntityType<($ZombieVillagerEntityMCA)>
+get "dataName"(): string
 get "color"(): integer
 }
 /**
@@ -1298,16 +1298,16 @@ import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 export class $Traits$Trait {
 
 
+public "isEnabled"(): boolean
+public "getDescription"(): $Component
 public "getName"(): $Component
 public static "values"(): $Collection<($Traits$Trait)>
 public static "valueOf"(id: string): $Traits$Trait
 public "id"(): string
-public "isEnabled"(): boolean
-public "getDescription"(): $Component
 public "isUsableOnPlayer"(): boolean
-get "name"(): $Component
 get "enabled"(): boolean
 get "description"(): $Component
+get "name"(): $Component
 get "usableOnPlayer"(): boolean
 }
 /**
@@ -1420,6 +1420,7 @@ readonly "canRepair": boolean
 constructor(settings: $Item$Properties$Type)
 
 public static "use"(context: $UseOnContext$Type, cure: boolean): $InteractionResult
+public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "use"(world: $Level$Type, user: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "hurtEnemy"(stack: $ItemStack$Type, target: $LivingEntity$Type, attacker: $LivingEntity$Type): boolean
 public "inventoryTick"(stack: $ItemStack$Type, world: $Level$Type, entity: $Entity$Type, slot: integer, selected: boolean): void
@@ -1427,7 +1428,6 @@ public "getUseAnimation"(stack: $ItemStack$Type): $UseAnim
 public "appendHoverText"(stack: $ItemStack$Type, world: $Level$Type, tooltip: $List$Type<($Component$Type)>, context: $TooltipFlag$Type): void
 public "isFoil"(stack: $ItemStack$Type): boolean
 public "isValidRepairItem"(stack: $ItemStack$Type, ingredient: $ItemStack$Type): boolean
-public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "getUseDuration"(stack: $ItemStack$Type): integer
 public static "hasSoul"(stack: $ItemStack$Type): boolean
 public static "setSoul"(stack: $ItemStack$Type, soul: boolean): void
@@ -1503,10 +1503,10 @@ constructor(entity: $VillagerEntityMCA$Type)
 
 public "tick"(age: integer): void
 public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
-public "mayProcreateAgain"(time: long): boolean
-public "startProcreating"(time: long): void
 public "getPregnancy"(): $Pregnancy
 public "isProcreating"(): boolean
+public "mayProcreateAgain"(time: long): boolean
+public "startProcreating"(time: long): void
 public "giveGift"(player: $ServerPlayer$Type, memory: $Memories$Type): void
 public static "of"(entity: $Entity$Type): $Optional<($EntityRelationship)>
 get "pregnancy"(): $Pregnancy
@@ -1542,55 +1542,55 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export class $Building implements $Serializable {
 static readonly "SCAN_COOLDOWN": long
 
-constructor(v: $CompoundTag$Type)
 constructor()
-constructor(pos: $BlockPos$Type)
 constructor(pos: $BlockPos$Type, strictScan: boolean)
+constructor(pos: $BlockPos$Type)
+constructor(v: $CompoundTag$Type)
 
+public "setType"(type: string): void
 public "overlaps"(b: $Building$Type): boolean
 public "getId"(): integer
 public "save"(): $CompoundTag
 public "getType"(): string
 public "getSize"(): integer
-public "setType"(type: string): void
-public "getBuildingType"(): $BuildingType
 public "removeBlock"(block: $Block$Type, p: $BlockPos$Type): void
-public "isIdentical"(b: $Building$Type): boolean
+public "getBuildingType"(): $BuildingType
 public "isComplete"(): boolean
 public "setId"(id: integer): void
-public "containsPos"(pos: $Vec3i$Type): boolean
-public "isStrictScan"(): boolean
+public "isIdentical"(b: $Building$Type): boolean
 public "setTypeForced"(forced: boolean): void
 public "determineType"(): boolean
-public "isTypeForced"(): boolean
-public "validateBlocks"(world: $Level$Type): void
-public "setLastScan"(lastScan: long): void
-public "getBlockPosStream"(): $Stream<($BlockPos)>
+public "containsPos"(pos: $Vec3i$Type): boolean
+public "isStrictScan"(): boolean
 public "getBlockCount"(): integer
-public "getSourceBlock"(): $BlockPos
-public "getLastScan"(): long
+public "getBlockPosStream"(): $Stream<($BlockPos)>
+public "setLastScan"(lastScan: long): void
+public "validateBlocks"(world: $Level$Type): void
 public "validateBuilding"(world: $Level$Type, blocked: $Set$Type<($BlockPos$Type)>): $Building$validationResult
+public "getLastScan"(): long
+public "getSourceBlock"(): $BlockPos
+public "isTypeForced"(): boolean
 public "getBlocks"(): $Map<($ResourceLocation), ($List<($BlockPos)>)>
 public "addBlock"(block: $Block$Type, p: $BlockPos$Type): void
 public "getCenter"(): $BlockPos
 public "getPos1"(): $BlockPos
 public "getPos0"(): $BlockPos
 public "addPOI"(world: $Level$Type, pos: $BlockPos$Type): void
+set "type"(value: string)
 get "id"(): integer
 get "type"(): string
 get "size"(): integer
-set "type"(value: string)
 get "buildingType"(): $BuildingType
 get "complete"(): boolean
 set "id"(value: integer)
-get "strictScan"(): boolean
 set "typeForced"(value: boolean)
-get "typeForced"(): boolean
-set "lastScan"(value: long)
-get "blockPosStream"(): $Stream<($BlockPos)>
+get "strictScan"(): boolean
 get "blockCount"(): integer
-get "sourceBlock"(): $BlockPos
+get "blockPosStream"(): $Stream<($BlockPos)>
+set "lastScan"(value: long)
 get "lastScan"(): long
+get "sourceBlock"(): $BlockPos
+get "typeForced"(): boolean
 get "blocks"(): $Map<($ResourceLocation), ($List<($BlockPos)>)>
 get "center"(): $BlockPos
 get "pos1"(): $BlockPos
@@ -1629,15 +1629,15 @@ static readonly "GRUMPY": $Personality
 static readonly "PEPPY": $Personality
 
 
+public "getDescription"(): $Component
 public static "getRandom"(): $Personality
 public "getName"(): $Component
 public static "values"(): ($Personality)[]
 public static "valueOf"(name: string): $Personality
-public "getDescription"(): $Component
 public "getSpeedModifier"(): float
+get "description"(): $Component
 get "random"(): $Personality
 get "name"(): $Component
-get "description"(): $Component
 get "speedModifier"(): float
 }
 /**
@@ -1707,14 +1707,15 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $Relationship$Predicate extends $BiPredicate<($CompassionateEntity<(any)>), ($Entity)> {
 
- "test"(villager: $CompassionateEntity$Type<(any)>, partner: $Entity$Type): boolean
- "test"(arg0: $CompassionateEntity$Type<(any)>, arg1: $UUID$Type): boolean
  "or"(b: $Relationship$Predicate$Type): $Relationship$Predicate
+ "negate"(): $Relationship$Predicate
+ "test"(arg0: $CompassionateEntity$Type<(any)>, arg1: $UUID$Type): boolean
+ "test"(villager: $CompassionateEntity$Type<(any)>, partner: $Entity$Type): boolean
  "asConstraint"(): $BiPredicate<($VillagerLike<(any)>), ($ServerPlayer)>
  "or"(arg0: $BiPredicate$Type<(any), (any)>): $BiPredicate<($CompassionateEntity<(any)>), ($Entity)>
  "and"(arg0: $BiPredicate$Type<(any), (any)>): $BiPredicate<($CompassionateEntity<(any)>), ($Entity)>
 
-(villager: $CompassionateEntity$Type<(any)>, partner: $Entity$Type): boolean
+(b: $Relationship$Predicate$Type): $Relationship$Predicate
 }
 
 export namespace $Relationship$Predicate {
@@ -1740,9 +1741,9 @@ export class $GiftSaturation {
 
 constructor()
 
+public "pop"(): void
 public "add"(stack: $ItemStack$Type): void
 public "get"(stack: $ItemStack$Type): integer
-public "pop"(): void
 public "readFromNbt"(nbt: $ListTag$Type): void
 public "toNbt"(): $ListTag
 }
@@ -1825,8 +1826,8 @@ import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/lev
 import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
-import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 import {$CivilRegistryManager, $CivilRegistryManager$Type} from "packages/forge/net/mca/server/world/data/$CivilRegistryManager"
+import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 
 export class $Village implements $Iterable<($Building)> {
 static readonly "PLAYER_BORDER_MARGIN": integer
@@ -1838,82 +1839,82 @@ readonly "storageBuffer": $List<($ItemStack)>
 constructor(id: integer, world: $ServerLevel$Type)
 constructor(v: $CompoundTag$Type, world: $ServerLevel$Type)
 
+public "tick"(world: $ServerLevel$Type, time: long): void
 public "getName"(): string
 public "iterator"(): $Iterator<($Building)>
 public "merge"(village: $Village$Type): void
 public "setName"(name: string): void
 public "getId"(): integer
 public "save"(): $CompoundTag
-public "tick"(world: $ServerLevel$Type, time: long): void
-public "getBuilding"(id: integer): $Optional<($Building)>
-public "getPopulation"(): integer
 public "getMaxPopulation"(): integer
+public "getPopulation"(): integer
+public "getResidentNames"(): $Map<($UUID), (string)>
 public "getResidents"(building: integer): $List<(string)>
 public "getResidents"(world: $ServerLevel$Type): $List<($VillagerEntityMCA)>
-public "getResidentNames"(): $Map<($UUID), (string)>
+public "getBuilding"(id: integer): $Optional<($Building)>
+public "toggleAutoScan"(): void
+public "broadCastMessage"(world: $ServerLevel$Type, event: string, suitor: $VillagerEntityMCA$Type, mate: $VillagerEntityMCA$Type): void
+public "broadCastMessage"(world: $ServerLevel$Type, event: string, targetName: string): void
+public "getCivilRegistry"(): $Optional<($CivilRegistryManager)>
+public "removeBuilding"(id: integer): void
+public "getBuildings"(): $Map<(integer), ($Building)>
+public "getPopulationThreshold"(): float
+public "getMarriageThreshold"(): float
+public "setPopulationThreshold"(populationThreshold: float): void
+public "setMarriageThreshold"(marriageThreshold: float): void
+public "updateResident"(e: $VillagerEntityMCA$Type): void
+public static "findNearest"(entity: $Entity$Type): $Optional<($Village)>
+public "updateMaxPopulation"(): void
+public "getReputation"(player: $Player$Type): integer
+public "hasBuilding"(building: string): boolean
 public "getBuildingAt"(pos: $Vec3i$Type): $Optional<($Building)>
 public "setReputation"(player: $Player$Type, villager: $VillagerEntityMCA$Type, rep: integer): void
 public "removeResident"(uuid: $UUID$Type): void
 public "removeResident"(villager: $VillagerEntityMCA$Type): void
-public "updateResident"(e: $VillagerEntityMCA$Type): void
-public "setMarriageThreshold"(marriageThreshold: float): void
-public "getPopulationThreshold"(): float
-public "getMarriageThreshold"(): float
-public "setPopulationThreshold"(populationThreshold: float): void
-public "toggleAutoScan"(): void
-public "removeBuilding"(id: integer): void
-public "getBuildings"(): $Map<(integer), ($Building)>
-public static "findNearest"(entity: $Entity$Type): $Optional<($Village)>
-public "updateMaxPopulation"(): void
-public "getReputation"(player: $Player$Type): integer
-public "broadCastMessage"(world: $ServerLevel$Type, event: string, targetName: string): void
-public "broadCastMessage"(world: $ServerLevel$Type, event: string, suitor: $VillagerEntityMCA$Type, mate: $VillagerEntityMCA$Type): void
-public "getCivilRegistry"(): $Optional<($CivilRegistryManager)>
-public "hasBuilding"(building: string): boolean
 public "hasResident"(id: $UUID$Type): boolean
-public "cleanReputation"(): void
-public "resetHearts"(player: $Player$Type): void
-public "getVillageGuardsManager"(): $VillageGuardsManager
-public "isPositionValidBed"(pos: $BlockPos$Type): boolean
-public "getBuildingsOfType"(type: string): $Stream<($Building)>
 public "isWithinBorder"(entity: $Entity$Type): boolean
 public "isWithinBorder"(pos: $BlockPos$Type, margin: integer): boolean
 public "calculateDimensions"(): void
-public "setAutoScan"(autoScan: boolean): void
-public "getResidentsUUIDs"(): $Stream<($UUID)>
+public "resetHearts"(player: $Player$Type): void
+public "cleanReputation"(): void
+public "getBuildingsOfType"(type: string): $Stream<($Building)>
 public "hasStoredResource"(): boolean
+public "getResidentsUUIDs"(): $Stream<($UUID)>
+public "setAutoScan"(autoScan: boolean): void
+public "isPositionValidBed"(pos: $BlockPos$Type): boolean
+public "getVillageGuardsManager"(): $VillageGuardsManager
 public "markDirty"(): void
 public "getCenter"(): $Vec3i
-public "hasSpace"(): boolean
 public "getBox"(): $BlockBoxExtended
-public "pushHearts"(player: $Player$Type, rep: integer): void
+public "hasSpace"(): boolean
 public "pushHearts"(player: $UUID$Type, rep: integer): void
+public "pushHearts"(player: $Player$Type, rep: integer): void
 public "isVillage"(): boolean
 public "getTaxes"(): float
 public "setTaxes"(taxes: float): void
 public "isAutoScan"(): boolean
 public "popMood"(): integer
 public "popHearts"(player: $Player$Type): integer
-public "pushMood"(m: integer): void
 public "onEnter"(world: $ServerLevel$Type): void
+public "pushMood"(m: integer): void
 public "spliterator"(): $Spliterator<($Building)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 [Symbol.iterator](): IterableIterator<$Building>;
 get "name"(): string
 set "name"(value: string)
 get "id"(): integer
-get "population"(): integer
 get "maxPopulation"(): integer
+get "population"(): integer
 get "residentNames"(): $Map<($UUID), (string)>
-set "marriageThreshold"(value: float)
+get "civilRegistry"(): $Optional<($CivilRegistryManager)>
+get "buildings"(): $Map<(integer), ($Building)>
 get "populationThreshold"(): float
 get "marriageThreshold"(): float
 set "populationThreshold"(value: float)
-get "buildings"(): $Map<(integer), ($Building)>
-get "civilRegistry"(): $Optional<($CivilRegistryManager)>
-get "villageGuardsManager"(): $VillageGuardsManager
-set "autoScan"(value: boolean)
+set "marriageThreshold"(value: float)
 get "residentsUUIDs"(): $Stream<($UUID)>
+set "autoScan"(value: boolean)
+get "villageGuardsManager"(): $VillageGuardsManager
 get "center"(): $Vec3i
 get "box"(): $BlockBoxExtended
 get "village"(): boolean
@@ -1945,8 +1946,8 @@ readonly "model": M
 
 constructor(renderer: $RenderLayerParent$Type<(T), (M)>, model: M)
 
-public "getColor"(villager: T, tickDelta: float): (float)[]
 public "getSkin"(villager: T): $ResourceLocation
+public "getColor"(villager: T, tickDelta: float): (float)[]
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2012,18 +2013,18 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export class $BuildingType implements $Serializable {
 
-constructor()
 constructor(name: string, value: $JsonObject$Type)
+constructor()
 
 public "visible"(): boolean
 public "name"(): string
 public "priority"(): integer
 public "color"(): string
-public "getMinBlocks"(): integer
 public "getBlockToGroup"(): $Map<($ResourceLocation), ($ResourceLocation)>
-public "getColor"(): integer
-public "getGroups"(): $Map<($ResourceLocation), (integer)>
 public "getGroups"(blocks: $Map$Type<($ResourceLocation$Type), ($List$Type<($BlockPos$Type)>)>): $Map<($ResourceLocation), ($List<($BlockPos)>)>
+public "getGroups"(): $Map<($ResourceLocation), (integer)>
+public "getColor"(): integer
+public "getMinBlocks"(): integer
 public "grouped"(): boolean
 public "noBeds"(): boolean
 public "iconU"(): integer
@@ -2031,9 +2032,9 @@ public "iconV"(): integer
 public "isIcon"(): boolean
 public "mergeRange"(): integer
 public "getMargin"(): integer
-get "minBlocks"(): integer
 get "blockToGroup"(): $Map<($ResourceLocation), ($ResourceLocation)>
 get "groups"(): $Map<($ResourceLocation), (integer)>
+get "minBlocks"(): integer
 get "icon"(): boolean
 get "margin"(): integer
 }
@@ -2119,9 +2120,9 @@ declare module "packages/forge/net/mca/entity/ai/relationship/$VillagerDimension
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $VillagerDimensions {
 
- "getHead"(): float
  "getWidth"(): float
  "getHeight"(): float
+ "getHead"(): float
  "getBreasts"(): float
 }
 
@@ -2145,8 +2146,8 @@ export {} // Mark the file as a module, do not remove unless there are other imp
 export interface $Infectable {
 
  "setInfected"(infected: boolean): void
- "setInfectionProgress"(arg0: float): void
  "getInfectionProgress"(): float
+ "setInfectionProgress"(arg0: float): void
  "isInfected"(): boolean
 }
 
@@ -2198,23 +2199,23 @@ public "iterator"(): $Iterator<($Genetics$Gene)>
 public "combine"(mother: $Genetics$Type, father: $Genetics$Type, seed: long): void
 public "combine"(mother: $Genetics$Type, father: $Genetics$Type): void
 public "getHorizontalScaleFactor"(): float
-public "getBreastSize"(): float
 public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
 public "getVerticalScaleFactor"(): float
+public "getBreastSize"(): float
 public "randomize"(): void
-public "getGender"(): $Gender
 public "setGender"(gender: $Gender$Type): void
 public "getGene"(type: $Genetics$GeneType$Type): float
+public "getGender"(): $Gender
 public "setGene"(type: $Genetics$GeneType$Type, value: float): void
 public "getGenome"(type: $Genetics$GeneType$Type): $Genetics$Gene
 public "spliterator"(): $Spliterator<($Genetics$Gene)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 [Symbol.iterator](): IterableIterator<$Genetics$Gene>;
 get "horizontalScaleFactor"(): float
-get "breastSize"(): float
 get "verticalScaleFactor"(): float
-get "gender"(): $Gender
+get "breastSize"(): float
 set "gender"(value: $Gender$Type)
+get "gender"(): $Gender
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2308,14 +2309,13 @@ export interface $VillagerLike<E extends ($Entity) & ($VillagerLike<(E)>)> exten
 
  "initialize"(spawnReason: $MobSpawnType$Type): void
  "setName"(name: string): void
+ "getPlayerModel"(): $VillagerLike$PlayerModel
+ "getRawScaleFactor"(): float
+ "updateSpeed"(): void
+ "getInteractions"(): $EntityCommandHandler<(any)>
  "getHorizontalScaleFactor"(): float
  "getAgeState"(): $AgeState
- "updateSpeed"(): void
- "getRawScaleFactor"(): float
- "getPlayerModel"(): $VillagerLike$PlayerModel
- "getInteractions"(): $EntityCommandHandler<(any)>
  "getGenetics"(): $Genetics
- "getVillagerBrain"(): $VillagerBrain<(any)>
  "initializeSkin"(isPlayer: boolean): void
  "validateClothes"(): void
  "isSpeechImpaired"(): boolean
@@ -2325,8 +2325,6 @@ export interface $VillagerLike<E extends ($Entity) & ($VillagerLike<(E)>)> exten
  "getGameProfile"(): $GameProfile
  "hasCustomSkin"(): boolean
  "getAttractedGenderSet"(villager: $VillagerLike$Type<(any)>): $Set<($Gender)>
- "canBeAttractedTo"(other: $VillagerLike$Type<(any)>): boolean
- "canBeAttractedTo"(other: $PlayerSaveData$Type): boolean
  "getDominantHand"(): $InteractionHand
  "getOpposingHand"(): $InteractionHand
  "getSlotForHand"(hand: $InteractionHand$Type): $EquipmentSlot
@@ -2348,10 +2346,13 @@ export interface $VillagerLike<E extends ($Entity) & ($VillagerLike<(E)>)> exten
  "readNbtForConversion"(convertingFrom: $EntityType$Type<(any)>, input: $CompoundTag$Type): void
  "copyVillagerAttributesFrom"(other: $VillagerLike$Type<(any)>): void
  "spawnBurntParticles"(): void
+ "getVillagerBrain"(): $VillagerBrain<(any)>
+ "canBeAttractedTo"(other: $PlayerSaveData$Type): boolean
+ "canBeAttractedTo"(other: $VillagerLike$Type<(any)>): boolean
  "getTraits"(): $Traits
  "getClothes"(): string
- "setClothes"(clothes: $ResourceLocation$Type): void
  "setClothes"(clothes: string): void
+ "setClothes"(clothes: $ResourceLocation$Type): void
  "getHair"(): string
  "setHair"(hair: string): void
  "setHair"(hair: $ResourceLocation$Type): void
@@ -2363,22 +2364,22 @@ export interface $VillagerLike<E extends ($Entity) & ($VillagerLike<(E)>)> exten
  "getTrackedValue"<P, TrackedP>(key: $CParameter$Type<(P), (TrackedP)>): P
  "setTrackedValue"<P, TrackedP>(key: $CParameter$Type<(P), (TrackedP)>, value: P): void
  "getTypeDataManager"(): $CDataManager<(E)>
+ "setVariant"(arg0: $VillagerType$Type): void
  "getVillagerData"(): $VillagerData
  "setVillagerData"(arg0: $VillagerData$Type): void
- "setVariant"(arg0: $VillagerType$Type): void
  "setInfected"(infected: boolean): void
- "setInfectionProgress"(arg0: float): void
  "getInfectionProgress"(): float
+ "setInfectionProgress"(arg0: float): void
  "isInfected"(): boolean
  "playSpeechEffect"(): void
  "getTranslatable"(target: $Player$Type, phraseId: string, ...params: (any)[]): $MutableComponent
- "sendChatToAllAround"(phrase: $MutableComponent$Type): void
  "sendChatToAllAround"(phrase: string, ...params: (any)[]): void
- "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
- "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
+ "sendChatToAllAround"(phrase: $MutableComponent$Type): void
  "transformMessage"(message: $MutableComponent$Type): $MutableComponent
  "sendEventMessage"(message: $Component$Type): void
  "sendEventMessage"(message: $Component$Type, receiver: $Player$Type): void
+ "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
+ "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
  "asEntity"(): $Mob
 }
 
@@ -2522,8 +2523,8 @@ readonly "canRepair": boolean
 
 constructor(settings: $Item$Properties$Type, wood: $CribWoodType$Type, color: $DyeColor$Type)
 
-public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "getColor"(): $DyeColor
+public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "getWood"(): $CribWoodType
 get "color"(): $DyeColor
 get "wood"(): $CribWoodType
@@ -2676,9 +2677,9 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$Gender, $Gender$Type} from "packages/forge/net/mca/entity/ai/relationship/$Gender"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -2702,12 +2703,12 @@ readonly "canRepair": boolean
 constructor(gender: $Gender$Type, properties: $Item$Properties$Type)
 
 public static "hasBeenInvalidated"(stack: $ItemStack$Type): boolean
+public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "use"(world: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getDescriptionId"(stack: $ItemStack$Type): string
 public "inventoryTick"(stack: $ItemStack$Type, world: $Level$Type, entity: $Entity$Type, slot: integer, selected: boolean): void
 public "appendHoverText"(stack: $ItemStack$Type, world: $Level$Type, tooltip: $List$Type<($Component$Type)>, flag: $TooltipFlag$Type): void
 public "getName"(stack: $ItemStack$Type): $Component
-public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "onDropped"(stack: $ItemStack$Type, player: $Player$Type): boolean
 public "getGender"(): $Gender
 public static "createItem"(mother: $Entity$Type, father: $Entity$Type, seed: long): $ItemStack
@@ -2741,10 +2742,10 @@ readonly "model": M
 constructor(renderer: $RenderLayerParent$Type<(T), (M)>, model: M)
 
 public "canUse"(texture: $ResourceLocation$Type): boolean
+public "getSkin"(villager: T): $ResourceLocation
 public "render"(transform: $PoseStack$Type, provider: $MultiBufferSource$Type, light: integer, villager: T, limbAngle: float, limbDistance: float, tickDelta: float, animationProgress: float, headYaw: float, headPitch: float): void
 public "renderFinal"(transform: $PoseStack$Type, provider: $MultiBufferSource$Type, light: integer, villager: T, tickDelta: float, visible: boolean, glowing: boolean): void
 public "getColor"(villager: T, tickDelta: float): (float)[]
-public "getSkin"(villager: T): $ResourceLocation
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2964,11 +2965,11 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export class $FamilyTree extends $SavedData {
 
 
+public "getOrCreate"(entity: $Entity$Type): $FamilyTreeNode
+public "getOrCreate"(id: $UUID$Type, name: string, gender: $Gender$Type, isPlayer: boolean): $FamilyTreeNode
+public "getOrCreate"(id: $UUID$Type, name: string, gender: $Gender$Type): $FamilyTreeNode
 public "remove"(id: $UUID$Type): void
 public static "get"(world: $ServerLevel$Type): $FamilyTree
-public "getOrCreate"(id: $UUID$Type, name: string, gender: $Gender$Type, isPlayer: boolean): $FamilyTreeNode
-public "getOrCreate"(entity: $Entity$Type): $FamilyTreeNode
-public "getOrCreate"(id: $UUID$Type, name: string, gender: $Gender$Type): $FamilyTreeNode
 public "getAllWithName"(name: string): $Stream<($FamilyTreeNode)>
 public "save"(nbt: $CompoundTag$Type): $CompoundTag
 public "getOrEmpty"(id: $UUID$Type): $Optional<($FamilyTreeNode)>
@@ -2997,19 +2998,19 @@ export class $Pregnancy {
 public "tick"(): void
 public "createChild"(gender: $Gender$Type): $VillagerEntityMCA
 public "createChild"(gender: $Gender$Type, partner: $VillagerEntityMCA$Type): $VillagerEntityMCA
+public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
 public "tryStartGestation"(): boolean
 public "setPregnant"(pregnant: boolean): void
-public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
 public "setBabyAge"(age: integer): void
 public "getGender"(): $Gender
 public "procreate"(spouse: $Entity$Type): void
-public "isPregnant"(): boolean
 public "getBabyAge"(): integer
+public "isPregnant"(): boolean
 set "pregnant"(value: boolean)
 set "babyAge"(value: integer)
 get "gender"(): $Gender
-get "pregnant"(): boolean
 get "babyAge"(): integer
+get "pregnant"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3043,6 +3044,8 @@ export class $FamilyTreeNode implements $Serializable {
 constructor(rootNode: $FamilyTree$Type, id: $UUID$Type, name: string, isPlayer: boolean, gender: $Gender$Type, father: $UUID$Type, mother: $UUID$Type)
 constructor(rootNode: $FamilyTree$Type, id: $UUID$Type, nbt: $CompoundTag$Type)
 
+public "getChildren"(): $Stream<($UUID)>
+public static "isValid"(uuid: $UUID$Type): boolean
 public "getName"(): string
 public "lookup"(uuids: $Stream$Type<($UUID$Type)>): $Stream<($FamilyTreeNode)>
 public "id"(): $UUID
@@ -3050,43 +3053,41 @@ public "setName"(name: string): void
 public "save"(): $CompoundTag
 public "getRoot"(): $FamilyTree
 public "isRelative"(arg0: $UUID$Type): boolean
-public "getChildren"(): $Stream<($UUID)>
-public static "isValid"(uuid: $UUID$Type): boolean
-public "getProfession"(): $VillagerProfession
-public "willBeRemembered"(): boolean
 public "assignParent"(parent: $FamilyTreeNode$Type): boolean
+public "getProfession"(): $VillagerProfession
 public "getParents"(): $Stream<($FamilyTreeNode)>
 public "children"(): $Set<($UUID)>
-public "assignParents"(one: $EntityRelationship$Type, two: $EntityRelationship$Type): boolean
-public "getSiblings"(): $Stream<($FamilyTreeNode)>
+public "setDeceased"(deceased: boolean): void
+public "getProfessionId"(): $ResourceLocation
+public "getProfessionName"(): string
+public "getProfessionText"(): $MutableComponent
+public "removeMother"(): boolean
+public "removeFather"(): boolean
+public "setProfession"(profession: $VillagerProfession$Type): void
+public "getAllRelatives"(depth: integer): $Stream<($UUID)>
 public "getRelatives"(parentDepth: integer, childrenDepth: integer): $Stream<($UUID)>
 public "streamParents"(): $Stream<($UUID)>
 public "getRelationshipState"(): $RelationshipState
 public "updatePartner"(newPartner: $Entity$Type, state: $RelationshipState$Type): void
 public "updatePartner"(spouse: $FamilyTreeNode$Type): void
-public "getProfessionId"(): $ResourceLocation
-public "getProfessionName"(): string
-public "getProfessionText"(): $MutableComponent
-public "setDeceased"(deceased: boolean): void
-public "removeMother"(): boolean
-public "removeFather"(): boolean
-public "getAllRelatives"(depth: integer): $Stream<($UUID)>
-public "setProfession"(profession: $VillagerProfession$Type): void
+public "getSiblings"(): $Stream<($FamilyTreeNode)>
+public "willBeRemembered"(): boolean
+public "assignParents"(one: $EntityRelationship$Type, two: $EntityRelationship$Type): boolean
+public "streamChildren"(): $Stream<($UUID)>
 public "isGrandParent"(id: $UUID$Type): boolean
 public "probablyGenerated"(): boolean
-public "streamChildren"(): $Stream<($UUID)>
 public "setRelationshipState"(relationshipState: $RelationshipState$Type): void
-public "addChild"(child: $UUID$Type): void
 public "siblings"(): $Set<($UUID)>
+public "addChild"(child: $UUID$Type): void
 public "isPlayer"(): boolean
-public "isParent"(id: $UUID$Type): boolean
 public "father"(): $UUID
-public "setGender"(gender: $Gender$Type): void
-public "gender"(): $Gender
-public "mother"(): $UUID
+public "isParent"(id: $UUID$Type): boolean
 public "setFather"(parent: $FamilyTreeNode$Type): boolean
 public "setMother"(parent: $FamilyTreeNode$Type): boolean
 public "partner"(): $UUID
+public "setGender"(gender: $Gender$Type): void
+public "gender"(): $Gender
+public "mother"(): $UUID
 public "isDeceased"(): boolean
 public "isUncle"(id: $UUID$Type): boolean
 get "name"(): string
@@ -3094,12 +3095,12 @@ set "name"(value: string)
 get "root"(): $FamilyTree
 get "profession"(): $VillagerProfession
 get "parents"(): $Stream<($FamilyTreeNode)>
-get "relationshipState"(): $RelationshipState
+set "deceased"(value: boolean)
 get "professionId"(): $ResourceLocation
 get "professionName"(): string
 get "professionText"(): $MutableComponent
-set "deceased"(value: boolean)
 set "profession"(value: $VillagerProfession$Type)
+get "relationshipState"(): $RelationshipState
 set "relationshipState"(value: $RelationshipState$Type)
 get "player"(): boolean
 get "deceased"(): boolean
@@ -3394,19 +3395,17 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
 
 constructor(type: $EntityType$Type<($VillagerEntityMCA$Type)>, w: $Level$Type, gender: $Gender$Type)
 
-public "getProfession"(): $VillagerProfession
-public "createChild"(world: $ServerLevel$Type, partner: $AgeableMob$Type): $VillagerEntityMCA
-public "setInventory"(inventory: $UpdatableInventory$Type): void
 public "getPlayerModel"(): $VillagerLike$PlayerModel
+public "setInventory"(inventory: $UpdatableInventory$Type): void
+public "createChild"(world: $ServerLevel$Type, partner: $AgeableMob$Type): $VillagerEntityMCA
 public "getInteractions"(): $VillagerCommandHandler
-public "getScale"(): float
-public "canInteractWithItemStackInHand"(stack: $ItemStack$Type): boolean
-public "setInfectionProgress"(progress: float): void
-public "playSpeechEffect"(): void
-public static "createTrackedData"<E extends $Entity>(type: $Class$Type<(E)>): $CDataManager$Builder<(E)>
+public "getProfession"(): $VillagerProfession
 public "getGenetics"(): $Genetics
-public "getVillagerBrain"(): $VillagerBrain<(any)>
+public "attack"(source: $DamageSource$Type, damageAmount: float): boolean
+public "canInteractWithItemStackInHand"(stack: $ItemStack$Type): boolean
 public "getInfectionProgress"(): float
+public "setInfectionProgress"(progress: float): void
+public static "createTrackedData"<E extends $Entity>(type: $Class$Type<(E)>): $CDataManager$Builder<(E)>
 public "updateCustomSkin"(): void
 public "getGameProfile"(): $GameProfile
 public "getProfessionId"(): $ResourceLocation
@@ -3416,7 +3415,8 @@ public "canTradeWithProfession"(): boolean
 public "getVillagerDimensions"(): $VillagerDimensions
 public "setAgeState"(state: $AgeState$Type): boolean
 public "getTypeDataManager"(): $CDataManager<($VillagerEntityMCA)>
-public static "createVillagerAttributes"(): $AttributeSupplier$Builder
+public "getVillagerBrain"(): $VillagerBrain<(any)>
+public "playSpeechEffect"(): void
 public "onInvChange"(inventoryFromListener: $Container$Type): void
 public "getMCABrain"(): $Brain<($VillagerEntityMCA)>
 public "getLongTermMemory"(): $LongTermMemory
@@ -3428,71 +3428,72 @@ public "getSmallBounty"(): integer
 public "playWelcomeSound"(): void
 public "getSurprisedSound"(): $SoundEvent
 public "playSurprisedSound"(): void
-public "moveTowards"(pos: $BlockPos$Type, speed: float): void
+public static "createVillagerAttributes"(): $AttributeSupplier$Builder
 public "moveTowards"(pos: $BlockPos$Type, speed: float, closeEnoughDist: integer): void
 public "moveTowards"(pos: $BlockPos$Type): void
+public "moveTowards"(pos: $BlockPos$Type, speed: float): void
 public "setDespawnDelay"(despawnDelay: integer): void
 public "makeMercenary"(): void
 public "customLevelUp"(): void
+public "finalizeSpawn"(world: $ServerLevelAccessor$Type, difficulty: $DifficultyInstance$Type, spawnReason: $MobSpawnType$Type, entityData: $SpawnGroupData$Type, entityNbt: $CompoundTag$Type): $SpawnGroupData
+public "die"(cause: $DamageSource$Type): void
+public "aiStep"(): void
+public "tick"(): void
+public "lookAt"(pos: $BlockPos$Type): void
+public "setAge"(age: integer): void
 public "rideTick"(): void
 public "getNavigation"(): $PathNavigation
-public "setAge"(age: integer): void
 public "getCustomName"(): $Component
 public "getDisplayName"(): $Component
-public "getMyRidingOffset"(): double
-public "handleEntityEvent"(id: byte): void
-public "thunderHit"(world: $ServerLevel$Type, lightning: $LightningBolt$Type): void
+public "getScale"(): float
 public "getDimensions"(pose: $Pose$Type): $EntityDimensions
 public "teleportTo"(destX: double, destY: double, destZ: double): void
 public "onSyncedDataUpdated"(par: $EntityDataAccessor$Type<(any)>): void
 public "refreshDimensions"(): void
 public "interactAt"(player: $Player$Type, pos: $Vec3$Type, hand: $InteractionHand$Type): $InteractionResult
-public "attack"(source: $DamageSource$Type, damageAmount: float): boolean
 public "addAdditionalSaveData"(nbt: $CompoundTag$Type): void
 public "setCustomName"(name: $Component$Type): void
 public "readAdditionalSaveData"(nbt: $CompoundTag$Type): void
-public "lookAt"(pos: $BlockPos$Type): void
-public "finalizeSpawn"(world: $ServerLevelAccessor$Type, difficulty: $DifficultyInstance$Type, spawnReason: $MobSpawnType$Type, entityData: $SpawnGroupData$Type, entityNbt: $CompoundTag$Type): $SpawnGroupData
-public "die"(cause: $DamageSource$Type): void
-public "aiStep"(): void
-public "tick"(): void
-public "refreshBrain"(world: $ServerLevel$Type): void
-public "setVillagerData"(data: $VillagerData$Type): void
-public "setChargingCrossbow"(charging: boolean): void
-public "onCrossbowAttackPerformed"(): void
-public "performCrossbowAttack"(arg: $LivingEntity$Type, f: float): void
-public "addParticlesAroundSelf"(parameters: $ParticleOptions$Type): void
-public "getNotifyTradeSound"(): $SoundEvent
-public "playCelebrateSound"(): void
-public "restock"(): void
+public "getMyRidingOffset"(): double
+public "handleEntityEvent"(id: byte): void
+public "thunderHit"(world: $ServerLevel$Type, lightning: $LightningBolt$Type): void
+public "getProjectile"(stack: $ItemStack$Type): $ItemStack
+public "eat"(world: $Level$Type, stack: $ItemStack$Type): $ItemStack
+public "getDeathSound"(): $SoundEvent
+public "getVoicePitch"(): float
+public "doHurtTarget"(target: $Entity$Type): boolean
+public "createMenu"(i: integer, playerInventory: $Inventory$Type, playerEntity: $Player$Type): $AbstractContainerMenu
+public "setBaby"(isBaby: boolean): void
+public "shootCrossbowProjectile"(target: $LivingEntity$Type, crossbow: $ItemStack$Type, projectile: $Projectile$Type, multiShotSpray: float): void
+public "getTraits"(): $Traits
 public "performRangedAttack"(target: $LivingEntity$Type, pullProgress: float): void
 public "mobInteract"(player: $Player$Type, hand: $InteractionHand$Type): $InteractionResult
 public "getMoveControl"(): $MoveControl
 public "getJumpControl"(): $JumpControl
 public "canFireProjectileWeapon"(weapon: $ProjectileWeaponItem$Type): boolean
 public "convertTo"<T extends $Mob>(type: $EntityType$Type<(T)>, keepInventory: boolean): T
+public "setVillagerData"(data: $VillagerData$Type): void
+public "refreshBrain"(world: $ServerLevel$Type): void
+public "setChargingCrossbow"(charging: boolean): void
+public "onCrossbowAttackPerformed"(): void
+public "performCrossbowAttack"(arg: $LivingEntity$Type, f: float): void
 public "getInventory"(): $SimpleContainer
-public "getTraits"(): $Traits
-public "shootCrossbowProjectile"(target: $LivingEntity$Type, crossbow: $ItemStack$Type, projectile: $Projectile$Type, multiShotSpray: float): void
-public "createMenu"(i: integer, playerInventory: $Inventory$Type, playerEntity: $Player$Type): $AbstractContainerMenu
-public "setBaby"(isBaby: boolean): void
-public "getDeathSound"(): $SoundEvent
-public "getVoicePitch"(): float
-public "doHurtTarget"(target: $Entity$Type): boolean
-public "getProjectile"(stack: $ItemStack$Type): $ItemStack
-public "eat"(world: $Level$Type, stack: $ItemStack$Type): $ItemStack
-public "isHostile"(): boolean
-public "isBurned"(): boolean
+public "getNotifyTradeSound"(): $SoundEvent
+public "playCelebrateSound"(): void
+public "restock"(): void
+public "addParticlesAroundSelf"(parameters: $ParticleOptions$Type): void
 public "getNoSound"(): $SoundEvent
 public "isGuard"(): boolean
 public "isFriend"(type: $EntityType$Type<(any)>): boolean
 public "isHitBy"(player: $ServerPlayer$Type): boolean
+public "isHostile"(): boolean
+public "isBurned"(): boolean
 public "initialize"(spawnReason: $MobSpawnType$Type): void
 public "setName"(name: string): void
+public "getRawScaleFactor"(): float
+public "updateSpeed"(): void
 public "getHorizontalScaleFactor"(): float
 public "getAgeState"(): $AgeState
-public "updateSpeed"(): void
-public "getRawScaleFactor"(): float
 public "initializeSkin"(isPlayer: boolean): void
 public "validateClothes"(): void
 public "isSpeechImpaired"(): boolean
@@ -3500,8 +3501,6 @@ public "isToYoungToSpeak"(): boolean
 public "setCustomSkin"(name: string): void
 public "hasCustomSkin"(): boolean
 public "getAttractedGenderSet"(villager: $VillagerLike$Type<(any)>): $Set<($Gender)>
-public "canBeAttractedTo"(other: $VillagerLike$Type<(any)>): boolean
-public "canBeAttractedTo"(other: $PlayerSaveData$Type): boolean
 public "getDominantHand"(): $InteractionHand
 public "getOpposingHand"(): $InteractionHand
 public "getSlotForHand"(hand: $InteractionHand$Type): $EquipmentSlot
@@ -3517,62 +3516,63 @@ public "toNbtForConversion"(convertingTo: $EntityType$Type<(any)>): $CompoundTag
 public "readNbtForConversion"(convertingFrom: $EntityType$Type<(any)>, input: $CompoundTag$Type): void
 public "copyVillagerAttributesFrom"(other: $VillagerLike$Type<(any)>): void
 public "spawnBurntParticles"(): void
+public "canBeAttractedTo"(other: $PlayerSaveData$Type): boolean
+public "canBeAttractedTo"(other: $VillagerLike$Type<(any)>): boolean
 public static "toVillager"(entity: $Entity$Type): $VillagerLike<(any)>
 public static "toVillager"(player: $PlayerSaveData$Type): $VillagerLike<(any)>
 public "getClothes"(): string
-public "setClothes"(clothes: $ResourceLocation$Type): void
 public "setClothes"(clothes: string): void
+public "setClothes"(clothes: $ResourceLocation$Type): void
 public "getHair"(): string
 public "setHair"(hair: string): void
 public "setHair"(hair: $ResourceLocation$Type): void
 public "setHairDye"(r: float, g: float, b: float): void
 public "setHairDye"(color: $DyeColor$Type): void
 public "getHairDye"(): (float)[]
+public "getTarget"(): $LivingEntity
 public "shootCrossbowProjectile"(arg0: $LivingEntity$Type, arg1: $LivingEntity$Type, arg2: $Projectile$Type, arg3: float, arg4: float): void
 public "getProjectileShotVector"(arg0: $LivingEntity$Type, arg1: $Vec3$Type, arg2: float): $Vector3f
-public "getTarget"(): $LivingEntity
 public "getTrackedValue"<P, TrackedP>(key: $CParameter$Type<(P), (TrackedP)>): P
 public "setTrackedValue"<P, TrackedP>(key: $CParameter$Type<(P), (TrackedP)>, value: P): void
 public "setInfected"(infected: boolean): void
 public "isInfected"(): boolean
 public "getTranslatable"(target: $Player$Type, phraseId: string, ...params: (any)[]): $MutableComponent
-public "sendChatToAllAround"(phrase: $MutableComponent$Type): void
 public "sendChatToAllAround"(phrase: string, ...params: (any)[]): void
-public "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
-public "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
+public "sendChatToAllAround"(phrase: $MutableComponent$Type): void
 public "transformMessage"(message: $MutableComponent$Type): $MutableComponent
+public static "sendEventMessage"(world: $Level$Type, message: $Component$Type): void
 public "sendEventMessage"(message: $Component$Type): void
 public "sendEventMessage"(message: $Component$Type, receiver: $Player$Type): void
-public static "sendEventMessage"(world: $Level$Type, message: $Component$Type): void
+public "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
+public "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
 public "shouldCloseCurrentScreen"(): boolean
 public "asEntity"(): $Mob
 public static "pickUpItem"(arg0: $Mob$Type, arg1: $InventoryCarrier$Type, arg2: $ItemEntity$Type): void
-public "sdl$getDynamicLightX"(): double
+public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public "sdl$getDynamicLightY"(): double
-public "sdl$getDynamicLightZ"(): double
-public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$getDynamicLightLevel"(): $Level
+public "sdl$getDynamicLightZ"(): double
+public "sdl$getDynamicLightX"(): double
 public "sdl$shouldUpdateDynamicLight"(): boolean
 public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
-public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "getAlpha"(le: $LivingEntity$Type, partialTicks: float): float
 public static "tickEntity"(entity: $LivingEntity$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "profession"(): $VillagerProfession
-set "inventory"(value: $UpdatableInventory$Type)
 get "playerModel"(): $VillagerLike$PlayerModel
+set "inventory"(value: $UpdatableInventory$Type)
 get "interactions"(): $VillagerCommandHandler
-get "scale"(): float
-set "infectionProgress"(value: float)
+get "profession"(): $VillagerProfession
 get "genetics"(): $Genetics
-get "villagerBrain"(): $VillagerBrain<(any)>
 get "infectionProgress"(): float
+set "infectionProgress"(value: float)
 get "gameProfile"(): $GameProfile
 get "professionId"(): $ResourceLocation
 get "professionImportant"(): boolean
 get "villagerDimensions"(): $VillagerDimensions
 set "ageState"(value: $AgeState$Type)
 get "typeDataManager"(): $CDataManager<($VillagerEntityMCA)>
+get "villagerBrain"(): $VillagerBrain<(any)>
 get "mCABrain"(): $Brain<($VillagerEntityMCA)>
 get "longTermMemory"(): $LongTermMemory
 get "residency"(): $Residency
@@ -3581,30 +3581,31 @@ get "despawnDelay"(): integer
 get "smallBounty"(): integer
 get "surprisedSound"(): $SoundEvent
 set "despawnDelay"(value: integer)
-get "navigation"(): $PathNavigation
 set "age"(value: integer)
+get "navigation"(): $PathNavigation
 get "customName"(): $Component
 get "displayName"(): $Component
-get "myRidingOffset"(): double
+get "scale"(): float
 set "customName"(value: $Component$Type)
-set "villagerData"(value: $VillagerData$Type)
-set "chargingCrossbow"(value: boolean)
-get "notifyTradeSound"(): $SoundEvent
-get "moveControl"(): $MoveControl
-get "jumpControl"(): $JumpControl
-get "inventory"(): $SimpleContainer
-get "traits"(): $Traits
-set "baby"(value: boolean)
+get "myRidingOffset"(): double
 get "deathSound"(): $SoundEvent
 get "voicePitch"(): float
-get "hostile"(): boolean
-get "burned"(): boolean
+set "baby"(value: boolean)
+get "traits"(): $Traits
+get "moveControl"(): $MoveControl
+get "jumpControl"(): $JumpControl
+set "villagerData"(value: $VillagerData$Type)
+set "chargingCrossbow"(value: boolean)
+get "inventory"(): $SimpleContainer
+get "notifyTradeSound"(): $SoundEvent
 get "noSound"(): $SoundEvent
 get "guard"(): boolean
+get "hostile"(): boolean
+get "burned"(): boolean
 set "name"(value: string)
+get "rawScaleFactor"(): float
 get "horizontalScaleFactor"(): float
 get "ageState"(): $AgeState
-get "rawScaleFactor"(): float
 get "speechImpaired"(): boolean
 get "toYoungToSpeak"(): boolean
 set "customSkin"(value: string)
@@ -3615,8 +3616,8 @@ get "opposingSlot"(): $EquipmentSlot
 get "professionName"(): string
 get "professionText"(): $MutableComponent
 get "clothes"(): string
-set "clothes"(value: $ResourceLocation$Type)
 set "clothes"(value: string)
+set "clothes"(value: $ResourceLocation$Type)
 get "hair"(): string
 set "hair"(value: string)
 set "hair"(value: $ResourceLocation$Type)
@@ -3651,18 +3652,18 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $Messenger extends $EntityWrapper {
 
- "playSpeechEffect"(): void
- "getTranslatable"(target: $Player$Type, phraseId: string, ...params: (any)[]): $MutableComponent
- "sendChatToAllAround"(phrase: $MutableComponent$Type): void
- "sendChatToAllAround"(phrase: string, ...params: (any)[]): void
- "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
- "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
- "transformMessage"(message: $MutableComponent$Type): $MutableComponent
- "sendEventMessage"(message: $Component$Type): void
- "sendEventMessage"(message: $Component$Type, receiver: $Player$Type): void
  "isSpeechImpaired"(): boolean
  "isToYoungToSpeak"(): boolean
  "getDialogueType"(receiver: $Player$Type): $DialogueType
+ "playSpeechEffect"(): void
+ "getTranslatable"(target: $Player$Type, phraseId: string, ...params: (any)[]): $MutableComponent
+ "sendChatToAllAround"(phrase: string, ...params: (any)[]): void
+ "sendChatToAllAround"(phrase: $MutableComponent$Type): void
+ "transformMessage"(message: $MutableComponent$Type): $MutableComponent
+ "sendEventMessage"(message: $Component$Type): void
+ "sendEventMessage"(message: $Component$Type, receiver: $Player$Type): void
+ "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
+ "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
  "asEntity"(): $Mob
 }
 
@@ -3789,6 +3790,7 @@ import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$Pose, $Pose$Type} from "packages/net/minecraft/world/entity/$Pose"
 import {$Brain, $Brain$Type} from "packages/net/minecraft/world/entity/ai/$Brain"
+import {$ZombieCommandHandler, $ZombieCommandHandler$Type} from "packages/forge/net/mca/entity/interaction/$ZombieCommandHandler"
 import {$Object2DoubleMap, $Object2DoubleMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2DoubleMap"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$JumpControl, $JumpControl$Type} from "packages/net/minecraft/world/entity/ai/control/$JumpControl"
@@ -3999,36 +4001,37 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
 constructor(type: $EntityType$Type<(any)>, world: $Level$Type, gender: $Gender$Type)
 
 public "setInventory"(inventory: $UpdatableInventory$Type): void
-public "getScale"(): float
-public "setInfectionProgress"(progress: float): void
+public "getInteractions"(): $ZombieCommandHandler
 public "getGenetics"(): $Genetics
-public "getVillagerBrain"(): $VillagerBrain<(any)>
-public "getInfectionProgress"(): float
-public "getTypeDataManager"(): $CDataManager<($ZombieVillagerEntityMCA)>
 public "getRelationships"(): $Relationship<($ZombieVillagerEntityMCA)>
+public "getInfectionProgress"(): float
+public "setInfectionProgress"(progress: float): void
+public "getTypeDataManager"(): $CDataManager<($ZombieVillagerEntityMCA)>
+public "getVillagerBrain"(): $VillagerBrain<(any)>
+public "finalizeSpawn"(world: $ServerLevelAccessor$Type, difficulty: $DifficultyInstance$Type, spawnReason: $MobSpawnType$Type, entityData: $SpawnGroupData$Type, entityNbt: $CompoundTag$Type): $SpawnGroupData
+public "die"(cause: $DamageSource$Type): void
+public "aiStep"(): void
 public "getCustomName"(): $Component
-public "getMyRidingOffset"(): double
+public "getScale"(): float
 public "getDimensions"(pose: $Pose$Type): $EntityDimensions
 public "onSyncedDataUpdated"(par: $EntityDataAccessor$Type<(any)>): void
 public "interactAt"(player: $Player$Type, pos: $Vec3$Type, hand: $InteractionHand$Type): $InteractionResult
 public "addAdditionalSaveData"(nbt: $CompoundTag$Type): void
 public "setCustomName"(name: $Component$Type): void
 public "readAdditionalSaveData"(nbt: $CompoundTag$Type): void
-public "finalizeSpawn"(world: $ServerLevelAccessor$Type, difficulty: $DifficultyInstance$Type, spawnReason: $MobSpawnType$Type, entityData: $SpawnGroupData$Type, entityNbt: $CompoundTag$Type): $SpawnGroupData
-public "die"(cause: $DamageSource$Type): void
-public "aiStep"(): void
-public "convertTo"<T extends $Mob>(type: $EntityType$Type<(T)>, keepInventory: boolean): T
-public "getTraits"(): $Traits
+public "getMyRidingOffset"(): double
 public "setBaby"(isBaby: boolean): void
+public "getTraits"(): $Traits
+public "convertTo"<T extends $Mob>(type: $EntityType$Type<(T)>, keepInventory: boolean): T
 public "isHostile"(): boolean
 public "isBurned"(): boolean
 public "initialize"(spawnReason: $MobSpawnType$Type): void
 public "setName"(name: string): void
+public "getPlayerModel"(): $VillagerLike$PlayerModel
+public "getRawScaleFactor"(): float
+public "updateSpeed"(): void
 public "getHorizontalScaleFactor"(): float
 public "getAgeState"(): $AgeState
-public "updateSpeed"(): void
-public "getRawScaleFactor"(): float
-public "getPlayerModel"(): $VillagerLike$PlayerModel
 public static "createTrackedData"<E extends $Entity>(type: $Class$Type<($ZombieVillagerEntityMCA$Type)>): $CDataManager$Builder<($ZombieVillagerEntityMCA)>
 public "initializeSkin"(isPlayer: boolean): void
 public "validateClothes"(): void
@@ -4039,8 +4042,6 @@ public "updateCustomSkin"(): void
 public "getGameProfile"(): $GameProfile
 public "hasCustomSkin"(): boolean
 public "getAttractedGenderSet"(villager: $VillagerLike$Type<(any)>): $Set<($Gender)>
-public "canBeAttractedTo"(other: $VillagerLike$Type<(any)>): boolean
-public "canBeAttractedTo"(other: $PlayerSaveData$Type): boolean
 public "getDominantHand"(): $InteractionHand
 public "getOpposingHand"(): $InteractionHand
 public "getSlotForHand"(hand: $InteractionHand$Type): $EquipmentSlot
@@ -4062,11 +4063,13 @@ public "toNbtForConversion"(convertingTo: $EntityType$Type<(any)>): $CompoundTag
 public "readNbtForConversion"(convertingFrom: $EntityType$Type<(any)>, input: $CompoundTag$Type): void
 public "copyVillagerAttributesFrom"(other: $VillagerLike$Type<(any)>): void
 public "spawnBurntParticles"(): void
+public "canBeAttractedTo"(other: $PlayerSaveData$Type): boolean
+public "canBeAttractedTo"(other: $VillagerLike$Type<(any)>): boolean
 public static "toVillager"(entity: $Entity$Type): $VillagerLike<(any)>
 public static "toVillager"(player: $PlayerSaveData$Type): $VillagerLike<(any)>
 public "getClothes"(): string
-public "setClothes"(clothes: $ResourceLocation$Type): void
 public "setClothes"(clothes: string): void
+public "setClothes"(clothes: $ResourceLocation$Type): void
 public "getHair"(): string
 public "setHair"(hair: string): void
 public "setHair"(hair: $ResourceLocation$Type): void
@@ -4079,46 +4082,47 @@ public "setInfected"(infected: boolean): void
 public "isInfected"(): boolean
 public "playSpeechEffect"(): void
 public "getTranslatable"(target: $Player$Type, phraseId: string, ...params: (any)[]): $MutableComponent
-public "sendChatToAllAround"(phrase: $MutableComponent$Type): void
 public "sendChatToAllAround"(phrase: string, ...params: (any)[]): void
-public "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
-public "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
+public "sendChatToAllAround"(phrase: $MutableComponent$Type): void
 public "transformMessage"(message: $MutableComponent$Type): $MutableComponent
+public static "sendEventMessage"(world: $Level$Type, message: $Component$Type): void
 public "sendEventMessage"(message: $Component$Type): void
 public "sendEventMessage"(message: $Component$Type, receiver: $Player$Type): void
-public static "sendEventMessage"(world: $Level$Type, message: $Component$Type): void
+public "sendChatMessage"(target: $Player$Type, phraseId: string, ...params: (any)[]): void
+public "sendChatMessage"(message: $MutableComponent$Type, receiver: $Entity$Type): $MutableComponent
 public "asEntity"(): $Mob
-public "sdl$getDynamicLightX"(): double
+public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public "sdl$getDynamicLightY"(): double
-public "sdl$getDynamicLightZ"(): double
-public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$getDynamicLightLevel"(): $Level
+public "sdl$getDynamicLightZ"(): double
+public "sdl$getDynamicLightX"(): double
 public "sdl$shouldUpdateDynamicLight"(): boolean
 public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
-public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "getAlpha"(le: $LivingEntity$Type, partialTicks: float): float
 public static "tickEntity"(entity: $LivingEntity$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 set "inventory"(value: $UpdatableInventory$Type)
-get "scale"(): float
-set "infectionProgress"(value: float)
+get "interactions"(): $ZombieCommandHandler
 get "genetics"(): $Genetics
-get "villagerBrain"(): $VillagerBrain<(any)>
-get "infectionProgress"(): float
-get "typeDataManager"(): $CDataManager<($ZombieVillagerEntityMCA)>
 get "relationships"(): $Relationship<($ZombieVillagerEntityMCA)>
+get "infectionProgress"(): float
+set "infectionProgress"(value: float)
+get "typeDataManager"(): $CDataManager<($ZombieVillagerEntityMCA)>
+get "villagerBrain"(): $VillagerBrain<(any)>
 get "customName"(): $Component
-get "myRidingOffset"(): double
+get "scale"(): float
 set "customName"(value: $Component$Type)
-get "traits"(): $Traits
+get "myRidingOffset"(): double
 set "baby"(value: boolean)
+get "traits"(): $Traits
 get "hostile"(): boolean
 get "burned"(): boolean
 set "name"(value: string)
+get "playerModel"(): $VillagerLike$PlayerModel
+get "rawScaleFactor"(): float
 get "horizontalScaleFactor"(): float
 get "ageState"(): $AgeState
-get "rawScaleFactor"(): float
-get "playerModel"(): $VillagerLike$PlayerModel
 get "speechImpaired"(): boolean
 get "toYoungToSpeak"(): boolean
 set "customSkin"(value: string)
@@ -4134,8 +4138,8 @@ get "professionImportant"(): boolean
 get "villagerDimensions"(): $VillagerDimensions
 set "ageState"(value: $AgeState$Type)
 get "clothes"(): string
-set "clothes"(value: $ResourceLocation$Type)
 set "clothes"(value: string)
+set "clothes"(value: $ResourceLocation$Type)
 get "hair"(): string
 set "hair"(value: string)
 set "hair"(value: $ResourceLocation$Type)
@@ -4231,36 +4235,36 @@ static readonly "IS_ORPHAN": $Relationship$Predicate
 
 constructor(entity: T)
 
-public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
 public "getFamilyEntry"(): $FamilyTreeNode
+public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
 public "getGiftSaturation"(): $GiftSaturation
 public "readFromNbt"(nbt: $CompoundTag$Type): void
 public "getWorld"(): $ServerLevel
 public "getUUID"(): $UUID
-public "writeToNbt"(nbt: $CompoundTag$Type): void
 public "onDeath"(cause: $DamageSource$Type): void
+public "writeToNbt"(nbt: $CompoundTag$Type): void
 public "getGender"(): $Gender
-public "onTragedy"(cause: $DamageSource$Type, burialSite: $BlockPos$Type): void
 public "onTragedy"(cause: $DamageSource$Type, burialSite: $BlockPos$Type, type: $RelationshipType$Type, arg3: $Entity$Type): void
+public "onTragedy"(cause: $DamageSource$Type, burialSite: $BlockPos$Type): void
+public "promise"(spouse: $Entity$Type): void
 public "getFamily"(parents: integer, children: integer): $Stream<($Entity)>
 public static "of"(entity: $Entity$Type): $Optional<($EntityRelationship)>
-public "promise"(spouse: $Entity$Type): void
 public "getParents"(): $Stream<($Entity)>
+public "isMarriedTo"(uuid: $UUID$Type): boolean
+public "isEngagedWith"(uuid: $UUID$Type): boolean
+public "endRelationShip"(newState: $RelationshipState$Type): void
 public "getFamilyTree"(): $FamilyTree
 public "getRelationshipStream"(uuids: $Stream$Type<($UUID$Type)>): $Stream<($EntityRelationship)>
 public "getRelationshipState"(): $RelationshipState
 public "getPartnerUUID"(): $Optional<($UUID)>
 public "getPartnerName"(): $Optional<($Component)>
 public "isPromisedTo"(uuid: $UUID$Type): boolean
-public "isMarriedTo"(uuid: $UUID$Type): boolean
-public "isEngagedWith"(uuid: $UUID$Type): boolean
-public "endRelationShip"(newState: $RelationshipState$Type): void
 public "isMarried"(): boolean
-public "isEngaged"(): boolean
 public "marry"(spouse: $Entity$Type): void
+public "isEngaged"(): boolean
+public "engage"(spouse: $Entity$Type): void
 public "getPartner"(): $Optional<($Entity)>
 public "isPromised"(): boolean
-public "engage"(spouse: $Entity$Type): void
 get "familyEntry"(): $FamilyTreeNode
 get "giftSaturation"(): $GiftSaturation
 get "world"(): $ServerLevel
@@ -4317,51 +4321,51 @@ export class $PlayerSaveData extends $SavedData implements $EntityRelationship {
 public static "get"(player: $ServerPlayer$Type): $PlayerSaveData
 public static "get"(world: $ServerLevel$Type, uuid: $UUID$Type): $PlayerSaveData
 public "reset"(): void
-public "getEntityData"(): $CompoundTag
 public static "getIfPresent"(world: $ServerLevel$Type, uuid: $UUID$Type): $Optional<($PlayerSaveData)>
-public "setEntityDataSet"(entityDataSet: boolean): void
-public "isEntityDataSet"(): boolean
-public "getLastSeenVillage"(manager: $VillageManager$Type): $Optional<($Village)>
+public "getEntityData"(): $CompoundTag
 public "getFamilyEntry"(): $FamilyTreeNode
 public "setEntityData"(entityData: $CompoundTag$Type): void
+public "setEntityDataSet"(entityDataSet: boolean): void
+public "getLastSeenVillage"(manager: $VillageManager$Type): $Optional<($Village)>
 public "endRelationShip"(newState: $RelationshipState$Type): void
+public "isEntityDataSet"(): boolean
 public "sendLetterOfCondolence"(name: string, village: string): void
 public "setLastSeenVillage"(self: $ServerPlayer$Type, oldVillage: $Village$Type, newVillage: $Village$Type): void
-public static "showMailNotification"(player: $ServerPlayer$Type): void
 public "getLastSeenVillageId"(): $Optional<(integer)>
+public static "showMailNotification"(player: $ServerPlayer$Type): void
 public "updateLastSeenVillage"(manager: $VillageManager$Type, self: $ServerPlayer$Type): void
 public "getWorld"(): $ServerLevel
 public "getUUID"(): $UUID
 public "save"(nbt: $CompoundTag$Type): $CompoundTag
-public "getGender"(): $Gender
 public "marry"(spouse: $Entity$Type): void
+public "getGender"(): $Gender
 public "onTragedy"(cause: $DamageSource$Type, burialSite: $BlockPos$Type, type: $RelationshipType$Type, victim: $Entity$Type): void
 public "hasMail"(): boolean
 public "getMail"(): $ItemStack
 public "sendMail"(nbt: $CompoundTag$Type): void
 public "sendLetter"(lines: $List$Type<(string)>): void
+public "promise"(spouse: $Entity$Type): void
 public "getFamily"(parents: integer, children: integer): $Stream<($Entity)>
 public static "of"(entity: $Entity$Type): $Optional<($EntityRelationship)>
-public "promise"(spouse: $Entity$Type): void
 public "getParents"(): $Stream<($Entity)>
+public "isMarriedTo"(uuid: $UUID$Type): boolean
+public "isEngagedWith"(uuid: $UUID$Type): boolean
 public "getFamilyTree"(): $FamilyTree
 public "getRelationshipStream"(uuids: $Stream$Type<($UUID$Type)>): $Stream<($EntityRelationship)>
 public "getRelationshipState"(): $RelationshipState
 public "getPartnerUUID"(): $Optional<($UUID)>
 public "getPartnerName"(): $Optional<($Component)>
 public "isPromisedTo"(uuid: $UUID$Type): boolean
-public "isMarriedTo"(uuid: $UUID$Type): boolean
-public "isEngagedWith"(uuid: $UUID$Type): boolean
 public "isMarried"(): boolean
 public "isEngaged"(): boolean
+public "engage"(spouse: $Entity$Type): void
 public "getPartner"(): $Optional<($Entity)>
 public "isPromised"(): boolean
-public "engage"(spouse: $Entity$Type): void
 get "entityData"(): $CompoundTag
-set "entityDataSet"(value: boolean)
-get "entityDataSet"(): boolean
 get "familyEntry"(): $FamilyTreeNode
 set "entityData"(value: $CompoundTag$Type)
+set "entityDataSet"(value: boolean)
+get "entityDataSet"(): boolean
 get "lastSeenVillageId"(): $Optional<(integer)>
 get "world"(): $ServerLevel
 get "uUID"(): $UUID
@@ -4685,33 +4689,33 @@ constructor(bookName: string, bookAuthor: $Component$Type)
 
 public "open"(): void
 public "copy"(): $Book
-public "getBookAuthor"(): $Component
-public "getBackground"(): $ResourceLocation
 public "setBackground"(background: $ResourceLocation$Type): $Book
+public "getBackground"(): $ResourceLocation
+public "setTextShadow"(textShadow: boolean): $Book
+public "getBookAuthor"(): $Component
+public "setTextFormatting"(textFormatting: $ChatFormatting$Type): $Book
+public "addSimplePages"(n: integer): $Book
+public "addSimplePages"(n: integer, start: integer): $Book
+public "hasTextShadow"(): boolean
+public "getPageCount"(): integer
 public "setPageTurnSound"(pageTurnSound: boolean): $Book
 public "getBookName"(): string
 public "showPageCount"(): boolean
 public "getTextFormatting"(): $ChatFormatting
 public "hasPageTurnSound"(): boolean
-public "getPageCount"(): integer
-public "setTextShadow"(textShadow: boolean): $Book
-public "setTextFormatting"(textFormatting: $ChatFormatting$Type): $Book
-public "addSimplePages"(n: integer): $Book
-public "addSimplePages"(n: integer, start: integer): $Book
-public "hasTextShadow"(): boolean
-public "setPage"(i: integer, back: boolean): void
 public "getPage"(index: integer): $Page
+public "setPage"(i: integer, back: boolean): void
 public "getPages"(): $List<($Page)>
 public "addPage"(page: $Page$Type): $Book
-get "bookAuthor"(): $Component
-get "background"(): $ResourceLocation
 set "background"(value: $ResourceLocation$Type)
+get "background"(): $ResourceLocation
+set "textShadow"(value: boolean)
+get "bookAuthor"(): $Component
+set "textFormatting"(value: $ChatFormatting$Type)
+get "pageCount"(): integer
 set "pageTurnSound"(value: boolean)
 get "bookName"(): string
 get "textFormatting"(): $ChatFormatting
-get "pageCount"(): integer
-set "textShadow"(value: boolean)
-set "textFormatting"(value: $ChatFormatting$Type)
 get "pages"(): $List<($Page)>
 }
 /**
@@ -4828,26 +4832,26 @@ static "UNKNOWN": $Traits$Trait
 
 constructor(entity: $VillagerLike$Type<(any)>)
 
-public "getHorizontalScaleFactor"(): float
 public static "registerTrait"(id: string, chance: float, inherit: float, usableOnPlayer: boolean): $Traits$Trait
 public static "registerTrait"(id: string, chance: float, inherit: float): $Traits$Trait
+public "getHorizontalScaleFactor"(): float
+public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
+public "getVerticalScaleFactor"(): float
 public "getInheritedTraits"(): $Set<($Traits$Trait)>
 public "eitherHaveTrait"(trait: $Traits$Trait$Type, other: $VillagerLike$Type<(any)>): boolean
 public "hasSameTrait"(trait: $Traits$Trait$Type, other: $VillagerLike$Type<(any)>): boolean
 public "removeTrait"(trait: $Traits$Trait$Type): void
-public static "createTrackedData"<E extends $Entity>(builder: $CDataManager$Builder$Type<(E)>): $CDataManager$Builder<(E)>
-public "getVerticalScaleFactor"(): float
 public "getTraits"(): $Set<($Traits$Trait)>
 public "hasTrait"(target: $VillagerLike$Type<(any)>, trait: $Traits$Trait$Type): boolean
-public "hasTrait"(trait: string): boolean
 public "hasTrait"(trait: $Traits$Trait$Type): boolean
-public "randomize"(): void
-public "inherit"(from: $Traits$Type, seed: long): void
+public "hasTrait"(trait: string): boolean
 public "inherit"(from: $Traits$Type): void
+public "inherit"(from: $Traits$Type, seed: long): void
+public "randomize"(): void
 public "addTrait"(trait: $Traits$Trait$Type): void
 get "horizontalScaleFactor"(): float
-get "inheritedTraits"(): $Set<($Traits$Trait)>
 get "verticalScaleFactor"(): float
+get "inheritedTraits"(): $Set<($Traits$Trait)>
 get "traits"(): $Set<($Traits$Trait)>
 }
 /**
@@ -4964,8 +4968,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$Rarity, $Rarity$Type} from "packages/net/minecraft/world/item/$Rarity"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
@@ -4985,11 +4989,11 @@ readonly "canRepair": boolean
 
 constructor(properties: $Item$Properties$Type)
 
+public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "appendHoverText"(stack: $ItemStack$Type, world: $Level$Type, tooltip: $List$Type<($Component$Type)>, context: $TooltipFlag$Type): void
 public "isFoil"(stack: $ItemStack$Type): boolean
 public "getRarity"(stack: $ItemStack$Type): $Rarity
 public "isEnchantable"(stack: $ItemStack$Type): boolean
-public "useOn"(context: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5017,30 +5021,30 @@ static readonly "TEEN": $AgeState
 static readonly "ADULT": $AgeState
 
 
-public "getHead"(): float
+public static "getMaxAge"(): integer
+public static "random"(): $AgeState
 public "getWidth"(): float
 public "getHeight"(): float
+public "getNext"(): $AgeState
+public "getHead"(): float
 public "getName"(): $Component
 public static "values"(): ($AgeState)[]
 public static "valueOf"(name: string): $AgeState
 public static "getId"(age: integer): integer
-public static "random"(): $AgeState
-public "getNext"(): $AgeState
-public static "getMaxAge"(): integer
 public static "getStageDuration"(): integer
 public static "byCurrentAge"(age: integer): $AgeState
 public "getPitch"(): float
 public "getSpeed"(): float
-public static "getDelta"(age: float): float
 public static "byId"(id: integer): $AgeState
+public static "getDelta"(age: float): float
 public "getBreasts"(): float
 public "toAge"(): integer
-get "head"(): float
+get "maxAge"(): integer
 get "width"(): float
 get "height"(): float
-get "name"(): $Component
 get "next"(): $AgeState
-get "maxAge"(): integer
+get "head"(): float
+get "name"(): $Component
 get "stageDuration"(): integer
 get "pitch"(): float
 get "speed"(): float
@@ -5123,7 +5127,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 /**
  * 
  * @deprecated
@@ -5133,6 +5136,7 @@ public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, p
 public "rotate"(state: $BlockState$Type, rot: $Rotation$Type): $BlockState
 public "mirror"(state: $BlockState$Type, mirrorIn: $Mirror$Type): $BlockState
 public "getShape"(state: $BlockState$Type, worldIn: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**

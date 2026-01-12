@@ -194,11 +194,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "isPossibleToRespawnInThis"(arg0: $BlockState$Type): boolean
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "isPossibleToRespawnInThis"(arg0: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -398,10 +398,10 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $RecipeManagerAccessor {
 
- "accessor$getRecipes"(): $Map<($RecipeType<(any)>), ($Map<($ResourceLocation), ($Recipe<(any)>)>)>
- "accessor$setRecipes"(arg0: $Map$Type<($RecipeType$Type<(any)>), ($Map$Type<($ResourceLocation$Type), ($Recipe$Type<(any)>)>)>): void
- "accessor$getByName"(): $Map<($ResourceLocation), ($Recipe<(any)>)>
  "accessor$setByName"(arg0: $Map$Type<($ResourceLocation$Type), ($Recipe$Type<(any)>)>): void
+ "accessor$getByName"(): $Map<($ResourceLocation), ($Recipe<(any)>)>
+ "accessor$setRecipes"(arg0: $Map$Type<($RecipeType$Type<(any)>), ($Map$Type<($ResourceLocation$Type), ($Recipe$Type<(any)>)>)>): void
+ "accessor$getRecipes"(): $Map<($RecipeType<(any)>), ($Map<($ResourceLocation), ($Recipe<(any)>)>)>
 }
 
 export namespace $RecipeManagerAccessor {
@@ -432,8 +432,8 @@ import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/worl
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Enchantment, $Enchantment$Type} from "packages/net/minecraft/world/item/enchantment/$Enchantment"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
@@ -454,8 +454,8 @@ readonly "canRepair": boolean
 
 constructor()
 
-public static "interactWithBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $ItemStack$Type): $ItemStack
 public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
+public static "interactWithBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $ItemStack$Type): $ItemStack
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
@@ -665,8 +665,8 @@ constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -980,12 +980,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
-public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener

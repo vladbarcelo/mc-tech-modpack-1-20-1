@@ -117,15 +117,16 @@ export class $ItemResourceScrollBook$Container implements $Container {
 constructor(arg0: $ItemResourceScrollBook$Type, arg1: $ItemStack$Type)
 
 public "setChanged"(): void
-public "stillValid"(arg0: $Player$Type): boolean
-public "getMaxStackSize"(): integer
-public "setItem"(arg0: integer, arg1: $ItemStack$Type): void
-public "removeItem"(arg0: integer, arg1: integer): $ItemStack
-public "isEmpty"(): boolean
-public "clearContent"(): void
 public "getContainerSize"(): integer
 public "getItem"(arg0: integer): $ItemStack
 public "removeItemNoUpdate"(arg0: integer): $ItemStack
+public "removeItem"(arg0: integer, arg1: integer): $ItemStack
+public "isEmpty"(): boolean
+public "clearContent"(): void
+public "setItem"(arg0: integer, arg1: $ItemStack$Type): void
+public "getMaxStackSize"(): integer
+public "stillValid"(arg0: $Player$Type): boolean
+public "getBlock"(level: $Level$Type): $BlockContainerJS
 public "isMutable"(): boolean
 public "getSlots"(): integer
 public "getStackInSlot"(slot: integer): $ItemStack
@@ -138,10 +139,9 @@ public "getWidth"(): integer
 public "getHeight"(): integer
 public "setChanged"(): void
 public "asContainer"(): $Container
-public "getBlock"(level: $Level$Type): $BlockContainerJS
 public "kjs$self"(): $Container
-public "stopOpen"(arg0: $Player$Type): void
 public "startOpen"(arg0: $Player$Type): void
+public "stopOpen"(arg0: $Player$Type): void
 public "canPlaceItem"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "canTakeItem"(arg0: $Container$Type, arg1: integer, arg2: $ItemStack$Type): boolean
 public "countItem"(arg0: $Item$Type): integer
@@ -151,25 +151,25 @@ public static "stillValidBlockEntity"(arg0: $BlockEntity$Type, arg1: $Player$Typ
 public static "stillValidBlockEntity"(arg0: $BlockEntity$Type, arg1: $Player$Type, arg2: integer): boolean
 public "clear"(): void
 public static "tryClear"(arg0: any): void
-public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
-public "countNonEmpty"(): integer
-public "countNonEmpty"(ingredient: $Ingredient$Type): integer
-public "getAllItems"(): $List<($ItemStack)>
 public "isEmpty"(): boolean
+public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
+public "countNonEmpty"(ingredient: $Ingredient$Type): integer
+public "countNonEmpty"(): integer
+public "getAllItems"(): $List<($ItemStack)>
 public "clear"(ingredient: $Ingredient$Type): void
 public "find"(ingredient: $Ingredient$Type): integer
 public "find"(): integer
 public "count"(ingredient: $Ingredient$Type): integer
 public "count"(): integer
-get "maxStackSize"(): integer
-get "empty"(): boolean
 get "containerSize"(): integer
+get "empty"(): boolean
+get "maxStackSize"(): integer
 get "mutable"(): boolean
 get "slots"(): integer
 get "width"(): integer
 get "height"(): integer
-get "allItems"(): $List<($ItemStack)>
 get "empty"(): boolean
+get "allItems"(): $List<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -243,32 +243,32 @@ static readonly "TAG_DIMENSION_ID": string
 static readonly "TAG_COLONY_ID": string
 static readonly "TAG_BUILDING_ID": string
 
+constructor(arg0: $CompoundTag$Type)
 constructor(arg0: $IBuildingView$Type)
 constructor(arg0: $IBuilding$Type)
-constructor(arg0: $IColony$Type, arg1: $BlockPos$Type)
-constructor(arg0: $CompoundTag$Type)
 constructor(arg0: $FriendlyByteBuf$Type)
 constructor(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: $BlockPos$Type)
+constructor(arg0: $IColony$Type, arg1: $BlockPos$Type)
 
+public "getY"(): integer
+public "getX"(): integer
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
-public "getX"(): integer
-public "getY"(): integer
-public "getBuilding"(): $IBuilding
-public "getDimensionId"(): $ResourceKey<($Level)>
 public "serializeNBT"(): $CompoundTag
-public "getBuildingId"(): $BlockPos
-public "getColonyId"(): integer
-public "serializeBuffer"(arg0: $FriendlyByteBuf$Type): void
+public "getDimensionId"(): $ResourceKey<($Level)>
+public "getBuilding"(): $IBuilding
 public "getBuildingView"(): $IBuildingView
+public "getColonyId"(): integer
+public "getBuildingId"(): $BlockPos
+public "serializeBuffer"(arg0: $FriendlyByteBuf$Type): void
 public "getZ"(): integer
-get "x"(): integer
 get "y"(): integer
-get "building"(): $IBuilding
+get "x"(): integer
 get "dimensionId"(): $ResourceKey<($Level)>
-get "buildingId"(): $BlockPos
-get "colonyId"(): integer
+get "building"(): $IBuilding
 get "buildingView"(): $IBuildingView
+get "colonyId"(): integer
+get "buildingId"(): $BlockPos
 get "z"(): integer
 }
 /**
@@ -352,35 +352,35 @@ export class $ModulePos {
 static readonly "TAG_BUILDING_POS": string
 static readonly "TAG_MODULE_NAME": string
 
-constructor(arg0: $IBuildingModuleView$Type)
-constructor(arg0: $IBuildingModule$Type)
-constructor(arg0: $BuildingPos$Type, arg1: string)
-constructor(arg0: $FriendlyByteBuf$Type)
 constructor(arg0: $CompoundTag$Type)
+constructor(arg0: $IBuildingModuleView$Type)
+constructor(arg0: $FriendlyByteBuf$Type)
+constructor(arg0: $BuildingPos$Type, arg1: string)
+constructor(arg0: $IBuildingModule$Type)
 
+public "getY"(): integer
+public "getX"(): integer
 public "equals"(arg0: any): boolean
 public "getModule"(): $IBuildingModule
 public "hashCode"(): integer
 public "getModuleName"(): string
-public "getX"(): integer
-public "getY"(): integer
-public "getDimensionId"(): $ResourceKey<($Level)>
 public "serializeNBT"(): $CompoundTag
-public "getBuildingPos"(): $BuildingPos
-public "getBuildingId"(): $BlockPos
+public "getDimensionId"(): $ResourceKey<($Level)>
 public "getColonyId"(): integer
-public "serializeBuffer"(arg0: $FriendlyByteBuf$Type): void
+public "getBuildingId"(): $BlockPos
 public "getModuleView"(): $IBuildingModuleView
+public "getBuildingPos"(): $BuildingPos
+public "serializeBuffer"(arg0: $FriendlyByteBuf$Type): void
 public "getZ"(): integer
+get "y"(): integer
+get "x"(): integer
 get "module"(): $IBuildingModule
 get "moduleName"(): string
-get "x"(): integer
-get "y"(): integer
 get "dimensionId"(): $ResourceKey<($Level)>
-get "buildingPos"(): $BuildingPos
-get "buildingId"(): $BlockPos
 get "colonyId"(): integer
+get "buildingId"(): $BlockPos
 get "moduleView"(): $IBuildingModuleView
+get "buildingPos"(): $BuildingPos
 get "z"(): integer
 }
 /**
@@ -408,9 +408,9 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -435,11 +435,11 @@ constructor(arg0: $Item$Properties$Type, arg1: integer)
 
 public "getContainer"(arg0: $ItemStack$Type): $ItemResourceScrollBook$Container
 public "openInventory"(arg0: $ServerPlayer$Type, arg1: $ItemStack$Type, arg2: integer): void
+public "getSlots"(): integer
 public "getHandSlot"(arg0: $Player$Type, arg1: $InteractionHand$Type): integer
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public "getSlots"(): integer
 public "getItems"(arg0: $ItemStack$Type): $NonNullList<($ItemStack)>
 public "setItems"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStack$Type)>): void
 public "openWindow"(arg0: $ItemStack$Type): void

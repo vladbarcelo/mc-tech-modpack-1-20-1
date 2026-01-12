@@ -88,9 +88,9 @@ function tags(extra: "damage_type", handler: (event: TagEventProbe<(Special.Dama
 function tags(extra: "rule_block_entity_modifier", handler: (event: TagEventProbe<(Special.RuleBlockEntityModifierTag), (Special.RuleBlockEntityModifier)>) => void): void
 function tags(extra: "decorated_pot_patterns", handler: (event: TagEventProbe<(Special.DecoratedPotPatternsTag), (Special.DecoratedPotPatterns)>) => void): void
 function tags(extra: "worldgen/multi_noise_biome_source_parameter_list", handler: (event: TagEventProbe<(Special.WorldgenMultiNoiseBiomeSourceParameterListTag), (Special.WorldgenMultiNoiseBiomeSourceParameterList)>) => void): void
+function tags(extra: "corgilib:condition", handler: (event: TagEventProbe<(Special.ConditionTag), (Special.Condition)>) => void): void
 function tags(extra: "corgilib:blending_function", handler: (event: TagEventProbe<(Special.BlendingFunctionTag), (Special.BlendingFunction)>) => void): void
 function tags(extra: "corgilib:villager_trades_item_listing", handler: (event: TagEventProbe<(Special.VillagerTradesItemListingTag), (Special.VillagerTradesItemListing)>) => void): void
-function tags(extra: "corgilib:condition", handler: (event: TagEventProbe<(Special.ConditionTag), (Special.Condition)>) => void): void
 function tags(extra: "forge:entity_data_serializers", handler: (event: TagEventProbe<(Special.EntityDataSerializersTag), (Special.EntityDataSerializers)>) => void): void
 function tags(extra: "forge:fluid_type", handler: (event: TagEventProbe<(Special.FluidTypeTag), (Special.FluidType)>) => void): void
 function tags(extra: "forge:global_loot_modifier_serializers", handler: (event: TagEventProbe<(Special.GlobalLootModifierSerializersTag), (Special.GlobalLootModifierSerializers)>) => void): void
@@ -101,10 +101,10 @@ function tags(extra: "lithostitched:processor_condition_type", handler: (event: 
 function tags(extra: "petrolpark:contaminant", handler: (event: TagEventProbe<(Special.ContaminantTag), (Special.Contaminant)>) => void): void
 function tags(extra: "petrolpark:shop", handler: (event: TagEventProbe<(Special.ShopTag), (Special.Shop)>) => void): void
 function tags(extra: "petrolpark:shop_offer_generator", handler: (event: TagEventProbe<(Special.ShopOfferGeneratorTag), (Special.ShopOfferGenerator)>) => void): void
+function tags(extra: "forge:structure_modifier", handler: (event: TagEventProbe<(Special.StructureModifierTag), (Special.StructureModifier)>) => void): void
 function tags(extra: "moonlight:soft_fluids", handler: (event: TagEventProbe<(Special.SoftFluidsTag), (Special.SoftFluids)>) => void): void
 function tags(extra: "moonlight:map_markers", handler: (event: TagEventProbe<(Special.MapMarkersTag), (Special.MapMarkers)>) => void): void
-function tags(extra: "lithostitched:worldgen_modifier", handler: (event: TagEventProbe<(Special.WorldgenModifierTag), (Special.WorldgenModifier)>) => void): void
 function tags(extra: "forge:biome_modifier", handler: (event: TagEventProbe<(Special.BiomeModifierTag), (Special.BiomeModifier)>) => void): void
-function tags(extra: "forge:structure_modifier", handler: (event: TagEventProbe<(Special.StructureModifierTag), (Special.StructureModifier)>) => void): void
+function tags(extra: "lithostitched:worldgen_modifier", handler: (event: TagEventProbe<(Special.WorldgenModifierTag), (Special.WorldgenModifier)>) => void): void
 }
 }

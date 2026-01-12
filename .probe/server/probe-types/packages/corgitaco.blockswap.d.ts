@@ -2,8 +2,8 @@ declare module "packages/corgitaco/blockswap/util/$TickHelper" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $TickHelper {
 
- "setTickDirty"(): void
  "markTickDirty"(): boolean
+ "setTickDirty"(): void
 }
 
 export namespace $TickHelper {

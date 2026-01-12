@@ -63,8 +63,8 @@ readonly "pitch": float
 constructor(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $Vec3$Type, arg3: $Vec3$Type, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float)
 
 public "getLocal"(arg0: $Vec3$Type): $Vec3
-public "getGlobal"(arg0: float, arg1: float): $Vec3
 public "getGlobal"(arg0: $Vec3$Type): $Vec3
+public "getGlobal"(arg0: float, arg1: float): $Vec3
 public "getLocalRotation"(arg0: $Vec3$Type): $Pair<(float), (float)>
 }
 /**
@@ -195,8 +195,8 @@ declare module "packages/com/nyfaria/nyfsspiders/common/entity/mob/$ILivingEntit
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ILivingEntityRotationHook {
 
- "getTargetPitch"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): float
  "getTargetYaw"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): float
+ "getTargetPitch"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): float
  "getTargetHeadYaw"(arg0: float, arg1: integer): float
 }
 
@@ -311,18 +311,18 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IClimberEntity extends $IAdvancedPathFindingEntity {
 
- "canClimbInWater"(): boolean
- "canClimbInLava"(): boolean
- "calculateOrientation"(arg0: float): $Orientation
- "getGroundDirection"(): $Pair<($Direction), ($Vec3)>
- "shouldTrackPathingTargets"(): boolean
- "setCanClimbInWater"(arg0: boolean): void
  "setCanClimbInLava"(arg0: boolean): void
+ "setCanClimbInWater"(arg0: boolean): void
  "getMovementSpeed"(): float
+ "getGroundDirection"(): $Pair<($Direction), ($Vec3)>
+ "calculateOrientation"(arg0: float): $Orientation
+ "shouldTrackPathingTargets"(): boolean
  "getOrientation"(): $Orientation
  "setRenderOrientation"(arg0: $Orientation$Type): void
  "getRenderOrientation"(): $Orientation
  "getAttachmentOffset"(arg0: $Direction$Axis$Type, arg1: float): float
+ "canClimbInLava"(): boolean
+ "canClimbInWater"(): boolean
  "getTrackedMovementTarget"(): $Vec3
  "getTrackedPathingTargets"(): $List<($PathingTarget)>
  "getVerticalOffset"(arg0: float): float

@@ -12,8 +12,8 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "deterministicRandom"(): $RandomSource
-public "natural"(): integer
 public "width"(): integer
+public "natural"(): integer
 public "material"(): $List<($BlockState)>
 }
 /**
@@ -228,9 +228,9 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "centerBlockCount"(): integer
-public "vector"(): $Vec3i
 public "placePos"(): $BlockPos
 public "isStart"(): boolean
+public "vector"(): $Vec3i
 public "signText"(): string
 get "start"(): boolean
 }

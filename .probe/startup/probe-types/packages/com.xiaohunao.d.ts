@@ -3,8 +3,8 @@ import {$TriPredicate, $TriPredicate$Type} from "packages/net/minecraftforge/com
 import {$EventJS, $EventJS$Type} from "packages/dev/latvian/mods/kubejs/event/$EventJS"
 import {$HeatData, $HeatData$Type} from "packages/com/xiaohunao/createheatjs/$HeatData"
 import {$BlazeBurnerBlock$HeatLevel, $BlazeBurnerBlock$HeatLevel$Type} from "packages/com/simibubi/create/content/processing/burner/$BlazeBurnerBlock$HeatLevel"
-import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 
@@ -12,11 +12,11 @@ export class $registerHeatEvent extends $EventJS {
 
 constructor()
 
+public "addHeatSourceWithJei"(arg0: $BlazeBurnerBlock$HeatLevel$Type, arg1: $Block$Type, arg2: $BlockState$Type, arg3: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData
+public "addHeatSourceWithJei"(arg0: $BlazeBurnerBlock$HeatLevel$Type, arg1: $Block$Type, arg2: $BlockState$Type): $HeatData
 public "registerHeat"(arg0: string, arg1: integer): $HeatData
 public "addHeatSource"(arg0: $BlazeBurnerBlock$HeatLevel$Type, arg1: $Block$Type, arg2: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData
 public "addHeatSource"(arg0: $BlazeBurnerBlock$HeatLevel$Type, arg1: $Block$Type): $HeatData
-public "addHeatSourceWithJei"(arg0: $BlazeBurnerBlock$HeatLevel$Type, arg1: $Block$Type, arg2: $BlockState$Type, arg3: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData
-public "addHeatSourceWithJei"(arg0: $BlazeBurnerBlock$HeatLevel$Type, arg1: $Block$Type, arg2: $BlockState$Type): $HeatData
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -42,22 +42,22 @@ export class $HeatData$HeatSourceData {
 
 constructor(arg0: $Block$Type)
 
-public "toString"(): string
 public "getBlock"(): $Block
+public "toString"(): string
 public "getPredicate"(): $TriPredicate<($Level), ($BlockPos), ($BlockState)>
 public "setJeiRenderBlockState"(arg0: $BlockState$Type): $HeatData$HeatSourceData
 public "setPredicate"(arg0: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData$HeatSourceData
-public "getJeiRenderBlockState"(): $BlockState
-public "getStates"(): $List<($BlockState)>
-public "addState"(arg0: $BlockState$Type): $HeatData$HeatSourceData
 public "addState"(arg0: $List$Type<($BlockState$Type)>): void
+public "addState"(arg0: $BlockState$Type): $HeatData$HeatSourceData
+public "getStates"(): $List<($BlockState)>
+public "getJeiRenderBlockState"(): $BlockState
 public "setStates"(arg0: $List$Type<($BlockState$Type)>): $HeatData$HeatSourceData
 get "block"(): $Block
 get "predicate"(): $TriPredicate<($Level), ($BlockPos), ($BlockState)>
 set "jeiRenderBlockState"(value: $BlockState$Type)
 set "predicate"(value: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>)
-get "jeiRenderBlockState"(): $BlockState
 get "states"(): $List<($BlockState)>
+get "jeiRenderBlockState"(): $BlockState
 set "states"(value: $List$Type<($BlockState$Type)>)
 }
 /**
@@ -95,33 +95,33 @@ public "getName"(): string
 public "register"(): void
 public "setPriority"(arg0: integer): $HeatData
 public "getPriority"(): integer
-public "getHeatSourceData"(): $Map<($Block), ($HeatData$HeatSourceData)>
 public "getCondition"(): $HeatCondition
 public "setHeatCondition"(arg0: $HeatCondition$Type): $HeatData
+public "getHeatSourceData"(): $Map<($Block), ($HeatData$HeatSourceData)>
+public "getHeatLevel"(): $BlazeBurnerBlock$HeatLevel
+public "addHeatSourceWithJei"(arg0: $Block$Type, arg1: $BlockState$Type): $HeatData
+public "addHeatSourceWithJei"(arg0: $Block$Type, arg1: $BlockState$Type, arg2: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData
+public "addHeatSource"(arg0: $Block$Type): $HeatData
+public "addHeatSource"(arg0: $Block$Type, arg1: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData
 public "setHeatLevel"(arg0: $BlazeBurnerBlock$HeatLevel$Type): $HeatData
 public "removeHeatSource"(arg0: $Block$Type): $HeatData
 public "getHeatSourceStacks"(): $List<($ItemStack)>
 public "getHeatSourceBlocks"(): $List<($Block)>
 public "getHeatSourceStates"(arg0: $Block$Type): $List<($BlockState)>
 public "canShowJeiTip"(): boolean
-public "addHeatSource"(arg0: $Block$Type, arg1: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData
-public "addHeatSource"(arg0: $Block$Type): $HeatData
-public "addHeatSourceWithJei"(arg0: $Block$Type, arg1: $BlockState$Type, arg2: $TriPredicate$Type<($Level$Type), ($BlockPos$Type), ($BlockState$Type)>): $HeatData
-public "addHeatSourceWithJei"(arg0: $Block$Type, arg1: $BlockState$Type): $HeatData
-public "getHeatLevel"(): $BlazeBurnerBlock$HeatLevel
 public "getColor"(): integer
 public "jeiTip"(): $HeatData
 set "color"(value: integer)
 get "name"(): string
 set "priority"(value: integer)
 get "priority"(): integer
-get "heatSourceData"(): $Map<($Block), ($HeatData$HeatSourceData)>
 get "condition"(): $HeatCondition
 set "heatCondition"(value: $HeatCondition$Type)
+get "heatSourceData"(): $Map<($Block), ($HeatData$HeatSourceData)>
+get "heatLevel"(): $BlazeBurnerBlock$HeatLevel
 set "heatLevel"(value: $BlazeBurnerBlock$HeatLevel$Type)
 get "heatSourceStacks"(): $List<($ItemStack)>
 get "heatSourceBlocks"(): $List<($Block)>
-get "heatLevel"(): $BlazeBurnerBlock$HeatLevel
 get "color"(): integer
 }
 /**

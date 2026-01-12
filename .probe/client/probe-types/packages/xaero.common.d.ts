@@ -1,8 +1,6 @@
 declare module "packages/xaero/common/minimap/radar/$MinimapRadarList" {
 import {$EntityRadarCategory, $EntityRadarCategory$Type} from "packages/xaero/hud/minimap/radar/category/$EntityRadarCategory"
-import {$List, $List$Type} from "packages/java/util/$List"
 import {$RadarList, $RadarList$Type} from "packages/xaero/hud/minimap/radar/state/$RadarList"
-import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 
 /**
  * 
@@ -20,18 +18,12 @@ constructor()
  * 
  * @deprecated
  */
-public "getEntities"(): $List<($Entity)>
-/**
- * 
- * @deprecated
- */
 public "setCategory"(arg0: $EntityRadarCategory$Type): $MinimapRadarList
 /**
  * 
  * @deprecated
  */
 public "getCategory"(): $EntityRadarCategory
-get "entities"(): $List<($Entity)>
 set "category"(value: $EntityRadarCategory$Type)
 get "category"(): $EntityRadarCategory
 }
@@ -296,6 +288,7 @@ export class $MinimapElementReader<E, RC> extends $MinimapElementReader$0<(E), (
 constructor()
 
 public "isHidden"(arg0: E, arg1: RC): boolean
+public "shouldScaleBoxWithOptionalScale"(): boolean
 /**
  * 
  * @deprecated
@@ -303,13 +296,6 @@ public "isHidden"(arg0: E, arg1: RC): boolean
 public "isInteractable"(arg0: integer, arg1: E): boolean
 public "isInteractable"(arg0: $MinimapElementRenderLocation$Type, arg1: E): boolean
 public "getRightClickTitleBackgroundColor"(arg0: E): integer
-public "shouldScaleBoxWithOptionalScale"(): boolean
-public "getInteractionBoxLeft"(arg0: E, arg1: RC, arg2: float): integer
-public "getInteractionBoxRight"(arg0: E, arg1: RC, arg2: float): integer
-public "getInteractionBoxTop"(arg0: E, arg1: RC, arg2: float): integer
-public "getInteractionBoxBottom"(arg0: E, arg1: RC, arg2: float): integer
-public "getRenderBoxLeft"(arg0: E, arg1: RC, arg2: float): integer
-public "getRenderBoxRight"(arg0: E, arg1: RC, arg2: float): integer
 public "getRenderBoxTop"(arg0: E, arg1: RC, arg2: float): integer
 public "getRenderBoxBottom"(arg0: E, arg1: RC, arg2: float): integer
 public "getLeftSideLength"(arg0: E, arg1: $Minecraft$Type): integer
@@ -322,6 +308,12 @@ public "getMenuTextFillLeftPadding"(arg0: E): integer
  */
 public "getBoxScale"(arg0: integer, arg1: E, arg2: RC): float
 public "getBoxScale"(arg0: $MinimapElementRenderLocation$Type, arg1: E, arg2: RC): float
+public "getRenderBoxLeft"(arg0: E, arg1: RC, arg2: float): integer
+public "getRenderBoxRight"(arg0: E, arg1: RC, arg2: float): integer
+public "getInteractionBoxLeft"(arg0: E, arg1: RC, arg2: float): integer
+public "getInteractionBoxRight"(arg0: E, arg1: RC, arg2: float): integer
+public "getInteractionBoxTop"(arg0: E, arg1: RC, arg2: float): integer
+public "getInteractionBoxBottom"(arg0: E, arg1: RC, arg2: float): integer
 public "getRenderX"(arg0: E, arg1: RC, arg2: float): double
 public "getRenderZ"(arg0: E, arg1: RC, arg2: float): double
 public "getRenderY"(arg0: E, arg1: RC, arg2: float): double
@@ -346,8 +338,8 @@ export class $SupportOPACServer {
 
 constructor()
 
-public "updateShareLocationConfigValues"(arg0: $ServerPlayer$Type, arg1: $ServerPlayerData$Type): void
 public "getReceiveLocationsFromPartyConfigValue"(arg0: $ServerPlayer$Type): boolean
+public "updateShareLocationConfigValues"(arg0: $ServerPlayer$Type, arg1: $ServerPlayerData$Type): void
 public "getReceiveLocationsFromMutualAlliesConfigValue"(arg0: $ServerPlayer$Type): boolean
 public "isPositionSyncAllowed"(arg0: integer, arg1: $ServerPlayerData$Type, arg2: boolean): boolean
 }
@@ -559,11 +551,11 @@ readonly "enumBoolean": boolean
 
 
 public static "init"(arg0: $IXaeroMinimap$Type): void
-public "getEnumString"(): string
 public "isIngameOnly"(): boolean
 public "getValueMin"(): double
 public "getValueMax"(): double
 public "getValueStep"(): double
+public "getEnumString"(): string
 public "getEnumDouble"(): boolean
 public "getEnumBoolean"(): boolean
 public "setValueMax"(arg0: float): void
@@ -573,11 +565,11 @@ public "denormalizeValue"(arg0: double): double
 public "getEnumStringRaw"(): string
 public "getTooltip"(): $CursorBox
 public "getXOption"(): $Option
-get "enumString"(): string
 get "ingameOnly"(): boolean
 get "valueMin"(): double
 get "valueMax"(): double
 get "valueStep"(): double
+get "enumString"(): string
 get "enumDouble"(): boolean
 get "enumBoolean"(): boolean
 set "valueMax"(value: float)
@@ -656,11 +648,11 @@ export class $CommonEvents {
 
 constructor(arg0: $IXaeroMinimap$Type)
 
-public "handlePlayerTickStart"(arg0: $Player$Type): void
-public "onPlayerWorldJoin"(arg0: $ServerPlayer$Type): void
 public "onPlayerLogIn"(arg0: $Player$Type): void
 public "onServerStarting"(arg0: $MinecraftServer$Type): void
 public "onServerStopped"(arg0: $MinecraftServer$Type): void
+public "onPlayerWorldJoin"(arg0: $ServerPlayer$Type): void
+public "handlePlayerTickStart"(arg0: $Player$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -708,8 +700,8 @@ import {$HudIO, $HudIO$Type} from "packages/xaero/hud/io/$HudIO"
 import {$ClientEventsListener, $ClientEventsListener$Type} from "packages/xaero/common/events/$ClientEventsListener"
 import {$PlayerTrackerSystemManager, $PlayerTrackerSystemManager$Type} from "packages/xaero/common/minimap/radar/tracker/system/$PlayerTrackerSystemManager"
 import {$WidgetScreenHandler, $WidgetScreenHandler$Type} from "packages/xaero/common/gui/widget/$WidgetScreenHandler"
-import {$HudRenderer, $HudRenderer$Type} from "packages/xaero/hud/render/$HudRenderer"
 import {$ServerPlayerTickHandler, $ServerPlayerTickHandler$Type} from "packages/xaero/common/server/player/$ServerPlayerTickHandler"
+import {$HudRenderer, $HudRenderer$Type} from "packages/xaero/hud/render/$HudRenderer"
 import {$File, $File$Type} from "packages/java/io/$File"
 import {$CommonEvents, $CommonEvents$Type} from "packages/xaero/common/events/$CommonEvents"
 import {$WidgetLoadingHandler, $WidgetLoadingHandler$Type} from "packages/xaero/common/gui/widget/$WidgetLoadingHandler"
@@ -721,9 +713,9 @@ import {$ModSettings, $ModSettings$Type} from "packages/xaero/common/settings/$M
 import {$GuiHelper, $GuiHelper$Type} from "packages/xaero/common/gui/$GuiHelper"
 import {$Path, $Path$Type} from "packages/java/nio/file/$Path"
 import {$RenderedPlayerTrackerManager, $RenderedPlayerTrackerManager$Type} from "packages/xaero/hud/minimap/player/tracker/system/$RenderedPlayerTrackerManager"
-import {$SupportServerMods, $SupportServerMods$Type} from "packages/xaero/common/server/mods/$SupportServerMods"
-import {$MinimapMessageHandler, $MinimapMessageHandler$Type} from "packages/xaero/common/message/$MinimapMessageHandler"
 import {$ControlsRegister, $ControlsRegister$Type} from "packages/xaero/hud/controls/$ControlsRegister"
+import {$MinimapMessageHandler, $MinimapMessageHandler$Type} from "packages/xaero/common/message/$MinimapMessageHandler"
+import {$SupportServerMods, $SupportServerMods$Type} from "packages/xaero/common/server/mods/$SupportServerMods"
 import {$CommonConfig, $CommonConfig$Type} from "packages/xaero/common/config/$CommonConfig"
 import {$Hud, $Hud$Type} from "packages/xaero/hud/$Hud"
 import {$ModClientEvents, $ModClientEvents$Type} from "packages/xaero/common/events/$ModClientEvents"
@@ -736,59 +728,59 @@ import {$SupportMods, $SupportMods$Type} from "packages/xaero/common/mods/$Suppo
 export interface $IXaeroMinimap {
 
  "isStandalone"(): boolean
- "getInterfaces"(): $InterfaceManager
- "getMessage"(): string
  "setSettings"(arg0: $ModSettings$Type): void
  "getSettings"(): $ModSettings
- "getCommonEvents"(): $CommonEvents
+ "getInterfaces"(): $InterfaceManager
+ "getMessage"(): string
+ "getCommonConfig"(): $CommonConfig
  "getConfigFile"(): $Path
- "getUpdateLink"(): string
- "getVersionsURL"(): string
- "getSettingsKey"(): any
- "createSession"(): $XaeroMinimapSession
- "isFirstStageLoaded"(): boolean
- "getHudRenderer"(): $HudRenderer
+ "isLoadedClient"(): boolean
+ "isLoadedServer"(): boolean
+ "ensureControlsRegister"(): void
+ "getVersionID"(): string
+ "resetSettings"(): void
+ "setOutdated"(arg0: boolean): void
+ "getLatestVersion"(): string
+ "setLatestVersion"(arg0: string): void
+ "getNewestUpdateID"(): integer
+ "setNewestUpdateID"(arg0: integer): void
+ "getFileLayoutID"(): string
+ "getWaypointsFile"(): $Path
+ "getWaypointsFolder"(): $Path
+ "getWidgetScreenHandler"(): $WidgetScreenHandler
+ "getWidgetLoader"(): $WidgetLoadingHandler
+ "getSupportMods"(): $SupportMods
+ "getModEvents"(): $ModClientEvents
+ "getGuiHelper"(): $GuiHelper
+ "getFieldValidators"(): $FieldValidatorHolder
+ "getControlsRegister"(): $ControlsRegister
+ "getInterfaceRenderer"(): $InterfaceRenderer
+ "setLatestVersionMD5"(arg0: string): void
+ "getLatestVersionMD5"(): string
+ "getTrackedPlayerRenderer"(): $PlayerTrackerMinimapElementRenderer
+ "getPlayerTracker"(): $RenderedPlayerTrackerManager
+ "getServerPlayerTickHandler"(): $ServerPlayerTickHandler
+ "setServerPlayerTickHandler"(arg0: $ServerPlayerTickHandler$Type): void
+ "getMessageHandler"(): $MinimapMessageHandler
+ "getSupportServerMods"(): $SupportServerMods
+ "setCommonConfigIO"(arg0: $CommonConfigIO$Type): void
  "setCommonConfig"(arg0: $CommonConfig$Type): void
  "getCommonConfigIO"(): $CommonConfigIO
  "getClientEventsListener"(): $ClientEventsListener
- "tryLoadLaterServer"(): void
- "tryLoadLater"(): void
- "getModCommonEvents"(): $ModCommonEvents
- "getModClientEvents"(): $ModClientEvents
  "getPlatformContext"(): $PlatformContext
- "getSupportServerMods"(): $SupportServerMods
- "getMessageHandler"(): $MinimapMessageHandler
- "setServerPlayerTickHandler"(arg0: $ServerPlayerTickHandler$Type): void
- "getServerPlayerTickHandler"(): $ServerPlayerTickHandler
- "getPlayerTracker"(): $RenderedPlayerTrackerManager
- "getTrackedPlayerRenderer"(): $PlayerTrackerMinimapElementRenderer
- "getLatestVersionMD5"(): string
- "getControlsRegister"(): $ControlsRegister
- "setLatestVersionMD5"(arg0: string): void
- "getInterfaceRenderer"(): $InterfaceRenderer
- "getFieldValidators"(): $FieldValidatorHolder
- "getGuiHelper"(): $GuiHelper
- "getModEvents"(): $ModClientEvents
- "getWidgetScreenHandler"(): $WidgetScreenHandler
- "setCommonConfigIO"(arg0: $CommonConfigIO$Type): void
- "getWidgetLoader"(): $WidgetLoadingHandler
- "getSupportMods"(): $SupportMods
- "getWaypointsFolder"(): $Path
- "getWaypointsFile"(): $Path
- "getFileLayoutID"(): string
- "getNewestUpdateID"(): integer
- "setNewestUpdateID"(arg0: integer): void
- "getLatestVersion"(): string
- "setOutdated"(arg0: boolean): void
- "setLatestVersion"(arg0: string): void
- "resetSettings"(): void
- "getVersionID"(): string
- "ensureControlsRegister"(): void
- "isLoadedServer"(): boolean
- "isLoadedClient"(): boolean
- "getCommonConfig"(): $CommonConfig
- "getModId"(): string
+ "getModClientEvents"(): $ModClientEvents
+ "getModCommonEvents"(): $ModCommonEvents
+ "tryLoadLater"(): void
+ "tryLoadLaterServer"(): void
+ "getHudRenderer"(): $HudRenderer
+ "isFirstStageLoaded"(): boolean
+ "getVersionsURL"(): string
+ "getUpdateLink"(): string
+ "getSettingsKey"(): any
+ "createSession"(): $XaeroMinimapSession
+ "getCommonEvents"(): $CommonEvents
  "setMessage"(arg0: string): void
+ "getModId"(): string
  "getEntityRadarCategoryManager"(): $EntityRadarCategoryManager
 /**
  * 
@@ -909,11 +901,11 @@ public "onDropdownClosed"(arg0: $DropDownWidget$Type): void
 public "replaceWidget"(arg0: $AbstractWidget$Type, arg1: $AbstractWidget$Type): void
 public "replaceRenderableWidget"(arg0: $AbstractWidget$Type, arg1: $AbstractWidget$Type): void
 public static "tryToGetEscape"(arg0: $Screen$Type): $Screen
-public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
-public "onClose"(): void
 public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "onClose"(): void
 public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
+public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
 public "getEscape"(): $Screen
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "escape"(): $Screen
@@ -1013,17 +1005,27 @@ constructor(arg0: $HudMod$Type, arg1: $HudModule$Type<($MinimapSession$Type)>, a
  * 
  * @deprecated
  */
-public "teleportAnyway"(): void
+public "getDimensionKeyForDirectoryName"(arg0: string): $ResourceKey<($Level)>
 /**
  * 
  * @deprecated
  */
-public "isMultiplayer"(arg0: string): boolean
+public "getCurrentContainerAndWorldID"(arg0: string, arg1: string): string
 /**
  * 
  * @deprecated
  */
-public "getAutoWorld"(): $WaypointWorld
+public "getCurrentContainerAndWorldID"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getCurrentOriginContainerID"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getCurrentOriginContainerID"(arg0: string): string
 /**
  * 
  * @deprecated
@@ -1033,7 +1035,22 @@ public "canTeleport"(arg0: boolean, arg1: $WaypointWorld$Type): boolean
  * 
  * @deprecated
  */
-public "getCurrentWorld"(arg0: string, arg1: string): $WaypointWorld
+public "teleportAnyway"(): void
+/**
+ * 
+ * @deprecated
+ */
+public "getAutoWorld"(): $WaypointWorld
+/**
+ * 
+ * @deprecated
+ */
+public "isMultiplayer"(arg0: string): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "createDeathpoint"(arg0: $Player$Type): void
 /**
  * 
  * @deprecated
@@ -1043,7 +1060,7 @@ public "getCurrentWorld"(): $WaypointWorld
  * 
  * @deprecated
  */
-public "createDeathpoint"(arg0: $Player$Type): void
+public "getCurrentWorld"(arg0: string, arg1: string): $WaypointWorld
 /**
  * 
  * @deprecated
@@ -1058,12 +1075,12 @@ public "isWorldTeleportable"(arg0: $WaypointWorld$Type): boolean
  * 
  * @deprecated
  */
-public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $WaypointWorld$Type, arg2: $Screen$Type, arg3: boolean): void
+public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $WaypointWorld$Type, arg2: $Screen$Type): void
 /**
  * 
  * @deprecated
  */
-public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $WaypointWorld$Type, arg2: $Screen$Type): void
+public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $WaypointWorld$Type, arg2: $Screen$Type, arg3: boolean): void
 /**
  * 
  * @deprecated
@@ -1083,112 +1100,7 @@ public "getDimensionDivision"(arg0: string): double
  * 
  * @deprecated
  */
-public "getCurrentOriginContainerID"(): string
-/**
- * 
- * @deprecated
- */
-public "getCurrentOriginContainerID"(arg0: string): string
-/**
- * 
- * @deprecated
- */
-public "getDimensionKeyForDirectoryName"(arg0: string): $ResourceKey<($Level)>
-/**
- * 
- * @deprecated
- */
-public "getCurrentContainerAndWorldID"(arg0: string, arg1: string): string
-/**
- * 
- * @deprecated
- */
-public "getCurrentContainerAndWorldID"(): string
-/**
- * 
- * @deprecated
- */
-public "getNewAutoWorldID"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: boolean): string
-/**
- * 
- * @deprecated
- */
-public "getAutoRootContainerID"(): string
-/**
- * 
- * @deprecated
- */
-public "getAutoContainerID"(): string
-/**
- * 
- * @deprecated
- */
-public "getCurrentContainerID"(arg0: string): string
-/**
- * 
- * @deprecated
- */
-public "getCurrentContainerID"(): string
-/**
- * 
- * @deprecated
- */
-public "getCurrentWorldID"(arg0: string): string
-/**
- * 
- * @deprecated
- */
-public "getCurrentWorldID"(): string
-/**
- * 
- * @deprecated
- */
-public "getWorldContainerNullable"(arg0: string): $WaypointWorldContainer
-/**
- * 
- * @deprecated
- */
-public "getDimensionDirectoryName"(arg0: $ResourceKey$Type<($Level$Type)>): string
-/**
- * 
- * @deprecated
- */
-public "findDimensionKey"(arg0: string): $ResourceKey<($Level)>
-/**
- * 
- * @deprecated
- */
-public "ignoreContainerCase"(arg0: string, arg1: string): string
-/**
- * 
- * @deprecated
- */
-public "getAutoWorldID"(): string
-/**
- * 
- * @deprecated
- */
-public "getWorldContainer"(arg0: string): $WaypointWorldContainer
-/**
- * 
- * @deprecated
- */
-public "addWorldContainer"(arg0: string): $WaypointWorldContainer
-/**
- * 
- * @deprecated
- */
-public "removeContainer"(arg0: string): void
-/**
- * 
- * @deprecated
- */
-public "containerExists"(arg0: string): boolean
-/**
- * 
- * @deprecated
- */
-public "updateWorldIds"(): void
+public "onServerLevelId"(arg0: integer): void
 /**
  * 
  * @deprecated
@@ -1263,7 +1175,87 @@ public static "getCustomWaypoints"(arg0: string): $Hashtable<(integer), ($Waypoi
  * 
  * @deprecated
  */
-public "onServerLevelId"(arg0: integer): void
+public "getWorldContainerNullable"(arg0: string): $WaypointWorldContainer
+/**
+ * 
+ * @deprecated
+ */
+public "getDimensionDirectoryName"(arg0: $ResourceKey$Type<($Level$Type)>): string
+/**
+ * 
+ * @deprecated
+ */
+public "findDimensionKey"(arg0: string): $ResourceKey<($Level)>
+/**
+ * 
+ * @deprecated
+ */
+public "ignoreContainerCase"(arg0: string, arg1: string): string
+/**
+ * 
+ * @deprecated
+ */
+public "getNewAutoWorldID"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: boolean): string
+/**
+ * 
+ * @deprecated
+ */
+public "getCurrentContainerID"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getCurrentContainerID"(arg0: string): string
+/**
+ * 
+ * @deprecated
+ */
+public "getCurrentWorldID"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getCurrentWorldID"(arg0: string): string
+/**
+ * 
+ * @deprecated
+ */
+public "getAutoRootContainerID"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getAutoContainerID"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getAutoWorldID"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getWorldContainer"(arg0: string): $WaypointWorldContainer
+/**
+ * 
+ * @deprecated
+ */
+public "addWorldContainer"(arg0: string): $WaypointWorldContainer
+/**
+ * 
+ * @deprecated
+ */
+public "removeContainer"(arg0: string): void
+/**
+ * 
+ * @deprecated
+ */
+public "containerExists"(arg0: string): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "updateWorldIds"(): void
 /**
  * 
  * @deprecated
@@ -1274,16 +1266,11 @@ public "getWorld"(arg0: string, arg1: string): $WaypointWorld
  * @deprecated
  */
 public "addWorld"(arg0: string, arg1: string): $WaypointWorld
+get "currentContainerAndWorldID"(): string
+get "currentOriginContainerID"(): string
 get "autoWorld"(): $WaypointWorld
 get "currentWorld"(): $WaypointWorld
 get "waypoints"(): $WaypointSet
-get "currentOriginContainerID"(): string
-get "currentContainerAndWorldID"(): string
-get "autoRootContainerID"(): string
-get "autoContainerID"(): string
-get "currentContainerID"(): string
-get "currentWorldID"(): string
-get "autoWorldID"(): string
 set "waypoints"(value: $WaypointSet$Type)
 get "serverWaypoints"(): $List<($Waypoint)>
 get "waypointMap"(): $HashMap<(string), ($WaypointWorldContainer)>
@@ -1291,6 +1278,11 @@ get "customContainerID"(): string
 set "customContainerID"(value: string)
 get "customWorldID"(): string
 set "customWorldID"(value: string)
+get "currentContainerID"(): string
+get "currentWorldID"(): string
+get "autoRootContainerID"(): string
+get "autoContainerID"(): string
+get "autoWorldID"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1533,11 +1525,30 @@ static readonly "RADAR_OVER_MAP_OPTIONS": (string)[]
 
 constructor(arg0: $IXaeroMinimap$Type)
 
+public "handler$cam000$xaeroplus$isKeyRepeat"(kb: $KeyMapping$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$cam000$xaeroplus$modifyMinimapSize"(cir: $CallbackInfoReturnable$Type<(any)>): void
+public "getWaypointsIngameIconScale"(): float
+public "getWaypointsIngameDistanceScale"(): float
+public "getWaypointsIngameNameScale"(): integer
+public "handler$cam000$xaeroplus$saveSettings"(ci: $CallbackInfo$Type): void
+public "handler$cam000$xaeroplus$getOptionValue"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$cam000$xaeroplus$setOptionValue"(o: $ModOptions$Type, value: any, ci: $CallbackInfo$Type): void
+public "getEntityRadarBackwardsCompatibilityConfig"(): $EntityRadarBackwardsCompatibilityConfig
+public "handler$cam000$xaeroplus$getOptionValueName"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$cam000$xaeroplus$getSliderOptionText"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$cam000$xaeroplus$getClientBooleanValue"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$cam000$xaeroplus$setOptionFloatValue"(o: $ModOptions$Type, f: double, ci: $CallbackInfo$Type): void
+public "handler$cam000$xaeroplus$getOptionFloatValue"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "resetEntityRadarBackwardsCompatibilityConfig"(): void
+public static "getTranslation"(arg0: boolean): string
+public "loadSettings"(): void
+public "writeSettings"(arg0: $PrintWriter$Type): void
+public "loadDefaultSettings"(): void
+public "saveSettings"(): void
 public "getMinimapScale"(): float
 public "getMinimapSize"(): integer
-public static "canEditIngameSettings"(): boolean
 public "resetServerSettings"(): void
-public "getUseWorldMap"(): boolean
+public static "canEditIngameSettings"(): boolean
 public "getLighting"(): boolean
 public "isLegibleCaveMaps"(): boolean
 public "getBiomeBlending"(): boolean
@@ -1553,17 +1564,19 @@ public "getSlimeChunksSeed"(arg0: $XaeroPath$Type): long
 public "isStainedGlassDisplayed"(): boolean
 public "getCaveMaps"(arg0: boolean): boolean
 public "getManualCaveModeStart"(): integer
-public "loadSettings"(): void
-public "writeSettings"(arg0: $PrintWriter$Type): void
-public "saveSettings"(): void
-public "loadDefaultSettings"(): void
-public static "getTranslation"(arg0: boolean): string
+public "getUseWorldMap"(): boolean
 public "getBooleanValue"(arg0: $ModOptions$Type): boolean
 public "getOptionValue"(arg0: $ModOptions$Type): any
+public "getAdjustHeightForCarpetLikeBlocks"(): boolean
 public "getTrackedPlayerWorldIconScale"(): float
 public "getTrackedPlayerMinimapIconScale"(): float
 public "getTrackedPlayerWorldNameScale"(): float
-public "getAdjustHeightForCarpetLikeBlocks"(): boolean
+public "getClientBooleanValue"(arg0: $ModOptions$Type): boolean
+public "setOptionValue"(arg0: $ModOptions$Type, arg1: any): void
+public "setOptionDoubleValue"(arg0: $ModOptions$Type, arg1: double): void
+public "getOptionDoubleValue"(arg0: $ModOptions$Type): double
+public "getOptionValueName"(arg0: $ModOptions$Type): string
+public "getSliderOptionText"(arg0: $ModOptions$Type): string
 /**
  * 
  * @deprecated
@@ -1573,41 +1586,18 @@ public "getSlimeChunks"(arg0: $MinimapSession$Type): boolean
 public "getDisplayClaims"(): boolean
 public "getClaimsBorderOpacity"(): integer
 public "getClaimsFillOpacity"(): integer
-public "getClientBooleanValue"(arg0: $ModOptions$Type): boolean
-public "setOptionValue"(arg0: $ModOptions$Type, arg1: any): void
-public "setOptionDoubleValue"(arg0: $ModOptions$Type, arg1: double): void
-public "getOptionDoubleValue"(arg0: $ModOptions$Type): double
-public "getOptionValueName"(arg0: $ModOptions$Type): string
-public "getSliderOptionText"(arg0: $ModOptions$Type): string
 public "usesWorldMapHardValue"(arg0: $ModOptions$Type): boolean
-public "waypointsGUI"(arg0: $MinimapSession$Type): boolean
 /**
  * 
  * @deprecated
  */
 public "waypointsGUI"(arg0: $WaypointsManager$Type): boolean
+public "waypointsGUI"(arg0: $MinimapSession$Type): boolean
 public "toggleBooleanOptionValue"(arg0: $ModOptions$Type): void
 public "customSlimeSeedNeeded"(arg0: $HudSession$Type): boolean
 public "usesWorldMapOptionValue"(arg0: $ModOptions$Type): boolean
 public "usesWorldMapScreenValue"(arg0: $ModOptions$Type): boolean
 public "setSlimeChunksSeed"(arg0: long, arg1: $XaeroPath$Type): void
-public "handler$bpo000$xaeroplus$isKeyRepeat"(kb: $KeyMapping$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$bpo000$xaeroplus$modifyMinimapSize"(cir: $CallbackInfoReturnable$Type<(any)>): void
-public "getWaypointsIngameIconScale"(): float
-public "getWaypointsIngameDistanceScale"(): float
-public "getWaypointsIngameNameScale"(): integer
-public "handler$bpo000$xaeroplus$saveSettings"(ci: $CallbackInfo$Type): void
-public "handler$bpo000$xaeroplus$getOptionValue"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$bpo000$xaeroplus$setOptionValue"(o: $ModOptions$Type, value: any, ci: $CallbackInfo$Type): void
-public "getEntityRadarBackwardsCompatibilityConfig"(): $EntityRadarBackwardsCompatibilityConfig
-public "handler$bpo000$xaeroplus$getOptionValueName"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$bpo000$xaeroplus$getSliderOptionText"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$bpo000$xaeroplus$getClientBooleanValue"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$bpo000$xaeroplus$setOptionFloatValue"(o: $ModOptions$Type, f: double, ci: $CallbackInfo$Type): void
-public "handler$bpo000$xaeroplus$getOptionFloatValue"(o: $ModOptions$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "resetEntityRadarBackwardsCompatibilityConfig"(): void
-public "modifyExpressionValue$bpo000$xaeroplus$allowNoNorthLockWithTransparentMM"(original: integer): integer
-public "foundOldRadarSettings"(): boolean
 public "isKeyRepeat"(arg0: $KeyMapping$Type): boolean
 public "minimapDisabled"(): boolean
 public "caveMapsDisabled"(): boolean
@@ -1638,21 +1628,26 @@ public "saveAllWaypoints"(arg0: $WaypointsManager$Type): void
  * 
  * @deprecated
  */
-public "saveWaypoints"(arg0: $WaypointWorld$Type, arg1: boolean): void
+public "saveWaypoints"(arg0: $WaypointWorld$Type): void
 /**
  * 
  * @deprecated
  */
-public "saveWaypoints"(arg0: $WaypointWorld$Type): void
+public "saveWaypoints"(arg0: $WaypointWorld$Type, arg1: boolean): void
 public "readSetting"(arg0: (string)[]): void
 public "getMoreOptionValueNames"(arg0: $ModOptions$Type): string
 public static "setServerSettings"(): void
+public "foundOldRadarSettings"(): boolean
+public "modifyExpressionValue$cam000$xaeroplus$allowNoNorthLockWithTransparentMM"(original: integer): integer
 public "getMinimap"(): boolean
-public "getUIScale"(arg0: integer, arg1: integer, arg2: integer): float
 public "changeZoom"(arg0: integer): void
+public "getUIScale"(arg0: integer, arg1: integer, arg2: integer): float
+get "waypointsIngameIconScale"(): float
+get "waypointsIngameDistanceScale"(): float
+get "waypointsIngameNameScale"(): integer
+get "entityRadarBackwardsCompatibilityConfig"(): $EntityRadarBackwardsCompatibilityConfig
 get "minimapScale"(): float
 get "minimapSize"(): integer
-get "useWorldMap"(): boolean
 get "lighting"(): boolean
 get "legibleCaveMaps"(): boolean
 get "biomeBlending"(): boolean
@@ -1666,17 +1661,14 @@ get "ignoreHeightmaps"(): boolean
 get "showFlowers"(): boolean
 get "stainedGlassDisplayed"(): boolean
 get "manualCaveModeStart"(): integer
+get "useWorldMap"(): boolean
+get "adjustHeightForCarpetLikeBlocks"(): boolean
 get "trackedPlayerWorldIconScale"(): float
 get "trackedPlayerMinimapIconScale"(): float
 get "trackedPlayerWorldNameScale"(): float
-get "adjustHeightForCarpetLikeBlocks"(): boolean
 get "displayClaims"(): boolean
 get "claimsBorderOpacity"(): integer
 get "claimsFillOpacity"(): integer
-get "waypointsIngameIconScale"(): float
-get "waypointsIngameDistanceScale"(): float
-get "waypointsIngameNameScale"(): integer
-get "entityRadarBackwardsCompatibilityConfig"(): $EntityRadarBackwardsCompatibilityConfig
 get "showWaypoints"(): boolean
 get "deathpoints"(): boolean
 get "oldDeathpoints"(): boolean
@@ -1767,8 +1759,8 @@ import {$HudIO, $HudIO$Type} from "packages/xaero/hud/io/$HudIO"
 import {$ClientEventsListener, $ClientEventsListener$Type} from "packages/xaero/common/events/$ClientEventsListener"
 import {$PlayerTrackerSystemManager, $PlayerTrackerSystemManager$Type} from "packages/xaero/common/minimap/radar/tracker/system/$PlayerTrackerSystemManager"
 import {$WidgetScreenHandler, $WidgetScreenHandler$Type} from "packages/xaero/common/gui/widget/$WidgetScreenHandler"
-import {$HudRenderer, $HudRenderer$Type} from "packages/xaero/hud/render/$HudRenderer"
 import {$ServerPlayerTickHandler, $ServerPlayerTickHandler$Type} from "packages/xaero/common/server/player/$ServerPlayerTickHandler"
+import {$HudRenderer, $HudRenderer$Type} from "packages/xaero/hud/render/$HudRenderer"
 import {$File, $File$Type} from "packages/java/io/$File"
 import {$CommonEvents, $CommonEvents$Type} from "packages/xaero/common/events/$CommonEvents"
 import {$WidgetLoadingHandler, $WidgetLoadingHandler$Type} from "packages/xaero/common/gui/widget/$WidgetLoadingHandler"
@@ -1781,13 +1773,13 @@ import {$ModSettings, $ModSettings$Type} from "packages/xaero/common/settings/$M
 import {$GuiHelper, $GuiHelper$Type} from "packages/xaero/common/gui/$GuiHelper"
 import {$Path, $Path$Type} from "packages/java/nio/file/$Path"
 import {$RenderedPlayerTrackerManager, $RenderedPlayerTrackerManager$Type} from "packages/xaero/hud/minimap/player/tracker/system/$RenderedPlayerTrackerManager"
-import {$SupportServerMods, $SupportServerMods$Type} from "packages/xaero/common/server/mods/$SupportServerMods"
-import {$MinimapMessageHandler, $MinimapMessageHandler$Type} from "packages/xaero/common/message/$MinimapMessageHandler"
 import {$ControlsRegister, $ControlsRegister$Type} from "packages/xaero/hud/controls/$ControlsRegister"
+import {$MinimapMessageHandler, $MinimapMessageHandler$Type} from "packages/xaero/common/message/$MinimapMessageHandler"
+import {$SupportServerMods, $SupportServerMods$Type} from "packages/xaero/common/server/mods/$SupportServerMods"
 import {$CommonConfig, $CommonConfig$Type} from "packages/xaero/common/config/$CommonConfig"
 import {$Hud, $Hud$Type} from "packages/xaero/hud/$Hud"
-import {$KeyMappingControllerManager, $KeyMappingControllerManager$Type} from "packages/xaero/hud/controls/key/$KeyMappingControllerManager"
 import {$ModClientEvents, $ModClientEvents$Type} from "packages/xaero/common/events/$ModClientEvents"
+import {$KeyMappingControllerManager, $KeyMappingControllerManager$Type} from "packages/xaero/hud/controls/key/$KeyMappingControllerManager"
 import {$PlayerTrackerMinimapElementRenderer, $PlayerTrackerMinimapElementRenderer$Type} from "packages/xaero/hud/minimap/player/tracker/$PlayerTrackerMinimapElementRenderer"
 import {$Minimap, $Minimap$Type} from "packages/xaero/hud/minimap/$Minimap"
 import {$InterfaceManager, $InterfaceManager$Type} from "packages/xaero/common/interfaces/$InterfaceManager"
@@ -1805,58 +1797,59 @@ static "INSTANCE": $HudMod
 
 
 public "isStandalone"(): boolean
-public "getInterfaces"(): $InterfaceManager
-public "getMessage"(): string
 public "setSettings"(arg0: $ModSettings$Type): void
 public "getSettings"(): $ModSettings
-public "getCommonEvents"(): $CommonEvents
+public "getInterfaces"(): $InterfaceManager
+public "getMessage"(): string
+public "handler$cac000$xaeroplus$onClientLoadComplete"(ci: $CallbackInfo$Type): void
+public "getCommonConfig"(): $CommonConfig
 public "getConfigFile"(): $Path
-public "getKeyMappingControllers"(): $KeyMappingControllerManager
-public "isFirstStageLoaded"(): boolean
-public "getHudRenderer"(): $HudRenderer
-public "setCommonConfig"(arg0: $CommonConfig$Type): void
-public "getCommonConfigIO"(): $CommonConfigIO
-public "getClientEventsListener"(): $ClientEventsListener
-public "tryLoadLaterServer"(): void
-public "tryLoadLater"(): void
-public "getModCommonEvents"(): $ModCommonEvents
-public "getModClientEvents"(): $ModClientEvents
-public "getPlatformContext"(): $PlatformContext
-public "getSupportServerMods"(): $SupportServerMods
-public "getMessageHandler"(): $MinimapMessageHandler
-public "setServerPlayerTickHandler"(arg0: $ServerPlayerTickHandler$Type): void
-public "getServerPlayerTickHandler"(): $ServerPlayerTickHandler
-public "getPlayerTracker"(): $RenderedPlayerTrackerManager
-public "getTrackedPlayerRenderer"(): $PlayerTrackerMinimapElementRenderer
-public "getLatestVersionMD5"(): string
-public "getControlsRegister"(): $ControlsRegister
-public "setLatestVersionMD5"(arg0: string): void
-public "getInterfaceRenderer"(): $InterfaceRenderer
-public "getFieldValidators"(): $FieldValidatorHolder
-public "getGuiHelper"(): $GuiHelper
-public "getModEvents"(): $ModClientEvents
-public "getWidgetScreenHandler"(): $WidgetScreenHandler
-public "setCommonConfigIO"(arg0: $CommonConfigIO$Type): void
-public "getWidgetLoader"(): $WidgetLoadingHandler
-public "getSupportMods"(): $SupportMods
+public "isLoadedClient"(): boolean
+public "isLoadedServer"(): boolean
+public "ensureControlsRegister"(): void
+public "getVersionID"(): string
+public "resetSettings"(): void
+public "setOutdated"(arg0: boolean): void
+public "getLatestVersion"(): string
+public "setLatestVersion"(arg0: string): void
+public "getNewestUpdateID"(): integer
+public "setNewestUpdateID"(arg0: integer): void
+public "getWaypointsFile"(): $Path
+public "getMinimapFolder"(): $Path
 /**
  * 
  * @deprecated
  */
 public "getWaypointsFolder"(): $Path
-public "getMinimapFolder"(): $Path
-public "getWaypointsFile"(): $Path
-public "getNewestUpdateID"(): integer
-public "setNewestUpdateID"(arg0: integer): void
-public "getLatestVersion"(): string
-public "setOutdated"(arg0: boolean): void
-public "setLatestVersion"(arg0: string): void
-public "resetSettings"(): void
-public "getVersionID"(): string
-public "ensureControlsRegister"(): void
-public "isLoadedServer"(): boolean
-public "isLoadedClient"(): boolean
-public "getCommonConfig"(): $CommonConfig
+public "getWidgetScreenHandler"(): $WidgetScreenHandler
+public "getWidgetLoader"(): $WidgetLoadingHandler
+public "getSupportMods"(): $SupportMods
+public "getModEvents"(): $ModClientEvents
+public "getGuiHelper"(): $GuiHelper
+public "getFieldValidators"(): $FieldValidatorHolder
+public "getControlsRegister"(): $ControlsRegister
+public "getInterfaceRenderer"(): $InterfaceRenderer
+public "setLatestVersionMD5"(arg0: string): void
+public "getLatestVersionMD5"(): string
+public "getTrackedPlayerRenderer"(): $PlayerTrackerMinimapElementRenderer
+public "getPlayerTracker"(): $RenderedPlayerTrackerManager
+public "getServerPlayerTickHandler"(): $ServerPlayerTickHandler
+public "setServerPlayerTickHandler"(arg0: $ServerPlayerTickHandler$Type): void
+public "getMessageHandler"(): $MinimapMessageHandler
+public "getSupportServerMods"(): $SupportServerMods
+public "setCommonConfigIO"(arg0: $CommonConfigIO$Type): void
+public "setCommonConfig"(arg0: $CommonConfig$Type): void
+public "getCommonConfigIO"(): $CommonConfigIO
+public "getClientEventsListener"(): $ClientEventsListener
+public "getPlatformContext"(): $PlatformContext
+public "getModClientEvents"(): $ModClientEvents
+public "getModCommonEvents"(): $ModCommonEvents
+public "tryLoadLater"(): void
+public "tryLoadLaterServer"(): void
+public "getHudRenderer"(): $HudRenderer
+public "isFirstStageLoaded"(): boolean
+public "getKeyMappingControllers"(): $KeyMappingControllerManager
+public "getCommonEvents"(): $CommonEvents
 public "setMessage"(arg0: string): void
 public "getEntityRadarCategoryManager"(): $EntityRadarCategoryManager
 /**
@@ -1864,7 +1857,6 @@ public "getEntityRadarCategoryManager"(): $EntityRadarCategoryManager
  * @deprecated
  */
 public "getPlayerTrackerSystemManager"(): $PlayerTrackerSystemManager
-public "handler$bpe000$xaeroplus$onClientLoadComplete"(ci: $CallbackInfo$Type): void
 public "loadLater"(): void
 public "getPatreon"(): $PatreonMod
 public "getMinimap"(): $Minimap
@@ -1875,57 +1867,57 @@ public "isFairPlay"(): boolean
 public "getHud"(): $Hud
 public "getHudIO"(): $HudIO
 public "isOutdated"(): boolean
-public "getUpdateLink"(): string
+public "getFileLayoutID"(): string
 public "getVersionsURL"(): string
+public "getUpdateLink"(): string
 public "getSettingsKey"(): any
 public "createSession"(): $XaeroMinimapSession
-public "getFileLayoutID"(): string
 public "getModId"(): string
 get "standalone"(): boolean
-get "interfaces"(): $InterfaceManager
-get "message"(): string
 set "settings"(value: $ModSettings$Type)
 get "settings"(): $ModSettings
-get "commonEvents"(): $CommonEvents
+get "interfaces"(): $InterfaceManager
+get "message"(): string
+get "commonConfig"(): $CommonConfig
 get "configFile"(): $Path
-get "keyMappingControllers"(): $KeyMappingControllerManager
-get "firstStageLoaded"(): boolean
-get "hudRenderer"(): $HudRenderer
+get "loadedClient"(): boolean
+get "loadedServer"(): boolean
+get "versionID"(): string
+set "outdated"(value: boolean)
+get "latestVersion"(): string
+set "latestVersion"(value: string)
+get "newestUpdateID"(): integer
+set "newestUpdateID"(value: integer)
+get "waypointsFile"(): $Path
+get "minimapFolder"(): $Path
+get "waypointsFolder"(): $Path
+get "widgetScreenHandler"(): $WidgetScreenHandler
+get "widgetLoader"(): $WidgetLoadingHandler
+get "supportMods"(): $SupportMods
+get "modEvents"(): $ModClientEvents
+get "guiHelper"(): $GuiHelper
+get "fieldValidators"(): $FieldValidatorHolder
+get "controlsRegister"(): $ControlsRegister
+get "interfaceRenderer"(): $InterfaceRenderer
+set "latestVersionMD5"(value: string)
+get "latestVersionMD5"(): string
+get "trackedPlayerRenderer"(): $PlayerTrackerMinimapElementRenderer
+get "playerTracker"(): $RenderedPlayerTrackerManager
+get "serverPlayerTickHandler"(): $ServerPlayerTickHandler
+set "serverPlayerTickHandler"(value: $ServerPlayerTickHandler$Type)
+get "messageHandler"(): $MinimapMessageHandler
+get "supportServerMods"(): $SupportServerMods
+set "commonConfigIO"(value: $CommonConfigIO$Type)
 set "commonConfig"(value: $CommonConfig$Type)
 get "commonConfigIO"(): $CommonConfigIO
 get "clientEventsListener"(): $ClientEventsListener
-get "modCommonEvents"(): $ModCommonEvents
-get "modClientEvents"(): $ModClientEvents
 get "platformContext"(): $PlatformContext
-get "supportServerMods"(): $SupportServerMods
-get "messageHandler"(): $MinimapMessageHandler
-set "serverPlayerTickHandler"(value: $ServerPlayerTickHandler$Type)
-get "serverPlayerTickHandler"(): $ServerPlayerTickHandler
-get "playerTracker"(): $RenderedPlayerTrackerManager
-get "trackedPlayerRenderer"(): $PlayerTrackerMinimapElementRenderer
-get "latestVersionMD5"(): string
-get "controlsRegister"(): $ControlsRegister
-set "latestVersionMD5"(value: string)
-get "interfaceRenderer"(): $InterfaceRenderer
-get "fieldValidators"(): $FieldValidatorHolder
-get "guiHelper"(): $GuiHelper
-get "modEvents"(): $ModClientEvents
-get "widgetScreenHandler"(): $WidgetScreenHandler
-set "commonConfigIO"(value: $CommonConfigIO$Type)
-get "widgetLoader"(): $WidgetLoadingHandler
-get "supportMods"(): $SupportMods
-get "waypointsFolder"(): $Path
-get "minimapFolder"(): $Path
-get "waypointsFile"(): $Path
-get "newestUpdateID"(): integer
-set "newestUpdateID"(value: integer)
-get "latestVersion"(): string
-set "outdated"(value: boolean)
-set "latestVersion"(value: string)
-get "versionID"(): string
-get "loadedServer"(): boolean
-get "loadedClient"(): boolean
-get "commonConfig"(): $CommonConfig
+get "modClientEvents"(): $ModClientEvents
+get "modCommonEvents"(): $ModCommonEvents
+get "hudRenderer"(): $HudRenderer
+get "firstStageLoaded"(): boolean
+get "keyMappingControllers"(): $KeyMappingControllerManager
+get "commonEvents"(): $CommonEvents
 set "message"(value: string)
 get "entityRadarCategoryManager"(): $EntityRadarCategoryManager
 get "playerTrackerSystemManager"(): $PlayerTrackerSystemManager
@@ -1937,10 +1929,10 @@ get "fairPlay"(): boolean
 get "hud"(): $Hud
 get "hudIO"(): $HudIO
 get "outdated"(): boolean
-get "updateLink"(): string
-get "versionsURL"(): string
-get "settingsKey"(): any
 get "fileLayoutID"(): string
+get "versionsURL"(): string
+get "updateLink"(): string
+get "settingsKey"(): any
 get "modId"(): string
 }
 /**
@@ -1997,14 +1989,14 @@ export class $MinimapClientWorldData {
 
 constructor(arg0: $ClientLevel$Type)
 
-public "getSyncedRules"(): $ClientboundRulesPacket
-public "getServerModNetworkVersion"(): integer
 public "setSyncedRules"(arg0: $ClientboundRulesPacket$Type): void
 public "setServerModNetworkVersion"(arg0: integer): void
-get "syncedRules"(): $ClientboundRulesPacket
-get "serverModNetworkVersion"(): integer
+public "getSyncedRules"(): $ClientboundRulesPacket
+public "getServerModNetworkVersion"(): integer
 set "syncedRules"(value: $ClientboundRulesPacket$Type)
 set "serverModNetworkVersion"(value: integer)
+get "syncedRules"(): $ClientboundRulesPacket
+get "serverModNetworkVersion"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2029,34 +2021,34 @@ export class $Widget {
 
 constructor(arg0: $WidgetType$Type, arg1: $Class$Type<(any)>, arg2: float, arg3: float, arg4: $ClickAction$Type, arg5: $HoverAction$Type, arg6: integer, arg7: integer, arg8: string, arg9: string)
 
+public "getY"(arg0: integer): integer
+public "getX"(arg0: integer): integer
 public "getLocation"(): $Class<(any)>
 public "getType"(): $WidgetType
-public "getX"(arg0: integer): integer
-public "getY"(arg0: integer): integer
 public "getUrl"(): string
+public "getTooltip"(): string
+public "getCursorBox"(): $CursorBox
 public "getHorizontalAnchor"(): float
 public "getVerticalAnchor"(): float
-public "getCursorBox"(): $CursorBox
-public "getTooltip"(): string
 public "getW"(): integer
-public "getH"(): integer
 public "getOnHover"(): $HoverAction
 public "getBoxX"(arg0: integer, arg1: double): integer
 public "getBoxY"(arg0: integer, arg1: double): integer
 public "getBoxW"(arg0: double): integer
 public "getBoxH"(arg0: double): integer
 public "getOnClick"(): $ClickAction
+public "getH"(): integer
 get "location"(): $Class<(any)>
 get "type"(): $WidgetType
 get "url"(): string
+get "tooltip"(): string
+get "cursorBox"(): $CursorBox
 get "horizontalAnchor"(): float
 get "verticalAnchor"(): float
-get "cursorBox"(): $CursorBox
-get "tooltip"(): string
 get "w"(): integer
-get "h"(): integer
 get "onHover"(): $HoverAction
 get "onClick"(): $ClickAction
+get "h"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2106,10 +2098,10 @@ readonly "filter": $Predicate<($Waypoint)>
 
 constructor()
 
+public "getNext"(arg0: integer, arg1: $WaypointMapRenderContext$Type): $Waypoint
 public "hasNext"(arg0: integer, arg1: $WaypointMapRenderContext$Type): boolean
 public "end"(arg0: integer, arg1: $WaypointMapRenderContext$Type): void
 public "begin"(arg0: integer, arg1: $WaypointMapRenderContext$Type): void
-public "getNext"(arg0: integer, arg1: $WaypointMapRenderContext$Type): $Waypoint
 public "setupContextAndGetNext"(arg0: integer, arg1: $WaypointMapRenderContext$Type): $Waypoint
 }
 /**
@@ -2151,17 +2143,16 @@ static readonly "slime": integer
 
 constructor(arg0: $IXaeroMinimap$Type, arg1: $Minecraft$Type, arg2: $WaypointMapRenderer$Type, arg3: $Minimap$Type, arg4: $CompassRenderer$Type)
 
+public "handler$cao000$xaeroplus$shiftRenderZPost"(minimapSession: $MinimapSession$Type, guiGraphics: $GuiGraphics$Type, minimap: $MinimapProcessor$Type, x: integer, y: integer, width: integer, height: integer, scale: double, size: integer, partial: float, cvc: $CustomVertexConsumers$Type, ci: $CallbackInfo$Type): void
+public "handler$cao000$xaeroplus$resetFBOSize"(ci: $CallbackInfo$Type, minimap: $MinimapProcessor$Type): void
+public "handler$cao000$xaeroplus$shiftRenderZHead"(ci: $CallbackInfo$Type, guiGraphics: $GuiGraphics$Type): void
+public "constant$cao000$xaeroplus$modifyMinimapSizeConstantI"(constant: integer): integer
+public "constant$cao000$xaeroplus$modifyMinimapSizeConstantF"(constant: float): float
+public "constant$cao000$xaeroplus$modifyMinimapSizeConstantFCircle"(constant: float): float
+public "redirect$cao000$xaeroplus$editOvermapRender"(instance: $MinimapElementOverMapRendererHandler$Type, ps: double, pc: double, zoom: double, specW: integer, specH: integer, halfViewW: integer, halfViewH: integer, circle: boolean, minimapScale: float): void
+public "localvar$cao000$xaeroplus$modifyArrowOffsetY"(offsetY: integer): integer
+public "wrapOperation$cao000$xaeroplus$redirectRenderMainEntityDot"(instance: $MinimapFBORenderer$Type, guiGraphics: $GuiGraphics$Type, renderEntity: $Entity$Type, cave: boolean, renderTypeBuffers: $MultiBufferSource$BufferSource$Type, original: $Operation$Type<(any)>, lockedNorth: boolean): void
 public "getSunBrightness"(arg0: $MinimapProcessor$Type, arg1: boolean): float
-public "handler$caa000$xaeroplus$resetFBOSize"(ci: $CallbackInfo$Type, minimap: $MinimapProcessor$Type): void
-public "handler$caa000$xaeroplus$shiftRenderZHead"(ci: $CallbackInfo$Type, guiGraphics: $GuiGraphics$Type): void
-public "handler$caa000$xaeroplus$shiftRenderZPost"(minimapSession: $MinimapSession$Type, guiGraphics: $GuiGraphics$Type, minimap: $MinimapProcessor$Type, x: integer, y: integer, width: integer, height: integer, scale: double, size: integer, partial: float, cvc: $CustomVertexConsumers$Type, ci: $CallbackInfo$Type): void
-public "constant$caa000$xaeroplus$modifyMinimapSizeConstantI"(constant: integer): integer
-public "constant$caa000$xaeroplus$modifyMinimapSizeConstantF"(constant: float): float
-public "constant$caa000$xaeroplus$modifyMinimapSizeConstantFCircle"(constant: float): float
-public "redirect$caa000$xaeroplus$editOvermapRender"(instance: $MinimapElementOverMapRendererHandler$Type, ps: double, pc: double, zoom: double, specW: integer, specH: integer, halfViewW: integer, halfViewH: integer, circle: boolean, minimapScale: float): void
-public "localvar$caa000$xaeroplus$modifyArrowOffsetY"(offsetY: integer): integer
-public "wrapOperation$caa000$xaeroplus$redirectRenderMainEntityDot"(instance: $MinimapFBORenderer$Type, guiGraphics: $GuiGraphics$Type, renderEntity: $Entity$Type, cave: boolean, renderTypeBuffers: $MultiBufferSource$BufferSource$Type, original: $Operation$Type<(any)>, lockedNorth: boolean): void
-public "wrapOperation$caa000$xaeroplus$correctBlendingForFpsLimiter"(sourceFactor: $GlStateManager$SourceFactor$Type, destFactor: $GlStateManager$DestFactor$Type, sourceFactor2: $GlStateManager$SourceFactor$Type, destFactor2: $GlStateManager$DestFactor$Type, original: $Operation$Type<(any)>): void
 public "getRenderAngle"(arg0: boolean): double
 public "renderMinimap"(arg0: $MinimapSession$Type, arg1: $GuiGraphics$Type, arg2: $MinimapProcessor$Type, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: double, arg8: integer, arg9: float, arg10: $CustomVertexConsumers$Type): void
 /**
@@ -2169,7 +2160,8 @@ public "renderMinimap"(arg0: $MinimapSession$Type, arg1: $GuiGraphics$Type, arg2
  * @deprecated
  */
 public "getLastPlayerDimDiv"(): double
-public "wrapOperation$caa000$xaeroplus$redirectRenderMainEntityDot$mixinextras$bridge$22"(instance: $MinimapFBORenderer$Type, guiGraphics: $GuiGraphics$Type, renderEntity: $Entity$Type, cave: boolean, renderTypeBuffers: $MultiBufferSource$BufferSource$Type, original: $Operation$Type<(any)>, lockedNorth: $LocalBooleanRef$Type): void
+public "wrapOperation$cao000$xaeroplus$correctBlendingForFpsLimiter"(sourceFactor: $GlStateManager$SourceFactor$Type, destFactor: $GlStateManager$DestFactor$Type, sourceFactor2: $GlStateManager$SourceFactor$Type, destFactor2: $GlStateManager$DestFactor$Type, original: $Operation$Type<(any)>): void
+public "wrapOperation$cao000$xaeroplus$redirectRenderMainEntityDot$mixinextras$bridge$22"(instance: $MinimapFBORenderer$Type, guiGraphics: $GuiGraphics$Type, renderEntity: $Entity$Type, cave: boolean, renderTypeBuffers: $MultiBufferSource$BufferSource$Type, original: $Operation$Type<(any)>, lockedNorth: $LocalBooleanRef$Type): void
 public "setZoom"(arg0: double): void
 public "getZoom"(): double
 public "getHelper"(): $MinimapRendererHelper
@@ -2233,6 +2225,8 @@ static readonly "NO_Y_VALUE": integer
 constructor(arg0: $IXaeroMinimap$Type, arg1: $MinimapSession$Type, arg2: $BlockStateShortShapeCache$Type, arg3: $HighlighterRegistry$Type)
 
 public "cleanup"(): void
+public "setClearBlockColours"(arg0: boolean): void
+public "resetShortBlocks"(): void
 public "getLoadSide"(): integer
 public "getUpdateRadiusInChunks"(): integer
 public "getMapCoord"(arg0: integer, arg1: integer): integer
@@ -2247,16 +2241,15 @@ public "getLoadedBlocks"(): (($MinimapChunk)[])[]
 public "getLoadedMapChunkZ"(): integer
 public "getLoadedMapChunkX"(): integer
 public "getLoadedLevels"(): integer
-public "setClearBlockColours"(arg0: boolean): void
-public "resetShortBlocks"(): void
 public "getLoadedSideInChunks"(): integer
 public "isLoadedNonWorldMap"(): boolean
 public "setupDimensionHighlightHandler"(arg0: $ResourceKey$Type<($Level$Type)>): void
 public "getFixedSkyLightBlockBrightness"(arg0: float, arg1: float, arg2: integer): float
-public "constant$cad000$xaeroplus$overrideLoadSide"(constant: integer): integer
+public "constant$cbb000$xaeroplus$overrideLoadSide"(constant: integer): integer
 public "getDimensionHighlightHandler"(): $DimensionHighlighterHandler
 public "onRender"(): void
 public "findBlock"(arg0: $Level$Type, arg1: $LevelChunk$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: $BlockPos$MutableBlockPos$Type, arg9: $BlockPos$MutableBlockPos$Type, arg10: integer, arg11: boolean, arg12: $List$Type<(integer)>, arg13: $List$Type<($BlockState$Type)>, arg14: integer, arg15: boolean, arg16: $List$Type<(integer)>, arg17: boolean, arg18: boolean, arg19: $BlockPos$MutableBlockPos$Type, arg20: boolean): $Block
+set "clearBlockColours"(value: boolean)
 get "loadSide"(): integer
 get "updateRadiusInChunks"(): integer
 get "loadedCaving"(): integer
@@ -2267,7 +2260,6 @@ get "loadedBlocks"(): (($MinimapChunk)[])[]
 get "loadedMapChunkZ"(): integer
 get "loadedMapChunkX"(): integer
 get "loadedLevels"(): integer
-set "clearBlockColours"(value: boolean)
 get "loadedSideInChunks"(): integer
 get "loadedNonWorldMap"(): boolean
 set "upDimensionHighlightHandler"(value: $ResourceKey$Type<($Level$Type)>)
@@ -2325,8 +2317,8 @@ import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MapRegion, $MapRegion$Type} from "packages/xaero/map/region/$MapRegion"
 import {$HighlighterRegistry, $HighlighterRegistry$Type} from "packages/xaero/common/minimap/highlight/$HighlighterRegistry"
 import {$MapTileChunk, $MapTileChunk$Type} from "packages/xaero/map/region/$MapTileChunk"
-import {$MapProcessor, $MapProcessor$Type} from "packages/xaero/map/$MapProcessor"
 import {$CallbackInfo, $CallbackInfo$Type} from "packages/org/spongepowered/asm/mixin/injection/callback/$CallbackInfo"
+import {$MapProcessor, $MapProcessor$Type} from "packages/xaero/map/$MapProcessor"
 import {$MultiTextureRenderTypeRenderer, $MultiTextureRenderTypeRenderer$Type} from "packages/xaero/common/graphics/renderer/multitexture/$MultiTextureRenderTypeRenderer"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 import {$WorldMapSession, $WorldMapSession$Type} from "packages/xaero/map/$WorldMapSession"
@@ -2340,19 +2332,25 @@ static readonly "slime": integer
 
 constructor(arg0: $IXaeroMinimap$Type)
 
+public "handler$cbh000$xaeroplus$overrideRegionRange"(minimapSession: $MinimapSession$Type, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, xFloored: integer, zFloored: integer, minViewX: integer, minViewZ: integer, maxViewX: integer, maxViewZ: integer, zooming: boolean, zoom: double, mapDimensionScale: double, overlayBufferBuilder: $VertexConsumer$Type, multiTextureRenderTypeRenderers: $MultiTextureRenderTypeRendererProvider$Type, ci: $CallbackInfo$Type, mapX: integer, mapZ: integer, minXRef: $LocalIntRef$Type, maxXRef: $LocalIntRef$Type, minZRef: $LocalIntRef$Type, maxZRef: $LocalIntRef$Type): void
+public "handler$cbh000$xaeroplus$setupTransparentMMBgBuffer"(matrixStack: $PoseStack$Type, minX: integer, maxX: integer, minZ: integer, maxZ: integer, minViewX: integer, maxViewX: integer, minViewZ: integer, maxViewZ: integer, mapProcessor: $MapProcessor$Type, renderedCaveLayer: integer, shouldRequestLoading: boolean, reloadEverything: boolean, globalReloadVersion: integer, globalRegionCacheHashCode: integer, globalCaveStart: integer, globalCaveDepth: integer, playerIsMoving: boolean, noCaveMaps: boolean, slimeChunks: boolean, chunkX: integer, chunkZ: integer, tileX: integer, tileZ: integer, insideX: integer, insideZ: integer, seed: long, mapWithLightRenderer: $MultiTextureRenderTypeRenderer$Type, mapNoLightRenderer: $MultiTextureRenderTypeRenderer$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type, ci: $CallbackInfo$Type, bgTesselatorRef: $LocalRef$Type<(any)>, bgBufferBuilderRef: $LocalRef$Type<(any)>): void
+public "handler$cbh000$xaeroplus$buildTransparentMMBg"(matrixStack: $PoseStack$Type, minX: integer, maxX: integer, minZ: integer, maxZ: integer, minViewX: integer, maxViewX: integer, minViewZ: integer, maxViewZ: integer, mapProcessor: $MapProcessor$Type, renderedCaveLayer: integer, shouldRequestLoading: boolean, reloadEverything: boolean, globalReloadVersion: integer, globalRegionCacheHashCode: integer, globalCaveStart: integer, globalCaveDepth: integer, playerIsMoving: boolean, noCaveMaps: boolean, slimeChunks: boolean, chunkX: integer, chunkZ: integer, tileX: integer, tileZ: integer, insideX: integer, insideZ: integer, seed: long, mapWithLightRenderer: $MultiTextureRenderTypeRenderer$Type, mapNoLightRenderer: $MultiTextureRenderTypeRenderer$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type, ci: $CallbackInfo$Type, bgBufferBuilderRef: $LocalRef$Type<(any)>, drawX: integer, drawZ: integer, chunk: $MapTileChunk$Type): void
+public "handler$cbh000$xaeroplus$drawTransparentMMBackground"(matrixStack: $PoseStack$Type, minX: integer, maxX: integer, minZ: integer, maxZ: integer, minViewX: integer, maxViewX: integer, minViewZ: integer, maxViewZ: integer, mapProcessor: $MapProcessor$Type, renderedCaveLayer: integer, shouldRequestLoading: boolean, reloadEverything: boolean, globalReloadVersion: integer, globalRegionCacheHashCode: integer, globalCaveStart: integer, globalCaveDepth: integer, playerIsMoving: boolean, noCaveMaps: boolean, slimeChunks: boolean, chunkX: integer, chunkZ: integer, tileX: integer, tileZ: integer, insideX: integer, insideZ: integer, seed: long, mapWithLightRenderer: $MultiTextureRenderTypeRenderer$Type, mapNoLightRenderer: $MultiTextureRenderTypeRenderer$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type, ci: $CallbackInfo$Type, bgTesselatorRef: $LocalRef$Type<(any)>): void
+public "handler$cbh000$xaeroplus$preventPossibleNPE"(dimId: $ResourceKey$Type<(any)>, cir: $CallbackInfoReturnable$Type<(any)>, session: $WorldMapSession$Type): void
 public "registerHighlighters"(arg0: $HighlighterRegistry$Type): void
-public "caveLayersAreUsable"(): boolean
-public "shouldAlwaysInitEffects"(): boolean
 public "isLegibleCaveMaps"(): boolean
 public "getBiomeBlending"(): boolean
 public "isStainedGlassDisplayed"(): boolean
 public "shouldPreventAutoCaveMode"(arg0: $Level$Type): boolean
+public "caveLayersAreUsable"(): boolean
+public "shouldAlwaysInitEffects"(): boolean
+public "getAdjustHeightForCarpetLikeBlocks"(): boolean
+public "screenShouldSkipWorldRender"(arg0: $Screen$Type): boolean
 public "getWorldMapBiomeColorsVanillaMode"(): boolean
 public "getWorldMapIgnoreHeightmaps"(): boolean
 public "hasTrackedPlayerSystemSupport"(): boolean
 public "supportsPacPlayerRadarFilter"(): boolean
-public "screenShouldSkipWorldRender"(arg0: $Screen$Type): boolean
-public "getAdjustHeightForCarpetLikeBlocks"(): boolean
+public "openSettings"(): void
 public "drawMinimap"(arg0: $MinimapSession$Type, arg1: $PoseStack$Type, arg2: $MinimapRendererHelper$Type, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: boolean, arg10: double, arg11: double, arg12: $VertexConsumer$Type, arg13: $MultiTextureRenderTypeRendererProvider$Type): void
 public "hasDimensionSwitching"(): boolean
 public "getMinimapBrightness"(): float
@@ -2384,19 +2382,13 @@ public "getClaimsFillOpacity"(): integer
 public "getMapDimensionScale"(): double
 public "getMapDimension"(): $ResourceKey<($Level)>
 public "toggleChunkClaims"(): void
-public "openSettings"(): void
-public "handler$caj000$xaeroplus$overrideRegionRange"(minimapSession: $MinimapSession$Type, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, xFloored: integer, zFloored: integer, minViewX: integer, minViewZ: integer, maxViewX: integer, maxViewZ: integer, zooming: boolean, zoom: double, mapDimensionScale: double, overlayBufferBuilder: $VertexConsumer$Type, multiTextureRenderTypeRenderers: $MultiTextureRenderTypeRendererProvider$Type, ci: $CallbackInfo$Type, mapX: integer, mapZ: integer, minXRef: $LocalIntRef$Type, maxXRef: $LocalIntRef$Type, minZRef: $LocalIntRef$Type, maxZRef: $LocalIntRef$Type): void
-public "handler$caj000$xaeroplus$setupTransparentMMBgBuffer"(matrixStack: $PoseStack$Type, minX: integer, maxX: integer, minZ: integer, maxZ: integer, minViewX: integer, maxViewX: integer, minViewZ: integer, maxViewZ: integer, mapProcessor: $MapProcessor$Type, renderedCaveLayer: integer, shouldRequestLoading: boolean, reloadEverything: boolean, globalReloadVersion: integer, globalRegionCacheHashCode: integer, globalCaveStart: integer, globalCaveDepth: integer, playerIsMoving: boolean, noCaveMaps: boolean, slimeChunks: boolean, chunkX: integer, chunkZ: integer, tileX: integer, tileZ: integer, insideX: integer, insideZ: integer, seed: long, mapWithLightRenderer: $MultiTextureRenderTypeRenderer$Type, mapNoLightRenderer: $MultiTextureRenderTypeRenderer$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type, ci: $CallbackInfo$Type, bgTesselatorRef: $LocalRef$Type<(any)>, bgBufferBuilderRef: $LocalRef$Type<(any)>): void
-public "handler$caj000$xaeroplus$buildTransparentMMBg"(matrixStack: $PoseStack$Type, minX: integer, maxX: integer, minZ: integer, maxZ: integer, minViewX: integer, maxViewX: integer, minViewZ: integer, maxViewZ: integer, mapProcessor: $MapProcessor$Type, renderedCaveLayer: integer, shouldRequestLoading: boolean, reloadEverything: boolean, globalReloadVersion: integer, globalRegionCacheHashCode: integer, globalCaveStart: integer, globalCaveDepth: integer, playerIsMoving: boolean, noCaveMaps: boolean, slimeChunks: boolean, chunkX: integer, chunkZ: integer, tileX: integer, tileZ: integer, insideX: integer, insideZ: integer, seed: long, mapWithLightRenderer: $MultiTextureRenderTypeRenderer$Type, mapNoLightRenderer: $MultiTextureRenderTypeRenderer$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type, ci: $CallbackInfo$Type, bgBufferBuilderRef: $LocalRef$Type<(any)>, drawX: integer, drawZ: integer, chunk: $MapTileChunk$Type): void
-public "handler$caj000$xaeroplus$drawTransparentMMBackground"(matrixStack: $PoseStack$Type, minX: integer, maxX: integer, minZ: integer, maxZ: integer, minViewX: integer, maxViewX: integer, minViewZ: integer, maxViewZ: integer, mapProcessor: $MapProcessor$Type, renderedCaveLayer: integer, shouldRequestLoading: boolean, reloadEverything: boolean, globalReloadVersion: integer, globalRegionCacheHashCode: integer, globalCaveStart: integer, globalCaveDepth: integer, playerIsMoving: boolean, noCaveMaps: boolean, slimeChunks: boolean, chunkX: integer, chunkZ: integer, tileX: integer, tileZ: integer, insideX: integer, insideZ: integer, seed: long, mapWithLightRenderer: $MultiTextureRenderTypeRenderer$Type, mapNoLightRenderer: $MultiTextureRenderTypeRenderer$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type, ci: $CallbackInfo$Type, bgTesselatorRef: $LocalRef$Type<(any)>): void
-public "handler$caj000$xaeroplus$preventPossibleNPE"(dimId: $ResourceKey$Type<(any)>, cir: $CallbackInfoReturnable$Type<(any)>, session: $WorldMapSession$Type): void
-public "wrapWithCondition$caj000$xaeroplus$hideSlimeChunksWhileDimSwitched"(instance: $SupportXaeroWorldmap$Type, chunk: $MapTileChunk$Type, seed: long, drawX: integer, drawZ: integer, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type): boolean
+public "wrapWithCondition$cbh000$xaeroplus$hideSlimeChunksWhileDimSwitched"(instance: $SupportXaeroWorldmap$Type, chunk: $MapTileChunk$Type, seed: long, drawX: integer, drawZ: integer, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, overlayBufferBuilder: $VertexConsumer$Type): boolean
 get "legibleCaveMaps"(): boolean
 get "biomeBlending"(): boolean
 get "stainedGlassDisplayed"(): boolean
+get "adjustHeightForCarpetLikeBlocks"(): boolean
 get "worldMapBiomeColorsVanillaMode"(): boolean
 get "worldMapIgnoreHeightmaps"(): boolean
-get "adjustHeightForCarpetLikeBlocks"(): boolean
 get "minimapBrightness"(): float
 get "worldMapWaypoints"(): boolean
 get "worldMapColours"(): integer
@@ -2458,11 +2450,11 @@ export class $DimensionHighlighterHandler {
 constructor(arg0: $ResourceKey$Type<($Level$Type)>, arg1: $HighlighterRegistry$Type, arg2: $MinimapWriter$Type)
 
 public "getVersion"(): integer
-public "applyChunkHighlightColors"(arg0: integer, arg1: integer): (integer)[]
-public "requestRefresh"(): void
-public "requestRefresh"(arg0: integer, arg1: integer): void
-public "shouldApplyTileChunkHighlights"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): boolean
 public "shouldApplyRegionHighlights"(arg0: integer, arg1: integer, arg2: boolean): boolean
+public "requestRefresh"(arg0: integer, arg1: integer): void
+public "requestRefresh"(): void
+public "applyChunkHighlightColors"(arg0: integer, arg1: integer): (integer)[]
+public "shouldApplyTileChunkHighlights"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): boolean
 public "addBlockHighlightTooltips"(arg0: $InfoDisplayCompiler$Type, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): void
 get "version"(): integer
 }
@@ -2486,8 +2478,8 @@ import {$MinimapWriter, $MinimapWriter$Type} from "packages/xaero/common/minimap
 import {$PlatformContextLoaderClientOnly, $PlatformContextLoaderClientOnly$Type} from "packages/xaero/common/$PlatformContextLoaderClientOnly"
 import {$HighlighterRegistry, $HighlighterRegistry$Type} from "packages/xaero/common/minimap/highlight/$HighlighterRegistry"
 import {$ModClientEvents, $ModClientEvents$Type} from "packages/xaero/common/events/$ModClientEvents"
-import {$BlockStateShortShapeCache, $BlockStateShortShapeCache$Type} from "packages/xaero/common/cache/$BlockStateShortShapeCache"
 import {$CommonEvents, $CommonEvents$Type} from "packages/xaero/common/events/$CommonEvents"
+import {$BlockStateShortShapeCache, $BlockStateShortShapeCache$Type} from "packages/xaero/common/cache/$BlockStateShortShapeCache"
 import {$IXaeroMinimap, $IXaeroMinimap$Type} from "packages/xaero/common/$IXaeroMinimap"
 import {$PlatformContextLoaderCommon, $PlatformContextLoaderCommon$Type} from "packages/xaero/common/$PlatformContextLoaderCommon"
 import {$SupportMods, $SupportMods$Type} from "packages/xaero/common/mods/$SupportMods"
@@ -2497,19 +2489,19 @@ export class $PlatformContext {
 
 constructor()
 
+public "createCommonEvents"(arg0: $IXaeroMinimap$Type): $CommonEvents
+public "createModCommonEvents"(arg0: $IXaeroMinimap$Type): $ModCommonEvents
+public "createClientEvents"(arg0: $IXaeroMinimap$Type): $ClientEvents
+public "createModClientEvents"(arg0: $IXaeroMinimap$Type): $ModClientEvents
+public "createSupportMods"(arg0: $IXaeroMinimap$Type): $SupportMods
+public "getModInfoVersion"(): string
+public "createMessageHandler"(arg0: $IXaeroMinimap$Type): $MinimapMessageHandler
 public "getLoaderCommon"(): $PlatformContextLoaderCommon
 public "createMinimapWriter"(arg0: $IXaeroMinimap$Type, arg1: $MinimapSession$Type, arg2: $BlockStateShortShapeCache$Type, arg3: $HighlighterRegistry$Type): $MinimapWriter
 public "getLoaderClientOnly"(): $PlatformContextLoaderClientOnly
-public "createMessageHandler"(arg0: $IXaeroMinimap$Type): $MinimapMessageHandler
-public "getModInfoVersion"(): string
-public "createSupportMods"(arg0: $IXaeroMinimap$Type): $SupportMods
-public "createModClientEvents"(arg0: $IXaeroMinimap$Type): $ModClientEvents
-public "createClientEvents"(arg0: $IXaeroMinimap$Type): $ClientEvents
-public "createModCommonEvents"(arg0: $IXaeroMinimap$Type): $ModCommonEvents
-public "createCommonEvents"(arg0: $IXaeroMinimap$Type): $CommonEvents
+get "modInfoVersion"(): string
 get "loaderCommon"(): $PlatformContextLoaderCommon
 get "loaderClientOnly"(): $PlatformContextLoaderClientOnly
-get "modInfoVersion"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2533,14 +2525,13 @@ import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui
 
 export class $CursorBox implements $Supplier<($CursorBox)> {
 
-constructor(arg0: integer)
-constructor(arg0: $Component$Type, arg1: boolean)
 constructor(arg0: $Component$Type)
+constructor(arg0: $Component$Type, arg1: boolean)
+constructor(arg0: integer)
 constructor(arg0: string)
 constructor(arg0: string, arg1: $Style$Type)
 constructor(arg0: string, arg1: $Style$Type, arg2: boolean)
 
-public "get"(): $CursorBox
 public "getLine"(arg0: integer): $Component
 public "setStartWidth"(arg0: integer): void
 public "createLines"(arg0: $Component$Type): void
@@ -2580,8 +2571,8 @@ export class $MinecraftServerData {
 constructor(arg0: $SyncedPlayerTrackerSystemManager$Type, arg1: $SyncedPlayerTracker$Type, arg2: $IXaeroMinimap$Type)
 
 public static "get"(arg0: $MinecraftServer$Type): $MinecraftServerData
-public "getLevelProperties"(arg0: $Path$Type): $LevelMapProperties
 public "getSyncedPlayerTrackerSystemManager"(): $SyncedPlayerTrackerSystemManager
+public "getLevelProperties"(arg0: $Path$Type): $LevelMapProperties
 public "getSyncedPlayerTracker"(): $SyncedPlayerTracker
 public "getModMain"(): $IXaeroMinimap
 get "syncedPlayerTrackerSystemManager"(): $SyncedPlayerTrackerSystemManager
@@ -2867,8 +2858,8 @@ static readonly "NETWORK_COMPATIBILITY": integer
 constructor()
 
 public "register"<T extends $MinimapMessage<(T)>>(arg0: integer, arg1: $Class$Type<(T)>, arg2: $ServerMessageConsumer$Type<(T)>, arg3: $ClientMessageConsumer$Type<(T)>, arg4: $Function$Type<($FriendlyByteBuf$Type), (T)>, arg5: $BiConsumer$Type<(T), ($FriendlyByteBuf$Type)>): void
-public "sendToPlayer"<T extends $MinimapMessage<(T)>>(arg0: $ServerPlayer$Type, arg1: T): void
 public "sendToServer"<T extends $MinimapMessage<(T)>>(arg0: T): void
+public "sendToPlayer"<T extends $MinimapMessage<(T)>>(arg0: $ServerPlayer$Type, arg1: T): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2901,9 +2892,9 @@ export class $SupportMods {
 
 constructor(arg0: $IXaeroMinimap$Type)
 
-public "framedBlocks"(): boolean
-public "shouldUseWorldMapChunks"(): boolean
 public static "checkForMinimapDuplicates"(arg0: string): void
+public "shouldUseWorldMapChunks"(): boolean
+public "framedBlocks"(): boolean
 public "shouldUseWorldMapCaveChunks"(): boolean
 public "worldmap"(): boolean
 public "pac"(): boolean
@@ -2989,23 +2980,22 @@ static readonly "slime": integer
 
 constructor(arg0: $IXaeroMinimap$Type, arg1: $Minecraft$Type, arg2: $WaypointMapRenderer$Type, arg3: $Minimap$Type, arg4: $CompassRenderer$Type)
 
-public "isLoadedFBO"(): boolean
-public "resetEntityIcons"(): void
+public "modify$cal000$xaeroplus$modifyViewW"(viewW: integer): integer
+public "handler$cal000$xaeroplus$modifyScaledSize"(minimapSession: $MinimapSession$Type, guiGraphics: $GuiGraphics$Type, minimap: $MinimapProcessor$Type, renderPos: $Vec3$Type, mapDimension: $ResourceKey$Type<(any)>, mapDimensionScale: double, viewW: integer, partial: float, level: integer, useWorldMap: boolean, lockedNorth: boolean, shape: integer, ps: double, pc: double, cave: boolean, cvc: $CustomVertexConsumers$Type, ci: $CallbackInfo$Type, scaledSize: $LocalIntRef$Type): void
+public "constant$cal000$xaeroplus$overrideFrameBufferSize"(size: integer): integer
+public "redirect$cal000$xaeroplus$modifyShaderMatrixStackTranslate"(instance: $PoseStack$Type, x: float, y: float, z: float, scaledSize: $LocalIntRef$Type): void
+public "redirect$cal000$xaeroplus$modifyMMBackgroundFill"(guiGraphics: $GuiGraphics$Type, x1: integer, y1: integer, x2: integer, y2: integer, color: integer, scaledSize: $LocalIntRef$Type): void
+public "modify$cal000$xaeroplus$modifyChunkGridLineWidth"(original: float): float
+public "redirect$cal000$xaeroplus$redirectModelViewDraw"(instance: $MinimapRendererHelper$Type, matrixStack: $PoseStack$Type, x: float, y: float, textureX: integer, textureY: integer, width: float, height: float, theight: float, factor: float, scaledSize: $LocalIntRef$Type): void
+public "wrapOperation$cal000$xaeroplus$drawMinimapFeatures"(instance: $SupportXaeroWorldmap$Type, minimapSession: $MinimapSession$Type, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, xFloored: integer, zFloored: integer, minViewX: integer, minViewZ: integer, maxViewX: integer, maxViewZ: integer, zooming: boolean, zoom: double, mapDimensionScale: double, overlayBufferBuilder: $VertexConsumer$Type, multiTextureRenderTypeRenderers: $MultiTextureRenderTypeRendererProvider$Type, original: $Operation$Type<(any)>, renderTypeBuffers: $MultiBufferSource$BufferSource$Type): void
+public "wrapOperation$cal000$xaeroplus$drawMinimapFeaturesCaveMode"(instance: $MultiTextureRenderTypeRendererProvider$Type, renderer: $MultiTextureRenderTypeRenderer$Type, original: $Operation$Type<(any)>, xFloored: integer, zFloored: integer, matrixStack: $PoseStack$Type, renderTypeBuffers: $MultiBufferSource$BufferSource$Type): void
 public "resetEntityIconsResources"(): void
+public "resetEntityIcons"(): void
+public "isLoadedFBO"(): boolean
 public "onRadarIconModelRenderTrace"(arg0: $EntityModel$Type<(any)>, arg1: $VertexConsumer$Type, arg2: float, arg3: float, arg4: float, arg5: float): void
 public "onEntityIconModelPartRenderTrace"(arg0: $ModelPart$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
-public "modify$bpn000$xaeroplus$modifyViewW"(viewW: integer): integer
-public "handler$bpn000$xaeroplus$modifyScaledSize"(minimapSession: $MinimapSession$Type, guiGraphics: $GuiGraphics$Type, minimap: $MinimapProcessor$Type, renderPos: $Vec3$Type, mapDimension: $ResourceKey$Type<(any)>, mapDimensionScale: double, viewW: integer, partial: float, level: integer, useWorldMap: boolean, lockedNorth: boolean, shape: integer, ps: double, pc: double, cave: boolean, cvc: $CustomVertexConsumers$Type, ci: $CallbackInfo$Type, scaledSize: $LocalIntRef$Type): void
-public "modify$bpn000$xaeroplus$modifyChunkGridLineWidth"(original: float): float
-public "redirect$bpn000$xaeroplus$redirectModelViewDraw"(instance: $MinimapRendererHelper$Type, matrixStack: $PoseStack$Type, x: float, y: float, textureX: integer, textureY: integer, width: float, height: float, theight: float, factor: float, scaledSize: $LocalIntRef$Type): void
-public "wrapOperation$bpn000$xaeroplus$drawMinimapFeatures"(instance: $SupportXaeroWorldmap$Type, minimapSession: $MinimapSession$Type, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, xFloored: integer, zFloored: integer, minViewX: integer, minViewZ: integer, maxViewX: integer, maxViewZ: integer, zooming: boolean, zoom: double, mapDimensionScale: double, overlayBufferBuilder: $VertexConsumer$Type, multiTextureRenderTypeRenderers: $MultiTextureRenderTypeRendererProvider$Type, original: $Operation$Type<(any)>, renderTypeBuffers: $MultiBufferSource$BufferSource$Type): void
-public "wrapOperation$bpn000$xaeroplus$drawMinimapFeaturesCaveMode"(instance: $MultiTextureRenderTypeRendererProvider$Type, renderer: $MultiTextureRenderTypeRenderer$Type, original: $Operation$Type<(any)>, xFloored: integer, zFloored: integer, matrixStack: $PoseStack$Type, renderTypeBuffers: $MultiBufferSource$BufferSource$Type): void
-public "constant$bpn000$xaeroplus$overrideFrameBufferSize"(size: integer): integer
-public "redirect$bpn000$xaeroplus$modifyShaderMatrixStackTranslate"(instance: $PoseStack$Type, x: float, y: float, z: float, scaledSize: $LocalIntRef$Type): void
-public "redirect$bpn000$xaeroplus$modifyMMBackgroundFill"(guiGraphics: $GuiGraphics$Type, x1: integer, y1: integer, x2: integer, y2: integer, color: integer, scaledSize: $LocalIntRef$Type): void
-public "redirect$bpn000$xaeroplus$correctPreRotationTranslationForSizeMult"(instance: $PoseStack$Type, x: float, y: float, z: float): void
-public "handler$bpn000$xaeroplus$correctPostRotationTranslationForSizeMult"(minimapSession: $MinimapSession$Type, guiGraphics: $GuiGraphics$Type, minimap: $MinimapProcessor$Type, renderPos: $Vec3$Type, mapDimension: $ResourceKey$Type<(any)>, mapDimensionScale: double, viewW: integer, partial: float, level: integer, useWorldMap: boolean, lockedNorth: boolean, shape: integer, ps: double, pc: double, cave: boolean, cvc: $CustomVertexConsumers$Type, ci: $CallbackInfo$Type, halfWView: float, shaderMatrixStack: $PoseStack$Type): void
-public "wrapOperation$bpn000$xaeroplus$drawMinimapFeatures$mixinextras$bridge$28"(instance: $SupportXaeroWorldmap$Type, minimapSession: $MinimapSession$Type, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, xFloored: integer, zFloored: integer, minViewX: integer, minViewZ: integer, maxViewX: integer, maxViewZ: integer, zooming: boolean, zoom: double, mapDimensionScale: double, overlayBufferBuilder: $VertexConsumer$Type, multiTextureRenderTypeRenderers: $MultiTextureRenderTypeRendererProvider$Type, original: $Operation$Type<(any)>, renderTypeBuffers: $LocalRef$Type<(any)>): void
+public "loadFrameBuffer"(arg0: $MinimapProcessor$Type): void
+public "renderChunksToFBO"(arg0: $MinimapSession$Type, arg1: $GuiGraphics$Type, arg2: $MinimapProcessor$Type, arg3: $Vec3$Type, arg4: $ResourceKey$Type<($Level$Type)>, arg5: double, arg6: integer, arg7: float, arg8: integer, arg9: boolean, arg10: boolean, arg11: integer, arg12: double, arg13: double, arg14: boolean, arg15: $CustomVertexConsumers$Type): void
 public "deleteFramebuffers"(): void
 public "setLoadedFBO"(arg0: boolean): void
 /**
@@ -3014,11 +3004,12 @@ public "setLoadedFBO"(arg0: boolean): void
  */
 public "getRadarRenderer"(): $RadarRenderer$0
 public "getEntityRadarRenderer"(): $RadarRenderer
-public "loadFrameBuffer"(arg0: $MinimapProcessor$Type): void
-public "renderChunksToFBO"(arg0: $MinimapSession$Type, arg1: $GuiGraphics$Type, arg2: $MinimapProcessor$Type, arg3: $Vec3$Type, arg4: $ResourceKey$Type<($Level$Type)>, arg5: double, arg6: integer, arg7: float, arg8: integer, arg9: boolean, arg10: boolean, arg11: integer, arg12: double, arg13: double, arg14: boolean, arg15: $CustomVertexConsumers$Type): void
 public "reloadMapFrameBuffers"(): void
 public "renderMainEntityDot"(arg0: $GuiGraphics$Type, arg1: $Entity$Type, arg2: boolean, arg3: $MultiBufferSource$BufferSource$Type): void
-public "wrapOperation$bpn000$xaeroplus$drawMinimapFeaturesCaveMode$mixinextras$bridge$29"(instance: $MultiTextureRenderTypeRendererProvider$Type, renderer: $MultiTextureRenderTypeRenderer$Type, original: $Operation$Type<(any)>, xFloored: $LocalIntRef$Type, zFloored: $LocalIntRef$Type, matrixStack: $LocalRef$Type<(any)>, renderTypeBuffers: $LocalRef$Type<(any)>): void
+public "wrapOperation$cal000$xaeroplus$drawMinimapFeaturesCaveMode$mixinextras$bridge$29"(instance: $MultiTextureRenderTypeRendererProvider$Type, renderer: $MultiTextureRenderTypeRenderer$Type, original: $Operation$Type<(any)>, xFloored: $LocalIntRef$Type, zFloored: $LocalIntRef$Type, matrixStack: $LocalRef$Type<(any)>, renderTypeBuffers: $LocalRef$Type<(any)>): void
+public "wrapOperation$cal000$xaeroplus$drawMinimapFeatures$mixinextras$bridge$28"(instance: $SupportXaeroWorldmap$Type, minimapSession: $MinimapSession$Type, matrixStack: $PoseStack$Type, helper: $MinimapRendererHelper$Type, xFloored: integer, zFloored: integer, minViewX: integer, minViewZ: integer, maxViewX: integer, maxViewZ: integer, zooming: boolean, zoom: double, mapDimensionScale: double, overlayBufferBuilder: $VertexConsumer$Type, multiTextureRenderTypeRenderers: $MultiTextureRenderTypeRendererProvider$Type, original: $Operation$Type<(any)>, renderTypeBuffers: $LocalRef$Type<(any)>): void
+public "redirect$cal000$xaeroplus$correctPreRotationTranslationForSizeMult"(instance: $PoseStack$Type, x: float, y: float, z: float): void
+public "handler$cal000$xaeroplus$correctPostRotationTranslationForSizeMult"(minimapSession: $MinimapSession$Type, guiGraphics: $GuiGraphics$Type, minimap: $MinimapProcessor$Type, renderPos: $Vec3$Type, mapDimension: $ResourceKey$Type<(any)>, mapDimensionScale: double, viewW: integer, partial: float, level: integer, useWorldMap: boolean, lockedNorth: boolean, shape: integer, ps: double, pc: double, cave: boolean, cvc: $CustomVertexConsumers$Type, ci: $CallbackInfo$Type, halfWView: float, shaderMatrixStack: $PoseStack$Type): void
 public "isTriedFBO"(): boolean
 get "loadedFBO"(): boolean
 set "loadedFBO"(value: boolean)
@@ -3105,9 +3096,9 @@ export class $MultiTextureRenderTypeRendererProvider {
 
 constructor(arg0: integer)
 
-public static "defaultTextureBind"(arg0: integer): void
-public "getRenderer"(arg0: $IntConsumer$Type, arg1: $IntConsumer$Type, arg2: $RenderType$Type): $MultiTextureRenderTypeRenderer
 public "getRenderer"(arg0: $IntConsumer$Type, arg1: $IntConsumer$Type, arg2: $Runnable$Type, arg3: $RenderType$Type): $MultiTextureRenderTypeRenderer
+public "getRenderer"(arg0: $IntConsumer$Type, arg1: $IntConsumer$Type, arg2: $RenderType$Type): $MultiTextureRenderTypeRenderer
+public static "defaultTextureBind"(arg0: integer): void
 public "draw"(arg0: $MultiTextureRenderTypeRenderer$Type): void
 }
 /**
@@ -3192,8 +3183,8 @@ export class $Option {
 
 constructor(arg0: $ModOptions$Type)
 
+public "handler$can000$xaeroplus$constructorInject"(option: $ModOptions$Type, ci: $CallbackInfo$Type): void
 public "createButton"(arg0: integer, arg1: integer, arg2: integer): $AbstractWidget
-public "handler$bpp000$xaeroplus$constructorInject"(option: $ModOptions$Type, ci: $CallbackInfo$Type): void
 public "getCaption"(): $Component
 get "caption"(): $Component
 }
@@ -3235,36 +3226,36 @@ static readonly "UNSET_FG_COLOR": integer
  "packedFGColor": integer
 
 
-public "setClosed"(arg0: boolean): void
 public "size"(): integer
+public "setClosed"(arg0: boolean): void
 public "getSelected"(): integer
-public "mouseReleased"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "mouseClicked"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): boolean
+public "mouseReleased"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "mouseScrolled"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "setActive"(arg0: boolean): void
-public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): void
 public "isClosed"(): boolean
-public "getXWithOffset"(): integer
+public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): void
+public "setActive"(arg0: boolean): void
 public "getYWithOffset"(): integer
+public "getXWithOffset"(): integer
+public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
+public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
+public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
 public "keyReleased"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "charTyped"(arg0: character, arg1: integer): boolean
 public "mouseMoved"(arg0: double, arg1: double): void
-public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
-public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
-public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
 public "renderWidget"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
 public "updateWidgetNarration"(arg0: $NarrationElementOutput$Type): void
-public "onDropDown"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "onDropDown"(arg0: integer, arg1: integer, arg2: boolean, arg3: integer): boolean
+public "onDropDown"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "selectId"(arg0: integer, arg1: boolean): void
 set "closed"(value: boolean)
 get "selected"(): integer
-set "active"(value: boolean)
 get "closed"(): boolean
-get "xWithOffset"(): integer
+set "active"(value: boolean)
 get "yWithOffset"(): integer
+get "xWithOffset"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3723,11 +3714,6 @@ public "getId"(): string
  * 
  * @deprecated
  */
-public "getContainer"(): $WaypointWorldContainer
-/**
- * 
- * @deprecated
- */
 public "setContainer"(arg0: $WaypointWorldContainer$Type): void
 /**
  * 
@@ -3748,12 +3734,12 @@ public "getServerWaypoints"(): $HashMap<(integer), ($Waypoint)>
  * 
  * @deprecated
  */
-public "getInternalWorldKey"(): string
+public "getServerWaypointsDisabled"(): $HashMap<(string), (boolean)>
 /**
  * 
  * @deprecated
  */
-public "getServerWaypointsDisabled"(): $HashMap<(string), (boolean)>
+public "getInternalWorldKey"(): string
 /**
  * 
  * @deprecated
@@ -3773,30 +3759,29 @@ public "setCurrent"(arg0: string): void
  * 
  * @deprecated
  */
+public "getDimId"(): $ResourceKey<($Level)>
+/**
+ * 
+ * @deprecated
+ */
 public "getSets"(): $HashMap<(string), ($WaypointSet)>
 /**
  * 
  * @deprecated
  */
 public "getFullId"(): string
-/**
- * 
- * @deprecated
- */
-public "getDimId"(): $ResourceKey<($Level)>
 get "id"(): string
-get "container"(): $WaypointWorldContainer
 set "container"(value: $WaypointWorldContainer$Type)
 set "id"(value: string)
 get "currentSet"(): $WaypointSet
 get "serverWaypoints"(): $HashMap<(integer), ($Waypoint)>
-get "internalWorldKey"(): string
 get "serverWaypointsDisabled"(): $HashMap<(string), (boolean)>
+get "internalWorldKey"(): string
 get "current"(): string
 set "current"(value: string)
+get "dimId"(): $ResourceKey<($Level)>
 get "sets"(): $HashMap<(string), ($WaypointSet)>
 get "fullId"(): string
-get "dimId"(): $ResourceKey<($Level)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3813,8 +3798,8 @@ export type $WaypointWorld_ = $WaypointWorld$Type;
 declare module "packages/xaero/common/minimap/render/$MinimapRendererHelper" {
 import {$VertexConsumer, $VertexConsumer$Type} from "packages/com/mojang/blaze3d/vertex/$VertexConsumer"
 import {$PoseStack, $PoseStack$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack"
-import {$PoseStack$Pose, $PoseStack$Pose$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack$Pose"
 import {$Matrix4f, $Matrix4f$Type} from "packages/org/joml/$Matrix4f"
+import {$PoseStack$Pose, $PoseStack$Pose$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack$Pose"
 import {$MultiTextureRenderTypeRenderer, $MultiTextureRenderTypeRenderer$Type} from "packages/xaero/common/graphics/renderer/multitexture/$MultiTextureRenderTypeRenderer"
 import {$RenderTarget, $RenderTarget$Type} from "packages/com/mojang/blaze3d/pipeline/$RenderTarget"
 
@@ -3822,17 +3807,17 @@ export class $MinimapRendererHelper {
 
 constructor()
 
+public "prepareMyTexturedColoredModalRect"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: float, arg11: float, arg12: float, arg13: float, arg14: $MultiTextureRenderTypeRenderer$Type): void
+public "addTexturedRectToExistingBuffer"(arg0: $Matrix4f$Type, arg1: $VertexConsumer$Type, arg2: float, arg3: float, arg4: integer, arg5: integer, arg6: integer, arg7: integer): void
 public static "restoreDefaultShaderBlendState"(): void
 public "addColoredLineToExistingBuffer"(arg0: $PoseStack$Pose$Type, arg1: $VertexConsumer$Type, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: float): void
 public "prepareMyTexturedModalRect"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: $MultiTextureRenderTypeRenderer$Type): void
-public "addTexturedRectToExistingBuffer"(arg0: $Matrix4f$Type, arg1: $VertexConsumer$Type, arg2: float, arg3: float, arg4: integer, arg5: integer, arg6: integer, arg7: integer): void
-public "prepareMyTexturedColoredModalRect"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: float, arg11: float, arg12: float, arg13: float, arg14: $MultiTextureRenderTypeRenderer$Type): void
-public "drawMyTexturedModalRect"(arg0: $PoseStack$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float, arg9: float, arg10: boolean): void
-public "drawMyTexturedModalRect"(arg0: $PoseStack$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float): void
-public "drawMyColoredRect"(arg0: $PoseStack$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
-public "drawMyColoredRect"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: float, arg4: float, arg5: integer): void
 public "drawIconOutline"(arg0: $PoseStack$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float, arg9: float): void
 public "defaultOrtho"(arg0: $RenderTarget$Type): void
+public "drawMyTexturedModalRect"(arg0: $PoseStack$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float): void
+public "drawMyTexturedModalRect"(arg0: $PoseStack$Type, arg1: float, arg2: float, arg3: integer, arg4: integer, arg5: float, arg6: float, arg7: float, arg8: float, arg9: float, arg10: boolean): void
+public "drawMyColoredRect"(arg0: $PoseStack$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
+public "drawMyColoredRect"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: float, arg4: float, arg5: integer): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3954,12 +3939,7 @@ constructor(arg0: $RadarIconManager$Type, arg1: $Minimap$Type, arg2: $RadarEleme
  * 
  * @deprecated
  */
-public "renderElement"(arg0: integer, arg1: boolean, arg2: boolean, arg3: $GuiGraphics$Type, arg4: $MultiBufferSource$BufferSource$Type, arg5: $Font$Type, arg6: $RenderTarget$Type, arg7: $MinimapRendererHelper$Type, arg8: $Entity$Type, arg9: $Player$Type, arg10: double, arg11: double, arg12: double, arg13: integer, arg14: double, arg15: float, arg16: $Entity$Type, arg17: double, arg18: double, arg19: boolean, arg20: float): boolean
-/**
- * 
- * @deprecated
- */
-public "renderElement"(arg0: $Entity$Type, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
+public "shouldRender"(arg0: integer): boolean
 /**
  * 
  * @deprecated
@@ -3969,7 +3949,12 @@ public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
  * 
  * @deprecated
  */
-public "shouldRender"(arg0: integer): boolean
+public "renderElement"(arg0: integer, arg1: boolean, arg2: boolean, arg3: $GuiGraphics$Type, arg4: $MultiBufferSource$BufferSource$Type, arg5: $Font$Type, arg6: $RenderTarget$Type, arg7: $MinimapRendererHelper$Type, arg8: $Entity$Type, arg9: $Player$Type, arg10: double, arg11: double, arg12: double, arg13: integer, arg14: double, arg15: float, arg16: $Entity$Type, arg17: double, arg18: double, arg19: boolean, arg20: float): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "renderElement"(arg0: $Entity$Type, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
 /**
  * 
  * @deprecated
@@ -3994,12 +3979,12 @@ public "preRender"(arg0: integer, arg1: $Entity$Type, arg2: $Player$Type, arg3: 
  * 
  * @deprecated
  */
-public "postRender"(arg0: integer, arg1: $Entity$Type, arg2: $Player$Type, arg3: double, arg4: double, arg5: double, arg6: $IXaeroMinimap$Type, arg7: $MultiBufferSource$BufferSource$Type, arg8: $MultiTextureRenderTypeRendererProvider$Type): void
+public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 /**
  * 
  * @deprecated
  */
-public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
+public "postRender"(arg0: integer, arg1: $Entity$Type, arg2: $Player$Type, arg3: double, arg4: double, arg5: double, arg6: $IXaeroMinimap$Type, arg7: $MultiBufferSource$BufferSource$Type, arg8: $MultiTextureRenderTypeRendererProvider$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4115,6 +4100,11 @@ constructor(arg0: string, arg1: $Component$Type, arg2: T, arg3: $InfoDisplayStat
  * 
  * @deprecated
  */
+public "setState"(arg0: T): void
+/**
+ * 
+ * @deprecated
+ */
 public "getName"(): $Component
 /**
  * 
@@ -4135,12 +4125,12 @@ public "reset"(): void
  * 
  * @deprecated
  */
-public "setState"(arg0: T): void
+public "getDefaultState"(): T
 /**
  * 
  * @deprecated
  */
-public "getTextColor"(): integer
+public "getBackgroundColor"(): integer
 /**
  * 
  * @deprecated
@@ -4155,33 +4145,28 @@ public "setBackgroundColor"(arg0: integer): void
  * 
  * @deprecated
  */
-public "getBackgroundColor"(): integer
-/**
- * 
- * @deprecated
- */
-public "getDefaultState"(): T
-/**
- * 
- * @deprecated
- */
-public "getWidgetFactory"(): $InfoDisplayWidgetFactory$0<(T)>
+public "getTextColor"(): integer
 /**
  * 
  * @deprecated
  */
 public "getOnCompile"(): $InfoDisplayOnCompile<(T)>
+/**
+ * 
+ * @deprecated
+ */
+public "getWidgetFactory"(): $InfoDisplayWidgetFactory$0<(T)>
+set "state"(value: T)
 get "name"(): $Component
 get "id"(): string
 get "state"(): T
-set "state"(value: T)
-get "textColor"(): integer
+get "defaultState"(): T
+get "backgroundColor"(): integer
 set "textColor"(value: integer)
 set "backgroundColor"(value: integer)
-get "backgroundColor"(): integer
-get "defaultState"(): T
-get "widgetFactory"(): $InfoDisplayWidgetFactory$0<(T)>
+get "textColor"(): integer
 get "onCompile"(): $InfoDisplayOnCompile<(T)>
+get "widgetFactory"(): $InfoDisplayWidgetFactory$0<(T)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4233,12 +4218,18 @@ export class $MinimapElementRenderProvider<E, RC> extends $MinimapElementRenderP
 
 constructor()
 
-public "hasNext"(arg0: $MinimapElementRenderLocation$Type, arg1: RC): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "getNext"(arg0: integer, arg1: RC): E
+public "getNext"(arg0: $MinimapElementRenderLocation$Type, arg1: RC): E
 /**
  * 
  * @deprecated
  */
 public "hasNext"(arg0: integer, arg1: RC): boolean
+public "hasNext"(arg0: $MinimapElementRenderLocation$Type, arg1: RC): boolean
 public "end"(arg0: $MinimapElementRenderLocation$Type, arg1: RC): void
 /**
  * 
@@ -4251,12 +4242,6 @@ public "end"(arg0: integer, arg1: RC): void
  */
 public "begin"(arg0: integer, arg1: RC): void
 public "begin"(arg0: $MinimapElementRenderLocation$Type, arg1: RC): void
-public "getNext"(arg0: $MinimapElementRenderLocation$Type, arg1: RC): E
-/**
- * 
- * @deprecated
- */
-public "getNext"(arg0: integer, arg1: RC): E
 public "setupContextAndGetNext"(arg0: $MinimapElementRenderLocation$Type, arg1: RC): E
 /**
  * 
@@ -4310,12 +4295,17 @@ constructor(arg0: $HudMod$Type, arg1: $MinimapSession$Type, arg2: $XaeroPath$Typ
  * 
  * @deprecated
  */
-public "setKey"(arg0: string): void
+public "addName"(arg0: string, arg1: string): void
 /**
  * 
  * @deprecated
  */
-public "addName"(arg0: string, arg1: string): void
+public "getFullName"(arg0: string, arg1: string): string
+/**
+ * 
+ * @deprecated
+ */
+public "setKey"(arg0: string): void
 /**
  * 
  * @deprecated
@@ -4335,17 +4325,7 @@ public "getKey"(): string
  * 
  * @deprecated
  */
-public "getFullName"(arg0: string, arg1: string): string
-/**
- * 
- * @deprecated
- */
 public "getRootContainer"(): $WaypointWorldRootContainer
-/**
- * 
- * @deprecated
- */
-public "addSubContainer"(arg0: string): $WaypointWorldContainer
 /**
  * 
  * @deprecated
@@ -4355,7 +4335,12 @@ public "getSubName"(): string
  * 
  * @deprecated
  */
-public "getFirstWorld"(): $WaypointWorld
+public "addSubContainer"(arg0: string): $WaypointWorldContainer
+/**
+ * 
+ * @deprecated
+ */
+public "getDirectory"(): $File
 /**
  * 
  * @deprecated
@@ -4385,16 +4370,6 @@ public "getEqualIgnoreCaseSub"(arg0: string): string
  * 
  * @deprecated
  */
-public "getDirectory"(): $File
-/**
- * 
- * @deprecated
- */
-public "addWorld"(arg0: string): $WaypointWorld
-/**
- * 
- * @deprecated
- */
 public "getSubId"(): string
 /**
  * 
@@ -4406,9 +4381,8 @@ get "empty"(): boolean
 get "key"(): string
 get "rootContainer"(): $WaypointWorldRootContainer
 get "subName"(): string
-get "firstWorld"(): $WaypointWorld
-get "allWorlds"(): $ArrayList<($WaypointWorld)>
 get "directory"(): $File
+get "allWorlds"(): $ArrayList<($WaypointWorld)>
 get "subId"(): string
 }
 /**
@@ -4435,11 +4409,12 @@ static readonly "LIGHT_LEVELS": integer
 
 constructor(arg0: integer, arg1: integer)
 
+public "getBuffer"(arg0: integer): $IntBuffer
 public "getTile"(arg0: integer, arg1: integer): $MinimapTile
+public "getX"(): integer
 public "reset"(arg0: integer, arg1: integer): void
 public "cleanup"(arg0: $MinimapInterface$Type): void
-public "getBuffer"(arg0: integer): $IntBuffer
-public "getX"(): integer
+public "bindTexture"(arg0: integer): integer
 public "isHasSomething"(): boolean
 public "updateBuffers"(arg0: integer, arg1: ((integer)[])[]): void
 public "setLevelsBuffered"(arg0: integer): void
@@ -4451,10 +4426,9 @@ public "setGlTexture"(arg0: integer, arg1: integer): void
 public "isRefreshRequired"(arg0: integer): boolean
 public "setRefreshRequired"(arg0: integer, arg1: boolean): void
 public "setHasSomething"(arg0: boolean): void
-public "bindTexture"(arg0: integer): integer
+public "getZ"(): integer
 public "getLevelToRefresh"(arg0: integer): integer
 public "isBlockTextureUpload"(): boolean
-public "getZ"(): integer
 public "isChanged"(): boolean
 public "setChanged"(arg0: boolean): void
 public "copyBuffer"(arg0: integer, arg1: $IntBuffer$Type): void
@@ -4466,8 +4440,8 @@ set "levelsBuffered"(value: integer)
 get "levelsBuffered"(): integer
 set "blockTextureUpload"(value: boolean)
 set "hasSomething"(value: boolean)
-get "blockTextureUpload"(): boolean
 get "z"(): integer
+get "blockTextureUpload"(): boolean
 get "changed"(): boolean
 set "changed"(value: boolean)
 }
@@ -4545,17 +4519,17 @@ public "save"(arg0: $PrintWriter$Type): void
  * 
  * @deprecated
  */
-public "addConnection"(arg0: $WaypointWorld$Type, arg1: $WaypointWorld$Type): void
-/**
- * 
- * @deprecated
- */
 public "isConnected"(arg0: $WaypointWorld$Type, arg1: $WaypointWorld$Type): boolean
 /**
  * 
  * @deprecated
  */
 public "removeConnection"(arg0: $WaypointWorld$Type, arg1: $WaypointWorld$Type): void
+/**
+ * 
+ * @deprecated
+ */
+public "addConnection"(arg0: $WaypointWorld$Type, arg1: $WaypointWorld$Type): void
 /**
  * 
  * @deprecated
@@ -4598,17 +4572,17 @@ public "getCount"(): integer
  * 
  * @deprecated
  */
+public "getStream"(): $Stream<($InfoDisplay<(any)>)>
+/**
+ * 
+ * @deprecated
+ */
 public "add"(arg0: $InfoDisplay$Type<(any)>): void
 /**
  * 
  * @deprecated
  */
 public "reset"(): void
-/**
- * 
- * @deprecated
- */
-public "getStream"(): $Stream<($InfoDisplay<(any)>)>
 /**
  * 
  * @deprecated
@@ -4669,22 +4643,22 @@ readonly "screenExecutor": $Executor
 constructor(arg0: $IXaeroMinimap$Type, arg1: $Component$Type, arg2: $Screen$Type, arg3: $Screen$Type)
 
 public "getIndex"(arg0: $GuiEventListener$Type): integer
+public "handler$bpf000$xaeroplus$adjustEntriesPerPage"(ci: $CallbackInfo$Type): void
+public "redirect$bpf000$xaeroplus$settingListToRenderRedirect"(instance: $ArrayList$Type<(any)>, entryObject: any): boolean
+public "wrapOperation$bpf000$xaeroplus$adjustSettingEntryWidth"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: integer): $AbstractWidget
+public "restoreFocus"(arg0: integer): void
 public "getEntriesCopy"(): ($ISettingEntry)[]
 public "addButtonVisible"(arg0: $AbstractWidget$Type): void
-public "restoreFocus"(arg0: integer): void
 public "setShouldSaveRadar"(): void
-public "handler$boh000$xaeroplus$adjustEntriesPerPage"(ci: $CallbackInfo$Type): void
-public "redirect$boh000$xaeroplus$settingListToRenderRedirect"(instance: $ArrayList$Type<(any)>, entryObject: any): boolean
-public "wrapOperation$boh000$xaeroplus$adjustSettingEntryWidth"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: integer): $AbstractWidget
-public "handler$boh000$xaeroplus$adjustForwardBackButtonPositionsForExtraRows"(ci: $CallbackInfo$Type): void
-public "charTyped"(arg0: character, arg1: integer): boolean
-public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "init"(): void
-public "getScreen"<S extends ($Screen) & ($WidgetScreen)>(): S
 public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "tick"(): void
 public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
-public "wrapOperation$boh000$xaeroplus$adjustSettingEntryWidth$mixinextras$bridge$32"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: $LocalIntRef$Type): $AbstractWidget
+public "charTyped"(arg0: character, arg1: integer): boolean
+public "init"(): void
+public "getScreen"<S extends ($Screen) & ($WidgetScreen)>(): S
+public "handler$bpf000$xaeroplus$adjustForwardBackButtonPositionsForExtraRows"(ci: $CallbackInfo$Type): void
+public "wrapOperation$bpf000$xaeroplus$adjustSettingEntryWidth$mixinextras$bridge$32"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: $LocalIntRef$Type): $AbstractWidget
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "entriesCopy"(): ($ISettingEntry)[]
 get "screen"(): S
@@ -4775,25 +4749,25 @@ export class $SyncedTrackedPlayer {
 
 constructor(arg0: $UUID$Type, arg1: double, arg2: double, arg3: double, arg4: $ResourceKey$Type<($Level$Type)>)
 
+public "copyFrom"(arg0: $SyncedTrackedPlayer$Type): void
 /**
  * 
  * @deprecated
  */
 public "getDimension"(): $ResourceLocation
+public "getY"(): double
+public "getX"(): double
 public "update"(arg0: $Player$Type): void
 public "getId"(): $UUID
-public "copyFrom"(arg0: $SyncedTrackedPlayer$Type): void
-public "getX"(): double
-public "getY"(): double
 public "getDimensionKey"(): $ResourceKey<($Level)>
 public "setDimension"(arg0: $ResourceKey$Type<($Level$Type)>): $SyncedTrackedPlayer
 public "matchesEnough"(arg0: $Player$Type, arg1: double): boolean
-public "setPos"(arg0: double, arg1: double, arg2: double): $SyncedTrackedPlayer
 public "getZ"(): double
+public "setPos"(arg0: double, arg1: double, arg2: double): $SyncedTrackedPlayer
 get "dimension"(): $ResourceLocation
-get "id"(): $UUID
-get "x"(): double
 get "y"(): double
+get "x"(): double
+get "id"(): $UUID
 get "dimensionKey"(): $ResourceKey<($Level)>
 set "dimension"(value: $ResourceKey$Type<($Level$Type)>)
 get "z"(): double
@@ -4867,12 +4841,12 @@ constructor(arg0: $EntityRadarCategoryManager$Type)
  * 
  * @deprecated
  */
-public "getTeamColour"(arg0: $Entity$Type): integer
+public "getMaxDistance"(arg0: $MinimapProcessor$Type, arg1: boolean): double
 /**
  * 
  * @deprecated
  */
-public "getMaxDistance"(arg0: $MinimapProcessor$Type, arg1: boolean): double
+public "getTeamColour"(arg0: $Entity$Type): integer
 /**
  * 
  * @deprecated
@@ -4935,8 +4909,8 @@ declare global {
 export type $MinimapRadar_ = $MinimapRadar$Type;
 }}
 declare module "packages/xaero/common/$XaeroMinimapSession" {
-import {$LocalPlayer, $LocalPlayer$Type} from "packages/net/minecraft/client/player/$LocalPlayer"
 import {$MinimapProcessor, $MinimapProcessor$Type} from "packages/xaero/common/minimap/$MinimapProcessor"
+import {$LocalPlayer, $LocalPlayer$Type} from "packages/net/minecraft/client/player/$LocalPlayer"
 import {$HudMod, $HudMod$Type} from "packages/xaero/common/$HudMod"
 import {$WaypointsManager, $WaypointsManager$Type} from "packages/xaero/common/minimap/waypoints/$WaypointsManager"
 import {$IXaeroMinimap, $IXaeroMinimap$Type} from "packages/xaero/common/$IXaeroMinimap"
@@ -4953,16 +4927,16 @@ export class $XaeroMinimapSession extends $HudSession {
 constructor(arg0: $HudMod$Type)
 
 public "init"(arg0: $ClientPacketListener$Type): void
-public static "getForPlayer"(arg0: $LocalPlayer$Type): $XaeroMinimapSession
+public static "getCurrentSession"(): $XaeroMinimapSession
+public "getMinimapProcessor"(): $MinimapProcessor
 public "getWaypointsManager"(): $WaypointsManager
 public "getWaypointSharing"(): $WaypointSharingHandler
-public "getMinimapProcessor"(): $MinimapProcessor
-public static "getCurrentSession"(): $XaeroMinimapSession
+public static "getForPlayer"(arg0: $LocalPlayer$Type): $XaeroMinimapSession
 public "getModMain"(): $IXaeroMinimap
+get "currentSession"(): $XaeroMinimapSession
+get "minimapProcessor"(): $MinimapProcessor
 get "waypointsManager"(): $WaypointsManager
 get "waypointSharing"(): $WaypointSharingHandler
-get "minimapProcessor"(): $MinimapProcessor
-get "currentSession"(): $XaeroMinimapSession
 get "modMain"(): $IXaeroMinimap
 }
 /**
@@ -5030,8 +5004,8 @@ export class $WidgetScreenHandler implements $AccessorWidgetScreenHandler {
 constructor()
 
 public "initialize"(arg0: $WidgetScreen$Type, arg1: integer, arg2: integer): void
-public "handleClick"(arg0: $Screen$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: double): void
 public "renderTooltips"(arg0: $GuiGraphics$Type, arg1: $Screen$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: double): boolean
+public "handleClick"(arg0: $Screen$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: double): void
 public "render"(arg0: $GuiGraphics$Type, arg1: $WidgetScreen$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: double): void
 }
 /**
@@ -5108,13 +5082,11 @@ static "RENDER_SORTING_POS": $Vec3
  * @deprecated
  */
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: integer)
-constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: $WaypointColor$Type, arg6: $WaypointPurpose$Type, arg7: boolean, arg8: boolean)
-constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: $WaypointColor$Type, arg6: $WaypointPurpose$Type, arg7: boolean)
 /**
  * 
  * @deprecated
  */
-constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: integer, arg6: integer)
+constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: integer, arg6: integer, arg7: boolean, arg8: boolean)
 /**
  * 
  * @deprecated
@@ -5124,43 +5096,46 @@ constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: str
  * 
  * @deprecated
  */
-constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: integer, arg6: integer, arg7: boolean, arg8: boolean)
-constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: $WaypointColor$Type)
+constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: integer, arg6: integer)
+constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: $WaypointColor$Type, arg6: $WaypointPurpose$Type, arg7: boolean)
+constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: $WaypointColor$Type, arg6: $WaypointPurpose$Type, arg7: boolean, arg8: boolean)
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: $WaypointColor$Type, arg6: $WaypointPurpose$Type)
+constructor(arg0: integer, arg1: integer, arg2: integer, arg3: string, arg4: string, arg5: $WaypointColor$Type)
 
-public "getInitials"(): string
 /**
  * 
  * @deprecated
  */
 public "setColor"(arg0: integer): void
+public "getInitials"(): string
 /**
  * 
  * @deprecated
  */
 public "getSymbol"(): string
-public "getName"(): string
-public "compareTo"(arg0: $Waypoint$Type): integer
-public "setName"(arg0: string): void
 /**
  * 
  * @deprecated
  */
 public "setType"(arg0: integer): void
-public "getLocalizedName"(): string
-public "getX"(): integer
-public "getX"(arg0: double): integer
 public "getY"(): integer
-public "setDisabled"(arg0: boolean): void
+public "getLocalizedName"(): string
+public "getX"(arg0: double): integer
+public "getX"(): integer
+public "getName"(): string
+public "compareTo"(arg0: $Waypoint$Type): integer
+public "setName"(arg0: string): void
+public "setVisibility"(arg0: $WaypointVisibilityType$Type): void
+public "getVisibility"(): $WaypointVisibilityType
+public "getDistanceSq"(arg0: double, arg1: double, arg2: double): double
+public "setRotation"(arg0: boolean): void
 /**
  * 
  * @deprecated
  */
 public "setVisibilityType"(arg0: integer): void
-public "setRotation"(arg0: boolean): void
-public "getDistanceSq"(arg0: double, arg1: double, arg2: double): double
-public "setVisibility"(arg0: $WaypointVisibilityType$Type): void
-public "getVisibility"(): $WaypointVisibilityType
+public "setDisabled"(arg0: boolean): void
+public "isTemporary"(): boolean
 /**
  * 
  * @deprecated
@@ -5182,7 +5157,19 @@ public "isServerWaypoint"(): boolean
 public "getComparisonAngleCos"(arg0: $Camera$Type, arg1: double): double
 public "getComparisonName"(): string
 public "getComparisonDistance"(arg0: $Camera$Type, arg1: double): double
-public "isTemporary"(): boolean
+public "isGlobal"(): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "getColor"(): integer
+/**
+ * 
+ * @deprecated
+ */
+public "setSymbol"(arg0: string): void
+public "getZ"(): integer
+public "getZ"(arg0: double): integer
 public "getNameSafe"(arg0: string): string
 /**
  * 
@@ -5207,21 +5194,8 @@ public "isOneoffDestination"(): boolean
  */
 public "setOneoffDestination"(arg0: boolean): void
 public static "getStringFromStringSafe"(arg0: string, arg1: string): string
-public "getZ"(): integer
-public "getZ"(arg0: double): integer
 public "getYaw"(): integer
 public "setYaw"(arg0: integer): void
-/**
- * 
- * @deprecated
- */
-public "getColor"(): integer
-public "isGlobal"(): boolean
-/**
- * 
- * @deprecated
- */
-public "setSymbol"(arg0: string): void
 public "setX"(arg0: integer): void
 public "setY"(arg0: integer): void
 public "isDisabled"(): boolean
@@ -5229,20 +5203,21 @@ public "isRotation"(): boolean
 public "setZ"(arg0: integer): void
 public "getPurpose"(): $WaypointPurpose
 public "setPurpose"(arg0: $WaypointPurpose$Type): void
-get "initials"(): string
 set "color"(value: integer)
+get "initials"(): string
 get "symbol"(): string
-get "name"(): string
-set "name"(value: string)
 set "type"(value: integer)
+get "y"(): integer
 get "localizedName"(): string
 get "x"(): integer
-get "y"(): integer
-set "disabled"(value: boolean)
-set "visibilityType"(value: integer)
-set "rotation"(value: boolean)
+get "name"(): string
+set "name"(value: string)
 set "visibility"(value: $WaypointVisibilityType$Type)
 get "visibility"(): $WaypointVisibilityType
+set "rotation"(value: boolean)
+set "visibilityType"(value: integer)
+set "disabled"(value: boolean)
+get "temporary"(): boolean
 get "actualColor"(): integer
 get "yIncluded"(): boolean
 get "destination"(): boolean
@@ -5254,17 +5229,16 @@ set "yIncluded"(value: boolean)
 set "temporary"(value: boolean)
 get "serverWaypoint"(): boolean
 get "comparisonName"(): string
-get "temporary"(): boolean
+get "global"(): boolean
+get "color"(): integer
+set "symbol"(value: string)
+get "z"(): integer
 get "waypointType"(): integer
 get "createdAt"(): long
 get "oneoffDestination"(): boolean
 set "oneoffDestination"(value: boolean)
-get "z"(): integer
 get "yaw"(): integer
 set "yaw"(value: integer)
-get "color"(): integer
-get "global"(): boolean
-set "symbol"(value: string)
 set "x"(value: integer)
 set "y"(value: integer)
 get "disabled"(): boolean
@@ -5313,6 +5287,12 @@ export class $MinimapElementRenderer<E, RC> extends $MinimapElementRenderer$0<(E
  */
 constructor(arg0: $MinimapElementReader$Type<(E), (RC)>, arg1: $MinimapElementRenderProvider$Type<(E), (RC)>, arg2: RC)
 
+public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "shouldRender"(arg0: integer): boolean
 /**
  * 
  * @deprecated
@@ -5324,24 +5304,18 @@ public "getElementReader"(): $MinimapElementReader<(E), (RC)>
  */
 public "renderElement"(arg0: integer, arg1: boolean, arg2: boolean, arg3: $GuiGraphics$Type, arg4: $MultiBufferSource$BufferSource$Type, arg5: $Font$Type, arg6: $RenderTarget$Type, arg7: $MinimapRendererHelper$Type, arg8: $Entity$Type, arg9: $Player$Type, arg10: double, arg11: double, arg12: double, arg13: integer, arg14: double, arg15: float, arg16: E, arg17: double, arg18: double, arg19: boolean, arg20: float): boolean
 public "renderElement"(arg0: E, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
-public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
-/**
- * 
- * @deprecated
- */
-public "shouldRender"(arg0: integer): boolean
-public "preRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 /**
  * 
  * @deprecated
  */
 public "preRender"(arg0: integer, arg1: $Entity$Type, arg2: $Player$Type, arg3: double, arg4: double, arg5: double, arg6: $IXaeroMinimap$Type, arg7: $MultiBufferSource$BufferSource$Type, arg8: $MultiTextureRenderTypeRendererProvider$Type): void
+public "preRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
+public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 /**
  * 
  * @deprecated
  */
 public "postRender"(arg0: integer, arg1: $Entity$Type, arg2: $Player$Type, arg3: double, arg4: double, arg5: double, arg6: $IXaeroMinimap$Type, arg7: $MultiBufferSource$BufferSource$Type, arg8: $MultiTextureRenderTypeRendererProvider$Type): void
-public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 get "elementReader"(): $MinimapElementReader<(E), (RC)>
 }
 /**
@@ -5463,10 +5437,10 @@ import {$ModSettings, $ModSettings$Type} from "packages/xaero/common/settings/$M
 import {$VertexConsumer, $VertexConsumer$Type} from "packages/com/mojang/blaze3d/vertex/$VertexConsumer"
 import {$MultiTextureRenderTypeRendererProvider, $MultiTextureRenderTypeRendererProvider$Type} from "packages/xaero/common/graphics/renderer/multitexture/$MultiTextureRenderTypeRendererProvider"
 import {$WaypointRenderProvider, $WaypointRenderProvider$Type} from "packages/xaero/common/minimap/waypoints/render/$WaypointRenderProvider"
-import {$MultiBufferSource$BufferSource, $MultiBufferSource$BufferSource$Type} from "packages/net/minecraft/client/renderer/$MultiBufferSource$BufferSource"
 import {$MinimapSession, $MinimapSession$Type} from "packages/xaero/hud/minimap/module/$MinimapSession"
-import {$Window, $Window$Type} from "packages/com/mojang/blaze3d/platform/$Window"
+import {$MultiBufferSource$BufferSource, $MultiBufferSource$BufferSource$Type} from "packages/net/minecraft/client/renderer/$MultiBufferSource$BufferSource"
 import {$WaypointsManager, $WaypointsManager$Type} from "packages/xaero/common/minimap/waypoints/$WaypointsManager"
+import {$Window, $Window$Type} from "packages/com/mojang/blaze3d/platform/$Window"
 import {$WaypointsGuiRenderer as $WaypointsGuiRenderer$0, $WaypointsGuiRenderer$Type as $WaypointsGuiRenderer$0$Type} from "packages/xaero/hud/minimap/waypoint/render/$WaypointsGuiRenderer"
 import {$WaypointReader, $WaypointReader$Type} from "packages/xaero/common/minimap/waypoints/render/$WaypointReader"
 import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui/$GuiGraphics"
@@ -5494,12 +5468,7 @@ public "getOrder"(): integer
  * 
  * @deprecated
  */
-public "renderElement"(arg0: integer, arg1: boolean, arg2: boolean, arg3: $GuiGraphics$Type, arg4: $MultiBufferSource$BufferSource$Type, arg5: $Font$Type, arg6: $RenderTarget$Type, arg7: $MinimapRendererHelper$Type, arg8: $Entity$Type, arg9: $Player$Type, arg10: double, arg11: double, arg12: double, arg13: integer, arg14: double, arg15: float, arg16: $Waypoint$Type, arg17: double, arg18: double, arg19: boolean, arg20: float): boolean
-/**
- * 
- * @deprecated
- */
-public "drawSetChange"(arg0: $MinimapSession$Type, arg1: $GuiGraphics$Type, arg2: $Window$Type): void
+public "shouldRender"(arg0: integer): boolean
 /**
  * 
  * @deprecated
@@ -5509,7 +5478,12 @@ public "drawSetChange"(arg0: $WaypointsManager$Type, arg1: $GuiGraphics$Type, ar
  * 
  * @deprecated
  */
-public "shouldRender"(arg0: integer): boolean
+public "drawSetChange"(arg0: $MinimapSession$Type, arg1: $GuiGraphics$Type, arg2: $Window$Type): void
+/**
+ * 
+ * @deprecated
+ */
+public "renderElement"(arg0: integer, arg1: boolean, arg2: boolean, arg3: $GuiGraphics$Type, arg4: $MultiBufferSource$BufferSource$Type, arg5: $Font$Type, arg6: $RenderTarget$Type, arg7: $MinimapRendererHelper$Type, arg8: $Entity$Type, arg9: $Player$Type, arg10: double, arg11: double, arg12: double, arg13: integer, arg14: double, arg15: float, arg16: $Waypoint$Type, arg17: double, arg18: double, arg19: boolean, arg20: float): boolean
 /**
  * 
  * @deprecated
@@ -5572,29 +5546,31 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 import {$Screen, $Screen$Type} from "packages/net/minecraft/client/gui/screens/$Screen"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui/$GuiGraphics"
-import {$ToggleKeyMapping, $ToggleKeyMapping$Type} from "packages/net/minecraft/client/$ToggleKeyMapping"
 import {$CallbackInfoReturnable, $CallbackInfoReturnable$Type} from "packages/org/spongepowered/asm/mixin/injection/callback/$CallbackInfoReturnable"
+import {$ToggleKeyMapping, $ToggleKeyMapping$Type} from "packages/net/minecraft/client/$ToggleKeyMapping"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$RealmsServer, $RealmsServer$Type} from "packages/com/mojang/realmsclient/dto/$RealmsServer"
 import {$IXaeroMinimap, $IXaeroMinimap$Type} from "packages/xaero/common/$IXaeroMinimap"
 import {$GameProfile, $GameProfile$Type} from "packages/com/mojang/authlib/$GameProfile"
-import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$ChatType$Bound, $ChatType$Bound$Type} from "packages/net/minecraft/network/chat/$ChatType$Bound"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export class $ClientEvents {
  "latestRealm": $RealmsServer
 
 constructor(arg0: $IXaeroMinimap$Type)
 
+public "handler$bpe000$xaeroplus$onPlayerChatReceived"(chatType: $ChatType$Bound$Type, component: $Component$Type, gameProfile: $GameProfile$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$bpe000$xaeroplus$onSystemChatReceived"(component: $Component$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handleGuiOpen"(arg0: $Screen$Type): $Screen
+public "handleClientSendChatEvent"(arg0: string): boolean
 public "handleDrawScreenEventPost"(arg0: $Screen$Type): void
 public "handlePlayerSetSpawnEvent"(arg0: $BlockPos$Type, arg1: $Level$Type): void
 public "getLastGuiOpen"(): any
 public "worldUnload"(arg0: $LevelAccessor$Type): void
 public "handleClientTickStart"(): void
-public "handlePlayerTickStart"(arg0: $Player$Type): void
 public "handleRenderTickStart"(): void
-public "handleGuiOpen"(arg0: $Screen$Type): $Screen
-public "handleClientSendChatEvent"(arg0: string): boolean
+public "handlePlayerTickStart"(arg0: $Player$Type): void
 public "handleRenderGameOverlayEventPre"(arg0: $GuiGraphics$Type, arg1: float): void
 public "handleRenderGameOverlayEventPost"(): void
 public "handleClientPlayerChatReceivedEvent"(arg0: $ChatType$Bound$Type, arg1: $Component$Type, arg2: $GameProfile$Type): boolean
@@ -5602,8 +5578,6 @@ public "handleClientSystemChatReceivedEvent"(arg0: $Component$Type): boolean
 public "handleRenderStatusEffectOverlay"(arg0: $GuiGraphics$Type): boolean
 public "handleRenderCrosshairOverlay"(arg0: $GuiGraphics$Type): boolean
 public "handleForceToggleKeyMapping"(arg0: $ToggleKeyMapping$Type): boolean
-public "handler$bog000$xaeroplus$onPlayerChatReceived"(chatType: $ChatType$Bound$Type, component: $Component$Type, gameProfile: $GameProfile$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$bog000$xaeroplus$onSystemChatReceived"(component: $Component$Type, cir: $CallbackInfoReturnable$Type<(any)>): void
 get "lastGuiOpen"(): any
 }
 /**
@@ -5772,31 +5746,33 @@ constructor(arg0: $IXaeroMinimap$Type, arg1: $MinimapSession$Type, arg2: $Minima
 
 public "getSession"(): $MinimapSession
 public "cleanup"(): void
-public "getRadarSession"(): $RadarSession
-public "isEnlargedMap"(): boolean
-public "getMinimapSize"(): integer
-public "getMinimapWriter"(): $MinimapWriter
-public "isManualCaveMode"(): boolean
-public "isToResetImage"(): boolean
-public "setToResetImage"(arg0: boolean): void
-public "getMinimapZoom"(): double
-public "onPlayerTick"(): void
-public "getForcedFairPlay"(): boolean
-public "getMinimapInterface"(): $MinimapInterface
-public "onClientTick"(): void
-public "getSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
-public "setNoMinimapMessageReceived"(arg0: boolean): void
-public "setFairPlayOnlyMessageReceived"(arg0: boolean): void
-public "setEnlargedMap"(arg0: boolean): void
-public "instantZoom"(): void
-public "toggleManualCaveMode"(): void
-public "getNoMinimapMessageReceived"(): boolean
 /**
  * 
  * @deprecated
  */
 public "getClientSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager$0
+public "getNoMinimapMessageReceived"(): boolean
+public "onClientTick"(): void
+public "onPlayerTick"(): void
+public "getMinimapInterface"(): $MinimapInterface
+public "getForcedFairPlay"(): boolean
+public "getMinimapSize"(): integer
+public "getRadarSession"(): $RadarSession
+public "getMinimapWriter"(): $MinimapWriter
+public "isEnlargedMap"(): boolean
+public "isManualCaveMode"(): boolean
+public "isToResetImage"(): boolean
+public "setToResetImage"(arg0: boolean): void
+public "getMinimapZoom"(): double
+public "setNoMinimapMessageReceived"(arg0: boolean): void
+public "setFairPlayOnlyMessageReceived"(arg0: boolean): void
+public "getSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
+public "setEnlargedMap"(arg0: boolean): void
+public "instantZoom"(): void
+public "toggleManualCaveMode"(): void
+public "setServerModNetworkVersion"(arg0: integer): void
 public "serverHasMod"(): boolean
+public "canUseFrameBuffer"(): boolean
 public static "hasMinimapItem"(arg0: $Player$Type): boolean
 /**
  * 
@@ -5804,6 +5780,10 @@ public static "hasMinimapItem"(arg0: $Player$Type): boolean
  */
 public "getEntityRadar"(): $MinimapRadar
 public "getTargetZoom"(): double
+public "isCaveModeDisplayed"(): boolean
+public "getLastMapDimensionScale"(): double
+public "getLastMapDimension"(): $ResourceKey<($Level)>
+public "getServerModNetworkVersion"(): integer
 public "getMinimapBufferSize"(arg0: integer): integer
 public "getFBOBufferSize"(): integer
 public "setLastMapDimensionScale"(arg0: double): void
@@ -5813,49 +5793,43 @@ public "setLastMapDimension"(arg0: $ResourceKey$Type<($Level$Type)>): void
  * @deprecated
  */
 public "setLastPlayerDimDiv"(arg0: double): void
-public "getLastMapDimensionScale"(): double
-public "getLastMapDimension"(): $ResourceKey<($Level)>
-public "isCaveModeDisplayed"(): boolean
-public "canUseFrameBuffer"(): boolean
 /**
  * 
  * @deprecated
  */
 public "getLastPlayerDimDiv"(): double
-public "getServerModNetworkVersion"(): integer
-public "setServerModNetworkVersion"(arg0: integer): void
 public "onRender"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: double, arg6: integer, arg7: integer, arg8: float, arg9: $CustomVertexConsumers$Type): void
 public "checkFBO"(): void
 public "updateZoom"(): void
 get "session"(): $MinimapSession
-get "radarSession"(): $RadarSession
-get "enlargedMap"(): boolean
+get "clientSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager$0
+get "noMinimapMessageReceived"(): boolean
+get "minimapInterface"(): $MinimapInterface
+get "forcedFairPlay"(): boolean
 get "minimapSize"(): integer
+get "radarSession"(): $RadarSession
 get "minimapWriter"(): $MinimapWriter
+get "enlargedMap"(): boolean
 get "manualCaveMode"(): boolean
 get "toResetImage"(): boolean
 set "toResetImage"(value: boolean)
 get "minimapZoom"(): double
-get "forcedFairPlay"(): boolean
-get "minimapInterface"(): $MinimapInterface
-get "syncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
 set "noMinimapMessageReceived"(value: boolean)
 set "fairPlayOnlyMessageReceived"(value: boolean)
+get "syncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
 set "enlargedMap"(value: boolean)
-get "noMinimapMessageReceived"(): boolean
-get "clientSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager$0
+set "serverModNetworkVersion"(value: integer)
 get "entityRadar"(): $MinimapRadar
 get "targetZoom"(): double
+get "caveModeDisplayed"(): boolean
+get "lastMapDimensionScale"(): double
+get "lastMapDimension"(): $ResourceKey<($Level)>
+get "serverModNetworkVersion"(): integer
 get "fBOBufferSize"(): integer
 set "lastMapDimensionScale"(value: double)
 set "lastMapDimension"(value: $ResourceKey$Type<($Level$Type)>)
 set "lastPlayerDimDiv"(value: double)
-get "lastMapDimensionScale"(): double
-get "lastMapDimension"(): $ResourceKey<($Level)>
-get "caveModeDisplayed"(): boolean
 get "lastPlayerDimDiv"(): double
-get "serverModNetworkVersion"(): integer
-set "serverModNetworkVersion"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5881,17 +5855,17 @@ export class $SupportServerMods {
 constructor()
 
 public "check"(arg0: $IXaeroMinimap$Type): void
+public "getFtbTeams"(): $SupportFTBTeamsServer
 public "hasFtbTeams"(): boolean
 public "hasArgonauts"(): boolean
-public "getWorldmap"(): $SupportWorldMapServer
-public "hasWorldmap"(): boolean
-public "getFtbTeams"(): $SupportFTBTeamsServer
 public "getArgonauts"(): $SupportArgonautsServer
+public "hasWorldmap"(): boolean
+public "getWorldmap"(): $SupportWorldMapServer
 public "hasOpac"(): boolean
 public "getOpac"(): $SupportOPACServer
-get "worldmap"(): $SupportWorldMapServer
 get "ftbTeams"(): $SupportFTBTeamsServer
 get "argonauts"(): $SupportArgonautsServer
+get "worldmap"(): $SupportWorldMapServer
 get "opac"(): $SupportOPACServer
 }
 /**
@@ -5944,8 +5918,8 @@ declare global {
 export type $InfoDisplayOnCompile_<T> = $InfoDisplayOnCompile$Type<(T)>;
 }}
 declare module "packages/xaero/common/events/$ModClientEvents" {
-import {$TextureAtlas, $TextureAtlas$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlas"
 import {$CallbackInfo, $CallbackInfo$Type} from "packages/org/spongepowered/asm/mixin/injection/callback/$CallbackInfo"
+import {$TextureAtlas, $TextureAtlas$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlas"
 import {$IXaeroMinimap, $IXaeroMinimap$Type} from "packages/xaero/common/$IXaeroMinimap"
 import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui/$GuiGraphics"
 
@@ -5953,10 +5927,10 @@ export class $ModClientEvents {
 
 constructor(arg0: $IXaeroMinimap$Type)
 
+public "handler$cbd000$xaeroplus$handleRenderModOverlayHead"(guiGraphics: $GuiGraphics$Type, partialTicks: float, ci: $CallbackInfo$Type): void
+public "handler$cbd000$xaeroplus$handleRenderModOverlayReturn"(guiGraphics: $GuiGraphics$Type, partialTicks: float, ci: $CallbackInfo$Type): void
 public "handleRenderModOverlay"(arg0: $GuiGraphics$Type, arg1: float): void
 public "handleTextureStitchEventPost"(arg0: $TextureAtlas$Type): void
-public "handler$caf000$xaeroplus$handleRenderModOverlayHead"(guiGraphics: $GuiGraphics$Type, partialTicks: float, ci: $CallbackInfo$Type): void
-public "handler$caf000$xaeroplus$handleRenderModOverlayReturn"(guiGraphics: $GuiGraphics$Type, partialTicks: float, ci: $CallbackInfo$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5995,18 +5969,18 @@ public "setHighlightVersion"(arg0: integer): void
 public "pixelChanged"(arg0: integer, arg1: integer, arg2: long, arg3: byte, arg4: byte, arg5: byte, arg6: byte): boolean
 public "isSlimeChunk"(): boolean
 public static "isSlimeChunk"(arg0: $ModSettings$Type, arg1: integer, arg2: integer, arg3: long): boolean
-public "isWasTransfered"(): boolean
-public "isChunkGrid"(): boolean
-public "getZ"(): integer
 public "setCode"(arg0: integer, arg1: integer, arg2: long, arg3: byte, arg4: byte, arg5: byte, arg6: byte): void
+public "getZ"(): integer
+public "isChunkGrid"(): boolean
+public "isWasTransfered"(): boolean
 public "setHeight"(arg0: integer, arg1: integer, arg2: integer): void
-public "isSuccess"(): boolean
+public "hasTerrain"(): boolean
 public "getRed"(arg0: integer, arg1: integer, arg2: integer): integer
 public "getGreen"(arg0: integer, arg1: integer, arg2: integer): integer
 public "getBlue"(arg0: integer, arg1: integer, arg2: integer): integer
-public "recycle"(): void
+public "isSuccess"(): boolean
 public "setSuccess"(arg0: boolean): void
-public "hasTerrain"(): boolean
+public "recycle"(): void
 get "x"(): integer
 get "hasSomething"(): boolean
 set "wasTransfered"(value: boolean)
@@ -6016,9 +5990,9 @@ get "highlights"(): (integer)[]
 set "highlights"(value: (integer)[])
 set "highlightVersion"(value: integer)
 get "slimeChunk"(): boolean
-get "wasTransfered"(): boolean
-get "chunkGrid"(): boolean
 get "z"(): integer
+get "chunkGrid"(): boolean
+get "wasTransfered"(): boolean
 get "success"(): boolean
 set "success"(value: boolean)
 }
@@ -6225,36 +6199,6 @@ constructor(arg0: $HudMod$Type, arg1: $MinimapSession$Type, arg2: $XaeroPath$Typ
  * 
  * @deprecated
  */
-public "isIgnoreHeightmaps"(): boolean
-/**
- * 
- * @deprecated
- */
-public "getDimensionType"(arg0: $ResourceKey$Type<($Level$Type)>): $DimensionType
-/**
- * 
- * @deprecated
- */
-public "getRootContainer"(): $WaypointWorldRootContainer
-/**
- * 
- * @deprecated
- */
-public "getSortType"(): $WaypointsSort
-/**
- * 
- * @deprecated
- */
-public "isTeleportationEnabled"(): boolean
-/**
- * 
- * @deprecated
- */
-public "isSortReversed"(): boolean
-/**
- * 
- * @deprecated
- */
 public "setUsingMultiworldDetection"(arg0: boolean): void
 /**
  * 
@@ -6286,6 +6230,46 @@ public "setServerTeleportCommandFormat"(arg0: string): void
  * @deprecated
  */
 public "setServerTeleportCommandRotationFormat"(arg0: string): void
+/**
+ * 
+ * @deprecated
+ */
+public "getRootContainer"(): $WaypointWorldRootContainer
+/**
+ * 
+ * @deprecated
+ */
+public "getDimensionType"(arg0: $ResourceKey$Type<($Level$Type)>): $DimensionType
+/**
+ * 
+ * @deprecated
+ */
+public "isIgnoreHeightmaps"(): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "getSortType"(): $WaypointsSort
+/**
+ * 
+ * @deprecated
+ */
+public "isTeleportationEnabled"(): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "isSortReversed"(): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "loadConfig"(): void
+/**
+ * 
+ * @deprecated
+ */
+public "setIgnoreHeightmaps"(arg0: boolean): void
 /**
  * 
  * @deprecated
@@ -6340,22 +6324,7 @@ public "isIgnoreServerLevelId"(): boolean
  * 
  * @deprecated
  */
-public "setIgnoreHeightmaps"(arg0: boolean): void
-/**
- * 
- * @deprecated
- */
-public "loadConfig"(): void
-/**
- * 
- * @deprecated
- */
 public "saveConfig"(): void
-get "ignoreHeightmaps"(): boolean
-get "rootContainer"(): $WaypointWorldRootContainer
-get "sortType"(): $WaypointsSort
-get "teleportationEnabled"(): boolean
-get "sortReversed"(): boolean
 set "usingMultiworldDetection"(value: boolean)
 get "usingDefaultTeleportCommand"(): boolean
 set "usingDefaultTeleportCommand"(value: boolean)
@@ -6363,12 +6332,17 @@ get "serverTeleportCommandFormat"(): string
 get "serverTeleportCommandRotationFormat"(): string
 set "serverTeleportCommandFormat"(value: string)
 set "serverTeleportCommandRotationFormat"(value: string)
+get "rootContainer"(): $WaypointWorldRootContainer
+get "ignoreHeightmaps"(): boolean
+get "sortType"(): $WaypointsSort
+get "teleportationEnabled"(): boolean
+get "sortReversed"(): boolean
+set "ignoreHeightmaps"(value: boolean)
 get "usingMultiworldDetection"(): boolean
 get "defaultMultiworldId"(): string
 set "defaultMultiworldId"(value: string)
 set "teleportationEnabled"(value: boolean)
 get "ignoreServerLevelId"(): boolean
-set "ignoreHeightmaps"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

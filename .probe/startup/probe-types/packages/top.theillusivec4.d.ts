@@ -41,10 +41,10 @@ export interface $ICurioRenderer {
 }
 
 export namespace $ICurioRenderer {
-function translateIfSneaking(matrixStack: $PoseStack$Type, livingEntity: $LivingEntity$Type): void
-function rotateIfSneaking(matrixStack: $PoseStack$Type, livingEntity: $LivingEntity$Type): void
-function followHeadRotations(livingEntity: $LivingEntity$Type, ...renderers: ($ModelPart$Type)[]): void
 function followBodyRotations(livingEntity: $LivingEntity$Type, ...models: ($HumanoidModel$Type<($LivingEntity$Type)>)[]): void
+function followHeadRotations(livingEntity: $LivingEntity$Type, ...renderers: ($ModelPart$Type)[]): void
+function rotateIfSneaking(matrixStack: $PoseStack$Type, livingEntity: $LivingEntity$Type): void
+function translateIfSneaking(matrixStack: $PoseStack$Type, livingEntity: $LivingEntity$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -72,6 +72,7 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ICurioStacksHandler {
 
+ "getIdentifier"(): string
  "getModifiers"(): $Map<($UUID), ($AttributeModifier)>
  "update"(): void
 /**
@@ -79,14 +80,17 @@ export interface $ICurioStacksHandler {
  * @deprecated
  */
  "grow"(arg0: integer): void
- "getIdentifier"(): string
+ "serializeNBT"(): $CompoundTag
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "removeModifier"(arg0: $UUID$Type): void
+ "clearModifiers"(): void
  "getDropRule"(): $ICurio$DropRule
  "hasCosmetic"(): boolean
  "canToggleRendering"(): boolean
- "removeModifier"(arg0: $UUID$Type): void
- "clearModifiers"(): void
- "serializeNBT"(): $CompoundTag
- "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "getSlots"(): integer
+ "addTransientModifier"(arg0: $AttributeModifier$Type): void
+ "getCachedModifiers"(): $Set<($AttributeModifier)>
+ "clearCachedModifiers"(): void
  "getCosmeticStacks"(): $IDynamicStackHandler
  "getPermanentModifiers"(): $Set<($AttributeModifier)>
  "getModifiersByOperation"(arg0: $AttributeModifier$Operation$Type): $Collection<($AttributeModifier)>
@@ -98,15 +102,11 @@ export interface $ICurioStacksHandler {
  * @deprecated
  */
  "getSizeShift"(): integer
- "clearCachedModifiers"(): void
- "getCachedModifiers"(): $Set<($AttributeModifier)>
- "addTransientModifier"(arg0: $AttributeModifier$Type): void
 /**
  * 
  * @deprecated
  */
  "shrink"(arg0: integer): void
- "getSlots"(): integer
  "getSyncTag"(): $CompoundTag
  "isVisible"(): boolean
  "getStacks"(): $IDynamicStackHandler
@@ -145,13 +145,13 @@ public "hashCode"(): integer
  */
 public "getSoundEvent"(): $SoundEvent
 public "volume"(): float
+public "soundEvent"(): $SoundEvent
 /**
  * 
  * @deprecated
  */
 public "getPitch"(): float
 public "pitch"(): float
-public "soundEvent"(): $SoundEvent
 /**
  * 
  * @deprecated
@@ -178,9 +178,13 @@ export class $SlotContext extends $Record {
 
 constructor(identifier: string, entity: $LivingEntity$Type, index: integer, cosmetic: boolean, visible: boolean)
 
-public "identifier"(): string
 public "visible"(): boolean
-public "entity"(): $LivingEntity
+/**
+ * 
+ * @deprecated
+ */
+public "getIdentifier"(): string
+public "identifier"(): string
 public "index"(): integer
 public "equals"(o: any): boolean
 public "toString"(): string
@@ -190,11 +194,7 @@ public "hashCode"(): integer
  * @deprecated
  */
 public "getIndex"(): integer
-/**
- * 
- * @deprecated
- */
-public "getIdentifier"(): string
+public "entity"(): $LivingEntity
 /**
  * 
  * @deprecated
@@ -276,8 +276,8 @@ import {$ListTag, $ListTag$Type} from "packages/net/minecraft/nbt/$ListTag"
 import {$Tag, $Tag$Type} from "packages/net/minecraft/nbt/$Tag"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$DamageSource, $DamageSource$Type} from "packages/net/minecraft/world/damagesource/$DamageSource"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$IItemHandlerModifiable, $IItemHandlerModifiable$Type} from "packages/net/minecraftforge/items/$IItemHandlerModifiable"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
@@ -296,6 +296,15 @@ export interface $ICuriosItemHandler {
 
  "getModifiers"(): $Multimap<(string), ($AttributeModifier)>
  "reset"(): void
+ "getLootingLevel"(arg0: $DamageSource$Type, arg1: $LivingEntity$Type, arg2: integer): integer
+ "clearSlotModifiers"(): void
+ "addTransientSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
+ "clearCachedSlotModifiers"(): void
+ "removeSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
+ "getEquippedCurios"(): $IItemHandlerModifiable
+ "setEquippedCurio"(arg0: string, arg1: integer, arg2: $ItemStack$Type): void
+ "findFirstCurio"(arg0: $Predicate$Type<($ItemStack$Type)>): $Optional<($SlotResult)>
+ "findFirstCurio"(arg0: $Item$Type): $Optional<($SlotResult)>
  "getVisibleSlots"(): integer
  "getStacksHandler"(arg0: string): $Optional<($ICurioStacksHandler)>
  "loseInvalidStack"(arg0: $ItemStack$Type): void
@@ -333,10 +342,6 @@ export interface $ICuriosItemHandler {
  * @deprecated
  */
  "setEnchantmentBonuses"(fortuneAndLooting: $Tuple$Type<(integer), (integer)>): void
- "getEquippedCurios"(): $IItemHandlerModifiable
- "setEquippedCurio"(arg0: string, arg1: integer, arg2: $ItemStack$Type): void
- "findFirstCurio"(arg0: $Item$Type): $Optional<($SlotResult)>
- "findFirstCurio"(arg0: $Predicate$Type<($ItemStack$Type)>): $Optional<($SlotResult)>
 /**
  * 
  * @deprecated
@@ -357,23 +362,18 @@ export interface $ICuriosItemHandler {
  * @deprecated
  */
  "lockSlotType"(identifier: string): void
- "addTransientSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
- "removeSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
- "clearSlotModifiers"(): void
- "clearCachedSlotModifiers"(): void
- "getLootingLevel"(arg0: $DamageSource$Type, arg1: $LivingEntity$Type, arg2: integer): integer
  "getSlots"(): integer
  "isEquipped"(filter: $Predicate$Type<($ItemStack$Type)>): boolean
  "isEquipped"(item: $Item$Type): boolean
- "getCurios"(): $Map<(string), ($ICurioStacksHandler)>
  "findCurios"(arg0: $Item$Type): $List<($SlotResult)>
- "findCurios"(arg0: $Predicate$Type<($ItemStack$Type)>): $List<($SlotResult)>
  "findCurios"(...arg0: (string)[]): $List<($SlotResult)>
+ "findCurios"(arg0: $Predicate$Type<($ItemStack$Type)>): $List<($SlotResult)>
  "findCurio"(arg0: string, arg1: integer): $Optional<($SlotResult)>
  "setCurios"(arg0: $Map$Type<(string), ($ICurioStacksHandler$Type)>): void
  "getWearer"(): $LivingEntity
  "writeTag"(): $Tag
  "readTag"(arg0: $Tag$Type): void
+ "getCurios"(): $Map<(string), ($ICurioStacksHandler)>
 }
 
 export namespace $ICuriosItemHandler {
@@ -431,17 +431,15 @@ import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/ite
 export interface $IDynamicStackHandler extends $IItemHandlerModifiable {
 
  "grow"(arg0: integer): void
- "getStackInSlot"(arg0: integer): $ItemStack
- "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
  "serializeNBT"(arg0: $HolderLookup$Provider$Type): $CompoundTag
  "deserializeNBT"(arg0: $HolderLookup$Provider$Type, arg1: $CompoundTag$Type): void
+ "getStackInSlot"(arg0: integer): $ItemStack
+ "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
+ "getSlots"(): integer
  "setPreviousStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
  "getPreviousStackInSlot"(arg0: integer): $ItemStack
  "shrink"(arg0: integer): void
- "getSlots"(): integer
- "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
- "getSlotLimit"(arg0: integer): integer
- "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
+ "getBlock"(level: $Level$Type): $BlockContainerJS
  "isMutable"(): boolean
  "getSlots"(): integer
  "getStackInSlot"(i: integer): $ItemStack
@@ -450,20 +448,22 @@ export interface $IDynamicStackHandler extends $IItemHandlerModifiable {
  "extractItem"(i: integer, i1: integer, b: boolean): $ItemStack
  "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
  "isItemValid"(i: integer, itemStack: $ItemStack$Type): boolean
- "getBlock"(level: $Level$Type): $BlockContainerJS
+ "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
+ "getSlotLimit"(arg0: integer): integer
+ "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
  "kjs$self"(): $IItemHandler
  "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
+ "isEmpty"(): boolean
  "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
  "getWidth"(): integer
  "getHeight"(): integer
  "setChanged"(): void
  "asContainer"(): $Container
- "countNonEmpty"(): integer
  "countNonEmpty"(ingredient: $Ingredient$Type): integer
+ "countNonEmpty"(): integer
  "getAllItems"(): $List<($ItemStack)>
- "isEmpty"(): boolean
- "clear"(): void
  "clear"(ingredient: $Ingredient$Type): void
+ "clear"(): void
  "find"(ingredient: $Ingredient$Type): integer
  "find"(): integer
  "count"(ingredient: $Ingredient$Type): integer
@@ -505,6 +505,20 @@ import {$AttributeModifier, $AttributeModifier$Type} from "packages/net/minecraf
 export interface $ICurio {
 
  "getStack"(): $ItemStack
+ "getLootingLevel"(slotContext: $SlotContext$Type, source: $DamageSource$Type, target: $LivingEntity$Type, baseLooting: integer): integer
+ "makesPiglinsNeutral"(slotContext: $SlotContext$Type): boolean
+ "isEnderMask"(slotContext: $SlotContext$Type, enderMan: $EnderMan$Type): boolean
+ "canWalkOnPowderedSnow"(slotContext: $SlotContext$Type): boolean
+ "getDropRule"(slotContext: $SlotContext$Type, source: $DamageSource$Type, lootingLevel: integer, recentlyHit: boolean): $ICurio$DropRule
+/**
+ * 
+ * @deprecated
+ */
+ "getDropRule"(livingEntity: $LivingEntity$Type): $ICurio$DropRule
+ "onEquipFromUse"(slotContext: $SlotContext$Type): void
+ "getEquipSound"(slotContext: $SlotContext$Type): $ICurio$SoundInfo
+ "canEquipFromUse"(slotContext: $SlotContext$Type): boolean
+ "getAttributesTooltip"(tooltips: $List$Type<($Component$Type)>): $List<($Component)>
  "getFortuneLevel"(slotContext: $SlotContext$Type, lootContext: $LootContext$Type): integer
 /**
  * 
@@ -516,32 +530,12 @@ export interface $ICurio {
  * @deprecated
  */
  "getLootingBonus"(identifier: string, livingEntity: $LivingEntity$Type, curio: $ItemStack$Type, index: integer): integer
- "getDropRule"(slotContext: $SlotContext$Type, source: $DamageSource$Type, lootingLevel: integer, recentlyHit: boolean): $ICurio$DropRule
-/**
- * 
- * @deprecated
- */
- "getDropRule"(livingEntity: $LivingEntity$Type): $ICurio$DropRule
- "onEquipFromUse"(slotContext: $SlotContext$Type): void
- "getEquipSound"(slotContext: $SlotContext$Type): $ICurio$SoundInfo
- "canEquipFromUse"(slotContext: $SlotContext$Type): boolean
- "getAttributesTooltip"(tooltips: $List$Type<($Component$Type)>): $List<($Component)>
- "getLootingLevel"(slotContext: $SlotContext$Type, source: $DamageSource$Type, target: $LivingEntity$Type, baseLooting: integer): integer
- "makesPiglinsNeutral"(slotContext: $SlotContext$Type): boolean
- "isEnderMask"(slotContext: $SlotContext$Type, enderMan: $EnderMan$Type): boolean
- "canWalkOnPowderedSnow"(slotContext: $SlotContext$Type): boolean
 /**
  * 
  * @deprecated
  */
  "getAttributeModifiers"(identifier: string): $Multimap<($Attribute), ($AttributeModifier)>
  "getAttributeModifiers"(slotContext: $SlotContext$Type, uuid: $UUID$Type): $Multimap<($Attribute), ($AttributeModifier)>
- "getSlotsTooltip"(tooltips: $List$Type<($Component$Type)>): $List<($Component)>
-/**
- * 
- * @deprecated
- */
- "getTagsTooltip"(tagTooltips: $List$Type<($Component$Type)>): $List<($Component)>
 /**
  * 
  * @deprecated
@@ -558,12 +552,12 @@ export interface $ICurio {
  * @deprecated
  */
  "writeSyncData"(): $CompoundTag
- "readSyncData"(slotContext: $SlotContext$Type, compound: $CompoundTag$Type): void
 /**
  * 
  * @deprecated
  */
  "readSyncData"(compound: $CompoundTag$Type): void
+ "readSyncData"(slotContext: $SlotContext$Type, compound: $CompoundTag$Type): void
 /**
  * 
  * @deprecated
@@ -574,12 +568,24 @@ export interface $ICurio {
  * @deprecated
  */
  "curioAnimate"(identifier: string, index: integer, livingEntity: $LivingEntity$Type): void
- "canEquip"(slotContext: $SlotContext$Type): boolean
+ "getSlotsTooltip"(tooltips: $List$Type<($Component$Type)>): $List<($Component)>
+/**
+ * 
+ * @deprecated
+ */
+ "getTagsTooltip"(tagTooltips: $List$Type<($Component$Type)>): $List<($Component)>
 /**
  * 
  * @deprecated
  */
  "canEquip"(identifier: string, livingEntity: $LivingEntity$Type): boolean
+ "canEquip"(slotContext: $SlotContext$Type): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "canUnequip"(identifier: string, livingEntity: $LivingEntity$Type): boolean
+ "canUnequip"(slotContext: $SlotContext$Type): boolean
  "onEquip"(slotContext: $SlotContext$Type, prevStack: $ItemStack$Type): void
 /**
  * 
@@ -596,26 +602,20 @@ export interface $ICurio {
  * 
  * @deprecated
  */
- "canUnequip"(identifier: string, livingEntity: $LivingEntity$Type): boolean
- "canUnequip"(slotContext: $SlotContext$Type): boolean
- "curioTick"(slotContext: $SlotContext$Type): void
-/**
- * 
- * @deprecated
- */
  "curioTick"(identifier: string, index: integer, livingEntity: $LivingEntity$Type): void
+ "curioTick"(slotContext: $SlotContext$Type): void
  "curioBreak"(slotContext: $SlotContext$Type): void
 /**
  * 
  * @deprecated
  */
  "curioBreak"(stack: $ItemStack$Type, livingEntity: $LivingEntity$Type): void
- "canSync"(slotContext: $SlotContext$Type): boolean
 /**
  * 
  * @deprecated
  */
  "canSync"(identifier: string, index: integer, livingEntity: $LivingEntity$Type): boolean
+ "canSync"(slotContext: $SlotContext$Type): boolean
 
 (): $ItemStack
 }

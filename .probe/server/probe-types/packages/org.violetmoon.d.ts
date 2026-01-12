@@ -1,5 +1,6 @@
 declare module "packages/org/violetmoon/zeta/block/$ZetaDoorBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -28,8 +29,8 @@ import {$ZetaModule, $ZetaModule$Type} from "packages/org/violetmoon/zeta/module
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IZetaBlock, $IZetaBlock$Type} from "packages/org/violetmoon/zeta/block/$IZetaBlock"
 import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
-import {$BlockItem, $BlockItem$Type} from "packages/net/minecraft/world/item/$BlockItem"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$BlockItem, $BlockItem$Type} from "packages/net/minecraft/world/item/$BlockItem"
 import {$EnumProperty, $EnumProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$EnumProperty"
 import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
 import {$DoorBlock, $DoorBlock$Type} from "packages/net/minecraft/world/level/block/$DoorBlock"
@@ -90,9 +91,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockSetType$Type, arg1: string, arg2: $ZetaModule$Type, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "provideItemBlock"(arg0: $Block$Type, arg1: $Item$Properties$Type): $BlockItem
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -106,14 +104,18 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaDoorBlock
+public "doesConditionApply"(): boolean
+public "provideItemBlock"(arg0: $Block$Type, arg1: $Item$Properties$Type): $BlockItem
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -129,11 +131,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -185,9 +188,9 @@ readonly "canRepair": boolean
 constructor(arg0: $ZetaModule$Type)
 
 public static "isSlimeChunk"(arg0: $ServerLevel$Type, arg1: integer, arg2: integer): boolean
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 }
@@ -309,14 +312,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $ArmorMaterial$Type, arg1: $ArmorItem$Type$Type, arg2: $Item$Properties$Type)
 
-public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
-public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
-public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
 public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
+public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "isRepairable"(arg0: $ItemStack$Type): boolean
+public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
+public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
+public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
 public "getEnchantmentValue"(arg0: $ItemStack$Type): integer
@@ -324,7 +328,6 @@ public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Typ
 public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
 public "isEnderMask"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $EnderMan$Type): boolean
 public "getDefaultTooltipHideFlags"(arg0: $ItemStack$Type): integer
-public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "damageItem"(arg0: $ItemStack$Type, arg1: integer, arg2: $LivingEntity$Type, arg3: $Consumer$Type<(any)>): integer
 public "canEquip"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
@@ -379,6 +382,7 @@ static "INSTANCE": $FlagIngredient$Serializer
 
 constructor(cfm: $ConfigFlagManager$Type)
 
+public "parse"(arg0: $FriendlyByteBuf$Type): $FlagIngredient
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -432,8 +436,8 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
@@ -503,7 +507,7 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -514,7 +518,7 @@ public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -631,9 +635,9 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $ZetaModule$Type)
 
 public "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
-public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -763,9 +767,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -883,14 +887,14 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: boolean)
 
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -959,17 +963,17 @@ export interface $CustomWeatheringCopper extends $WeatheringCopper {
  "getFirst"(arg0: $BlockState$Type): $BlockState
  "getNext"(arg0: $BlockState$Type): $Optional<($BlockState)>
  "getChanceModifier"(): float
+ "applyChangeOverTime"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
  "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
  "getAge"(): $WeatheringCopper$WeatherState
- "applyChangeOverTime"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 
 (arg0: $BlockState$Type): $Optional<($BlockState)>
 }
 
 export namespace $CustomWeatheringCopper {
-function getNext(arg0: $Block$Type): $Optional<($Block)>
 function getPrevious(arg0: $Block$Type): $Optional<($Block)>
 function getFirst(arg0: $Block$Type): $Block
+function getNext(arg0: $Block$Type): $Optional<($Block)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1108,19 +1112,19 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $Block$Type, arg1: $ZetaModule$Type)
 
 public "getAge"(): $WeatheringCopper$WeatherState
-public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
-public "getPrevious"(arg0: $BlockState$Type): $Optional<($BlockState)>
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getPrevious"(arg0: $BlockState$Type): $Optional<($BlockState)>
+public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
 public "getFirst"(arg0: $BlockState$Type): $BlockState
 public "getNext"(arg0: $BlockState$Type): $Optional<($BlockState)>
-public static "getNext"(arg0: $Block$Type): $Optional<($Block)>
 public static "getPrevious"(arg0: $Block$Type): $Optional<($Block)>
 public static "getFirst"(arg0: $Block$Type): $Block
 public "getChanceModifier"(): float
+public static "getNext"(arg0: $Block$Type): $Optional<($Block)>
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "applyChangeOverTime"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -1268,6 +1272,7 @@ export type $IZetaMessage_ = $IZetaMessage$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaWallHangingSignBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -1349,8 +1354,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $WoodType$Type, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -1364,14 +1367,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaWallHangingSignBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -1387,11 +1393,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -1419,16 +1426,16 @@ export class $ZetaLoadModuleAnnotationData extends $Record {
 constructor(clazz: $Class$Type<(any)>, category: string, name: string, description: string, antiOverlap: (string)[], enabledByDefault: boolean, clientReplacement: boolean, loadPhase: integer)
 
 public "description"(): string
+public "category"(): string
 public "clazz"(): $Class<(any)>
 public "name"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "category"(): string
+public static "fromAnnotation"(arg0: $Class$Type<(any)>, arg1: $ZetaLoadModule$Type): $ZetaLoadModuleAnnotationData
+public "enabledByDefault"(): boolean
 public "clientReplacement"(): boolean
 public "antiOverlap"(): (string)[]
-public "enabledByDefault"(): boolean
-public static "fromAnnotation"(arg0: $Class$Type<(any)>, arg1: $ZetaLoadModule$Type): $ZetaLoadModuleAnnotationData
 public static "fromForgeThing"(arg0: $Class$Type<(any)>, arg1: $Map$Type<(string), (any)>): $ZetaLoadModuleAnnotationData
 public "loadPhase"(): integer
 }
@@ -1553,12 +1560,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
-public "provideItemBlock"(arg0: $Block$Type, arg1: $Item$Properties$Type): $BlockItem
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "provideItemBlock"(arg0: $Block$Type, arg1: $Item$Properties$Type): $BlockItem
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -1566,6 +1571,8 @@ public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "pullDown"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
 public "pullUp"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
@@ -1720,9 +1727,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $AbstractTreeGrower$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaSaplingBlock
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -1736,14 +1740,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaSaplingBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -1759,9 +1766,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -1892,24 +1899,25 @@ export class $SimpleInventoryBlockEntity extends $ZetaBlockEntity implements $Wo
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "inventoryChanged"(arg0: integer): void
 public "writeSharedNBT"(arg0: $CompoundTag$Type): void
 public "readSharedNBT"(arg0: $CompoundTag$Type): void
 public "isAutomationEnabled"(): boolean
-public "inventoryChanged"(arg0: integer): void
-public "stopOpen"(arg0: $Player$Type): void
-public "startOpen"(arg0: $Player$Type): void
-public "stillValid"(arg0: $Player$Type): boolean
-public "getMaxStackSize"(): integer
-public "canPlaceItem"(arg0: integer, arg1: $ItemStack$Type): boolean
-public "setItem"(arg0: integer, arg1: $ItemStack$Type): void
+public "getItem"(arg0: integer): $ItemStack
+public "removeItemNoUpdate"(arg0: integer): $ItemStack
 public "removeItem"(arg0: integer, arg1: integer): $ItemStack
 public "isEmpty"(): boolean
 public "clearContent"(): void
+public "setItem"(arg0: integer, arg1: $ItemStack$Type): void
 public "getSlotsForFace"(arg0: $Direction$Type): (integer)[]
 public "canPlaceItemThroughFace"(arg0: integer, arg1: $ItemStack$Type, arg2: $Direction$Type): boolean
 public "canTakeItemThroughFace"(arg0: integer, arg1: $ItemStack$Type, arg2: $Direction$Type): boolean
-public "getItem"(arg0: integer): $ItemStack
-public "removeItemNoUpdate"(arg0: integer): $ItemStack
+public "getMaxStackSize"(): integer
+public "stillValid"(arg0: $Player$Type): boolean
+public "startOpen"(arg0: $Player$Type): void
+public "stopOpen"(arg0: $Player$Type): void
+public "canPlaceItem"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "getBlock"(level: $Level$Type): $BlockContainerJS
 public "isMutable"(): boolean
 public "getSlots"(): integer
 public "getStackInSlot"(slot: integer): $ItemStack
@@ -1922,9 +1930,9 @@ public "getWidth"(): integer
 public "getHeight"(): integer
 public "setChanged"(): void
 public "asContainer"(): $Container
-public "getBlock"(level: $Level$Type): $BlockContainerJS
-public "setChanged"(): void
 public "kjs$self"(): $Container
+public "setChanged"(): void
+public "getContainerSize"(): integer
 public "canTakeItem"(arg0: $Container$Type, arg1: integer, arg2: $ItemStack$Type): boolean
 public "countItem"(arg0: $Item$Type): integer
 public "hasAnyOf"(arg0: $Set$Type<($Item$Type)>): boolean
@@ -1932,13 +1940,12 @@ public "hasAnyMatching"(arg0: $Predicate$Type<($ItemStack$Type)>): boolean
 public static "stillValidBlockEntity"(arg0: $BlockEntity$Type, arg1: $Player$Type): boolean
 public static "stillValidBlockEntity"(arg0: $BlockEntity$Type, arg1: $Player$Type, arg2: integer): boolean
 public "clear"(): void
-public "getContainerSize"(): integer
 public static "tryClear"(arg0: any): void
-public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
-public "countNonEmpty"(): integer
-public "countNonEmpty"(ingredient: $Ingredient$Type): integer
-public "getAllItems"(): $List<($ItemStack)>
 public "isEmpty"(): boolean
+public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
+public "countNonEmpty"(ingredient: $Ingredient$Type): integer
+public "countNonEmpty"(): integer
+public "getAllItems"(): $List<($ItemStack)>
 public "clear"(ingredient: $Ingredient$Type): void
 public "find"(ingredient: $Ingredient$Type): integer
 public "find"(): integer
@@ -1946,15 +1953,15 @@ public "count"(ingredient: $Ingredient$Type): integer
 public "count"(): integer
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "automationEnabled"(): boolean
-get "maxStackSize"(): integer
 get "empty"(): boolean
+get "maxStackSize"(): integer
 get "mutable"(): boolean
 get "slots"(): integer
 get "width"(): integer
 get "height"(): integer
 get "containerSize"(): integer
-get "allItems"(): $List<($ItemStack)>
 get "empty"(): boolean
+get "allItems"(): $List<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2013,14 +2020,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
-public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
-public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
 public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
+public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "isRepairable"(arg0: $ItemStack$Type): boolean
+public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
+public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
+public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
 public "getEnchantmentValue"(arg0: $ItemStack$Type): integer
@@ -2028,7 +2036,6 @@ public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Typ
 public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
 public "isEnderMask"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $EnderMan$Type): boolean
 public "getDefaultTooltipHideFlags"(arg0: $ItemStack$Type): integer
-public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "damageItem"(arg0: $ItemStack$Type, arg1: integer, arg2: $LivingEntity$Type, arg3: $Consumer$Type<(any)>): integer
 public "canEquip"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
@@ -2052,8 +2059,8 @@ public "canApplyAtEnchantingTableZeta"(arg0: $ItemStack$Type, arg1: $Enchantment
 public "shouldCauseReequipAnimationZeta"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "getDefaultTooltipHideFlagsZeta"(arg0: $ItemStack$Type): integer
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -2071,6 +2078,7 @@ export type $ZetaBlockItem_ = $ZetaBlockItem$Type;
 declare module "packages/org/violetmoon/zeta/block/$ZetaStairsBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
 import {$StairsShape, $StairsShape$Type} from "packages/net/minecraft/world/level/block/state/properties/$StairsShape"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -2162,12 +2170,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $IZetaBlock$Type, arg1: $ResourceKey$Type<($CreativeModeTab$Type)>)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "getBlockColorProviderName"(): string
-public "getItemColorProviderName"(): string
-public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -2181,14 +2183,21 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
-public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaStairsBlock
+public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "doesConditionApply"(): boolean
+public "getBlockColorProviderName"(): string
+public "getItemColorProviderName"(): string
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
+public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
-public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
+public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -2202,11 +2211,12 @@ public "isScaffoldingZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2
 public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "blockColorProviderName"(): string
 get "itemColorProviderName"(): string
 get "block"(): $Block
@@ -2227,6 +2237,7 @@ export type $ZetaStairsBlock_ = $ZetaStairsBlock$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaTrapdoorBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -2315,9 +2326,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockSetType$Type, arg1: string, arg2: $ZetaModule$Type, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -2331,14 +2339,18 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaTrapdoorBlock
+public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
 public "isConduitFrameZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
@@ -2353,11 +2365,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -2437,8 +2450,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -2533,21 +2546,21 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $ZetaModule$Type)
 
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
+public "crawlHeight"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): double
 public "acceptsFluid"(arg0: $Fluid$Type): boolean
 public "fluidContained"(arg0: $BlockState$Type): $Fluid
-public "crawlHeight"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): double
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "hasDynamicShape"(): boolean
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "hasDynamicShape"(): boolean
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "isLog"(arg0: $ServerPlayer$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "withFluid"(arg0: $BlockState$Type, arg1: $Fluid$Type): $BlockState
 public "canCrawl"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "withFluid"(arg0: $BlockState$Type, arg1: $Fluid$Type): $BlockState
 public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -2681,10 +2694,11 @@ constructor(arg0: $ZetaModule$Type)
 
 public static "getCount"(arg0: $ItemStack$Type): integer
 public static "getContents"(arg0: $ItemStack$Type): $SeedPouchItem$PouchContents
+public "appendItemsToCreativeTab"(): $List<($ItemStack)>
+public static "mutateContents"<T>(arg0: $ItemStack$Type, arg1: $Function$Type<($SeedPouchItem$PouchContents$Type), (T)>): T
 public "getUsageTickerItem"(arg0: $ItemStack$Type): $ItemStack
 public "getUsageTickerCountForItem"(arg0: $ItemStack$Type, arg1: $Predicate$Type<($ItemStack$Type)>): integer
-public static "mutateContents"<T>(arg0: $ItemStack$Type, arg1: $Function$Type<($SeedPouchItem$PouchContents$Type), (T)>): T
-public "appendItemsToCreativeTab"(): $List<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "isBarVisible"(arg0: $ItemStack$Type): boolean
 public "getBarWidth"(arg0: $ItemStack$Type): integer
 public "getBarColor"(arg0: $ItemStack$Type): integer
@@ -2693,7 +2707,6 @@ public "overrideOtherStackedOnMe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, 
 public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
 public "getName"(arg0: $ItemStack$Type): $Component
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "shouldUsageTickerCheckMatchSize"(arg0: $ItemStack$Type): boolean
 public "canBeTroweled"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): boolean
 public "asItem"(): $Item
@@ -2730,8 +2743,8 @@ import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$DyeColor, $DyeColor$Type} from "packages/net/minecraft/world/item/$DyeColor"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ZetaBlock, $ZetaBlock$Type} from "packages/org/violetmoon/zeta/block/$ZetaBlock"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -2792,10 +2805,7 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $ZetaModule$Type, arg1: $DyeColor$Type)
 
 public "blockClicked"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
-public "updateEntityAfterFallOn"(arg0: $BlockGetter$Type, arg1: $Entity$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -2803,7 +2813,10 @@ public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "updateEntityAfterFallOn"(arg0: $BlockGetter$Type, arg1: $Entity$Type): void
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -2946,13 +2959,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $CorundumBlock$Type)
 
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -3052,9 +3065,9 @@ readonly "canRepair": boolean
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $Item$Properties$Type)
 
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "isFoil"(arg0: $ItemStack$Type): boolean
 public "getRarity"(arg0: $ItemStack$Type): $Rarity
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 }
@@ -3186,9 +3199,7 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $ZetaModule$Type)
 
 public "provideItemBlock"(arg0: $Block$Type, arg1: $Item$Properties$Type): $BlockItem
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -3198,7 +3209,9 @@ public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "isAngry"(arg0: $ItemStack$Type): boolean
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
@@ -3308,11 +3321,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $Supplier$Type<($Block$Type)>, arg1: $BlockBehaviour$Properties$Type)
 
-public "getBlockColorProviderName"(): string
-public "getItemColorProviderName"(): string
-public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -3326,9 +3334,13 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
-public "getBurnTimeInTicksWhenWooden"(): integer
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "getBlockColorProviderName"(): string
+public "getItemColorProviderName"(): string
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "getBurnTimeInTicksWhenWooden"(): integer
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
@@ -3339,6 +3351,7 @@ public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -3555,17 +3568,17 @@ readonly "canRepair": boolean
  "renderProperties": any
  "moonlight$clientAnimationProvider": any
 
-constructor(arg0: $ZetaModule$Type, arg1: $Item$Properties$Type)
 constructor(arg0: $ZetaModule$Type)
+constructor(arg0: $ZetaModule$Type, arg1: $Item$Properties$Type)
 
-public "getTarget"(arg0: $ItemStack$Type): $ResourceLocation
 public "createMap"(arg0: $ServerLevel$Type, arg1: $BlockPos$Type, arg2: $ResourceLocation$Type, arg3: $ItemStack$Type): $ItemStack
+public "getTarget"(arg0: $ItemStack$Type): $ResourceLocation
 public static "getTargetBiome"(arg0: $ItemStack$Type): $ResourceLocation
 public "shouldCauseReequipAnimationZeta"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "appendItemsToCreativeTab"(): $List<($ItemStack)>
 public static "getActiveQuill"(arg0: $Player$Type): $ItemStack
 public static "getSearchingComponent"(): $MutableComponent
 public static "getOverlayColor"(arg0: $ItemStack$Type): integer
-public "appendItemsToCreativeTab"(): $List<($ItemStack)>
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
@@ -3671,8 +3684,8 @@ constructor(arg0: $ZetaModule$Type)
 public "getMaxDamageZeta"(arg0: $ItemStack$Type): integer
 public "getUsageTickerItem"(arg0: $ItemStack$Type): $ItemStack
 public static "getLastStack"(arg0: $ItemStack$Type): $ItemStack
-public "canBeDepleted"(): boolean
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "canBeDepleted"(): boolean
 public "shouldUsageTickerCheckMatchSize"(arg0: $ItemStack$Type): boolean
 public "getUsageTickerCountForItem"(arg0: $ItemStack$Type, arg1: $Predicate$Type<($ItemStack$Type)>): integer
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -3738,6 +3751,7 @@ export type $BottledCloudItem_ = $BottledCloudItem$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaButtonBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -3837,8 +3851,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockSetType$Type, arg1: integer, arg2: boolean, arg3: string, arg4: $ZetaModule$Type, arg5: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -3852,14 +3864,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaButtonBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -3875,11 +3890,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -4066,8 +4082,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $MapColor$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -4081,14 +4095,16 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -4104,9 +4120,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 get "block"(): $Block
@@ -4139,8 +4155,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ZetaBlock, $ZetaBlock$Type} from "packages/org/violetmoon/zeta/block/$ZetaBlock"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -4197,14 +4213,14 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $MenuProvider
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -4286,10 +4302,10 @@ constructor(arg0: $ZetaModule$Type)
 
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "allowsFullConnection"(arg0: $PipeBlockEntity$ConnectionType$Type): boolean
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "skipRendering"(arg0: $BlockState$Type, arg1: $BlockState$Type, arg2: $Direction$Type): boolean
 public "getShadeBrightness"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): float
-public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -4322,8 +4338,8 @@ constructor(arg0: string, arg1: $Item$Type)
 constructor(arg0: string, arg1: $Item$Type, arg2: string)
 
 public "toString"(): string
-public "getDisabledTooltip"(): $Component
 public static "unknownCategory"(arg0: string): $ZetaCategory
+public "getDisabledTooltip"(): $Component
 public "requiredModsLoaded"(): boolean
 public "isAddon"(): boolean
 get "disabledTooltip"(): $Component
@@ -4398,14 +4414,14 @@ readonly "canRepair": boolean
 constructor(arg0: $Supplier$Type<(any)>, arg1: $Supplier$Type<(any)>, arg2: $Supplier$Type<(any)>, arg3: string, arg4: $ZetaModule$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaMobBucketItem
+public "doesConditionApply"(): boolean
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
 get "item"(): $Item
@@ -4431,11 +4447,11 @@ import {$Class, $Class$Type} from "packages/java/lang/$Class"
 export interface $ZetaLoadModule extends $Annotation {
 
  "description"(): string
- "name"(): string
  "category"(): string
+ "name"(): string
+ "enabledByDefault"(): boolean
  "clientReplacement"(): boolean
  "antiOverlap"(): (string)[]
- "enabledByDefault"(): boolean
  "loadPhase"(): integer
  "equals"(arg0: any): boolean
  "toString"(): string
@@ -4566,6 +4582,7 @@ export type $VariantBookshelfBlock_ = $VariantBookshelfBlock$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaWallSignBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -4646,8 +4663,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $WoodType$Type, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -4661,14 +4676,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaWallSignBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -4684,11 +4702,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -4787,10 +4806,6 @@ constructor(arg0: string, arg1: $ZetaModule$Type, arg2: boolean)
 
 public static "place"(arg0: $LevelAccessor$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type): boolean
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -4804,13 +4819,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getBlock"(): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -4826,9 +4845,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 get "block"(): $Block
@@ -4980,13 +4999,13 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 export interface $ZetaCapabilityManager {
 
  "register"(arg0: $ZetaCapability$Type<(any)>, arg1: any): $ZetaCapabilityManager
- "hasCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $BlockEntity$Type): boolean
- "hasCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $Level$Type): boolean
- "hasCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $ItemStack$Type): boolean
- "attachCapability"<T>(arg0: any, arg1: $ResourceLocation$Type, arg2: $ZetaCapability$Type<(T)>, arg3: T): void
- "getCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $ItemStack$Type): T
  "getCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $Level$Type): T
  "getCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $BlockEntity$Type): T
+ "getCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $ItemStack$Type): T
+ "attachCapability"<T>(arg0: any, arg1: $ResourceLocation$Type, arg2: $ZetaCapability$Type<(T)>, arg3: T): void
+ "hasCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $ItemStack$Type): boolean
+ "hasCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $BlockEntity$Type): boolean
+ "hasCapability"<T>(arg0: $ZetaCapability$Type<(T)>, arg1: $Level$Type): boolean
 }
 
 export namespace $ZetaCapabilityManager {
@@ -5081,12 +5100,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canCrawl"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -5224,8 +5243,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 
 export interface $ZFurnaceFuelBurnTime extends $IZetaPlayEvent {
 
- "getItemStack"(): $ItemStack
  "setBurnTime"(arg0: integer): void
+ "getItemStack"(): $ItemStack
 }
 
 export namespace $ZFurnaceFuelBurnTime {
@@ -5324,11 +5343,11 @@ export class $Definition$Builder<B extends $Definition$Builder<(B), (T)>, T exte
 
 constructor()
 
+public "hint"(arg0: any): B
+public "build"(): T
 public "name"(arg0: string): B
 public "comment"(arg0: $List$Type<(string)>): B
 public "comment"(arg0: string): B
-public "build"(): T
-public "hint"(arg0: any): B
 public "lowercaseName"(arg0: string): B
 public "englishDisplayName"(arg0: string): B
 }
@@ -5381,14 +5400,14 @@ readonly "canRepair": boolean
 constructor(arg0: $Supplier$Type<($EntityType$Type<(any)>)>, arg1: integer, arg2: integer, arg3: string, arg4: $ZetaModule$Type, arg5: $Item$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaSpawnEggItem
+public "doesConditionApply"(): boolean
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
 get "item"(): $Item
@@ -5588,8 +5607,6 @@ constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $WoodType$Type, arg3: $B
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -5603,14 +5620,16 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -5626,9 +5645,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 get "block"(): $Block
@@ -5747,13 +5766,22 @@ constructor(arg0: $Zeta$Type)
 
 public "register"<T>(arg0: T, arg1: $ResourceLocation$Type, arg2: $ResourceKey$Type<($Registry$Type<(T)>)>): void
 public "register"<T>(arg0: T, arg1: string, arg2: $ResourceKey$Type<($Registry$Type<(T)>)>): void
+public "getRegistryName"<T>(arg0: T, arg1: $Registry$Type<(T)>): $ResourceLocation
+public "registerBlock"(arg0: $Block$Type, arg1: string): void
+public "registerBlock"(arg0: $Block$Type, arg1: string, arg2: boolean): void
+public "registerBlock"(arg0: $Block$Type, arg1: $ResourceLocation$Type): void
+public "registerBlock"(arg0: $Block$Type, arg1: $ResourceLocation$Type, arg2: boolean): void
+public "registerItem"(arg0: $Item$Type, arg1: string): void
+public "registerItem"(arg0: $Item$Type, arg1: $ResourceLocation$Type): void
+public "newResourceLocation"(arg0: string): $ResourceLocation
 public "clearDeferCache"(arg0: $ResourceLocation$Type): void
 public "assignBlockColor"(arg0: string, arg1: $Consumer$Type<($Block$Type)>): void
 public "assignItemColor"(arg0: string, arg1: $Consumer$Type<($Item$Type)>): void
 public "validateColorsProviders"(): void
-public "registerDynamicF"<T>(arg0: $Function$Type<($RegistryOps$RegistryInfoLookup$Type), (T)>, arg1: $ResourceLocation$Type, arg2: $ResourceKey$Type<(any)>): $LateBoundHolder<(T)>
 public "registerDynamicF"<T>(arg0: $Function$Type<($RegistryOps$RegistryInfoLookup$Type), (T)>, arg1: string, arg2: $ResourceKey$Type<(any)>): $LateBoundHolder<(T)>
+public "registerDynamicF"<T>(arg0: $Function$Type<($RegistryOps$RegistryInfoLookup$Type), (T)>, arg1: $ResourceLocation$Type, arg2: $ResourceKey$Type<(any)>): $LateBoundHolder<(T)>
 public "registerDynamicF"<T>(arg0: $Function$Type<($RegistryOps$RegistryInfoLookup$Type), (T)>, arg1: $ResourceKey$Type<(T)>, arg2: $ResourceKey$Type<(any)>): $LateBoundHolder<(T)>
+public "registerDynamic"<T>(arg0: T, arg1: string, arg2: $ResourceKey$Type<(any)>): $Holder$Direct<(T)>
 /**
  * 
  * @deprecated
@@ -5764,17 +5792,8 @@ public "registerDynamic"<T>(arg0: T, arg1: $ResourceKey$Type<(T)>, arg2: $Resour
  * @deprecated
  */
 public "registerDynamic"<T>(arg0: T, arg1: $ResourceLocation$Type, arg2: $ResourceKey$Type<(any)>): $Holder$Direct<(T)>
-public "registerDynamic"<T>(arg0: T, arg1: string, arg2: $ResourceKey$Type<(any)>): $Holder$Direct<(T)>
 public "performDynamicRegistration"<T>(arg0: $RegistryOps$RegistryInfoLookup$Type, arg1: $ResourceKey$Type<(any)>, arg2: $WritableRegistry$Type<(T)>): void
 public "getRegisteredObjects"<O>(arg0: $ResourceKey$Type<($Registry$Type<(O)>)>): $Collection<($Holder<(O)>)>
-public "registerBlock"(arg0: $Block$Type, arg1: $ResourceLocation$Type): void
-public "registerBlock"(arg0: $Block$Type, arg1: string): void
-public "registerBlock"(arg0: $Block$Type, arg1: $ResourceLocation$Type, arg2: boolean): void
-public "registerBlock"(arg0: $Block$Type, arg1: string, arg2: boolean): void
-public "newResourceLocation"(arg0: string): $ResourceLocation
-public "registerItem"(arg0: $Item$Type, arg1: string): void
-public "registerItem"(arg0: $Item$Type, arg1: $ResourceLocation$Type): void
-public "getRegistryName"<T>(arg0: T, arg1: $Registry$Type<(T)>): $ResourceLocation
 public "getDefers"(arg0: $ResourceLocation$Type): $Collection<($Supplier<(any)>)>
 }
 /**
@@ -5860,23 +5879,16 @@ readonly "canRepair": boolean
 constructor(arg0: $ZetaModule$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "onEntityItemUpdateZeta"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
-public "canEquipZeta"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
-public "isBookEnchantableZeta"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public "getArmorTextureZeta"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
-public "getEnchantmentValueZeta"(arg0: $ItemStack$Type): integer
-public "damageItemZeta"<T extends $LivingEntity>(arg0: $ItemStack$Type, arg1: integer, arg2: T, arg3: $Consumer$Type<(T)>): integer
-public "setCondition"(arg0: $BooleanSupplier$Type): $IZetaItem
-public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
-public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
-public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
 public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
+public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "isRepairable"(arg0: $ItemStack$Type): boolean
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
+public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
+public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
 public "getEnchantmentValue"(arg0: $ItemStack$Type): integer
@@ -5884,20 +5896,27 @@ public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Typ
 public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
 public "isEnderMask"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $EnderMan$Type): boolean
 public "getDefaultTooltipHideFlags"(arg0: $ItemStack$Type): integer
-public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $IZetaItem
+public "onEntityItemUpdateZeta"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
+public "canEquipZeta"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
+public "isBookEnchantableZeta"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public "getArmorTextureZeta"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
+public "getEnchantmentValueZeta"(arg0: $ItemStack$Type): integer
+public "damageItemZeta"<T extends $LivingEntity>(arg0: $ItemStack$Type, arg1: integer, arg2: T, arg3: $Consumer$Type<(T)>): integer
+public "doesConditionApply"(): boolean
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "canApplyAtEnchantingTableZeta"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
 public "getDefaultTooltipHideFlagsZeta"(arg0: $ItemStack$Type): integer
-public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public static "doesBackpackHaveItems"(arg0: $ItemStack$Type): boolean
-public "getDisplayName"(): $Component
+public "damageItem"(arg0: $ItemStack$Type, arg1: integer, arg2: $LivingEntity$Type, arg3: $Consumer$Type<(any)>): integer
 public "canBeDepleted"(): boolean
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "isFoil"(arg0: $ItemStack$Type): boolean
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "getDefaultAttributeModifiers"(arg0: $EquipmentSlot$Type): $Multimap<($Attribute), ($AttributeModifier)>
-public "damageItem"(arg0: $ItemStack$Type, arg1: integer, arg2: $LivingEntity$Type, arg3: $Consumer$Type<(any)>): integer
-public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "canEquip"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
+public "getDisplayName"(): $Component
+public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
@@ -5912,9 +5931,9 @@ public "getBurnTimeZeta"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): 
 public "isEnderMaskZeta"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $EnderMan$Type): boolean
 public "canElytraFlyZeta"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
 public "shouldCauseReequipAnimationZeta"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public "shouldCloseCurrentScreen"(): boolean
 public static "dyeArmor"(arg0: $ItemStack$Type, arg1: $List$Type<($DyeItem$Type)>): $ItemStack
 public static "get"(arg0: $ItemStack$Type): $Equipable
@@ -5952,20 +5971,20 @@ export class $ZetaModuleManager {
 
 constructor(arg0: $Zeta$Type)
 
+public "isEnabled"(arg0: $Class$Type<(any)>): boolean
 public "get"<M extends $ZetaModule>(arg0: $Class$Type<(M)>): M
 public "load"(arg0: $ModuleFinder$Type): void
-public "isEnabled"(arg0: $Class$Type<(any)>): boolean
-public "initCategories"(arg0: $Iterable$Type<($ZetaCategory$Type)>): void
+public "getCategories"(): $Collection<($ZetaCategory)>
 public "modulesInCategory"(arg0: $ZetaCategory$Type): $List<($ZetaModule)>
 public "isEnabledOrOverlapping"(arg0: $Class$Type<(any)>): boolean
 public "getInhabitedCategories"(): $List<($ZetaCategory)>
-public "getCategories"(): $Collection<($ZetaCategory)>
+public "initCategories"(arg0: $Iterable$Type<($ZetaCategory$Type)>): void
 public "getCategory"(arg0: string): $ZetaCategory
 public "getOptional"<M extends $ZetaModule>(arg0: $Class$Type<(M)>): $Optional<(M)>
 public "getModules"(): $Collection<($ZetaModule)>
 public "doFinalize"(): void
-get "inhabitedCategories"(): $List<($ZetaCategory)>
 get "categories"(): $Collection<($ZetaCategory)>
+get "inhabitedCategories"(): $List<($ZetaCategory)>
 get "modules"(): $Collection<($ZetaModule)>
 }
 /**
@@ -6011,14 +6030,14 @@ readonly "canRepair": boolean
 constructor(arg0: string, arg1: $ZetaModule$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaArrowItem
+public "doesConditionApply"(): boolean
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
 get "item"(): $Item
@@ -6121,14 +6140,14 @@ export class $BrewingRegistry {
 constructor(arg0: $Zeta$Type)
 
 public "isEnabled"(arg0: $Potion$Type): boolean
+public "addPotionMix"(arg0: string, arg1: $Supplier$Type<($Ingredient$Type)>, arg2: $MobEffect$Type): void
 public "addPotionMix"(arg0: string, arg1: $Supplier$Type<($Ingredient$Type)>, arg2: $MobEffect$Type, arg3: $MobEffect$Type, arg4: integer, arg5: integer, arg6: integer): void
 public "addPotionMix"(arg0: string, arg1: $Supplier$Type<($Ingredient$Type)>, arg2: $Potion$Type, arg3: $Potion$Type, arg4: $Potion$Type): void
-public "addPotionMix"(arg0: string, arg1: $Supplier$Type<($Ingredient$Type)>, arg2: $MobEffect$Type): void
-public "addPotionMix"(arg0: string, arg1: $Supplier$Type<($Ingredient$Type)>, arg2: $MobEffect$Type, arg3: $MobEffect$Type): void
 public "addPotionMix"(arg0: string, arg1: $Supplier$Type<($Ingredient$Type)>, arg2: $MobEffect$Type, arg3: integer, arg4: integer, arg5: integer): void
+public "addPotionMix"(arg0: string, arg1: $Supplier$Type<($Ingredient$Type)>, arg2: $MobEffect$Type, arg3: $MobEffect$Type): void
 public "addNegation"(arg0: string, arg1: $Potion$Type, arg2: $Potion$Type, arg3: $Potion$Type, arg4: $Potion$Type, arg5: $Potion$Type, arg6: $Potion$Type): void
-public static "redstone"(): $Ingredient
 public static "glowstone"(): $Ingredient
+public static "redstone"(): $Ingredient
 public static "spiderEye"(): $Ingredient
 }
 /**
@@ -6208,8 +6227,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: integer, arg2: $ZetaModule$Type, arg3: $MapColor$Type, arg4: boolean)
 
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -6234,8 +6253,8 @@ import {$ReloadableServerResources, $ReloadableServerResources$Type} from "packa
 
 export interface $ZAddReloadListener extends $IZetaPlayEvent {
 
- "getRegistryAccess"(): $RegistryAccess
  "getServerResources"(): $ReloadableServerResources
+ "getRegistryAccess"(): $RegistryAccess
  "addListener"(arg0: $PreparableReloadListener$Type): void
 }
 
@@ -6265,28 +6284,28 @@ static readonly "TAG_COUNT": string
 constructor()
 
 public "getCount"(): integer
+public "getContents"(): $ItemStack
 public "isEmpty"(): boolean
 public "split"(arg0: integer): $ItemStack
 public "grow"(arg0: integer): void
-public "getContents"(): $ItemStack
-public "setCount"(arg0: integer): void
+public "writeToStack"(arg0: $ItemStack$Type): $ItemStack
+public static "readFromStack"(arg0: $ItemStack$Type): $SeedPouchItem$PouchContents
 public "isFertilizer"(): boolean
 public static "readCountOnlyFromStack"(arg0: $ItemStack$Type): integer
 public "setContents"(arg0: $ItemStack$Type): void
 public "splitOneStack"(): $ItemStack
-public "writeToStack"(arg0: $ItemStack$Type): $ItemStack
-public static "readFromStack"(arg0: $ItemStack$Type): $SeedPouchItem$PouchContents
 public "shrink"(arg0: integer): void
+public "setCount"(arg0: integer): void
 public "absorb"(arg0: $ItemStack$Type): boolean
 public static "mutate"<T>(arg0: $ItemStack$Type, arg1: $Function$Type<($SeedPouchItem$PouchContents$Type), (T)>): T
 public "canFit"(arg0: $ItemStack$Type): boolean
 public "isSeed"(): boolean
 get "count"(): integer
-get "empty"(): boolean
 get "contents"(): $ItemStack
-set "count"(value: integer)
+get "empty"(): boolean
 get "fertilizer"(): boolean
 set "contents"(value: $ItemStack$Type)
+set "count"(value: integer)
 get "seed"(): boolean
 }
 /**
@@ -6391,8 +6410,8 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
@@ -6457,13 +6476,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "triggerEvent"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: integer, arg4: integer): boolean
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -6485,6 +6504,7 @@ export type $MagnetBlock_ = $MagnetBlock$Type;
 declare module "packages/org/violetmoon/zeta/block/$ZetaStandingSignBlock" {
 import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -6561,8 +6581,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $WoodType$Type, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -6576,14 +6594,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaStandingSignBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -6599,11 +6620,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -6663,8 +6685,8 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$ValueDefinition, $ValueDefinition$Type} from "packages/org/violetmoon/zeta/config/$ValueDefinition"
 import {$ConfigFlagManager, $ConfigFlagManager$Type} from "packages/org/violetmoon/zeta/config/$ConfigFlagManager"
 import {$Zeta, $Zeta$Type} from "packages/org/violetmoon/zeta/$Zeta"
-import {$IZetaConfigInternals, $IZetaConfigInternals$Type} from "packages/org/violetmoon/zeta/config/$IZetaConfigInternals"
 import {$SectionDefinition, $SectionDefinition$Type} from "packages/org/violetmoon/zeta/config/$SectionDefinition"
+import {$IZetaConfigInternals, $IZetaConfigInternals$Type} from "packages/org/violetmoon/zeta/config/$IZetaConfigInternals"
 import {$ZetaCategory, $ZetaCategory$Type} from "packages/org/violetmoon/zeta/module/$ZetaCategory"
 import {$ZetaModule, $ZetaModule$Type} from "packages/org/violetmoon/zeta/module/$ZetaModule"
 
@@ -6672,14 +6694,14 @@ export class $ConfigManager {
 
 constructor(arg0: $Zeta$Type, arg1: any)
 
-public "addOnReloadListener"(arg0: string, arg1: $Consumer$Type<($IZetaConfigInternals$Type)>): void
 public "getConfigFlagManager"(): $ConfigFlagManager
 public "getRootConfig"(): $SectionDefinition
+public "addOnReloadListener"(arg0: string, arg1: $Consumer$Type<($IZetaConfigInternals$Type)>): void
+public "isCategoryEnabled"(arg0: $ZetaCategory$Type): boolean
 public "getGeneralSection"(): $SectionDefinition
 public "getCategorySection"(arg0: $ZetaCategory$Type): $SectionDefinition
 public "getCategoryEnabledOption"(arg0: $ZetaCategory$Type): $ValueDefinition<(boolean)>
 public "getModuleEnabledOption"(arg0: $ZetaModule$Type): $ValueDefinition<(boolean)>
-public "isCategoryEnabled"(arg0: $ZetaCategory$Type): boolean
 public "onReload"(): void
 get "configFlagManager"(): $ConfigFlagManager
 get "rootConfig"(): $SectionDefinition
@@ -6808,10 +6830,10 @@ export class $SectionDefinition$Builder extends $Definition$Builder<($SectionDef
 
 constructor()
 
-public "addValue"<T>(arg0: $Consumer$Type<($ValueDefinition$Builder$Type<(T)>)>): $ValueDefinition<(T)>
 public "addValue"(arg0: $ValueDefinition$Type<(any)>): $SectionDefinition$Builder
-public "addSubsection"(arg0: $SectionDefinition$Type): $SectionDefinition$Builder
+public "addValue"<T>(arg0: $Consumer$Type<($ValueDefinition$Builder$Type<(T)>)>): $ValueDefinition<(T)>
 public "addSubsection"(arg0: $Consumer$Type<($SectionDefinition$Builder$Type)>): $SectionDefinition
+public "addSubsection"(arg0: $SectionDefinition$Type): $SectionDefinition$Builder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6836,10 +6858,10 @@ import {$AdvancementModifierRegistry, $AdvancementModifierRegistry$Type} from "p
 
 export interface $ZRegister extends $IZetaLoadEvent {
 
+ "getRegistry"(): $ZetaRegistry
  "getBrewingRegistry"(): $BrewingRegistry
  "getRenderLayerRegistry"(): $RenderLayerRegistry
  "getVariantRegistry"(): $VariantRegistry
- "getRegistry"(): $ZetaRegistry
  "getCraftingExtensionsRegistry"(): $CraftingExtensionsRegistry
  "getAdvancementModifierRegistry"(): $AdvancementModifierRegistry
 }
@@ -7034,8 +7056,8 @@ constructor(arg0: $ZetaModule$Type)
 
 public static "getEnchantedItemStack"(arg0: $Enchantment$Type): $ItemStack
 public "canApplyAtEnchantingTableZeta"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
-public static "getFullTooltipText"(arg0: $Enchantment$Type): $Component
 public "appendItemsToCreativeTab"(): $List<($ItemStack)>
+public static "getFullTooltipText"(arg0: $Enchantment$Type): $Component
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isFoil"(arg0: $ItemStack$Type): boolean
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
@@ -7065,9 +7087,9 @@ export class $AdvancementModifierRegistry {
 
 constructor(arg0: $Zeta$Type)
 
+public "addModifier"(arg0: $IAdvancementModifier$Type): void
 public "registerManualTrigger"(arg0: string): $ManualTrigger
 public "addListeners"(arg0: $ZAddReloadListener$Type): void
-public "addModifier"(arg0: $IAdvancementModifier$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7170,8 +7192,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -7206,10 +7228,10 @@ export interface $IZetaItem extends $IDisableable<($IZetaItem)> {
  "getItem"(): $Item
  "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
  "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
- "getModule"(): $ZetaModule
  "isEnabled"(): boolean
- "doesConditionApply"(): boolean
+ "getModule"(): $ZetaModule
  "setCondition"(arg0: $BooleanSupplier$Type): $IZetaItem
+ "doesConditionApply"(): boolean
 }
 
 export namespace $IZetaItem {
@@ -7313,9 +7335,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type, arg3: $RenderLayerRegistry$Layer$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaPaneBlock
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -7329,14 +7348,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaPaneBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -7352,9 +7374,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -7513,13 +7535,13 @@ constructor(arg0: $Item$Type, arg1: string, arg2: $ZetaModule$Type, arg3: $Block
 
 public "getModule"(): $ZetaModule
 public "doesConditionApply"(): boolean
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -7535,9 +7557,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 get "block"(): $Block
@@ -7717,19 +7739,19 @@ constructor()
 
 public "description"(): string
 public "displayName"(): string
-public "isEnabled"(): boolean
 public "category"(): $ZetaCategory
-public "disabledByOverlap"(): boolean
-public "antiOverlap"(): $List<(string)>
+public "isEnabled"(): boolean
 public "enabledByDefault"(): boolean
 public "postConstruct"(): void
+public "disabledByOverlap"(): boolean
+public "antiOverlap"(): $List<(string)>
 public "ignoreAntiOverlap"(): boolean
 public "addAnnotationHints"(arg0: $ZGatherHints$Type): void
 public "lowerCaseName"(): string
 public "setEnabledByDefault"(arg0: boolean): void
 public "setIgnoreAntiOverlap"(arg0: boolean): void
-public "zeta"(): $Zeta
 public "setEnabled"(arg0: $Zeta$Type, arg1: boolean): void
+public "zeta"(): $Zeta
 get "enabled"(): boolean
 }
 /**
@@ -7745,6 +7767,7 @@ declare global {
 export type $ZetaModule_ = $ZetaModule$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaBlock" {
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -7814,8 +7837,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -7829,14 +7850,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -7852,11 +7876,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -7938,8 +7963,8 @@ import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$ToolAction, $ToolAction$Type} from "packages/net/minecraftforge/common/$ToolAction"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$IForgeBlock, $IForgeBlock$Type} from "packages/net/minecraftforge/common/extensions/$IForgeBlock"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
@@ -8007,8 +8032,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $ZetaModule$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -8022,21 +8045,23 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "getName"(): $MutableComponent
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
-public "getName"(): $MutableComponent
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -8052,9 +8077,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 get "name"(): $MutableComponent
@@ -8200,14 +8225,11 @@ readonly "requiredFeatures": $FeatureFlagSet
 readonly "properties": $BlockBehaviour$Properties
  "drops": $ResourceLocation
 
+constructor(arg0: $IZetaBlock$Type, arg1: string, arg2: $BlockBehaviour$Properties$Type)
 constructor(arg0: $IZetaBlock$Type)
 constructor(arg0: $IZetaBlock$Type, arg1: $BlockBehaviour$Properties$Type)
-constructor(arg0: $IZetaBlock$Type, arg1: string, arg2: $BlockBehaviour$Properties$Type)
 
 public "isEnabled"(): boolean
-public "getBlockColorProviderName"(): string
-public "getItemColorProviderName"(): string
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -8221,8 +8243,11 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
-public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "getBlockColorProviderName"(): string
+public "getItemColorProviderName"(): string
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
+public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -8308,8 +8333,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -8330,6 +8355,7 @@ export type $MonsterBoxBlock_ = $MonsterBoxBlock$Type;
 }}
 declare module "packages/org/violetmoon/quark/content/building/block/$VariantFurnaceBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -8354,8 +8380,8 @@ import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
 import {$ZetaModule, $ZetaModule$Type} from "packages/org/violetmoon/zeta/module/$ZetaModule"
-import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IZetaBlock, $IZetaBlock$Type} from "packages/org/violetmoon/zeta/block/$IZetaBlock"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
@@ -8407,8 +8433,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -8422,16 +8446,19 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $IZetaBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -8447,11 +8474,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -8510,10 +8538,10 @@ static readonly "POTION": $AttributeSlot
 
 public static "values"(): ($AttributeSlot)[]
 public static "valueOf"(arg0: string): $AttributeSlot
-public "getTranslationKey"(): string
 public static "fromCanonicalSlot"(arg0: $EquipmentSlot$Type): $AttributeSlot
-public "getCanonicalSlot"(): $EquipmentSlot
+public "getTranslationKey"(): string
 public "hasCanonicalSlot"(): boolean
+public "getCanonicalSlot"(): $EquipmentSlot
 get "translationKey"(): string
 get "canonicalSlot"(): $EquipmentSlot
 }
@@ -8602,11 +8630,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type, arg1: $Block$Type, arg2: string, arg3: $SoundType$Type)
 
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -8677,6 +8705,7 @@ export type $AccessorAbstractArrow_ = $AccessorAbstractArrow$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaSlabBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -8756,12 +8785,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $IZetaBlock$Type, arg1: $ResourceKey$Type<($CreativeModeTab$Type)>)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "getBlockColorProviderName"(): string
-public "getItemColorProviderName"(): string
-public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -8775,14 +8798,21 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
-public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaSlabBlock
+public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "doesConditionApply"(): boolean
+public "getBlockColorProviderName"(): string
+public "getItemColorProviderName"(): string
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
+public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
-public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
+public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -8796,11 +8826,12 @@ public "isScaffoldingZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2
 public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "blockColorProviderName"(): string
 get "itemColorProviderName"(): string
 get "block"(): $Block
@@ -8997,10 +9028,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type, arg1: $BlockBehaviour$Properties$Type)
 
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -9236,9 +9267,9 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 import {$TagKey, $TagKey$Type} from "packages/net/minecraft/tags/$TagKey"
 import {$Holder, $Holder$Type} from "packages/net/minecraft/core/$Holder"
 import {$ITag, $ITag$Type} from "packages/net/minecraftforge/registries/tags/$ITag"
-import {$HolderOwner, $HolderOwner$Type} from "packages/net/minecraft/core/$HolderOwner"
 import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
+import {$HolderOwner, $HolderOwner$Type} from "packages/net/minecraft/core/$HolderOwner"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 
 export class $LateBoundHolder<T> implements $Holder<(T)> {
@@ -9248,21 +9279,21 @@ readonly "key": $ResourceKey<(T)>
 
 constructor(arg0: $ResourceKey$Type<(T)>)
 
-public "canSerializeIn"(arg0: $HolderOwner$Type<(T)>): boolean
-public "isBound"(): boolean
+public "is"(arg0: $TagKey$Type<(T)>): boolean
+public "value"(): T
 public "tags"(): $Stream<($TagKey<(T)>)>
 public "is"(arg0: $ResourceLocation$Type): boolean
 public "is"(arg0: $ResourceKey$Type<(T)>): boolean
 public "is"(arg0: $Predicate$Type<($ResourceKey$Type<(T)>)>): boolean
 public "unwrap"(): $Either<($ResourceKey<(T)>), (T)>
 public "kind"(): $Holder$Kind
-public "is"(arg0: $TagKey$Type<(T)>): boolean
-public "value"(): T
 public "unwrapKey"(): $Optional<($ResourceKey<(T)>)>
+public "canSerializeIn"(arg0: $HolderOwner$Type<(T)>): boolean
+public "isBound"(): boolean
 public "get"(): T
 public "containsTag"(arg0: $TagKey$Type<(T)>): boolean
-public static "direct"<T>(arg0: T): $Holder<(T)>
 public "getTagKeys"(): $Stream<($TagKey<(T)>)>
+public static "direct"<T>(arg0: T): $Holder<(T)>
 public "containsTag"(arg0: $ITag$Type<(T)>): boolean
 get "bound"(): boolean
 get "tagKeys"(): $Stream<($TagKey<(T)>)>
@@ -9410,8 +9441,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
-public "getSoundType"(arg0: $BlockState$Type): $SoundType
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "triggerEvent"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: integer, arg4: integer): boolean
@@ -9421,6 +9450,8 @@ public "getInteractionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, ar
 public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $MenuProvider
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "getSoundType"(arg0: $BlockState$Type): $SoundType
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -9623,9 +9654,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaPillarBlock
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -9639,14 +9667,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaPillarBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -9662,9 +9693,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -9781,10 +9812,10 @@ constructor(arg0: $Class$Type<(any)>, arg1: $Class$Type<(E)>, arg2: $Logger$Type
  * @deprecated
  */
 public "fireExternal"<T extends E>(arg0: T, arg1: $Class$Type<(any)>): T
-public "unsubscribe"(arg0: any): $ZetaEventBus<(E)>
 public "subscribe"(arg0: any): $ZetaEventBus<(E)>
-public "fire"<T extends E>(arg0: T, arg1: $Class$Type<(any)>): T
+public "unsubscribe"(arg0: any): $ZetaEventBus<(E)>
 public "fire"<T extends E>(arg0: T): T
+public "fire"<T extends E>(arg0: T, arg1: $Class$Type<(any)>): T
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9865,8 +9896,8 @@ static readonly "SERIALIZER": $RecipeSerializer<($MixedExclusionRecipe)>
 constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: $ItemStack$Type, arg3: $TagKey$Type<($Item$Type)>, arg4: $ItemStack$Type)
 
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
-public "getRecipeHeight"(): integer
 public "getRecipeWidth"(): integer
+public "getRecipeHeight"(): integer
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
 public "getId"(): $ResourceLocation
 public "isSpecial"(): boolean
@@ -9881,29 +9912,29 @@ public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemSt
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "getSchema"(): $RecipeSchema
-public "getOrCreateId"(): $ResourceLocation
-public "setGroup"(group: string): void
-public "getGroup"(): string
 public "getType"(): $ResourceLocation
+public "getGroup"(): string
+public "setGroup"(group: string): void
+public "getOrCreateId"(): $ResourceLocation
+public "getSchema"(): $RecipeSchema
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
-get "recipeHeight"(): integer
 get "recipeWidth"(): integer
+get "recipeHeight"(): integer
 get "id"(): $ResourceLocation
 get "special"(): boolean
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "schema"(): $RecipeSchema
-get "orCreateId"(): $ResourceLocation
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
+get "group"(): string
+set "group"(value: string)
+get "orCreateId"(): $ResourceLocation
+get "schema"(): $RecipeSchema
 get "mod"(): string
 }
 /**
@@ -10007,10 +10038,6 @@ constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $Block$Type, arg3: $Bloc
  */
 constructor(arg0: $ZetaModule$Type, arg1: $Block$Type, arg2: $Block$Type)
 
-public "getBlockColorProviderName"(): string
-public "getItemColorProviderName"(): string
-public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -10024,12 +10051,16 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
+public "getBlockColorProviderName"(): string
+public "getItemColorProviderName"(): string
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "connectsTo"(arg0: $BlockState$Type, arg1: boolean, arg2: $Direction$Type): boolean
 public "getLeaf"(): $BlockState
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -10059,10 +10090,10 @@ import {$ZetaModule, $ZetaModule$Type} from "packages/org/violetmoon/zeta/module
 
 export interface $IDisableable<SELF> {
 
- "getModule"(): $ZetaModule
  "isEnabled"(): boolean
- "doesConditionApply"(): boolean
+ "getModule"(): $ZetaModule
  "setCondition"(arg0: $BooleanSupplier$Type): SELF
+ "doesConditionApply"(): boolean
 }
 
 export namespace $IDisableable {
@@ -10313,6 +10344,7 @@ export type $VariantRegistry_ = $VariantRegistry$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaFenceBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -10393,8 +10425,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -10408,14 +10438,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaFenceBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -10431,11 +10464,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -10642,15 +10676,14 @@ export type $GlowExtrasFeature_ = $GlowExtrasFeature$Type;
 }}
 declare module "packages/org/violetmoon/zeta/config/$ValueDefinition$Builder" {
 import {$Definition$Builder, $Definition$Builder$Type} from "packages/org/violetmoon/zeta/config/$Definition$Builder"
-import {$ValueDefinition, $ValueDefinition$Type} from "packages/org/violetmoon/zeta/config/$ValueDefinition"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
+import {$ValueDefinition, $ValueDefinition$Type} from "packages/org/violetmoon/zeta/config/$ValueDefinition"
 
 export class $ValueDefinition$Builder<T> extends $Definition$Builder<($ValueDefinition$Builder<(T)>), ($ValueDefinition<(T)>)> {
 
 constructor()
 
 public "defaultValue"(arg0: T): $ValueDefinition$Builder<(T)>
-public "build"(): $ValueDefinition<(T)>
 public "validator"(arg0: $Predicate$Type<(any)>): $ValueDefinition$Builder<(T)>
 }
 /**
@@ -10667,6 +10700,7 @@ export type $ValueDefinition$Builder_<T> = $ValueDefinition$Builder$Type<(T)>;
 }}
 declare module "packages/org/violetmoon/quark/content/automation/block/$IronRodBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -10750,10 +10784,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $ZetaModule$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "getCollateralMovement"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: $Direction$Type, arg4: $BlockPos$Type): $ICollateralMover$MoveResult
-public "isCollateralMover"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: $BlockPos$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -10767,15 +10797,20 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "getCollateralMovement"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: $Direction$Type, arg4: $BlockPos$Type): $ICollateralMover$MoveResult
+public "isCollateralMover"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: $BlockPos$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $IronRodBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -10791,11 +10826,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -10992,10 +11028,10 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 
 export interface $IZetaIngredientSerializer<T extends $Ingredient> {
 
+ "parse"(arg0: $FriendlyByteBuf$Type): T
+ "parse"(arg0: $JsonObject$Type): T
  "getID"(): $ResourceLocation
  "write"(arg0: $FriendlyByteBuf$Type, arg1: T): void
- "parse"(arg0: $JsonObject$Type): T
- "parse"(arg0: $FriendlyByteBuf$Type): T
  "getZeta"(): $Zeta
 }
 
@@ -11142,9 +11178,9 @@ public "canElytraFlyZeta"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): bool
 public "canApplyAtEnchantingTableZeta"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
 public "shouldCauseReequipAnimationZeta"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "getDefaultTooltipHideFlagsZeta"(arg0: $ItemStack$Type): integer
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 get "module"(): $ZetaModule
 get "item"(): $Item
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
@@ -11265,10 +11301,10 @@ readonly "addition": $Ingredient
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
 public "assemble"(arg0: $Container$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $Container$Type, arg1: $Level$Type): boolean
+public "getId"(): $ResourceLocation
 public "isTemplateIngredient"(arg0: $ItemStack$Type): boolean
 public "isBaseIngredient"(arg0: $ItemStack$Type): boolean
 public "isAdditionIngredient"(arg0: $ItemStack$Type): boolean
-public "getId"(): $ResourceLocation
 public "getSerializer"(): $RecipeSerializer<(any)>
 get "id"(): $ResourceLocation
 get "serializer"(): $RecipeSerializer<(any)>
@@ -11382,6 +11418,7 @@ export type $IBiomeConfig_ = $IBiomeConfig$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaPressurePlateBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -11461,8 +11498,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $PressurePlateBlock$Sensitivity$Type, arg1: string, arg2: $ZetaModule$Type, arg3: $BlockBehaviour$Properties$Type, arg4: $BlockSetType$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -11476,14 +11511,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaPressurePlateBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -11499,11 +11537,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -11682,8 +11721,8 @@ import {$ZetaModule, $ZetaModule$Type} from "packages/org/violetmoon/zeta/module
 export interface $ZGatherHints extends $IZetaLoadEvent {
 
  "accept"(arg0: $ItemLike$Type, arg1: $Component$Type): void
- "gatherHintsFromModule"(arg0: $ZetaModule$Type, arg1: $ConfigFlagManager$Type): void
  "getRegistryAccess"(): $RegistryAccess
+ "gatherHintsFromModule"(arg0: $ZetaModule$Type, arg1: $ConfigFlagManager$Type): void
  "hintItem"(arg0: $ItemLike$Type, ...arg1: (any)[]): void
  "hintItem"(arg0: $ItemLike$Type, arg1: string, ...arg2: (any)[]): void
 }
@@ -11838,13 +11877,13 @@ public "getSerializer"(): $RecipeSerializer<(any)>
 public "category"(): $CraftingBookCategory
 public "showNotification"(): boolean
 public "isIncomplete"(): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "getSchema"(): $RecipeSchema
-public "getOrCreateId"(): $ResourceLocation
-public "setGroup"(group: string): void
-public "getGroup"(): string
 public "getType"(): $ResourceLocation
+public "getGroup"(): string
+public "setGroup"(group: string): void
+public "getOrCreateId"(): $ResourceLocation
+public "getSchema"(): $RecipeSchema
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -11854,11 +11893,11 @@ get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "serializer"(): $RecipeSerializer<(any)>
 get "incomplete"(): boolean
-get "schema"(): $RecipeSchema
-get "orCreateId"(): $ResourceLocation
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
+get "group"(): string
+set "group"(value: string)
+get "orCreateId"(): $ResourceLocation
+get "schema"(): $RecipeSchema
 get "mod"(): string
 }
 /**
@@ -11874,7 +11913,6 @@ declare global {
 export type $ExclusionRecipe_ = $ExclusionRecipe$Type;
 }}
 declare module "packages/org/violetmoon/zeta/item/$ZetaItem" {
-import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$IForgeItem, $IForgeItem$Type} from "packages/net/minecraftforge/common/extensions/$IForgeItem"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
@@ -11921,16 +11959,15 @@ readonly "canRepair": boolean
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $Item$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaItem
-public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
-public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
-public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
 public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
+public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
 public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "isRepairable"(arg0: $ItemStack$Type): boolean
+public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
+public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<(any), (any)>
+public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
 public "getEnchantmentValue"(arg0: $ItemStack$Type): integer
@@ -11938,7 +11975,7 @@ public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Typ
 public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
 public "isEnderMask"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $EnderMan$Type): boolean
 public "getDefaultTooltipHideFlags"(arg0: $ItemStack$Type): integer
-public "onEntityItemUpdate"(arg0: $ItemStack$Type, arg1: $ItemEntity$Type): boolean
+public "doesConditionApply"(): boolean
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "damageItem"(arg0: $ItemStack$Type, arg1: integer, arg2: $LivingEntity$Type, arg3: $Consumer$Type<(any)>): integer
 public "canEquip"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
@@ -11964,11 +12001,10 @@ public "canElytraFlyZeta"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): bool
 public "canApplyAtEnchantingTableZeta"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
 public "shouldCauseReequipAnimationZeta"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "getDefaultTooltipHideFlagsZeta"(arg0: $ItemStack$Type): integer
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 get "module"(): $ZetaModule
-set "condition"(value: $BooleanSupplier$Type)
 get "item"(): $Item
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -12130,8 +12166,8 @@ public "getDescriptionId"(arg0: $ItemStack$Type): string
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "isFoil"(arg0: $ItemStack$Type): boolean
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12327,16 +12363,16 @@ readonly "pickaxeEquivalentExt": $IZetaItemExtensions
 
 constructor(arg0: $Item$Type, arg1: $Item$Type, arg2: integer, arg3: integer, arg4: integer, arg5: double, arg6: integer, arg7: integer)
 
-public "isFireResistant"(): boolean
 public "getEntityType"(): $EntityType<(T)>
+public "isFireResistant"(): boolean
+public "makePickarang"(arg0: $Level$Type, arg1: $Player$Type): $AbstractPickarang<(T)>
+public "setEntityType"(arg0: $EntityType$Type<(T)>, arg1: $PickarangType$PickarangConstructor$Type<(T)>): void
 public "canActAsHoe"(arg0: boolean): $PickarangType<(T)>
 public "canActAsShovel"(arg0: boolean): $PickarangType<(T)>
 public "canActAsAxe"(arg0: boolean): $PickarangType<(T)>
-public "makePickarang"(arg0: $Level$Type, arg1: $Player$Type): $AbstractPickarang<(T)>
-public "setEntityType"(arg0: $EntityType$Type<(T)>, arg1: $PickarangType$PickarangConstructor$Type<(T)>): void
 public "onReload"(arg0: $ZetaModule$Type, arg1: $ConfigFlagManager$Type): void
-get "fireResistant"(): boolean
 get "entityType"(): $EntityType<(T)>
+get "fireResistant"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12362,8 +12398,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ZetaBlock, $ZetaBlock$Type} from "packages/org/violetmoon/zeta/block/$ZetaBlock"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -12424,15 +12460,15 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -12454,6 +12490,7 @@ export type $CrafterBlock_ = $CrafterBlock$Type;
 declare module "packages/org/violetmoon/zeta/block/$ZetaCeilingHangingSignBlock" {
 import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -12531,8 +12568,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $WoodType$Type, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -12546,14 +12581,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaCeilingHangingSignBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -12569,11 +12607,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -12700,17 +12739,17 @@ readonly "canRepair": boolean
 constructor(arg0: $ZetaModule$Type, arg1: $Block$Type, arg2: $Block$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaSignItem
+public "doesConditionApply"(): boolean
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -12739,8 +12778,8 @@ import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packa
 import {$PipeBlockEntity$ConnectionType, $PipeBlockEntity$ConnectionType$Type} from "packages/org/violetmoon/quark/addons/oddities/block/be/$PipeBlockEntity$ConnectionType"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -12805,8 +12844,7 @@ public static "isConnected"(arg0: $BlockState$Type, arg1: $Direction$Type): bool
 public "getDefaultPipeState"(): $BlockState
 public "allowsFullConnection"(arg0: $PipeBlockEntity$ConnectionType$Type): boolean
 public "refreshVisualConnections"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
@@ -12816,7 +12854,8 @@ public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -12893,6 +12932,7 @@ export type $VariantChestsModule$IVariantChest_ = $VariantChestsModule$IVariantC
 }}
 declare module "packages/org/violetmoon/quark/content/building/block/$VariantChestBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -12984,11 +13024,6 @@ constructor(arg0: string, arg1: string, arg2: $ZetaModule$Type, arg3: $Supplier$
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $Supplier$Type<($BlockEntityType$Type<(any)>)>, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "getTexturePath"(): string
-public "doesConditionApply"(): boolean
-public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -13002,14 +13037,20 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $VariantChestBlock
+public "getTexturePath"(): string
+public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getBlock"(): $Block
-public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
+public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getTextureFolder"(): string
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
@@ -13025,11 +13066,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "texturePath"(): string
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
@@ -13222,13 +13264,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -13376,8 +13418,8 @@ public "sync"(): void
 public "onDataPacket"(arg0: $Connection$Type, arg1: $ClientboundBlockEntityDataPacket$Type): void
 public "writeSharedNBT"(arg0: $CompoundTag$Type): void
 public "readSharedNBT"(arg0: $CompoundTag$Type): void
-public "getUpdateTag"(): $CompoundTag
 public "load"(arg0: $CompoundTag$Type): void
+public "getUpdateTag"(): $CompoundTag
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "updateTag"(): $CompoundTag
 }
@@ -13474,10 +13516,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $IZetaBlock$Type, arg1: $ResourceKey$Type<($CreativeModeTab$Type)>)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "getBlockColorProviderName"(): string
-public "getItemColorProviderName"(): string
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -13491,15 +13529,19 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
-public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "doesConditionApply"(): boolean
+public "getBlockColorProviderName"(): string
+public "getItemColorProviderName"(): string
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
+public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -13514,9 +13556,9 @@ public "isScaffoldingZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2
 public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 get "blockColorProviderName"(): string
@@ -13577,6 +13619,7 @@ export type $EntitySpawnHandler_ = $EntitySpawnHandler$Type;
 }}
 declare module "packages/org/violetmoon/quark/content/building/block/$VariantTrappedChestBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -13668,11 +13711,6 @@ constructor(arg0: string, arg1: string, arg2: $ZetaModule$Type, arg3: $Supplier$
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $Supplier$Type<($BlockEntityType$Type<(any)>)>, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "getTexturePath"(): string
-public "doesConditionApply"(): boolean
-public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -13686,17 +13724,23 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $VariantTrappedChestBlock
+public "getTexturePath"(): string
+public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
+public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "isSignalSource"(arg0: $BlockState$Type): boolean
-public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getBlock"(): $Block
-public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
+public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getTextureFolder"(): string
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
@@ -13712,11 +13756,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "texturePath"(): string
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
@@ -13801,17 +13846,17 @@ readonly "canRepair": boolean
 constructor(arg0: $IZetaBlock$Type, arg1: $Item$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaDoubleHighBlockItem
+public "doesConditionApply"(): boolean
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -14033,9 +14078,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type, arg3: boolean)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "setCondition"(arg0: $BooleanSupplier$Type): $VariantLadderBlock
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -14049,14 +14091,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $VariantLadderBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -14072,9 +14117,9 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -14165,6 +14210,7 @@ declare global {
 export type $ZetaArrowItem$Impl_ = $ZetaArrowItem$Impl$Type;
 }}
 declare module "packages/org/violetmoon/zeta/block/$ZetaBushBlock" {
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -14235,8 +14281,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $ResourceKey$Type<($CreativeModeTab$Type)>, arg3: $BlockBehaviour$Properties$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -14250,14 +14294,17 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaBushBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -14273,11 +14320,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -14408,10 +14456,10 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export interface $IZetaBlock extends $IZetaBlockExtensions, $IDisableable<($IZetaBlock)> {
 
  "getBlock"(): $Block
+ "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+ "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
  "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
  "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
- "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
- "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
  "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
  "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
  "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -14427,10 +14475,10 @@ export interface $IZetaBlock extends $IZetaBlockExtensions, $IDisableable<($IZet
  "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
  "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
  "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
- "getModule"(): $ZetaModule
  "isEnabled"(): boolean
- "doesConditionApply"(): boolean
+ "getModule"(): $ZetaModule
  "setCondition"(arg0: $BooleanSupplier$Type): $IZetaBlock
+ "doesConditionApply"(): boolean
 }
 
 export namespace $IZetaBlock {
@@ -14507,11 +14555,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -14549,13 +14597,13 @@ export class $ZetaNetworkHandler {
 constructor(arg0: $Zeta$Type, arg1: integer)
 
 public "register"<T extends $IZetaMessage>(arg0: $Class$Type<(T)>, arg1: $ZetaNetworkDirection$Type): void
+public "sendToServer"(arg0: $IZetaMessage$Type): void
+public "getSerializer"(): $ZetaMessageSerializer
+public "sendToAllPlayers"(arg0: $IZetaMessage$Type, arg1: $MinecraftServer$Type): void
+public "sendToPlayer"(arg0: $IZetaMessage$Type, arg1: $ServerPlayer$Type): void
 public "sendToPlayers"(arg0: $IZetaMessage$Type, arg1: $Iterable$Type<($ServerPlayer$Type)>): void
 public "registerLogin"<T extends $ZetaHandshakeMessage>(arg0: $Class$Type<(T)>, arg1: $ZetaNetworkDirection$Type, arg2: integer, arg3: boolean, arg4: $Function$Type<(boolean), ($List$Type<($Pair$Type<(string), (T)>)>)>): void
 public "wrapInVanilla"(arg0: $IZetaMessage$Type, arg1: $ZetaNetworkDirection$Type): $Packet<(any)>
-public "sendToAllPlayers"(arg0: $IZetaMessage$Type, arg1: $MinecraftServer$Type): void
-public "sendToPlayer"(arg0: $IZetaMessage$Type, arg1: $ServerPlayer$Type): void
-public "getSerializer"(): $ZetaMessageSerializer
-public "sendToServer"(arg0: $IZetaMessage$Type): void
 get "serializer"(): $ZetaMessageSerializer
 }
 /**
@@ -14718,20 +14766,20 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: $BlockBehaviour$Properties$Type)
 
-public static "breakAndDrop"(arg0: $Block$Type, arg1: $BlockState$Type, arg2: $Level$Type, arg3: $BlockPos$Type): void
 public static "notifyNeighbors"(arg0: $Block$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public static "breakAndDrop"(arg0: $Block$Type, arg1: $BlockState$Type, arg2: $Level$Type, arg3: $BlockPos$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "isSignalSource"(arg0: $BlockState$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -14837,10 +14885,10 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: integer, arg2: $ZetaModule$Type, arg3: $MapColor$Type)
 
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getDescriptionId"(): string
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -14927,9 +14975,12 @@ readonly "fuel": $FuelHandler
 
 constructor(arg0: string, arg1: $Logger$Type, arg2: $ZetaSide$Type, arg3: boolean)
 
-public "start"(): void
 public "loadModules"(arg0: $Iterable$Type<($ZetaCategory$Type)>, arg1: $ModuleFinder$Type, arg2: any): void
 public "createProxy"(arg0: $ZetaSide$Type): $ZetaCommonProxy
+public "start"(): void
+public "createRegistry"(): $ZetaRegistry
+public "getModDisplayName"(arg0: string): string
+public "modIntegration"<T>(arg0: string, arg1: $Supplier$Type<($Supplier$Type<(T)>)>, arg2: $Supplier$Type<($Supplier$Type<(T)>)>): T
 public "createModuleManager"(): $ZetaModuleManager
 public "createRenderLayerRegistry"(): $RenderLayerRegistry
 public "createDyeablesRegistry"(): $DyeablesRegistry
@@ -14944,9 +14995,6 @@ public "createEntitySpawnHandler"(): $EntitySpawnHandler
 public "makeConfigInternals"(arg0: $SectionDefinition$Type): $IZetaConfigInternals
 public "createNetworkHandler"(arg0: integer): $ZetaNetworkHandler
 public "fireRightClickBlock"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $BlockPos$Type, arg3: $BlockHitResult$Type): boolean
-public "getModDisplayName"(arg0: string): string
-public "modIntegration"<T>(arg0: string, arg1: $Supplier$Type<($Supplier$Type<(T)>)>, arg2: $Supplier$Type<($Supplier$Type<(T)>)>): T
-public "createRegistry"(): $ZetaRegistry
 public "isModLoaded"(arg0: string): boolean
 public "createCraftingExtensionsRegistry"(): $CraftingExtensionsRegistry
 public "createAdvancementModifierRegistry"(): $AdvancementModifierRegistry
@@ -14994,26 +15042,26 @@ readonly "queuedItems": $List<($PipeBlockEntity$PipeItem)>
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "sync"(): void
-public "tick"(): void
 public static "tick"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $PipeBlockEntity$Type): void
+public "tick"(): void
+public "sync"(): void
 public "getComparatorOutput"(): integer
+public "dropAllItems"(): void
+public "writeSharedNBT"(arg0: $CompoundTag$Type): void
+public "readSharedNBT"(arg0: $CompoundTag$Type): void
+public "allowsFullConnection"(arg0: $PipeBlockEntity$ConnectionType$Type): boolean
+public static "computeConnectionTo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): $PipeBlockEntity$ConnectionType
+public "refreshVisualConnections"(): void
 public "getConnectionTo"(arg0: $Direction$Type): $PipeBlockEntity$ConnectionType
 public static "isTheGoodDay"(): boolean
 public "getItemIterator"(): $Iterator<($PipeBlockEntity$PipeItem)>
 public "updateConnection"(arg0: $Direction$Type): $PipeBlockEntity$ConnectionType
-public "allowsFullConnection"(arg0: $PipeBlockEntity$ConnectionType$Type): boolean
-public static "computeConnectionTo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): $PipeBlockEntity$ConnectionType
-public "refreshVisualConnections"(): void
-public "writeSharedNBT"(arg0: $CompoundTag$Type): void
-public "readSharedNBT"(arg0: $CompoundTag$Type): void
-public "dropAllItems"(): void
-public "getUpdatePacket"(): $Packet<($ClientGamePacketListener)>
-public "dropItem"(arg0: $ItemStack$Type, arg1: $Direction$Type, arg2: boolean): void
-public "dropItem"(arg0: $ItemStack$Type): void
+public "getContainerSize"(): integer
 public "setItem"(arg0: integer, arg1: $ItemStack$Type): void
 public "canPlaceItemThroughFace"(arg0: integer, arg1: $ItemStack$Type, arg2: $Direction$Type): boolean
-public "getContainerSize"(): integer
+public "getUpdatePacket"(): $Packet<($ClientGamePacketListener)>
+public "dropItem"(arg0: $ItemStack$Type): void
+public "dropItem"(arg0: $ItemStack$Type, arg1: $Direction$Type, arg2: boolean): void
 public "passIn"(arg0: $ItemStack$Type, arg1: $Direction$Type): boolean
 public "passIn"(arg0: $ItemStack$Type, arg1: $Direction$Type, arg2: $Direction$Type, arg3: long, arg4: integer): boolean
 public "setChanged"(): void
@@ -15024,8 +15072,8 @@ public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTa
 get "comparatorOutput"(): integer
 get "theGoodDay"(): boolean
 get "itemIterator"(): $Iterator<($PipeBlockEntity$PipeItem)>
-get "updatePacket"(): $Packet<($ClientGamePacketListener)>
 get "containerSize"(): integer
+get "updatePacket"(): $Packet<($ClientGamePacketListener)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15042,6 +15090,7 @@ export type $PipeBlockEntity_ = $PipeBlockEntity$Type;
 declare module "packages/org/violetmoon/zeta/block/$ZetaVineBlock" {
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
 import {$VineBlock, $VineBlock$Type} from "packages/net/minecraft/world/level/block/$VineBlock"
+import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
@@ -15121,10 +15170,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $ZetaModule$Type, arg1: string, arg2: boolean)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -15138,14 +15183,19 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaVineBlock
+public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getBlock"(): $Block
-public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
+public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getLightEmissionZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isLadderZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canSustainPlantZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: string): boolean
@@ -15160,11 +15210,12 @@ public "makesOpenTrapdoorAboveClimbableZeta"(arg0: $BlockState$Type, arg1: $Leve
 public "getBeaconColorMultiplierZeta"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
 public "collisionExtendsVerticallyZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "shouldDisplayFluidOverlayZeta"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
+set "condition"(value: $BooleanSupplier$Type)
 get "block"(): $Block
 set "creativeTab"(value: $ResourceKey$Type<($CreativeModeTab$Type)>)
 get "enabled"(): boolean
@@ -15264,11 +15315,11 @@ readonly "flagIngredientSerializer": $FlagIngredient$Serializer
 
 constructor(arg0: $Zeta$Type)
 
-public "clear"(): void
 public "getAllFlags"(): $Set<(string)>
 public "getFlag"(arg0: string): boolean
-public "putModuleFlag"(arg0: $ZetaModule$Type): void
+public "clear"(): void
 public "isValidFlag"(arg0: string): boolean
+public "putModuleFlag"(arg0: $ZetaModule$Type): void
 public "onRegister"(arg0: $ZRegister$Type): void
 public "putFlag"(arg0: $ZetaModule$Type, arg1: string, arg2: boolean): void
 get "allFlags"(): $Set<(string)>
@@ -15346,10 +15397,10 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: $ZetaModule$Type, arg2: boolean, arg3: $BlockBehaviour$Properties$Type)
 
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "skipRendering"(arg0: $BlockState$Type, arg1: $BlockState$Type, arg2: $Direction$Type): boolean
 public "getShadeBrightness"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): float
-public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -15456,8 +15507,8 @@ import {$IZetaCondition, $IZetaCondition$Type} from "packages/org/violetmoon/zet
 export interface $CraftingExtensionsRegistry {
 
  "getID"(arg0: $IZetaIngredientSerializer$Type<(any)>): $ResourceLocation
- "registerIngredientSerializer"<T extends $Ingredient>(arg0: $ResourceLocation$Type, arg1: $IZetaIngredientSerializer$Type<(T)>): $IZetaIngredientSerializer<(T)>
  "registerConditionSerializer"<T extends $IZetaCondition>(arg0: $IZetaConditionSerializer$Type<(T)>): $IZetaConditionSerializer<(T)>
+ "registerIngredientSerializer"<T extends $Ingredient>(arg0: $ResourceLocation$Type, arg1: $IZetaIngredientSerializer$Type<(T)>): $IZetaIngredientSerializer<(T)>
 }
 
 export namespace $CraftingExtensionsRegistry {
@@ -15756,17 +15807,17 @@ readonly "canRepair": boolean
 constructor(arg0: $ZetaModule$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "canEquipZeta"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
 public "getArmorTextureZeta"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
+public "doesConditionApply"(): boolean
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "getDefaultAttributeModifiers"(arg0: $EquipmentSlot$Type): $Multimap<($Attribute), ($AttributeModifier)>
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "get"(arg0: $ItemStack$Type): $Equipable
 get "module"(): $ZetaModule
 get "item"(): $Item
@@ -15820,17 +15871,17 @@ readonly "canRepair": boolean
 constructor(arg0: $ZetaModule$Type, arg1: $Block$Type, arg2: $Block$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "setCondition"(arg0: $BooleanSupplier$Type): $ZetaHangingSignItem
+public "doesConditionApply"(): boolean
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -15917,9 +15968,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ZetaModule$Type)
 
-public "isSignalSource"(arg0: $BlockState$Type): boolean
 public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "isSignalSource"(arg0: $BlockState$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "isEnabled"(arg0: $Item$Type): boolean
@@ -15978,14 +16029,14 @@ readonly "canRepair": boolean
 constructor(arg0: integer, arg1: $Supplier$Type<($SoundEvent$Type)>, arg2: string, arg3: $ZetaModule$Type, arg4: integer)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
 public "setCondition"(arg0: $BooleanSupplier$Type): $QuarkMusicDiscItem
+public "doesConditionApply"(): boolean
 public "getItem"(): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Item
 public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Item
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
 get "item"(): $Item
@@ -16114,9 +16165,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $Block$Type, arg1: $ZetaModule$Type)
 
 public "getModule"(): $ZetaModule
-public "doesConditionApply"(): boolean
-public "setCondition"(arg0: $BooleanSupplier$Type): $QuarkVerticalSlabBlock
-public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
 public "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
@@ -16130,18 +16178,21 @@ public "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$T
 public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public "setCondition"(arg0: $BooleanSupplier$Type): $QuarkVerticalSlabBlock
+public "doesConditionApply"(): boolean
 public "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "canStickTo"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
 public "getBlock"(): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
+public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
 public "getFlammabilityZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeedZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>): $Block
-public "setCreativeTab"(arg0: $ResourceKey$Type<($CreativeModeTab$Type)>, arg1: $ItemLike$Type, arg2: boolean): $Block
 public "isFlammableZeta"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "isEnabled"(): boolean
 public static "isEnabled"(arg0: $Item$Type): boolean
 public static "isEnabled"(arg0: $Block$Type): boolean
+public "isEnabled"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "module"(): $ZetaModule
 set "condition"(value: $BooleanSupplier$Type)
@@ -16275,22 +16326,22 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
 constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
 constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type, arg2: $LivingEntity$Type)
 
-public "getStack"(): $ItemStack
 public "setStack"(arg0: $ItemStack$Type): void
+public "getStack"(): $ItemStack
 public "isReturning"(): boolean
+public "getPickarangType"(): $PickarangType<(T)>
 public "setThrowData"(arg0: integer, arg1: $ItemStack$Type): void
 public "getPiercingModifier"(): integer
 public "getEfficiencyModifier"(): integer
-public "getPickarangType"(): $PickarangType<(T)>
-public "getPassengersRidingOffset"(): double
-public "lerpMotion"(arg0: double, arg1: double, arg2: double): void
+public "tick"(): void
 public "isPushedByFluid"(): boolean
 public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
 public "getSoundSource"(): $SoundSource
 public "shouldRenderAtSqrDistance"(arg0: double): boolean
 public "addAdditionalSaveData"(arg0: $CompoundTag$Type): void
 public "readAdditionalSaveData"(arg0: $CompoundTag$Type): void
-public "tick"(): void
+public "getPassengersRidingOffset"(): double
+public "lerpMotion"(arg0: double, arg1: double, arg2: double): void
 public "shoot"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float): void
 public "shoot"(arg0: $Entity$Type, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float): void
 public "spark"(): void
@@ -16300,16 +16351,16 @@ public "addHit"(arg0: $Entity$Type): void
 public "clank"(arg0: $HitResult$Type): void
 public "postHit"(): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "stack"(): $ItemStack
 set "stack"(value: $ItemStack$Type)
+get "stack"(): $ItemStack
 get "returning"(): boolean
+get "pickarangType"(): $PickarangType<(T)>
 get "piercingModifier"(): integer
 get "efficiencyModifier"(): integer
-get "pickarangType"(): $PickarangType<(T)>
-get "passengersRidingOffset"(): double
 get "pushedByFluid"(): boolean
 get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
 get "soundSource"(): $SoundSource
+get "passengersRidingOffset"(): double
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

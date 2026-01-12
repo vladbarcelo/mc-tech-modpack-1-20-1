@@ -65,11 +65,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "rotate"(state: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(state: $BlockState$Type, mirror: $Mirror$Type): $BlockState
 public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "updateWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): void
 public "fluidState"(arg0: $BlockState$Type): $FluidState
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
@@ -360,10 +360,10 @@ constructor(properties: $BlockBehaviour$Properties$Type, color: $DyeColor$Type)
 
 public "shape"(): $VoxelShape
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "updateEntityAfterFallOn"(reader: $BlockGetter$Type, entity: $Entity$Type): void
 public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
+public "updateEntityAfterFallOn"(reader: $BlockGetter$Type, entity: $Entity$Type): void
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -448,10 +448,10 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type, color: $DyeColor$Type)
 
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, result: $BlockHitResult$Type): $InteractionResult
 public "rotate"(state: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(state: $BlockState$Type, mirror: $Mirror$Type): $BlockState
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void

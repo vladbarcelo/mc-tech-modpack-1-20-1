@@ -76,12 +76,14 @@ import {$DoubleConsumer, $DoubleConsumer$Type} from "packages/java/util/function
 
 export interface $FloatConsumer extends $Consumer<(float)>, $DoubleConsumer {
 
- "andThen"(arg0: $FloatConsumer$Type): $FloatConsumer
+ "andThen"(arg0: $DoubleConsumer$Type): $FloatConsumer
 /**
  * 
  * @deprecated
  */
  "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(float)>
+ "andThen"(arg0: $FloatConsumer$Type): $FloatConsumer
+ "accept"(arg0: float): void
 /**
  * 
  * @deprecated
@@ -92,9 +94,8 @@ export interface $FloatConsumer extends $Consumer<(float)>, $DoubleConsumer {
  * @deprecated
  */
  "accept"(arg0: float): void
- "accept"(arg0: float): void
 
-(arg0: $FloatConsumer$Type): $FloatConsumer
+(arg0: $DoubleConsumer$Type): $FloatConsumer
 }
 
 export namespace $FloatConsumer {
@@ -205,6 +206,11 @@ export interface $Boolean2FloatFunction extends $Function$0<(boolean), (float)> 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "remove"(arg0: boolean): float
  "get"(arg0: boolean): float
 /**
@@ -230,11 +236,6 @@ export interface $Boolean2FloatFunction extends $Function$0<(boolean), (float)> 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: float): float
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "defaultReturnValue"(arg0: float): void
  "defaultReturnValue"(): float
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Boolean2ByteFunction
@@ -305,6 +306,11 @@ export interface $Float2FloatFunction extends $Function<(float), (float)>, $Doub
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(float), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (float)>
  "remove"(arg0: float): float
  "get"(arg0: float): float
  "put"(arg0: float, arg1: float): float
@@ -319,22 +325,17 @@ export interface $Float2FloatFunction extends $Function<(float), (float)>, $Doub
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: float): boolean
-/**
- * 
- * @deprecated
- */
- "getOrDefault"(arg0: any, arg1: float): float
  "getOrDefault"(arg0: float, arg1: float): float
 /**
  * 
  * @deprecated
  */
- "applyAsDouble"(arg0: double): double
+ "getOrDefault"(arg0: any, arg1: float): float
 /**
  * 
  * @deprecated
  */
- "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (float)>
+ "applyAsDouble"(arg0: double): double
  "defaultReturnValue"(): float
  "defaultReturnValue"(arg0: float): void
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Float2ByteFunction
@@ -467,23 +468,23 @@ export interface $Int2ObjectMap<V> extends $Int2ObjectFunction<(V)>, $Map<(integ
  */
  "getOrDefault"(arg0: any, arg1: V): V
  "computeIfPresent"(arg0: integer, arg1: $BiFunction$Type<(any), (any), (any)>): V
- "int2ObjectEntrySet"(): $ObjectSet<($Int2ObjectMap$Entry<(V)>)>
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: integer, arg1: $Int2ObjectFunction$Type<(any)>): V
+ "int2ObjectEntrySet"(): $ObjectSet<($Int2ObjectMap$Entry<(V)>)>
  "defaultReturnValue"(): V
  "defaultReturnValue"(arg0: V): void
- "remove"(arg0: integer): V
- "get"(arg0: integer): V
- "put"(arg0: integer, arg1: V): V
- "apply"(arg0: integer): V
 /**
  * 
  * @deprecated
  */
  "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
+ "remove"(arg0: integer): V
+ "get"(arg0: integer): V
+ "put"(arg0: integer, arg1: V): V
+ "apply"(arg0: integer): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Int2ByteFunction
  "composeByte"(arg0: $Byte2IntFunction$Type): $Byte2ObjectFunction<(V)>
  "andThenShort"(arg0: $Object2ShortFunction$Type<(V)>): $Int2ShortFunction
@@ -592,13 +593,18 @@ export interface $Short2FloatFunction extends $Function$0<(short), (float)>, $In
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
- "remove"(arg0: short): float
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): float
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
+ "remove"(arg0: short): float
  "get"(arg0: short): float
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): float
 /**
  * 
  * @deprecated
@@ -622,11 +628,6 @@ export interface $Short2FloatFunction extends $Function$0<(short), (float)>, $In
  * @deprecated
  */
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "defaultReturnValue"(arg0: float): void
  "defaultReturnValue"(): float
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Short2ByteFunction
@@ -711,19 +712,24 @@ export interface $Double2ObjectFunction<V> extends $Function$0<(double), (V)>, $
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: double): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: double): V
+ "put"(arg0: double, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: double, arg1: V): V
  "put"(arg0: double, arg1: V): V
  "apply"(arg0: double): V
  "containsKey"(arg0: double): boolean
@@ -738,11 +744,6 @@ export interface $Double2ObjectFunction<V> extends $Function$0<(double), (V)>, $
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Double2ByteFunction
@@ -768,7 +769,7 @@ export interface $Double2ObjectFunction<V> extends $Function$0<(double), (V)>, $
  "apply"(arg0: double): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(double), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Double2ObjectFunction {
@@ -828,19 +829,24 @@ export interface $Float2ObjectFunction<V> extends $Function$0<(float), (V)>, $Do
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: float): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: float): V
+ "put"(arg0: float, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: float, arg1: V): V
  "put"(arg0: float, arg1: V): V
 /**
  * 
@@ -859,11 +865,6 @@ export interface $Float2ObjectFunction<V> extends $Function$0<(float), (V)>, $Do
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Float2ByteFunction
@@ -889,7 +890,7 @@ export interface $Float2ObjectFunction<V> extends $Function$0<(float), (V)>, $Do
  "apply"(arg0: float): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(float), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Float2ObjectFunction {
@@ -932,11 +933,11 @@ export interface $Object2DoubleMap$Entry<K> extends $Map$Entry<(K), (double)> {
 }
 
 export namespace $Object2DoubleMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (double)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (double)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (double)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (double)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (double)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (double)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (double)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -954,9 +955,7 @@ declare module "packages/it/unimi/dsi/fastutil/longs/$Long2ObjectLinkedOpenHashM
 import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
 import {$LongFunction, $LongFunction$Type} from "packages/java/util/function/$LongFunction"
 import {$Hash, $Hash$Type} from "packages/it/unimi/dsi/fastutil/$Hash"
-import {$LongComparator, $LongComparator$Type} from "packages/it/unimi/dsi/fastutil/longs/$LongComparator"
 import {$Long2ObjectSortedMap, $Long2ObjectSortedMap$Type} from "packages/it/unimi/dsi/fastutil/longs/$Long2ObjectSortedMap"
-import {$Long2ObjectSortedMap$FastSortedEntrySet, $Long2ObjectSortedMap$FastSortedEntrySet$Type} from "packages/it/unimi/dsi/fastutil/longs/$Long2ObjectSortedMap$FastSortedEntrySet"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
 import {$AbstractLong2ObjectSortedMap, $AbstractLong2ObjectSortedMap$Type} from "packages/it/unimi/dsi/fastutil/longs/$AbstractLong2ObjectSortedMap"
 import {$Long2ObjectMap, $Long2ObjectMap$Type} from "packages/it/unimi/dsi/fastutil/longs/$Long2ObjectMap"
@@ -969,21 +968,23 @@ import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Long2ObjectLinkedOpenHashMap<V> extends $AbstractLong2ObjectSortedMap<(V)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: $Long2ObjectMap$Type<(V)>)
-constructor(arg0: (long)[], arg1: (V)[], arg2: float)
-constructor(arg0: (long)[], arg1: (V)[])
 constructor(arg0: integer, arg1: float)
-constructor()
-constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
-constructor(arg0: integer)
-constructor(arg0: $Long2ObjectMap$Type<(V)>, arg1: float)
+constructor(arg0: (long)[], arg1: (V)[])
 constructor(arg0: $Map$Type<(any), (any)>)
+constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
+constructor()
+constructor(arg0: integer)
+constructor(arg0: (long)[], arg1: (V)[], arg2: float)
+constructor(arg0: $Long2ObjectMap$Type<(V)>)
+constructor(arg0: $Long2ObjectMap$Type<(V)>, arg1: float)
 
 public "subMap"(arg0: long, arg1: long): $Long2ObjectSortedMap<(V)>
 public "headMap"(arg0: long): $Long2ObjectSortedMap<(V)>
 public "tailMap"(arg0: long): $Long2ObjectSortedMap<(V)>
-public "remove"(arg0: long): V
+public "removeFirst"(): V
+public "removeLast"(): V
 public "remove"(arg0: long, arg1: any): boolean
+public "remove"(arg0: long): V
 public "get"(arg0: long): V
 public "put"(arg0: long, arg1: V): V
 public "values"(): $ObjectCollection<(V)>
@@ -1005,14 +1006,10 @@ public "computeIfAbsent"(arg0: long, arg1: $LongFunction$Type<(any)>): V
 public "containsValue"(arg0: any): boolean
 public "getOrDefault"(arg0: long, arg1: V): V
 public "computeIfPresent"(arg0: long, arg1: $BiFunction$Type<(any), (any), (any)>): V
-public "comparator"(): $LongComparator
-public "removeFirst"(): V
-public "removeLast"(): V
-public "firstLongKey"(): long
 public "lastLongKey"(): long
+public "firstLongKey"(): long
 public "getAndMoveToFirst"(arg0: long): V
 public "putAndMoveToFirst"(arg0: long, arg1: V): V
-public "long2ObjectEntrySet"(): $Long2ObjectSortedMap$FastSortedEntrySet<(V)>
 public "getAndMoveToLast"(arg0: long): V
 public "putAndMoveToLast"(arg0: long, arg1: V): V
 public "defaultReturnValue"(): V
@@ -1052,12 +1049,12 @@ import {$DoubleConsumer as $DoubleConsumer$0, $DoubleConsumer$Type as $DoubleCon
 
 export interface $DoubleConsumer extends $Consumer<(double)>, $DoubleConsumer$0 {
 
- "andThen"(arg0: $DoubleConsumer$Type): $DoubleConsumer
 /**
  * 
  * @deprecated
  */
  "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(double)>
+ "andThen"(arg0: $DoubleConsumer$Type): $DoubleConsumer
 /**
  * 
  * @deprecated
@@ -1065,7 +1062,7 @@ export interface $DoubleConsumer extends $Consumer<(double)>, $DoubleConsumer$0 
  "accept"(arg0: double): void
  "accept"(arg0: double): void
 
-(arg0: $DoubleConsumer$Type): $DoubleConsumer
+(arg0: $Consumer$Type<(any)>): $Consumer<(double)>
 }
 
 export namespace $DoubleConsumer {
@@ -1126,13 +1123,18 @@ export interface $Short2ByteFunction extends $Function$0<(short), (byte)>, $IntU
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
- "remove"(arg0: short): byte
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): byte
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
+ "remove"(arg0: short): byte
  "get"(arg0: short): byte
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): byte
 /**
  * 
  * @deprecated
@@ -1156,11 +1158,6 @@ export interface $Short2ByteFunction extends $Function$0<(short), (byte)>, $IntU
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Short2ByteFunction
@@ -1279,20 +1276,20 @@ import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 
 export interface $ObjectList<K> extends $List<(K)>, $Comparable<($List<(any)>)>, $ObjectCollection<(K)> {
 
+ "getElements"(arg0: integer, arg1: (any)[], arg2: integer, arg3: integer): void
  "size"(arg0: integer): void
  "subList"(arg0: integer, arg1: integer): $ObjectList<(K)>
  "addAll"(arg0: $ObjectList$Type<(any)>): boolean
  "addAll"(arg0: integer, arg1: $ObjectList$Type<(any)>): boolean
  "sort"(arg0: $Comparator$Type<(any)>): void
  "listIterator"(arg0: integer): $ObjectListIterator<(K)>
- "getElements"(arg0: integer, arg1: (any)[], arg2: integer, arg3: integer): void
- "removeElements"(arg0: integer, arg1: integer): void
- "addElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
- "addElements"(arg0: integer, arg1: (K)[]): void
- "setElements"(arg0: (K)[]): void
- "setElements"(arg0: integer, arg1: (K)[]): void
- "setElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
  "unstableSort"(arg0: $Comparator$Type<(any)>): void
+ "addElements"(arg0: integer, arg1: (K)[]): void
+ "addElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
+ "removeElements"(arg0: integer, arg1: integer): void
+ "setElements"(arg0: (K)[]): void
+ "setElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
+ "setElements"(arg0: integer, arg1: (K)[]): void
  "add"(arg0: integer, arg1: K): void
  "add"(arg0: K): boolean
  "remove"(arg0: any): boolean
@@ -1326,9 +1323,9 @@ export interface $ObjectList<K> extends $List<(K)>, $Comparable<($List<(any)>)>,
 export namespace $ObjectList {
 function of<K>(...arg0: (K)[]): $ObjectList<(K)>
 function of<K>(arg0: K, arg1: K, arg2: K): $ObjectList<(K)>
-function of<K>(arg0: K, arg1: K): $ObjectList<(K)>
-function of<K>(): $ObjectList<(K)>
 function of<K>(arg0: K): $ObjectList<(K)>
+function of<K>(): $ObjectList<(K)>
+function of<K>(arg0: K, arg1: K): $ObjectList<(K)>
 function copyOf<E>(arg0: $Collection$Type<(any)>): $List<(K)>
 function of<E>(arg0: K, arg1: K, arg2: K, arg3: K): $List<(K)>
 function of<E>(arg0: K, arg1: K, arg2: K, arg3: K, arg4: K, arg5: K, arg6: K, arg7: K): $List<(K)>
@@ -1452,13 +1449,13 @@ public "computeIntIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): integer
 public "computeIntIfAbsentPartial"(arg0: K, arg1: $Object2IntFunction$Type<(any)>): integer
 public "defaultReturnValue"(): integer
 public "defaultReturnValue"(arg0: integer): void
+public "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
+public "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$0$Type): integer
 /**
  * 
  * @deprecated
  */
 public "mergeInt"(arg0: K, arg1: integer, arg2: $BiFunction$Type<(any), (any), (any)>): integer
-public "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$0$Type): integer
-public "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (integer)>
 public "replaceAll"(arg0: $BiFunction$Type<(any), (any), (any)>): void
 public static "of"<K, V>(arg0: K, arg1: integer, arg2: K, arg3: integer, arg4: K, arg5: integer, arg6: K, arg7: integer, arg8: K, arg9: integer): $Map<(K), (integer)>
@@ -1499,17 +1496,13 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 
 export interface $IntPredicate extends $Predicate<(integer)>, $IntPredicate$0 {
 
-/**
- * 
- * @deprecated
- */
- "test"(arg0: integer): boolean
+ "or"(arg0: $IntPredicate$0$Type): $IntPredicate
+ "or"(arg0: $IntPredicate$Type): $IntPredicate
 /**
  * 
  * @deprecated
  */
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<(integer)>
- "or"(arg0: $IntPredicate$Type): $IntPredicate
  "and"(arg0: $IntPredicate$Type): $IntPredicate
  "and"(arg0: $IntPredicate$0$Type): $IntPredicate
 /**
@@ -1517,9 +1510,14 @@ export interface $IntPredicate extends $Predicate<(integer)>, $IntPredicate$0 {
  * @deprecated
  */
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<(integer)>
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: integer): boolean
  "test"(arg0: integer): boolean
 
-(arg0: integer): boolean
+(arg0: $IntPredicate$0$Type): $IntPredicate
 }
 
 export namespace $IntPredicate {
@@ -1581,13 +1579,18 @@ export interface $Short2CharFunction extends $Function$0<(short), (character)>, 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
- "remove"(arg0: short): character
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): character
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
+ "remove"(arg0: short): character
  "get"(arg0: short): character
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): character
 /**
  * 
  * @deprecated
@@ -1611,11 +1614,6 @@ export interface $Short2CharFunction extends $Function$0<(short), (character)>, 
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "defaultReturnValue"(arg0: character): void
  "defaultReturnValue"(): character
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Short2ByteFunction
@@ -1726,15 +1724,15 @@ export interface $ShortSet extends $ShortCollection, $Set<(short)> {
  * @deprecated
  */
  "parallelStream"(): $Stream<(short)>
- "intParallelStream"(): $IntStream
- "intIterator"(): $IntIterator
- "intSpliterator"(): $IntSpliterator
 /**
  * 
  * @deprecated
  */
  "toShortArray"(arg0: (short)[]): (short)[]
  "toShortArray"(): (short)[]
+ "intIterator"(): $IntIterator
+ "intParallelStream"(): $IntStream
+ "intSpliterator"(): $IntSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -1807,11 +1805,11 @@ export interface $Int2ObjectMap$Entry<V> extends $Map$Entry<(integer), (V)> {
 }
 
 export namespace $Int2ObjectMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(integer), (V)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (V)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(integer), (V)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (V)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(integer), (V)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (V)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(integer), (V)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1950,42 +1948,32 @@ export interface $Long2BooleanFunction extends $Function$0<(long), (boolean)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): boolean
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): boolean
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
+ "remove"(arg0: long): boolean
  "get"(arg0: long): boolean
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): boolean
  "put"(arg0: long, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
  "put"(arg0: long, arg1: boolean): boolean
  "test"(arg0: long): boolean
- "containsKey"(arg0: long): boolean
 /**
  * 
  * @deprecated
  */
  "containsKey"(arg0: any): boolean
+ "containsKey"(arg0: long): boolean
  "getOrDefault"(arg0: long, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Long2ByteFunction
@@ -2059,6 +2047,11 @@ export interface $Char2CharFunction extends $Function<(character), (character)>,
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(character), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (character)>
  "remove"(arg0: character): character
  "get"(arg0: character): character
  "put"(arg0: character, arg1: character): character
@@ -2073,22 +2066,17 @@ export interface $Char2CharFunction extends $Function<(character), (character)>,
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: character): boolean
-/**
- * 
- * @deprecated
- */
- "getOrDefault"(arg0: any, arg1: character): character
  "getOrDefault"(arg0: character, arg1: character): character
 /**
  * 
  * @deprecated
  */
- "applyAsInt"(arg0: integer): integer
+ "getOrDefault"(arg0: any, arg1: character): character
 /**
  * 
  * @deprecated
  */
- "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (character)>
+ "applyAsInt"(arg0: integer): integer
  "defaultReturnValue"(): character
  "defaultReturnValue"(arg0: character): void
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Char2ByteFunction
@@ -2152,8 +2140,8 @@ export interface $LongBidirectionalIterable extends $LongIterable {
  */
  "forEach"(arg0: $Consumer$Type<(any)>): void
  "forEach"(arg0: $LongConsumer$0$Type): void
- "longSpliterator"(): $LongSpliterator
  "longIterator"(): $LongIterator
+ "longSpliterator"(): $LongSpliterator
 
 (): $LongBidirectionalIterator
 }
@@ -2338,8 +2326,8 @@ export interface $ByteCollection extends $Collection<(byte)>, $ByteIterable {
  */
  "parallelStream"(): $Stream<(byte)>
  "rem"(arg0: byte): boolean
- "intParallelStream"(): $IntStream
  "intIterator"(): $IntIterator
+ "intParallelStream"(): $IntStream
  "intSpliterator"(): $IntSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
@@ -2501,16 +2489,16 @@ export interface $Object2IntSortedMap<K> extends $Object2IntMap<(K)>, $SortedMap
  "computeIntIfAbsentPartial"(arg0: K, arg1: $Object2IntFunction$Type<(any)>): integer
  "defaultReturnValue"(): integer
  "defaultReturnValue"(arg0: integer): void
+ "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
+ "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$Type): integer
+ "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$0$Type): integer
 /**
  * 
  * @deprecated
  */
  "mergeInt"(arg0: K, arg1: integer, arg2: $BiFunction$Type<(any), (any), (any)>): integer
- "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$Type): integer
- "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$0$Type): integer
- "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
- "firstKey"(): K
  "lastKey"(): K
+ "firstKey"(): K
 /**
  * 
  * @deprecated
@@ -2535,9 +2523,9 @@ export interface $Object2IntSortedMap<K> extends $Object2IntMap<(K)>, $SortedMap
  "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2IntFunction<(T)>
  "andThenReference"<T>(arg0: $Int2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2IntFunction<(T)>
- "removeInt"(arg0: any): integer
  "andThenInt"(arg0: $Int2IntFunction$Type): $Object2IntFunction<(K)>
  "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2IntFunction
+ "removeInt"(arg0: any): integer
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "isEmpty"(): boolean
@@ -2587,15 +2575,15 @@ import {$PrimitiveIterator, $PrimitiveIterator$Type} from "packages/java/util/$P
 
 export interface $ByteIterator extends $PrimitiveIterator<(byte), ($ByteConsumer)> {
 
+ "nextByte"(): byte
  "forEachRemaining"(arg0: $IntConsumer$Type): void
- "forEachRemaining"(arg0: $ByteConsumer$Type): void
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
+ "forEachRemaining"(arg0: $ByteConsumer$Type): void
  "skip"(arg0: integer): integer
- "nextByte"(): byte
  "remove"(): void
  "hasNext"(): boolean
 }
@@ -2620,20 +2608,20 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 
 export interface $BooleanConsumer extends $Consumer<(boolean)> {
 
- "andThen"(arg0: $BooleanConsumer$Type): $BooleanConsumer
 /**
  * 
  * @deprecated
  */
  "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(boolean)>
- "accept"(arg0: boolean): void
+ "andThen"(arg0: $BooleanConsumer$Type): $BooleanConsumer
 /**
  * 
  * @deprecated
  */
  "accept"(arg0: boolean): void
+ "accept"(arg0: boolean): void
 
-(arg0: $BooleanConsumer$Type): $BooleanConsumer
+(arg0: $Consumer$Type<(any)>): $Consumer<(boolean)>
 }
 
 export namespace $BooleanConsumer {
@@ -2736,9 +2724,9 @@ export interface $Reference2IntFunction<K> extends $Function$0<(K), (integer)>, 
  "composeObject"<T>(arg0: $Object2ReferenceFunction$Type<(any), (any)>): $Object2IntFunction<(T)>
  "andThenReference"<T>(arg0: $Int2ReferenceFunction$Type<(any)>): $Reference2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ReferenceFunction$Type<(any), (any)>): $Reference2IntFunction<(T)>
- "removeInt"(arg0: any): integer
  "andThenInt"(arg0: $Int2IntFunction$Type): $Reference2IntFunction<(K)>
  "composeInt"(arg0: $Int2ReferenceFunction$Type<(K)>): $Int2IntFunction
+ "removeInt"(arg0: any): integer
  "clear"(): void
  "size"(): integer
  "apply"(arg0: K): integer
@@ -2848,9 +2836,9 @@ export interface $Reference2LongFunction<K> extends $Function$0<(K), (long)>, $T
  "composeObject"<T>(arg0: $Object2ReferenceFunction$Type<(any), (any)>): $Object2LongFunction<(T)>
  "andThenReference"<T>(arg0: $Long2ReferenceFunction$Type<(any)>): $Reference2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ReferenceFunction$Type<(any), (any)>): $Reference2LongFunction<(T)>
- "removeLong"(arg0: any): long
  "andThenInt"(arg0: $Long2IntFunction$Type): $Reference2IntFunction<(K)>
  "composeInt"(arg0: $Int2ReferenceFunction$Type<(K)>): $Int2LongFunction
+ "removeLong"(arg0: any): long
  "clear"(): void
  "size"(): integer
  "apply"(arg0: K): long
@@ -2900,11 +2888,11 @@ export interface $Long2IntMap$Entry extends $Map$Entry<(long), (integer)> {
 }
 
 export namespace $Long2IntMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(long), (integer)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (integer)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(long), (integer)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (integer)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(long), (integer)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (integer)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(long), (integer)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2943,11 +2931,11 @@ export interface $Object2LongMap$Entry<K> extends $Map$Entry<(K), (long)> {
 }
 
 export namespace $Object2LongMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (long)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (long)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (long)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (long)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (long)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (long)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (long)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3004,13 +2992,18 @@ export interface $Float2ShortFunction extends $Function$0<(float), (short)>, $Do
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(float), (T)>
- "remove"(arg0: float): short
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): short
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
+ "remove"(arg0: float): short
  "get"(arg0: float): short
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): short
 /**
  * 
  * @deprecated
@@ -3034,11 +3027,6 @@ export interface $Float2ShortFunction extends $Function$0<(float), (short)>, $Do
  * @deprecated
  */
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "defaultReturnValue"(arg0: short): void
  "defaultReturnValue"(): short
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Float2ByteFunction
@@ -3126,19 +3114,24 @@ public "defaultReturnValue"(): V
  * 
  * @deprecated
  */
-public "remove"(arg0: any): V
+public "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 public "remove"(arg0: integer): V
+/**
+ * 
+ * @deprecated
+ */
+public "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
 public "get"(arg0: any): V
 public "get"(arg0: integer): V
+public "put"(arg0: integer, arg1: V): V
 /**
  * 
  * @deprecated
  */
-public "put"(arg0: integer, arg1: V): V
 public "put"(arg0: integer, arg1: V): V
 public "apply"(arg0: integer): V
 public "containsKey"(arg0: integer): boolean
@@ -3153,11 +3146,6 @@ public "getOrDefault"(arg0: integer, arg1: V): V
  * @deprecated
  */
 public "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
-public "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 public "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Int2ByteFunction
 public "composeByte"(arg0: $Byte2IntFunction$Type): $Byte2ObjectFunction<(V)>
 public "andThenShort"(arg0: $Object2ShortFunction$Type<(V)>): $Int2ShortFunction
@@ -3204,8 +3192,8 @@ export interface $ObjectListIterator<K> extends $ObjectBidirectionalIterator<(K)
  "add"(arg0: K): void
  "remove"(): void
  "set"(arg0: K): void
- "skip"(arg0: integer): integer
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "hasNext"(): boolean
  "next"(): K
  "nextIndex"(): integer
@@ -3340,12 +3328,12 @@ public "getOrDefault"(arg0: integer, arg1: V): V
  */
 public "getOrDefault"(arg0: any, arg1: V): V
 public "computeIfPresent"(arg0: integer, arg1: $BiFunction$Type<(any), (any), (any)>): V
-public "int2ObjectEntrySet"(): $ObjectSet<($Int2ObjectMap$Entry<(V)>)>
 /**
  * 
  * @deprecated
  */
 public "computeIfAbsentPartial"(arg0: integer, arg1: $Int2ObjectFunction$Type<(any)>): V
+public "int2ObjectEntrySet"(): $ObjectSet<($Int2ObjectMap$Entry<(V)>)>
 public "defaultReturnValue"(): V
 public "defaultReturnValue"(arg0: V): void
 public "remove"(arg0: any, arg1: any): boolean
@@ -3412,11 +3400,11 @@ export interface $Object2FloatMap$Entry<K> extends $Map$Entry<(K), (float)> {
 }
 
 export namespace $Object2FloatMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (float)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (float)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (float)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (float)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (float)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (float)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (float)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3561,6 +3549,11 @@ export interface $Boolean2ShortFunction extends $Function$0<(boolean), (short)> 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "remove"(arg0: boolean): short
  "get"(arg0: boolean): short
 /**
@@ -3586,11 +3579,6 @@ export interface $Boolean2ShortFunction extends $Function$0<(boolean), (short)> 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: short): short
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "defaultReturnValue"(arg0: short): void
  "defaultReturnValue"(): short
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Boolean2ByteFunction
@@ -3676,13 +3664,18 @@ export interface $Int2DoubleFunction extends $Function$0<(integer), (double)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): double
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): double
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
+ "remove"(arg0: integer): double
  "get"(arg0: integer): double
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): double
 /**
  * 
  * @deprecated
@@ -3702,11 +3695,6 @@ export interface $Int2DoubleFunction extends $Function$0<(integer), (double)>, $
  "getOrDefault"(arg0: any, arg1: double): double
  "getOrDefault"(arg0: integer, arg1: double): double
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "defaultReturnValue"(arg0: double): void
  "defaultReturnValue"(): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Int2ByteFunction
@@ -3755,12 +3743,12 @@ import {$IntConsumer as $IntConsumer$0, $IntConsumer$Type as $IntConsumer$0$Type
 
 export interface $IntConsumer extends $Consumer<(integer)>, $IntConsumer$0 {
 
- "andThen"(arg0: $IntConsumer$Type): $IntConsumer
 /**
  * 
  * @deprecated
  */
  "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(integer)>
+ "andThen"(arg0: $IntConsumer$Type): $IntConsumer
 /**
  * 
  * @deprecated
@@ -3768,7 +3756,7 @@ export interface $IntConsumer extends $Consumer<(integer)>, $IntConsumer$0 {
  "accept"(arg0: integer): void
  "accept"(arg0: integer): void
 
-(arg0: $IntConsumer$Type): $IntConsumer
+(arg0: $Consumer$Type<(any)>): $Consumer<(integer)>
 }
 
 export namespace $IntConsumer {
@@ -3814,6 +3802,11 @@ export interface $Long2LongFunction extends $Function<(long), (long)>, $LongUnar
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(long), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (long)>
  "remove"(arg0: long): long
  "get"(arg0: long): long
  "put"(arg0: long, arg1: long): long
@@ -3828,18 +3821,13 @@ export interface $Long2LongFunction extends $Function<(long), (long)>, $LongUnar
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: long): boolean
+ "getOrDefault"(arg0: long, arg1: long): long
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: long): long
- "getOrDefault"(arg0: long, arg1: long): long
  "applyAsLong"(arg0: long): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (long)>
  "defaultReturnValue"(): long
  "defaultReturnValue"(arg0: long): void
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Long2ByteFunction
@@ -3901,8 +3889,8 @@ public "comparator"(): $Comparator<(any)>
 public "object2IntEntrySet"(): $ObjectSortedSet<($Object2IntMap$Entry<(K)>)>
 public "defaultReturnValue"(): integer
 public "defaultReturnValue"(arg0: integer): void
-public "firstKey"(): K
 public "lastKey"(): K
+public "firstKey"(): K
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (integer)>
 public static "of"<K, V>(arg0: K, arg1: integer, arg2: K, arg3: integer, arg4: K, arg5: integer, arg6: K, arg7: integer, arg8: K, arg9: integer): $Map<(K), (integer)>
 public static "of"<K, V>(arg0: K, arg1: integer, arg2: K, arg3: integer, arg4: K, arg5: integer, arg6: K, arg7: integer): $Map<(K), (integer)>
@@ -4033,13 +4021,18 @@ export interface $Double2ShortFunction extends $Function$0<(double), (short)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(double), (T)>
- "remove"(arg0: double): short
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): short
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
+ "remove"(arg0: double): short
  "get"(arg0: double): short
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): short
 /**
  * 
  * @deprecated
@@ -4059,11 +4052,6 @@ export interface $Double2ShortFunction extends $Function$0<(double), (short)>, $
  "getOrDefault"(arg0: any, arg1: short): short
  "getOrDefault"(arg0: double, arg1: short): short
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "defaultReturnValue"(arg0: short): void
  "defaultReturnValue"(): short
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Double2ByteFunction
@@ -4119,7 +4107,6 @@ import {$LongUnaryOperator, $LongUnaryOperator$Type} from "packages/java/util/fu
 import {$LongIterator, $LongIterator$Type} from "packages/it/unimi/dsi/fastutil/longs/$LongIterator"
 import {$LongPredicate, $LongPredicate$Type} from "packages/it/unimi/dsi/fastutil/longs/$LongPredicate"
 import {$LongUnaryOperator as $LongUnaryOperator$0, $LongUnaryOperator$Type as $LongUnaryOperator$0$Type} from "packages/it/unimi/dsi/fastutil/longs/$LongUnaryOperator"
-import {$LongListIterator, $LongListIterator$Type} from "packages/it/unimi/dsi/fastutil/longs/$LongListIterator"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$LongPredicate as $LongPredicate$0, $LongPredicate$Type as $LongPredicate$0$Type} from "packages/java/util/function/$LongPredicate"
 import {$UnaryOperator, $UnaryOperator$Type} from "packages/java/util/function/$UnaryOperator"
@@ -4131,17 +4118,18 @@ import {$LongCollection, $LongCollection$Type} from "packages/it/unimi/dsi/fastu
 
 export interface $LongList extends $List<(long)>, $Comparable<($List<(any)>)>, $LongCollection {
 
- "add"(arg0: long): boolean
-/**
- * 
- * @deprecated
- */
- "add"(arg0: long): boolean
-/**
- * 
- * @deprecated
- */
+ "getElements"(arg0: integer, arg1: (long)[], arg2: integer, arg3: integer): void
  "add"(arg0: integer, arg1: long): void
+ "add"(arg0: long): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "add"(arg0: long): boolean
+/**
+ * 
+ * @deprecated
+ */
  "add"(arg0: integer, arg1: long): void
 /**
  * 
@@ -4153,12 +4141,12 @@ export interface $LongList extends $List<(long)>, $Comparable<($List<(any)>)>, $
  * @deprecated
  */
  "get"(arg0: integer): long
- "indexOf"(arg0: long): integer
 /**
  * 
  * @deprecated
  */
  "indexOf"(arg0: any): integer
+ "indexOf"(arg0: long): integer
  "getLong"(arg0: integer): long
 /**
  * 
@@ -4166,49 +4154,46 @@ export interface $LongList extends $List<(long)>, $Comparable<($List<(any)>)>, $
  */
  "lastIndexOf"(arg0: any): integer
  "lastIndexOf"(arg0: long): integer
- "replaceAll"(arg0: $LongUnaryOperator$0$Type): void
- "replaceAll"(arg0: $LongUnaryOperator$Type): void
 /**
  * 
  * @deprecated
  */
  "replaceAll"(arg0: $UnaryOperator$Type<(long)>): void
+ "replaceAll"(arg0: $LongUnaryOperator$0$Type): void
+ "replaceAll"(arg0: $LongUnaryOperator$Type): void
  "size"(arg0: integer): void
- "subList"(arg0: integer, arg1: integer): $LongList
- "iterator"(): $LongListIterator
 /**
  * 
  * @deprecated
  */
  "contains"(arg0: any): boolean
  "addAll"(arg0: integer, arg1: $LongCollection$Type): boolean
- "addAll"(arg0: $LongList$Type): boolean
  "addAll"(arg0: integer, arg1: $LongList$Type): boolean
+ "addAll"(arg0: $LongList$Type): boolean
  "set"(arg0: integer, arg1: long): long
 /**
  * 
  * @deprecated
  */
  "set"(arg0: integer, arg1: long): long
- "sort"(arg0: $LongComparator$Type): void
 /**
  * 
  * @deprecated
  */
  "sort"(arg0: $Comparator$Type<(any)>): void
- "getElements"(arg0: integer, arg1: (long)[], arg2: integer, arg3: integer): void
- "removeElements"(arg0: integer, arg1: integer): void
- "addElements"(arg0: integer, arg1: (long)[], arg2: integer, arg3: integer): void
- "addElements"(arg0: integer, arg1: (long)[]): void
- "setElements"(arg0: integer, arg1: (long)[], arg2: integer, arg3: integer): void
- "setElements"(arg0: integer, arg1: (long)[]): void
- "setElements"(arg0: (long)[]): void
+ "sort"(arg0: $LongComparator$Type): void
+ "unstableSort"(arg0: $LongComparator$Type): void
 /**
  * 
  * @deprecated
  */
  "unstableSort"(arg0: $Comparator$Type<(any)>): void
- "unstableSort"(arg0: $LongComparator$Type): void
+ "addElements"(arg0: integer, arg1: (long)[]): void
+ "addElements"(arg0: integer, arg1: (long)[], arg2: integer, arg3: integer): void
+ "removeElements"(arg0: integer, arg1: integer): void
+ "setElements"(arg0: integer, arg1: (long)[], arg2: integer, arg3: integer): void
+ "setElements"(arg0: (long)[]): void
+ "setElements"(arg0: integer, arg1: (long)[]): void
  "removeLong"(arg0: integer): long
  "equals"(arg0: any): boolean
  "hashCode"(): integer
@@ -4223,6 +4208,13 @@ export interface $LongList extends $List<(long)>, $Comparable<($List<(any)>)>, $
  "retainAll"(arg0: $Collection$Type<(any)>): boolean
  "containsAll"(arg0: $Collection$Type<(any)>): boolean
  "compareTo"(arg0: $List$Type<(any)>): integer
+ "longStream"(): $LongStream
+/**
+ * 
+ * @deprecated
+ */
+ "toLongArray"(arg0: (long)[]): (long)[]
+ "toLongArray"(): (long)[]
  "toArray"(arg0: (long)[]): (long)[]
 /**
  * 
@@ -4232,12 +4224,12 @@ export interface $LongList extends $List<(long)>, $Comparable<($List<(any)>)>, $
  "contains"(arg0: long): boolean
  "addAll"(arg0: $LongCollection$Type): boolean
  "removeIf"(arg0: $LongPredicate$0$Type): boolean
+ "removeIf"(arg0: $LongPredicate$Type): boolean
 /**
  * 
  * @deprecated
  */
  "removeIf"(arg0: $Predicate$Type<(any)>): boolean
- "removeIf"(arg0: $LongPredicate$Type): boolean
  "removeAll"(arg0: $LongCollection$Type): boolean
  "retainAll"(arg0: $LongCollection$Type): boolean
  "containsAll"(arg0: $LongCollection$Type): boolean
@@ -4247,16 +4239,9 @@ export interface $LongList extends $List<(long)>, $Comparable<($List<(any)>)>, $
  */
  "parallelStream"(): $Stream<(long)>
  "rem"(arg0: long): boolean
- "longStream"(): $LongStream
- "toLongArray"(): (long)[]
-/**
- * 
- * @deprecated
- */
- "toLongArray"(arg0: (long)[]): (long)[]
- "longSpliterator"(): $LongSpliterator
- "longIterator"(): $LongIterator
  "longParallelStream"(): $LongStream
+ "longIterator"(): $LongIterator
+ "longSpliterator"(): $LongSpliterator
  "toArray"<T>(arg0: $IntFunction$Type<((T)[])>): (T)[]
  "forEach"(arg0: $LongConsumer$Type): void
 /**
@@ -4341,13 +4326,18 @@ export interface $Float2IntFunction extends $Function$0<(float), (integer)>, $Do
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(float), (T)>
- "remove"(arg0: float): integer
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): integer
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: float): integer
  "get"(arg0: float): integer
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): integer
 /**
  * 
  * @deprecated
@@ -4371,11 +4361,6 @@ export interface $Float2IntFunction extends $Function$0<(float), (integer)>, $Do
  * @deprecated
  */
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Float2ByteFunction
@@ -4475,8 +4460,8 @@ export interface $Object2ObjectSortedMap<K, V> extends $Object2ObjectMap<(K), (V
  * @deprecated
  */
  "computeObjectIfAbsentPartial"(arg0: K, arg1: $Object2ObjectFunction$Type<(any), (any)>): V
- "firstKey"(): K
  "lastKey"(): K
+ "firstKey"(): K
  "get"(arg0: any): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Object2ByteFunction<(K)>
  "composeByte"(arg0: $Byte2ObjectFunction$Type<(K)>): $Byte2ObjectFunction<(V)>
@@ -4580,13 +4565,18 @@ export interface $Float2ByteFunction extends $Function$0<(float), (byte)>, $Doub
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(float), (T)>
- "remove"(arg0: float): byte
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): byte
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
+ "remove"(arg0: float): byte
  "get"(arg0: float): byte
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): byte
 /**
  * 
  * @deprecated
@@ -4610,11 +4600,6 @@ export interface $Float2ByteFunction extends $Function$0<(float), (byte)>, $Doub
  * @deprecated
  */
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Float2ByteFunction
@@ -4667,31 +4652,32 @@ import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$AbstractInt2ObjectMap, $AbstractInt2ObjectMap$Type} from "packages/it/unimi/dsi/fastutil/ints/$AbstractInt2ObjectMap"
 import {$IntFunction, $IntFunction$Type} from "packages/java/util/function/$IntFunction"
 import {$Cloneable, $Cloneable$Type} from "packages/java/lang/$Cloneable"
+import {$Int2ObjectMap$FastEntrySet, $Int2ObjectMap$FastEntrySet$Type} from "packages/it/unimi/dsi/fastutil/ints/$Int2ObjectMap$FastEntrySet"
 import {$IntSet, $IntSet$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntSet"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Int2ObjectOpenHashMap<V> extends $AbstractInt2ObjectMap<(V)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: $Map$Type<(any), (any)>)
-constructor(arg0: $Int2ObjectMap$Type<(V)>, arg1: float)
-constructor(arg0: $Int2ObjectMap$Type<(V)>)
 constructor(arg0: (integer)[], arg1: (V)[], arg2: float)
+constructor(arg0: $Int2ObjectMap$Type<(V)>)
+constructor(arg0: $Int2ObjectMap$Type<(V)>, arg1: float)
 constructor(arg0: (integer)[], arg1: (V)[])
 constructor(arg0: integer, arg1: float)
 constructor(arg0: integer)
 constructor()
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
+constructor(arg0: $Map$Type<(any), (any)>)
 
-public "remove"(arg0: integer, arg1: any): boolean
 public "remove"(arg0: integer): V
+public "remove"(arg0: integer, arg1: any): boolean
 public "get"(arg0: integer): V
 public "put"(arg0: integer, arg1: V): V
 public "hashCode"(): integer
 public "clear"(): void
 public "isEmpty"(): boolean
-public "replace"(arg0: integer, arg1: V, arg2: V): boolean
 public "replace"(arg0: integer, arg1: V): V
+public "replace"(arg0: integer, arg1: V, arg2: V): boolean
 public "size"(): integer
 public "trim"(): boolean
 public "trim"(arg0: integer): boolean
@@ -4700,12 +4686,13 @@ public "putAll"(arg0: $Map$Type<(any), (any)>): void
 public "putIfAbsent"(arg0: integer, arg1: V): V
 public "compute"(arg0: integer, arg1: $BiFunction$Type<(any), (any), (any)>): V
 public "containsKey"(arg0: integer): boolean
-public "computeIfAbsent"(arg0: integer, arg1: $Int2ObjectFunction$Type<(any)>): V
 public "computeIfAbsent"(arg0: integer, arg1: $IntFunction$Type<(any)>): V
+public "computeIfAbsent"(arg0: integer, arg1: $Int2ObjectFunction$Type<(any)>): V
 public "keySet"(): $IntSet
 public "containsValue"(arg0: any): boolean
 public "getOrDefault"(arg0: integer, arg1: V): V
 public "computeIfPresent"(arg0: integer, arg1: $BiFunction$Type<(any), (any), (any)>): V
+public "int2ObjectEntrySet"(): $Int2ObjectMap$FastEntrySet<(V)>
 public "defaultReturnValue"(): V
 public "defaultReturnValue"(arg0: V): void
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
@@ -4738,7 +4725,6 @@ declare global {
 export type $Int2ObjectOpenHashMap_<V> = $Int2ObjectOpenHashMap$Type<(V)>;
 }}
 declare module "packages/it/unimi/dsi/fastutil/doubles/$DoubleList" {
-import {$DoubleListIterator, $DoubleListIterator$Type} from "packages/it/unimi/dsi/fastutil/doubles/$DoubleListIterator"
 import {$Comparator, $Comparator$Type} from "packages/java/util/$Comparator"
 import {$Comparable, $Comparable$Type} from "packages/java/lang/$Comparable"
 import {$DoubleComparator, $DoubleComparator$Type} from "packages/it/unimi/dsi/fastutil/doubles/$DoubleComparator"
@@ -4762,17 +4748,18 @@ import {$DoublePredicate as $DoublePredicate$0, $DoublePredicate$Type as $Double
 
 export interface $DoubleList extends $List<(double)>, $Comparable<($List<(any)>)>, $DoubleCollection {
 
- "add"(arg0: double): boolean
-/**
- * 
- * @deprecated
- */
- "add"(arg0: double): boolean
-/**
- * 
- * @deprecated
- */
+ "getElements"(arg0: integer, arg1: (double)[], arg2: integer, arg3: integer): void
  "add"(arg0: integer, arg1: double): void
+ "add"(arg0: double): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "add"(arg0: double): boolean
+/**
+ * 
+ * @deprecated
+ */
  "add"(arg0: integer, arg1: double): void
 /**
  * 
@@ -4784,12 +4771,12 @@ export interface $DoubleList extends $List<(double)>, $Comparable<($List<(any)>)
  * @deprecated
  */
  "get"(arg0: integer): double
- "indexOf"(arg0: double): integer
 /**
  * 
  * @deprecated
  */
  "indexOf"(arg0: any): integer
+ "indexOf"(arg0: double): integer
  "getDouble"(arg0: integer): double
 /**
  * 
@@ -4797,50 +4784,47 @@ export interface $DoubleList extends $List<(double)>, $Comparable<($List<(any)>)
  */
  "lastIndexOf"(arg0: any): integer
  "lastIndexOf"(arg0: double): integer
- "replaceAll"(arg0: $DoubleUnaryOperator$0$Type): void
- "replaceAll"(arg0: $DoubleUnaryOperator$Type): void
 /**
  * 
  * @deprecated
  */
  "replaceAll"(arg0: $UnaryOperator$Type<(double)>): void
+ "replaceAll"(arg0: $DoubleUnaryOperator$0$Type): void
+ "replaceAll"(arg0: $DoubleUnaryOperator$Type): void
  "size"(arg0: integer): void
- "subList"(arg0: integer, arg1: integer): $DoubleList
- "iterator"(): $DoubleListIterator
 /**
  * 
  * @deprecated
  */
  "contains"(arg0: any): boolean
  "addAll"(arg0: integer, arg1: $DoubleCollection$Type): boolean
- "addAll"(arg0: $DoubleList$Type): boolean
  "addAll"(arg0: integer, arg1: $DoubleList$Type): boolean
+ "addAll"(arg0: $DoubleList$Type): boolean
  "set"(arg0: integer, arg1: double): double
 /**
  * 
  * @deprecated
  */
  "set"(arg0: integer, arg1: double): double
- "sort"(arg0: $DoubleComparator$Type): void
 /**
  * 
  * @deprecated
  */
  "sort"(arg0: $Comparator$Type<(any)>): void
- "getElements"(arg0: integer, arg1: (double)[], arg2: integer, arg3: integer): void
+ "sort"(arg0: $DoubleComparator$Type): void
  "removeDouble"(arg0: integer): double
- "removeElements"(arg0: integer, arg1: integer): void
- "addElements"(arg0: integer, arg1: (double)[], arg2: integer, arg3: integer): void
- "addElements"(arg0: integer, arg1: (double)[]): void
- "setElements"(arg0: integer, arg1: (double)[], arg2: integer, arg3: integer): void
- "setElements"(arg0: integer, arg1: (double)[]): void
- "setElements"(arg0: (double)[]): void
- "unstableSort"(arg0: $DoubleComparator$Type): void
 /**
  * 
  * @deprecated
  */
  "unstableSort"(arg0: $Comparator$Type<(any)>): void
+ "unstableSort"(arg0: $DoubleComparator$Type): void
+ "addElements"(arg0: integer, arg1: (double)[]): void
+ "addElements"(arg0: integer, arg1: (double)[], arg2: integer, arg3: integer): void
+ "removeElements"(arg0: integer, arg1: integer): void
+ "setElements"(arg0: (double)[]): void
+ "setElements"(arg0: integer, arg1: (double)[], arg2: integer, arg3: integer): void
+ "setElements"(arg0: integer, arg1: (double)[]): void
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -4854,6 +4838,7 @@ export interface $DoubleList extends $List<(double)>, $Comparable<($List<(any)>)
  "retainAll"(arg0: $Collection$Type<(any)>): boolean
  "containsAll"(arg0: $Collection$Type<(any)>): boolean
  "compareTo"(arg0: $List$Type<(any)>): integer
+ "doubleStream"(): $DoubleStream
  "toArray"(arg0: (double)[]): (double)[]
 /**
  * 
@@ -4863,12 +4848,12 @@ export interface $DoubleList extends $List<(double)>, $Comparable<($List<(any)>)
  "contains"(arg0: double): boolean
  "addAll"(arg0: $DoubleCollection$Type): boolean
  "removeIf"(arg0: $DoublePredicate$0$Type): boolean
+ "removeIf"(arg0: $DoublePredicate$Type): boolean
 /**
  * 
  * @deprecated
  */
  "removeIf"(arg0: $Predicate$Type<(any)>): boolean
- "removeIf"(arg0: $DoublePredicate$Type): boolean
  "removeAll"(arg0: $DoubleCollection$Type): boolean
  "retainAll"(arg0: $DoubleCollection$Type): boolean
  "containsAll"(arg0: $DoubleCollection$Type): boolean
@@ -4878,16 +4863,15 @@ export interface $DoubleList extends $List<(double)>, $Comparable<($List<(any)>)
  */
  "parallelStream"(): $Stream<(double)>
  "rem"(arg0: double): boolean
- "doubleStream"(): $DoubleStream
- "doubleIterator"(): $DoubleIterator
- "doubleSpliterator"(): $DoubleSpliterator
- "doubleParallelStream"(): $DoubleStream
  "toDoubleArray"(): (double)[]
 /**
  * 
  * @deprecated
  */
  "toDoubleArray"(arg0: (double)[]): (double)[]
+ "doubleParallelStream"(): $DoubleStream
+ "doubleSpliterator"(): $DoubleSpliterator
+ "doubleIterator"(): $DoubleIterator
  "toArray"<T>(arg0: $IntFunction$Type<((T)[])>): (T)[]
  "forEach"(arg0: $DoubleConsumer$0$Type): void
 /**
@@ -4935,17 +4919,13 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 
 export interface $LongPredicate extends $Predicate<(long)>, $LongPredicate$0 {
 
-/**
- * 
- * @deprecated
- */
- "test"(arg0: long): boolean
+ "or"(arg0: $LongPredicate$0$Type): $LongPredicate
+ "or"(arg0: $LongPredicate$Type): $LongPredicate
 /**
  * 
  * @deprecated
  */
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<(long)>
- "or"(arg0: $LongPredicate$Type): $LongPredicate
  "and"(arg0: $LongPredicate$Type): $LongPredicate
  "and"(arg0: $LongPredicate$0$Type): $LongPredicate
 /**
@@ -4953,9 +4933,14 @@ export interface $LongPredicate extends $Predicate<(long)>, $LongPredicate$0 {
  * @deprecated
  */
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<(long)>
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: long): boolean
  "test"(arg0: long): boolean
 
-(arg0: long): boolean
+(arg0: $LongPredicate$0$Type): $LongPredicate
 }
 
 export namespace $LongPredicate {
@@ -5153,29 +5138,29 @@ export interface $Object2ByteSortedMap<K> extends $Object2ByteMap<(K)>, $SortedM
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: byte): byte
- "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
- "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
-/**
- * 
- * @deprecated
- */
- "computeByteIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): byte
 /**
  * 
  * @deprecated
  */
  "computeByteIfAbsentPartial"(arg0: K, arg1: $Object2ByteFunction$Type<(any)>): byte
- "defaultReturnValue"(arg0: byte): void
+/**
+ * 
+ * @deprecated
+ */
+ "computeByteIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): byte
+ "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+ "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
  "defaultReturnValue"(): byte
+ "defaultReturnValue"(arg0: byte): void
+ "mergeByte"(arg0: K, arg1: byte, arg2: $ByteBinaryOperator$Type): byte
  "mergeByte"(arg0: K, arg1: byte, arg2: $IntBinaryOperator$Type): byte
 /**
  * 
  * @deprecated
  */
  "mergeByte"(arg0: K, arg1: byte, arg2: $BiFunction$Type<(any), (any), (any)>): byte
- "mergeByte"(arg0: K, arg1: byte, arg2: $ByteBinaryOperator$Type): byte
- "firstKey"(): K
  "lastKey"(): K
+ "firstKey"(): K
 /**
  * 
  * @deprecated
@@ -5200,9 +5185,9 @@ export interface $Object2ByteSortedMap<K> extends $Object2ByteMap<(K)>, $SortedM
  "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2ByteFunction<(T)>
  "andThenReference"<T>(arg0: $Byte2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2ByteFunction<(T)>
- "removeByte"(arg0: any): byte
  "andThenInt"(arg0: $Byte2IntFunction$Type): $Object2IntFunction<(K)>
  "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2ByteFunction
+ "removeByte"(arg0: any): byte
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "isEmpty"(): boolean
@@ -5384,6 +5369,11 @@ export interface $Byte2ByteFunction extends $Function<(byte), (byte)>, $IntUnary
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(byte), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (byte)>
  "remove"(arg0: byte): byte
  "get"(arg0: byte): byte
  "put"(arg0: byte, arg1: byte): byte
@@ -5398,22 +5388,17 @@ export interface $Byte2ByteFunction extends $Function<(byte), (byte)>, $IntUnary
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: byte): boolean
-/**
- * 
- * @deprecated
- */
- "getOrDefault"(arg0: any, arg1: byte): byte
  "getOrDefault"(arg0: byte, arg1: byte): byte
 /**
  * 
  * @deprecated
  */
- "applyAsInt"(arg0: integer): integer
+ "getOrDefault"(arg0: any, arg1: byte): byte
 /**
  * 
  * @deprecated
  */
- "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (byte)>
+ "applyAsInt"(arg0: integer): integer
  "defaultReturnValue"(): byte
  "defaultReturnValue"(arg0: byte): void
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Byte2ByteFunction
@@ -5572,9 +5557,9 @@ export interface $Object2IntFunction<K> extends $Function$0<(K), (integer)>, $To
  "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2IntFunction<(T)>
  "andThenReference"<T>(arg0: $Int2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2IntFunction<(T)>
- "removeInt"(arg0: any): integer
  "andThenInt"(arg0: $Int2IntFunction$Type): $Object2IntFunction<(K)>
  "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2IntFunction
+ "removeInt"(arg0: any): integer
  "clear"(): void
  "size"(): integer
  "apply"(arg0: K): integer
@@ -5654,8 +5639,8 @@ import {$BidirectionalIterator, $BidirectionalIterator$Type} from "packages/it/u
 
 export interface $ObjectBidirectionalIterator<K> extends $ObjectIterator<(K)>, $BidirectionalIterator<(K)> {
 
- "skip"(arg0: integer): integer
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "hasPrevious"(): boolean
  "previous"(): K
  "remove"(): void
@@ -5725,46 +5710,36 @@ export interface $Short2BooleanFunction extends $Function$0<(short), (boolean)>,
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
- "remove"(arg0: short): boolean
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): boolean
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
+ "remove"(arg0: short): boolean
  "get"(arg0: short): boolean
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): boolean
  "put"(arg0: short, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
  "put"(arg0: short, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "test"(arg0: integer): boolean
- "containsKey"(arg0: short): boolean
 /**
  * 
  * @deprecated
  */
  "containsKey"(arg0: any): boolean
+ "containsKey"(arg0: short): boolean
  "getOrDefault"(arg0: short, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Short2ByteFunction
@@ -5835,11 +5810,11 @@ export interface $Object2IntMap$Entry<K> extends $Map$Entry<(K), (integer)> {
 }
 
 export namespace $Object2IntMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (integer)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (integer)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (integer)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (integer)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (integer)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (integer)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (integer)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5899,42 +5874,32 @@ export interface $Int2BooleanFunction extends $Function$0<(integer), (boolean)>,
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): boolean
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): boolean
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
+ "remove"(arg0: integer): boolean
  "get"(arg0: integer): boolean
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): boolean
  "put"(arg0: integer, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
  "put"(arg0: integer, arg1: boolean): boolean
  "test"(arg0: integer): boolean
- "containsKey"(arg0: integer): boolean
 /**
  * 
  * @deprecated
  */
  "containsKey"(arg0: any): boolean
+ "containsKey"(arg0: integer): boolean
  "getOrDefault"(arg0: integer, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Int2ByteFunction
@@ -5986,33 +5951,32 @@ import {$DoublePredicate, $DoublePredicate$Type} from "packages/java/util/functi
 
 export interface $FloatPredicate extends $Predicate<(float)>, $DoublePredicate {
 
-/**
- * 
- * @deprecated
- */
- "test"(arg0: float): boolean
-/**
- * 
- * @deprecated
- */
- "test"(arg0: double): boolean
- "test"(arg0: float): boolean
+ "or"(arg0: $FloatPredicate$Type): $FloatPredicate
  "or"(arg0: $DoublePredicate$Type): $FloatPredicate
 /**
  * 
  * @deprecated
  */
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<(float)>
- "or"(arg0: $FloatPredicate$Type): $FloatPredicate
  "and"(arg0: $FloatPredicate$Type): $FloatPredicate
- "and"(arg0: $DoublePredicate$Type): $FloatPredicate
 /**
  * 
  * @deprecated
  */
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<(float)>
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: double): boolean
+ "test"(arg0: float): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: float): boolean
 
-(arg0: float): boolean
+(arg0: $FloatPredicate$Type): $FloatPredicate
 }
 
 export namespace $FloatPredicate {
@@ -6188,14 +6152,14 @@ export interface $Int2DoubleMap extends $Int2DoubleFunction, $Map<(integer), (do
  * @deprecated
  */
  "computeIfPresent"(arg0: integer, arg1: $BiFunction$Type<(any), (any), (any)>): double
- "mergeDouble"(arg0: integer, arg1: double, arg2: $DoubleBinaryOperator$0$Type): double
- "mergeDouble"(arg0: integer, arg1: double, arg2: $DoubleBinaryOperator$Type): double
+ "computeIfAbsentNullable"(arg0: integer, arg1: $IntFunction$Type<(any)>): double
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: integer, arg1: $Int2DoubleFunction$Type): double
- "computeIfAbsentNullable"(arg0: integer, arg1: $IntFunction$Type<(any)>): double
+ "mergeDouble"(arg0: integer, arg1: double, arg2: $DoubleBinaryOperator$0$Type): double
+ "mergeDouble"(arg0: integer, arg1: double, arg2: $DoubleBinaryOperator$Type): double
  "defaultReturnValue"(): double
  "defaultReturnValue"(arg0: double): void
  "int2DoubleEntrySet"(): $ObjectSet<($Int2DoubleMap$Entry)>
@@ -6204,15 +6168,15 @@ export interface $Int2DoubleMap extends $Int2DoubleFunction, $Map<(integer), (do
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): double
- "get"(arg0: integer): double
- "put"(arg0: integer, arg1: double): double
- "applyAsDouble"(arg0: integer): double
 /**
  * 
  * @deprecated
  */
  "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
+ "remove"(arg0: integer): double
+ "get"(arg0: integer): double
+ "put"(arg0: integer, arg1: double): double
+ "applyAsDouble"(arg0: integer): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Int2ByteFunction
  "composeByte"(arg0: $Byte2IntFunction$Type): $Byte2DoubleFunction
  "andThenShort"(arg0: $Double2ShortFunction$Type): $Int2ShortFunction
@@ -6338,11 +6302,11 @@ export interface $Long2ObjectMap$Entry<V> extends $Map$Entry<(long), (V)> {
 }
 
 export namespace $Long2ObjectMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(long), (V)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (V)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(long), (V)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (V)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(long), (V)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (V)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(long), (V)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6399,13 +6363,18 @@ export interface $Byte2CharFunction extends $Function$0<(byte), (character)>, $I
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (T)>
- "remove"(arg0: byte): character
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): character
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
+ "remove"(arg0: byte): character
  "get"(arg0: byte): character
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): character
 /**
  * 
  * @deprecated
@@ -6429,11 +6398,6 @@ export interface $Byte2CharFunction extends $Function$0<(byte), (character)>, $I
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "defaultReturnValue"(arg0: character): void
  "defaultReturnValue"(): character
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Byte2ByteFunction
@@ -6486,15 +6450,15 @@ import {$PrimitiveIterator, $PrimitiveIterator$Type} from "packages/java/util/$P
 
 export interface $FloatIterator extends $PrimitiveIterator<(float), ($FloatConsumer)> {
 
+ "nextFloat"(): float
  "forEachRemaining"(arg0: $DoubleConsumer$Type): void
- "forEachRemaining"(arg0: $FloatConsumer$Type): void
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
+ "forEachRemaining"(arg0: $FloatConsumer$Type): void
  "skip"(arg0: integer): integer
- "nextFloat"(): float
  "remove"(): void
  "hasNext"(): boolean
 }
@@ -6540,18 +6504,19 @@ import {$ShortCollection, $ShortCollection$Type} from "packages/it/unimi/dsi/fas
 
 export interface $ShortList extends $List<(short)>, $Comparable<($List<(any)>)>, $ShortCollection {
 
- "add"(arg0: short): boolean
-/**
- * 
- * @deprecated
- */
- "add"(arg0: short): boolean
+ "getElements"(arg0: integer, arg1: (short)[], arg2: integer, arg3: integer): void
 /**
  * 
  * @deprecated
  */
  "add"(arg0: integer, arg1: short): void
+ "add"(arg0: short): boolean
  "add"(arg0: integer, arg1: short): void
+/**
+ * 
+ * @deprecated
+ */
+ "add"(arg0: short): boolean
 /**
  * 
  * @deprecated
@@ -6562,12 +6527,12 @@ export interface $ShortList extends $List<(short)>, $Comparable<($List<(any)>)>,
  * @deprecated
  */
  "get"(arg0: integer): short
- "indexOf"(arg0: short): integer
 /**
  * 
  * @deprecated
  */
  "indexOf"(arg0: any): integer
+ "indexOf"(arg0: short): integer
  "getShort"(arg0: integer): short
 /**
  * 
@@ -6575,13 +6540,13 @@ export interface $ShortList extends $List<(short)>, $Comparable<($List<(any)>)>,
  */
  "lastIndexOf"(arg0: any): integer
  "lastIndexOf"(arg0: short): integer
- "replaceAll"(arg0: $IntUnaryOperator$Type): void
- "replaceAll"(arg0: $ShortUnaryOperator$Type): void
 /**
  * 
  * @deprecated
  */
  "replaceAll"(arg0: $UnaryOperator$Type<(short)>): void
+ "replaceAll"(arg0: $IntUnaryOperator$Type): void
+ "replaceAll"(arg0: $ShortUnaryOperator$Type): void
  "size"(arg0: integer): void
  "iterator"(): $ShortListIterator
 /**
@@ -6599,25 +6564,26 @@ export interface $ShortList extends $List<(short)>, $Comparable<($List<(any)>)>,
  * @deprecated
  */
  "set"(arg0: integer, arg1: short): short
+ "sort"(arg0: $ShortComparator$Type): void
 /**
  * 
  * @deprecated
  */
  "sort"(arg0: $Comparator$Type<(any)>): void
- "sort"(arg0: $ShortComparator$Type): void
- "getElements"(arg0: integer, arg1: (short)[], arg2: integer, arg3: integer): void
- "removeElements"(arg0: integer, arg1: integer): void
- "addElements"(arg0: integer, arg1: (short)[]): void
- "addElements"(arg0: integer, arg1: (short)[], arg2: integer, arg3: integer): void
- "setElements"(arg0: integer, arg1: (short)[], arg2: integer, arg3: integer): void
- "setElements"(arg0: (short)[]): void
- "setElements"(arg0: integer, arg1: (short)[]): void
- "unstableSort"(arg0: $ShortComparator$Type): void
+ "listIterator"(): $ShortListIterator
+ "listIterator"(arg0: integer): $ShortListIterator
 /**
  * 
  * @deprecated
  */
  "unstableSort"(arg0: $Comparator$Type<(any)>): void
+ "unstableSort"(arg0: $ShortComparator$Type): void
+ "addElements"(arg0: integer, arg1: (short)[], arg2: integer, arg3: integer): void
+ "addElements"(arg0: integer, arg1: (short)[]): void
+ "removeElements"(arg0: integer, arg1: integer): void
+ "setElements"(arg0: (short)[]): void
+ "setElements"(arg0: integer, arg1: (short)[]): void
+ "setElements"(arg0: integer, arg1: (short)[], arg2: integer, arg3: integer): void
  "removeShort"(arg0: integer): short
  "equals"(arg0: any): boolean
  "hashCode"(): integer
@@ -6657,15 +6623,15 @@ export interface $ShortList extends $List<(short)>, $Comparable<($List<(any)>)>,
  */
  "parallelStream"(): $Stream<(short)>
  "rem"(arg0: short): boolean
- "intParallelStream"(): $IntStream
- "intIterator"(): $IntIterator
- "intSpliterator"(): $IntSpliterator
 /**
  * 
  * @deprecated
  */
  "toShortArray"(arg0: (short)[]): (short)[]
  "toShortArray"(): (short)[]
+ "intIterator"(): $IntIterator
+ "intParallelStream"(): $IntStream
+ "intSpliterator"(): $IntSpliterator
  "toArray"<T>(arg0: $IntFunction$Type<((T)[])>): (T)[]
  "forEach"(arg0: $ShortConsumer$Type): void
 /**
@@ -6677,11 +6643,11 @@ export interface $ShortList extends $List<(short)>, $Comparable<($List<(any)>)>,
 }
 
 export namespace $ShortList {
-function of(): $ShortList
 function of(arg0: short): $ShortList
-function of(arg0: short, arg1: short): $ShortList
+function of(): $ShortList
 function of(arg0: short, arg1: short, arg2: short): $ShortList
 function of(...arg0: (short)[]): $ShortList
+function of(arg0: short, arg1: short): $ShortList
 function copyOf<E>(arg0: $Collection$Type<(any)>): $List<(short)>
 function of<E>(arg0: short, arg1: short, arg2: short, arg3: short): $List<(short)>
 function of<E>(arg0: short, arg1: short, arg2: short): $List<(short)>
@@ -6797,13 +6763,13 @@ export interface $Short2BooleanMap extends $Short2BooleanFunction, $Map<(short),
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
  "computeIfPresent"(arg0: short, arg1: $BiFunction$Type<(any), (any), (any)>): boolean
- "short2BooleanEntrySet"(): $ObjectSet<($Short2BooleanMap$Entry)>
+ "computeIfAbsentNullable"(arg0: short, arg1: $IntFunction$Type<(any)>): boolean
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: short, arg1: $Short2BooleanFunction$Type): boolean
- "computeIfAbsentNullable"(arg0: short, arg1: $IntFunction$Type<(any)>): boolean
+ "short2BooleanEntrySet"(): $ObjectSet<($Short2BooleanMap$Entry)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
 /**
@@ -6811,6 +6777,11 @@ export interface $Short2BooleanMap extends $Short2BooleanFunction, $Map<(short),
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "remove"(arg0: short): boolean
  "get"(arg0: short): boolean
  "put"(arg0: short, arg1: boolean): boolean
@@ -6819,11 +6790,6 @@ export interface $Short2BooleanMap extends $Short2BooleanFunction, $Map<(short),
  * @deprecated
  */
  "test"(arg0: integer): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Short2ByteFunction
  "composeByte"(arg0: $Byte2ShortFunction$Type): $Byte2BooleanFunction
  "andThenShort"(arg0: $Boolean2ShortFunction$Type): $Short2ShortFunction
@@ -6933,13 +6899,18 @@ export interface $Short2IntFunction extends $Function$0<(short), (integer)>, $In
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
- "remove"(arg0: short): integer
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): integer
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: short): integer
  "get"(arg0: short): integer
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): integer
 /**
  * 
  * @deprecated
@@ -6963,11 +6934,6 @@ export interface $Short2IntFunction extends $Function$0<(short), (integer)>, $In
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Short2ByteFunction
@@ -7029,11 +6995,12 @@ import {$DoublePredicate as $DoublePredicate$0, $DoublePredicate$Type as $Double
 
 export interface $DoubleCollection extends $Collection<(double)>, $DoubleIterable {
 
- "add"(arg0: double): boolean
+ "doubleStream"(): $DoubleStream
 /**
  * 
  * @deprecated
  */
+ "add"(arg0: double): boolean
  "add"(arg0: double): boolean
 /**
  * 
@@ -7047,20 +7014,21 @@ export interface $DoubleCollection extends $Collection<(double)>, $DoubleIterabl
  * @deprecated
  */
  "stream"(): $Stream<(double)>
- "contains"(arg0: double): boolean
 /**
  * 
  * @deprecated
  */
  "contains"(arg0: any): boolean
+ "contains"(arg0: double): boolean
+ "spliterator"(): $DoubleSpliterator
  "addAll"(arg0: $DoubleCollection$Type): boolean
  "removeIf"(arg0: $DoublePredicate$0$Type): boolean
+ "removeIf"(arg0: $DoublePredicate$Type): boolean
 /**
  * 
  * @deprecated
  */
  "removeIf"(arg0: $Predicate$Type<(any)>): boolean
- "removeIf"(arg0: $DoublePredicate$Type): boolean
  "removeAll"(arg0: $DoubleCollection$Type): boolean
  "retainAll"(arg0: $DoubleCollection$Type): boolean
  "containsAll"(arg0: $DoubleCollection$Type): boolean
@@ -7070,16 +7038,15 @@ export interface $DoubleCollection extends $Collection<(double)>, $DoubleIterabl
  */
  "parallelStream"(): $Stream<(double)>
  "rem"(arg0: double): boolean
- "doubleStream"(): $DoubleStream
- "doubleIterator"(): $DoubleIterator
- "doubleSpliterator"(): $DoubleSpliterator
- "doubleParallelStream"(): $DoubleStream
  "toDoubleArray"(): (double)[]
 /**
  * 
  * @deprecated
  */
  "toDoubleArray"(arg0: (double)[]): (double)[]
+ "doubleParallelStream"(): $DoubleStream
+ "doubleSpliterator"(): $DoubleSpliterator
+ "doubleIterator"(): $DoubleIterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -7138,8 +7105,8 @@ export interface $LongListIterator extends $LongBidirectionalIterator, $ListIter
  */
  "set"(arg0: long): void
  "set"(arg0: long): void
- "skip"(arg0: integer): integer
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousLong"(): long
  "hasNext"(): boolean
  "nextIndex"(): integer
@@ -7212,19 +7179,24 @@ export interface $Short2ObjectFunction<V> extends $Function$0<(short), (V)>, $In
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: short): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: short): V
+ "put"(arg0: short, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: short, arg1: V): V
  "put"(arg0: short, arg1: V): V
 /**
  * 
@@ -7243,11 +7215,6 @@ export interface $Short2ObjectFunction<V> extends $Function$0<(short), (V)>, $In
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Short2ByteFunction
@@ -7273,7 +7240,7 @@ export interface $Short2ObjectFunction<V> extends $Function$0<(short), (V)>, $In
  "apply"(arg0: short): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(short), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Short2ObjectFunction {
@@ -7325,48 +7292,46 @@ import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$
 import {$Object2IntSortedMap, $Object2IntSortedMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2IntSortedMap"
 import {$AbstractObject2IntSortedMap, $AbstractObject2IntSortedMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$AbstractObject2IntSortedMap"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
-import {$IntCollection, $IntCollection$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntCollection"
 import {$Object2IntFunction, $Object2IntFunction$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2IntFunction"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$Cloneable, $Cloneable$Type} from "packages/java/lang/$Cloneable"
-import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$Object2IntMap, $Object2IntMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2IntMap"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Object2IntLinkedOpenHashMap<K> extends $AbstractObject2IntSortedMap<(K)> implements $Serializable, $Cloneable, $Hash {
 
+constructor(arg0: integer)
+constructor(arg0: $Object2IntMap$Type<(K)>, arg1: float)
 constructor(arg0: $Map$Type<(any), (any)>)
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
 constructor()
-constructor(arg0: integer)
-constructor(arg0: integer, arg1: float)
-constructor(arg0: (K)[], arg1: (integer)[], arg2: float)
 constructor(arg0: $Object2IntMap$Type<(K)>)
-constructor(arg0: $Object2IntMap$Type<(K)>, arg1: float)
+constructor(arg0: (K)[], arg1: (integer)[], arg2: float)
+constructor(arg0: integer, arg1: float)
 constructor(arg0: (K)[], arg1: (integer)[])
 
+public "headMap"(arg0: K): $Object2IntSortedMap<(K)>
+public "lastKey"(): K
 public "addTo"(arg0: K, arg1: integer): integer
 public "firstKey"(): K
-public "tailMap"(arg0: K): $Object2IntSortedMap<(K)>
-public "lastKey"(): K
 public "remove"(arg0: any, arg1: integer): boolean
 public "put"(arg0: K, arg1: integer): integer
-public "values"(): $IntCollection
 public "hashCode"(): integer
 public "getInt"(arg0: any): integer
 public "clear"(): void
 public "isEmpty"(): boolean
-public "replace"(arg0: K, arg1: integer, arg2: integer): boolean
 public "replace"(arg0: K, arg1: integer): integer
+public "replace"(arg0: K, arg1: integer, arg2: integer): boolean
 public "size"(): integer
-public "trim"(): boolean
 public "trim"(arg0: integer): boolean
+public "trim"(): boolean
 public "merge"(arg0: K, arg1: integer, arg2: $BiFunction$Type<(any), (any), (any)>): integer
 public "putAll"(arg0: $Map$Type<(any), (any)>): void
 public "putIfAbsent"(arg0: K, arg1: integer): integer
 public "containsKey"(arg0: any): boolean
-public "computeIfAbsent"(arg0: K, arg1: $Object2IntFunction$Type<(any)>): integer
 public "computeIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): integer
+public "computeIfAbsent"(arg0: K, arg1: $Object2IntFunction$Type<(any)>): integer
 public "containsValue"(arg0: integer): boolean
 public "getOrDefault"(arg0: any, arg1: integer): integer
 public "comparator"(): $Comparator<(any)>
@@ -7377,8 +7342,8 @@ public "getAndMoveToLast"(arg0: K): integer
 public "putAndMoveToLast"(arg0: K, arg1: integer): integer
 public "removeFirstInt"(): integer
 public "removeLastInt"(): integer
-public "removeInt"(arg0: any): integer
 public "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
+public "removeInt"(arg0: any): integer
 public "defaultReturnValue"(): integer
 public "defaultReturnValue"(arg0: integer): void
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
@@ -7514,8 +7479,8 @@ public "size"(): integer
 public "apply"(arg0: K): V
 public "containsKey"(arg0: any): boolean
 public "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(K), (V)>
-public static "identity"<T>(): $Function<(K), (K)>
 public "compose"<V>(arg0: $Function$Type<(any), (any)>): $Function<(V), (V)>
+public static "identity"<T>(): $Function<(K), (K)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7534,18 +7499,18 @@ import {$Comparator, $Comparator$Type} from "packages/java/util/$Comparator"
 
 export interface $Pair<L, R> {
 
+ "left"(arg0: L): $Pair<(L), (R)>
+ "left"(): L
+ "right"(arg0: R): $Pair<(L), (R)>
+ "right"(): R
  "value"(): R
  "value"(arg0: R): $Pair<(L), (R)>
  "first"(arg0: L): $Pair<(L), (R)>
  "first"(): L
  "second"(): R
  "second"(arg0: R): $Pair<(L), (R)>
- "key"(): L
  "key"(arg0: L): $Pair<(L), (R)>
- "left"(): L
- "left"(arg0: L): $Pair<(L), (R)>
- "right"(): R
- "right"(arg0: R): $Pair<(L), (R)>
+ "key"(): L
 }
 
 export namespace $Pair {
@@ -7572,6 +7537,7 @@ import {$AbstractObject2ObjectSortedMap, $AbstractObject2ObjectSortedMap$Type} f
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$ObjectCollection, $ObjectCollection$Type} from "packages/it/unimi/dsi/fastutil/objects/$ObjectCollection"
+import {$Object2ObjectSortedMap, $Object2ObjectSortedMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ObjectSortedMap"
 import {$Object2ObjectSortedMap$FastSortedEntrySet, $Object2ObjectSortedMap$FastSortedEntrySet$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ObjectSortedMap$FastSortedEntrySet"
 import {$Cloneable, $Cloneable$Type} from "packages/java/lang/$Cloneable"
 import {$Object2ObjectMap, $Object2ObjectMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ObjectMap"
@@ -7581,32 +7547,34 @@ import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Object2ObjectLinkedOpenHashMap<K, V> extends $AbstractObject2ObjectSortedMap<(K), (V)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: integer, arg1: float)
-constructor(arg0: integer)
+constructor()
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
 constructor(arg0: $Map$Type<(any), (any)>)
-constructor()
+constructor(arg0: $Object2ObjectMap$Type<(K), (V)>)
 constructor(arg0: $Object2ObjectMap$Type<(K), (V)>, arg1: float)
 constructor(arg0: (K)[], arg1: (V)[])
+constructor(arg0: integer)
+constructor(arg0: integer, arg1: float)
 constructor(arg0: (K)[], arg1: (V)[], arg2: float)
-constructor(arg0: $Object2ObjectMap$Type<(K), (V)>)
 
-public "firstKey"(): K
+public "subMap"(arg0: K, arg1: K): $Object2ObjectSortedMap<(K), (V)>
 public "lastKey"(): K
+public "firstKey"(): K
+public "removeFirst"(): V
+public "removeLast"(): V
 public "remove"(arg0: any, arg1: any): boolean
 public "remove"(arg0: any): V
 public "get"(arg0: any): V
 public "put"(arg0: K, arg1: V): V
 public "values"(): $ObjectCollection<(V)>
 public "hashCode"(): integer
-public "clone"(): $Object2ObjectLinkedOpenHashMap<(K), (V)>
 public "clear"(): void
 public "isEmpty"(): boolean
 public "replace"(arg0: K, arg1: V, arg2: V): boolean
 public "replace"(arg0: K, arg1: V): V
 public "size"(): integer
-public "trim"(arg0: integer): boolean
 public "trim"(): boolean
+public "trim"(arg0: integer): boolean
 public "merge"(arg0: K, arg1: V, arg2: $BiFunction$Type<(any), (any), (any)>): V
 public "putAll"(arg0: $Map$Type<(any), (any)>): void
 public "putIfAbsent"(arg0: K, arg1: V): V
@@ -7617,8 +7585,6 @@ public "containsValue"(arg0: any): boolean
 public "getOrDefault"(arg0: any, arg1: V): V
 public "computeIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): V
 public "comparator"(): $Comparator<(any)>
-public "removeFirst"(): V
-public "removeLast"(): V
 public "getAndMoveToFirst"(arg0: K): V
 public "putAndMoveToFirst"(arg0: K, arg1: V): V
 public "getAndMoveToLast"(arg0: K): V
@@ -7697,19 +7663,24 @@ export interface $Float2ReferenceFunction<V> extends $Function$0<(float), (V)>, 
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: float): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: float): V
+ "put"(arg0: float, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: float, arg1: V): V
  "put"(arg0: float, arg1: V): V
 /**
  * 
@@ -7728,11 +7699,6 @@ export interface $Float2ReferenceFunction<V> extends $Function$0<(float), (V)>, 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Float2ByteFunction
@@ -7758,7 +7724,7 @@ export interface $Float2ReferenceFunction<V> extends $Function$0<(float), (V)>, 
  "apply"(arg0: float): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(float), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Float2ReferenceFunction {
@@ -7819,13 +7785,18 @@ export interface $Double2LongFunction extends $Function$0<(double), (long)>, $Do
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(double), (T)>
- "remove"(arg0: double): long
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): long
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
+ "remove"(arg0: double): long
  "get"(arg0: double): long
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): long
 /**
  * 
  * @deprecated
@@ -7845,11 +7816,6 @@ export interface $Double2LongFunction extends $Function$0<(double), (long)>, $Do
  "getOrDefault"(arg0: any, arg1: long): long
  "getOrDefault"(arg0: double, arg1: long): long
  "applyAsLong"(arg0: double): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "defaultReturnValue"(arg0: long): void
  "defaultReturnValue"(): long
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Double2ByteFunction
@@ -8015,21 +7981,21 @@ import {$ObjectBidirectionalIterator, $ObjectBidirectionalIterator$Type} from "p
 
 export interface $IntBidirectionalIterator extends $IntIterator, $ObjectBidirectionalIterator<(integer)> {
 
- "skip"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "previous"(): integer
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousInt"(): integer
+ "nextInt"(): integer
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
  "forEachRemaining"(arg0: $IntConsumer$Type): void
- "nextInt"(): integer
+/**
+ * 
+ * @deprecated
+ */
+ "next"(): integer
  "forEachRemaining"(arg0: $IntConsumer$0$Type): void
  "hasPrevious"(): boolean
  "remove"(): void
@@ -8094,13 +8060,18 @@ export interface $Float2CharFunction extends $Function$0<(float), (character)>, 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(float), (T)>
- "remove"(arg0: float): character
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): character
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
+ "remove"(arg0: float): character
  "get"(arg0: float): character
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): character
 /**
  * 
  * @deprecated
@@ -8124,11 +8095,6 @@ export interface $Float2CharFunction extends $Function$0<(float), (character)>, 
  * @deprecated
  */
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "defaultReturnValue"(arg0: character): void
  "defaultReturnValue"(): character
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Float2ByteFunction
@@ -8184,16 +8150,18 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$FloatPredicate, $FloatPredicate$Type} from "packages/it/unimi/dsi/fastutil/floats/$FloatPredicate"
 import {$IntFunction, $IntFunction$Type} from "packages/java/util/function/$IntFunction"
 import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
+import {$FloatSpliterator, $FloatSpliterator$Type} from "packages/it/unimi/dsi/fastutil/floats/$FloatSpliterator"
 import {$DoubleIterator, $DoubleIterator$Type} from "packages/it/unimi/dsi/fastutil/doubles/$DoubleIterator"
 import {$DoublePredicate, $DoublePredicate$Type} from "packages/java/util/function/$DoublePredicate"
 
 export interface $FloatCollection extends $Collection<(float)>, $FloatIterable {
 
- "add"(arg0: float): boolean
+ "doubleStream"(): $DoubleStream
 /**
  * 
  * @deprecated
  */
+ "add"(arg0: float): boolean
  "add"(arg0: float): boolean
 /**
  * 
@@ -8207,20 +8175,21 @@ export interface $FloatCollection extends $Collection<(float)>, $FloatIterable {
  * @deprecated
  */
  "stream"(): $Stream<(float)>
- "contains"(arg0: float): boolean
 /**
  * 
  * @deprecated
  */
  "contains"(arg0: any): boolean
+ "contains"(arg0: float): boolean
+ "spliterator"(): $FloatSpliterator
  "addAll"(arg0: $FloatCollection$Type): boolean
  "removeIf"(arg0: $FloatPredicate$Type): boolean
+ "removeIf"(arg0: $DoublePredicate$Type): boolean
 /**
  * 
  * @deprecated
  */
  "removeIf"(arg0: $Predicate$Type<(any)>): boolean
- "removeIf"(arg0: $DoublePredicate$Type): boolean
  "removeAll"(arg0: $FloatCollection$Type): boolean
  "retainAll"(arg0: $FloatCollection$Type): boolean
  "containsAll"(arg0: $FloatCollection$Type): boolean
@@ -8230,16 +8199,15 @@ export interface $FloatCollection extends $Collection<(float)>, $FloatIterable {
  */
  "parallelStream"(): $Stream<(float)>
  "rem"(arg0: float): boolean
- "doubleStream"(): $DoubleStream
- "doubleIterator"(): $DoubleIterator
- "doubleSpliterator"(): $DoubleSpliterator
- "doubleParallelStream"(): $DoubleStream
- "toFloatArray"(): (float)[]
 /**
  * 
  * @deprecated
  */
  "toFloatArray"(arg0: (float)[]): (float)[]
+ "toFloatArray"(): (float)[]
+ "doubleParallelStream"(): $DoubleStream
+ "doubleSpliterator"(): $DoubleSpliterator
+ "doubleIterator"(): $DoubleIterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -8321,6 +8289,11 @@ export interface $Boolean2ByteFunction extends $Function$0<(boolean), (byte)> {
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "remove"(arg0: boolean): byte
  "get"(arg0: boolean): byte
 /**
@@ -8346,11 +8319,6 @@ export interface $Boolean2ByteFunction extends $Function$0<(boolean), (byte)> {
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: byte): byte
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Boolean2ByteFunction
@@ -8408,10 +8376,10 @@ export class $AbstractObject2ByteSortedMap<K> extends $AbstractObject2ByteMap<(K
 
 public "comparator"(): $Comparator<(any)>
 public "object2ByteEntrySet"(): $ObjectSortedSet<($Object2ByteMap$Entry<(K)>)>
-public "defaultReturnValue"(arg0: byte): void
 public "defaultReturnValue"(): byte
-public "firstKey"(): K
+public "defaultReturnValue"(arg0: byte): void
 public "lastKey"(): K
+public "firstKey"(): K
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (byte)>
 public static "of"<K, V>(arg0: K, arg1: byte, arg2: K, arg3: byte, arg4: K, arg5: byte, arg6: K, arg7: byte, arg8: K, arg9: byte): $Map<(K), (byte)>
 public static "of"<K, V>(arg0: K, arg1: byte, arg2: K, arg3: byte, arg4: K, arg5: byte, arg6: K, arg7: byte): $Map<(K), (byte)>
@@ -8542,6 +8510,7 @@ export interface $Object2ReferenceMap<K, V> extends $Object2ReferenceFunction<(K
  "computeIfAbsent"(arg0: K, arg1: $Object2ReferenceFunction$Type<(any), (any)>): V
  "getOrDefault"(arg0: any, arg1: V): V
  "computeIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): V
+ "object2ReferenceEntrySet"(): $ObjectSet<($Object2ReferenceMap$Entry<(K), (V)>)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
 /**
@@ -8549,7 +8518,6 @@ export interface $Object2ReferenceMap<K, V> extends $Object2ReferenceFunction<(K
  * @deprecated
  */
  "computeReferenceIfAbsentPartial"(arg0: K, arg1: $Object2ReferenceFunction$Type<(any), (any)>): V
- "object2ReferenceEntrySet"(): $ObjectSet<($Object2ReferenceMap$Entry<(K), (V)>)>
  "get"(arg0: any): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Object2ByteFunction<(K)>
  "composeByte"(arg0: $Byte2ObjectFunction$Type<(K)>): $Byte2ReferenceFunction<(V)>
@@ -8726,13 +8694,18 @@ export interface $Char2ByteFunction extends $Function$0<(character), (byte)>, $I
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(character), (T)>
- "remove"(arg0: character): byte
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): byte
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
+ "remove"(arg0: character): byte
  "get"(arg0: character): byte
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): byte
 /**
  * 
  * @deprecated
@@ -8756,11 +8729,6 @@ export interface $Char2ByteFunction extends $Function$0<(character), (byte)>, $I
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Char2ByteFunction
@@ -8847,19 +8815,24 @@ export interface $Byte2ReferenceFunction<V> extends $Function$0<(byte), (V)>, $I
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: byte): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: byte): V
+ "put"(arg0: byte, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: byte, arg1: V): V
  "put"(arg0: byte, arg1: V): V
 /**
  * 
@@ -8878,11 +8851,6 @@ export interface $Byte2ReferenceFunction<V> extends $Function$0<(byte), (V)>, $I
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Byte2ByteFunction
@@ -8908,7 +8876,7 @@ export interface $Byte2ReferenceFunction<V> extends $Function$0<(byte), (V)>, $I
  "apply"(arg0: byte): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Byte2ReferenceFunction {
@@ -8969,13 +8937,18 @@ export interface $Float2LongFunction extends $Function$0<(float), (long)>, $Doub
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(float), (T)>
- "remove"(arg0: float): long
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): long
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
+ "remove"(arg0: float): long
  "get"(arg0: float): long
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): long
 /**
  * 
  * @deprecated
@@ -8999,11 +8972,6 @@ export interface $Float2LongFunction extends $Function$0<(float), (long)>, $Doub
  * @deprecated
  */
  "applyAsLong"(arg0: double): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "defaultReturnValue"(arg0: long): void
  "defaultReturnValue"(): long
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Float2ByteFunction
@@ -9157,28 +9125,28 @@ export interface $Object2ByteMap<K> extends $Object2ByteFunction<(K)>, $Map<(K),
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: byte): byte
- "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
- "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
- "object2ByteEntrySet"(): $ObjectSet<($Object2ByteMap$Entry<(K)>)>
-/**
- * 
- * @deprecated
- */
- "computeByteIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): byte
 /**
  * 
  * @deprecated
  */
  "computeByteIfAbsentPartial"(arg0: K, arg1: $Object2ByteFunction$Type<(any)>): byte
- "defaultReturnValue"(arg0: byte): void
+/**
+ * 
+ * @deprecated
+ */
+ "computeByteIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): byte
+ "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+ "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+ "object2ByteEntrySet"(): $ObjectSet<($Object2ByteMap$Entry<(K)>)>
  "defaultReturnValue"(): byte
+ "defaultReturnValue"(arg0: byte): void
+ "mergeByte"(arg0: K, arg1: byte, arg2: $ByteBinaryOperator$Type): byte
  "mergeByte"(arg0: K, arg1: byte, arg2: $IntBinaryOperator$Type): byte
 /**
  * 
  * @deprecated
  */
  "mergeByte"(arg0: K, arg1: byte, arg2: $BiFunction$Type<(any), (any), (any)>): byte
- "mergeByte"(arg0: K, arg1: byte, arg2: $ByteBinaryOperator$Type): byte
 /**
  * 
  * @deprecated
@@ -9203,9 +9171,9 @@ export interface $Object2ByteMap<K> extends $Object2ByteFunction<(K)>, $Map<(K),
  "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2ByteFunction<(T)>
  "andThenReference"<T>(arg0: $Byte2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2ByteFunction<(T)>
- "removeByte"(arg0: any): byte
  "andThenInt"(arg0: $Byte2IntFunction$Type): $Object2IntFunction<(K)>
  "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2ByteFunction
+ "removeByte"(arg0: any): byte
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "isEmpty"(): boolean
@@ -9269,8 +9237,8 @@ export interface $ShortListIterator extends $ShortBidirectionalIterator, $ListIt
  */
  "set"(arg0: short): void
  "set"(arg0: short): void
- "skip"(arg0: integer): integer
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousShort"(): short
  "hasNext"(): boolean
  "nextIndex"(): integer
@@ -9412,23 +9380,23 @@ export interface $Object2DoubleMap<K> extends $Object2DoubleFunction<(K)>, $Map<
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: double): double
-/**
- * 
- * @deprecated
- */
- "mergeDouble"(arg0: K, arg1: double, arg2: $BiFunction$Type<(any), (any), (any)>): double
- "mergeDouble"(arg0: K, arg1: double, arg2: $DoubleBinaryOperator$Type): double
- "mergeDouble"(arg0: K, arg1: double, arg2: $DoubleBinaryOperator$0$Type): double
+ "object2DoubleEntrySet"(): $ObjectSet<($Object2DoubleMap$Entry<(K)>)>
+ "computeDouble"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): double
 /**
  * 
  * @deprecated
  */
  "computeDoubleIfAbsent"(arg0: K, arg1: $ToDoubleFunction$Type<(any)>): double
+/**
+ * 
+ * @deprecated
+ */
+ "mergeDouble"(arg0: K, arg1: double, arg2: $BiFunction$Type<(any), (any), (any)>): double
+ "mergeDouble"(arg0: K, arg1: double, arg2: $DoubleBinaryOperator$0$Type): double
+ "mergeDouble"(arg0: K, arg1: double, arg2: $DoubleBinaryOperator$Type): double
  "computeDoubleIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): double
- "computeDouble"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): double
- "object2DoubleEntrySet"(): $ObjectSet<($Object2DoubleMap$Entry<(K)>)>
- "defaultReturnValue"(): double
  "defaultReturnValue"(arg0: double): void
+ "defaultReturnValue"(): double
 /**
  * 
  * @deprecated
@@ -9547,6 +9515,11 @@ export interface $Boolean2LongFunction extends $Function$0<(boolean), (long)> {
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "remove"(arg0: boolean): long
  "get"(arg0: boolean): long
 /**
@@ -9572,11 +9545,6 @@ export interface $Boolean2LongFunction extends $Function$0<(boolean), (long)> {
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: long): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "defaultReturnValue"(arg0: long): void
  "defaultReturnValue"(): long
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Boolean2ByteFunction
@@ -9620,32 +9588,33 @@ declare global {
 export type $Boolean2LongFunction_ = $Boolean2LongFunction$Type;
 }}
 declare module "packages/it/unimi/dsi/fastutil/ints/$IntOpenHashSet" {
-import {$IntCollection, $IntCollection$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntCollection"
+import {$IntSpliterator, $IntSpliterator$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntSpliterator"
 import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
-import {$IntIterator, $IntIterator$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntIterator"
 import {$Hash, $Hash$Type} from "packages/it/unimi/dsi/fastutil/$Hash"
 import {$IntStream, $IntStream$Type} from "packages/java/util/stream/$IntStream"
-import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
+import {$AbstractIntSet, $AbstractIntSet$Type} from "packages/it/unimi/dsi/fastutil/ints/$AbstractIntSet"
+import {$IntCollection, $IntCollection$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntCollection"
+import {$IntIterator, $IntIterator$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntIterator"
+import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$Cloneable, $Cloneable$Type} from "packages/java/lang/$Cloneable"
 import {$IntConsumer, $IntConsumer$Type} from "packages/java/util/function/$IntConsumer"
-import {$AbstractIntSet, $AbstractIntSet$Type} from "packages/it/unimi/dsi/fastutil/ints/$AbstractIntSet"
 import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 
 export class $IntOpenHashSet extends $AbstractIntSet implements $Serializable, $Cloneable, $Hash {
 
+constructor(arg0: (integer)[], arg1: integer, arg2: integer, arg3: float)
 constructor(arg0: $Iterator$Type<(any)>)
 constructor(arg0: $Iterator$Type<(any)>, arg1: float)
 constructor(arg0: $IntIterator$Type)
-constructor(arg0: $IntIterator$Type, arg1: float)
-constructor(arg0: (integer)[])
-constructor(arg0: (integer)[], arg1: float)
 constructor(arg0: (integer)[], arg1: integer, arg2: integer)
-constructor(arg0: (integer)[], arg1: integer, arg2: integer, arg3: float)
+constructor(arg0: (integer)[], arg1: float)
+constructor(arg0: (integer)[])
 constructor(arg0: $Collection$Type<(any)>, arg1: float)
 constructor()
 constructor(arg0: integer)
 constructor(arg0: integer, arg1: float)
+constructor(arg0: $IntIterator$Type, arg1: float)
 constructor(arg0: $IntCollection$Type)
 constructor(arg0: $IntCollection$Type, arg1: float)
 constructor(arg0: $Collection$Type<(any)>)
@@ -9653,21 +9622,21 @@ constructor(arg0: $Collection$Type<(any)>)
 public "add"(arg0: integer): boolean
 public "remove"(arg0: integer): boolean
 public "hashCode"(): integer
-public "clone"(): $IntOpenHashSet
 public "clear"(): void
 public "isEmpty"(): boolean
 public "size"(): integer
 public "iterator"(): $IntIterator
 public "trim"(): boolean
 public "trim"(arg0: integer): boolean
-public static "of"(): $IntOpenHashSet
 public static "of"(arg0: integer): $IntOpenHashSet
+public static "of"(): $IntOpenHashSet
 public static "of"(arg0: integer, arg1: integer): $IntOpenHashSet
 public static "of"(...arg0: (integer)[]): $IntOpenHashSet
 public static "of"(arg0: integer, arg1: integer, arg2: integer): $IntOpenHashSet
 public "contains"(arg0: integer): boolean
-public "addAll"(arg0: $Collection$Type<(any)>): boolean
+public "spliterator"(): $IntSpliterator
 public "addAll"(arg0: $IntCollection$Type): boolean
+public "addAll"(arg0: $Collection$Type<(any)>): boolean
 public "forEach"(arg0: $IntConsumer$Type): void
 public static "toSet"(arg0: $IntStream$Type): $IntOpenHashSet
 public static "toSetWithExpectedSize"(arg0: $IntStream$Type, arg1: integer): $IntOpenHashSet
@@ -9867,6 +9836,11 @@ export interface $Short2ShortFunction extends $Function<(short), (short)>, $IntU
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(short), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (short)>
  "remove"(arg0: short): short
  "get"(arg0: short): short
  "put"(arg0: short, arg1: short): short
@@ -9881,22 +9855,17 @@ export interface $Short2ShortFunction extends $Function<(short), (short)>, $IntU
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: short): boolean
-/**
- * 
- * @deprecated
- */
- "getOrDefault"(arg0: any, arg1: short): short
  "getOrDefault"(arg0: short, arg1: short): short
 /**
  * 
  * @deprecated
  */
- "applyAsInt"(arg0: integer): integer
+ "getOrDefault"(arg0: any, arg1: short): short
 /**
  * 
  * @deprecated
  */
- "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (short)>
+ "applyAsInt"(arg0: integer): integer
  "defaultReturnValue"(): short
  "defaultReturnValue"(arg0: short): void
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Short2ByteFunction
@@ -10029,14 +9998,19 @@ export interface $Short2ObjectMap<V> extends $Short2ObjectFunction<(V)>, $Map<(s
  */
  "getOrDefault"(arg0: any, arg1: V): V
  "computeIfPresent"(arg0: short, arg1: $BiFunction$Type<(any), (any), (any)>): V
- "short2ObjectEntrySet"(): $ObjectSet<($Short2ObjectMap$Entry<(V)>)>
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: short, arg1: $Short2ObjectFunction$Type<(any)>): V
+ "short2ObjectEntrySet"(): $ObjectSet<($Short2ObjectMap$Entry<(V)>)>
  "defaultReturnValue"(): V
  "defaultReturnValue"(arg0: V): void
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: short): V
  "get"(arg0: short): V
  "put"(arg0: short, arg1: V): V
@@ -10045,11 +10019,6 @@ export interface $Short2ObjectMap<V> extends $Short2ObjectFunction<(V)>, $Map<(s
  * @deprecated
  */
  "apply"(arg0: integer): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Short2ByteFunction
  "composeByte"(arg0: $Byte2ShortFunction$Type): $Byte2ObjectFunction<(V)>
  "andThenShort"(arg0: $Object2ShortFunction$Type<(V)>): $Short2ShortFunction
@@ -10245,19 +10214,24 @@ export interface $Boolean2ObjectFunction<V> extends $Function$0<(boolean), (V)> 
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
- "remove"(arg0: boolean): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): V
+ "remove"(arg0: any): V
+ "remove"(arg0: boolean): V
  "get"(arg0: boolean): V
 /**
  * 
  * @deprecated
  */
+ "get"(arg0: any): V
  "put"(arg0: boolean, arg1: V): V
+/**
+ * 
+ * @deprecated
+ */
  "put"(arg0: boolean, arg1: V): V
 /**
  * 
@@ -10265,17 +10239,12 @@ export interface $Boolean2ObjectFunction<V> extends $Function$0<(boolean), (V)> 
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "getOrDefault"(arg0: any, arg1: V): V
  "getOrDefault"(arg0: boolean, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
+ "getOrDefault"(arg0: any, arg1: V): V
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Boolean2ByteFunction
@@ -10301,7 +10270,7 @@ export interface $Boolean2ObjectFunction<V> extends $Function$0<(boolean), (V)> 
  "apply"(arg0: boolean): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Boolean2ObjectFunction {
@@ -10362,13 +10331,18 @@ export interface $Char2IntFunction extends $Function$0<(character), (integer)>, 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(character), (T)>
- "remove"(arg0: character): integer
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): integer
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: character): integer
  "get"(arg0: character): integer
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): integer
 /**
  * 
  * @deprecated
@@ -10392,11 +10366,6 @@ export interface $Char2IntFunction extends $Function$0<(character), (integer)>, 
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Char2ByteFunction
@@ -10466,11 +10435,11 @@ export interface $Int2IntMap$Entry extends $Map$Entry<(integer), (integer)> {
 }
 
 export namespace $Int2IntMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(integer), (integer)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (integer)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(integer), (integer)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (integer)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(integer), (integer)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (integer)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(integer), (integer)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10488,7 +10457,6 @@ declare module "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHas
 import {$Object2ByteSortedMap, $Object2ByteSortedMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteSortedMap"
 import {$Comparator, $Comparator$Type} from "packages/java/util/$Comparator"
 import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
-import {$ByteCollection, $ByteCollection$Type} from "packages/it/unimi/dsi/fastutil/bytes/$ByteCollection"
 import {$Hash, $Hash$Type} from "packages/it/unimi/dsi/fastutil/$Hash"
 import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
 import {$AbstractObject2ByteSortedMap, $AbstractObject2ByteSortedMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$AbstractObject2ByteSortedMap"
@@ -10497,37 +10465,37 @@ import {$Object2ByteFunction, $Object2ByteFunction$Type} from "packages/it/unimi
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$Object2ByteMap, $Object2ByteMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteMap"
 import {$Cloneable, $Cloneable$Type} from "packages/java/lang/$Cloneable"
+import {$Object2ByteSortedMap$FastSortedEntrySet, $Object2ByteSortedMap$FastSortedEntrySet$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteSortedMap$FastSortedEntrySet"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Object2ByteLinkedOpenHashMap<K> extends $AbstractObject2ByteSortedMap<(K)> implements $Serializable, $Cloneable, $Hash {
 
+constructor(arg0: integer)
+constructor(arg0: $Object2ByteMap$Type<(K)>, arg1: float)
 constructor(arg0: $Map$Type<(any), (any)>)
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
 constructor()
-constructor(arg0: integer)
-constructor(arg0: integer, arg1: float)
-constructor(arg0: (K)[], arg1: (byte)[], arg2: float)
 constructor(arg0: $Object2ByteMap$Type<(K)>)
-constructor(arg0: $Object2ByteMap$Type<(K)>, arg1: float)
+constructor(arg0: (K)[], arg1: (byte)[], arg2: float)
+constructor(arg0: integer, arg1: float)
 constructor(arg0: (K)[], arg1: (byte)[])
 
+public "headMap"(arg0: K): $Object2ByteSortedMap<(K)>
+public "lastKey"(): K
 public "addTo"(arg0: K, arg1: byte): byte
 public "firstKey"(): K
-public "tailMap"(arg0: K): $Object2ByteSortedMap<(K)>
-public "lastKey"(): K
 public "remove"(arg0: any, arg1: byte): boolean
 public "put"(arg0: K, arg1: byte): byte
-public "values"(): $ByteCollection
 public "hashCode"(): integer
 public "getByte"(arg0: any): byte
 public "clear"(): void
 public "isEmpty"(): boolean
-public "replace"(arg0: K, arg1: byte, arg2: byte): boolean
 public "replace"(arg0: K, arg1: byte): byte
+public "replace"(arg0: K, arg1: byte, arg2: byte): boolean
 public "size"(): integer
-public "trim"(): boolean
 public "trim"(arg0: integer): boolean
+public "trim"(): boolean
 public "merge"(arg0: K, arg1: byte, arg2: $BiFunction$Type<(any), (any), (any)>): byte
 public "putAll"(arg0: $Map$Type<(any), (any)>): void
 public "putIfAbsent"(arg0: K, arg1: byte): byte
@@ -10540,14 +10508,15 @@ public "comparator"(): $Comparator<(any)>
 public "getAndMoveToFirst"(arg0: K): byte
 public "removeLastByte"(): byte
 public "putAndMoveToFirst"(arg0: K, arg1: byte): byte
-public "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
-public "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
-public "removeFirstByte"(): byte
 public "getAndMoveToLast"(arg0: K): byte
 public "putAndMoveToLast"(arg0: K, arg1: byte): byte
+public "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+public "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+public "removeFirstByte"(): byte
+public "object2ByteEntrySet"(): $Object2ByteSortedMap$FastSortedEntrySet<(K)>
 public "removeByte"(arg0: any): byte
-public "defaultReturnValue"(arg0: byte): void
 public "defaultReturnValue"(): byte
+public "defaultReturnValue"(arg0: byte): void
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V, arg8: K, arg9: V): $Map<(K), (V)>
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V): $Map<(K), (V)>
@@ -10717,6 +10686,7 @@ export interface $Object2BooleanMap<K> extends $Object2BooleanFunction<(K)>, $Ma
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
+ "object2BooleanEntrySet"(): $ObjectSet<($Object2BooleanMap$Entry<(K)>)>
  "computeBooleanIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): boolean
  "computeBoolean"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): boolean
 /**
@@ -10724,9 +10694,8 @@ export interface $Object2BooleanMap<K> extends $Object2BooleanFunction<(K)>, $Ma
  * @deprecated
  */
  "computeBooleanIfAbsent"(arg0: K, arg1: $Predicate$Type<(any)>): boolean
- "object2BooleanEntrySet"(): $ObjectSet<($Object2BooleanMap$Entry<(K)>)>
- "defaultReturnValue"(arg0: boolean): void
  "defaultReturnValue"(): boolean
+ "defaultReturnValue"(arg0: boolean): void
 /**
  * 
  * @deprecated
@@ -10869,13 +10838,8 @@ import {$LongIterator, $LongIterator$Type} from "packages/it/unimi/dsi/fastutil/
 
 export interface $LongBidirectionalIterator extends $LongIterator, $ObjectBidirectionalIterator<(long)> {
 
- "skip"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "previous"(): long
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousLong"(): long
 /**
  * 
@@ -10950,19 +10914,24 @@ public "defaultReturnValue"(): V
  * 
  * @deprecated
  */
-public "remove"(arg0: any): V
+public "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 public "remove"(arg0: long): V
+/**
+ * 
+ * @deprecated
+ */
+public "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
 public "get"(arg0: any): V
 public "get"(arg0: long): V
+public "put"(arg0: long, arg1: V): V
 /**
  * 
  * @deprecated
  */
-public "put"(arg0: long, arg1: V): V
 public "put"(arg0: long, arg1: V): V
 public "apply"(arg0: long): V
 public "containsKey"(arg0: long): boolean
@@ -10977,11 +10946,6 @@ public "getOrDefault"(arg0: long, arg1: V): V
  * @deprecated
  */
 public "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
-public "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 public "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Long2ByteFunction
 public "composeByte"(arg0: $Byte2LongFunction$Type): $Byte2ObjectFunction<(V)>
 public "andThenShort"(arg0: $Object2ShortFunction$Type<(V)>): $Long2ShortFunction
@@ -11218,23 +11182,23 @@ export interface $Long2ObjectMap<V> extends $Long2ObjectFunction<(V)>, $Map<(lon
  */
  "getOrDefault"(arg0: any, arg1: V): V
  "computeIfPresent"(arg0: long, arg1: $BiFunction$Type<(any), (any), (any)>): V
+ "long2ObjectEntrySet"(): $ObjectSet<($Long2ObjectMap$Entry<(V)>)>
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: long, arg1: $Long2ObjectFunction$Type<(any)>): V
- "long2ObjectEntrySet"(): $ObjectSet<($Long2ObjectMap$Entry<(V)>)>
  "defaultReturnValue"(): V
  "defaultReturnValue"(arg0: V): void
- "remove"(arg0: long): V
- "get"(arg0: long): V
- "put"(arg0: long, arg1: V): V
- "apply"(arg0: long): V
 /**
  * 
  * @deprecated
  */
  "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
+ "remove"(arg0: long): V
+ "get"(arg0: long): V
+ "put"(arg0: long, arg1: V): V
+ "apply"(arg0: long): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Long2ByteFunction
  "composeByte"(arg0: $Byte2LongFunction$Type): $Byte2ObjectFunction<(V)>
  "andThenShort"(arg0: $Object2ShortFunction$Type<(V)>): $Long2ShortFunction
@@ -11343,13 +11307,18 @@ export interface $Short2DoubleFunction extends $Function$0<(short), (double)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
- "remove"(arg0: short): double
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): double
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
+ "remove"(arg0: short): double
  "get"(arg0: short): double
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): double
 /**
  * 
  * @deprecated
@@ -11373,11 +11342,6 @@ export interface $Short2DoubleFunction extends $Function$0<(short), (double)>, $
  * @deprecated
  */
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "defaultReturnValue"(arg0: double): void
  "defaultReturnValue"(): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Short2ByteFunction
@@ -11465,6 +11429,11 @@ export interface $Boolean2DoubleFunction extends $Function$0<(boolean), (double)
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "remove"(arg0: boolean): double
  "get"(arg0: boolean): double
 /**
@@ -11490,11 +11459,6 @@ export interface $Boolean2DoubleFunction extends $Function$0<(boolean), (double)
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: double): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "defaultReturnValue"(arg0: double): void
  "defaultReturnValue"(): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Boolean2ByteFunction
@@ -11579,19 +11543,24 @@ export interface $Byte2ObjectFunction<V> extends $Function$0<(byte), (V)>, $IntF
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: byte): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: byte): V
+ "put"(arg0: byte, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: byte, arg1: V): V
  "put"(arg0: byte, arg1: V): V
 /**
  * 
@@ -11610,11 +11579,6 @@ export interface $Byte2ObjectFunction<V> extends $Function$0<(byte), (V)>, $IntF
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Byte2ByteFunction
@@ -11640,7 +11604,7 @@ export interface $Byte2ObjectFunction<V> extends $Function$0<(byte), (V)>, $IntF
  "apply"(arg0: byte): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Byte2ObjectFunction {
@@ -11743,9 +11707,9 @@ export interface $Object2ByteFunction<K> extends $Function$0<(K), (byte)>, $ToIn
  "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2ByteFunction<(T)>
  "andThenReference"<T>(arg0: $Byte2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2ByteFunction<(T)>
- "removeByte"(arg0: any): byte
  "andThenInt"(arg0: $Byte2IntFunction$Type): $Object2IntFunction<(K)>
  "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2ByteFunction
+ "removeByte"(arg0: any): byte
  "clear"(): void
  "size"(): integer
  "apply"(arg0: K): byte
@@ -11899,13 +11863,18 @@ export interface $Float2DoubleFunction extends $Function$0<(float), (double)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(float), (T)>
- "remove"(arg0: float): double
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): double
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
+ "remove"(arg0: float): double
  "get"(arg0: float): double
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): double
 /**
  * 
  * @deprecated
@@ -11929,11 +11898,6 @@ export interface $Float2DoubleFunction extends $Function$0<(float), (double)>, $
  * @deprecated
  */
  "applyAsDouble"(arg0: double): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "defaultReturnValue"(arg0: double): void
  "defaultReturnValue"(): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Float2ByteFunction
@@ -12115,11 +12079,11 @@ export interface $Object2BooleanMap$Entry<K> extends $Map$Entry<(K), (boolean)> 
 }
 
 export namespace $Object2BooleanMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (boolean)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (boolean)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (boolean)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (boolean)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (boolean)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (boolean)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (boolean)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12178,6 +12142,11 @@ export interface $Boolean2CharFunction extends $Function$0<(boolean), (character
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "remove"(arg0: boolean): character
  "get"(arg0: boolean): character
 /**
@@ -12203,11 +12172,6 @@ export interface $Boolean2CharFunction extends $Function$0<(boolean), (character
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: character): character
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "defaultReturnValue"(arg0: character): void
  "defaultReturnValue"(): character
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Boolean2ByteFunction
@@ -12302,25 +12266,25 @@ import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Object2ReferenceOpenHashMap<K, V> extends $AbstractObject2ReferenceMap<(K), (V)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: $Map$Type<(any), (any)>)
-constructor(arg0: $Object2ReferenceMap$Type<(K), (V)>, arg1: float)
-constructor(arg0: $Object2ReferenceMap$Type<(K), (V)>)
 constructor(arg0: (K)[], arg1: (V)[], arg2: float)
+constructor(arg0: $Object2ReferenceMap$Type<(K), (V)>)
+constructor(arg0: $Object2ReferenceMap$Type<(K), (V)>, arg1: float)
 constructor(arg0: (K)[], arg1: (V)[])
 constructor(arg0: integer, arg1: float)
 constructor(arg0: integer)
 constructor()
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
+constructor(arg0: $Map$Type<(any), (any)>)
 
-public "remove"(arg0: any, arg1: any): boolean
 public "remove"(arg0: any): V
+public "remove"(arg0: any, arg1: any): boolean
 public "get"(arg0: any): V
 public "put"(arg0: K, arg1: V): V
 public "hashCode"(): integer
 public "clear"(): void
 public "isEmpty"(): boolean
-public "replace"(arg0: K, arg1: V, arg2: V): boolean
 public "replace"(arg0: K, arg1: V): V
+public "replace"(arg0: K, arg1: V, arg2: V): boolean
 public "size"(): integer
 public "trim"(): boolean
 public "trim"(arg0: integer): boolean
@@ -12371,26 +12335,27 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 
 export interface $BooleanPredicate extends $Predicate<(boolean)> {
 
-/**
- * 
- * @deprecated
- */
- "test"(arg0: boolean): boolean
- "test"(arg0: boolean): boolean
+ "or"(arg0: $BooleanPredicate$Type): $BooleanPredicate
 /**
  * 
  * @deprecated
  */
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<(boolean)>
- "or"(arg0: $BooleanPredicate$Type): $BooleanPredicate
+ "negate"(): $BooleanPredicate
  "and"(arg0: $BooleanPredicate$Type): $BooleanPredicate
 /**
  * 
  * @deprecated
  */
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<(boolean)>
+ "test"(arg0: boolean): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: boolean): boolean
 
-(arg0: boolean): boolean
+(arg0: $BooleanPredicate$Type): $BooleanPredicate
 }
 
 export namespace $BooleanPredicate {
@@ -12566,13 +12531,18 @@ export interface $Long2ByteFunction extends $Function$0<(long), (byte)>, $LongTo
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): byte
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): byte
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
+ "remove"(arg0: long): byte
  "get"(arg0: long): byte
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): byte
 /**
  * 
  * @deprecated
@@ -12592,11 +12562,6 @@ export interface $Long2ByteFunction extends $Function$0<(long), (byte)>, $LongTo
  "getOrDefault"(arg0: any, arg1: byte): byte
  "getOrDefault"(arg0: long, arg1: byte): byte
  "applyAsInt"(arg0: long): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Long2ByteFunction
@@ -12757,6 +12722,11 @@ export interface $Double2DoubleFunction extends $Function<(double), (double)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(double), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (double)>
  "remove"(arg0: double): double
  "get"(arg0: double): double
  "put"(arg0: double, arg1: double): double
@@ -12771,18 +12741,13 @@ export interface $Double2DoubleFunction extends $Function<(double), (double)>, $
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: double): boolean
+ "getOrDefault"(arg0: double, arg1: double): double
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: double): double
- "getOrDefault"(arg0: double, arg1: double): double
  "applyAsDouble"(arg0: double): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (double)>
  "defaultReturnValue"(): double
  "defaultReturnValue"(arg0: double): void
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Double2ByteFunction
@@ -12833,12 +12798,14 @@ import {$IntConsumer, $IntConsumer$Type} from "packages/java/util/function/$IntC
 
 export interface $ShortConsumer extends $Consumer<(short)>, $IntConsumer {
 
- "andThen"(arg0: $ShortConsumer$Type): $ShortConsumer
+ "andThen"(arg0: $IntConsumer$Type): $ShortConsumer
 /**
  * 
  * @deprecated
  */
  "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(short)>
+ "andThen"(arg0: $ShortConsumer$Type): $ShortConsumer
+ "accept"(arg0: short): void
 /**
  * 
  * @deprecated
@@ -12849,9 +12816,8 @@ export interface $ShortConsumer extends $Consumer<(short)>, $IntConsumer {
  * @deprecated
  */
  "accept"(arg0: short): void
- "accept"(arg0: short): void
 
-(arg0: $ShortConsumer$Type): $ShortConsumer
+(arg0: $IntConsumer$Type): $ShortConsumer
 }
 
 export namespace $ShortConsumer {
@@ -12874,6 +12840,8 @@ import {$Comparator, $Comparator$Type} from "packages/java/util/$Comparator"
 
 export interface $PriorityQueue<K> {
 
+ "changed"(): void
+ "dequeue"(): K
  "clear"(): void
  "isEmpty"(): boolean
  "size"(): integer
@@ -12881,8 +12849,6 @@ export interface $PriorityQueue<K> {
  "first"(): K
  "enqueue"(arg0: K): void
  "comparator"(): $Comparator<(any)>
- "dequeue"(): K
- "changed"(): void
 }
 
 export namespace $PriorityQueue {
@@ -12908,6 +12874,7 @@ import {$Hash, $Hash$Type} from "packages/it/unimi/dsi/fastutil/$Hash"
 import {$LongSet, $LongSet$Type} from "packages/it/unimi/dsi/fastutil/longs/$LongSet"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
 import {$Long2ObjectMap, $Long2ObjectMap$Type} from "packages/it/unimi/dsi/fastutil/longs/$Long2ObjectMap"
+import {$Long2ObjectMap$FastEntrySet, $Long2ObjectMap$FastEntrySet$Type} from "packages/it/unimi/dsi/fastutil/longs/$Long2ObjectMap$FastEntrySet"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$Cloneable, $Cloneable$Type} from "packages/java/lang/$Cloneable"
 import {$Long2ObjectFunction, $Long2ObjectFunction$Type} from "packages/it/unimi/dsi/fastutil/longs/$Long2ObjectFunction"
@@ -12916,25 +12883,25 @@ import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Long2ObjectOpenHashMap<V> extends $AbstractLong2ObjectMap<(V)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: $Map$Type<(any), (any)>)
-constructor(arg0: $Long2ObjectMap$Type<(V)>, arg1: float)
-constructor(arg0: $Long2ObjectMap$Type<(V)>)
 constructor(arg0: (long)[], arg1: (V)[], arg2: float)
+constructor(arg0: $Long2ObjectMap$Type<(V)>)
+constructor(arg0: $Long2ObjectMap$Type<(V)>, arg1: float)
 constructor(arg0: (long)[], arg1: (V)[])
 constructor(arg0: integer, arg1: float)
 constructor(arg0: integer)
 constructor()
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
+constructor(arg0: $Map$Type<(any), (any)>)
 
-public "remove"(arg0: long, arg1: any): boolean
 public "remove"(arg0: long): V
+public "remove"(arg0: long, arg1: any): boolean
 public "get"(arg0: long): V
 public "put"(arg0: long, arg1: V): V
 public "hashCode"(): integer
 public "clear"(): void
 public "isEmpty"(): boolean
-public "replace"(arg0: long, arg1: V, arg2: V): boolean
 public "replace"(arg0: long, arg1: V): V
+public "replace"(arg0: long, arg1: V, arg2: V): boolean
 public "size"(): integer
 public "trim"(): boolean
 public "trim"(arg0: integer): boolean
@@ -12943,12 +12910,13 @@ public "putAll"(arg0: $Map$Type<(any), (any)>): void
 public "putIfAbsent"(arg0: long, arg1: V): V
 public "compute"(arg0: long, arg1: $BiFunction$Type<(any), (any), (any)>): V
 public "containsKey"(arg0: long): boolean
-public "computeIfAbsent"(arg0: long, arg1: $Long2ObjectFunction$Type<(any)>): V
 public "computeIfAbsent"(arg0: long, arg1: $LongFunction$Type<(any)>): V
+public "computeIfAbsent"(arg0: long, arg1: $Long2ObjectFunction$Type<(any)>): V
 public "keySet"(): $LongSet
 public "containsValue"(arg0: any): boolean
 public "getOrDefault"(arg0: long, arg1: V): V
 public "computeIfPresent"(arg0: long, arg1: $BiFunction$Type<(any), (any), (any)>): V
+public "long2ObjectEntrySet"(): $Long2ObjectMap$FastEntrySet<(V)>
 public "defaultReturnValue"(): V
 public "defaultReturnValue"(arg0: V): void
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
@@ -13025,6 +12993,11 @@ export interface $Boolean2IntFunction extends $Function$0<(boolean), (integer)> 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "remove"(arg0: boolean): integer
  "get"(arg0: boolean): integer
 /**
@@ -13050,11 +13023,6 @@ export interface $Boolean2IntFunction extends $Function$0<(boolean), (integer)> 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Boolean2ByteFunction
@@ -13158,8 +13126,8 @@ public "comparator"(): $Comparator<(any)>
 public "object2ObjectEntrySet"(): $ObjectSortedSet<($Object2ObjectMap$Entry<(K), (V)>)>
 public "defaultReturnValue"(arg0: V): void
 public "defaultReturnValue"(): V
-public "firstKey"(): K
 public "lastKey"(): K
+public "firstKey"(): K
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V, arg8: K, arg9: V): $Map<(K), (V)>
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V): $Map<(K), (V)>
@@ -13230,19 +13198,24 @@ export interface $Double2ReferenceFunction<V> extends $Function$0<(double), (V)>
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: double): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: double): V
+ "put"(arg0: double, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: double, arg1: V): V
  "put"(arg0: double, arg1: V): V
  "apply"(arg0: double): V
  "containsKey"(arg0: double): boolean
@@ -13257,11 +13230,6 @@ export interface $Double2ReferenceFunction<V> extends $Function$0<(double), (V)>
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Double2ByteFunction
@@ -13287,7 +13255,7 @@ export interface $Double2ReferenceFunction<V> extends $Function$0<(double), (V)>
  "apply"(arg0: double): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(double), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Double2ReferenceFunction {
@@ -13347,19 +13315,24 @@ export interface $Long2ReferenceFunction<V> extends $Function$0<(long), (V)>, $L
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: long): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: long): V
+ "put"(arg0: long, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: long, arg1: V): V
  "put"(arg0: long, arg1: V): V
  "apply"(arg0: long): V
  "containsKey"(arg0: long): boolean
@@ -13374,11 +13347,6 @@ export interface $Long2ReferenceFunction<V> extends $Function$0<(long), (V)>, $L
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Long2ByteFunction
@@ -13404,7 +13372,7 @@ export interface $Long2ReferenceFunction<V> extends $Function$0<(long), (V)>, $L
  "apply"(arg0: long): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(long), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Long2ReferenceFunction {
@@ -13465,13 +13433,18 @@ export interface $Char2FloatFunction extends $Function$0<(character), (float)>, 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(character), (T)>
- "remove"(arg0: character): float
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): float
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
+ "remove"(arg0: character): float
  "get"(arg0: character): float
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): float
 /**
  * 
  * @deprecated
@@ -13495,11 +13468,6 @@ export interface $Char2FloatFunction extends $Function$0<(character), (float)>, 
  * @deprecated
  */
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "defaultReturnValue"(arg0: float): void
  "defaultReturnValue"(): float
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Char2ByteFunction
@@ -13585,13 +13553,18 @@ export interface $Long2FloatFunction extends $Function$0<(long), (float)>, $Long
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): float
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): float
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
+ "remove"(arg0: long): float
  "get"(arg0: long): float
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): float
 /**
  * 
  * @deprecated
@@ -13611,11 +13584,6 @@ export interface $Long2FloatFunction extends $Function$0<(long), (float)>, $Long
  "getOrDefault"(arg0: any, arg1: float): float
  "getOrDefault"(arg0: long, arg1: float): float
  "applyAsDouble"(arg0: long): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "defaultReturnValue"(arg0: float): void
  "defaultReturnValue"(): float
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Long2ByteFunction
@@ -13700,19 +13668,24 @@ export interface $Int2ObjectFunction<V> extends $Function$0<(integer), (V)>, $In
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: integer): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: integer): V
+ "put"(arg0: integer, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: integer, arg1: V): V
  "put"(arg0: integer, arg1: V): V
  "apply"(arg0: integer): V
  "containsKey"(arg0: integer): boolean
@@ -13727,11 +13700,6 @@ export interface $Int2ObjectFunction<V> extends $Function$0<(integer), (V)>, $In
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Int2ByteFunction
@@ -13757,7 +13725,7 @@ export interface $Int2ObjectFunction<V> extends $Function$0<(integer), (V)>, $In
  "apply"(arg0: integer): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Int2ObjectFunction {
@@ -13818,13 +13786,18 @@ export interface $Byte2DoubleFunction extends $Function$0<(byte), (double)>, $In
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (T)>
- "remove"(arg0: byte): double
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): double
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
+ "remove"(arg0: byte): double
  "get"(arg0: byte): double
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): double
 /**
  * 
  * @deprecated
@@ -13848,11 +13821,6 @@ export interface $Byte2DoubleFunction extends $Function$0<(byte), (double)>, $In
  * @deprecated
  */
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "defaultReturnValue"(arg0: double): void
  "defaultReturnValue"(): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Byte2ByteFunction
@@ -13988,15 +13956,15 @@ export interface $Long2ObjectSortedMap<V> extends $Long2ObjectMap<(V)>, $SortedM
  */
  "headMap"(arg0: long): $Long2ObjectSortedMap<(V)>
  "headMap"(arg0: long): $Long2ObjectSortedMap<(V)>
- "tailMap"(arg0: long): $Long2ObjectSortedMap<(V)>
 /**
  * 
  * @deprecated
  */
  "tailMap"(arg0: long): $Long2ObjectSortedMap<(V)>
+ "tailMap"(arg0: long): $Long2ObjectSortedMap<(V)>
  "keySet"(): $LongSortedSet
- "firstLongKey"(): long
  "lastLongKey"(): long
+ "firstLongKey"(): long
 /**
  * 
  * @deprecated
@@ -14043,15 +14011,15 @@ export interface $Long2ObjectSortedMap<V> extends $Long2ObjectMap<(V)>, $SortedM
  "computeIfAbsentPartial"(arg0: long, arg1: $Long2ObjectFunction$Type<(any)>): V
  "defaultReturnValue"(): V
  "defaultReturnValue"(arg0: V): void
- "remove"(arg0: long): V
- "get"(arg0: long): V
- "put"(arg0: long, arg1: V): V
- "apply"(arg0: long): V
 /**
  * 
  * @deprecated
  */
  "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
+ "remove"(arg0: long): V
+ "get"(arg0: long): V
+ "put"(arg0: long, arg1: V): V
+ "apply"(arg0: long): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Long2ByteFunction
  "composeByte"(arg0: $Byte2LongFunction$Type): $Byte2ObjectFunction<(V)>
  "andThenShort"(arg0: $Object2ShortFunction$Type<(V)>): $Long2ShortFunction
@@ -14189,13 +14157,18 @@ export interface $Long2CharFunction extends $Function$0<(long), (character)>, $L
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): character
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): character
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
+ "remove"(arg0: long): character
  "get"(arg0: long): character
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): character
 /**
  * 
  * @deprecated
@@ -14215,11 +14188,6 @@ export interface $Long2CharFunction extends $Function$0<(long), (character)>, $L
  "getOrDefault"(arg0: any, arg1: character): character
  "getOrDefault"(arg0: long, arg1: character): character
  "applyAsInt"(arg0: long): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "defaultReturnValue"(arg0: character): void
  "defaultReturnValue"(): character
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Long2ByteFunction
@@ -14417,13 +14385,18 @@ export interface $Int2CharFunction extends $Function$0<(integer), (character)>, 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): character
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): character
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
+ "remove"(arg0: integer): character
  "get"(arg0: integer): character
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): character
 /**
  * 
  * @deprecated
@@ -14443,11 +14416,6 @@ export interface $Int2CharFunction extends $Function$0<(integer), (character)>, 
  "getOrDefault"(arg0: any, arg1: character): character
  "getOrDefault"(arg0: integer, arg1: character): character
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "defaultReturnValue"(arg0: character): void
  "defaultReturnValue"(): character
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Int2ByteFunction
@@ -14626,11 +14594,11 @@ export interface $Short2ObjectMap$Entry<V> extends $Map$Entry<(short), (V)> {
 }
 
 export namespace $Short2ObjectMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(short), (V)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(short), (V)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(short), (V)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(short), (V)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(short), (V)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(short), (V)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(short), (V)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14690,46 +14658,36 @@ export interface $Char2BooleanFunction extends $Function$0<(character), (boolean
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(character), (T)>
- "remove"(arg0: character): boolean
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): boolean
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
+ "remove"(arg0: character): boolean
  "get"(arg0: character): boolean
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): boolean
  "put"(arg0: character, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
  "put"(arg0: character, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "test"(arg0: integer): boolean
- "containsKey"(arg0: character): boolean
 /**
  * 
  * @deprecated
  */
  "containsKey"(arg0: any): boolean
+ "containsKey"(arg0: character): boolean
  "getOrDefault"(arg0: character, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Char2ByteFunction
@@ -14860,9 +14818,9 @@ export interface $Reference2ByteFunction<K> extends $Function$0<(K), (byte)>, $T
  "composeObject"<T>(arg0: $Object2ReferenceFunction$Type<(any), (any)>): $Object2ByteFunction<(T)>
  "andThenReference"<T>(arg0: $Byte2ReferenceFunction$Type<(any)>): $Reference2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ReferenceFunction$Type<(any), (any)>): $Reference2ByteFunction<(T)>
- "removeByte"(arg0: any): byte
  "andThenInt"(arg0: $Byte2IntFunction$Type): $Reference2IntFunction<(K)>
  "composeInt"(arg0: $Int2ReferenceFunction$Type<(K)>): $Int2ByteFunction
+ "removeByte"(arg0: any): byte
  "clear"(): void
  "size"(): integer
  "apply"(arg0: K): byte
@@ -14931,19 +14889,24 @@ export interface $Boolean2ReferenceFunction<V> extends $Function$0<(boolean), (V
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
- "remove"(arg0: boolean): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): V
+ "remove"(arg0: any): V
+ "remove"(arg0: boolean): V
  "get"(arg0: boolean): V
 /**
  * 
  * @deprecated
  */
+ "get"(arg0: any): V
  "put"(arg0: boolean, arg1: V): V
+/**
+ * 
+ * @deprecated
+ */
  "put"(arg0: boolean, arg1: V): V
 /**
  * 
@@ -14951,17 +14914,12 @@ export interface $Boolean2ReferenceFunction<V> extends $Function$0<(boolean), (V
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "getOrDefault"(arg0: any, arg1: V): V
  "getOrDefault"(arg0: boolean, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
+ "getOrDefault"(arg0: any, arg1: V): V
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Boolean2ByteFunction
@@ -14987,7 +14945,7 @@ export interface $Boolean2ReferenceFunction<V> extends $Function$0<(boolean), (V
  "apply"(arg0: boolean): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(boolean), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Boolean2ReferenceFunction {
@@ -15009,11 +14967,11 @@ declare module "packages/it/unimi/dsi/fastutil/$Stack" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $Stack<K> {
 
+ "push"(arg0: K): void
+ "pop"(): K
  "isEmpty"(): boolean
  "top"(): K
  "peek"(arg0: integer): K
- "push"(arg0: K): void
- "pop"(): K
 }
 
 export namespace $Stack {
@@ -15117,15 +15075,15 @@ public "andThenObject"<T>(arg0: $Byte2ObjectFunction$Type<(any)>): $Object2Objec
 public "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2ByteFunction<(T)>
 public "andThenReference"<T>(arg0: $Byte2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
 public "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2ByteFunction<(T)>
-public "removeByte"(arg0: any): byte
 public "andThenInt"(arg0: $Byte2IntFunction$Type): $Object2IntFunction<(K)>
 public "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2ByteFunction
+public "removeByte"(arg0: any): byte
 public "clear"(): void
 public "size"(): integer
 public "apply"(arg0: K): byte
 public "containsKey"(arg0: any): boolean
-public static "identity"<T>(): $Function<(K), (K)>
 public "compose"<V>(arg0: $Function$Type<(any), (any)>): $Function<(V), (byte)>
+public static "identity"<T>(): $Function<(K), (K)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15228,28 +15186,28 @@ public "getOrDefault"(arg0: any, arg1: byte): byte
  * @deprecated
  */
 public "getOrDefault"(arg0: any, arg1: byte): byte
-public "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
-public "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
-public "object2ByteEntrySet"(): $ObjectSet<($Object2ByteMap$Entry<(K)>)>
-/**
- * 
- * @deprecated
- */
-public "computeByteIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): byte
 /**
  * 
  * @deprecated
  */
 public "computeByteIfAbsentPartial"(arg0: K, arg1: $Object2ByteFunction$Type<(any)>): byte
-public "defaultReturnValue"(arg0: byte): void
+/**
+ * 
+ * @deprecated
+ */
+public "computeByteIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): byte
+public "computeByteIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+public "computeByte"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+public "object2ByteEntrySet"(): $ObjectSet<($Object2ByteMap$Entry<(K)>)>
 public "defaultReturnValue"(): byte
+public "defaultReturnValue"(arg0: byte): void
+public "mergeByte"(arg0: K, arg1: byte, arg2: $ByteBinaryOperator$Type): byte
 public "mergeByte"(arg0: K, arg1: byte, arg2: $IntBinaryOperator$Type): byte
 /**
  * 
  * @deprecated
  */
 public "mergeByte"(arg0: K, arg1: byte, arg2: $BiFunction$Type<(any), (any), (any)>): byte
-public "mergeByte"(arg0: K, arg1: byte, arg2: $ByteBinaryOperator$Type): byte
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (byte)>
 public "replaceAll"(arg0: $BiFunction$Type<(any), (any), (any)>): void
 public static "of"<K, V>(arg0: K, arg1: byte, arg2: K, arg3: byte, arg4: K, arg5: byte, arg6: K, arg7: byte, arg8: K, arg9: byte): $Map<(K), (byte)>
@@ -15301,8 +15259,8 @@ export interface $LongIterable extends $Iterable<(long)> {
  */
  "forEach"(arg0: $Consumer$Type<(any)>): void
  "forEach"(arg0: $LongConsumer$0$Type): void
- "longSpliterator"(): $LongSpliterator
  "longIterator"(): $LongIterator
+ "longSpliterator"(): $LongSpliterator
 }
 
 export namespace $LongIterable {
@@ -15363,13 +15321,18 @@ export interface $Double2CharFunction extends $Function$0<(double), (character)>
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(double), (T)>
- "remove"(arg0: double): character
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): character
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
+ "remove"(arg0: double): character
  "get"(arg0: double): character
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): character
 /**
  * 
  * @deprecated
@@ -15389,11 +15352,6 @@ export interface $Double2CharFunction extends $Function$0<(double), (character)>
  "getOrDefault"(arg0: any, arg1: character): character
  "getOrDefault"(arg0: double, arg1: character): character
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (character)>
  "defaultReturnValue"(arg0: character): void
  "defaultReturnValue"(): character
  "andThenByte"(arg0: $Char2ByteFunction$Type): $Double2ByteFunction
@@ -15478,19 +15436,24 @@ export interface $Char2ReferenceFunction<V> extends $Function$0<(character), (V)
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: character): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: character): V
+ "put"(arg0: character, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: character, arg1: V): V
  "put"(arg0: character, arg1: V): V
 /**
  * 
@@ -15509,11 +15472,6 @@ export interface $Char2ReferenceFunction<V> extends $Function$0<(character), (V)
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Char2ByteFunction
@@ -15539,7 +15497,7 @@ export interface $Char2ReferenceFunction<V> extends $Function$0<(character), (V)
  "apply"(arg0: character): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(character), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Char2ReferenceFunction {
@@ -15684,12 +15642,12 @@ export interface $Long2ByteMap extends $Long2ByteFunction, $Map<(long), (byte)> 
  * @deprecated
  */
  "computeIfPresent"(arg0: long, arg1: $BiFunction$Type<(any), (any), (any)>): byte
+ "computeIfAbsentNullable"(arg0: long, arg1: $LongFunction$Type<(any)>): byte
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: long, arg1: $Long2ByteFunction$Type): byte
- "computeIfAbsentNullable"(arg0: long, arg1: $LongFunction$Type<(any)>): byte
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "long2ByteEntrySet"(): $ObjectSet<($Long2ByteMap$Entry)>
@@ -15700,15 +15658,15 @@ export interface $Long2ByteMap extends $Long2ByteFunction, $Map<(long), (byte)> 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): byte
- "get"(arg0: long): byte
- "put"(arg0: long, arg1: byte): byte
- "applyAsInt"(arg0: long): integer
 /**
  * 
  * @deprecated
  */
  "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
+ "remove"(arg0: long): byte
+ "get"(arg0: long): byte
+ "put"(arg0: long, arg1: byte): byte
+ "applyAsInt"(arg0: long): integer
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Long2ByteFunction
  "composeByte"(arg0: $Byte2LongFunction$Type): $Byte2ByteFunction
  "andThenShort"(arg0: $Byte2ShortFunction$Type): $Long2ShortFunction
@@ -15779,25 +15737,25 @@ import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Object2ObjectOpenHashMap<K, V> extends $AbstractObject2ObjectMap<(K), (V)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: $Map$Type<(any), (any)>)
-constructor(arg0: $Object2ObjectMap$Type<(K), (V)>, arg1: float)
-constructor(arg0: $Object2ObjectMap$Type<(K), (V)>)
 constructor(arg0: (K)[], arg1: (V)[], arg2: float)
+constructor(arg0: $Object2ObjectMap$Type<(K), (V)>)
+constructor(arg0: $Object2ObjectMap$Type<(K), (V)>, arg1: float)
 constructor(arg0: (K)[], arg1: (V)[])
 constructor(arg0: integer, arg1: float)
 constructor(arg0: integer)
 constructor()
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
+constructor(arg0: $Map$Type<(any), (any)>)
 
-public "remove"(arg0: any, arg1: any): boolean
 public "remove"(arg0: any): V
+public "remove"(arg0: any, arg1: any): boolean
 public "get"(arg0: any): V
 public "put"(arg0: K, arg1: V): V
 public "hashCode"(): integer
 public "clear"(): void
 public "isEmpty"(): boolean
-public "replace"(arg0: K, arg1: V, arg2: V): boolean
 public "replace"(arg0: K, arg1: V): V
+public "replace"(arg0: K, arg1: V, arg2: V): boolean
 public "size"(): integer
 public "trim"(): boolean
 public "trim"(arg0: integer): boolean
@@ -15997,13 +15955,18 @@ export interface $Int2ByteFunction extends $Function$0<(integer), (byte)>, $IntU
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): byte
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): byte
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
+ "remove"(arg0: integer): byte
  "get"(arg0: integer): byte
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): byte
 /**
  * 
  * @deprecated
@@ -16023,11 +15986,6 @@ export interface $Int2ByteFunction extends $Function$0<(integer), (byte)>, $IntU
  "getOrDefault"(arg0: any, arg1: byte): byte
  "getOrDefault"(arg0: integer, arg1: byte): byte
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Int2ByteFunction
@@ -16115,13 +16073,18 @@ export interface $Long2IntFunction extends $Function$0<(long), (integer)>, $Long
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): integer
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): integer
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: long): integer
  "get"(arg0: long): integer
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): integer
 /**
  * 
  * @deprecated
@@ -16141,11 +16104,6 @@ export interface $Long2IntFunction extends $Function$0<(long), (integer)>, $Long
  "getOrDefault"(arg0: any, arg1: integer): integer
  "getOrDefault"(arg0: long, arg1: integer): integer
  "applyAsInt"(arg0: long): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Long2ByteFunction
@@ -16316,8 +16274,8 @@ export interface $IntCollection extends $Collection<(integer)>, $IntIterable {
  */
  "parallelStream"(): $Stream<(integer)>
  "rem"(arg0: integer): boolean
- "intParallelStream"(): $IntStream
  "intIterator"(): $IntIterator
+ "intParallelStream"(): $IntStream
  "intSpliterator"(): $IntSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
@@ -16548,11 +16506,11 @@ export interface $Long2ByteMap$Entry extends $Map$Entry<(long), (byte)> {
 }
 
 export namespace $Long2ByteMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(long), (byte)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (byte)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(long), (byte)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (byte)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(long), (byte)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(long), (byte)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(long), (byte)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16659,8 +16617,8 @@ public "clear"(): void
 public "size"(): integer
 public "apply"(arg0: K): float
 public "containsKey"(arg0: any): boolean
-public static "identity"<T>(): $Function<(K), (K)>
 public "compose"<V>(arg0: $Function$Type<(any), (any)>): $Function<(V), (float)>
+public static "identity"<T>(): $Function<(K), (K)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16836,19 +16794,24 @@ export interface $Short2ReferenceFunction<V> extends $Function$0<(short), (V)>, 
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: short): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: short): V
+ "put"(arg0: short, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: short, arg1: V): V
  "put"(arg0: short, arg1: V): V
 /**
  * 
@@ -16867,11 +16830,6 @@ export interface $Short2ReferenceFunction<V> extends $Function$0<(short), (V)>, 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Short2ByteFunction
@@ -16897,7 +16855,7 @@ export interface $Short2ReferenceFunction<V> extends $Function$0<(short), (V)>, 
  "apply"(arg0: short): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(short), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Short2ReferenceFunction {
@@ -17002,11 +16960,11 @@ export interface $Reference2ReferenceMap$Entry<K, V> extends $Map$Entry<(K), (V)
 }
 
 export namespace $Reference2ReferenceMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (V)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (V)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (V)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17063,13 +17021,18 @@ export interface $Byte2LongFunction extends $Function$0<(byte), (long)>, $IntToL
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (T)>
- "remove"(arg0: byte): long
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): long
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
+ "remove"(arg0: byte): long
  "get"(arg0: byte): long
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): long
 /**
  * 
  * @deprecated
@@ -17093,11 +17056,6 @@ export interface $Byte2LongFunction extends $Function$0<(byte), (long)>, $IntToL
  * @deprecated
  */
  "applyAsLong"(arg0: integer): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "defaultReturnValue"(arg0: long): void
  "defaultReturnValue"(): long
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Byte2ByteFunction
@@ -17154,8 +17112,11 @@ import {$Stack, $Stack$Type} from "packages/it/unimi/dsi/fastutil/$Stack"
 export class $AbstractObjectList<K> extends $AbstractObjectCollection<(K)> implements $ObjectList<(K)>, $Stack<(K)> {
 
 
-public "add"(arg0: K): boolean
+public "push"(arg0: K): void
+public "pop"(): K
+public "getElements"(arg0: integer, arg1: (any)[], arg2: integer, arg3: integer): void
 public "add"(arg0: integer, arg1: K): void
+public "add"(arg0: K): boolean
 public "remove"(arg0: integer): K
 public "equals"(arg0: any): boolean
 public "toString"(): string
@@ -17167,32 +17128,29 @@ public "lastIndexOf"(arg0: any): integer
 public "size"(arg0: integer): void
 public "toArray"<T>(arg0: (T)[]): (T)[]
 public "toArray"(): (any)[]
+public "iterator"(): $ObjectListIterator<(K)>
 public "contains"(arg0: any): boolean
-public "addAll"(arg0: integer, arg1: $Collection$Type<(any)>): boolean
 public "addAll"(arg0: $Collection$Type<(any)>): boolean
+public "addAll"(arg0: integer, arg1: $Collection$Type<(any)>): boolean
 public "set"(arg0: integer, arg1: K): K
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 public "top"(): K
 public "peek"(arg0: integer): K
-public "listIterator"(): $ObjectListIterator<(K)>
-public "push"(arg0: K): void
-public "pop"(): K
-public "getElements"(arg0: integer, arg1: (any)[], arg2: integer, arg3: integer): void
-public "removeElements"(arg0: integer, arg1: integer): void
 public "addElements"(arg0: integer, arg1: (K)[]): void
 public "addElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
+public "removeElements"(arg0: integer, arg1: integer): void
 public "setElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
 public static "of"<K>(...arg0: (K)[]): $ObjectList<(K)>
 public static "of"<K>(arg0: K, arg1: K, arg2: K): $ObjectList<(K)>
-public static "of"<K>(arg0: K, arg1: K): $ObjectList<(K)>
-public static "of"<K>(): $ObjectList<(K)>
 public static "of"<K>(arg0: K): $ObjectList<(K)>
+public static "of"<K>(): $ObjectList<(K)>
+public static "of"<K>(arg0: K, arg1: K): $ObjectList<(K)>
 public "addAll"(arg0: $ObjectList$Type<(any)>): boolean
 public "addAll"(arg0: integer, arg1: $ObjectList$Type<(any)>): boolean
 public "sort"(arg0: $Comparator$Type<(any)>): void
+public "unstableSort"(arg0: $Comparator$Type<(any)>): void
 public "setElements"(arg0: (K)[]): void
 public "setElements"(arg0: integer, arg1: (K)[]): void
-public "unstableSort"(arg0: $Comparator$Type<(any)>): void
 public "isEmpty"(): boolean
 public "remove"(arg0: any): boolean
 public "get"(arg0: integer): K
@@ -17209,6 +17167,7 @@ public static "of"<E>(arg0: K, arg1: K, arg2: K, arg3: K, arg4: K, arg5: K, arg6
 public "removeAll"(arg0: $Collection$Type<(any)>): boolean
 public "retainAll"(arg0: $Collection$Type<(any)>): boolean
 public "containsAll"(arg0: $Collection$Type<(any)>): boolean
+[index: number]: K
 set "elements"(value: (K)[])
 get "empty"(): boolean
 }
@@ -17289,6 +17248,13 @@ export interface $LongSortedSet extends $LongSet, $SortedSet<(long)>, $LongBidir
  * @deprecated
  */
  "rem"(arg0: long): boolean
+ "longStream"(): $LongStream
+/**
+ * 
+ * @deprecated
+ */
+ "toLongArray"(arg0: (long)[]): (long)[]
+ "toLongArray"(): (long)[]
  "add"(arg0: long): boolean
  "toArray"(arg0: (long)[]): (long)[]
 /**
@@ -17299,12 +17265,12 @@ export interface $LongSortedSet extends $LongSet, $SortedSet<(long)>, $LongBidir
  "contains"(arg0: long): boolean
  "addAll"(arg0: $LongCollection$Type): boolean
  "removeIf"(arg0: $LongPredicate$0$Type): boolean
+ "removeIf"(arg0: $LongPredicate$Type): boolean
 /**
  * 
  * @deprecated
  */
  "removeIf"(arg0: $Predicate$Type<(any)>): boolean
- "removeIf"(arg0: $LongPredicate$Type): boolean
  "removeAll"(arg0: $LongCollection$Type): boolean
  "retainAll"(arg0: $LongCollection$Type): boolean
  "containsAll"(arg0: $LongCollection$Type): boolean
@@ -17313,16 +17279,9 @@ export interface $LongSortedSet extends $LongSet, $SortedSet<(long)>, $LongBidir
  * @deprecated
  */
  "parallelStream"(): $Stream<(long)>
- "longStream"(): $LongStream
- "toLongArray"(): (long)[]
-/**
- * 
- * @deprecated
- */
- "toLongArray"(arg0: (long)[]): (long)[]
- "longSpliterator"(): $LongSpliterator
- "longIterator"(): $LongIterator
  "longParallelStream"(): $LongStream
+ "longIterator"(): $LongIterator
+ "longSpliterator"(): $LongSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -17418,13 +17377,18 @@ export interface $Char2LongFunction extends $Function$0<(character), (long)>, $I
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(character), (T)>
- "remove"(arg0: character): long
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): long
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
+ "remove"(arg0: character): long
  "get"(arg0: character): long
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): long
 /**
  * 
  * @deprecated
@@ -17448,11 +17412,6 @@ export interface $Char2LongFunction extends $Function$0<(character), (long)>, $I
  * @deprecated
  */
  "applyAsLong"(arg0: integer): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "defaultReturnValue"(arg0: long): void
  "defaultReturnValue"(): long
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Char2ByteFunction
@@ -17544,8 +17503,8 @@ export interface $DoubleIterable extends $Iterable<(double)> {
  */
  "forEach"(arg0: $Consumer$Type<(any)>): void
  "forEach"(arg0: $DoubleConsumer$Type): void
- "doubleIterator"(): $DoubleIterator
  "doubleSpliterator"(): $DoubleSpliterator
+ "doubleIterator"(): $DoubleIterator
 }
 
 export namespace $DoubleIterable {
@@ -17572,21 +17531,21 @@ import {$ObjectBidirectionalIterator, $ObjectBidirectionalIterator$Type} from "p
 
 export interface $DoubleBidirectionalIterator extends $DoubleIterator, $ObjectBidirectionalIterator<(double)> {
 
- "skip"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "previous"(): double
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousDouble"(): double
+ "nextDouble"(): double
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
  "forEachRemaining"(arg0: $DoubleConsumer$Type): void
- "nextDouble"(): double
+/**
+ * 
+ * @deprecated
+ */
+ "next"(): double
  "forEachRemaining"(arg0: $DoubleConsumer$0$Type): void
  "hasPrevious"(): boolean
  "remove"(): void
@@ -17677,12 +17636,12 @@ public "getOrDefault"(arg0: long, arg1: V): V
  */
 public "getOrDefault"(arg0: any, arg1: V): V
 public "computeIfPresent"(arg0: long, arg1: $BiFunction$Type<(any), (any), (any)>): V
+public "long2ObjectEntrySet"(): $ObjectSet<($Long2ObjectMap$Entry<(V)>)>
 /**
  * 
  * @deprecated
  */
 public "computeIfAbsentPartial"(arg0: long, arg1: $Long2ObjectFunction$Type<(any)>): V
-public "long2ObjectEntrySet"(): $ObjectSet<($Long2ObjectMap$Entry<(V)>)>
 public "defaultReturnValue"(): V
 public "defaultReturnValue"(arg0: V): void
 public "remove"(arg0: any, arg1: any): boolean
@@ -17767,13 +17726,18 @@ export interface $Char2ShortFunction extends $Function$0<(character), (short)>, 
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(character), (T)>
- "remove"(arg0: character): short
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): short
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
+ "remove"(arg0: character): short
  "get"(arg0: character): short
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): short
 /**
  * 
  * @deprecated
@@ -17797,11 +17761,6 @@ export interface $Char2ShortFunction extends $Function$0<(character), (short)>, 
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "defaultReturnValue"(arg0: short): void
  "defaultReturnValue"(): short
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Char2ByteFunction
@@ -17917,8 +17876,8 @@ export interface $IntSet extends $IntCollection, $Set<(integer)> {
  * @deprecated
  */
  "parallelStream"(): $Stream<(integer)>
- "intParallelStream"(): $IntStream
  "intIterator"(): $IntIterator
+ "intParallelStream"(): $IntStream
  "intSpliterator"(): $IntSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
@@ -18160,8 +18119,8 @@ public "size"(): integer
 public "apply"(arg0: K): V
 public "containsKey"(arg0: any): boolean
 public "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(K), (V)>
-public static "identity"<T>(): $Function<(K), (K)>
 public "compose"<V>(arg0: $Function$Type<(any), (any)>): $Function<(V), (V)>
+public static "identity"<T>(): $Function<(K), (K)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -18218,13 +18177,18 @@ export interface $Long2ShortFunction extends $Function$0<(long), (short)>, $Long
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): short
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): short
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
+ "remove"(arg0: long): short
  "get"(arg0: long): short
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): short
 /**
  * 
  * @deprecated
@@ -18244,11 +18208,6 @@ export interface $Long2ShortFunction extends $Function$0<(long), (short)>, $Long
  "getOrDefault"(arg0: any, arg1: short): short
  "getOrDefault"(arg0: long, arg1: short): short
  "applyAsInt"(arg0: long): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "defaultReturnValue"(arg0: short): void
  "defaultReturnValue"(): short
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Long2ByteFunction
@@ -18316,11 +18275,11 @@ export interface $Short2BooleanMap$Entry extends $Map$Entry<(short), (boolean)> 
 }
 
 export namespace $Short2BooleanMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(short), (boolean)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(short), (boolean)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(short), (boolean)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(short), (boolean)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(short), (boolean)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(short), (boolean)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(short), (boolean)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -18461,9 +18420,9 @@ export interface $Object2LongFunction<K> extends $Function$0<(K), (long)>, $ToLo
  "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2LongFunction<(T)>
  "andThenReference"<T>(arg0: $Long2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2LongFunction<(T)>
- "removeLong"(arg0: any): long
  "andThenInt"(arg0: $Long2IntFunction$Type): $Object2IntFunction<(K)>
  "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2LongFunction
+ "removeLong"(arg0: any): long
  "clear"(): void
  "size"(): integer
  "apply"(arg0: K): long
@@ -18497,13 +18456,8 @@ import {$ObjectBidirectionalIterator, $ObjectBidirectionalIterator$Type} from "p
 
 export interface $ShortBidirectionalIterator extends $ShortIterator, $ObjectBidirectionalIterator<(short)> {
 
- "skip"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "previous"(): short
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousShort"(): short
  "forEachRemaining"(arg0: $IntConsumer$Type): void
  "forEachRemaining"(arg0: $ShortConsumer$Type): void
@@ -18539,12 +18493,14 @@ import {$IntConsumer, $IntConsumer$Type} from "packages/java/util/function/$IntC
 
 export interface $ByteConsumer extends $Consumer<(byte)>, $IntConsumer {
 
- "andThen"(arg0: $ByteConsumer$Type): $ByteConsumer
+ "andThen"(arg0: $IntConsumer$Type): $ByteConsumer
 /**
  * 
  * @deprecated
  */
  "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(byte)>
+ "andThen"(arg0: $ByteConsumer$Type): $ByteConsumer
+ "accept"(arg0: byte): void
 /**
  * 
  * @deprecated
@@ -18555,9 +18511,8 @@ export interface $ByteConsumer extends $Consumer<(byte)>, $IntConsumer {
  * @deprecated
  */
  "accept"(arg0: byte): void
- "accept"(arg0: byte): void
 
-(arg0: $ByteConsumer$Type): $ByteConsumer
+(arg0: $IntConsumer$Type): $ByteConsumer
 }
 
 export namespace $ByteConsumer {
@@ -18618,13 +18573,18 @@ export interface $Double2IntFunction extends $Function$0<(double), (integer)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(double), (T)>
- "remove"(arg0: double): integer
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): integer
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: double): integer
  "get"(arg0: double): integer
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): integer
 /**
  * 
  * @deprecated
@@ -18644,11 +18604,6 @@ export interface $Double2IntFunction extends $Function$0<(double), (integer)>, $
  "getOrDefault"(arg0: any, arg1: integer): integer
  "getOrDefault"(arg0: double, arg1: integer): integer
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Double2ByteFunction
@@ -18734,13 +18689,18 @@ export interface $Double2FloatFunction extends $Function$0<(double), (float)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(double), (T)>
- "remove"(arg0: double): float
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): float
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
+ "remove"(arg0: double): float
  "get"(arg0: double): float
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): float
 /**
  * 
  * @deprecated
@@ -18760,11 +18720,6 @@ export interface $Double2FloatFunction extends $Function$0<(double), (float)>, $
  "getOrDefault"(arg0: any, arg1: float): float
  "getOrDefault"(arg0: double, arg1: float): float
  "applyAsDouble"(arg0: double): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "defaultReturnValue"(arg0: float): void
  "defaultReturnValue"(): float
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Double2ByteFunction
@@ -18824,11 +18779,11 @@ export interface $Object2ReferenceMap$Entry<K, V> extends $Map$Entry<(K), (V)> {
 }
 
 export namespace $Object2ReferenceMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (V)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (V)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (V)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -18844,7 +18799,7 @@ export type $Object2ReferenceMap$Entry_<K, V> = $Object2ReferenceMap$Entry$Type<
 }}
 declare module "packages/it/unimi/dsi/fastutil/objects/$Object2FloatOpenHashMap" {
 import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
-import {$Object2FloatMap$FastEntrySet, $Object2FloatMap$FastEntrySet$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2FloatMap$FastEntrySet"
+import {$ObjectSet, $ObjectSet$Type} from "packages/it/unimi/dsi/fastutil/objects/$ObjectSet"
 import {$Hash, $Hash$Type} from "packages/it/unimi/dsi/fastutil/$Hash"
 import {$FloatCollection, $FloatCollection$Type} from "packages/it/unimi/dsi/fastutil/floats/$FloatCollection"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
@@ -18859,15 +18814,15 @@ import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Object2FloatOpenHashMap<K> extends $AbstractObject2FloatMap<(K)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: $Object2FloatMap$Type<(K)>, arg1: float)
-constructor(arg0: $Object2FloatMap$Type<(K)>)
 constructor(arg0: (K)[], arg1: (float)[], arg2: float)
+constructor(arg0: $Object2FloatMap$Type<(K)>)
 constructor(arg0: (K)[], arg1: (float)[])
 constructor(arg0: integer, arg1: float)
-constructor(arg0: integer)
 constructor()
+constructor(arg0: integer)
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
 constructor(arg0: $Map$Type<(any), (any)>)
+constructor(arg0: $Object2FloatMap$Type<(K)>, arg1: float)
 
 public "addTo"(arg0: K, arg1: float): float
 public "remove"(arg0: any, arg1: float): boolean
@@ -18888,12 +18843,12 @@ public "putIfAbsent"(arg0: K, arg1: float): float
 public "containsKey"(arg0: any): boolean
 public "computeIfAbsent"(arg0: K, arg1: $ToDoubleFunction$Type<(any)>): float
 public "computeIfAbsent"(arg0: K, arg1: $Object2FloatFunction$Type<(any)>): float
+public "keySet"(): $ObjectSet<(K)>
 public "containsValue"(arg0: float): boolean
 public "getOrDefault"(arg0: any, arg1: float): float
-public "object2FloatEntrySet"(): $Object2FloatMap$FastEntrySet<(K)>
-public "computeFloatIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
-public "computeFloat"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
 public "removeFloat"(arg0: any): float
+public "computeFloat"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
+public "computeFloatIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
 public "defaultReturnValue"(): float
 public "defaultReturnValue"(arg0: float): void
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
@@ -18998,13 +18953,18 @@ export interface $Long2DoubleFunction extends $Function$0<(long), (double)>, $Lo
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): double
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): double
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
+ "remove"(arg0: long): double
  "get"(arg0: long): double
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): double
 /**
  * 
  * @deprecated
@@ -19024,11 +18984,6 @@ export interface $Long2DoubleFunction extends $Function$0<(long), (double)>, $Lo
  "getOrDefault"(arg0: any, arg1: double): double
  "getOrDefault"(arg0: long, arg1: double): double
  "applyAsDouble"(arg0: long): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "defaultReturnValue"(arg0: double): void
  "defaultReturnValue"(): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Long2ByteFunction
@@ -19079,14 +19034,19 @@ import {$PrimitiveIterator$OfDouble, $PrimitiveIterator$OfDouble$Type} from "pac
 
 export interface $DoubleIterator extends $PrimitiveIterator$OfDouble {
 
+ "nextDouble"(): double
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
  "forEachRemaining"(arg0: $DoubleConsumer$Type): void
+/**
+ * 
+ * @deprecated
+ */
+ "next"(): double
  "skip"(arg0: integer): integer
- "nextDouble"(): double
  "forEachRemaining"(arg0: $DoubleConsumer$0$Type): void
  "remove"(): void
  "hasNext"(): boolean
@@ -19124,6 +19084,13 @@ import {$LongConsumer as $LongConsumer$0, $LongConsumer$Type as $LongConsumer$0$
 
 export interface $LongCollection extends $Collection<(long)>, $LongIterable {
 
+ "longStream"(): $LongStream
+/**
+ * 
+ * @deprecated
+ */
+ "toLongArray"(arg0: (long)[]): (long)[]
+ "toLongArray"(): (long)[]
  "add"(arg0: long): boolean
 /**
  * 
@@ -19142,20 +19109,20 @@ export interface $LongCollection extends $Collection<(long)>, $LongIterable {
  * @deprecated
  */
  "stream"(): $Stream<(long)>
- "contains"(arg0: long): boolean
 /**
  * 
  * @deprecated
  */
  "contains"(arg0: any): boolean
+ "contains"(arg0: long): boolean
  "addAll"(arg0: $LongCollection$Type): boolean
  "removeIf"(arg0: $LongPredicate$0$Type): boolean
+ "removeIf"(arg0: $LongPredicate$Type): boolean
 /**
  * 
  * @deprecated
  */
  "removeIf"(arg0: $Predicate$Type<(any)>): boolean
- "removeIf"(arg0: $LongPredicate$Type): boolean
  "removeAll"(arg0: $LongCollection$Type): boolean
  "retainAll"(arg0: $LongCollection$Type): boolean
  "containsAll"(arg0: $LongCollection$Type): boolean
@@ -19165,16 +19132,9 @@ export interface $LongCollection extends $Collection<(long)>, $LongIterable {
  */
  "parallelStream"(): $Stream<(long)>
  "rem"(arg0: long): boolean
- "longStream"(): $LongStream
- "toLongArray"(): (long)[]
-/**
- * 
- * @deprecated
- */
- "toLongArray"(arg0: (long)[]): (long)[]
- "longSpliterator"(): $LongSpliterator
- "longIterator"(): $LongIterator
  "longParallelStream"(): $LongStream
+ "longIterator"(): $LongIterator
+ "longSpliterator"(): $LongSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -19282,8 +19242,8 @@ public "removeIf"(arg0: $IntPredicate$0$Type): boolean
  * @deprecated
  */
 public "parallelStream"(): $Stream<(integer)>
-public "intParallelStream"(): $IntStream
 public "intIterator"(): $IntIterator
+public "intParallelStream"(): $IntStream
 public "intSpliterator"(): $IntSpliterator
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
@@ -19328,20 +19288,20 @@ export interface $IntListIterator extends $IntBidirectionalIterator, $ListIterat
  */
  "set"(arg0: integer): void
  "set"(arg0: integer): void
- "skip"(arg0: integer): integer
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousInt"(): integer
  "hasNext"(): boolean
  "nextIndex"(): integer
  "previousIndex"(): integer
  "hasPrevious"(): boolean
+ "nextInt"(): integer
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
  "forEachRemaining"(arg0: $IntConsumer$Type): void
- "nextInt"(): integer
  "forEachRemaining"(arg0: $IntConsumer$0$Type): void
 }
 
@@ -19402,19 +19362,24 @@ export interface $Long2ObjectFunction<V> extends $Function$0<(long), (V)>, $Long
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: long): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: long): V
+ "put"(arg0: long, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: long, arg1: V): V
  "put"(arg0: long, arg1: V): V
  "apply"(arg0: long): V
  "containsKey"(arg0: long): boolean
@@ -19429,11 +19394,6 @@ export interface $Long2ObjectFunction<V> extends $Function$0<(long), (V)>, $Long
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Long2ByteFunction
@@ -19459,7 +19419,7 @@ export interface $Long2ObjectFunction<V> extends $Function$0<(long), (V)>, $Long
  "apply"(arg0: long): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(long), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Long2ObjectFunction {
@@ -19499,14 +19459,14 @@ public "subMap"(arg0: long, arg1: long): $Long2ObjectSortedMap<(V)>
  */
 public "headMap"(arg0: long): $Long2ObjectSortedMap<(V)>
 public "headMap"(arg0: long): $Long2ObjectSortedMap<(V)>
-public "tailMap"(arg0: long): $Long2ObjectSortedMap<(V)>
 /**
  * 
  * @deprecated
  */
 public "tailMap"(arg0: long): $Long2ObjectSortedMap<(V)>
-public "firstLongKey"(): long
+public "tailMap"(arg0: long): $Long2ObjectSortedMap<(V)>
 public "lastLongKey"(): long
+public "firstLongKey"(): long
 public "defaultReturnValue"(): V
 public "defaultReturnValue"(arg0: V): void
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(long), (V)>
@@ -19554,8 +19514,8 @@ export interface $FloatIterable extends $Iterable<(float)> {
  */
  "forEach"(arg0: $Consumer$Type<(any)>): void
  "forEach"(arg0: $DoubleConsumer$Type): void
- "doubleIterator"(): $DoubleIterator
  "doubleSpliterator"(): $DoubleSpliterator
+ "doubleIterator"(): $DoubleIterator
 }
 
 export namespace $FloatIterable {
@@ -19616,13 +19576,18 @@ export interface $Double2ByteFunction extends $Function$0<(double), (byte)>, $Do
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(double), (T)>
- "remove"(arg0: double): byte
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): byte
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
+ "remove"(arg0: double): byte
  "get"(arg0: double): byte
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): byte
 /**
  * 
  * @deprecated
@@ -19642,11 +19607,6 @@ export interface $Double2ByteFunction extends $Function$0<(double), (byte)>, $Do
  "getOrDefault"(arg0: any, arg1: byte): byte
  "getOrDefault"(arg0: double, arg1: byte): byte
  "applyAsInt"(arg0: double): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (byte)>
  "defaultReturnValue"(arg0: byte): void
  "defaultReturnValue"(): byte
  "andThenByte"(arg0: $Byte2ByteFunction$Type): $Double2ByteFunction
@@ -19814,14 +19774,14 @@ export interface $Object2IntMap<K> extends $Object2IntFunction<(K)>, $Map<(K), (
  "computeIntIfAbsentPartial"(arg0: K, arg1: $Object2IntFunction$Type<(any)>): integer
  "defaultReturnValue"(): integer
  "defaultReturnValue"(arg0: integer): void
+ "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
+ "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$Type): integer
+ "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$0$Type): integer
 /**
  * 
  * @deprecated
  */
  "mergeInt"(arg0: K, arg1: integer, arg2: $BiFunction$Type<(any), (any), (any)>): integer
- "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$Type): integer
- "mergeInt"(arg0: K, arg1: integer, arg2: $IntBinaryOperator$0$Type): integer
- "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
 /**
  * 
  * @deprecated
@@ -19846,9 +19806,9 @@ export interface $Object2IntMap<K> extends $Object2IntFunction<(K)>, $Map<(K), (
  "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2IntFunction<(T)>
  "andThenReference"<T>(arg0: $Int2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
  "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2IntFunction<(T)>
- "removeInt"(arg0: any): integer
  "andThenInt"(arg0: $Int2IntFunction$Type): $Object2IntFunction<(K)>
  "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2IntFunction
+ "removeInt"(arg0: any): integer
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "isEmpty"(): boolean
@@ -19915,6 +19875,7 @@ export type $Hash$Strategy_<K> = $Hash$Strategy$Type<(K)>;
 }}
 declare module "packages/it/unimi/dsi/fastutil/objects/$Object2IntOpenHashMap" {
 import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
+import {$ObjectSet, $ObjectSet$Type} from "packages/it/unimi/dsi/fastutil/objects/$ObjectSet"
 import {$Hash, $Hash$Type} from "packages/it/unimi/dsi/fastutil/$Hash"
 import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
@@ -19929,15 +19890,15 @@ import {$Map$Entry, $Map$Entry$Type} from "packages/java/util/$Map$Entry"
 
 export class $Object2IntOpenHashMap<K> extends $AbstractObject2IntMap<(K)> implements $Serializable, $Cloneable, $Hash {
 
-constructor(arg0: $Object2IntMap$Type<(K)>, arg1: float)
-constructor(arg0: $Object2IntMap$Type<(K)>)
 constructor(arg0: (K)[], arg1: (integer)[], arg2: float)
+constructor(arg0: $Object2IntMap$Type<(K)>)
 constructor(arg0: (K)[], arg1: (integer)[])
 constructor(arg0: integer, arg1: float)
-constructor(arg0: integer)
 constructor()
+constructor(arg0: integer)
 constructor(arg0: $Map$Type<(any), (any)>, arg1: float)
 constructor(arg0: $Map$Type<(any), (any)>)
+constructor(arg0: $Object2IntMap$Type<(K)>, arg1: float)
 
 public "addTo"(arg0: K, arg1: integer): integer
 public "remove"(arg0: any, arg1: integer): boolean
@@ -19958,11 +19919,12 @@ public "putIfAbsent"(arg0: K, arg1: integer): integer
 public "containsKey"(arg0: any): boolean
 public "computeIfAbsent"(arg0: K, arg1: $ToIntFunction$Type<(any)>): integer
 public "computeIfAbsent"(arg0: K, arg1: $Object2IntFunction$Type<(any)>): integer
+public "keySet"(): $ObjectSet<(K)>
 public "containsValue"(arg0: integer): boolean
 public "getOrDefault"(arg0: any, arg1: integer): integer
 public "computeIntIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
-public "removeInt"(arg0: any): integer
 public "computeInt"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): integer
+public "removeInt"(arg0: any): integer
 public "defaultReturnValue"(): integer
 public "defaultReturnValue"(arg0: integer): void
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
@@ -20133,14 +20095,14 @@ export interface $Object2FloatMap<K> extends $Object2FloatFunction<(K)>, $Map<(K
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: float): float
+ "computeFloat"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
+ "computeFloatIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
  "object2FloatEntrySet"(): $ObjectSet<($Object2FloatMap$Entry<(K)>)>
 /**
  * 
  * @deprecated
  */
  "computeFloatIfAbsent"(arg0: K, arg1: $ToDoubleFunction$Type<(any)>): float
- "computeFloatIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
- "computeFloat"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
  "defaultReturnValue"(): float
  "defaultReturnValue"(arg0: float): void
 /**
@@ -20435,33 +20397,35 @@ import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 export class $ObjectArrayList<K> extends $AbstractObjectList<(K)> implements $RandomAccess, $Cloneable, $Serializable {
 static readonly "DEFAULT_INITIAL_CAPACITY": integer
 
+constructor(arg0: (K)[])
+constructor(arg0: $ObjectList$Type<(any)>)
+constructor(arg0: $ObjectCollection$Type<(any)>)
+constructor(arg0: (K)[], arg1: integer, arg2: integer)
+constructor(arg0: $Iterator$Type<(any)>)
+constructor(arg0: $ObjectIterator$Type<(any)>)
+constructor(arg0: integer)
 constructor()
 constructor(arg0: $Collection$Type<(any)>)
-constructor(arg0: $ObjectCollection$Type<(any)>)
-constructor(arg0: $ObjectList$Type<(any)>)
-constructor(arg0: (K)[])
-constructor(arg0: (K)[], arg1: integer, arg2: integer)
-constructor(arg0: $ObjectIterator$Type<(any)>)
-constructor(arg0: $Iterator$Type<(any)>)
-constructor(arg0: integer)
 
+public "getElements"(arg0: integer, arg1: (any)[], arg2: integer, arg3: integer): void
 public "add"(arg0: integer, arg1: K): void
 public "add"(arg0: K): boolean
 public "remove"(arg0: any): boolean
 public "remove"(arg0: integer): K
 public "get"(arg0: integer): K
-public "equals"(arg0: $ObjectArrayList$Type<(K)>): boolean
 public "equals"(arg0: any): boolean
-public "compareTo"(arg0: $List$Type<(any)>): integer
+public "equals"(arg0: $ObjectArrayList$Type<(K)>): boolean
 public "compareTo"(arg0: $ObjectArrayList$Type<(any)>): integer
+public "compareTo"(arg0: $List$Type<(any)>): integer
 public "indexOf"(arg0: any): integer
 public "clear"(): void
 public static "wrap"<K>(arg0: (K)[]): $ObjectArrayList<(K)>
 public static "wrap"<K>(arg0: (K)[], arg1: integer): $ObjectArrayList<(K)>
 public "lastIndexOf"(arg0: any): integer
 public "isEmpty"(): boolean
-public "size"(arg0: integer): void
 public "size"(): integer
+public "size"(arg0: integer): void
+public "subList"(arg0: integer, arg1: integer): $ObjectList<(K)>
 public "toArray"<K>(arg0: (K)[]): (K)[]
 public "toArray"(): (any)[]
 public "trim"(arg0: integer): void
@@ -20478,15 +20442,14 @@ public "forEach"(arg0: $Consumer$Type<(any)>): void
 public "ensureCapacity"(arg0: integer): void
 public "sort"(arg0: $Comparator$Type<(any)>): void
 public "removeAll"(arg0: $Collection$Type<(any)>): boolean
-public "getElements"(arg0: integer, arg1: (any)[], arg2: integer, arg3: integer): void
-public "removeElements"(arg0: integer, arg1: integer): void
-public "addElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
 public static "toListWithExpectedSize"<K>(arg0: integer): $Collector<(K), (any), ($ObjectArrayList<(K)>)>
-public "setElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
 public "unstableSort"(arg0: $Comparator$Type<(any)>): void
+public "addElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
+public "removeElements"(arg0: integer, arg1: integer): void
+public "setElements"(arg0: integer, arg1: (K)[], arg2: integer, arg3: integer): void
 public static "of"<K>(arg0: K, arg1: K, arg2: K): $ObjectList<(K)>
-public static "of"<K>(arg0: K, arg1: K): $ObjectList<(K)>
 public static "of"<K>(arg0: K): $ObjectList<(K)>
+public static "of"<K>(arg0: K, arg1: K): $ObjectList<(K)>
 public static "copyOf"<E>(arg0: $Collection$Type<(any)>): $List<(E)>
 public static "of"<E>(arg0: E, arg1: E, arg2: E, arg3: E): $List<(E)>
 public static "of"<E>(arg0: E, arg1: E, arg2: E, arg3: E, arg4: E, arg5: E, arg6: E, arg7: E): $List<(E)>
@@ -20553,19 +20516,24 @@ export interface $Int2ReferenceFunction<V> extends $Function$0<(integer), (V)>, 
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: integer): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: integer): V
+ "put"(arg0: integer, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: integer, arg1: V): V
  "put"(arg0: integer, arg1: V): V
  "apply"(arg0: integer): V
  "containsKey"(arg0: integer): boolean
@@ -20580,11 +20548,6 @@ export interface $Int2ReferenceFunction<V> extends $Function$0<(integer), (V)>, 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Reference2ByteFunction$Type<(V)>): $Int2ByteFunction
@@ -20610,7 +20573,7 @@ export interface $Int2ReferenceFunction<V> extends $Function$0<(integer), (V)>, 
  "apply"(arg0: integer): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Int2ReferenceFunction {
@@ -20631,7 +20594,6 @@ export type $Int2ReferenceFunction_<V> = $Int2ReferenceFunction$Type<(V)>;
 declare module "packages/it/unimi/dsi/fastutil/doubles/$DoubleArrayFIFOQueue" {
 import {$DoublePriorityQueue, $DoublePriorityQueue$Type} from "packages/it/unimi/dsi/fastutil/doubles/$DoublePriorityQueue"
 import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
-import {$DoubleComparator, $DoubleComparator$Type} from "packages/it/unimi/dsi/fastutil/doubles/$DoubleComparator"
 
 export class $DoubleArrayFIFOQueue implements $DoublePriorityQueue, $Serializable {
 static readonly "INITIAL_CAPACITY": integer
@@ -20643,12 +20605,16 @@ public "clear"(): void
 public "size"(): integer
 public "trim"(): void
 public "enqueue"(arg0: double): void
-public "comparator"(): $DoubleComparator
 public "enqueueFirst"(arg0: double): void
 public "firstDouble"(): double
-public "dequeueLastDouble"(): double
 public "dequeueDouble"(): double
+public "dequeueLastDouble"(): double
 public "lastDouble"(): double
+/**
+ * 
+ * @deprecated
+ */
+public "last"(): double
 /**
  * 
  * @deprecated
@@ -20659,8 +20625,8 @@ public "first"(): double
  * @deprecated
  */
 public "enqueue"(arg0: double): void
-public "isEmpty"(): boolean
 public "changed"(): void
+public "isEmpty"(): boolean
 get "empty"(): boolean
 }
 /**
@@ -20681,33 +20647,32 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 
 export interface $ShortPredicate extends $Predicate<(short)>, $IntPredicate {
 
-/**
- * 
- * @deprecated
- */
- "test"(arg0: short): boolean
-/**
- * 
- * @deprecated
- */
- "test"(arg0: integer): boolean
- "test"(arg0: short): boolean
+ "or"(arg0: $ShortPredicate$Type): $ShortPredicate
  "or"(arg0: $IntPredicate$Type): $ShortPredicate
 /**
  * 
  * @deprecated
  */
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<(short)>
- "or"(arg0: $ShortPredicate$Type): $ShortPredicate
  "and"(arg0: $ShortPredicate$Type): $ShortPredicate
- "and"(arg0: $IntPredicate$Type): $ShortPredicate
 /**
  * 
  * @deprecated
  */
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<(short)>
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: integer): boolean
+ "test"(arg0: short): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: short): boolean
 
-(arg0: short): boolean
+(arg0: $ShortPredicate$Type): $ShortPredicate
 }
 
 export namespace $ShortPredicate {
@@ -20732,33 +20697,32 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 
 export interface $BytePredicate extends $Predicate<(byte)>, $IntPredicate {
 
-/**
- * 
- * @deprecated
- */
- "test"(arg0: byte): boolean
-/**
- * 
- * @deprecated
- */
- "test"(arg0: integer): boolean
- "test"(arg0: byte): boolean
+ "or"(arg0: $BytePredicate$Type): $BytePredicate
  "or"(arg0: $IntPredicate$Type): $BytePredicate
 /**
  * 
  * @deprecated
  */
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<(byte)>
- "or"(arg0: $BytePredicate$Type): $BytePredicate
  "and"(arg0: $BytePredicate$Type): $BytePredicate
- "and"(arg0: $IntPredicate$Type): $BytePredicate
 /**
  * 
  * @deprecated
  */
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<(byte)>
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: integer): boolean
+ "test"(arg0: byte): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: byte): boolean
 
-(arg0: byte): boolean
+(arg0: $BytePredicate$Type): $BytePredicate
 }
 
 export namespace $BytePredicate {
@@ -20817,6 +20781,13 @@ export interface $LongSet extends $LongCollection, $Set<(long)> {
  * @deprecated
  */
  "rem"(arg0: long): boolean
+ "longStream"(): $LongStream
+/**
+ * 
+ * @deprecated
+ */
+ "toLongArray"(arg0: (long)[]): (long)[]
+ "toLongArray"(): (long)[]
  "add"(arg0: long): boolean
  "toArray"(arg0: (long)[]): (long)[]
 /**
@@ -20827,12 +20798,12 @@ export interface $LongSet extends $LongCollection, $Set<(long)> {
  "contains"(arg0: long): boolean
  "addAll"(arg0: $LongCollection$Type): boolean
  "removeIf"(arg0: $LongPredicate$0$Type): boolean
+ "removeIf"(arg0: $LongPredicate$Type): boolean
 /**
  * 
  * @deprecated
  */
  "removeIf"(arg0: $Predicate$Type<(any)>): boolean
- "removeIf"(arg0: $LongPredicate$Type): boolean
  "removeAll"(arg0: $LongCollection$Type): boolean
  "retainAll"(arg0: $LongCollection$Type): boolean
  "containsAll"(arg0: $LongCollection$Type): boolean
@@ -20841,16 +20812,9 @@ export interface $LongSet extends $LongCollection, $Set<(long)> {
  * @deprecated
  */
  "parallelStream"(): $Stream<(long)>
- "longStream"(): $LongStream
- "toLongArray"(): (long)[]
-/**
- * 
- * @deprecated
- */
- "toLongArray"(arg0: (long)[]): (long)[]
- "longSpliterator"(): $LongSpliterator
- "longIterator"(): $LongIterator
  "longParallelStream"(): $LongStream
+ "longIterator"(): $LongIterator
+ "longSpliterator"(): $LongSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -20943,6 +20907,7 @@ public "forEach"(arg0: $BiConsumer$Type<(any), (any)>): void
 public "computeIfAbsent"(arg0: K, arg1: $Object2ReferenceFunction$Type<(any), (any)>): V
 public "getOrDefault"(arg0: any, arg1: V): V
 public "computeIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): V
+public "object2ReferenceEntrySet"(): $ObjectSet<($Object2ReferenceMap$Entry<(K), (V)>)>
 public "defaultReturnValue"(arg0: V): void
 public "defaultReturnValue"(): V
 /**
@@ -20950,7 +20915,6 @@ public "defaultReturnValue"(): V
  * @deprecated
  */
 public "computeReferenceIfAbsentPartial"(arg0: K, arg1: $Object2ReferenceFunction$Type<(any), (any)>): V
-public "object2ReferenceEntrySet"(): $ObjectSet<($Object2ReferenceMap$Entry<(K), (V)>)>
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
 public "replaceAll"(arg0: $BiFunction$Type<(any), (any), (any)>): void
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V, arg8: K, arg9: V): $Map<(K), (V)>
@@ -21025,13 +20989,18 @@ export interface $Byte2IntFunction extends $Function$0<(byte), (integer)>, $IntU
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (T)>
- "remove"(arg0: byte): integer
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): integer
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: byte): integer
  "get"(arg0: byte): integer
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): integer
 /**
  * 
  * @deprecated
@@ -21055,11 +21024,6 @@ export interface $Byte2IntFunction extends $Function$0<(byte), (integer)>, $IntU
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Byte2ByteFunction
@@ -21112,14 +21076,19 @@ import {$PrimitiveIterator$OfInt, $PrimitiveIterator$OfInt$Type} from "packages/
 
 export interface $IntIterator extends $PrimitiveIterator$OfInt {
 
+ "nextInt"(): integer
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
  "forEachRemaining"(arg0: $IntConsumer$Type): void
+/**
+ * 
+ * @deprecated
+ */
+ "next"(): integer
  "skip"(arg0: integer): integer
- "nextInt"(): integer
  "forEachRemaining"(arg0: $IntConsumer$0$Type): void
  "remove"(): void
  "hasNext"(): boolean
@@ -21391,14 +21360,14 @@ public "getOrDefault"(arg0: any, arg1: float): float
  * @deprecated
  */
 public "getOrDefault"(arg0: any, arg1: float): float
+public "computeFloat"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
+public "computeFloatIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
 public "object2FloatEntrySet"(): $ObjectSet<($Object2FloatMap$Entry<(K)>)>
 /**
  * 
  * @deprecated
  */
 public "computeFloatIfAbsent"(arg0: K, arg1: $ToDoubleFunction$Type<(any)>): float
-public "computeFloatIfPresent"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
-public "computeFloat"(arg0: K, arg1: $BiFunction$Type<(any), (any), (any)>): float
 public "defaultReturnValue"(): float
 public "defaultReturnValue"(arg0: float): void
 /**
@@ -21490,13 +21459,18 @@ export interface $Int2LongFunction extends $Function$0<(integer), (long)>, $IntT
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): long
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): long
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
+ "remove"(arg0: integer): long
  "get"(arg0: integer): long
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): long
 /**
  * 
  * @deprecated
@@ -21516,11 +21490,6 @@ export interface $Int2LongFunction extends $Function$0<(integer), (long)>, $IntT
  "getOrDefault"(arg0: any, arg1: long): long
  "getOrDefault"(arg0: integer, arg1: long): long
  "applyAsLong"(arg0: integer): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "defaultReturnValue"(arg0: long): void
  "defaultReturnValue"(): long
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Int2ByteFunction
@@ -21690,12 +21659,12 @@ export interface $Long2IntMap extends $Long2IntFunction, $Map<(long), (integer)>
  * @deprecated
  */
  "computeIfPresent"(arg0: long, arg1: $BiFunction$Type<(any), (any), (any)>): integer
+ "computeIfAbsentNullable"(arg0: long, arg1: $LongFunction$Type<(any)>): integer
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: long, arg1: $Long2IntFunction$Type): integer
- "computeIfAbsentNullable"(arg0: long, arg1: $LongFunction$Type<(any)>): integer
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "long2IntEntrySet"(): $ObjectSet<($Long2IntMap$Entry)>
@@ -21706,15 +21675,15 @@ export interface $Long2IntMap extends $Long2IntFunction, $Map<(long), (integer)>
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(long), (T)>
- "remove"(arg0: long): integer
- "get"(arg0: long): integer
- "put"(arg0: long, arg1: integer): integer
- "applyAsInt"(arg0: long): integer
 /**
  * 
  * @deprecated
  */
  "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: long): integer
+ "get"(arg0: long): integer
+ "put"(arg0: long, arg1: integer): integer
+ "applyAsInt"(arg0: long): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Long2ByteFunction
  "composeByte"(arg0: $Byte2LongFunction$Type): $Byte2IntFunction
  "andThenShort"(arg0: $Int2ShortFunction$Type): $Long2ShortFunction
@@ -21837,11 +21806,11 @@ export interface $Int2DoubleMap$Entry extends $Map$Entry<(integer), (double)> {
 }
 
 export namespace $Int2DoubleMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(integer), (double)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (double)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(integer), (double)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (double)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(integer), (double)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(integer), (double)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(integer), (double)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -21924,12 +21893,12 @@ import {$LongConsumer as $LongConsumer$0, $LongConsumer$Type as $LongConsumer$0$
 
 export interface $LongConsumer extends $Consumer<(long)>, $LongConsumer$0 {
 
- "andThen"(arg0: $LongConsumer$Type): $LongConsumer
 /**
  * 
  * @deprecated
  */
  "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(long)>
+ "andThen"(arg0: $LongConsumer$Type): $LongConsumer
 /**
  * 
  * @deprecated
@@ -21937,7 +21906,7 @@ export interface $LongConsumer extends $Consumer<(long)>, $LongConsumer$0 {
  "accept"(arg0: long): void
  "accept"(arg0: long): void
 
-(arg0: $LongConsumer$Type): $LongConsumer
+(arg0: $Consumer$Type<(any)>): $Consumer<(long)>
 }
 
 export namespace $LongConsumer {
@@ -21998,13 +21967,18 @@ export interface $Char2DoubleFunction extends $Function$0<(character), (double)>
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(character), (T)>
- "remove"(arg0: character): double
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): double
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
+ "remove"(arg0: character): double
  "get"(arg0: character): double
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): double
 /**
  * 
  * @deprecated
@@ -22028,11 +22002,6 @@ export interface $Char2DoubleFunction extends $Function$0<(character), (double)>
  * @deprecated
  */
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (double)>
  "defaultReturnValue"(arg0: double): void
  "defaultReturnValue"(): double
  "andThenByte"(arg0: $Double2ByteFunction$Type): $Char2ByteFunction
@@ -22135,15 +22104,15 @@ export interface $ShortCollection extends $Collection<(short)>, $ShortIterable {
  */
  "parallelStream"(): $Stream<(short)>
  "rem"(arg0: short): boolean
- "intParallelStream"(): $IntStream
- "intIterator"(): $IntIterator
- "intSpliterator"(): $IntSpliterator
 /**
  * 
  * @deprecated
  */
  "toShortArray"(arg0: (short)[]): (short)[]
  "toShortArray"(): (short)[]
+ "intIterator"(): $IntIterator
+ "intParallelStream"(): $IntStream
+ "intSpliterator"(): $IntSpliterator
  "equals"(arg0: any): boolean
  "hashCode"(): integer
  "clear"(): void
@@ -22334,13 +22303,13 @@ export interface $Int2IntMap extends $Int2IntFunction, $Map<(integer), (integer)
  * @deprecated
  */
  "computeIfPresent"(arg0: integer, arg1: $BiFunction$Type<(any), (any), (any)>): integer
+ "computeIfAbsentNullable"(arg0: integer, arg1: $IntFunction$Type<(any)>): integer
+ "int2IntEntrySet"(): $ObjectSet<($Int2IntMap$Entry)>
 /**
  * 
  * @deprecated
  */
  "computeIfAbsentPartial"(arg0: integer, arg1: $Int2IntFunction$Type): integer
- "int2IntEntrySet"(): $ObjectSet<($Int2IntMap$Entry)>
- "computeIfAbsentNullable"(arg0: integer, arg1: $IntFunction$Type<(any)>): integer
  "defaultReturnValue"(arg0: integer): void
  "defaultReturnValue"(): integer
  "mergeInt"(arg0: integer, arg1: integer, arg2: $IntBinaryOperator$0$Type): integer
@@ -22350,15 +22319,15 @@ export interface $Int2IntMap extends $Int2IntFunction, $Map<(integer), (integer)
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): integer
- "get"(arg0: integer): integer
- "put"(arg0: integer, arg1: integer): integer
- "applyAsInt"(arg0: integer): integer
 /**
  * 
  * @deprecated
  */
  "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (integer)>
+ "remove"(arg0: integer): integer
+ "get"(arg0: integer): integer
+ "put"(arg0: integer, arg1: integer): integer
+ "applyAsInt"(arg0: integer): integer
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Int2ByteFunction
  "composeByte"(arg0: $Byte2IntFunction$Type): $Byte2IntFunction
  "andThenShort"(arg0: $Int2ShortFunction$Type): $Int2ShortFunction
@@ -22502,15 +22471,15 @@ public "andThenObject"<T>(arg0: $Int2ObjectFunction$Type<(any)>): $Object2Object
 public "composeObject"<T>(arg0: $Object2ObjectFunction$Type<(any), (any)>): $Object2IntFunction<(T)>
 public "andThenReference"<T>(arg0: $Int2ReferenceFunction$Type<(any)>): $Object2ReferenceFunction<(K), (T)>
 public "composeReference"<T>(arg0: $Reference2ObjectFunction$Type<(any), (any)>): $Reference2IntFunction<(T)>
-public "removeInt"(arg0: any): integer
 public "andThenInt"(arg0: $Int2IntFunction$Type): $Object2IntFunction<(K)>
 public "composeInt"(arg0: $Int2ObjectFunction$Type<(K)>): $Int2IntFunction
+public "removeInt"(arg0: any): integer
 public "clear"(): void
 public "size"(): integer
 public "apply"(arg0: K): integer
 public "containsKey"(arg0: any): boolean
-public static "identity"<T>(): $Function<(K), (K)>
 public "compose"<V>(arg0: $Function$Type<(any), (any)>): $Function<(V), (integer)>
+public static "identity"<T>(): $Function<(K), (K)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -22534,6 +22503,11 @@ export interface $DoublePriorityQueue extends $PriorityQueue<(double)> {
  * 
  * @deprecated
  */
+ "last"(): double
+/**
+ * 
+ * @deprecated
+ */
  "first"(): double
  "enqueue"(arg0: double): void
 /**
@@ -22545,10 +22519,10 @@ export interface $DoublePriorityQueue extends $PriorityQueue<(double)> {
  "firstDouble"(): double
  "dequeueDouble"(): double
  "lastDouble"(): double
+ "changed"(): void
  "clear"(): void
  "isEmpty"(): boolean
  "size"(): integer
- "changed"(): void
 }
 
 export namespace $DoublePriorityQueue {
@@ -22609,13 +22583,18 @@ export interface $Int2ShortFunction extends $Function$0<(integer), (short)>, $In
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): short
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): short
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
+ "remove"(arg0: integer): short
  "get"(arg0: integer): short
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): short
 /**
  * 
  * @deprecated
@@ -22635,11 +22614,6 @@ export interface $Int2ShortFunction extends $Function$0<(integer), (short)>, $In
  "getOrDefault"(arg0: any, arg1: short): short
  "getOrDefault"(arg0: integer, arg1: short): short
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "defaultReturnValue"(arg0: short): void
  "defaultReturnValue"(): short
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Int2ByteFunction
@@ -22730,46 +22704,36 @@ export interface $Byte2BooleanFunction extends $Function$0<(byte), (boolean)>, $
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (T)>
- "remove"(arg0: byte): boolean
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): boolean
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
+ "remove"(arg0: byte): boolean
  "get"(arg0: byte): boolean
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): boolean
  "put"(arg0: byte, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
  "put"(arg0: byte, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "test"(arg0: integer): boolean
- "containsKey"(arg0: byte): boolean
 /**
  * 
  * @deprecated
  */
  "containsKey"(arg0: any): boolean
+ "containsKey"(arg0: byte): boolean
  "getOrDefault"(arg0: byte, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Byte2ByteFunction
@@ -22858,13 +22822,18 @@ export interface $Byte2ShortFunction extends $Function$0<(byte), (short)>, $IntU
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (T)>
- "remove"(arg0: byte): short
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): short
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
+ "remove"(arg0: byte): short
  "get"(arg0: byte): short
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): short
 /**
  * 
  * @deprecated
@@ -22888,11 +22857,6 @@ export interface $Byte2ShortFunction extends $Function$0<(byte), (short)>, $IntU
  * @deprecated
  */
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (short)>
  "defaultReturnValue"(arg0: short): void
  "defaultReturnValue"(): short
  "andThenByte"(arg0: $Short2ByteFunction$Type): $Byte2ByteFunction
@@ -22983,42 +22947,32 @@ export interface $Double2BooleanFunction extends $Function$0<(double), (boolean)
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(double), (T)>
- "remove"(arg0: double): boolean
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): boolean
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
+ "remove"(arg0: double): boolean
  "get"(arg0: double): boolean
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): boolean
  "put"(arg0: double, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
  "put"(arg0: double, arg1: boolean): boolean
  "test"(arg0: double): boolean
- "containsKey"(arg0: double): boolean
 /**
  * 
  * @deprecated
  */
  "containsKey"(arg0: any): boolean
+ "containsKey"(arg0: double): boolean
  "getOrDefault"(arg0: double, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Double2ByteFunction
@@ -23219,13 +23173,18 @@ export interface $Byte2FloatFunction extends $Function$0<(byte), (float)>, $IntT
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(byte), (T)>
- "remove"(arg0: byte): float
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): float
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
+ "remove"(arg0: byte): float
  "get"(arg0: byte): float
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): float
 /**
  * 
  * @deprecated
@@ -23249,11 +23208,6 @@ export interface $Byte2FloatFunction extends $Function$0<(byte), (float)>, $IntT
  * @deprecated
  */
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "defaultReturnValue"(arg0: float): void
  "defaultReturnValue"(): float
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Byte2ByteFunction
@@ -23305,7 +23259,6 @@ import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$IntPredicate, $IntPredicate$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntPredicate"
 import {$IntComparator, $IntComparator$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntComparator"
-import {$IntListIterator, $IntListIterator$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntListIterator"
 import {$IntUnaryOperator, $IntUnaryOperator$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntUnaryOperator"
 import {$IntUnaryOperator as $IntUnaryOperator$0, $IntUnaryOperator$Type as $IntUnaryOperator$0$Type} from "packages/java/util/function/$IntUnaryOperator"
 import {$IntCollection, $IntCollection$Type} from "packages/it/unimi/dsi/fastutil/ints/$IntCollection"
@@ -23321,17 +23274,18 @@ import {$IntConsumer as $IntConsumer$0, $IntConsumer$Type as $IntConsumer$0$Type
 
 export interface $IntList extends $List<(integer)>, $Comparable<($List<(any)>)>, $IntCollection {
 
- "add"(arg0: integer): boolean
-/**
- * 
- * @deprecated
- */
- "add"(arg0: integer): boolean
-/**
- * 
- * @deprecated
- */
+ "getElements"(arg0: integer, arg1: (integer)[], arg2: integer, arg3: integer): void
  "add"(arg0: integer, arg1: integer): void
+ "add"(arg0: integer): boolean
+/**
+ * 
+ * @deprecated
+ */
+ "add"(arg0: integer): boolean
+/**
+ * 
+ * @deprecated
+ */
  "add"(arg0: integer, arg1: integer): void
 /**
  * 
@@ -23343,12 +23297,12 @@ export interface $IntList extends $List<(integer)>, $Comparable<($List<(any)>)>,
  * @deprecated
  */
  "get"(arg0: integer): integer
- "indexOf"(arg0: integer): integer
 /**
  * 
  * @deprecated
  */
  "indexOf"(arg0: any): integer
+ "indexOf"(arg0: integer): integer
  "getInt"(arg0: integer): integer
 /**
  * 
@@ -23356,49 +23310,46 @@ export interface $IntList extends $List<(integer)>, $Comparable<($List<(any)>)>,
  */
  "lastIndexOf"(arg0: any): integer
  "lastIndexOf"(arg0: integer): integer
- "replaceAll"(arg0: $IntUnaryOperator$Type): void
- "replaceAll"(arg0: $IntUnaryOperator$0$Type): void
 /**
  * 
  * @deprecated
  */
  "replaceAll"(arg0: $UnaryOperator$Type<(integer)>): void
+ "replaceAll"(arg0: $IntUnaryOperator$Type): void
+ "replaceAll"(arg0: $IntUnaryOperator$0$Type): void
  "size"(arg0: integer): void
- "subList"(arg0: integer, arg1: integer): $IntList
- "iterator"(): $IntListIterator
 /**
  * 
  * @deprecated
  */
  "contains"(arg0: any): boolean
  "addAll"(arg0: integer, arg1: $IntCollection$Type): boolean
- "addAll"(arg0: $IntList$Type): boolean
  "addAll"(arg0: integer, arg1: $IntList$Type): boolean
+ "addAll"(arg0: $IntList$Type): boolean
  "set"(arg0: integer, arg1: integer): integer
 /**
  * 
  * @deprecated
  */
  "set"(arg0: integer, arg1: integer): integer
- "sort"(arg0: $IntComparator$Type): void
 /**
  * 
  * @deprecated
  */
  "sort"(arg0: $Comparator$Type<(any)>): void
- "getElements"(arg0: integer, arg1: (integer)[], arg2: integer, arg3: integer): void
- "removeElements"(arg0: integer, arg1: integer): void
- "addElements"(arg0: integer, arg1: (integer)[], arg2: integer, arg3: integer): void
- "addElements"(arg0: integer, arg1: (integer)[]): void
- "setElements"(arg0: integer, arg1: (integer)[], arg2: integer, arg3: integer): void
- "setElements"(arg0: integer, arg1: (integer)[]): void
- "setElements"(arg0: (integer)[]): void
+ "sort"(arg0: $IntComparator$Type): void
+ "unstableSort"(arg0: $IntComparator$Type): void
 /**
  * 
  * @deprecated
  */
  "unstableSort"(arg0: $Comparator$Type<(any)>): void
- "unstableSort"(arg0: $IntComparator$Type): void
+ "addElements"(arg0: integer, arg1: (integer)[]): void
+ "addElements"(arg0: integer, arg1: (integer)[], arg2: integer, arg3: integer): void
+ "removeElements"(arg0: integer, arg1: integer): void
+ "setElements"(arg0: integer, arg1: (integer)[], arg2: integer, arg3: integer): void
+ "setElements"(arg0: (integer)[]): void
+ "setElements"(arg0: integer, arg1: (integer)[]): void
  "removeInt"(arg0: integer): integer
  "equals"(arg0: any): boolean
  "hashCode"(): integer
@@ -23444,8 +23395,8 @@ export interface $IntList extends $List<(integer)>, $Comparable<($List<(any)>)>,
  */
  "parallelStream"(): $Stream<(integer)>
  "rem"(arg0: integer): boolean
- "intParallelStream"(): $IntStream
  "intIterator"(): $IntIterator
+ "intParallelStream"(): $IntStream
  "intSpliterator"(): $IntSpliterator
  "toArray"<T>(arg0: $IntFunction$Type<((T)[])>): (T)[]
  "forEach"(arg0: $IntConsumer$0$Type): void
@@ -23513,11 +23464,11 @@ export interface $Object2ByteMap$Entry<K> extends $Map$Entry<(K), (byte)> {
 }
 
 export namespace $Object2ByteMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (byte)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (byte)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (byte)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (byte)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (byte)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (byte)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (byte)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -23537,17 +23488,13 @@ import {$DoublePredicate as $DoublePredicate$0, $DoublePredicate$Type as $Double
 
 export interface $DoublePredicate extends $Predicate<(double)>, $DoublePredicate$0 {
 
-/**
- * 
- * @deprecated
- */
- "test"(arg0: double): boolean
+ "or"(arg0: $DoublePredicate$0$Type): $DoublePredicate
+ "or"(arg0: $DoublePredicate$Type): $DoublePredicate
 /**
  * 
  * @deprecated
  */
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<(double)>
- "or"(arg0: $DoublePredicate$Type): $DoublePredicate
  "and"(arg0: $DoublePredicate$Type): $DoublePredicate
  "and"(arg0: $DoublePredicate$0$Type): $DoublePredicate
 /**
@@ -23555,9 +23502,14 @@ export interface $DoublePredicate extends $Predicate<(double)>, $DoublePredicate
  * @deprecated
  */
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<(double)>
+/**
+ * 
+ * @deprecated
+ */
+ "test"(arg0: double): boolean
  "test"(arg0: double): boolean
 
-(arg0: double): boolean
+(arg0: $DoublePredicate$0$Type): $DoublePredicate
 }
 
 export namespace $DoublePredicate {
@@ -23681,19 +23633,24 @@ export interface $Char2ObjectFunction<V> extends $Function$0<(character), (V)>, 
  * 
  * @deprecated
  */
- "remove"(arg0: any): V
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "remove"(arg0: character): V
+/**
+ * 
+ * @deprecated
+ */
+ "remove"(arg0: any): V
 /**
  * 
  * @deprecated
  */
  "get"(arg0: any): V
  "get"(arg0: character): V
+ "put"(arg0: character, arg1: V): V
 /**
  * 
  * @deprecated
  */
- "put"(arg0: character, arg1: V): V
  "put"(arg0: character, arg1: V): V
 /**
  * 
@@ -23712,11 +23669,6 @@ export interface $Char2ObjectFunction<V> extends $Function$0<(character), (V)>, 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: V): V
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
  "defaultReturnValue"(arg0: V): void
  "defaultReturnValue"(): V
  "andThenByte"(arg0: $Object2ByteFunction$Type<(V)>): $Char2ByteFunction
@@ -23742,7 +23694,7 @@ export interface $Char2ObjectFunction<V> extends $Function$0<(character), (V)>, 
  "apply"(arg0: character): V
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<(character), (V)>
 
-(arg0: any): V
+(arg0: $Function$Type<(any), (any)>): $Function<(T), (V)>
 }
 
 export namespace $Char2ObjectFunction {
@@ -23803,13 +23755,18 @@ export interface $Short2LongFunction extends $Function$0<(short), (long)>, $IntT
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(short), (T)>
- "remove"(arg0: short): long
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): long
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
+ "remove"(arg0: short): long
  "get"(arg0: short): long
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): long
 /**
  * 
  * @deprecated
@@ -23833,11 +23790,6 @@ export interface $Short2LongFunction extends $Function$0<(short), (long)>, $IntT
  * @deprecated
  */
  "applyAsLong"(arg0: integer): long
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (long)>
  "defaultReturnValue"(arg0: long): void
  "defaultReturnValue"(): long
  "andThenByte"(arg0: $Long2ByteFunction$Type): $Short2ByteFunction
@@ -23926,46 +23878,36 @@ export interface $Float2BooleanFunction extends $Function$0<(float), (boolean)>,
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(float), (T)>
- "remove"(arg0: float): boolean
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): boolean
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
+ "remove"(arg0: float): boolean
  "get"(arg0: float): boolean
 /**
  * 
  * @deprecated
  */
- "get"(arg0: any): boolean
  "put"(arg0: float, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
  "put"(arg0: float, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "test"(arg0: double): boolean
- "containsKey"(arg0: float): boolean
 /**
  * 
  * @deprecated
  */
  "containsKey"(arg0: any): boolean
+ "containsKey"(arg0: float): boolean
  "getOrDefault"(arg0: float, arg1: boolean): boolean
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: boolean): boolean
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (boolean)>
  "defaultReturnValue"(): boolean
  "defaultReturnValue"(arg0: boolean): void
  "andThenByte"(arg0: $Boolean2ByteFunction$Type): $Float2ByteFunction
@@ -24125,13 +24067,18 @@ export interface $Int2FloatFunction extends $Function$0<(integer), (float)>, $In
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$Type<(any), (any)>): $Function<(integer), (T)>
- "remove"(arg0: integer): float
 /**
  * 
  * @deprecated
  */
- "remove"(arg0: any): float
+ "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
+ "remove"(arg0: integer): float
  "get"(arg0: integer): float
+/**
+ * 
+ * @deprecated
+ */
+ "get"(arg0: any): float
 /**
  * 
  * @deprecated
@@ -24151,11 +24098,6 @@ export interface $Int2FloatFunction extends $Function$0<(integer), (float)>, $In
  "getOrDefault"(arg0: any, arg1: float): float
  "getOrDefault"(arg0: integer, arg1: float): float
  "applyAsDouble"(arg0: integer): double
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$Type<(any), (any)>): $Function<(T), (float)>
  "defaultReturnValue"(arg0: float): void
  "defaultReturnValue"(): float
  "andThenByte"(arg0: $Float2ByteFunction$Type): $Int2ByteFunction
@@ -24340,20 +24282,20 @@ export interface $DoubleListIterator extends $DoubleBidirectionalIterator, $List
  */
  "set"(arg0: double): void
  "set"(arg0: double): void
- "skip"(arg0: integer): integer
  "back"(arg0: integer): integer
+ "skip"(arg0: integer): integer
  "previousDouble"(): double
  "hasNext"(): boolean
  "nextIndex"(): integer
  "previousIndex"(): integer
  "hasPrevious"(): boolean
+ "nextDouble"(): double
 /**
  * 
  * @deprecated
  */
  "forEachRemaining"(arg0: $Consumer$Type<(any)>): void
  "forEachRemaining"(arg0: $DoubleConsumer$Type): void
- "nextDouble"(): double
  "forEachRemaining"(arg0: $DoubleConsumer$0$Type): void
 }
 
@@ -24471,6 +24413,11 @@ export interface $Int2IntFunction extends $Function<(integer), (integer)>, $IntU
  * @deprecated
  */
  "andThen"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(integer), (T)>
+/**
+ * 
+ * @deprecated
+ */
+ "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (integer)>
  "remove"(arg0: integer): integer
  "get"(arg0: integer): integer
  "put"(arg0: integer, arg1: integer): integer
@@ -24485,18 +24432,13 @@ export interface $Int2IntFunction extends $Function<(integer), (integer)>, $IntU
  */
  "containsKey"(arg0: any): boolean
  "containsKey"(arg0: integer): boolean
+ "getOrDefault"(arg0: integer, arg1: integer): integer
 /**
  * 
  * @deprecated
  */
  "getOrDefault"(arg0: any, arg1: integer): integer
- "getOrDefault"(arg0: integer, arg1: integer): integer
  "applyAsInt"(arg0: integer): integer
-/**
- * 
- * @deprecated
- */
- "compose"<T>(arg0: $Function$0$Type<(any), (any)>): $Function$0<(T), (integer)>
  "defaultReturnValue"(): integer
  "defaultReturnValue"(arg0: integer): void
  "andThenByte"(arg0: $Int2ByteFunction$Type): $Int2ByteFunction
@@ -24556,11 +24498,11 @@ export interface $Object2ObjectMap$Entry<K, V> extends $Map$Entry<(K), (V)> {
 }
 
 export namespace $Object2ObjectMap$Entry {
-function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (V)>
-function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByKey<K, V>(): $Comparator<($Map$Entry<(K), (V)>)>
+function comparingByKey<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByValue<K, V>(): $Comparator<($Map$Entry<(K), (V)>)>
 function comparingByValue<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<(K), (V)>)>
+function copyOf<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<(K), (V)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

@@ -101,10 +101,13 @@ readonly "writerThreadPauseSync": any
 constructor(arg0: string, arg1: string, arg2: string, arg3: $MapDimension$Type, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: boolean, arg9: $Registry$Type<($Biome$Type)>)
 
 public "setVersion"(arg0: integer): void
-public "clean"(arg0: $MapProcessor$Type): void
-public "setParent"(arg0: $BranchLeveledRegion$Type): void
 public "isLoaded"(): boolean
 public "getVersion"(): integer
+public "clean"(arg0: $MapProcessor$Type): void
+public "setParent"(arg0: $BranchLeveledRegion$Type): void
+public "requestRefresh"(arg0: $MapProcessor$Type, arg1: boolean): void
+public "requestRefresh"(arg0: $MapProcessor$Type): void
+public "checkForUpdates"(arg0: $MapProcessor$Type, arg1: boolean, arg2: (boolean)[], arg3: $ArrayList$Type<($BranchLeveledRegion$Type)>, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer): void
 public "isWritingPaused"(): boolean
 public "getLoadState"(): byte
 public "registerVisit"(): void
@@ -115,9 +118,6 @@ public "setLoadState"(arg0: byte): void
 public "isNormalMapData"(): boolean
 public "setHasHadTerrain"(): void
 public "setOutdatedWithOtherLayers"(arg0: boolean): void
-public "checkForUpdates"(arg0: $MapProcessor$Type, arg1: boolean, arg2: (boolean)[], arg3: $ArrayList$Type<($BranchLeveledRegion$Type)>, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer): void
-public "requestRefresh"(arg0: $MapProcessor$Type, arg1: boolean): void
-public "requestRefresh"(arg0: $MapProcessor$Type): void
 public "getTexture"(arg0: integer, arg1: integer): $LeafRegionTexture
 public "shouldAffectLoadingRequestFrequency"(): boolean
 public "processWhenLoadedChunksExist"(arg0: integer): void
@@ -186,14 +186,14 @@ public "setResaving"(arg0: boolean): void
 public "getChunk"(arg0: integer, arg1: integer): $MapTileChunk
 public "isResting"(): boolean
 public "setChunk"(arg0: integer, arg1: integer, arg2: $MapTileChunk$Type): void
+public "getDimId"(): string
+public "putTexture"(arg0: integer, arg1: integer, arg2: $LeafRegionTexture$Type): void
 public "preCache"(): void
 public "postCache"(arg0: $File$Type, arg1: $MapSaveLoad$Type, arg2: boolean): void
 public "getWorldId"(): string
 public "getMwId"(): string
 public "hasVersion"(): boolean
 public "isResaving"(): boolean
-public "getDimId"(): string
-public "putTexture"(arg0: integer, arg1: integer, arg2: $LeafRegionTexture$Type): void
 public "shouldCache"(): boolean
 public "setShouldCache"(arg0: boolean, arg1: string): void
 public "getCacheFile"(): $File
@@ -201,9 +201,9 @@ public "setCacheFile"(arg0: $File$Type): void
 public "getRegionX"(): integer
 public "getRegionZ"(): integer
 set "version"(value: integer)
-set "parent"(value: $BranchLeveledRegion$Type)
 get "loaded"(): boolean
 get "version"(): integer
+set "parent"(value: $BranchLeveledRegion$Type)
 get "writingPaused"(): boolean
 get "loadState"(): byte
 set "beingWritten"(value: boolean)
@@ -242,10 +242,10 @@ get "outdatedWithOtherLayers"(): boolean
 get "caveDepth"(): integer
 set "resaving"(value: boolean)
 get "resting"(): boolean
+get "dimId"(): string
 get "worldId"(): string
 get "mwId"(): string
 get "resaving"(): boolean
-get "dimId"(): string
 get "cacheFile"(): $File
 set "cacheFile"(value: $File$Type)
 get "regionX"(): integer
@@ -372,23 +372,23 @@ constructor()
 public "getHeight"(): integer
 public "equals"(arg0: $MapBlock$Type, arg1: boolean): boolean
 public "write"(arg0: $BlockState$Type, arg1: integer, arg2: integer, arg3: $ResourceKey$Type<($Biome$Type)>, arg4: byte, arg5: boolean, arg6: boolean): void
-public "getEffectiveHeight"(arg0: boolean): integer
+public "getPixelColour"(arg0: (integer)[], arg1: $MapWriter$Type, arg2: $Level$Type, arg3: $MapDimension$Type, arg4: $Registry$Type<($Block$Type)>, arg5: $MapTileChunk$Type, arg6: $MapTileChunk$Type, arg7: $MapTileChunk$Type, arg8: $MapTileChunk$Type, arg9: $MapTile$Type, arg10: integer, arg11: integer, arg12: integer, arg13: integer, arg14: $BlockPos$MutableBlockPos$Type, arg15: $Registry$Type<($Biome$Type)>, arg16: $Registry$Type<($DimensionType$Type)>, arg17: float, arg18: float, arg19: float, arg20: $BlockTintProvider$Type, arg21: $MapProcessor$Type, arg22: $OverlayManager$Type, arg23: integer, arg24: integer, arg25: $BlockStateShortShapeCache$Type): void
+public "getOverlays"(): $ArrayList<($Overlay)>
 public "getEffectiveHeight"(arg0: $BlockStateShortShapeCache$Type): integer
+public "getEffectiveHeight"(arg0: boolean): integer
 public "fixHeightType"(arg0: integer, arg1: integer, arg2: $MapTile$Type, arg3: $MapTileChunk$Type, arg4: $MapTileChunk$Type, arg5: $MapTileChunk$Type, arg6: $MapTileChunk$Type, arg7: integer, arg8: boolean, arg9: $BlockStateShortShapeCache$Type): void
 public "equalsSlopesExcluded"(arg0: $MapBlock$Type): boolean
 public "setSlopeUnknown"(arg0: boolean): void
 public "prepareForWriting"(arg0: integer): void
 public "getNumberOfOverlays"(): integer
 public "getTopHeight"(): integer
-public "getOverlays"(): $ArrayList<($Overlay)>
-public "getPixelColour"(arg0: (integer)[], arg1: $MapWriter$Type, arg2: $Level$Type, arg3: $MapDimension$Type, arg4: $Registry$Type<($Block$Type)>, arg5: $MapTileChunk$Type, arg6: $MapTileChunk$Type, arg7: $MapTileChunk$Type, arg8: $MapTileChunk$Type, arg9: $MapTile$Type, arg10: integer, arg11: integer, arg12: integer, arg13: integer, arg14: $BlockPos$MutableBlockPos$Type, arg15: $Registry$Type<($Biome$Type)>, arg16: $Registry$Type<($DimensionType$Type)>, arg17: float, arg18: float, arg19: float, arg20: $BlockTintProvider$Type, arg21: $MapProcessor$Type, arg22: $OverlayManager$Type, arg23: integer, arg24: integer, arg25: $BlockStateShortShapeCache$Type): void
 public "toRenderString"(arg0: $Registry$Type<($Biome$Type)>): string
-public "setDiagonalSlope"(arg0: byte): void
-public "getVerticalSlope"(): byte
-public "getDiagonalSlope"(): byte
 public "getParametres"(): integer
 public "setTopHeight"(arg0: integer): void
 public "setVerticalSlope"(arg0: byte): void
+public "setDiagonalSlope"(arg0: byte): void
+public "getVerticalSlope"(): byte
+public "getDiagonalSlope"(): byte
 public "getEffectiveTopHeight"(arg0: boolean): integer
 public "setHeight"(arg0: integer): void
 public "getBiome"(): $ResourceKey<($Biome)>
@@ -396,16 +396,16 @@ public "setBiome"(arg0: $ResourceKey$Type<($Biome$Type)>): void
 public "isGrass"(): boolean
 public "addOverlay"(arg0: $Overlay$Type): void
 get "height"(): integer
+get "overlays"(): $ArrayList<($Overlay)>
 set "slopeUnknown"(value: boolean)
 get "numberOfOverlays"(): integer
 get "topHeight"(): integer
-get "overlays"(): $ArrayList<($Overlay)>
-set "diagonalSlope"(value: byte)
-get "verticalSlope"(): byte
-get "diagonalSlope"(): byte
 get "parametres"(): integer
 set "topHeight"(value: integer)
 set "verticalSlope"(value: byte)
+set "diagonalSlope"(value: byte)
+get "verticalSlope"(): byte
+get "diagonalSlope"(): byte
 set "height"(value: integer)
 get "biome"(): $ResourceKey<($Biome)>
 set "biome"(value: $ResourceKey$Type<($Biome$Type)>)
@@ -503,6 +503,18 @@ constructor(arg0: $MapSaveLoad$Type, arg1: $MapWriter$Type, arg2: $MapLimiter$Ty
 public "isEqual"(arg0: string, arg1: string, arg2: string): boolean
 public "run"(arg0: $MapRunner$Type): void
 public "stop"(): void
+public "getClientSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
+public "handler$cag000$xaeroplus$getDimensionName"(id: $ResourceKey$Type<(any)>, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "redirect$cag000$xaeroplus$replaceLockPath"(instance: $Path$Type, other: string): $Path
+public "xaeroPlus$getCurrentDimensionActualDimSignal"(): $ThreadLocal<(any)>
+public "getBrightness"(): float
+public "getBrightness"(arg0: boolean): float
+public "getBrightness"(arg0: integer, arg1: $ClientLevel$Type, arg2: boolean): float
+public "onClientTickStart"(): void
+public "onWorldUnload"(): void
+public "getMapWriter"(): $MapWriter
+public "getMapWorld"(): $MapWorld
+public "checkForWorldUpdate"(): void
 public "onRenderProcess"(arg0: $Minecraft$Type): void
 public "resetRenderStartTime"(): void
 public "getMinecraftScheduledTasks"(): $Queue<($Runnable)>
@@ -524,23 +536,16 @@ public "getCurrentCaveLayer"(): integer
 public "getLeafMapRegion"(arg0: integer, arg1: integer, arg2: integer, arg3: boolean): $MapRegion
 public "getTilePool"(): $MapTilePool
 public "ignoreWorld"(arg0: $Level$Type): boolean
-public "getMapWorld"(): $MapWorld
-public "checkForWorldUpdate"(): void
-public "getBrightness"(): float
-public "getBrightness"(arg0: integer, arg1: $ClientLevel$Type, arg2: boolean): float
-public "getBrightness"(arg0: boolean): float
-public "onWorldUnload"(): void
-public "getMapWriter"(): $MapWriter
-public "onClientTickStart"(): void
 public "onInit"(arg0: $ClientPacketListener$Type): void
-public "getWorldDimensionTypeRegistry"(): $Registry<($DimensionType)>
-public "getAffectingLoadingFrequencyCount"(): integer
 public "getMultiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
-public "isCurrentMultiworldWritable"(): boolean
 public "getBlockStateShortShapeCache"(): $BlockStateShortShapeCache
-public "setConsideringNetherFairPlayMessage"(arg0: boolean): void
+public "isCurrentMultiworldWritable"(): boolean
 public "getMapRegionHighlightsPreparer"(): $MapRegionHighlightsPreparer
 public "xaeroPlus$getLeafRegionActualDimSignal"(): $ThreadLocal<(any)>
+public "setConsideringNetherFairPlayMessage"(arg0: boolean): void
+public "isConsideringNetherFairPlay"(): boolean
+public "getWorldDimensionTypeRegistry"(): $Registry<($DimensionType)>
+public "getAffectingLoadingFrequencyCount"(): integer
 public "isRenderingPaused"(): boolean
 public "initMinimapRender"(arg0: integer, arg1: integer): void
 public "finalizeMinimapRender"(): void
@@ -568,11 +573,18 @@ public "getOverlayManager"(): $OverlayManager
 public "getMapLimiter"(): $MapLimiter
 public "getFootprints"(): $ArrayList<((double)[])>
 public "getMessageBoxRenderer"(): $MessageBoxRenderer
-public "handler$bpi000$xaeroplus$getDimensionName"(id: $ResourceKey$Type<(any)>, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "isConsideringNetherFairPlay"(): boolean
-public "redirect$bpi000$xaeroplus$replaceLockPath"(instance: $Path$Type, other: string): $Path
-public "getClientSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
-public "xaeroPlus$getCurrentDimensionActualDimSignal"(): $ThreadLocal<(any)>
+public "redirect$cag000$xaeroplus$decreaseThreadSleepTime"(millis: long): void
+public "wrapOperation$cag000$xaeroplus$storePrevWorldVarStates"(instance: $MapProcessor$Type, value: string, original: $Operation$Type<(any)>): void
+public "handler$cag000$xaeroplus$fireWorldChangedEvent"(ci: $CallbackInfo$Type): void
+public "handler$cag000$xaeroplus$resetCustomDimOnWorldUnload"(ci: $CallbackInfo$Type): void
+public "handler$cag000$xaeroplus$getActualDimIfSignalSet"(cir: $CallbackInfoReturnable$Type<(any)>): void
+public static "isWorldRealms"(arg0: string): boolean
+public "getCurrentDimId"(): string
+public "getCurrentMWId"(): string
+public "isFinalizing"(): boolean
+public "pushIsLoading"(): void
+public "addToProcess"(arg0: $LeveledRegion$Type<(any)>): void
+public "popIsLoading"(): void
 public "isProcessingPaused"(): boolean
 public "updateFootprints"(arg0: integer): void
 public "getDimensionName"(arg0: $ResourceKey$Type<($Level$Type)>): string
@@ -596,38 +608,30 @@ public "requestCurrentMapDeletion"(): void
 public "getHighlighterRegistry"(): $HighlighterRegistry
 public "getWorldBlockLookup"(): $HolderLookup<($Block)>
 public "getBiomeColorCalculator"(): $BiomeColorCalculator
-public static "isWorldRealms"(arg0: string): boolean
-public "getCurrentDimId"(): string
-public "getCurrentMWId"(): string
-public "isFinalizing"(): boolean
-public "pushIsLoading"(): void
-public "addToProcess"(arg0: $LeveledRegion$Type<(any)>): void
-public "popIsLoading"(): void
-public "serverHasMod"(): boolean
-public "getServerModNetworkVersion"(): integer
-public "popRenderPause"(arg0: boolean, arg1: boolean): void
-public "regionDetectionExists"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "pushRenderPause"(arg0: boolean, arg1: boolean): void
-public "getAmbientBrightness"(arg0: $DimensionType$Type): float
-public "getBufferDeallocator"(): $ByteBufferDeallocator
-public "waitForLoadingToFinish"(arg0: $Runnable$Type): void
 public "onServerLevelId"(arg0: integer): void
 public "setServerModNetworkVersion"(arg0: integer): void
-public "redirect$bpi000$xaeroplus$decreaseThreadSleepTime"(millis: long): void
-public "wrapOperation$bpi000$xaeroplus$storePrevWorldVarStates"(instance: $MapProcessor$Type, value: string, original: $Operation$Type<(any)>): void
-public "handler$bpi000$xaeroplus$fireWorldChangedEvent"(ci: $CallbackInfo$Type): void
-public "handler$bpi000$xaeroplus$resetCustomDimOnWorldUnload"(ci: $CallbackInfo$Type): void
-public "handler$bpi000$xaeroplus$getActualDimIfSignalSet"(cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$bpi000$xaeroplus$capturePrevStateForWorldChangeEvent"(ci: $CallbackInfo$Type): void
-public "wrapOperation$bpi000$xaeroplus$updateWorldSyncedGetActualDimension"(mapWorld: $MapWorld$Type, original: $Operation$Type<(any)>): $MapDimension
-public "wrapOperation$bpi000$xaeroplus$getLeafMapRegionActualDimensionIfSignalled"(instance: $MapWorld$Type, original: $Operation$Type<(any)>): $MapDimension
-public "redirect$bpi000$xaeroplus$createMapRegionInActualDimensionIfSignalled"(worldId: string, dimId: string, mwId: string, dim: $MapDimension$Type, x: integer, z: integer, caveLayer: integer, initialVersion: integer, normalMapData: boolean, biomeRegistry: $Registry$Type<(any)>): $MapRegion
+public "serverHasMod"(): boolean
+public "waitForLoadingToFinish"(arg0: $Runnable$Type): void
+public "getServerModNetworkVersion"(): integer
+public "regionDetectionExists"(arg0: integer, arg1: integer, arg2: integer): boolean
+public "getAmbientBrightness"(arg0: $DimensionType$Type): float
+public "getBufferDeallocator"(): $ByteBufferDeallocator
+public "pushRenderPause"(arg0: boolean, arg1: boolean): void
+public "popRenderPause"(arg0: boolean, arg1: boolean): void
 public "getWorld"(): $ClientLevel
+public "handler$cag000$xaeroplus$capturePrevStateForWorldChangeEvent"(ci: $CallbackInfo$Type): void
+public "wrapOperation$cag000$xaeroplus$updateWorldSyncedGetActualDimension"(mapWorld: $MapWorld$Type, original: $Operation$Type<(any)>): $MapDimension
+public "wrapOperation$cag000$xaeroplus$getLeafMapRegionActualDimensionIfSignalled"(instance: $MapWorld$Type, original: $Operation$Type<(any)>): $MapDimension
+public "redirect$cag000$xaeroplus$createMapRegionInActualDimensionIfSignalled"(worldId: string, dimId: string, mwId: string, dim: $MapDimension$Type, x: integer, z: integer, caveLayer: integer, initialVersion: integer, normalMapData: boolean, biomeRegistry: $Registry$Type<(any)>): $MapRegion
 public "isFinished"(): boolean
-public "getCvc"(): $CustomVertexConsumers
 public "isUIPaused"(): boolean
+public "getCvc"(): $CustomVertexConsumers
 public "getMapTile"(arg0: integer, arg1: integer, arg2: integer): $MapTile
 public "popUIPause"(): void
+get "clientSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
+get "brightness"(): float
+get "mapWriter"(): $MapWriter
+get "mapWorld"(): $MapWorld
 get "minecraftScheduledTasks"(): $Queue<($Runnable)>
 get "renderStartTimeUpdater"(): $Runnable
 get "crosshairMessage"(): string
@@ -642,16 +646,14 @@ get "worldBlockTintProvider"(): $BlockTintProvider
 get "worldBlockRegistry"(): $Registry<($Block)>
 get "currentCaveLayer"(): integer
 get "tilePool"(): $MapTilePool
-get "mapWorld"(): $MapWorld
-get "brightness"(): float
-get "mapWriter"(): $MapWriter
+get "multiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
+get "blockStateShortShapeCache"(): $BlockStateShortShapeCache
+get "currentMultiworldWritable"(): boolean
+get "mapRegionHighlightsPreparer"(): $MapRegionHighlightsPreparer
+set "consideringNetherFairPlayMessage"(value: boolean)
+get "consideringNetherFairPlay"(): boolean
 get "worldDimensionTypeRegistry"(): $Registry<($DimensionType)>
 get "affectingLoadingFrequencyCount"(): integer
-get "multiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
-get "currentMultiworldWritable"(): boolean
-get "blockStateShortShapeCache"(): $BlockStateShortShapeCache
-set "consideringNetherFairPlayMessage"(value: boolean)
-get "mapRegionHighlightsPreparer"(): $MapRegionHighlightsPreparer
 get "renderingPaused"(): boolean
 get "globalVersion"(): integer
 get "uploadingPaused"(): boolean
@@ -662,8 +664,9 @@ get "overlayManager"(): $OverlayManager
 get "mapLimiter"(): $MapLimiter
 get "footprints"(): $ArrayList<((double)[])>
 get "messageBoxRenderer"(): $MessageBoxRenderer
-get "consideringNetherFairPlay"(): boolean
-get "clientSyncedTrackedPlayerManager"(): $ClientSyncedTrackedPlayerManager
+get "currentDimId"(): string
+get "currentMWId"(): string
+get "finalizing"(): boolean
 get "processingPaused"(): boolean
 get "newWorld"(): $ClientLevel
 set "globalVersion"(value: integer)
@@ -671,16 +674,13 @@ get "renderStartTime"(): long
 get "highlighterRegistry"(): $HighlighterRegistry
 get "worldBlockLookup"(): $HolderLookup<($Block)>
 get "biomeColorCalculator"(): $BiomeColorCalculator
-get "currentDimId"(): string
-get "currentMWId"(): string
-get "finalizing"(): boolean
+set "serverModNetworkVersion"(value: integer)
 get "serverModNetworkVersion"(): integer
 get "bufferDeallocator"(): $ByteBufferDeallocator
-set "serverModNetworkVersion"(value: integer)
 get "world"(): $ClientLevel
 get "finished"(): boolean
-get "cvc"(): $CustomVertexConsumers
 get "uIPaused"(): boolean
+get "cvc"(): $CustomVertexConsumers
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -741,10 +741,10 @@ declare module "packages/xaero/map/util/linked/$ILinkedChainNode" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ILinkedChainNode<V extends $ILinkedChainNode<(V)>> {
 
- "isDestroyed"(): boolean
  "getNext"(): V
- "setPrevious"(arg0: V): void
+ "isDestroyed"(): boolean
  "onDestroyed"(): void
+ "setPrevious"(arg0: V): void
  "getPrevious"(): V
  "setNext"(arg0: V): void
 }
@@ -1037,8 +1037,8 @@ export class $MinecraftServerData {
 constructor(arg0: $SyncedPlayerTrackerSystemManager$Type, arg1: $SyncedPlayerTracker$Type)
 
 public static "get"(arg0: $MinecraftServer$Type): $MinecraftServerData
-public "getLevelProperties"(arg0: $Path$Type): $LevelMapProperties
 public "getSyncedPlayerTrackerSystemManager"(): $SyncedPlayerTrackerSystemManager
+public "getLevelProperties"(arg0: $Path$Type): $LevelMapProperties
 public "getSyncedPlayerTracker"(): $SyncedPlayerTracker
 get "syncedPlayerTrackerSystemManager"(): $SyncedPlayerTrackerSystemManager
 get "syncedPlayerTracker"(): $SyncedPlayerTracker
@@ -1068,14 +1068,14 @@ export class $WorldMapClientWorldData {
 
 constructor(arg0: $ClientLevel$Type)
 
-public "getSyncedRules"(): $ClientboundRulesPacket
-public "getServerModNetworkVersion"(): integer
 public "setSyncedRules"(arg0: $ClientboundRulesPacket$Type): void
 public "setServerModNetworkVersion"(arg0: integer): void
-get "syncedRules"(): $ClientboundRulesPacket
-get "serverModNetworkVersion"(): integer
+public "getSyncedRules"(): $ClientboundRulesPacket
+public "getServerModNetworkVersion"(): integer
 set "syncedRules"(value: $ClientboundRulesPacket$Type)
 set "serverModNetworkVersion"(value: integer)
+get "syncedRules"(): $ClientboundRulesPacket
+get "serverModNetworkVersion"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1155,8 +1155,8 @@ import {$CallbackInfoReturnable, $CallbackInfoReturnable$Type} from "packages/or
 import {$File, $File$Type} from "packages/java/io/$File"
 import {$MapProcessor, $MapProcessor$Type} from "packages/xaero/map/$MapProcessor"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$ArrayList, $ArrayList$Type} from "packages/java/util/$ArrayList"
 import {$Biome, $Biome$Type} from "packages/net/minecraft/world/level/biome/$Biome"
+import {$ArrayList, $ArrayList$Type} from "packages/java/util/$ArrayList"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 import {$MapSaveLoad, $MapSaveLoad$Type} from "packages/xaero/map/file/$MapSaveLoad"
 
@@ -1167,24 +1167,25 @@ static readonly "SIDE_LENGTH": integer
 
 constructor(arg0: string, arg1: string, arg2: string, arg3: $MapDimension$Type, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: $BranchLeveledRegion$Type)
 
+public "isLoaded"(): boolean
 public "toString"(): string
 public "compareTo"(arg0: $LeveledRegion$Type<(T)>): integer
 public "getParent"(): $BranchLeveledRegion
-public "isLoaded"(): boolean
+public "getBiomePalette"(): $FastPalette<($ResourceKey<($Biome)>)>
+public "getBiomeKey"(arg0: integer): $ResourceKey<($Biome)>
+public "checkForUpdates"(arg0: $MapProcessor$Type, arg1: boolean, arg2: (boolean)[], arg3: $ArrayList$Type<($BranchLeveledRegion$Type)>, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer): void
 public static "setComparison"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer): void
 public "setAllCachePrepared"(arg0: boolean): void
 public "getCaveLayer"(): integer
-public "checkForUpdates"(arg0: $MapProcessor$Type, arg1: boolean, arg2: (boolean)[], arg3: $ArrayList$Type<($BranchLeveledRegion$Type)>, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer): void
-public "getBiomeKey"(arg0: integer): $ResourceKey<($Biome)>
-public "getTexture"(arg0: integer, arg1: integer): T
 public "getLevel"(): integer
+public "getTexture"(arg0: integer, arg1: integer): T
+public "shouldAllowAnotherRegionToLoad"(): boolean
+public "calculateSortingChunkDistance"(): void
 public "getAndResetCachedTextureVersion"(arg0: integer, arg1: integer): integer
 public "shouldAffectLoadingRequestFrequency"(): boolean
 public "processWhenLoadedChunksExist"(arg0: integer): void
 public "shouldEndProcessingAfterUpload"(): boolean
 public "cleanAndCacheRequestsBlocked"(): boolean
-public "shouldAllowAnotherRegionToLoad"(): boolean
-public "calculateSortingChunkDistance"(): void
 public "reloadHasBeenRequested"(): boolean
 public "hasRemovableSourceData"(): boolean
 public "isRefreshing"(): boolean
@@ -1219,7 +1220,6 @@ public "getBiomePaletteIndex"(arg0: $ResourceKey$Type<($Biome$Type)>): integer
 public "onBiomeAddedToTexture"(arg0: $ResourceKey$Type<($Biome$Type)>): integer
 public "onBiomeRemovedFromTexture"(arg0: integer): void
 public "uncountTextureBiomes"(arg0: $RegionTexture$Type<(any)>): void
-public "getBiomePalette"(): $FastPalette<($ResourceKey<($Biome)>)>
 public "resetBiomePalette"(): void
 public "loadingAnimation"(): boolean
 public "skipCaching"(arg0: $MapProcessor$Type): boolean
@@ -1228,16 +1228,17 @@ public "onCurrentDimFinish"(arg0: $MapSaveLoad$Type, arg1: $MapProcessor$Type): 
 public "onLimiterRemoval"(arg0: $MapProcessor$Type): void
 public "afterLimiterRemoval"(arg0: $MapProcessor$Type): void
 public "getExtraInfo"(): string
-public "redirect$bpg000$xaeroplus$replaceSaveCacheTexturesZipOutputStream"(out: $OutputStream$Type): $DataOutputStream
-public "handler$bpg000$xaeroplus$writeSaveCacheTexturesZipOutputStream"(tempFile: $File$Type, extraAttempts: integer, cir: $CallbackInfoReturnable$Type<(any)>, zipOutputRef: $ZipOutputStream$Type): void
+public "redirect$cae000$xaeroplus$replaceSaveCacheTexturesZipOutputStream"(out: $OutputStream$Type): $DataOutputStream
+public "handler$cae000$xaeroplus$writeSaveCacheTexturesZipOutputStream"(tempFile: $File$Type, extraAttempts: integer, cir: $CallbackInfoReturnable$Type<(any)>, zipOutputRef: $ZipOutputStream$Type): void
 public "getDim"(): $MapDimension
-public "preCache"(): void
-public "postCache"(arg0: $File$Type, arg1: $MapSaveLoad$Type, arg2: boolean): void
 public "getRegionX"(): integer
 public "getRegionZ"(): integer
 public "putTexture"(arg0: integer, arg1: integer, arg2: T): void
-get "parent"(): $BranchLeveledRegion
+public "preCache"(): void
+public "postCache"(arg0: $File$Type, arg1: $MapSaveLoad$Type, arg2: boolean): void
 get "loaded"(): boolean
+get "parent"(): $BranchLeveledRegion
+get "biomePalette"(): $FastPalette<($ResourceKey<($Biome)>)>
 set "allCachePrepared"(value: boolean)
 get "caveLayer"(): integer
 get "level"(): integer
@@ -1248,7 +1249,6 @@ get "cacheFile"(): $File
 set "cacheFile"(value: $File$Type)
 get "biomePaletteSize"(): integer
 get "rootRegion"(): $LeveledRegion<(any)>
-get "biomePalette"(): $FastPalette<($ResourceKey<($Biome)>)>
 get "extraInfo"(): string
 get "dim"(): $MapDimension
 get "regionX"(): integer
@@ -1311,14 +1311,14 @@ constructor()
 
 public "init"(arg0: $ClientPacketListener$Type, arg1: long): void
 public "cleanup"(): void
-public "getControlsHandler"(): $ControlsHandler
-public static "getForPlayer"(arg0: $LocalPlayer$Type): $WorldMapSession
-public "getMapProcessor"(): $MapProcessor
 public static "getCurrentSession"(): $WorldMapSession
+public "getMapProcessor"(): $MapProcessor
+public static "getForPlayer"(arg0: $LocalPlayer$Type): $WorldMapSession
+public "getControlsHandler"(): $ControlsHandler
 public "isUsable"(): boolean
-get "controlsHandler"(): $ControlsHandler
-get "mapProcessor"(): $MapProcessor
 get "currentSession"(): $WorldMapSession
+get "mapProcessor"(): $MapProcessor
+get "controlsHandler"(): $ControlsHandler
 get "usable"(): boolean
 }
 /**
@@ -1371,16 +1371,28 @@ export class $MapWorld {
 
 constructor(arg0: string, arg1: string, arg2: $MapProcessor$Type)
 
+public "getDimensions"(arg0: $List$Type<($MapDimension$Type)>): void
 public "getDimension"(arg0: $ResourceKey$Type<($Level$Type)>): $MapDimension
 public "load"(): void
-public "getDimensions"(arg0: $List$Type<($MapDimension$Type)>): void
-public "isCacheOnlyMode"(): boolean
-public "getCurrentDimension"(): $MapDimension
-public "isMultiplayer"(): boolean
-public "isIgnoreHeightmaps"(): boolean
+public "toggleMultiworldTypeUnsynced"(): void
+public "confirmMultiworldTypeUnsynced"(): void
+public "getFutureMultiworldUnsynced"(): string
+public "switchToFutureMultiworldTypeUnsynced"(): void
+public "isCurrentMultiworldTypeConfirmed"(): boolean
+public "unconfirmMultiworldTypeUnsynced"(): void
+public "isFutureMultiworldTypeConfirmed"(arg0: $MapDimension$Type): boolean
+public "getPlayerTeleportCommandFormat"(): string
+public "setPlayerTeleportCommandFormat"(arg0: string): void
+public "getDimensionTeleportCommandFormat"(): string
+public "setDimensionTeleportCommandFormat"(arg0: string): void
+public "getMapProcessor"(): $MapProcessor
 public "getCurrentDimensionId"(): $ResourceKey<($Level)>
 public "setCustomDimensionId"(arg0: $ResourceKey$Type<($Level$Type)>): void
-public "getMapProcessor"(): $MapProcessor
+public "isCacheOnlyMode"(): boolean
+public "getCurrentDimension"(): $MapDimension
+public "isIgnoreHeightmaps"(): boolean
+public "isMultiplayer"(): boolean
+public "clearAllCachedHighlightHashes"(): void
 public "isUsingUnknownDimensionType"(): boolean
 public "createDimensionUnsynced"(arg0: $ResourceKey$Type<($Level$Type)>): $MapDimension
 public "getCurrentMultiworld"(): string
@@ -1391,18 +1403,7 @@ public "toggleDimension"(arg0: boolean): void
 public "getCustomDimensionId"(): $ResourceKey<($Level)>
 public "isUsingCustomDimension"(): boolean
 public "isTeleportAllowed"(): boolean
-public "toggleMultiworldTypeUnsynced"(): void
-public "getFutureMultiworldUnsynced"(): string
-public "confirmMultiworldTypeUnsynced"(): void
-public "isCurrentMultiworldTypeConfirmed"(): boolean
-public "unconfirmMultiworldTypeUnsynced"(): void
-public "isFutureMultiworldTypeConfirmed"(arg0: $MapDimension$Type): boolean
-public "getPlayerTeleportCommandFormat"(): string
-public "setPlayerTeleportCommandFormat"(arg0: string): void
-public "getDimensionTeleportCommandFormat"(): string
-public "setDimensionTeleportCommandFormat"(arg0: string): void
-public "clearAllCachedHighlightHashes"(): void
-public "switchToFutureMultiworldTypeUnsynced"(): void
+public "wrapOperation$caj000$xaeroplus$setCurrentDimensionRef"(instance: $MapWorld$Type, value: $ResourceKey$Type<(any)>, original: $Operation$Type<(any)>): void
 public "getPotentialDimId"(): $ResourceKey<($Level)>
 public "setFutureDimensionId"(arg0: $ResourceKey$Type<($Level$Type)>): void
 public "getDimensionsList"(): $List<($MapDimension)>
@@ -1415,19 +1416,24 @@ public "getTeleportCommandFormat"(): string
 public "setTeleportCommandFormat"(arg0: string): void
 public "getPlayerMapKey"(): $MapConnectionNode
 public "getMapConnections"(): $MapConnectionManager
-public "isIgnoreServerLevelId"(): boolean
-public "setIgnoreHeightmaps"(arg0: boolean): void
 public "setTeleportAllowed"(arg0: boolean): void
-public "wrapOperation$bpl000$xaeroplus$setCurrentDimensionRef"(instance: $MapWorld$Type, value: $ResourceKey$Type<(any)>, original: $Operation$Type<(any)>): void
+public "setIgnoreHeightmaps"(arg0: boolean): void
+public "isIgnoreServerLevelId"(): boolean
 public "saveConfig"(): void
 public "getMainId"(): string
-get "cacheOnlyMode"(): boolean
-get "currentDimension"(): $MapDimension
-get "multiplayer"(): boolean
-get "ignoreHeightmaps"(): boolean
+get "futureMultiworldUnsynced"(): string
+get "currentMultiworldTypeConfirmed"(): boolean
+get "playerTeleportCommandFormat"(): string
+set "playerTeleportCommandFormat"(value: string)
+get "dimensionTeleportCommandFormat"(): string
+set "dimensionTeleportCommandFormat"(value: string)
+get "mapProcessor"(): $MapProcessor
 get "currentDimensionId"(): $ResourceKey<($Level)>
 set "customDimensionId"(value: $ResourceKey$Type<($Level$Type)>)
-get "mapProcessor"(): $MapProcessor
+get "cacheOnlyMode"(): boolean
+get "currentDimension"(): $MapDimension
+get "ignoreHeightmaps"(): boolean
+get "multiplayer"(): boolean
 get "usingUnknownDimensionType"(): boolean
 get "currentMultiworld"(): string
 get "futureDimensionId"(): $ResourceKey<($Level)>
@@ -1435,12 +1441,6 @@ get "futureDimension"(): $MapDimension
 get "customDimensionId"(): $ResourceKey<($Level)>
 get "usingCustomDimension"(): boolean
 get "teleportAllowed"(): boolean
-get "futureMultiworldUnsynced"(): string
-get "currentMultiworldTypeConfirmed"(): boolean
-get "playerTeleportCommandFormat"(): string
-set "playerTeleportCommandFormat"(value: string)
-get "dimensionTeleportCommandFormat"(): string
-set "dimensionTeleportCommandFormat"(value: string)
 get "potentialDimId"(): $ResourceKey<($Level)>
 set "futureDimensionId"(value: $ResourceKey$Type<($Level$Type)>)
 get "dimensionsList"(): $List<($MapDimension)>
@@ -1450,9 +1450,9 @@ get "teleportCommandFormat"(): string
 set "teleportCommandFormat"(value: string)
 get "playerMapKey"(): $MapConnectionNode
 get "mapConnections"(): $MapConnectionManager
-get "ignoreServerLevelId"(): boolean
-set "ignoreHeightmaps"(value: boolean)
 set "teleportAllowed"(value: boolean)
+set "ignoreHeightmaps"(value: boolean)
+get "ignoreServerLevelId"(): boolean
 get "mainId"(): string
 }
 /**
@@ -1535,10 +1535,11 @@ static readonly "SIDE_LENGTH": integer
 
 constructor(arg0: string, arg1: string, arg2: string, arg3: $MapDimension$Type, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: $BranchLeveledRegion$Type)
 
-public "isEmpty"(): boolean
 public "isLoaded"(): boolean
+public "isEmpty"(): boolean
+public "startDownloadingTexturesForCache"(arg0: $MapProcessor$Type): void
+public "setShouldCheckForUpdatesSingle"(arg0: boolean): void
 public "checkForUpdates"(arg0: $MapProcessor$Type, arg1: boolean, arg2: (boolean)[], arg3: $ArrayList$Type<($BranchLeveledRegion$Type)>, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer): void
-public "getTexture"(arg0: integer, arg1: integer): $BranchRegionTexture
 public "shouldEndProcessingAfterUpload"(): boolean
 public "cleanAndCacheRequestsBlocked"(): boolean
 public "setShouldCheckForUpdatesRecursive"(arg0: boolean): void
@@ -1546,6 +1547,7 @@ public "hasTextures"(): boolean
 public "onProcessingEnd"(): void
 public "addDebugLines"(arg0: $List$Type<(string)>, arg1: $MapProcessor$Type, arg2: integer, arg3: integer): void
 public "preCacheLoad"(): void
+public "createTexture"(arg0: integer, arg1: integer): $BranchRegionTexture
 public "shouldBeProcessed"(): boolean
 public "loadingAnimation"(): boolean
 public "skipCaching"(arg0: $MapProcessor$Type): boolean
@@ -1553,18 +1555,16 @@ public "findCacheFile"(arg0: $MapSaveLoad$Type): $File
 public "onCurrentDimFinish"(arg0: $MapSaveLoad$Type, arg1: $MapProcessor$Type): void
 public "onLimiterRemoval"(arg0: $MapProcessor$Type): void
 public "afterLimiterRemoval"(arg0: $MapProcessor$Type): void
-public "startDownloadingTexturesForCache"(arg0: $MapProcessor$Type): void
-public "setShouldCheckForUpdatesSingle"(arg0: boolean): void
-public "postTextureUpdate"(): void
 public "eligibleForSaving"(arg0: long): boolean
+public "postTextureUpdate"(): void
 public "setLoaded"(arg0: boolean): void
+public "putTexture"(arg0: integer, arg1: integer, arg2: $BranchRegionTexture$Type): void
 public "preCache"(): void
 public "postCache"(arg0: $File$Type, arg1: $MapSaveLoad$Type, arg2: boolean): void
-public "putTexture"(arg0: integer, arg1: integer, arg2: $BranchRegionTexture$Type): void
-get "empty"(): boolean
 get "loaded"(): boolean
-set "shouldCheckForUpdatesRecursive"(value: boolean)
+get "empty"(): boolean
 set "shouldCheckForUpdatesSingle"(value: boolean)
+set "shouldCheckForUpdatesRecursive"(value: boolean)
 set "loaded"(value: boolean)
 }
 /**
@@ -1586,8 +1586,8 @@ export class $OverlayManager {
 
 constructor()
 
-public "getNumberOfUniqueOverlays"(): integer
 public "getOriginal"(arg0: $Overlay$Type): $Overlay
+public "getNumberOfUniqueOverlays"(): integer
 get "numberOfUniqueOverlays"(): integer
 }
 /**
@@ -1732,11 +1732,11 @@ public "onDropdownOpen"(arg0: $DropDownWidget$Type): void
 public "onDropdownClosed"(arg0: $DropDownWidget$Type): void
 public "replaceWidget"(arg0: $AbstractWidget$Type, arg1: $AbstractWidget$Type): void
 public "replaceRenderableWidget"(arg0: $AbstractWidget$Type, arg1: $AbstractWidget$Type): void
-public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
-public "onClose"(): void
 public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "onClose"(): void
 public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
+public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
 public "getEscape"(): $Screen
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "escape"(): $Screen
@@ -1822,8 +1822,8 @@ export type $TextureUpload$Compressed_ = $TextureUpload$Compressed$Type;
 declare module "packages/xaero/map/file/worldsave/$WorldDataReader" {
 import {$MapTile, $MapTile$Type} from "packages/xaero/map/region/$MapTile"
 import {$ChunkPos, $ChunkPos$Type} from "packages/net/minecraft/world/level/$ChunkPos"
-import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
 import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
 import {$MapRegion, $MapRegion$Type} from "packages/xaero/map/region/$MapRegion"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
@@ -1843,8 +1843,8 @@ export class $WorldDataReader {
 constructor(arg0: $OverlayManager$Type, arg1: $BlockStateShortShapeCache$Type, arg2: $WorldDataBiomeManager$Type, arg3: long)
 
 public "setMapProcessor"(arg0: $MapProcessor$Type): void
+public "redirect$cbl000$xaeroplus$redirectBuildTile"(instance: $WorldDataReader$Type, nbttagcompound: $CompoundTag$Type, tile: $MapTile$Type, tileChunk: $MapTileChunk$Type, chunkX: integer, chunkZ: integer, insideRegionX: integer, insideRegionZ: integer, caveStart: integer, caveDepth: integer, worldHasSkylight: boolean, ignoreHeightmaps: boolean, serverWorld: $ServerLevel$Type, blockLookup: $HolderLookup$Type<(any)>, blockRegistry: $Registry$Type<(any)>, fluidRegistry: $Registry$Type<(any)>, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, worldTopY: integer): boolean
 public "buildRegion"(arg0: $MapRegion$Type, arg1: $ServerLevel$Type, arg2: $HolderLookup$Type<($Block$Type)>, arg3: $Registry$Type<($Block$Type)>, arg4: $Registry$Type<($Fluid$Type)>, arg5: boolean, arg6: (integer)[], arg7: $Executor$Type): boolean
-public "redirect$can000$xaeroplus$redirectBuildTile"(instance: $WorldDataReader$Type, nbttagcompound: $CompoundTag$Type, tile: $MapTile$Type, tileChunk: $MapTileChunk$Type, chunkX: integer, chunkZ: integer, insideRegionX: integer, insideRegionZ: integer, caveStart: integer, caveDepth: integer, worldHasSkylight: boolean, ignoreHeightmaps: boolean, serverWorld: $ServerLevel$Type, blockLookup: $HolderLookup$Type<(any)>, blockRegistry: $Registry$Type<(any)>, fluidRegistry: $Registry$Type<(any)>, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, worldTopY: integer): boolean
 public "readChunk"(arg0: $RegionFile$Type, arg1: $ChunkPos$Type): $CompoundTag
 set "mapProcessor"(value: $MapProcessor$Type)
 }
@@ -1902,23 +1902,23 @@ export class $MapLayer {
 
 constructor(arg0: $MapDimension$Type, arg1: $RegionHighlightExistenceTracker$Type)
 
+public "tryAddingToCompleteRegionDetection"(arg0: $RegionDetection$Type): void
+public "getRegionHighlightExistenceTracker"(): $RegionHighlightExistenceTracker
+public "getLinkedCompleteWorldSaveDetectedRegions"(): $Iterable<($RegionDetection)>
 public "getCaveStart"(): integer
 public "setCaveStart"(arg0: integer): void
 public "addRegionDetection"(arg0: $RegionDetection$Type): void
-public "getRegionHighlightExistenceTracker"(): $RegionHighlightExistenceTracker
-public "getLinkedCompleteWorldSaveDetectedRegions"(): $Iterable<($RegionDetection)>
-public "tryAddingToCompleteRegionDetection"(arg0: $RegionDetection$Type): void
+public "preDetection"(): void
 public "getMapRegions"(): $LeveledRegionManager
 public "removeRegionDetection"(arg0: integer, arg1: integer): void
 public "getCompleteRegionDetection"(arg0: integer, arg1: integer): $RegionDetection
-public "preDetection"(): void
 public "regionDetectionExists"(arg0: integer, arg1: integer): boolean
 public "getRegionDetection"(arg0: integer, arg1: integer): $RegionDetection
 public "getDetectedRegions"(): $Hashtable<(integer), ($Hashtable<(integer), ($RegionDetection)>)>
-get "caveStart"(): integer
-set "caveStart"(value: integer)
 get "regionHighlightExistenceTracker"(): $RegionHighlightExistenceTracker
 get "linkedCompleteWorldSaveDetectedRegions"(): $Iterable<($RegionDetection)>
+get "caveStart"(): integer
+set "caveStart"(value: integer)
 get "mapRegions"(): $LeveledRegionManager
 get "detectedRegions"(): $Hashtable<(integer), ($Hashtable<(integer), ($RegionDetection)>)>
 }
@@ -1944,20 +1944,20 @@ export class $SyncedTrackedPlayer {
 
 constructor(arg0: $UUID$Type, arg1: double, arg2: double, arg3: double, arg4: $ResourceKey$Type<($Level$Type)>)
 
+public "copyFrom"(arg0: $SyncedTrackedPlayer$Type): void
 public "getDimension"(): $ResourceKey<($Level)>
+public "getY"(): double
+public "getX"(): double
 public "update"(arg0: $Player$Type): void
 public "getId"(): $UUID
-public "copyFrom"(arg0: $SyncedTrackedPlayer$Type): void
-public "getX"(): double
-public "getY"(): double
 public "setDimension"(arg0: $ResourceKey$Type<($Level$Type)>): $SyncedTrackedPlayer
 public "matchesEnough"(arg0: $Player$Type, arg1: double): boolean
-public "setPos"(arg0: double, arg1: double, arg2: double): $SyncedTrackedPlayer
 public "getZ"(): double
+public "setPos"(arg0: double, arg1: double, arg2: double): $SyncedTrackedPlayer
 get "dimension"(): $ResourceKey<($Level)>
-get "id"(): $UUID
-get "x"(): double
 get "y"(): double
+get "x"(): double
+get "id"(): $UUID
 set "dimension"(value: $ResourceKey$Type<($Level$Type)>)
 get "z"(): double
 }
@@ -1981,8 +1981,8 @@ export class $BrokenBlockTintCache {
 
 constructor(arg0: $Set$Type<($BlockState$Type)>)
 
-public "isBroken"(arg0: $BlockState$Type): boolean
 public "getSize"(): integer
+public "isBroken"(arg0: $BlockState$Type): boolean
 public "setBroken"(arg0: $BlockState$Type): void
 get "size"(): integer
 set "broken"(value: $BlockState$Type)
@@ -2025,36 +2025,36 @@ static readonly "UNSET_FG_COLOR": integer
  "packedFGColor": integer
 
 
-public "setClosed"(arg0: boolean): void
 public "size"(): integer
+public "setClosed"(arg0: boolean): void
 public "getSelected"(): integer
-public "mouseReleased"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "mouseClicked"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): boolean
+public "mouseReleased"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "mouseScrolled"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "setActive"(arg0: boolean): void
-public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): void
 public "isClosed"(): boolean
-public "getXWithOffset"(): integer
+public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): void
+public "setActive"(arg0: boolean): void
 public "getYWithOffset"(): integer
+public "getXWithOffset"(): integer
+public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
+public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
+public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
 public "keyReleased"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "charTyped"(arg0: character, arg1: integer): boolean
 public "mouseMoved"(arg0: double, arg1: double): void
-public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
-public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
-public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
 public "renderWidget"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
 public "updateWidgetNarration"(arg0: $NarrationElementOutput$Type): void
-public "onDropDown"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "onDropDown"(arg0: integer, arg1: integer, arg2: boolean, arg3: integer): boolean
+public "onDropDown"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "selectId"(arg0: integer, arg1: boolean): void
 set "closed"(value: boolean)
 get "selected"(): integer
-set "active"(value: boolean)
 get "closed"(): boolean
-get "xWithOffset"(): integer
+set "active"(value: boolean)
 get "yWithOffset"(): integer
+get "xWithOffset"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2093,15 +2093,15 @@ export class $MapPixel {
 
 constructor()
 
-public "getState"(): $BlockState
 public "setState"(arg0: $BlockState$Type): void
+public "getState"(): $BlockState
+public "handler$caf000$xaeroplus$getPixelColours"(result_dest: (integer)[], mapWriter: $MapWriter$Type, world: $Level$Type, dim: $MapDimension$Type, blockRegistry: $Registry$Type<(any)>, tileChunk: $MapTileChunk$Type, prevChunk: $MapTileChunk$Type, prevChunkDiagonal: $MapTileChunk$Type, prevChunkHorisontal: $MapTileChunk$Type, mapTile: $MapTile$Type, x: integer, z: integer, block: $MapBlock$Type, height: integer, topHeight: integer, caveStart: integer, caveDepth: integer, overlays: $ArrayList$Type<(any)>, mutableGlobalPos: $BlockPos$MutableBlockPos$Type, biomeRegistry: $Registry$Type<(any)>, dimensionTypes: $Registry$Type<(any)>, shadowR: float, shadowG: float, shadowB: float, blockTintProvider: $BlockTintProvider$Type, mapProcessor: $MapProcessor$Type, overlayManager: $OverlayManager$Type, blockStateShortShapeCache: $BlockStateShortShapeCache$Type, ci: $CallbackInfo$Type): void
 public "getBlockBrightness"(arg0: float, arg1: integer, arg2: integer): float
-public "handler$bph000$xaeroplus$getPixelColours"(result_dest: (integer)[], mapWriter: $MapWriter$Type, world: $Level$Type, dim: $MapDimension$Type, blockRegistry: $Registry$Type<(any)>, tileChunk: $MapTileChunk$Type, prevChunk: $MapTileChunk$Type, prevChunkDiagonal: $MapTileChunk$Type, prevChunkHorisontal: $MapTileChunk$Type, mapTile: $MapTile$Type, x: integer, z: integer, block: $MapBlock$Type, height: integer, topHeight: integer, caveStart: integer, caveDepth: integer, overlays: $ArrayList$Type<(any)>, mutableGlobalPos: $BlockPos$MutableBlockPos$Type, biomeRegistry: $Registry$Type<(any)>, dimensionTypes: $Registry$Type<(any)>, shadowR: float, shadowG: float, shadowB: float, blockTintProvider: $BlockTintProvider$Type, mapProcessor: $MapProcessor$Type, overlayManager: $OverlayManager$Type, blockStateShortShapeCache: $BlockStateShortShapeCache$Type, ci: $CallbackInfo$Type): void
 public "getPixelColours"(arg0: (integer)[], arg1: $MapWriter$Type, arg2: $Level$Type, arg3: $MapDimension$Type, arg4: $Registry$Type<($Block$Type)>, arg5: $MapTileChunk$Type, arg6: $MapTileChunk$Type, arg7: $MapTileChunk$Type, arg8: $MapTileChunk$Type, arg9: $MapTile$Type, arg10: integer, arg11: integer, arg12: $MapBlock$Type, arg13: integer, arg14: integer, arg15: integer, arg16: integer, arg17: $ArrayList$Type<($Overlay$Type)>, arg18: $BlockPos$MutableBlockPos$Type, arg19: $Registry$Type<($Biome$Type)>, arg20: $Registry$Type<($DimensionType$Type)>, arg21: float, arg22: float, arg23: float, arg24: $BlockTintProvider$Type, arg25: $MapProcessor$Type, arg26: $OverlayManager$Type, arg27: $BlockStateShortShapeCache$Type): void
 public "setGlowing"(arg0: boolean): void
 public "setLight"(arg0: byte): void
-get "state"(): $BlockState
 set "state"(value: $BlockState$Type)
+get "state"(): $BlockState
 set "glowing"(value: boolean)
 set "light"(value: byte)
 }
@@ -2248,14 +2248,14 @@ import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/
 export class $AbstractHighlighter {
 
 
+public "addMinimapBlockHighlightTooltips"(arg0: $List$Type<($Component$Type)>, arg1: $ResourceKey$Type<($Level$Type)>, arg2: integer, arg3: integer, arg4: integer): void
+public "isCoveringOutsideDiscovered"(): boolean
 public "getBlockHighlightSubtleTooltip"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: integer): $Component
 public "getBlockHighlightBluntTooltip"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: integer): $Component
-public "isCoveringOutsideDiscovered"(): boolean
-public "addMinimapBlockHighlightTooltips"(arg0: $List$Type<($Component$Type)>, arg1: $ResourceKey$Type<($Level$Type)>, arg2: integer, arg3: integer, arg4: integer): void
+public "calculateRegionHash"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: integer): integer
 public "regionHasHighlights"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: integer): boolean
 public "chunkIsHighlit"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: integer): boolean
 public "getChunkHighlitColor"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: integer): (integer)[]
-public "calculateRegionHash"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: integer): integer
 get "coveringOutsideDiscovered"(): boolean
 }
 /**
@@ -2387,8 +2387,8 @@ export class $TextureUploadBenchmark {
 
 constructor(...arg0: (integer)[])
 
-public "post"(arg0: integer): void
 public "pre"(): void
+public "post"(arg0: integer): void
 public "getTotalsString"(): string
 public "isFinished"(arg0: integer): boolean
 public "isFinished"(): boolean
@@ -2418,8 +2418,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$LevelChunk, $LevelChunk$Type} from "packages/net/minecraft/world/level/chunk/$LevelChunk"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$StateHolder, $StateHolder$Type} from "packages/net/minecraft/world/level/block/state/$StateHolder"
 import {$OverlayBuilder, $OverlayBuilder$Type} from "packages/xaero/map/region/$OverlayBuilder"
+import {$StateHolder, $StateHolder$Type} from "packages/net/minecraft/world/level/block/state/$StateHolder"
 import {$Biome, $Biome$Type} from "packages/net/minecraft/world/level/biome/$Biome"
 import {$LocalLongRef, $LocalLongRef$Type} from "packages/com/llamalad7/mixinextras/sugar/ref/$LocalLongRef"
 import {$LocalRef, $LocalRef$Type} from "packages/com/llamalad7/mixinextras/sugar/ref/$LocalRef"
@@ -2427,14 +2427,14 @@ import {$MapBlock, $MapBlock$Type} from "packages/xaero/map/region/$MapBlock"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BiomeGetter, $BiomeGetter$Type} from "packages/xaero/map/biome/$BiomeGetter"
 import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
-import {$MapRegion, $MapRegion$Type} from "packages/xaero/map/region/$MapRegion"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$MapTileChunk, $MapTileChunk$Type} from "packages/xaero/map/region/$MapTileChunk"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$MapRegion, $MapRegion$Type} from "packages/xaero/map/region/$MapRegion"
 import {$BiomeColorCalculator, $BiomeColorCalculator$Type} from "packages/xaero/map/biome/$BiomeColorCalculator"
+import {$MapTileChunk, $MapTileChunk$Type} from "packages/xaero/map/region/$MapTileChunk"
 import {$BlockStateShortShapeCache, $BlockStateShortShapeCache$Type} from "packages/xaero/map/cache/$BlockStateShortShapeCache"
-import {$MapProcessor, $MapProcessor$Type} from "packages/xaero/map/$MapProcessor"
 import {$CallbackInfo, $CallbackInfo$Type} from "packages/org/spongepowered/asm/mixin/injection/callback/$CallbackInfo"
+import {$MapProcessor, $MapProcessor$Type} from "packages/xaero/map/$MapProcessor"
 import {$LocalBooleanRef, $LocalBooleanRef$Type} from "packages/com/llamalad7/mixinextras/sugar/ref/$LocalBooleanRef"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 import {$OverlayManager, $OverlayManager$Type} from "packages/xaero/map/region/$OverlayManager"
@@ -2447,37 +2447,37 @@ static readonly "DEFAULT_RESOURCE": (string)[]
 
 constructor(arg0: $OverlayManager$Type, arg1: $BlockStateShortShapeCache$Type, arg2: $BiomeGetter$Type)
 
-public "wrapOperation$bpm000$xaeroplus$removeCustomDimSwitchWriterPrevention"(mapWorld: $MapWorld$Type, original: $Operation$Type<(any)>): $ResourceKey<(any)>
-public "modifyExpressionValue$bpm000$xaeroplus$removeWriteTimeLimiterPerFrame"(original: long): long
-public "wrapOperation$bpm000$xaeroplus$getActualMapRegionInOnRender"(mapProcessor: $MapProcessor$Type, caveLayer: integer, regX: integer, regZ: integer, create: boolean, original: $Operation$Type<(any)>): $MapRegion
-public "modifyExpressionValue$bpm000$xaeroplus$obsidianRoofOverlayMod"(original: boolean, bChunk: $LevelChunk$Type, b: $Block$Type, h: integer): boolean
-public "wrapOperation$bpm000$xaeroplus$getOpacityForObsidianRoof$mixinextras$bridge$41"(instance: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, original: $Operation$Type<(any)>, h: $LocalIntRef$Type): integer
+public "handler$cak000$xaeroplus$setCrossDimWriteSignals"(biomeColorCalculator: $BiomeColorCalculator$Type, overlayManager: $OverlayManager$Type, ci: $CallbackInfo$Type): void
+public "handler$cak000$xaeroplus$fastMapMaxTilesPerCycleSetting"(biomeColorCalculator: $BiomeColorCalculator$Type, overlayManager: $OverlayManager$Type, ci: $CallbackInfo$Type, tilesToUpdateRef: $LocalLongRef$Type, sizeTiles: integer): void
+public "handler$cak000$xaeroplus$setObsidianColumnLocalVar"(world: $Level$Type, blockRegistry: $Registry$Type<(any)>, pixel: $MapBlock$Type, currentPixel: $MapBlock$Type, bchunk: $LevelChunk$Type, insideX: integer, insideZ: integer, highY: integer, lowY: integer, cave: boolean, fullCave: boolean, mappedHeight: integer, canReuseBiomeColours: boolean, ignoreHeightmaps: boolean, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, ci: $CallbackInfo$Type, columnRoofObsidianRef: $LocalBooleanRef$Type): void
+public "handler$cak000$xaeroplus$netherCaveFixInject"(world: $Level$Type, blockRegistry: $Registry$Type<(any)>, pixel: $MapBlock$Type, currentPixel: $MapBlock$Type, bchunk: $LevelChunk$Type, insideX: integer, insideZ: integer, highY: integer, lowY: integer, cave: boolean, fullCave: boolean, mappedHeight: integer, canReuseBiomeColours: boolean, ignoreHeightmaps: boolean, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, ci: $CallbackInfo$Type, caveRef: $LocalBooleanRef$Type, fullCaveRef: $LocalBooleanRef$Type): void
+public "handler$cak000$xaeroplus$obsidianRoofHeadInject"(world: $Level$Type, blockRegistry: $Registry$Type<(any)>, pixel: $MapBlock$Type, currentPixel: $MapBlock$Type, bchunk: $LevelChunk$Type, insideX: integer, insideZ: integer, highY: integer, lowY: integer, cave: boolean, fullCave: boolean, mappedHeight: integer, canReuseBiomeColours: boolean, ignoreHeightmaps: boolean, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, ci: $CallbackInfo$Type, stateRef: $LocalRef$Type<(any)>, hRef: $LocalIntRef$Type, transparentSkipYRef: $LocalIntRef$Type, columnRoofObsidianRef: $LocalBooleanRef$Type): void
+public "wrapOperation$cak000$xaeroplus$checkObsidianRoofColumn"(instance: $OverlayBuilder$Type, original: $Operation$Type<(any)>, columnRoofObsidianRef: $LocalBooleanRef$Type): boolean
+public "wrapOperation$cak000$xaeroplus$getOpacityForObsidianRoof"(instance: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, original: $Operation$Type<(any)>, h: integer): integer
+public "setDirtyInWriteDistance"(arg0: $Player$Type, arg1: $Level$Type): void
+public "requestCachedColoursClear"(): void
 public "updateBottomRightTile"(arg0: $MapRegion$Type, arg1: $MapTileChunk$Type, arg2: $MapTileChunk$Type, arg3: integer, arg4: integer): void
 public "shouldOverlay"(arg0: $StateHolder$Type<(any), (any)>): boolean
 public "isInvisible"(arg0: $BlockState$Type, arg1: $Block$Type, arg2: boolean): boolean
 public "hasVanillaColor"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $Registry$Type<($Block$Type)>, arg3: $BlockPos$Type): boolean
 public "getUpdateCounter"(): long
 public "resetPosition"(): void
-public "setMapProcessor"(arg0: $MapProcessor$Type): void
-public "getBlockTintIndex"(arg0: $BlockState$Type): integer
 public "getSectionBasedHeight"(arg0: $LevelChunk$Type, arg1: integer): integer
 public "loadBlockColourFromTexture"(arg0: $BlockState$Type, arg1: boolean, arg2: $Level$Type, arg3: $Registry$Type<($Block$Type)>, arg4: $BlockPos$Type): integer
-public "setDirtyInWriteDistance"(arg0: $Player$Type, arg1: $Level$Type): void
-public "requestCachedColoursClear"(): void
-public "handler$bpm000$xaeroplus$resetSignals"(biomeColorCalculator: $BiomeColorCalculator$Type, overlayManager: $OverlayManager$Type, ci: $CallbackInfo$Type): void
-public "wrapOperation$bpm000$xaeroplus$fastMap"(instance: $MapWriter$Type, world: $Level$Type, blockRegistry: $Registry$Type<(any)>, distance: integer, onlyLoad: boolean, biomeRegistry: $Registry$Type<(any)>, overlayManager: $OverlayManager$Type, loadChunks: boolean, updateChunks: boolean, ignoreHeightmaps: boolean, flowers: boolean, detailedDebug: boolean, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, blockTintProvider: $BlockTintProvider$Type, caveDepth: integer, caveStart: integer, layerToWrite: integer, tileChunkX: integer, tileChunkZ: integer, tileChunkLocalX: integer, tileChunkLocalZ: integer, chunkX: integer, chunkZ: integer, original: $Operation$Type<(any)>): boolean
-public "handler$bpm000$xaeroplus$setCrossDimWriteSignals"(biomeColorCalculator: $BiomeColorCalculator$Type, overlayManager: $OverlayManager$Type, ci: $CallbackInfo$Type): void
-public "handler$bpm000$xaeroplus$fastMapMaxTilesPerCycleSetting"(biomeColorCalculator: $BiomeColorCalculator$Type, overlayManager: $OverlayManager$Type, ci: $CallbackInfo$Type, tilesToUpdateRef: $LocalLongRef$Type, sizeTiles: integer): void
-public "handler$bpm000$xaeroplus$setObsidianColumnLocalVar"(world: $Level$Type, blockRegistry: $Registry$Type<(any)>, pixel: $MapBlock$Type, currentPixel: $MapBlock$Type, bchunk: $LevelChunk$Type, insideX: integer, insideZ: integer, highY: integer, lowY: integer, cave: boolean, fullCave: boolean, mappedHeight: integer, canReuseBiomeColours: boolean, ignoreHeightmaps: boolean, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, ci: $CallbackInfo$Type, columnRoofObsidianRef: $LocalBooleanRef$Type): void
-public "handler$bpm000$xaeroplus$netherCaveFixInject"(world: $Level$Type, blockRegistry: $Registry$Type<(any)>, pixel: $MapBlock$Type, currentPixel: $MapBlock$Type, bchunk: $LevelChunk$Type, insideX: integer, insideZ: integer, highY: integer, lowY: integer, cave: boolean, fullCave: boolean, mappedHeight: integer, canReuseBiomeColours: boolean, ignoreHeightmaps: boolean, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, ci: $CallbackInfo$Type, caveRef: $LocalBooleanRef$Type, fullCaveRef: $LocalBooleanRef$Type): void
-public "handler$bpm000$xaeroplus$obsidianRoofHeadInject"(world: $Level$Type, blockRegistry: $Registry$Type<(any)>, pixel: $MapBlock$Type, currentPixel: $MapBlock$Type, bchunk: $LevelChunk$Type, insideX: integer, insideZ: integer, highY: integer, lowY: integer, cave: boolean, fullCave: boolean, mappedHeight: integer, canReuseBiomeColours: boolean, ignoreHeightmaps: boolean, biomeRegistry: $Registry$Type<(any)>, flowers: boolean, worldBottomY: integer, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, ci: $CallbackInfo$Type, stateRef: $LocalRef$Type<(any)>, hRef: $LocalIntRef$Type, transparentSkipYRef: $LocalIntRef$Type, columnRoofObsidianRef: $LocalBooleanRef$Type): void
-public "wrapOperation$bpm000$xaeroplus$checkObsidianRoofColumn"(instance: $OverlayBuilder$Type, original: $Operation$Type<(any)>, columnRoofObsidianRef: $LocalBooleanRef$Type): boolean
-public "wrapOperation$bpm000$xaeroplus$getOpacityForObsidianRoof"(instance: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, original: $Operation$Type<(any)>, h: integer): integer
-public "isGlowing"(arg0: $BlockState$Type): boolean
+public "setMapProcessor"(arg0: $MapProcessor$Type): void
+public "getBlockTintIndex"(arg0: $BlockState$Type): integer
+public "handler$cak000$xaeroplus$resetSignals"(biomeColorCalculator: $BiomeColorCalculator$Type, overlayManager: $OverlayManager$Type, ci: $CallbackInfo$Type): void
+public "wrapOperation$cak000$xaeroplus$fastMap"(instance: $MapWriter$Type, world: $Level$Type, blockRegistry: $Registry$Type<(any)>, distance: integer, onlyLoad: boolean, biomeRegistry: $Registry$Type<(any)>, overlayManager: $OverlayManager$Type, loadChunks: boolean, updateChunks: boolean, ignoreHeightmaps: boolean, flowers: boolean, detailedDebug: boolean, mutableBlockPos3: $BlockPos$MutableBlockPos$Type, blockTintProvider: $BlockTintProvider$Type, caveDepth: integer, caveStart: integer, layerToWrite: integer, tileChunkX: integer, tileChunkZ: integer, tileChunkLocalX: integer, tileChunkLocalZ: integer, chunkX: integer, chunkZ: integer, original: $Operation$Type<(any)>): boolean
+public "wrapOperation$cak000$xaeroplus$removeCustomDimSwitchWriterPrevention"(mapWorld: $MapWorld$Type, original: $Operation$Type<(any)>): $ResourceKey<(any)>
+public "modifyExpressionValue$cak000$xaeroplus$removeWriteTimeLimiterPerFrame"(original: long): long
+public "wrapOperation$cak000$xaeroplus$getActualMapRegionInOnRender"(mapProcessor: $MapProcessor$Type, caveLayer: integer, regX: integer, regZ: integer, create: boolean, original: $Operation$Type<(any)>): $MapRegion
+public "modifyExpressionValue$cak000$xaeroplus$obsidianRoofOverlayMod"(original: boolean, bChunk: $LevelChunk$Type, b: $Block$Type, h: integer): boolean
+public "wrapOperation$cak000$xaeroplus$getOpacityForObsidianRoof$mixinextras$bridge$41"(instance: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, original: $Operation$Type<(any)>, h: $LocalIntRef$Type): integer
 public "writeMap"(arg0: $Level$Type, arg1: $Registry$Type<($Block$Type)>, arg2: double, arg3: double, arg4: double, arg5: $Registry$Type<($Biome$Type)>, arg6: $BiomeColorCalculator$Type, arg7: $OverlayManager$Type, arg8: boolean, arg9: boolean, arg10: boolean, arg11: boolean, arg12: boolean, arg13: $BlockPos$MutableBlockPos$Type, arg14: $BlockTintProvider$Type, arg15: integer): boolean
+public "isGlowing"(arg0: $BlockState$Type): boolean
 public "onRender"(arg0: $BiomeColorCalculator$Type, arg1: $OverlayManager$Type): void
-public "loadPixel"(arg0: $Level$Type, arg1: $Registry$Type<($Block$Type)>, arg2: $MapBlock$Type, arg3: $MapBlock$Type, arg4: $LevelChunk$Type, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: boolean, arg10: boolean, arg11: integer, arg12: boolean, arg13: boolean, arg14: $Registry$Type<($Biome$Type)>, arg15: boolean, arg16: integer, arg17: $BlockPos$MutableBlockPos$Type): void
 public "writeChunk"(arg0: $Level$Type, arg1: $Registry$Type<($Block$Type)>, arg2: integer, arg3: boolean, arg4: $Registry$Type<($Biome$Type)>, arg5: $OverlayManager$Type, arg6: boolean, arg7: boolean, arg8: boolean, arg9: boolean, arg10: boolean, arg11: $BlockPos$MutableBlockPos$Type, arg12: $BlockTintProvider$Type, arg13: integer, arg14: integer, arg15: integer, arg16: integer, arg17: integer, arg18: integer, arg19: integer, arg20: integer, arg21: integer): boolean
+public "loadPixel"(arg0: $Level$Type, arg1: $Registry$Type<($Block$Type)>, arg2: $MapBlock$Type, arg3: $MapBlock$Type, arg4: $LevelChunk$Type, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: boolean, arg10: boolean, arg11: integer, arg12: boolean, arg13: boolean, arg14: $Registry$Type<($Biome$Type)>, arg15: boolean, arg16: integer, arg17: $BlockPos$MutableBlockPos$Type): void
 get "updateCounter"(): long
 set "mapProcessor"(value: $MapProcessor$Type)
 }
@@ -2515,13 +2515,13 @@ static readonly "SUBSEQUENT_NORMAL": integer
 constructor(arg0: $TextureUploadPool$Normal$Type, arg1: $TextureUploadPool$Compressed$Type, arg2: $TextureUploadPool$BranchUpdate$Type, arg3: $TextureUploadPool$BranchUpdate$Type, arg4: $TextureUploadPool$BranchDownload$Type, arg5: $TextureUploadPool$SubsequentNormal$Type, arg6: $TextureUploadBenchmark$Type)
 
 public "finishNewestRequestImmediately"(): void
+public "requestCompressed"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: long, arg9: integer): long
+public "requestSubsequentNormal"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: long, arg8: integer, arg9: integer, arg10: integer, arg11: integer): long
+public "requestNormal"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: long, arg9: integer, arg10: integer): long
 public "requestUpload"(arg0: $TextureUpload$Type): long
 public "requestBranchUpdate"(arg0: boolean, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: long, arg10: integer, arg11: integer, arg12: integer, arg13: integer, arg14: integer, arg15: integer, arg16: $BranchTextureRenderer$Type, arg17: integer, arg18: integer): long
 public "requestBranchDownload"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): long
 public "uploadTextures"(): void
-public "requestCompressed"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: long, arg9: integer): long
-public "requestSubsequentNormal"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: long, arg8: integer, arg9: integer, arg10: integer, arg11: integer): long
-public "requestNormal"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: long, arg9: integer, arg10: integer): long
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2554,18 +2554,18 @@ static readonly "PBO_PACK_LENGTH": integer
 
 constructor(arg0: $MapTileChunk$Type)
 
+public "shouldBeUsedForBranchUpdate"(arg0: integer): boolean
+public "shouldHaveContentForBranchUpdate"(): boolean
 public "deleteTexturesAndBuffers"(): void
 public "addDebugLines"(arg0: $List$Type<(string)>): void
 public "shouldIncludeInCache"(): boolean
 public "writeCacheMapData"(arg0: $DataOutputStream$Type, arg1: (byte)[], arg2: (byte)[], arg3: $LeveledRegion$Type<($LeafRegionTexture$Type)>): void
 public "readCacheData"(arg0: integer, arg1: integer, arg2: $DataInputStream$Type, arg3: (byte)[], arg4: (byte)[], arg5: $LeveledRegion$Type<($LeafRegionTexture$Type)>, arg6: $MapProcessor$Type, arg7: integer, arg8: integer, arg9: boolean): void
-public "shouldBeUsedForBranchUpdate"(arg0: integer): boolean
-public "shouldHaveContentForBranchUpdate"(): boolean
-public "postBufferUpdate"(arg0: boolean): void
 public "resetHeights"(): void
 public "requestHighlightOnlyUpload"(): void
 public "postBufferWrite"(arg0: $PoolTextureDirectBufferUnit$Type): void
 public "hasSourceData"(): boolean
+public "postBufferUpdate"(arg0: boolean): void
 public "getTileChunk"(): $MapTileChunk
 public "prepareBuffer"(): void
 public "canUpload"(): boolean
@@ -2596,27 +2596,27 @@ static readonly "CURRENT_WORLD_INTERPRETATION_VERSION": integer
 
 constructor(...arg0: (any)[])
 
-public "create"(...arg0: (any)[]): void
 public "isLoaded"(): boolean
 public "getBlock"(arg0: integer, arg1: integer): $MapBlock
+public "create"(...arg0: (any)[]): void
+public "getWorldInterpretationVersion"(): integer
 public "getWrittenCaveStart"(): integer
 public "getWrittenCaveDepth"(): integer
 public "wasWrittenOnce"(): boolean
 public "setWrittenCave"(arg0: integer, arg1: integer): void
 public "setWrittenOnce"(arg0: boolean): void
 public "setWorldInterpretationVersion"(arg0: integer): void
-public "getWorldInterpretationVersion"(): integer
 public "getBlockColumn"(arg0: integer): ($MapBlock)[]
 public "setBlock"(arg0: integer, arg1: integer, arg2: $MapBlock$Type): void
 public "setLoaded"(arg0: boolean): void
 public "getChunkX"(): integer
 public "getChunkZ"(): integer
 get "loaded"(): boolean
+get "worldInterpretationVersion"(): integer
 get "writtenCaveStart"(): integer
 get "writtenCaveDepth"(): integer
 set "writtenOnce"(value: boolean)
 set "worldInterpretationVersion"(value: integer)
-get "worldInterpretationVersion"(): integer
 set "loaded"(value: boolean)
 get "chunkX"(): integer
 get "chunkZ"(): integer
@@ -2638,8 +2638,8 @@ import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$
 import {$Path, $Path$Type} from "packages/java/nio/file/$Path"
 import {$WorldDataReader, $WorldDataReader$Type} from "packages/xaero/map/file/worldsave/$WorldDataReader"
 import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
-import {$MapRegion, $MapRegion$Type} from "packages/xaero/map/region/$MapRegion"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$MapRegion, $MapRegion$Type} from "packages/xaero/map/region/$MapRegion"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$MapProcessor, $MapProcessor$Type} from "packages/xaero/map/$MapProcessor"
 import {$Executor, $Executor$Type} from "packages/xaero/map/executor/$Executor"
@@ -2654,10 +2654,10 @@ constructor(arg0: $WorldDataReader$Type, arg1: $Executor$Type)
 public static "onServerWorldUnload"(arg0: $ServerLevel$Type): void
 public "handleRenderExecutor"(): void
 public "getWorldDir"(): $Path
+public "prepareSingleplayer"(arg0: $Level$Type, arg1: $MapProcessor$Type): void
+public "buildRegion"(arg0: $MapRegion$Type, arg1: $HolderLookup$Type<($Block$Type)>, arg2: $Registry$Type<($Block$Type)>, arg3: $Registry$Type<($Fluid$Type)>, arg4: boolean, arg5: (integer)[]): $WorldDataHandler$Result
 public "getWorldServer"(): $ServerLevel
 public "getWorldDataReader"(): $WorldDataReader
-public "buildRegion"(arg0: $MapRegion$Type, arg1: $HolderLookup$Type<($Block$Type)>, arg2: $Registry$Type<($Block$Type)>, arg3: $Registry$Type<($Fluid$Type)>, arg4: boolean, arg5: (integer)[]): $WorldDataHandler$Result
-public "prepareSingleplayer"(arg0: $Level$Type, arg1: $MapProcessor$Type): void
 get "worldDir"(): $Path
 get "worldServer"(): $ServerLevel
 get "worldDataReader"(): $WorldDataReader
@@ -2730,8 +2730,8 @@ export class $OldFormatSupport {
 
 constructor()
 
-public "loadModdedStates"(arg0: $MapProcessor$Type, arg1: string, arg2: string, arg3: string): void
 public "getStateForId"(arg0: integer): $BlockState
+public "loadModdedStates"(arg0: $MapProcessor$Type, arg1: string, arg2: string, arg3: string): void
 public "loadVanillaStates"(): void
 public "loadStates"(): void
 public "fixBiome"(arg0: integer, arg1: integer): string
@@ -2765,8 +2765,8 @@ import {$LeafRegionTexture, $LeafRegionTexture$Type} from "packages/xaero/map/re
 import {$BlockStateShortShapeCache, $BlockStateShortShapeCache$Type} from "packages/xaero/map/cache/$BlockStateShortShapeCache"
 import {$LeveledRegion, $LeveledRegion$Type} from "packages/xaero/map/region/$LeveledRegion"
 import {$MapProcessor, $MapProcessor$Type} from "packages/xaero/map/$MapProcessor"
-import {$DataInputStream, $DataInputStream$Type} from "packages/java/io/$DataInputStream"
 import {$CallbackInfo, $CallbackInfo$Type} from "packages/org/spongepowered/asm/mixin/injection/callback/$CallbackInfo"
+import {$DataInputStream, $DataInputStream$Type} from "packages/java/io/$DataInputStream"
 import {$OverlayManager, $OverlayManager$Type} from "packages/xaero/map/region/$OverlayManager"
 
 export class $MapTileChunk implements $SeenChunksTrackingMapTileChunk {
@@ -2775,9 +2775,12 @@ static readonly "SIDE_LENGTH": integer
 constructor(arg0: $MapRegion$Type, arg1: integer, arg2: integer)
 
 public "getTile"(arg0: integer, arg1: integer): $MapTile
+public "getX"(): integer
 public "toString"(): string
 public "clean"(arg0: $MapProcessor$Type): void
-public "getX"(): integer
+public "setHasHighlightsIfUndiscovered"(arg0: boolean): void
+public "handler$cai000$xaeroplus$setTile"(x: integer, z: integer, tile: $MapTile$Type, blockStateShortShapeCache: $BlockStateShortShapeCache$Type, ci: $CallbackInfo$Type): void
+public "handler$cai000$xaeroplus$readCacheData"(minorSaveVersion: integer, majorSaveVersion: integer, input: $DataInputStream$Type, usableBuffer: (byte)[], integerByteBuffer: (byte)[], mapProcessor: $MapProcessor$Type, x: integer, y: integer, ci: $CallbackInfo$Type): void
 public "getLoadState"(): integer
 public "setLoadState"(arg0: byte): void
 public "getLeafTexture"(): $LeafRegionTexture
@@ -2787,27 +2790,24 @@ public "setHasHadTerrain"(): void
 public "setToUpdateBuffers"(arg0: boolean): void
 public "updateBuffers"(arg0: $MapProcessor$Type, arg1: $BlockTintProvider$Type, arg2: $OverlayManager$Type, arg3: boolean, arg4: $BlockStateShortShapeCache$Type): void
 public "hasHighlightsIfUndiscovered"(): boolean
+public "getSeenTiles"(): ((boolean)[])[]
 public "hasHadTerrain"(): boolean
 public "getTileGridsCache"(): ((byte)[])[]
 public "readCacheData"(arg0: integer, arg1: integer, arg2: $DataInputStream$Type, arg3: (byte)[], arg4: (byte)[], arg5: $MapProcessor$Type, arg6: integer, arg7: integer): void
-public "getSeenTiles"(): ((boolean)[])[]
 public "unsetHasHadTerrain"(): void
-public "setHasHighlightsIfUndiscovered"(arg0: boolean): void
-public "handler$bpk000$xaeroplus$setTile"(x: integer, z: integer, tile: $MapTile$Type, blockStateShortShapeCache: $BlockStateShortShapeCache$Type, ci: $CallbackInfo$Type): void
-public "handler$bpk000$xaeroplus$readCacheData"(minorSaveVersion: integer, majorSaveVersion: integer, input: $DataInputStream$Type, usableBuffer: (byte)[], integerByteBuffer: (byte)[], mapProcessor: $MapProcessor$Type, x: integer, y: integer, ci: $CallbackInfo$Type): void
+public "resetHeights"(): void
 public "getInRegion"(): $MapRegion
 public "getToUpdateBuffers"(): boolean
 public "hasHighlights"(): boolean
 public "writeCacheData"(arg0: $DataOutputStream$Type, arg1: (byte)[], arg2: (byte)[], arg3: $LeveledRegion$Type<($LeafRegionTexture$Type)>): void
-public "setHasHighlights"(arg0: boolean): void
-public "resetHeights"(): void
 public "unincludeInSave"(): void
-public "getZ"(): integer
+public "setHasHighlights"(arg0: boolean): void
 public "getTimer"(): integer
-public "wrapOperation$bpk000$xaeroplus$useRegionDimensionInsteadOfMapWorld"(mapWorld: $MapWorld$Type, original: $Operation$Type<(any)>): $MapDimension
-public "wasChanged"(): boolean
+public "getZ"(): integer
+public "wrapOperation$cai000$xaeroplus$useRegionDimensionInsteadOfMapWorld"(mapWorld: $MapWorld$Type, original: $Operation$Type<(any)>): $MapDimension
 public "setChanged"(arg0: boolean): void
 public "setTile"(arg0: integer, arg1: integer, arg2: $MapTile$Type, arg3: $BlockStateShortShapeCache$Type): void
+public "wasChanged"(): boolean
 public "decTimer"(): void
 public "putColour"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: $ByteBuffer$Type, arg7: integer): void
 get "x"(): integer
@@ -2815,12 +2815,12 @@ get "loadState"(): integer
 set "loadState"(value: byte)
 get "leafTexture"(): $LeafRegionTexture
 set "toUpdateBuffers"(value: boolean)
-get "tileGridsCache"(): ((byte)[])[]
 get "seenTiles"(): ((boolean)[])[]
+get "tileGridsCache"(): ((byte)[])[]
 get "inRegion"(): $MapRegion
 get "toUpdateBuffers"(): boolean
-get "z"(): integer
 get "timer"(): integer
+get "z"(): integer
 set "changed"(value: boolean)
 }
 /**
@@ -2846,11 +2846,11 @@ export interface $MapRegionInfo {
  "setCacheFile"(arg0: $File$Type): void
  "getRegionFile"(): $File
  "hasLookedForCache"(): boolean
- "getWorldId"(): string
- "getMwId"(): string
  "getDimId"(): string
  "getRegionX"(): integer
  "getRegionZ"(): integer
+ "getWorldId"(): string
+ "getMwId"(): string
 }
 
 export namespace $MapRegionInfo {
@@ -2923,8 +2923,8 @@ import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Hashtable, $Hashtable$Type} from "packages/java/util/$Hashtable"
 import {$DimensionType, $DimensionType$Type} from "packages/net/minecraft/world/level/dimension/$DimensionType"
-import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RegionDetection, $RegionDetection$Type} from "packages/xaero/map/file/$RegionDetection"
 import {$LayeredRegionManager, $LayeredRegionManager$Type} from "packages/xaero/map/region/$LayeredRegionManager"
 import {$MapFullReloader, $MapFullReloader$Type} from "packages/xaero/map/$MapFullReloader"
@@ -2949,45 +2949,38 @@ readonly "regionsToCache": $ArrayList<($LeveledRegion<(any)>)>
 constructor(arg0: $MapWorld$Type, arg1: $ResourceKey$Type<($Level$Type)>, arg2: $HighlighterRegistry$Type)
 
 public "clear"(): void
-public "isCacheOnlyMode"(arg0: $Registry$Type<($DimensionType$Type)>): boolean
-public "isUsingWorldSave"(): boolean
-public "getLayeredMapRegions"(): $LayeredRegionManager
-public "getDimensionType"(arg0: $Registry$Type<($DimensionType$Type)>): $DimensionType
-public static "getDimensionType"(arg0: $MapDimension$Type, arg1: $ResourceKey$Type<($Level$Type)>, arg2: $Registry$Type<($DimensionType$Type)>): $DimensionType
-public "getMapWorld"(): $MapWorld
-public "isUsingUnknownDimensionType"(arg0: $Registry$Type<($DimensionType$Type)>): boolean
-public "getSkyDarken"(arg0: float, arg1: $ClientLevel$Type, arg2: $Registry$Type<($DimensionType$Type)>): float
-public "getHighlightHandler"(): $DimensionHighlighterHandler
-public "getCurrentMultiworld"(): string
-public "getMultiworldIdsCopy"(): $List<(string)>
-public "getMultiworldName"(arg0: string): string
-public "getCaveModeType"(): integer
-public "calculateDimScale"(arg0: $Registry$Type<($DimensionType$Type)>): double
-public "calculateDimDiv"(arg0: $Registry$Type<($DimensionType$Type)>, arg1: $DimensionType$Type): double
-public "getDimensionTypeId"(): $ResourceLocation
-public "getFullReloader"(): $MapFullReloader
-public "isFutureMultiworldServerBased"(): boolean
-public "getFutureMultiworldUnsynced"(): string
-public "updateFutureAutomaticUnsynced"(arg0: $Minecraft$Type, arg1: any): void
-public "resetCustomMultiworldUnsynced"(): void
+public "getWorldSaveDetectedRegions"(): $Iterable<($Hashtable<(integer), ($RegionDetection)>)>
 public "addWorldSaveRegionDetection"(arg0: $RegionDetection$Type): void
+public "resetCustomMultiworldUnsynced"(): void
+public "updateFutureAutomaticUnsynced"(arg0: $Minecraft$Type, arg1: any): void
+public "getFutureMultiworldUnsynced"(): string
+public "isFutureMultiworldServerBased"(): boolean
+public "deleteMultiworldMapDataUnsynced"(arg0: string): void
 public "isFutureUsingWorldSaveUnsynced"(): boolean
 public "getFutureCustomSelectedMultiworld"(): string
 public "pickDefaultCustomMultiworldUnsynced"(): void
 public "onClearCachedHighlightHashes"(): void
 public "getWorldSaveRegionDetection"(arg0: integer, arg1: integer): $RegionDetection
 public "getLinkedWorldSaveDetectedRegions"(): $Iterable<($RegionDetection)>
-public "deleteMultiworldMapDataUnsynced"(arg0: string): void
-public "getWorldSaveDetectedRegions"(): $Iterable<($Hashtable<(integer), ($RegionDetection)>)>
-public "hasConfirmedMultiworld"(): boolean
-public "confirmMultiworldUnsynced"(): void
-public "setMultiworldUnsynced"(arg0: string): void
-public "switchToFutureUnsynced"(): void
-public "onWorldChangeUnsynced"(arg0: $Level$Type): void
-public "hasDoneRegionDetection"(): boolean
-public "getDimensionEffects"(arg0: $Registry$Type<($DimensionType$Type)>): $DimensionSpecialEffects
-public "onCreationUnsynced"(): void
-public "getPlayerMapKey"(): $MapConnectionNode
+public "getMapWorld"(): $MapWorld
+public "getDimensionType"(arg0: $Registry$Type<($DimensionType$Type)>): $DimensionType
+public static "getDimensionType"(arg0: $MapDimension$Type, arg1: $ResourceKey$Type<($Level$Type)>, arg2: $Registry$Type<($DimensionType$Type)>): $DimensionType
+public "isCacheOnlyMode"(arg0: $Registry$Type<($DimensionType$Type)>): boolean
+public "isUsingWorldSave"(): boolean
+public "getLayeredMapRegions"(): $LayeredRegionManager
+public "isUsingUnknownDimensionType"(arg0: $Registry$Type<($DimensionType$Type)>): boolean
+public "getHighlightHandler"(): $DimensionHighlighterHandler
+public "getCurrentMultiworld"(): string
+public "getMultiworldIdsCopy"(): $List<(string)>
+public "getMultiworldName"(arg0: string): string
+public "getCaveModeType"(): integer
+public "calculateDimScale"(arg0: $Registry$Type<($DimensionType$Type)>): double
+public "getSkyDarken"(arg0: float, arg1: $ClientLevel$Type, arg2: $Registry$Type<($DimensionType$Type)>): float
+public "calculateDimDiv"(arg0: $Registry$Type<($DimensionType$Type)>, arg1: $DimensionType$Type): double
+public "getDimensionTypeId"(): $ResourceLocation
+public "getFullReloader"(): $MapFullReloader
+public "switchToFutureMultiworldWritableValueUnsynced"(): void
+public "preDetection"(): void
 public "addMultiworldChecked"(arg0: string): boolean
 public "getMainFolderPath"(): $Path
 public "getOldFolderPath"(): $Path
@@ -2998,35 +2991,42 @@ public "onClearCachedHighlightHash"(arg0: integer, arg1: integer): void
 public "toggleCaveModeType"(arg0: boolean): void
 public "getSelectedMapKeyUnsynced"(): $MapConnectionNode
 public "isAutoSelected"(): boolean
-public "preDetection"(): void
-public "clearFullMapReload"(): void
+public "hasConfirmedMultiworld"(): boolean
+public "confirmMultiworldUnsynced"(): void
+public "setMultiworldUnsynced"(arg0: string): void
+public "switchToFutureUnsynced"(): void
+public "onWorldChangeUnsynced"(arg0: $Level$Type): void
+public "hasDoneRegionDetection"(): boolean
+public "getDimensionEffects"(arg0: $Registry$Type<($DimensionType$Type)>): $DimensionSpecialEffects
+public "onCreationUnsynced"(): void
+public "getPlayerMapKey"(): $MapConnectionNode
 public "startFullMapReload"(arg0: integer, arg1: boolean, arg2: $MapProcessor$Type): void
-public "switchToFutureMultiworldWritableValueUnsynced"(): void
+public "clearFullMapReload"(): void
 public "getDimId"(): $ResourceKey<($Level)>
 public "getShadowR"(): float
 public "getShadowG"(): float
 public "getShadowB"(): float
+get "worldSaveDetectedRegions"(): $Iterable<($Hashtable<(integer), ($RegionDetection)>)>
+get "futureMultiworldUnsynced"(): string
+get "futureMultiworldServerBased"(): boolean
+get "futureUsingWorldSaveUnsynced"(): boolean
+get "futureCustomSelectedMultiworld"(): string
+get "linkedWorldSaveDetectedRegions"(): $Iterable<($RegionDetection)>
+get "mapWorld"(): $MapWorld
 get "usingWorldSave"(): boolean
 get "layeredMapRegions"(): $LayeredRegionManager
-get "mapWorld"(): $MapWorld
 get "highlightHandler"(): $DimensionHighlighterHandler
 get "currentMultiworld"(): string
 get "multiworldIdsCopy"(): $List<(string)>
 get "caveModeType"(): integer
 get "dimensionTypeId"(): $ResourceLocation
 get "fullReloader"(): $MapFullReloader
-get "futureMultiworldServerBased"(): boolean
-get "futureMultiworldUnsynced"(): string
-get "futureUsingWorldSaveUnsynced"(): boolean
-get "futureCustomSelectedMultiworld"(): string
-get "linkedWorldSaveDetectedRegions"(): $Iterable<($RegionDetection)>
-get "worldSaveDetectedRegions"(): $Iterable<($Hashtable<(integer), ($RegionDetection)>)>
-set "multiworldUnsynced"(value: string)
-get "playerMapKey"(): $MapConnectionNode
 get "mainFolderPath"(): $Path
 get "oldFolderPath"(): $Path
 get "selectedMapKeyUnsynced"(): $MapConnectionNode
 get "autoSelected"(): boolean
+set "multiworldUnsynced"(value: string)
+get "playerMapKey"(): $MapConnectionNode
 get "dimId"(): $ResourceKey<($Level)>
 get "shadowR"(): float
 get "shadowG"(): float
@@ -3062,18 +3062,18 @@ public "get"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $Level
 public "clear"(): void
 public "size"(): integer
 public "getLayer"(arg0: integer): $MapLayer
+public "onClearCachedHighlightHashes"(): void
 public "applyToEachLoadedLayer"(arg0: $BiConsumer$Type<(integer), ($MapLayer$Type)>): void
 public "bumpLoadedRegion"(arg0: $LeveledRegion$Type<(any)>): void
 public "bumpLoadedRegion"(arg0: $MapRegion$Type): void
 public "loadedCount"(): integer
-public "onClearCachedHighlightHashes"(): void
-public "getLoadedListUnsynced"(): $List<($LeveledRegion<(any)>)>
-public "addListRegion"(arg0: $LeveledRegion$Type<(any)>): void
-public "removeListRegion"(arg0: $LeveledRegion$Type<(any)>): void
-public "removeLoadedRegion"(arg0: $LeveledRegion$Type<(any)>): void
-public "onClearCachedHighlightHash"(arg0: integer, arg1: integer): void
 public "preDetection"(): void
 public "addLoadedRegion"(arg0: $LeveledRegion$Type<(any)>): void
+public "addListRegion"(arg0: $LeveledRegion$Type<(any)>): void
+public "onClearCachedHighlightHash"(arg0: integer, arg1: integer): void
+public "getLoadedListUnsynced"(): $List<($LeveledRegion<(any)>)>
+public "removeListRegion"(arg0: $LeveledRegion$Type<(any)>): void
+public "removeLoadedRegion"(arg0: $LeveledRegion$Type<(any)>): void
 public "getUnsyncedSet"(): $Set<($LeveledRegion<(any)>)>
 public "getLoadedRegion"(arg0: integer): $LeveledRegion<(any)>
 public "getLeaf"(arg0: integer, arg1: integer, arg2: integer): $MapRegion
@@ -3177,20 +3177,20 @@ readonly "screenExecutor": $Executor
 constructor(arg0: $Component$Type, arg1: $Screen$Type, arg2: $Screen$Type)
 
 public "getIndex"(arg0: $GuiEventListener$Type): integer
-public "handler$cao001$xaeroplus$adjustForwardBackButtonPositionsForExtraRows"(ci: $CallbackInfo$Type): void
-public "wrapOperation$cao000$xaeroplus$adjustSettingEntryWidth$mixinextras$bridge$31"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: $LocalIntRef$Type): $AbstractWidget
-public "getEntriesCopy"(): ($ISettingEntry)[]
+public "handler$cbm001$xaeroplus$adjustEntriesPerPage"(ci: $CallbackInfo$Type): void
+public "redirect$cbm001$xaeroplus$settingListToRenderRedirect"(instance: $ArrayList$Type<(any)>, entryObject: any): boolean
+public "wrapOperation$cbm000$xaeroplus$adjustSettingEntryWidth"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: integer): $AbstractWidget
 public "restoreFocus"(arg0: integer): void
-public "handler$bon000$xaeroplus$drawScreen"(guiGraphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, delta: float, ci: $CallbackInfo$Type): void
-public "handler$cao001$xaeroplus$adjustEntriesPerPage"(ci: $CallbackInfo$Type): void
-public "redirect$cao001$xaeroplus$settingListToRenderRedirect"(instance: $ArrayList$Type<(any)>, entryObject: any): boolean
-public "wrapOperation$cao000$xaeroplus$adjustSettingEntryWidth"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: integer): $AbstractWidget
-public "charTyped"(arg0: character, arg1: integer): boolean
-public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "init"(): void
+public "getEntriesCopy"(): ($ISettingEntry)[]
+public "handler$bpl000$xaeroplus$drawScreen"(guiGraphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, delta: float, ci: $CallbackInfo$Type): void
+public "handler$cbm001$xaeroplus$adjustForwardBackButtonPositionsForExtraRows"(ci: $CallbackInfo$Type): void
+public "wrapOperation$cbm000$xaeroplus$adjustSettingEntryWidth$mixinextras$bridge$31"(instance: $ISettingEntry$Type, x: integer, y: integer, w: integer, canEditIngameSettings: boolean, original: $Operation$Type<(any)>, i: $LocalIntRef$Type): $AbstractWidget
 public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "tick"(): void
 public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
+public "charTyped"(arg0: character, arg1: integer): boolean
+public "init"(): void
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "entriesCopy"(): ($ISettingEntry)[]
 }
@@ -3316,8 +3316,8 @@ constructor(arg0: $Screen$Type, arg1: $Screen$Type, arg2: $MapProcessor$Type, ar
 
 public "getSelection"(): $MapTileSelection
 public "onExportDone"(arg0: $PNGExportResult$Type): void
-public "init"(): void
 public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "init"(): void
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "selection"(): $MapTileSelection
 }
@@ -3456,18 +3456,17 @@ export class $BlockTintProvider implements $BlockAndTintGetter {
 constructor(arg0: $Registry$Type<($Biome$Type)>, arg1: $BiomeColorCalculator$Type, arg2: $MapProcessor$Type, arg3: $BrokenBlockTintCache$Type, arg4: $MapWriter$Type)
 
 public "getBiomeColor"(arg0: $BlockPos$Type, arg1: $BlockState$Type, arg2: boolean, arg3: $MapTile$Type, arg4: integer): integer
-public "getFluidState"(arg0: $BlockPos$Type): $FluidState
+public "getBlockState"(arg0: $BlockPos$Type): $BlockState
+public "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
 public "getMinBuildHeight"(): integer
 public "getLightEngine"(): $LevelLightEngine
 public "getBlockTint"(arg0: $BlockPos$Type, arg1: $ColorResolver$Type): integer
 public "getHeight"(): integer
 public "getShade"(arg0: $Direction$Type, arg1: boolean): float
-public "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
-public "getBlockState"(arg0: $BlockPos$Type): $BlockState
+public "getFluidState"(arg0: $BlockPos$Type): $FluidState
 public "getBrightness"(arg0: $LightLayer$Type, arg1: $BlockPos$Type): integer
 public "canSeeSky"(arg0: $BlockPos$Type): boolean
 public "getRawBrightness"(arg0: $BlockPos$Type, arg1: integer): integer
-public "getMaxLightLevel"(): integer
 public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
 public "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
 public "getLightEmission"(arg0: $BlockPos$Type): integer
@@ -3477,9 +3476,8 @@ public "clip"(arg0: $ClipContext$Type): $BlockHitResult
 public "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $BlockPos$Type, arg3: $VoxelShape$Type, arg4: $BlockState$Type): $BlockHitResult
 public "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
 public "getBlockFloorHeight"(arg0: $BlockPos$Type): double
+public "getMaxLightLevel"(): integer
 public "getShade"(arg0: float, arg1: float, arg2: float, arg3: boolean): float
-public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
-public "getMaxBuildHeight"(): integer
 public "getSectionsCount"(): integer
 public "getMaxSection"(): integer
 public "getMinSection"(): integer
@@ -3488,8 +3486,10 @@ public "getSectionIndex"(arg0: integer): integer
 public "getSectionIndexFromSectionY"(arg0: integer): integer
 public "getSectionYFromSectionIndex"(arg0: integer): integer
 public static "create"(arg0: integer, arg1: integer): $LevelHeightAccessor
-public "getModelDataManager"(): $ModelDataManager
+public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
+public "getMaxBuildHeight"(): integer
 public "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
+public "getModelDataManager"(): $ModelDataManager
 public "getBlockEntityRenderData"(pos: $BlockPos$Type): any
 public "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
 public "hasBiomes"(): boolean
@@ -3497,10 +3497,10 @@ get "minBuildHeight"(): integer
 get "lightEngine"(): $LevelLightEngine
 get "height"(): integer
 get "maxLightLevel"(): integer
-get "maxBuildHeight"(): integer
 get "sectionsCount"(): integer
 get "maxSection"(): integer
 get "minSection"(): integer
+get "maxBuildHeight"(): integer
 get "modelDataManager"(): $ModelDataManager
 }
 /**
@@ -3523,12 +3523,12 @@ import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 export class $MessageBox {
 
 
-public "getIterator"(): $Iterator<($Message)>
 public "getCapacity"(): integer
+public "getIterator"(): $Iterator<($Message)>
 public "addMessage"(arg0: $Component$Type): void
 public "addMessageWithSource"(arg0: $Component$Type, arg1: $Component$Type): void
-get "iterator"(): $Iterator<($Message)>
 get "capacity"(): integer
+get "iterator"(): $Iterator<($Message)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3555,12 +3555,12 @@ export class $OverlayBuilder {
 
 constructor(arg0: $OverlayManager$Type)
 
-public "isEmpty"(): boolean
 public "build"(arg0: $BlockState$Type, arg1: integer, arg2: byte, arg3: $MapProcessor$Type, arg4: $ResourceKey$Type<($Biome$Type)>): void
+public "isEmpty"(): boolean
+public "startBuilding"(): void
 public "finishBuilding"(arg0: $MapBlock$Type): void
 public "getOverlayBiome"(): $ResourceKey<($Biome)>
 public "getCurrentOverlay"(): $Overlay
-public "startBuilding"(): void
 public "setOverlayBiome"(arg0: $ResourceKey$Type<($Biome$Type)>): void
 get "empty"(): boolean
 get "overlayBiome"(): $ResourceKey<($Biome)>
@@ -3628,8 +3628,8 @@ constructor(arg0: $BlockState$Type, arg1: byte, arg2: boolean)
 public "getOpacity"(): integer
 public "equals"(arg0: $Overlay$Type): boolean
 public "write"(arg0: $BlockState$Type, arg1: byte, arg2: boolean): void
-public "increaseOpacity"(arg0: integer): void
 public "getPixelColour"(arg0: $MapBlock$Type, arg1: (integer)[], arg2: $MapWriter$Type, arg3: $Level$Type, arg4: $MapDimension$Type, arg5: $Registry$Type<($Block$Type)>, arg6: $MapTileChunk$Type, arg7: $MapTileChunk$Type, arg8: $MapTileChunk$Type, arg9: $MapTileChunk$Type, arg10: $MapTile$Type, arg11: integer, arg12: integer, arg13: integer, arg14: integer, arg15: $BlockPos$MutableBlockPos$Type, arg16: $Registry$Type<($Biome$Type)>, arg17: $Registry$Type<($DimensionType$Type)>, arg18: float, arg19: float, arg20: float, arg21: $BlockTintProvider$Type, arg22: $MapProcessor$Type, arg23: $OverlayManager$Type): void
+public "increaseOpacity"(arg0: integer): void
 public "toRenderString"(): string
 public "getParametres"(): integer
 public "isWater"(): boolean
@@ -3654,8 +3654,8 @@ import {$WorldMapClientWorldData, $WorldMapClientWorldData$Type} from "packages/
 
 export interface $IWorldMapClientWorld {
 
- "getXaero_worldmapData"(): $WorldMapClientWorldData
  "setXaero_worldmapData"(arg0: $WorldMapClientWorldData$Type): void
+ "getXaero_worldmapData"(): $WorldMapClientWorldData
 }
 
 export namespace $IWorldMapClientWorld {
@@ -3726,9 +3726,9 @@ constructor()
 
 public "isEmpty"(): boolean
 public "save"(arg0: $PrintWriter$Type): void
-public "addConnection"(arg0: $MapConnectionNode$Type, arg1: $MapConnectionNode$Type): void
 public "isConnected"(arg0: $MapConnectionNode$Type, arg1: $MapConnectionNode$Type): boolean
 public "removeConnection"(arg0: $MapConnectionNode$Type, arg1: $MapConnectionNode$Type): void
+public "addConnection"(arg0: $MapConnectionNode$Type, arg1: $MapConnectionNode$Type): void
 public "renameDimension"(arg0: string, arg1: string): void
 get "empty"(): boolean
 }
@@ -3796,6 +3796,8 @@ constructor(arg0: $LeveledRegion$Type<(T)>)
 
 public "getRegion"(): $LeveledRegion<(T)>
 public "getHeight"(arg0: integer, arg1: integer): integer
+public "shouldBeUsedForBranchUpdate"(arg0: integer): boolean
+public "shouldHaveContentForBranchUpdate"(): boolean
 public "shouldUpload"(): boolean
 public "getTopHeight"(arg0: integer, arg1: integer): integer
 public "getGlColorTexture"(): integer
@@ -3812,8 +3814,6 @@ public "getBufferedTextureVersion"(): integer
 public "writeCacheMapData"(arg0: $DataOutputStream$Type, arg1: (byte)[], arg2: (byte)[], arg3: $LeveledRegion$Type<(T)>): void
 public "resetBiomes"(): void
 public "readCacheData"(arg0: integer, arg1: integer, arg2: $DataInputStream$Type, arg3: (byte)[], arg4: (byte)[], arg5: $LeveledRegion$Type<(T)>, arg6: $MapProcessor$Type, arg7: integer, arg8: integer, arg9: boolean): void
-public "shouldBeUsedForBranchUpdate"(arg0: integer): boolean
-public "shouldHaveContentForBranchUpdate"(): boolean
 public "setBufferedTextureVersion"(arg0: integer): void
 public "shouldDownloadFromPBO"(): boolean
 public "uploadBuffer"(arg0: $DimensionHighlighterHandler$Type, arg1: $TextureUploader$Type, arg2: $LeveledRegion$Type<(T)>, arg3: $BranchTextureRenderer$Type, arg4: integer, arg5: integer): long
@@ -3827,13 +3827,13 @@ public "removeHeight"(arg0: integer, arg1: integer): void
 public "removeTopHeight"(arg0: integer, arg1: integer): void
 public "ensureBiomeIndexStorage"(): void
 public "hasSourceData"(): boolean
+public "getTimer"(): integer
+public "getColorBufferFormat"(): integer
+public "getDirectColorBuffer"(): $ByteBuffer
 public "bindColorTexture"(arg0: boolean): integer
 public "prepareBuffer"(): void
-public "getBufferHasLight"(): boolean
 public "isColorBufferCompressed"(): boolean
-public "getDirectColorBuffer"(): $ByteBuffer
-public "getColorBufferFormat"(): integer
-public "getTimer"(): integer
+public "getBufferHasLight"(): boolean
 public "getBiome"(arg0: integer, arg1: integer): $ResourceKey<($Biome)>
 public "getBiomes"(): $RegionTextureBiomes
 public "setBiome"(arg0: integer, arg1: integer, arg2: $ResourceKey$Type<($Biome$Type)>): void
@@ -3856,11 +3856,11 @@ get "cachePrepared"(): boolean
 get "bufferedTextureVersion"(): integer
 set "bufferedTextureVersion"(value: integer)
 get "textureVersion"(): integer
-get "bufferHasLight"(): boolean
-get "colorBufferCompressed"(): boolean
-get "directColorBuffer"(): $ByteBuffer
-get "colorBufferFormat"(): integer
 get "timer"(): integer
+get "colorBufferFormat"(): integer
+get "directColorBuffer"(): $ByteBuffer
+get "colorBufferCompressed"(): boolean
+get "bufferHasLight"(): boolean
 get "biomes"(): $RegionTextureBiomes
 get "uploaded"(): boolean
 }
@@ -3929,9 +3929,9 @@ export class $MultiTextureRenderTypeRendererProvider {
 
 constructor(arg0: integer)
 
-public static "defaultTextureBind"(arg0: integer): void
-public "getRenderer"(arg0: $IntConsumer$Type, arg1: $IntConsumer$Type, arg2: $RenderType$Type): $MultiTextureRenderTypeRenderer
 public "getRenderer"(arg0: $IntConsumer$Type, arg1: $IntConsumer$Type, arg2: $Runnable$Type, arg3: $RenderType$Type): $MultiTextureRenderTypeRenderer
+public "getRenderer"(arg0: $IntConsumer$Type, arg1: $IntConsumer$Type, arg2: $RenderType$Type): $MultiTextureRenderTypeRenderer
+public static "defaultTextureBind"(arg0: integer): void
 public "draw"(arg0: $MultiTextureRenderTypeRenderer$Type): void
 }
 /**
@@ -3959,16 +3959,16 @@ export class $DimensionHighlighterHandler {
 constructor(arg0: $MapDimension$Type, arg1: $ResourceKey$Type<($Level$Type)>, arg2: $HighlighterRegistry$Type)
 
 public static "getKey"(arg0: integer, arg1: integer): long
+public "shouldApplyRegionHighlights"(regionX: integer, regionZ: integer, discovered: boolean): boolean
 public "applyChunkHighlightColors"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $PoolTextureDirectBufferUnit$Type, arg5: $PoolTextureDirectBufferUnit$Type, arg6: boolean, arg7: boolean, arg8: boolean): $PoolTextureDirectBufferUnit
+public "shouldApplyTileChunkHighlights"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): boolean
 public "getBlockHighlightSubtleTooltip"(arg0: integer, arg1: integer, arg2: boolean): $Component
 public "getBlockHighlightBluntTooltip"(arg0: integer, arg1: integer, arg2: boolean): $Component
-public "shouldApplyTileChunkHighlights"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): boolean
 public "getRegionHash"(arg0: integer, arg1: integer): integer
-public "shouldApplyRegionHighlights"(regionX: integer, regionZ: integer, discovered: boolean): boolean
 public static "getXFromKey"(arg0: long): integer
 public static "getZFromKey"(arg0: long): integer
-public "clearCachedHash"(arg0: integer, arg1: integer): void
 public "clearCachedHashes"(): void
+public "clearCachedHash"(arg0: integer, arg1: integer): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4024,23 +4024,26 @@ constructor(arg0: $OverlayManager$Type, arg1: $PNGExporter$Type, arg2: $OldForma
 
 public "run"(arg0: $HolderLookup$Type<($Block$Type)>, arg1: $Registry$Type<($Block$Type)>, arg2: $Registry$Type<($Fluid$Type)>, arg3: $BiomeGetter$Type, arg4: $Registry$Type<($Biome$Type)>): void
 public "getFile"(arg0: $MapRegion$Type): $File
+public "handler$cah000$xaeroplus$getOldFolder"(oldUnfixedMainId: string, dim: string, cir: $CallbackInfoReturnable$Type<(any)>): void
 public "isRegionDetectionComplete"(): boolean
 public "getNextToLoadByViewing"(): $LeveledRegion<(any)>
 public "requestLoad"(arg0: $MapRegion$Type, arg1: string): void
 public "requestLoad"(arg0: $MapRegion$Type, arg1: string, arg2: boolean): void
 public "setNextToLoadByViewing"(arg0: $LeveledRegion$Type<(any)>): void
 public "setMapProcessor"(arg0: $MapProcessor$Type): void
-public "getCacheFile"(arg0: $MapRegionInfo$Type, arg1: integer, arg2: boolean, arg3: boolean): $File
 public static "getRootFolder"(arg0: string): $Path
+public "getCacheFile"(arg0: $MapRegionInfo$Type, arg1: integer, arg2: boolean, arg3: boolean): $File
 public "toCacheContains"(arg0: $LeveledRegion$Type<(any)>): boolean
 public "removeToLoad"(arg0: $MapRegion$Type): void
 public "removeTempCacheRequest"(arg0: $File$Type): boolean
 public "addTempCacheRequest"(arg0: $File$Type): void
 public "getSizeOfToLoad"(): integer
 public "getSizeOfToLoadBranchCache"(): integer
-public "requestBranchCache"(arg0: $BranchLeveledRegion$Type, arg1: string): void
 public "requestBranchCache"(arg0: $BranchLeveledRegion$Type, arg1: string, arg2: boolean): void
-public "handler$bpj000$xaeroplus$getOldFolder"(oldUnfixedMainId: string, dim: string, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "requestBranchCache"(arg0: $BranchLeveledRegion$Type, arg1: string): void
+public "handler$cah000$xaeroplus$saveRegionWriteZipOutputStream"(region: $MapRegion$Type, extraAttempts: integer, cir: $CallbackInfoReturnable$Type<(any)>, zipOut: $ZipOutputStream$Type): void
+public "handler$cah000$xaeroplus$closeZipOutputStream"(region: $MapRegion$Type, extraAttempts: integer, cir: $CallbackInfoReturnable$Type<(any)>, zipOutShare: $LocalRef$Type<(any)>): void
+public "redirect$cah000$xaeroplus$replaceSaveRegionZipOutputStream"(out: $OutputStream$Type, zipOut: $ZipOutputStream$Type, zipOutShare: $LocalRef$Type<(any)>): $DataOutputStream
 public "getTempFile"(arg0: $File$Type): $File
 public "getCaveLayerFolder"(arg0: integer, arg1: $Path$Type): $Path
 public "requestCache"(arg0: $LeveledRegion$Type<(any)>): void
@@ -4051,24 +4054,21 @@ public "detectRegionsFromFiles"(arg0: $MapDimension$Type, arg1: string, arg2: st
 public "clearToLoad"(): void
 public "setRegionDetectionComplete"(arg0: boolean): void
 public "getOldFormatSupport"(): $OldFormatSupport
-public "safeMoveAndReplace"(arg0: $Path$Type, arg1: $Path$Type, arg2: string, arg3: string): void
-public "getMWSubFolder"(arg0: string, arg1: string, arg2: string): $Path
-public "getMainFolder"(arg0: string, arg1: string): $Path
-public "removeToCache"(arg0: $MapDimension$Type, arg1: integer): $LeveledRegion<(any)>
-public "removeToCache"(arg0: $LeveledRegion$Type<(any)>): void
 public "safeDelete"(arg0: $Path$Type, arg1: string): void
-public "handler$bpj000$xaeroplus$closeZipOutputStream"(region: $MapRegion$Type, extraAttempts: integer, cir: $CallbackInfoReturnable$Type<(any)>, zipOutShare: $LocalRef$Type<(any)>): void
-public "handler$bpj000$xaeroplus$saveRegionWriteZipOutputStream"(region: $MapRegion$Type, extraAttempts: integer, cir: $CallbackInfoReturnable$Type<(any)>, zipOut: $ZipOutputStream$Type): void
-public "redirect$bpj000$xaeroplus$replaceSaveRegionZipOutputStream"(out: $OutputStream$Type, zipOut: $ZipOutputStream$Type, zipOutShare: $LocalRef$Type<(any)>): $DataOutputStream
-public "redirect$bpj000$xaeroplus$replaceSaveRegionZipOutputStream$mixinextras$bridge$59"(out: $OutputStream$Type, zipOut: $LocalRef$Type<(any)>, zipOutShare: $LocalRef$Type<(any)>): $DataOutputStream
+public "safeMoveAndReplace"(arg0: $Path$Type, arg1: $Path$Type, arg2: string, arg3: string): void
+public "getMainFolder"(arg0: string, arg1: string): $Path
+public "getMWSubFolder"(arg0: string, arg1: string, arg2: string): $Path
+public "removeToCache"(arg0: $LeveledRegion$Type<(any)>): void
+public "removeToCache"(arg0: $MapDimension$Type, arg1: integer): $LeveledRegion<(any)>
+public "redirect$cah000$xaeroplus$replaceSaveRegionZipOutputStream$mixinextras$bridge$59"(out: $OutputStream$Type, zipOut: $LocalRef$Type<(any)>, zipOutShare: $LocalRef$Type<(any)>): $DataOutputStream
 public "backupFile"(arg0: $File$Type, arg1: integer): void
 public "saveExists"(arg0: $MapRegion$Type): boolean
 public "getToSave"(): $ArrayList<($MapRegion)>
-public "exportPNG"(arg0: $ExportScreen$Type, arg1: $MapTileSelection$Type): boolean
 public "loadRegion"(arg0: $MapRegion$Type, arg1: $HolderLookup$Type<($Block$Type)>, arg2: $Registry$Type<($Block$Type)>, arg3: $Registry$Type<($Fluid$Type)>, arg4: $BiomeGetter$Type, arg5: integer): boolean
 public "beingSaved"(arg0: $MapDimension$Type, arg1: integer, arg2: integer): boolean
 public "addToLoad"(arg0: $MapRegion$Type, arg1: string, arg2: boolean): void
 public "updateSave"(arg0: $LeveledRegion$Type<(any)>, arg1: long, arg2: integer): void
+public "exportPNG"(arg0: $ExportScreen$Type, arg1: $MapTileSelection$Type): boolean
 get "regionDetectionComplete"(): boolean
 get "nextToLoadByViewing"(): $LeveledRegion<(any)>
 set "nextToLoadByViewing"(value: $LeveledRegion$Type<(any)>)
@@ -4103,9 +4103,8 @@ export class $RegionDetection implements $MapRegionInfo, $ILinkedChainNode<($Reg
 constructor(arg0: string, arg1: string, arg2: string, arg3: integer, arg4: integer, arg5: $File$Type, arg6: integer, arg7: boolean)
 
 public "isDestroyed"(): boolean
-public "getNext"(): $RegionDetection
-public "setPrevious"(arg0: $RegionDetection$Type): void
 public "onDestroyed"(): void
+public "setPrevious"(arg0: $RegionDetection$Type): void
 public "shouldCache"(): boolean
 public "setShouldCache"(arg0: boolean, arg1: string): void
 public "getCacheFile"(): $File
@@ -4116,30 +4115,29 @@ public "transferInfoFrom"(arg0: $MapRegion$Type): void
 public "hasLookedForCache"(): boolean
 public "transferInfoTo"(arg0: $MapRegion$Type): void
 public "transferInfoPostAddTo"(arg0: $MapRegion$Type, arg1: $MapProcessor$Type): void
-public "isHasHadTerrain"(): boolean
 public "setNext"(arg0: $RegionDetection$Type): void
 public "isRemoved"(): boolean
-public "getWorldId"(): string
-public "getMwId"(): string
+public "isHasHadTerrain"(): boolean
 public "getDimId"(): string
 public "getRegionX"(): integer
 public "getRegionZ"(): integer
+public "getWorldId"(): string
+public "getMwId"(): string
 public "setRemoved"(arg0: boolean): void
 get "destroyed"(): boolean
-get "next"(): $RegionDetection
 set "previous"(value: $RegionDetection$Type)
 get "cacheFile"(): $File
 set "cacheFile"(value: $File$Type)
 get "initialVersion"(): integer
 get "regionFile"(): $File
-get "hasHadTerrain"(): boolean
 set "next"(value: $RegionDetection$Type)
 get "removed"(): boolean
-get "worldId"(): string
-get "mwId"(): string
+get "hasHadTerrain"(): boolean
 get "dimId"(): string
 get "regionX"(): integer
 get "regionZ"(): integer
+get "worldId"(): string
+get "mwId"(): string
 set "removed"(value: boolean)
 }
 /**
@@ -4162,8 +4160,8 @@ export class $RegionHighlightExistenceTracker {
 constructor(arg0: $MapDimension$Type, arg1: integer)
 
 public "track"(arg0: integer, arg1: integer): void
-public "onClearCachedHash"(arg0: integer, arg1: integer): void
 public "onClearCachedHashes"(): void
+public "onClearCachedHash"(arg0: integer, arg1: integer): void
 public "stopTracking"(arg0: integer, arg1: integer): void
 }
 /**
@@ -4183,8 +4181,8 @@ import {$ServerWorldCapabilities, $ServerWorldCapabilities$Type} from "packages/
 
 export interface $IWorldMapServerLevel {
 
- "getXaero_wm_capabilities"(): $ServerWorldCapabilities
  "setXaero_wm_capabilities"(arg0: $ServerWorldCapabilities$Type): void
+ "getXaero_wm_capabilities"(): $ServerWorldCapabilities
 }
 
 export namespace $IWorldMapServerLevel {
@@ -4282,10 +4280,10 @@ public "checkForUpdates"(arg0: $RegionTexture$Type<(any)>, arg1: $RegionTexture$
 public "addDebugLines"(arg0: $List$Type<(string)>): void
 public "writeCacheMapData"(arg0: $DataOutputStream$Type, arg1: (byte)[], arg2: (byte)[], arg3: $LeveledRegion$Type<($BranchRegionTexture$Type)>): void
 public "readCacheData"(arg0: integer, arg1: integer, arg2: $DataInputStream$Type, arg3: (byte)[], arg4: (byte)[], arg5: $LeveledRegion$Type<($BranchRegionTexture$Type)>, arg6: $MapProcessor$Type, arg7: integer, arg8: integer, arg9: boolean): void
-public "requestDownload"(): void
 public "uploadBuffer"(arg0: $DimensionHighlighterHandler$Type, arg1: $TextureUploader$Type, arg2: $LeveledRegion$Type<($BranchRegionTexture$Type)>, arg3: $BranchTextureRenderer$Type, arg4: integer, arg5: integer): long
 public "onTextureDeletion"(): void
 public "hasSourceData"(): boolean
+public "requestDownload"(): void
 public "preUpload"(arg0: $MapProcessor$Type, arg1: $BlockTintProvider$Type, arg2: $OverlayManager$Type, arg3: $LeveledRegion$Type<($BranchRegionTexture$Type)>, arg4: boolean, arg5: $BlockStateShortShapeCache$Type): void
 public "postUpload"(arg0: $MapProcessor$Type, arg1: $LeveledRegion$Type<($BranchRegionTexture$Type)>, arg2: boolean): void
 }

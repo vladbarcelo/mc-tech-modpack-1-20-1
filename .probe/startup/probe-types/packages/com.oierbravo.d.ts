@@ -104,21 +104,21 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "hasShaftTowards"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Direction$Type): boolean
 public "getBlockEntityClass"(): $Class<($ExtruderBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "hasShaftTowards"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Direction$Type): boolean
 public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $ExtruderBlockEntity
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($ExtruderBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($ExtruderBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($ExtruderBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $ExtruderBlockEntity
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -160,11 +160,11 @@ static readonly "TYPE": $BehaviourType<($ExtrudingBehaviour)>
 
 constructor<T extends ($SmartBlockEntity) & ($ExtrudingBehaviour$ExtrudingBehaviourSpecifics)>(arg0: T)
 
+public "tick"(): void
 public "start"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "read"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "getType"(): $BehaviourType<(any)>
-public "tick"(): void
 public "makeCompactingParticleEffect"(arg0: $Vec3$Type, arg1: $ItemStack$Type): void
 public "getRunningTickSpeed"(): integer
 public "getRenderedPoleOffset"(arg0: float): float
@@ -243,8 +243,8 @@ import {$IRecipeWithRequirements, $IRecipeWithRequirements$Type} from "packages/
 
 export interface $RecipeRequirementsBehaviour$RecipeRequirementsSpecifics<R extends $IRecipeWithRequirements> {
 
- "matchIngredients"(arg0: R): boolean
  "hasEnoughOutputSpace"(): boolean
+ "matchIngredients"(arg0: R): boolean
 }
 
 export namespace $RecipeRequirementsBehaviour$RecipeRequirementsSpecifics {
@@ -284,8 +284,8 @@ static "itemErrors": boolean
 constructor()
 
 public "withCatalyst"(arg0: $InputItem$Type): $RecipeJS
-public "minHeight"(arg0: integer): $RecipeJS
 public "maxHeight"(arg0: integer): $RecipeJS
+public "minHeight"(arg0: integer): $RecipeJS
 public "minSpeed"(arg0: float): $RecipeJS
 }
 /**
@@ -335,17 +335,17 @@ constructor(arg0: $ExtrudingRecipeBuilder$ExtrudingRecipeParams$Type)
 public "getResult"(): $ProcessingOutput
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public static "match"(arg0: $ExtruderBlockEntity$Type, arg1: $ExtrudingRecipe$Type): boolean
-public "getCatalyst"(): $ItemStack
-public "getFluidIngredients"(): $List<($FluidIngredient)>
 public "getRequirement"<T extends $RecipeRequirement>(arg0: $RecipeRequirementType$Type<(T)>): T
+public "getFluidIngredients"(): $List<($FluidIngredient)>
 public static "getAllIngredientsStringList"(arg0: $ExtrudingRecipe$Type): $List<(string)>
+public "getCatalyst"(): $ItemStack
 public "hasCatalyst"(): boolean
 public "getRequiredBonks"(): integer
 public "getItemIngredients"(): $List<($Ingredient)>
 public "getResultItem"(): $ItemStack
-public "getEnabledRequirements"(): $List<($RecipeRequirementType<(any)>)>
-public "getRecipeRequirements"(): $Map<($RecipeRequirementType<(any)>), ($RecipeRequirement)>
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getRecipeRequirements"(): $Map<($RecipeRequirementType<(any)>), ($RecipeRequirement)>
+public "getEnabledRequirements"(): $List<($RecipeRequirementType<(any)>)>
 public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
@@ -359,24 +359,24 @@ public "isIncomplete"(): boolean
 public "getId"(): $ResourceLocation
 public "getType"<T extends $RecipeType<(any)>>(): T
 public "getSerializer"<T extends $RecipeSerializer<(any)>>(): T
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "getSchema"(): $RecipeSchema
-public "getOrCreateId"(): $ResourceLocation
-public "setGroup"(group: string): void
-public "getGroup"(): string
 public "getType"(): $ResourceLocation
+public "getGroup"(): string
+public "setGroup"(group: string): void
+public "getOrCreateId"(): $ResourceLocation
+public "getSchema"(): $RecipeSchema
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
 get "result"(): $ProcessingOutput
-get "catalyst"(): $ItemStack
 get "fluidIngredients"(): $List<($FluidIngredient)>
+get "catalyst"(): $ItemStack
 get "requiredBonks"(): integer
 get "itemIngredients"(): $List<($Ingredient)>
 get "resultItem"(): $ItemStack
-get "enabledRequirements"(): $List<($RecipeRequirementType<(any)>)>
 get "recipeRequirements"(): $Map<($RecipeRequirementType<(any)>), ($RecipeRequirement)>
+get "enabledRequirements"(): $List<($RecipeRequirementType<(any)>)>
 get "id"(): $ResourceLocation
 get "serializer"(): $RecipeSerializer<(any)>
 get "special"(): boolean
@@ -386,11 +386,11 @@ get "incomplete"(): boolean
 get "id"(): $ResourceLocation
 get "type"(): T
 get "serializer"(): T
-get "schema"(): $RecipeSchema
-get "orCreateId"(): $ResourceLocation
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
+get "group"(): string
+set "group"(value: string)
+get "orCreateId"(): $ResourceLocation
+get "schema"(): $RecipeSchema
 get "mod"(): string
 }
 /**
@@ -453,37 +453,37 @@ export class $ExtruderBlockEntity extends $KineticBlockEntity implements $Extrud
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "getFilter"(): $FilteringBehaviour
 public "invalidate"(): void
+public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
 public "getFluidIngredients"(): $NonNullList<($FluidIngredient)>
 public "getKineticSpeed"(): float
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "isSpeedRequirementFulfilled"(): boolean
 public "getAllIngredientsStringList"(): $List<(string)>
 public "getRecipeConditionsBehaviour"(): $RecipeRequirementsBehaviour<($ExtrudingRecipe)>
-public "isSpeedRequirementFulfilled"(): boolean
-public "matchIngredients"(arg0: $ExtrudingRecipe$Type): boolean
-public "hasEnoughOutputSpace"(): boolean
+public "getExtrudingBehaviour"(): $ExtrudingBehaviour
+public "onExtrudingCompleted"(): void
 public "getLeftBlock"(): $Block
 public "getItemIngredients"(): $NonNullList<($Ingredient)>
 public "getCatalystItem"(): $Item
-public "onExtrudingCompleted"(): void
-public "getExtrudingBehaviour"(): $ExtrudingBehaviour
+public "hasEnoughOutputSpace"(): boolean
+public "matchIngredients"(arg0: $ExtrudingRecipe$Type): boolean
 public "getRecipe"(): $Optional<($ExtrudingRecipe)>
 public "tryProcess"(arg0: boolean): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "filter"(): $FilteringBehaviour
 get "fluidIngredients"(): $NonNullList<($FluidIngredient)>
 get "kineticSpeed"(): float
+get "speedRequirementFulfilled"(): boolean
 get "allIngredientsStringList"(): $List<(string)>
 get "recipeConditionsBehaviour"(): $RecipeRequirementsBehaviour<($ExtrudingRecipe)>
-get "speedRequirementFulfilled"(): boolean
+get "extrudingBehaviour"(): $ExtrudingBehaviour
 get "leftBlock"(): $Block
 get "itemIngredients"(): $NonNullList<($Ingredient)>
 get "catalystItem"(): $Item
-get "extrudingBehaviour"(): $ExtrudingBehaviour
 get "recipe"(): $Optional<($ExtrudingRecipe)>
 }
 /**

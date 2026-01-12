@@ -296,11 +296,11 @@ import {$Comparable, $Comparable$Type} from "packages/java/lang/$Comparable"
 export class $ModuleDescriptor$Version implements $Comparable<($ModuleDescriptor$Version)> {
 
 
+public static "parse"(arg0: string): $ModuleDescriptor$Version
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "compareTo"(arg0: $ModuleDescriptor$Version$Type): integer
-public static "parse"(arg0: string): $ModuleDescriptor$Version
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -428,8 +428,8 @@ public "resolve"(arg0: $ModuleFinder$Type, arg1: $ModuleFinder$Type, arg2: $Coll
 public "modules"(): $Set<($ResolvedModule)>
 public "parents"(): $List<($Configuration)>
 public "findModule"(arg0: string): $Optional<($ResolvedModule)>
-public "resolveAndBind"(arg0: $ModuleFinder$Type, arg1: $ModuleFinder$Type, arg2: $Collection$Type<(string)>): $Configuration
 public static "resolveAndBind"(arg0: $ModuleFinder$Type, arg1: $List$Type<($Configuration$Type)>, arg2: $ModuleFinder$Type, arg3: $Collection$Type<(string)>): $Configuration
+public "resolveAndBind"(arg0: $ModuleFinder$Type, arg1: $ModuleFinder$Type, arg2: $Collection$Type<(string)>): $Configuration
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -490,6 +490,14 @@ import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 export class $ModuleDescriptor implements $Comparable<($ModuleDescriptor)> {
 
 
+public "requires"(): $Set<($ModuleDescriptor$Requires)>
+public "mainClass"(): $Optional<(string)>
+public "toNameAndVersion"(): string
+public "rawVersion"(): $Optional<(string)>
+public static "newModule"(arg0: string, arg1: $Set$Type<($ModuleDescriptor$Modifier$Type)>): $ModuleDescriptor$Builder
+public static "newModule"(arg0: string): $ModuleDescriptor$Builder
+public static "newOpenModule"(arg0: string): $ModuleDescriptor$Builder
+public static "newAutomaticModule"(arg0: string): $ModuleDescriptor$Builder
 public "modifiers"(): $Set<($ModuleDescriptor$Modifier)>
 public "name"(): string
 public "equals"(arg0: any): boolean
@@ -500,22 +508,14 @@ public "compareTo"(arg0: $ModuleDescriptor$Type): integer
 public "packages"(): $Set<(string)>
 public "isOpen"(): boolean
 public static "read"(arg0: $InputStream$Type): $ModuleDescriptor
-public static "read"(arg0: $InputStream$Type, arg1: $Supplier$Type<($Set$Type<(string)>)>): $ModuleDescriptor
 public static "read"(arg0: $ByteBuffer$Type): $ModuleDescriptor
 public static "read"(arg0: $ByteBuffer$Type, arg1: $Supplier$Type<($Set$Type<(string)>)>): $ModuleDescriptor
+public static "read"(arg0: $InputStream$Type, arg1: $Supplier$Type<($Set$Type<(string)>)>): $ModuleDescriptor
 public "exports"(): $Set<($ModuleDescriptor$Exports)>
 public "opens"(): $Set<($ModuleDescriptor$Opens)>
 public "isAutomatic"(): boolean
 public "uses"(): $Set<(string)>
 public "provides"(): $Set<($ModuleDescriptor$Provides)>
-public "requires"(): $Set<($ModuleDescriptor$Requires)>
-public "mainClass"(): $Optional<(string)>
-public "toNameAndVersion"(): string
-public "rawVersion"(): $Optional<(string)>
-public static "newModule"(arg0: string, arg1: $Set$Type<($ModuleDescriptor$Modifier$Type)>): $ModuleDescriptor$Builder
-public static "newModule"(arg0: string): $ModuleDescriptor$Builder
-public static "newOpenModule"(arg0: string): $ModuleDescriptor$Builder
-public static "newAutomaticModule"(arg0: string): $ModuleDescriptor$Builder
 get "open"(): boolean
 get "automatic"(): boolean
 }
@@ -622,8 +622,9 @@ declare global {
 export type $Member_ = $Member$Type;
 }}
 declare module "packages/java/lang/invoke/$VarHandle$VarHandleDesc" {
-import {$DynamicConstantDesc, $DynamicConstantDesc$Type} from "packages/java/lang/constant/$DynamicConstantDesc"
 import {$VarHandle, $VarHandle$Type} from "packages/java/lang/invoke/$VarHandle"
+import {$DynamicConstantDesc, $DynamicConstantDesc$Type} from "packages/java/lang/constant/$DynamicConstantDesc"
+import {$MethodHandles$Lookup, $MethodHandles$Lookup$Type} from "packages/java/lang/invoke/$MethodHandles$Lookup"
 import {$ClassDesc, $ClassDesc$Type} from "packages/java/lang/constant/$ClassDesc"
 
 /**
@@ -634,11 +635,12 @@ import {$ClassDesc, $ClassDesc$Type} from "packages/java/lang/constant/$ClassDes
 export class $VarHandle$VarHandleDesc extends $DynamicConstantDesc<($VarHandle)> {
 
 
+public static "ofArray"(arg0: $ClassDesc$Type): $VarHandle$VarHandleDesc
+public static "ofStaticField"(arg0: $ClassDesc$Type, arg1: string, arg2: $ClassDesc$Type): $VarHandle$VarHandleDesc
 public "toString"(): string
+public "resolveConstantDesc"(arg0: $MethodHandles$Lookup$Type): $VarHandle
 public static "ofField"(arg0: $ClassDesc$Type, arg1: string, arg2: $ClassDesc$Type): $VarHandle$VarHandleDesc
 public "varType"(): $ClassDesc
-public static "ofStaticField"(arg0: $ClassDesc$Type, arg1: string, arg2: $ClassDesc$Type): $VarHandle$VarHandleDesc
-public static "ofArray"(arg0: $ClassDesc$Type): $VarHandle$VarHandleDesc
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -702,16 +704,17 @@ import {$TypeDescriptor$OfField, $TypeDescriptor$OfField$Type} from "packages/ja
  */
 export interface $ClassDesc extends $ConstantDesc, $TypeDescriptor$OfField<($ClassDesc)> {
 
- "equals"(arg0: any): boolean
- "isArray"(): boolean
- "isPrimitive"(): boolean
- "packageName"(): string
- "descriptorString"(): string
- "arrayType"(arg0: integer): $ClassDesc
  "displayName"(): string
  "nested"(arg0: string): $ClassDesc
  "nested"(arg0: string, ...arg1: (string)[]): $ClassDesc
  "isClassOrInterface"(): boolean
+ "equals"(arg0: any): boolean
+ "isArray"(): boolean
+ "isPrimitive"(): boolean
+ "componentType"(): $ClassDesc
+ "packageName"(): string
+ "descriptorString"(): string
+ "arrayType"(arg0: integer): $ClassDesc
  "resolveConstantDesc"(arg0: $MethodHandles$Lookup$Type): any
 }
 
@@ -746,12 +749,12 @@ import {$MethodHandleDesc, $MethodHandleDesc$Type} from "packages/java/lang/cons
  */
 export interface $DirectMethodHandleDesc extends $MethodHandleDesc {
 
+ "lookupDescriptor"(): string
+ "isOwnerInterface"(): boolean
  "methodName"(): string
  "refKind"(): integer
  "kind"(): $DirectMethodHandleDesc$Kind
  "owner"(): $ClassDesc
- "lookupDescriptor"(): string
- "isOwnerInterface"(): boolean
  "equals"(arg0: any): boolean
  "asType"(arg0: $MethodTypeDesc$Type): $MethodHandleDesc
  "invocationType"(): $MethodTypeDesc
@@ -759,10 +762,10 @@ export interface $DirectMethodHandleDesc extends $MethodHandleDesc {
 }
 
 export namespace $DirectMethodHandleDesc {
+function ofConstructor(arg0: $ClassDesc$Type, ...arg1: ($ClassDesc$Type)[]): $DirectMethodHandleDesc
 function of(arg0: $DirectMethodHandleDesc$Kind$Type, arg1: $ClassDesc$Type, arg2: string, arg3: string): $DirectMethodHandleDesc
 function ofField(arg0: $DirectMethodHandleDesc$Kind$Type, arg1: $ClassDesc$Type, arg2: string, arg3: $ClassDesc$Type): $DirectMethodHandleDesc
 function ofMethod(arg0: $DirectMethodHandleDesc$Kind$Type, arg1: $ClassDesc$Type, arg2: string, arg3: $MethodTypeDesc$Type): $DirectMethodHandleDesc
-function ofConstructor(arg0: $ClassDesc$Type, ...arg1: ($ClassDesc$Type)[]): $DirectMethodHandleDesc
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1316,14 +1319,14 @@ import {$ModuleReference, $ModuleReference$Type} from "packages/java/lang/module
  */
 export interface $ModuleFinder {
 
- "find"(arg0: string): $Optional<($ModuleReference)>
  "findAll"(): $Set<($ModuleReference)>
+ "find"(arg0: string): $Optional<($ModuleReference)>
 }
 
 export namespace $ModuleFinder {
-function of(...arg0: ($Path$Type)[]): $ModuleFinder
 function ofSystem(): $ModuleFinder
 function compose(...arg0: ($ModuleFinder$Type)[]): $ModuleFinder
+function of(...arg0: ($Path$Type)[]): $ModuleFinder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1352,6 +1355,11 @@ import {$DirectMethodHandleDesc, $DirectMethodHandleDesc$Type} from "packages/ja
 export class $DynamicConstantDesc<T> implements $ConstantDesc {
 
 
+public "constantName"(): string
+public "constantType"(): $ClassDesc
+public "bootstrapArgs"(): ($ConstantDesc)[]
+public static "ofCanonical"<T>(arg0: $DirectMethodHandleDesc$Type, arg1: string, arg2: $ClassDesc$Type, arg3: ($ConstantDesc$Type)[]): $ConstantDesc
+public "bootstrapArgsList"(): $List<($ConstantDesc)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -1360,11 +1368,6 @@ public static "of"<T>(arg0: $DirectMethodHandleDesc$Type): $DynamicConstantDesc<
 public "resolveConstantDesc"(arg0: $MethodHandles$Lookup$Type): T
 public "bootstrapMethod"(): $DirectMethodHandleDesc
 public static "ofNamed"<T>(arg0: $DirectMethodHandleDesc$Type, arg1: string, arg2: $ClassDesc$Type, ...arg3: ($ConstantDesc$Type)[]): $DynamicConstantDesc<(T)>
-public "constantName"(): string
-public "constantType"(): $ClassDesc
-public "bootstrapArgs"(): ($ConstantDesc)[]
-public static "ofCanonical"<T>(arg0: $DirectMethodHandleDesc$Type, arg1: string, arg2: $ClassDesc$Type, arg3: ($ConstantDesc$Type)[]): $ConstantDesc
-public "bootstrapArgsList"(): $List<($ConstantDesc)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1905,10 +1908,41 @@ static readonly "E": double
 static readonly "PI": double
 
 
+public static "asin"(arg0: double): double
+public static "acos"(arg0: double): double
+public static "atan"(arg0: double): double
+public static "cbrt"(arg0: double): double
+public static "IEEEremainder"(arg0: double, arg1: double): double
+public static "floorDiv"(arg0: long, arg1: integer): long
+public static "floorDiv"(arg0: long, arg1: long): long
+public static "floorDiv"(arg0: integer, arg1: integer): integer
+public static "sinh"(arg0: double): double
+public static "cosh"(arg0: double): double
+public static "tanh"(arg0: double): double
+public static "hypot"(arg0: double, arg1: double): double
+public static "expm1"(arg0: double): double
+public static "log1p"(arg0: double): double
+public static "toRadians"(arg0: double): double
+public static "toDegrees"(arg0: double): double
+public static "round"(arg0: float): integer
+public static "round"(arg0: double): long
+public static "random"(): double
+public static "toIntExact"(arg0: long): integer
+public static "multiplyFull"(arg0: integer, arg1: integer): long
+public static "absExact"(arg0: long): long
+public static "absExact"(arg0: integer): integer
+public static "ulp"(arg0: float): float
+public static "ulp"(arg0: double): double
+public static "nextAfter"(arg0: float, arg1: double): float
+public static "nextAfter"(arg0: double, arg1: double): double
+public static "nextUp"(arg0: float): float
+public static "nextUp"(arg0: double): double
+public static "nextDown"(arg0: double): double
+public static "nextDown"(arg0: float): float
 public static "abs"(arg0: integer): integer
 public static "abs"(arg0: long): long
-public static "abs"(arg0: float): float
 public static "abs"(arg0: double): double
+public static "abs"(arg0: float): float
 public static "sin"(arg0: double): double
 public static "cos"(arg0: double): double
 public static "tan"(arg0: double): double
@@ -1922,71 +1956,40 @@ public static "min"(arg0: integer, arg1: integer): integer
 public static "min"(arg0: float, arg1: float): float
 public static "min"(arg0: long, arg1: long): long
 public static "min"(arg0: double, arg1: double): double
-public static "max"(arg0: integer, arg1: integer): integer
+public static "max"(arg0: double, arg1: double): double
 public static "max"(arg0: float, arg1: float): float
 public static "max"(arg0: long, arg1: long): long
-public static "max"(arg0: double, arg1: double): double
+public static "max"(arg0: integer, arg1: integer): integer
 public static "floor"(arg0: double): double
 public static "ceil"(arg0: double): double
 public static "rint"(arg0: double): double
-public static "addExact"(arg0: integer, arg1: integer): integer
 public static "addExact"(arg0: long, arg1: long): long
-public static "decrementExact"(arg0: long): long
+public static "addExact"(arg0: integer, arg1: integer): integer
 public static "decrementExact"(arg0: integer): integer
-public static "incrementExact"(arg0: integer): integer
+public static "decrementExact"(arg0: long): long
 public static "incrementExact"(arg0: long): long
+public static "incrementExact"(arg0: integer): integer
 public static "multiplyExact"(arg0: integer, arg1: integer): integer
-public static "multiplyExact"(arg0: long, arg1: long): long
 public static "multiplyExact"(arg0: long, arg1: integer): long
+public static "multiplyExact"(arg0: long, arg1: long): long
 public static "multiplyHigh"(arg0: long, arg1: long): long
-public static "negateExact"(arg0: long): long
 public static "negateExact"(arg0: integer): integer
+public static "negateExact"(arg0: long): long
 public static "subtractExact"(arg0: integer, arg1: integer): integer
 public static "subtractExact"(arg0: long, arg1: long): long
 public static "fma"(arg0: double, arg1: double, arg2: double): double
 public static "fma"(arg0: float, arg1: float, arg2: float): float
-public static "copySign"(arg0: float, arg1: float): float
 public static "copySign"(arg0: double, arg1: double): double
-public static "signum"(arg0: float): float
+public static "copySign"(arg0: float, arg1: float): float
 public static "signum"(arg0: double): double
+public static "signum"(arg0: float): float
 public static "scalb"(arg0: double, arg1: integer): double
 public static "scalb"(arg0: float, arg1: integer): float
 public static "getExponent"(arg0: float): integer
 public static "getExponent"(arg0: double): integer
-public static "floorMod"(arg0: long, arg1: integer): integer
 public static "floorMod"(arg0: integer, arg1: integer): integer
+public static "floorMod"(arg0: long, arg1: integer): integer
 public static "floorMod"(arg0: long, arg1: long): long
-public static "asin"(arg0: double): double
-public static "acos"(arg0: double): double
-public static "atan"(arg0: double): double
-public static "cbrt"(arg0: double): double
-public static "IEEEremainder"(arg0: double, arg1: double): double
-public static "floorDiv"(arg0: long, arg1: long): long
-public static "floorDiv"(arg0: integer, arg1: integer): integer
-public static "floorDiv"(arg0: long, arg1: integer): long
-public static "sinh"(arg0: double): double
-public static "cosh"(arg0: double): double
-public static "tanh"(arg0: double): double
-public static "hypot"(arg0: double, arg1: double): double
-public static "expm1"(arg0: double): double
-public static "log1p"(arg0: double): double
-public static "toRadians"(arg0: double): double
-public static "toDegrees"(arg0: double): double
-public static "round"(arg0: double): long
-public static "round"(arg0: float): integer
-public static "random"(): double
-public static "toIntExact"(arg0: long): integer
-public static "multiplyFull"(arg0: integer, arg1: integer): long
-public static "absExact"(arg0: integer): integer
-public static "absExact"(arg0: long): long
-public static "ulp"(arg0: double): double
-public static "ulp"(arg0: float): float
-public static "nextAfter"(arg0: double, arg1: double): double
-public static "nextAfter"(arg0: float, arg1: double): float
-public static "nextUp"(arg0: double): double
-public static "nextUp"(arg0: float): float
-public static "nextDown"(arg0: double): double
-public static "nextDown"(arg0: float): float
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2025,11 +2028,11 @@ declare global {
 export type $Runnable_ = $Runnable$Type;
 }}
 declare module "packages/java/lang/module/$ModuleDescriptor$Builder" {
+import {$ModuleDescriptor, $ModuleDescriptor$Type} from "packages/java/lang/module/$ModuleDescriptor"
 import {$ModuleDescriptor$Version, $ModuleDescriptor$Version$Type} from "packages/java/lang/module/$ModuleDescriptor$Version"
 import {$ModuleDescriptor$Provides, $ModuleDescriptor$Provides$Type} from "packages/java/lang/module/$ModuleDescriptor$Provides"
-import {$ModuleDescriptor, $ModuleDescriptor$Type} from "packages/java/lang/module/$ModuleDescriptor"
-import {$ModuleDescriptor$Exports$Modifier, $ModuleDescriptor$Exports$Modifier$Type} from "packages/java/lang/module/$ModuleDescriptor$Exports$Modifier"
 import {$ModuleDescriptor$Requires, $ModuleDescriptor$Requires$Type} from "packages/java/lang/module/$ModuleDescriptor$Requires"
+import {$ModuleDescriptor$Exports$Modifier, $ModuleDescriptor$Exports$Modifier$Type} from "packages/java/lang/module/$ModuleDescriptor$Exports$Modifier"
 import {$ModuleDescriptor$Exports, $ModuleDescriptor$Exports$Type} from "packages/java/lang/module/$ModuleDescriptor$Exports"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$ModuleDescriptor$Opens$Modifier, $ModuleDescriptor$Opens$Modifier$Type} from "packages/java/lang/module/$ModuleDescriptor$Opens$Modifier"
@@ -2045,28 +2048,28 @@ import {$ModuleDescriptor$Opens, $ModuleDescriptor$Opens$Type} from "packages/ja
 export class $ModuleDescriptor$Builder {
 
 
-public "version"(arg0: string): $ModuleDescriptor$Builder
-public "version"(arg0: $ModuleDescriptor$Version$Type): $ModuleDescriptor$Builder
-public "packages"(arg0: $Set$Type<(string)>): $ModuleDescriptor$Builder
-public "exports"(arg0: string): $ModuleDescriptor$Builder
-public "exports"(arg0: $Set$Type<($ModuleDescriptor$Exports$Modifier$Type)>, arg1: string, arg2: $Set$Type<(string)>): $ModuleDescriptor$Builder
-public "exports"(arg0: string, arg1: $Set$Type<(string)>): $ModuleDescriptor$Builder
-public "exports"(arg0: $Set$Type<($ModuleDescriptor$Exports$Modifier$Type)>, arg1: string): $ModuleDescriptor$Builder
-public "exports"(arg0: $ModuleDescriptor$Exports$Type): $ModuleDescriptor$Builder
-public "opens"(arg0: string): $ModuleDescriptor$Builder
-public "opens"(arg0: $Set$Type<($ModuleDescriptor$Opens$Modifier$Type)>, arg1: string, arg2: $Set$Type<(string)>): $ModuleDescriptor$Builder
-public "opens"(arg0: string, arg1: $Set$Type<(string)>): $ModuleDescriptor$Builder
-public "opens"(arg0: $Set$Type<($ModuleDescriptor$Opens$Modifier$Type)>, arg1: string): $ModuleDescriptor$Builder
-public "opens"(arg0: $ModuleDescriptor$Opens$Type): $ModuleDescriptor$Builder
-public "uses"(arg0: string): $ModuleDescriptor$Builder
-public "provides"(arg0: string, arg1: $List$Type<(string)>): $ModuleDescriptor$Builder
-public "provides"(arg0: $ModuleDescriptor$Provides$Type): $ModuleDescriptor$Builder
 public "build"(): $ModuleDescriptor
-public "requires"(arg0: $ModuleDescriptor$Requires$Type): $ModuleDescriptor$Builder
 public "requires"(arg0: string): $ModuleDescriptor$Builder
 public "requires"(arg0: $Set$Type<($ModuleDescriptor$Requires$Modifier$Type)>, arg1: string): $ModuleDescriptor$Builder
 public "requires"(arg0: $Set$Type<($ModuleDescriptor$Requires$Modifier$Type)>, arg1: string, arg2: $ModuleDescriptor$Version$Type): $ModuleDescriptor$Builder
+public "requires"(arg0: $ModuleDescriptor$Requires$Type): $ModuleDescriptor$Builder
 public "mainClass"(arg0: string): $ModuleDescriptor$Builder
+public "version"(arg0: $ModuleDescriptor$Version$Type): $ModuleDescriptor$Builder
+public "version"(arg0: string): $ModuleDescriptor$Builder
+public "packages"(arg0: $Set$Type<(string)>): $ModuleDescriptor$Builder
+public "exports"(arg0: string, arg1: $Set$Type<(string)>): $ModuleDescriptor$Builder
+public "exports"(arg0: $Set$Type<($ModuleDescriptor$Exports$Modifier$Type)>, arg1: string, arg2: $Set$Type<(string)>): $ModuleDescriptor$Builder
+public "exports"(arg0: $ModuleDescriptor$Exports$Type): $ModuleDescriptor$Builder
+public "exports"(arg0: $Set$Type<($ModuleDescriptor$Exports$Modifier$Type)>, arg1: string): $ModuleDescriptor$Builder
+public "exports"(arg0: string): $ModuleDescriptor$Builder
+public "opens"(arg0: $ModuleDescriptor$Opens$Type): $ModuleDescriptor$Builder
+public "opens"(arg0: $Set$Type<($ModuleDescriptor$Opens$Modifier$Type)>, arg1: string): $ModuleDescriptor$Builder
+public "opens"(arg0: string): $ModuleDescriptor$Builder
+public "opens"(arg0: string, arg1: $Set$Type<(string)>): $ModuleDescriptor$Builder
+public "opens"(arg0: $Set$Type<($ModuleDescriptor$Opens$Modifier$Type)>, arg1: string, arg2: $Set$Type<(string)>): $ModuleDescriptor$Builder
+public "uses"(arg0: string): $ModuleDescriptor$Builder
+public "provides"(arg0: $ModuleDescriptor$Provides$Type): $ModuleDescriptor$Builder
+public "provides"(arg0: string, arg1: $List$Type<(string)>): $ModuleDescriptor$Builder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2102,10 +2105,10 @@ export interface $MethodHandleDesc extends $ConstantDesc {
 }
 
 export namespace $MethodHandleDesc {
+function ofConstructor(arg0: $ClassDesc$Type, ...arg1: ($ClassDesc$Type)[]): $DirectMethodHandleDesc
 function of(arg0: $DirectMethodHandleDesc$Kind$Type, arg1: $ClassDesc$Type, arg2: string, arg3: string): $DirectMethodHandleDesc
 function ofField(arg0: $DirectMethodHandleDesc$Kind$Type, arg1: $ClassDesc$Type, arg2: string, arg3: $ClassDesc$Type): $DirectMethodHandleDesc
 function ofMethod(arg0: $DirectMethodHandleDesc$Kind$Type, arg1: $ClassDesc$Type, arg2: string, arg3: $MethodTypeDesc$Type): $DirectMethodHandleDesc
-function ofConstructor(arg0: $ClassDesc$Type, ...arg1: ($ClassDesc$Type)[]): $DirectMethodHandleDesc
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2201,16 +2204,14 @@ import {$ConstantDesc, $ConstantDesc$Type} from "packages/java/lang/constant/$Co
  */
 export interface $MethodTypeDesc extends $ConstantDesc, $TypeDescriptor$OfMethod<($ClassDesc), ($MethodTypeDesc)> {
 
- "returnType"(): $ClassDesc
+ "displayDescriptor"(): string
  "equals"(arg0: any): boolean
  "descriptorString"(): string
  "insertParameterTypes"(arg0: integer, ...arg1: ($ClassDesc$Type)[]): $MethodTypeDesc
  "changeReturnType"(arg0: $ClassDesc$Type): $MethodTypeDesc
  "parameterCount"(): integer
  "parameterList"(): $List<($ClassDesc)>
- "parameterArray"(): ($ClassDesc)[]
  "changeParameterType"(arg0: integer, arg1: $ClassDesc$Type): $MethodTypeDesc
- "displayDescriptor"(): string
  "resolveConstantDesc"(arg0: $MethodHandles$Lookup$Type): any
 }
 
@@ -2464,10 +2465,10 @@ export class $ThreadLocal<T> {
 
 constructor()
 
+public static "withInitial"<S>(arg0: $Supplier$Type<(any)>): $ThreadLocal<(S)>
 public "remove"(): void
 public "get"(): T
 public "set"(arg0: T): void
-public static "withInitial"<S>(arg0: $Supplier$Type<(any)>): $ThreadLocal<(S)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2604,17 +2605,6 @@ static readonly "UNCONDITIONAL": integer
 static readonly "ORIGINAL": integer
 
 
-public "toString"(): string
-public "findClass"(arg0: string): $Class<(any)>
-public "defineClass"(arg0: (byte)[]): $Class<(any)>
-public "in"(arg0: $Class$Type<(any)>): $MethodHandles$Lookup
-public "ensureInitialized"(arg0: $Class$Type<(any)>): $Class<(any)>
-public "revealDirect"(arg0: $MethodHandle$Type): $MethodHandleInfo
-public "lookupClass"(): $Class<(any)>
-public "previousLookupClass"(): $Class<(any)>
-public "findVirtual"(arg0: $Class$Type<(any)>, arg1: string, arg2: $MethodType$Type): $MethodHandle
-public "findStatic"(arg0: $Class$Type<(any)>, arg1: string, arg2: $MethodType$Type): $MethodHandle
-public "lookupModes"(): integer
 public "hasFullPrivilegeAccess"(): boolean
 public "accessClass"(arg0: $Class$Type<(any)>): $Class<(any)>
 public "dropLookupMode"(arg0: integer): $MethodHandles$Lookup
@@ -2640,6 +2630,17 @@ public "unreflectVarHandle"(arg0: $Field$Type): $VarHandle
  * @deprecated
  */
 public "hasPrivateAccess"(): boolean
+public "toString"(): string
+public "findClass"(arg0: string): $Class<(any)>
+public "defineClass"(arg0: (byte)[]): $Class<(any)>
+public "in"(arg0: $Class$Type<(any)>): $MethodHandles$Lookup
+public "ensureInitialized"(arg0: $Class$Type<(any)>): $Class<(any)>
+public "revealDirect"(arg0: $MethodHandle$Type): $MethodHandleInfo
+public "lookupClass"(): $Class<(any)>
+public "previousLookupClass"(): $Class<(any)>
+public "findVirtual"(arg0: $Class$Type<(any)>, arg1: string, arg2: $MethodType$Type): $MethodHandle
+public "findStatic"(arg0: $Class$Type<(any)>, arg1: string, arg2: $MethodType$Type): $MethodHandle
+public "lookupModes"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2789,8 +2790,8 @@ const REF_invokeStatic: integer
 const REF_invokeSpecial: integer
 const REF_newInvokeSpecial: integer
 const REF_invokeInterface: integer
-function toString(arg0: integer, arg1: $Class$Type<(any)>, arg2: string, arg3: $MethodType$Type): string
 function referenceKindToString(arg0: integer): string
+function toString(arg0: integer, arg1: $Class$Type<(any)>, arg2: string, arg3: $MethodType$Type): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3072,6 +3073,7 @@ import {$ModuleDescriptor$Requires$Modifier, $ModuleDescriptor$Requires$Modifier
 export class $ModuleDescriptor$Requires implements $Comparable<($ModuleDescriptor$Requires)> {
 
 
+public "compiledVersion"(): $Optional<($ModuleDescriptor$Version)>
 public "rawCompiledVersion"(): $Optional<(string)>
 public "modifiers"(): $Set<($ModuleDescriptor$Requires$Modifier)>
 public "name"(): string
@@ -3079,7 +3081,6 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "compareTo"(arg0: $ModuleDescriptor$Requires$Type): integer
-public "compiledVersion"(): $Optional<($ModuleDescriptor$Version)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

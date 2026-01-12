@@ -11,6 +11,20 @@ ServerEvents.tags('block', event => {
 })
 
 ServerEvents.recipes((event) => {
+  event.remove({ id: 'farmersdelight:hardcore_stove' })
+  event.shaped(
+    Item.of('hardcore_torches:stove'),
+    [
+      'AAA',
+      'B B',
+      'BBB'
+    ],
+    {
+      A: '#forge:plates/cast_iron',
+      B: 'minecraft:brick'
+    }
+  )
+
   event.remove({ id: 'farmersdelight:skillet' })
   event.shaped(
     Item.of('farmersdelight:skillet'),

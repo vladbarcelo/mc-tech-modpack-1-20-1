@@ -42,8 +42,8 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "copy"(arg0: $IJetpack$Type, arg1: $LivingEntity$Type, arg2: $Level$Type, arg3: $FlyingPose$Type, arg4: $ISource$Type): $IJetpack$Context
-public "component2"(): $LivingEntity
 public "component1"(): $IJetpack
+public "component2"(): $LivingEntity
 public "component3"(): $Level
 public "component4"(): $FlyingPose
 public "component5"(): $ISource
@@ -127,21 +127,21 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type, arg1: $ArmorMaterial$Type, arg2: $ResourceLocation$Type, arg3: $ItemEntry$Type<($BacktankItem$BacktankBlockItem$Type)>)
 
 public "isValid"(arg0: $IJetpack$Context$Type): boolean
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
 public "acceleration"(arg0: $IJetpack$Context$Type): double
 public "createParticles"(): $ParticleOptions
 public "elytraBoost"(): double
 public "getThrusters"(arg0: $IJetpack$Context$Type): $List<($Vec3)>
-public "swimModifier"(arg0: $IJetpack$Context$Type): double
 public "horizontalSpeed"(arg0: $IJetpack$Context$Type): double
+public "swimModifier"(arg0: $IJetpack$Context$Type): double
 public "verticalSpeed"(arg0: $IJetpack$Context$Type): double
 public "boostsElytra"(): boolean
-public "isThrusting"(arg0: $IJetpack$Context$Type): boolean
-public "hoverVerticalSpeed"(arg0: $IJetpack$Context$Type): double
 public "hoverHorizontalSpeed"(arg0: $IJetpack$Context$Type): double
-public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "onUse"(arg0: $IJetpack$Context$Type): void
+public "hoverVerticalSpeed"(arg0: $IJetpack$Context$Type): double
+public "isThrusting"(arg0: $IJetpack$Context$Type): boolean
 public "isHovering"(arg0: $IJetpack$Context$Type): boolean
+public "onUse"(arg0: $IJetpack$Context$Type): void
 public "activeType"(arg0: $IJetpack$Context$Type): $ControlType
 public "hoverSpeed"(arg0: $IJetpack$Context$Type): double
 public "hoverType"(arg0: $IJetpack$Context$Type): $ControlType
@@ -289,11 +289,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getBlockEntityClass"(): $Class<($SlicerTile)>
+public "getBlockEntityType"(): $BlockEntityType<($SlicerTile)>
 public "hasShaftTowards"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Direction$Type): boolean
 public "getParticleTargetRadius"(): float
 public "getParticleInitialRadius"(): float
-public "getBlockEntityClass"(): $Class<($SlicerTile)>
-public "getBlockEntityType"(): $BlockEntityType<($SlicerTile)>
 public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getMinimumRequiredSpeedLevel"(): $IRotate$SpeedLevel
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
@@ -301,12 +301,12 @@ public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Typ
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SlicerTile
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($SlicerTile$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($SlicerTile)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($SlicerTile$Type), ($InteractionResult$Type)>): $InteractionResult
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SlicerTile
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "isDedicatedCogWheel"(): boolean
 public static "isDedicatedCogWheel"(arg0: $Block$Type): boolean
@@ -321,10 +321,10 @@ public static "isLargeCog"(arg0: $BlockState$Type): boolean
 public "isLargeCog"(): boolean
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "particleTargetRadius"(): float
-get "particleInitialRadius"(): float
 get "blockEntityClass"(): $Class<($SlicerTile)>
 get "blockEntityType"(): $BlockEntityType<($SlicerTile)>
+get "particleTargetRadius"(): float
+get "particleInitialRadius"(): float
 get "minimumRequiredSpeedLevel"(): $IRotate$SpeedLevel
 get "dedicatedCogWheel"(): boolean
 get "smallCog"(): boolean
@@ -548,8 +548,8 @@ constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $Blo
 
 public "tick"(): void
 public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
 public "writeSafe"(arg0: $CompoundTag$Type): void
 public "containedFluidTooltip"(arg0: $List$Type<(any)>, arg1: boolean, arg2: $LazyOptional$Type<(any)>): boolean
 public "getPurityColor"(arg0: integer): $ChatFormatting
@@ -609,15 +609,16 @@ constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $Blo
 
 public "initialize"(): void
 public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "addToTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
 public "getHeldItem"(): $ItemStack
 public "setHeldItem"(arg0: $ItemStack$Type): void
-public "startProcessingBasin"(): void
-public "continueWithPreviousRecipe"(): boolean
 public "getCanProcess"(): boolean
 public "getCorrectDirection"(): boolean
 public "getCuttingBehaviour"(): $PressingBehaviour
 public "canProcessInBulk"(): boolean
+public "startProcessingBasin"(): void
+public "continueWithPreviousRecipe"(): boolean
 public "getKineticSpeed"(): float
 public "getParticleAmount"(): integer
 public "getRenderedHeadOffset"(arg0: float): float
@@ -625,7 +626,6 @@ public "onPressingCompleted"(): void
 public "tryProcessInBasin"(arg0: boolean): boolean
 public "tryProcessInWorld"(arg0: $ItemEntity$Type, arg1: boolean): boolean
 public "tryProcessOnBelt"(arg0: $TransportedItemStack$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): boolean
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "getRenderedHeadRotationSpeed"(): float
 public "playSound"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: boolean): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
@@ -664,15 +664,15 @@ export interface $IJetpack {
  "createParticles"(): $ParticleOptions
  "elytraBoost"(): double
  "getThrusters"(arg0: $IJetpack$Context$Type): $List<($Vec3)>
- "swimModifier"(arg0: $IJetpack$Context$Type): double
  "horizontalSpeed"(arg0: $IJetpack$Context$Type): double
+ "swimModifier"(arg0: $IJetpack$Context$Type): double
  "verticalSpeed"(arg0: $IJetpack$Context$Type): double
  "boostsElytra"(): boolean
- "isThrusting"(arg0: $IJetpack$Context$Type): boolean
- "hoverVerticalSpeed"(arg0: $IJetpack$Context$Type): double
  "hoverHorizontalSpeed"(arg0: $IJetpack$Context$Type): double
- "onUse"(arg0: $IJetpack$Context$Type): void
+ "hoverVerticalSpeed"(arg0: $IJetpack$Context$Type): double
+ "isThrusting"(arg0: $IJetpack$Context$Type): boolean
  "isHovering"(arg0: $IJetpack$Context$Type): boolean
+ "onUse"(arg0: $IJetpack$Context$Type): void
  "activeType"(arg0: $IJetpack$Context$Type): $ControlType
  "hoverSpeed"(arg0: $IJetpack$Context$Type): double
  "hoverType"(arg0: $IJetpack$Context$Type): $ControlType
@@ -963,12 +963,12 @@ public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "onSneakWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "onWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SprinklerTile
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($SprinklerTile$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($SprinklerTile)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($SprinklerTile$Type), ($InteractionResult$Type)>): $InteractionResult
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SprinklerTile
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState

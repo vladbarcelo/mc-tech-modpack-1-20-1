@@ -8,24 +8,24 @@ constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: 
 constructor(arg0: float, arg1: integer, arg2: integer, arg3: boolean, arg4: boolean)
 constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: integer, arg4: integer, arg5: float, arg6: boolean, arg7: $Map$Type<(string), (any)>)
 
-public "getFrameRate"(): float
+public "getEncoding"(): $AudioFormat$Encoding
 public "getProperty"(arg0: string): any
 public "toString"(): string
 public "matches"(arg0: $AudioFormat$Type): boolean
 public "properties"(): $Map<(string), (any)>
 public "isBigEndian"(): boolean
-public "getEncoding"(): $AudioFormat$Encoding
-public "getFrameSize"(): integer
+public "getFrameRate"(): float
 public "getChannels"(): integer
-public "getSampleSizeInBits"(): integer
+public "getFrameSize"(): integer
 public "getSampleRate"(): float
-get "frameRate"(): float
-get "bigEndian"(): boolean
+public "getSampleSizeInBits"(): integer
 get "encoding"(): $AudioFormat$Encoding
-get "frameSize"(): integer
+get "bigEndian"(): boolean
+get "frameRate"(): float
 get "channels"(): integer
-get "sampleSizeInBits"(): integer
+get "frameSize"(): integer
 get "sampleRate"(): float
+get "sampleSizeInBits"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

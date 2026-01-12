@@ -67,10 +67,10 @@ constructor(arg0: string, arg1: boolean)
 
 public "toString"(): string
 public "getId"(): string
-public static "getCallInfoClassName"(arg0: $Type$Type): string
 public "isCancellable"(): boolean
-public "isCancelled"(): boolean
+public static "getCallInfoClassName"(arg0: $Type$Type): string
 public "cancel"(): void
+public "isCancelled"(): boolean
 get "id"(): string
 get "cancellable"(): boolean
 get "cancelled"(): boolean
@@ -97,8 +97,8 @@ export {} // Mark the file as a module, do not remove unless there are other imp
 export interface $Cancellable {
 
  "isCancellable"(): boolean
- "isCancelled"(): boolean
  "cancel"(): void
+ "isCancelled"(): boolean
 }
 
 export namespace $Cancellable {

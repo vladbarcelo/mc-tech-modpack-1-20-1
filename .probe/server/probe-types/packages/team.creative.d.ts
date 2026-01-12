@@ -106,8 +106,8 @@ import {$ByteBuffer, $ByteBuffer$Type} from "packages/java/nio/$ByteBuffer"
 export interface $BufferBuilderAccessor {
 
  "getBuffer"(): $ByteBuffer
- "getVertices"(): integer
  "getNextElementByte"(): integer
+ "getVertices"(): integer
 }
 
 export namespace $BufferBuilderAccessor {

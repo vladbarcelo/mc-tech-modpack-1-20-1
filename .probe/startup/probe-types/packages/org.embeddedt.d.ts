@@ -180,14 +180,14 @@ export class $SafeBlockGetter implements $BlockGetter {
 
 constructor(wrapped: $ServerLevel$Type)
 
-public "getFluidState"(pos: $BlockPos$Type): $FluidState
+public "getBlockState"(pos: $BlockPos$Type): $BlockState
+public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
 public "getMinBuildHeight"(): integer
-public "getMaxLightLevel"(): integer
 public "shouldUse"(): boolean
 public "getHeight"(): integer
 public "getMaxBuildHeight"(): integer
-public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
-public "getBlockState"(pos: $BlockPos$Type): $BlockState
+public "getMaxLightLevel"(): integer
+public "getFluidState"(pos: $BlockPos$Type): $FluidState
 public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
 public "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
 public "getLightEmission"(arg0: $BlockPos$Type): integer
@@ -197,7 +197,6 @@ public "clip"(arg0: $ClipContext$Type): $BlockHitResult
 public "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $BlockPos$Type, arg3: $VoxelShape$Type, arg4: $BlockState$Type): $BlockHitResult
 public "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
 public "getBlockFloorHeight"(arg0: $BlockPos$Type): double
-public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
 public "getSectionsCount"(): integer
 public "getMaxSection"(): integer
 public "getMinSection"(): integer
@@ -206,15 +205,16 @@ public "getSectionIndex"(arg0: integer): integer
 public "getSectionIndexFromSectionY"(arg0: integer): integer
 public "getSectionYFromSectionIndex"(arg0: integer): integer
 public static "create"(arg0: integer, arg1: integer): $LevelHeightAccessor
-public "getModelDataManager"(): $ModelDataManager
+public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
 public "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
+public "getModelDataManager"(): $ModelDataManager
 public "getBlockEntityRenderData"(pos: $BlockPos$Type): any
 public "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
 public "hasBiomes"(): boolean
 get "minBuildHeight"(): integer
-get "maxLightLevel"(): integer
 get "height"(): integer
 get "maxBuildHeight"(): integer
+get "maxLightLevel"(): integer
 get "sectionsCount"(): integer
 get "maxSection"(): integer
 get "minSection"(): integer
@@ -389,9 +389,9 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ModelPartExtended {
 
+ "embeddium$getDescendantsByName"(): $Map<(string), ($ModelPart)>
  "embeddium$asOptional"(): $Optional<($ModelPart)>
  "embeddium$getPartsList"(): $List<($ModelPart)>
- "embeddium$getDescendantsByName"(): $Map<(string), ($ModelPart)>
 }
 
 export namespace $ModelPartExtended {

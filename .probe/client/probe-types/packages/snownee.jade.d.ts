@@ -142,17 +142,17 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 
 export interface $BlockAccessor$Builder {
 
- "hit"(arg0: $BlockHitResult$Type): $BlockAccessor$Builder
  "level"(arg0: $Level$Type): $BlockAccessor$Builder
- "from"(arg0: $BlockAccessor$Type): $BlockAccessor$Builder
+ "hit"(arg0: $BlockHitResult$Type): $BlockAccessor$Builder
  "build"(): $BlockAccessor
+ "from"(arg0: $BlockAccessor$Type): $BlockAccessor$Builder
  "blockEntity"(arg0: $Supplier$Type<($BlockEntity$Type)>): $BlockAccessor$Builder
  "blockEntity"(arg0: $BlockEntity$Type): $BlockAccessor$Builder
  "serverConnected"(arg0: boolean): $BlockAccessor$Builder
  "showDetails"(arg0: boolean): $BlockAccessor$Builder
- "requireVerification"(): $BlockAccessor$Builder
  "blockState"(arg0: $BlockState$Type): $BlockAccessor$Builder
  "player"(arg0: $Player$Type): $BlockAccessor$Builder
+ "requireVerification"(): $BlockAccessor$Builder
  "serverData"(arg0: $CompoundTag$Type): $BlockAccessor$Builder
  "fakeBlock"(arg0: $ItemStack$Type): $BlockAccessor$Builder
 }
@@ -210,17 +210,17 @@ import {$GuiGraphics, $GuiGraphics$Type} from "packages/net/minecraft/client/gui
 
 export interface $IElement {
 
+ "tag"(arg0: $ResourceLocation$Type): $IElement
  "getTag"(): $ResourceLocation
  "size"(arg0: $Vec2$Type): $IElement
  "getMessage"(): string
  "message"(arg0: string): $IElement
  "getSize"(): $Vec2
- "tag"(arg0: $ResourceLocation$Type): $IElement
  "getTranslation"(): $Vec2
- "getAlignment"(): $IElement$Align
+ "render"(arg0: $GuiGraphics$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
  "align"(arg0: $IElement$Align$Type): $IElement
  "translate"(arg0: $Vec2$Type): $IElement
- "render"(arg0: $GuiGraphics$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
+ "getAlignment"(): $IElement$Align
  "getCachedSize"(): $Vec2
  "getCachedMessage"(): string
  "clearCachedMessage"(): $IElement
@@ -258,8 +258,8 @@ static readonly "EMPTY_FLUID": $Component
 
 constructor(arg0: $IElement$Type)
 
-public static "writeDefault"(arg0: $JadeFluidObject$Type, arg1: long): $CompoundTag
 public static "readDefault"(arg0: $CompoundTag$Type): $FluidView
+public static "writeDefault"(arg0: $JadeFluidObject$Type, arg1: long): $CompoundTag
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -337,8 +337,8 @@ export type $IEntityComponentProvider_ = $IEntityComponentProvider$Type;
 }}
 declare module "packages/snownee/jade/api/$BlockAccessor" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
-import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
@@ -355,15 +355,15 @@ export interface $BlockAccessor extends $Accessor<($BlockHitResult)> {
  "getPosition"(): $BlockPos
  "getBlock"(): $Block
  "getBlockEntity"(): $BlockEntity
+ "getSide"(): $Direction
  "getAccessorType"(): $Class<(any)>
  "getBlockState"(): $BlockState
- "getSide"(): $Direction
- "isFakeBlock"(): boolean
  "getFakeBlock"(): $ItemStack
+ "isFakeBlock"(): boolean
  "verifyData"(arg0: $CompoundTag$Type): boolean
  "getTarget"(): any
- "getHitResult"(): $BlockHitResult
  "getPickedResult"(): $ItemStack
+ "getHitResult"(): $BlockHitResult
  "getLevel"(): $Level
  "isServerConnected"(): boolean
  "getServerData"(): $CompoundTag
@@ -478,7 +478,6 @@ import {$Rect2i, $Rect2i$Type} from "packages/net/minecraft/client/renderer/$Rec
 export interface $ITooltipRenderer {
 
  "setSize"(arg0: $Vec2$Type): void
- "getSize"(): $Vec2
  "setPadding"(arg0: integer, arg1: integer): void
 /**
  * 
@@ -486,14 +485,15 @@ export interface $ITooltipRenderer {
  */
  "setPadding"(arg0: integer, arg1: float): void
  "getPosition"(): $Rect2i
+ "getSize"(): $Vec2
  "getIcon"(): $IElement
- "recalculateSize"(): void
  "getRealScale"(): float
- "getRealRect"(): $Rect2i
  "recalculateRealRect"(): void
+ "getRealRect"(): $Rect2i
+ "recalculateSize"(): void
  "getTooltip"(): $Tooltip
- "setIcon"(arg0: $IElement$Type): void
  "hasIcon"(): boolean
+ "setIcon"(arg0: $IElement$Type): void
  "getPadding"(arg0: integer): integer
 }
 
@@ -629,12 +629,12 @@ constructor(arg0: $List$Type<(T)>)
 
 public static "read"<T>(arg0: $CompoundTag$Type, arg1: $Function$Type<($CompoundTag$Type), (T)>): $ViewGroup<(T)>
 public "save"(arg0: $CompoundTag$Type, arg1: $Function$Type<(T), ($CompoundTag$Type)>): void
-public "setProgress"(arg0: float): void
 public "getExtraData"(): $CompoundTag
+public "setProgress"(arg0: float): void
 public static "readList"<T>(arg0: $CompoundTag$Type, arg1: string, arg2: $Function$Type<($CompoundTag$Type), (T)>): $List<($ViewGroup<(T)>)>
 public static "saveList"<T>(arg0: $CompoundTag$Type, arg1: string, arg2: $List$Type<($ViewGroup$Type<(T)>)>, arg3: $Function$Type<(T), ($CompoundTag$Type)>): boolean
-set "progress"(value: float)
 get "extraData"(): $CompoundTag
+set "progress"(value: float)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -764,15 +764,15 @@ import {$ITooltip, $ITooltip$Type} from "packages/snownee/jade/api/$ITooltip"
 
 export interface $IElementHelper {
 
- "item"(arg0: $ItemStack$Type, arg1: float): $IElement
- "item"(arg0: $ItemStack$Type, arg1: float, arg2: string): $IElement
  "item"(arg0: $ItemStack$Type): $IElement
+ "item"(arg0: $ItemStack$Type, arg1: float, arg2: string): $IElement
+ "item"(arg0: $ItemStack$Type, arg1: float): $IElement
+ "text"(arg0: $Component$Type): $IElement
  "progress"(arg0: float, arg1: $Component$Type, arg2: $IProgressStyle$Type, arg3: $IBoxStyle$Type, arg4: boolean): $IElement
  "box"(arg0: $ITooltip$Type, arg1: $IBoxStyle$Type): $IBoxElement
- "text"(arg0: $Component$Type): $IElement
- "progressStyle"(): $IProgressStyle
  "tooltip"(): $ITooltip
  "fluid"(arg0: $JadeFluidObject$Type): $IElement
+ "progressStyle"(): $IProgressStyle
  "spacer"(arg0: integer, arg1: integer): $IElement
  "smallItem"(arg0: $ItemStack$Type): $IElement
 }
@@ -893,10 +893,10 @@ export interface $Accessor<T extends $HitResult> {
 
  "verifyData"(arg0: $CompoundTag$Type): boolean
  "getTarget"(): any
- "getHitResult"(): T
  "getPickedResult"(): $ItemStack
- "getAccessorType"(): $Class<(any)>
+ "getHitResult"(): T
  "getLevel"(): $Level
+ "getAccessorType"(): $Class<(any)>
  "isServerConnected"(): boolean
  "getServerData"(): $CompoundTag
  "showDetails"(): boolean
@@ -1099,8 +1099,8 @@ constructor()
 
 public "add"(arg0: integer, arg1: $IElement$Type): void
 public "remove"(arg0: $ResourceLocation$Type): void
-public "get"(arg0: integer, arg1: $IElement$Align$Type): $List<($IElement)>
 public "get"(arg0: $ResourceLocation$Type): $List<($IElement)>
+public "get"(arg0: integer, arg1: $IElement$Align$Type): $List<($IElement)>
 public "append"(arg0: integer, arg1: $IElement$Type): void
 public "clear"(): void
 public "size"(): integer
@@ -1184,8 +1184,8 @@ constructor(arg0: $List$Type<(T)>)
 
 public static "map"<IN, OUT>(arg0: $List$Type<($ViewGroup$Type<(IN)>)>, arg1: $Function$Type<(IN), (OUT)>, arg2: $BiConsumer$Type<($ViewGroup$Type<(IN)>), ($ClientViewGroup$Type<(OUT)>)>): $List<($ClientViewGroup<(OUT)>)>
 public "shouldRenderGroup"(): boolean
-public "renderHeader"(arg0: $ITooltip$Type): void
 public static "tooltip"<T>(arg0: $ITooltip$Type, arg1: $List$Type<($ClientViewGroup$Type<(T)>)>, arg2: boolean, arg3: $BiConsumer$Type<($ITooltip$Type), ($ClientViewGroup$Type<(T)>)>): void
+public "renderHeader"(arg0: $ITooltip$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1209,8 +1209,8 @@ import {$ITooltip, $ITooltip$Type} from "packages/snownee/jade/api/$ITooltip"
 export interface $Accessor$ClientHandler<T extends $Accessor<(any)>> {
 
  "getIcon"(arg0: T): $IElement
- "gatherComponents"(arg0: T, arg1: $Function$Type<($IJadeProvider$Type), ($ITooltip$Type)>): void
  "shouldDisplay"(arg0: T): boolean
+ "gatherComponents"(arg0: T, arg1: $Function$Type<($IJadeProvider$Type), ($ITooltip$Type)>): void
  "shouldRequestData"(arg0: T): boolean
  "requestData"(arg0: T): void
 }
@@ -1353,8 +1353,8 @@ export interface $EntityAccessor extends $Accessor<($EntityHitResult)> {
  "getRawEntity"(): $Entity
  "verifyData"(arg0: $CompoundTag$Type): boolean
  "getTarget"(): any
- "getHitResult"(): $EntityHitResult
  "getPickedResult"(): $ItemStack
+ "getHitResult"(): $EntityHitResult
  "getLevel"(): $Level
  "isServerConnected"(): boolean
  "getServerData"(): $CompoundTag
@@ -1382,24 +1382,24 @@ declare module "packages/snownee/jade/api/$EntityAccessor$Builder" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$EntityHitResult, $EntityHitResult$Type} from "packages/net/minecraft/world/phys/$EntityHitResult"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 import {$EntityAccessor, $EntityAccessor$Type} from "packages/snownee/jade/api/$EntityAccessor"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 
 export interface $EntityAccessor$Builder {
 
+ "level"(arg0: $Level$Type): $EntityAccessor$Builder
  "hit"(arg0: $EntityHitResult$Type): $EntityAccessor$Builder
  "hit"(arg0: $Supplier$Type<($EntityHitResult$Type)>): $EntityAccessor$Builder
- "level"(arg0: $Level$Type): $EntityAccessor$Builder
- "entity"(arg0: $Supplier$Type<($Entity$Type)>): $EntityAccessor$Builder
- "entity"(arg0: $Entity$Type): $EntityAccessor$Builder
- "from"(arg0: $EntityAccessor$Type): $EntityAccessor$Builder
  "build"(): $EntityAccessor
+ "from"(arg0: $EntityAccessor$Type): $EntityAccessor$Builder
+ "entity"(arg0: $Entity$Type): $EntityAccessor$Builder
+ "entity"(arg0: $Supplier$Type<($Entity$Type)>): $EntityAccessor$Builder
  "serverConnected"(arg0: boolean): $EntityAccessor$Builder
  "showDetails"(arg0: boolean): $EntityAccessor$Builder
- "requireVerification"(): $EntityAccessor$Builder
  "player"(arg0: $Player$Type): $EntityAccessor$Builder
+ "requireVerification"(): $EntityAccessor$Builder
  "serverData"(arg0: $CompoundTag$Type): $EntityAccessor$Builder
 }
 
@@ -1455,17 +1455,17 @@ import {$ITooltipRenderer, $ITooltipRenderer$Type} from "packages/snownee/jade/a
 export interface $IBoxElement extends $IElement {
 
  "getTooltipRenderer"(): $ITooltipRenderer
+ "tag"(arg0: $ResourceLocation$Type): $IElement
  "getTag"(): $ResourceLocation
  "size"(arg0: $Vec2$Type): $IElement
  "getMessage"(): string
  "message"(arg0: string): $IElement
  "getSize"(): $Vec2
- "tag"(arg0: $ResourceLocation$Type): $IElement
  "getTranslation"(): $Vec2
- "getAlignment"(): $IElement$Align
+ "render"(arg0: $GuiGraphics$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
  "align"(arg0: $IElement$Align$Type): $IElement
  "translate"(arg0: $Vec2$Type): $IElement
- "render"(arg0: $GuiGraphics$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
+ "getAlignment"(): $IElement$Align
  "getCachedSize"(): $Vec2
  "getCachedMessage"(): string
  "clearCachedMessage"(): $IElement
@@ -1495,8 +1495,8 @@ export interface $IProgressStyle {
 
  "color"(arg0: integer): $IProgressStyle
  "color"(arg0: integer, arg1: integer): $IProgressStyle
- "overlay"(arg0: $IElement$Type): $IProgressStyle
  "render"(arg0: $GuiGraphics$Type, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: $Component$Type): void
+ "overlay"(arg0: $IElement$Type): $IProgressStyle
  "vertical"(arg0: boolean): $IProgressStyle
  "textColor"(arg0: integer): $IProgressStyle
 }

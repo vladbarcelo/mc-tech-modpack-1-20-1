@@ -1,0 +1,18 @@
+{
+	"type": "createmetallurgy:casting_in_table",
+	"ingredients": [
+		{
+			"item": "kubejs:oil_can_sand_cast"
+		},
+		{
+			"amount": 90,
+			"fluid": "createmetallurgy:molten_copper",
+			"nbt": {}
+		}
+	],
+	"processingTime": 100,
+	"mold_consumed": true,
+	"result": {
+		"item": "hardcore_torches:oil_can"
+	}
+}

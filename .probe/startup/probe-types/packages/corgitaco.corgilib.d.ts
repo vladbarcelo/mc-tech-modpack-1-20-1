@@ -29,8 +29,8 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $RandomTickScheduler {
 
- "scheduleRandomTick"(arg0: $BlockPos$Type): void
  "getScheduledRandomTicks"(): $List<($BlockPos)>
+ "scheduleRandomTick"(arg0: $BlockPos$Type): void
 }
 
 export namespace $RandomTickScheduler {

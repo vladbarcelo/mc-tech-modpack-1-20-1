@@ -10,7 +10,7 @@ BlockEvents.rightClicked('better_campfires:campfire_build', event => {
 
   if (event.block.properties.stage === '2') {
     event.player.mainHandItem.shrink(1)
-    // this is to circumvent BlockSwapper event highjacking
+    // this is to circumvent BlockSwapper event hijacking
     event.server.scheduleInTicks(1, () => {
       let campfireBlock = Block.getBlock('hardcore_torches:hardcore_campfire').defaultBlockState()
       event.getLevel().setBlock(event.block.pos, campfireBlock, 3)

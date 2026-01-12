@@ -135,10 +135,10 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "getStackFor"(): $ItemStack
+public "getStateFrom"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: integer): $BlockState
 public "getMaxStackable"(): integer
 public "getDecrementedState"(arg0: $BlockState$Type): $BlockState
 public "getIncrementedState"(arg0: $BlockState$Type, arg1: integer): $BlockState
-public "getStateFrom"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: integer): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStacks"(arg0: $BlockState$Type): integer
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -586,8 +586,8 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "getStackFor"(): $ItemStack
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "stackFor"(): $ItemStack
 }
@@ -744,9 +744,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "getStackFor"(): $ItemStack
 public "getStateFrom"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "stackFor"(): $ItemStack
 }

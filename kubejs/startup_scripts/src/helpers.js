@@ -157,3 +157,15 @@ function addMetalCastingRecipe(
     }
   })
 }
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max); // Range [0, max)
+}
+
+global.getRandomInt = getRandomInt
+
+function getRandomArrValue(arr) {
+  return arr[getRandomInt(arr.length)]
+}
+
+global.getRandomArrValue = getRandomArrValue

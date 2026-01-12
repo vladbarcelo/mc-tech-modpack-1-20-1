@@ -10,6 +10,7 @@ module.exports = {
   },
   globals: {
     'Java': true,
+    'AABB': true,
     'ClientEvents': true,
     'StartupEvents': true,
     'ServerEvents': true,
@@ -26,6 +27,7 @@ module.exports = {
     'BlockEvents': true,
     'BlockProperties': true,
     // helpers
+    'getRandomArrValue': true,
     'toSentenceCase': true,
     'darkenColor': true,
     'addMetalCastingRecipe': true,

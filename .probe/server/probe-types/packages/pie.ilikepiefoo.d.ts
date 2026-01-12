@@ -10,8 +10,8 @@ export class $ServerExtensionProviderBuilder<IN, OUT> extends $JadeProviderBuild
 constructor(uniqueIdentifier: $ResourceLocation$Type)
 
 public "callback"(callback: $Consumer$Type<($GetServerGroupsCallbackJS$Type<(IN), (OUT)>)>): $ServerExtensionProviderBuilder<(IN), (OUT)>
-public "setCallback"(callback: $Consumer$Type<($GetServerGroupsCallbackJS$Type<(IN), (OUT)>)>): $ServerExtensionProviderBuilder<(IN), (OUT)>
 public "getCallback"(): $Consumer<($GetServerGroupsCallbackJS<(IN), (OUT)>)>
+public "setCallback"(callback: $Consumer$Type<($GetServerGroupsCallbackJS$Type<(IN), (OUT)>)>): $ServerExtensionProviderBuilder<(IN), (OUT)>
 public "groupCallback"(callback: $Consumer$Type<($GetServerGroupsCallbackJS$Type<(IN), (OUT)>)>): $ServerExtensionProviderBuilder<(IN), (OUT)>
 public static "doNothing"<IN, OUT>(callback: $GetServerGroupsCallbackJS$Type<(IN), (OUT)>): void
 public "onGroups"(callback: $Consumer$Type<($GetServerGroupsCallbackJS$Type<(IN), (OUT)>)>): $ServerExtensionProviderBuilder<(IN), (OUT)>
@@ -308,8 +308,8 @@ constructor(accessor: $Accessor$Type<(any)>, groups: $List$Type<($ViewGroup$Type
 
 public "getAccessor"(): $Accessor<(any)>
 public "getResultingGroups"(): $List<($ViewGroupBuilder<(OUT)>)>
-public "clearGroups"(): $GetClientGroupsCallbackJS<(IN), (OUT)>
 public "getGroups"(): $List<($ViewGroup<(IN)>)>
+public "clearGroups"(): $GetClientGroupsCallbackJS<(IN), (OUT)>
 public "addGroup"(groupBuilderConsumer: $Consumer$Type<($ViewGroupBuilder$Type<(OUT)>)>): $GetClientGroupsCallbackJS<(IN), (OUT)>
 public "addGroup"(group: $List$Type<(OUT)>): $GetClientGroupsCallbackJS<(IN), (OUT)>
 public "addGroup"(group: $ViewGroup$Type<(OUT)>): $GetClientGroupsCallbackJS<(IN), (OUT)>
@@ -527,13 +527,13 @@ export class $BlockComponentProviderBuilder extends $ToggleableProviderBuilder {
 constructor(uniqueIdentifier: $ResourceLocation$Type)
 
 public "icon"(iconRetriever: $BlockComponentProviderBuilder$IconRetriever$Type): $BlockComponentProviderBuilder
-public "setTooltipRetriever"(tooltipRetriever: $BlockComponentProviderBuilder$TooltipRetriever$Type): $BlockComponentProviderBuilder
-public "setIconRetriever"(iconRetriever: $BlockComponentProviderBuilder$IconRetriever$Type): $BlockComponentProviderBuilder
-public "tooltipRetriever"(tooltipRetriever: $BlockComponentProviderBuilder$TooltipRetriever$Type): $BlockComponentProviderBuilder
-public "iconRetriever"(iconRetriever: $BlockComponentProviderBuilder$IconRetriever$Type): $BlockComponentProviderBuilder
+public "tooltip"(tooltipRetriever: $BlockComponentProviderBuilder$TooltipRetriever$Type): $BlockComponentProviderBuilder
 public "getIconRetriever"(): $BlockComponentProviderBuilder$IconRetriever
 public "getTooltipRetriever"(): $BlockComponentProviderBuilder$TooltipRetriever
-public "tooltip"(tooltipRetriever: $BlockComponentProviderBuilder$TooltipRetriever$Type): $BlockComponentProviderBuilder
+public "iconRetriever"(iconRetriever: $BlockComponentProviderBuilder$IconRetriever$Type): $BlockComponentProviderBuilder
+public "tooltipRetriever"(tooltipRetriever: $BlockComponentProviderBuilder$TooltipRetriever$Type): $BlockComponentProviderBuilder
+public "setIconRetriever"(iconRetriever: $BlockComponentProviderBuilder$IconRetriever$Type): $BlockComponentProviderBuilder
+public "setTooltipRetriever"(tooltipRetriever: $BlockComponentProviderBuilder$TooltipRetriever$Type): $BlockComponentProviderBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -648,20 +648,20 @@ export class $WailaClientRegistrationEventJS extends $EventJS {
 constructor(registration: $IWailaClientRegistration$Type)
 
 public "progress"(location: $ResourceLocation$Type): $ClientExtensionProviderBuilder<($CompoundTag), ($ProgressView)>
-public "entity"(location: $ResourceLocation$Type, entity: $Class$Type<(any)>): $EntityComponentProviderBuilder
 public "block"(location: $ResourceLocation$Type, block: $Class$Type<(any)>): $BlockComponentProviderBuilder
+public "entity"(location: $ResourceLocation$Type, entity: $Class$Type<(any)>): $EntityComponentProviderBuilder
 public "fluidStorage"(location: $ResourceLocation$Type): $ClientExtensionProviderBuilder<($CompoundTag), ($FluidView)>
-public "itemStorage"(location: $ResourceLocation$Type): $ClientExtensionProviderBuilder<($ItemStack), ($ItemView)>
-public "addConfig"(key: $ResourceLocation$Type, defaultValue: string, validator: $Predicate$Type<(string)>): void
-public "addConfig"(key: $ResourceLocation$Type, defaultValue: boolean): void
 public "addConfig"(key: $ResourceLocation$Type, defaultValue: $Enum$Type<(any)>): void
-public "addConfig"(key: $ResourceLocation$Type, defaultValue: float, min: float, max: float, slider: boolean): void
+public "addConfig"(key: $ResourceLocation$Type, defaultValue: boolean): void
 public "addConfig"(key: $ResourceLocation$Type, defaultValue: integer, min: integer, max: integer, slider: boolean): void
+public "addConfig"(key: $ResourceLocation$Type, defaultValue: string, validator: $Predicate$Type<(string)>): void
+public "addConfig"(key: $ResourceLocation$Type, defaultValue: float, min: float, max: float, slider: boolean): void
 public "addTooltipCollectedCallback"(callback: $JadeTooltipCollectedCallback$Type): void
 public "addTooltipCollectedCallback"(priority: integer, callback: $JadeTooltipCollectedCallback$Type): void
 public "addRenderBackgroundCallback"(callback: $JadeRenderBackgroundCallback$Type): void
 public "addRenderBackgroundCallback"(priority: integer, callback: $JadeRenderBackgroundCallback$Type): void
 public "registerEnergyStorageClient"(provider: $IClientExtensionProvider$Type<($CompoundTag$Type), ($EnergyView$Type)>): void
+public "energyStorage"(location: $ResourceLocation$Type): $ClientExtensionProviderBuilder<($CompoundTag), ($EnergyView)>
 public "addConfigListener"(key: $ResourceLocation$Type, listener: $Consumer$Type<($ResourceLocation$Type)>): void
 public "registerBlockIcon"(provider: $IBlockComponentProvider$Type, block: $Class$Type<(any)>): void
 public "registerBlockComponent"(provider: $IBlockComponentProvider$Type, block: $Class$Type<(any)>): void
@@ -695,7 +695,7 @@ public "isClientFeature"(uid: $ResourceLocation$Type): boolean
 public "registerAccessorHandler"<T extends $Accessor<(any)>>(clazz: $Class$Type<(T)>, handler: $Accessor$ClientHandler$Type<(T)>): void
 public "getAccessorHandler"(clazz: $Class$Type<(any)>): $Accessor$ClientHandler<($Accessor<(any)>)>
 public "registerCustomEnchantPower"(block: $Block$Type, customEnchantPower: $CustomEnchantPower$Type): void
-public "energyStorage"(location: $ResourceLocation$Type): $ClientExtensionProviderBuilder<($CompoundTag), ($EnergyView)>
+public "itemStorage"(location: $ResourceLocation$Type): $ClientExtensionProviderBuilder<($ItemStack), ($ItemView)>
 public "shouldHide"(state: $BlockState$Type): boolean
 public "shouldHide"(target: $Entity$Type): boolean
 public "hideTarget"(entityType: $EntityType$Type<(any)>): void
@@ -727,12 +727,12 @@ export class $ToggleableProviderBuilder extends $JadeProviderBuilder {
 
 constructor(uniqueIdentifier: $ResourceLocation$Type)
 
-public "enabledByDefault"(): $ToggleableProviderBuilder
 public "isEnabledByDefault"(): boolean
-public "setRequired"(isRequired: boolean): $ToggleableProviderBuilder
-public "isRequired"(): boolean
-public "required"(): $ToggleableProviderBuilder
+public "enabledByDefault"(): $ToggleableProviderBuilder
 public "setEnabledByDefault"(enabledByDefault: boolean): $ToggleableProviderBuilder
+public "required"(): $ToggleableProviderBuilder
+public "isRequired"(): boolean
+public "setRequired"(isRequired: boolean): $ToggleableProviderBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -785,11 +785,11 @@ constructor(oldPlayer: $ServerPlayer$Type, newPlayer: $ServerPlayer$Type, conque
 
 public "getEntity"(): $Player
 public static "of"(oldPlayer: $ServerPlayer$Type, newPlayer: $ServerPlayer$Type, conqueredEnd: boolean): $PlayerCloneEventJS
+public "getOldPlayer"(): $Player
+public "getNewPlayer"(): $Player
 public "returningFromEnd"(): boolean
 public "causedByPortal"(): boolean
 public "causedByDeath"(): boolean
-public "getOldPlayer"(): $Player
-public "getNewPlayer"(): $Player
 public "leavingEnd"(): boolean
 get "entity"(): $Player
 get "oldPlayer"(): $Player
@@ -825,9 +825,9 @@ constructor(player: $ServerPlayer$Type, world: $ServerLevel$Type, target: IN, sh
 public "getTarget"(): IN
 public "getLevel"(): $ServerLevel
 public "showDetails"(): boolean
+public "getGroups"(): $List<($ViewGroupBuilder<(OUT)>)>
 public "clearGroups"(): $GetServerGroupsCallbackJS<(IN), (OUT)>
 public "getPlayer"(): $ServerPlayer
-public "getGroups"(): $List<($ViewGroupBuilder<(OUT)>)>
 public "getWorld"(): $ServerLevel
 public "addGroup"(group: $List$Type<(OUT)>): $GetServerGroupsCallbackJS<(IN), (OUT)>
 public "addGroup"(groupBuilderConsumer: $Consumer$Type<($ViewGroupBuilder$Type<(OUT)>)>): $GetServerGroupsCallbackJS<(IN), (OUT)>
@@ -835,8 +835,8 @@ public "addGroup"(group: $ViewGroupBuilder$Type<(OUT)>): $GetServerGroupsCallbac
 public "addGroups"(groups: $List$Type<($ViewGroupBuilder$Type<(OUT)>)>): $GetServerGroupsCallbackJS<(IN), (OUT)>
 get "target"(): IN
 get "level"(): $ServerLevel
-get "player"(): $ServerPlayer
 get "groups"(): $List<($ViewGroupBuilder<(OUT)>)>
+get "player"(): $ServerPlayer
 get "world"(): $ServerLevel
 }
 /**
@@ -964,6 +964,12 @@ constructor(builder: $RecipeCategoryBuilder$Type<(T)>)
 
 public "getWidth"(): integer
 public "getHeight"(): integer
+public "getRegistryName"(recipe: T): $ResourceLocation
+/**
+ * 
+ * @deprecated
+ */
+public "handleInput"(recipe: T, mouseX: double, mouseY: double, input: $InputConstants$Key$Type): boolean
 /**
  * 
  * @deprecated
@@ -976,15 +982,9 @@ public "getBackground"(): $IDrawable
 public "getTooltipStrings"(recipe: T, recipeSlotsView: $IRecipeSlotsView$Type, mouseX: double, mouseY: double): $List<($Component)>
 public "getRecipeType"(): $RecipeType<(T)>
 public "createRecipeExtras"(builder: $IRecipeExtrasBuilder$Type, recipe: T, focuses: $IFocusGroup$Type): void
-/**
- * 
- * @deprecated
- */
-public "handleInput"(recipe: T, mouseX: double, mouseY: double, input: $InputConstants$Key$Type): boolean
-public "getRegistryName"(recipe: T): $ResourceLocation
-public "draw"(recipe: T, recipeSlotsView: $IRecipeSlotsView$Type, guiGraphics: $GuiGraphics$Type, mouseX: double, mouseY: double): void
-public "getTitle"(): $Component
 public "getIcon"(): $IDrawable
+public "getTitle"(): $Component
+public "draw"(recipe: T, recipeSlotsView: $IRecipeSlotsView$Type, guiGraphics: $GuiGraphics$Type, mouseX: double, mouseY: double): void
 public "onDisplayedIngredientsUpdate"(recipe: T, recipeSlots: $List$Type<($IRecipeSlotDrawable$Type)>, focuses: $IFocusGroup$Type): void
 public "getTooltip"(tooltip: $ITooltipBuilder$Type, recipe: T, recipeSlotsView: $IRecipeSlotsView$Type, mouseX: double, mouseY: double): void
 public "setRecipe"(builder: $IRecipeLayoutBuilder$Type, recipe: T, focuses: $IFocusGroup$Type): void
@@ -993,8 +993,8 @@ get "width"(): integer
 get "height"(): integer
 get "background"(): $IDrawable
 get "recipeType"(): $RecipeType<(T)>
-get "title"(): $Component
 get "icon"(): $IDrawable
+get "title"(): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1027,10 +1027,10 @@ constructor(registration: $IWailaCommonRegistration$Type)
 public "progress"<T>(location: $ResourceLocation$Type, highestClass: $Class$Type<(any)>): $ServerExtensionProviderBuilder<(T), ($CompoundTag)>
 public "getRegistration"(): $IWailaCommonRegistration
 public "fluidStorage"<T>(location: $ResourceLocation$Type, highestClass: $Class$Type<(any)>): $ServerExtensionProviderBuilder<(T), ($CompoundTag)>
-public "itemStorage"<T>(location: $ResourceLocation$Type, highestClass: $Class$Type<(any)>): $ServerExtensionProviderBuilder<(T), ($ItemStack)>
 public "energyStorage"<T>(location: $ResourceLocation$Type, highestClass: $Class$Type<(any)>): $ServerExtensionProviderBuilder<(T), ($CompoundTag)>
-public "blockDataProvider"(location: $ResourceLocation$Type, block: $Class$Type<(any)>): $ServerDataProviderBuilder<($BlockAccessor)>
+public "itemStorage"<T>(location: $ResourceLocation$Type, highestClass: $Class$Type<(any)>): $ServerExtensionProviderBuilder<(T), ($ItemStack)>
 public "entityDataProvider"(location: $ResourceLocation$Type, entity: $Class$Type<(any)>): $ServerDataProviderBuilder<($EntityAccessor)>
+public "blockDataProvider"(location: $ResourceLocation$Type, block: $Class$Type<(any)>): $ServerDataProviderBuilder<($BlockAccessor)>
 get "registration"(): $IWailaCommonRegistration
 }
 /**
@@ -1048,8 +1048,8 @@ export type $WailaCommonRegistrationEventJS_ = $WailaCommonRegistrationEventJS$T
 declare module "packages/pie/ilikepiefoo/compat/jei/builder/$RecipeCategoryBuilder" {
 import {$IJeiHelpers, $IJeiHelpers$Type} from "packages/mezz/jei/api/helpers/$IJeiHelpers"
 import {$RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler, $RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler$Type} from "packages/pie/ilikepiefoo/compat/jei/builder/$RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler"
-import {$RecipeCategoryBuilder$GetRegisterName, $RecipeCategoryBuilder$GetRegisterName$Type} from "packages/pie/ilikepiefoo/compat/jei/builder/$RecipeCategoryBuilder$GetRegisterName"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
+import {$RecipeCategoryBuilder$GetRegisterName, $RecipeCategoryBuilder$GetRegisterName$Type} from "packages/pie/ilikepiefoo/compat/jei/builder/$RecipeCategoryBuilder$GetRegisterName"
 import {$RecipeCategoryBuilder$GetTooltipHandler, $RecipeCategoryBuilder$GetTooltipHandler$Type} from "packages/pie/ilikepiefoo/compat/jei/builder/$RecipeCategoryBuilder$GetTooltipHandler"
 import {$RecipeCategoryBuilder$SetRecipeHandler, $RecipeCategoryBuilder$SetRecipeHandler$Type} from "packages/pie/ilikepiefoo/compat/jei/builder/$RecipeCategoryBuilder$SetRecipeHandler"
 import {$RecipeType, $RecipeType$Type} from "packages/mezz/jei/api/recipe/$RecipeType"
@@ -1067,23 +1067,23 @@ constructor(recipeType: $RecipeType$Type<(T)>, jeiHelpers: $IJeiHelpers$Type)
 
 public "getWidth"(): integer
 public "getHeight"(): integer
-public "withTooltip"(tooltipStringsHandler: $RecipeCategoryBuilder$TooltipStringsHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
-public "getRecipeType"(): $RecipeType<(T)>
-public "createRecipeExtras"(createRecipeExtrasHandler: $RecipeCategoryBuilder$CreateRecipeExtrasHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
-public "getJeiHelpers"(): $IJeiHelpers
-public "registryName"(getRegisterName: $RecipeCategoryBuilder$GetRegisterName$Type<(T)>): $RecipeCategoryBuilder<(T)>
-public "background"(background: $IDrawable$Type): $RecipeCategoryBuilder<(T)>
-public "title"(title: $Component$Type): $RecipeCategoryBuilder<(T)>
-public "icon"(icon: $IDrawable$Type): $RecipeCategoryBuilder<(T)>
-public "onDisplayedIngredientsUpdate"(displayedIngredientsUpdateHandler: $RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
-public "getInputHandler"(): $RecipeCategoryBuilder$InputHandler<(T)>
-public "iconSupplier"(icon: $Supplier$Type<($IDrawable$Type)>): $RecipeCategoryBuilder<(T)>
 public "getCreateRecipeExtrasHandler"(): $RecipeCategoryBuilder$CreateRecipeExtrasHandler<(T)>
 public "getDisplayedIngredientsUpdateHandler"(): $RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler<(T)>
 public "setDisplayedIngredientsUpdateHandler"(displayedIngredientsUpdateHandler: $RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
 public "getIsRecipeHandledByCategory"(): $RecipeCategoryBuilder$IsRecipeHandledByCategory<(T)>
 public "setIsRecipeHandledByCategory"(isRecipeHandledByCategory: $RecipeCategoryBuilder$IsRecipeHandledByCategory$Type<(T)>): $RecipeCategoryBuilder<(T)>
 public "setCreateRecipeExtrasHandler"(setRecipeExtrasHandler: $RecipeCategoryBuilder$CreateRecipeExtrasHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
+public "withTooltip"(tooltipStringsHandler: $RecipeCategoryBuilder$TooltipStringsHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
+public "getJeiHelpers"(): $IJeiHelpers
+public "getRecipeType"(): $RecipeType<(T)>
+public "createRecipeExtras"(createRecipeExtrasHandler: $RecipeCategoryBuilder$CreateRecipeExtrasHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
+public "icon"(icon: $IDrawable$Type): $RecipeCategoryBuilder<(T)>
+public "title"(title: $Component$Type): $RecipeCategoryBuilder<(T)>
+public "background"(background: $IDrawable$Type): $RecipeCategoryBuilder<(T)>
+public "registryName"(getRegisterName: $RecipeCategoryBuilder$GetRegisterName$Type<(T)>): $RecipeCategoryBuilder<(T)>
+public "onDisplayedIngredientsUpdate"(displayedIngredientsUpdateHandler: $RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
+public "iconSupplier"(icon: $Supplier$Type<($IDrawable$Type)>): $RecipeCategoryBuilder<(T)>
+public "getInputHandler"(): $RecipeCategoryBuilder$InputHandler<(T)>
 public "getCategoryTitle"(): $Component
 public "titleSupplier"(title: $Supplier$Type<($Component$Type)>): $RecipeCategoryBuilder<(T)>
 public "getCategoryBackground"(): $IDrawable
@@ -1112,15 +1112,15 @@ public "setWidth"(width: integer): $RecipeCategoryBuilder<(T)>
 public "onInput"(inputHandler: $RecipeCategoryBuilder$InputHandler$Type<(T)>): $RecipeCategoryBuilder<(T)>
 get "width"(): integer
 get "height"(): integer
-get "recipeType"(): $RecipeType<(T)>
-get "jeiHelpers"(): $IJeiHelpers
-get "inputHandler"(): $RecipeCategoryBuilder$InputHandler<(T)>
 get "createRecipeExtrasHandler"(): $RecipeCategoryBuilder$CreateRecipeExtrasHandler<(T)>
 get "displayedIngredientsUpdateHandler"(): $RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler<(T)>
 set "displayedIngredientsUpdateHandler"(value: $RecipeCategoryBuilder$DisplayedIngredientsUpdateHandler$Type<(T)>)
 get "isRecipeHandledByCategory"(): $RecipeCategoryBuilder$IsRecipeHandledByCategory<(T)>
 set "isRecipeHandledByCategory"(value: $RecipeCategoryBuilder$IsRecipeHandledByCategory$Type<(T)>)
 set "createRecipeExtrasHandler"(value: $RecipeCategoryBuilder$CreateRecipeExtrasHandler$Type<(T)>)
+get "jeiHelpers"(): $IJeiHelpers
+get "recipeType"(): $RecipeType<(T)>
+get "inputHandler"(): $RecipeCategoryBuilder$InputHandler<(T)>
 get "categoryTitle"(): $Component
 get "categoryBackground"(): $IDrawable
 get "categoryIcon"(): $IDrawable
@@ -1165,8 +1165,8 @@ export class $ClientExtensionProviderBuilder<IN, OUT> extends $JadeProviderBuild
 constructor(uniqueIdentifier: $ResourceLocation$Type)
 
 public "callback"(callback: $Consumer$Type<($GetClientGroupsCallbackJS$Type<(IN), (OUT)>)>): $ClientExtensionProviderBuilder<(IN), (OUT)>
-public "setCallback"(callback: $Consumer$Type<($GetClientGroupsCallbackJS$Type<(IN), (OUT)>)>): $ClientExtensionProviderBuilder<(IN), (OUT)>
 public "getCallback"(): $Consumer<($GetClientGroupsCallbackJS<(IN), (OUT)>)>
+public "setCallback"(callback: $Consumer$Type<($GetClientGroupsCallbackJS$Type<(IN), (OUT)>)>): $ClientExtensionProviderBuilder<(IN), (OUT)>
 public "groupCallback"(callback: $Consumer$Type<($GetClientGroupsCallbackJS$Type<(IN), (OUT)>)>): $ClientExtensionProviderBuilder<(IN), (OUT)>
 public static "doNothing"<IN, OUT>(callback: $GetClientGroupsCallbackJS$Type<(IN), (OUT)>): void
 public "onGroups"(callback: $Consumer$Type<($GetClientGroupsCallbackJS$Type<(IN), (OUT)>)>): $ClientExtensionProviderBuilder<(IN), (OUT)>
@@ -1590,11 +1590,11 @@ export class $ViewGroupBuilder<OUT> {
 
 constructor()
 
+public "addElement"(element: OUT): $ViewGroupBuilder<(OUT)>
+public "getElements"(): $List<(OUT)>
 public "add"(element: OUT): $ViewGroupBuilder<(OUT)>
 public "clear"(): $ViewGroupBuilder<(OUT)>
 public "addAll"(elements: $List$Type<(OUT)>): $ViewGroupBuilder<(OUT)>
-public "getElements"(): $List<(OUT)>
-public "addElement"(element: OUT): $ViewGroupBuilder<(OUT)>
 public "addElements"(elements: $List$Type<(OUT)>): $ViewGroupBuilder<(OUT)>
 public "setElements"(elements: $List$Type<(OUT)>): $ViewGroupBuilder<(OUT)>
 public "buildCommon"(): $ViewGroup<(OUT)>
@@ -1677,13 +1677,13 @@ export class $EntityComponentProviderBuilder extends $ToggleableProviderBuilder 
 constructor(uniqueIdentifier: $ResourceLocation$Type)
 
 public "icon"(iconRetriever: $EntityComponentProviderBuilder$IconRetriever$Type): $EntityComponentProviderBuilder
-public "setTooltipRetriever"(tooltipRetriever: $EntityComponentProviderBuilder$TooltipRetriever$Type): $EntityComponentProviderBuilder
-public "setIconRetriever"(iconRetriever: $EntityComponentProviderBuilder$IconRetriever$Type): $EntityComponentProviderBuilder
-public "tooltipRetriever"(tooltipRetriever: $EntityComponentProviderBuilder$TooltipRetriever$Type): $EntityComponentProviderBuilder
-public "iconRetriever"(iconRetriever: $EntityComponentProviderBuilder$IconRetriever$Type): $EntityComponentProviderBuilder
+public "tooltip"(tooltipRetriever: $EntityComponentProviderBuilder$TooltipRetriever$Type): $EntityComponentProviderBuilder
 public "getIconRetriever"(): $EntityComponentProviderBuilder$IconRetriever
 public "getTooltipRetriever"(): $EntityComponentProviderBuilder$TooltipRetriever
-public "tooltip"(tooltipRetriever: $EntityComponentProviderBuilder$TooltipRetriever$Type): $EntityComponentProviderBuilder
+public "iconRetriever"(iconRetriever: $EntityComponentProviderBuilder$IconRetriever$Type): $EntityComponentProviderBuilder
+public "tooltipRetriever"(tooltipRetriever: $EntityComponentProviderBuilder$TooltipRetriever$Type): $EntityComponentProviderBuilder
+public "setIconRetriever"(iconRetriever: $EntityComponentProviderBuilder$IconRetriever$Type): $EntityComponentProviderBuilder
+public "setTooltipRetriever"(tooltipRetriever: $EntityComponentProviderBuilder$TooltipRetriever$Type): $EntityComponentProviderBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1708,11 +1708,11 @@ export class $ServerDataProviderBuilder<T extends $Accessor<(any)>> extends $Jad
 
 constructor(uniqueIdentifier: $ResourceLocation$Type)
 
-public "setCallback"(callback: $ServerDataProviderBuilder$AppendServerDataCallback$Type<(T)>): $ServerDataProviderBuilder<(T)>
 public "getCallback"(): $ServerDataProviderBuilder$AppendServerDataCallback<(T)>
+public "setCallback"(callback: $ServerDataProviderBuilder$AppendServerDataCallback$Type<(T)>): $ServerDataProviderBuilder<(T)>
 public static "doNothing"<T extends $Accessor<(any)>>(compoundTag: $CompoundTag$Type, accessor: T): void
-set "callback"(value: $ServerDataProviderBuilder$AppendServerDataCallback$Type<(T)>)
 get "callback"(): $ServerDataProviderBuilder$AppendServerDataCallback<(T)>
+set "callback"(value: $ServerDataProviderBuilder$AppendServerDataCallback$Type<(T)>)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1739,22 +1739,22 @@ static readonly "LOG": $Logger
 constructor(method: $Method$Type, args: (any)[])
 
 public "getResult"(): any
+public "setResult"(result: any): void
 public "getReturnType"(): string
 public "getGenericReturnType"(): string
 public "getParameters"(): $Map<(string), (any)>
 public "getMethodName"(): string
-public "setResult"(result: any): void
 public "getArgs"(): (any)[]
+public "getArg"(index: integer): any
+public "hasResult"(): boolean
 public "getResultOptional"(): $Optional<(any)>
 public "requiresResult"(): boolean
-public "hasResult"(): boolean
-public "getArg"(index: integer): any
 get "result"(): any
+set "result"(value: any)
 get "returnType"(): string
 get "genericReturnType"(): string
 get "parameters"(): $Map<(string), (any)>
 get "methodName"(): string
-set "result"(value: any)
 get "args"(): (any)[]
 get "resultOptional"(): $Optional<(any)>
 }

@@ -3,8 +3,8 @@ import {$RegionType, $RegionType$Type} from "packages/terrablender/api/$RegionTy
 
 export interface $IExtendedNoiseGeneratorSettings {
 
- "setRegionType"(arg0: $RegionType$Type): void
  "getRegionType"(): $RegionType
+ "setRegionType"(arg0: $RegionType$Type): void
 }
 
 export namespace $IExtendedNoiseGeneratorSettings {
@@ -58,8 +58,8 @@ import {$RegionType, $RegionType$Type} from "packages/terrablender/api/$RegionTy
 export interface $IExtendedParameterList<T> {
 
  "getTree"(arg0: integer): $Climate$RTree<(any)>
- "findValuePositional"(arg0: $Climate$TargetPoint$Type, arg1: integer, arg2: integer, arg3: integer): T
  "initializeForTerraBlender"(arg0: $RegistryAccess$Type, arg1: $RegionType$Type, arg2: long): void
+ "findValuePositional"(arg0: $Climate$TargetPoint$Type, arg1: integer, arg2: integer, arg3: integer): T
  "getUniqueness"(arg0: integer, arg1: integer, arg2: integer): integer
  "getTreeCount"(): integer
  "isInitialized"(): boolean

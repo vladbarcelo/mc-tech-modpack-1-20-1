@@ -104,7 +104,7 @@
   "villagerInteractionItemBlacklist": [
     "minecraft:bucket"
   ],
-  "enableAutoScanByDefault": false,
+  "enableAutoScanByDefault": true,
   "immersiveLibraryUrl": "https://mca.conczin.net",
   "allowEveryoneToAddContentGlobally": false,
   "giftDesaturationQueueLength": 16,

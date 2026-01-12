@@ -28,8 +28,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -197,8 +197,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -455,8 +455,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -714,9 +714,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($PurpleBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($PurpleBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -891,8 +891,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -1060,8 +1060,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -1141,9 +1141,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LimeItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LimeItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -1407,8 +1407,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -1645,9 +1645,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LightGrayBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LightGrayBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -1734,9 +1734,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($WhiteBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($WhiteBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -1788,8 +1788,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -1834,8 +1834,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -1880,8 +1880,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -1961,9 +1961,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($PinkBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($PinkBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -2015,8 +2015,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -2061,8 +2061,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -2141,8 +2141,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -2413,9 +2413,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LightBlueShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LightBlueShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -2570,9 +2570,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LightGrayShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LightGrayShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -2624,8 +2624,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -2705,9 +2705,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BlackBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BlackBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -2882,8 +2882,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -2962,8 +2962,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3043,9 +3043,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($GrayShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($GrayShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -3097,8 +3097,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3212,9 +3212,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BlueShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BlueShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -3301,9 +3301,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($CyanItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($CyanItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -3355,8 +3355,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3524,8 +3524,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3570,8 +3570,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3616,8 +3616,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3696,8 +3696,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3742,8 +3742,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3788,8 +3788,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3834,8 +3834,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3880,8 +3880,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -3926,8 +3926,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4130,9 +4130,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($PurpleItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($PurpleItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -4218,8 +4218,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4298,8 +4298,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4379,9 +4379,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($MagentaShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($MagentaShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -4433,8 +4433,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4514,9 +4514,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($GrayItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($GrayItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -4636,8 +4636,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4682,8 +4682,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4762,8 +4762,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -4843,9 +4843,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BrownShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BrownShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -4931,8 +4931,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -5101,12 +5101,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "getVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getHorizontalVaultBlock"(): $Block
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "onWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -5154,8 +5154,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -5234,8 +5234,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -5349,9 +5349,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($GrayBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($GrayBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -5492,8 +5492,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -5607,9 +5607,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($GreenBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($GreenBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -5661,8 +5661,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -5742,9 +5742,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LightBlueBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LightBlueBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -6043,9 +6043,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LightGrayItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LightGrayItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -6131,8 +6131,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6266,8 +6266,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6312,8 +6312,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6463,8 +6463,8 @@ constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "place"(arg0: $BlockPlaceContext$Type): $InteractionResult
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6509,8 +6509,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6555,8 +6555,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6601,8 +6601,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6647,8 +6647,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -6728,9 +6728,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LimeShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LimeShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -6782,8 +6782,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -7108,8 +7108,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -7154,8 +7154,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -7481,9 +7481,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($GreenShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($GreenShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -7569,8 +7569,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -7615,8 +7615,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -7819,9 +7819,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($RedItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($RedItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -7962,8 +7962,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8165,8 +8165,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8211,8 +8211,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8295,8 +8295,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8341,8 +8341,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8422,9 +8422,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BlackShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BlackShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -8476,8 +8476,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8591,9 +8591,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($CyanShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($CyanShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -8734,8 +8734,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8780,8 +8780,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8826,8 +8826,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -8872,8 +8872,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -9007,8 +9007,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -9087,8 +9087,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -9236,9 +9236,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LimeBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LimeBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -9290,8 +9290,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -9617,9 +9617,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($RedShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($RedShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -9808,9 +9808,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($OrangeShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($OrangeShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -9896,8 +9896,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -9977,9 +9977,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($RedBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($RedBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -10066,9 +10066,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BlackItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BlackItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -10298,8 +10298,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -10557,9 +10557,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($MagentaBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($MagentaBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -10679,8 +10679,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -10760,9 +10760,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($GreenItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($GreenItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -10969,13 +10969,15 @@ export class $AbstractItemVaultBlockEntity<BE extends $AbstractItemVaultBlockEnt
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
+public "tick"(): void
 public "getWidth"(): integer
 public "getHeight"(): integer
-public "tick"(): void
-public "getInventoryOfBlock"(): $ItemStackHandler
-public "applyInventoryToBlock"(arg0: $ItemStackHandler$Type): void
-public "updateConnectivity"(): void
 public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "getController"(): $BlockPos
+public "updateConnectivity"(): void
+public "getControllerBE"(): BE
+public "hasInventory"(): boolean
 public "isController"(): boolean
 public "getLastKnownPos"(): $BlockPos
 public "removeController"(arg0: boolean): void
@@ -10983,32 +10985,32 @@ public "setController"(arg0: $BlockPos$Type): void
 public "preventConnectivityUpdate"(): void
 public "notifyMultiUpdated"(): void
 public "getMainConnectionAxis"(): $Direction$Axis
-public "hasInventory"(): boolean
-public "getController"(): $BlockPos
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "getInventoryOfBlock"(): $ItemStackHandler
+public "applyInventoryToBlock"(arg0: $ItemStackHandler$Type): void
+public "getMaxWidth"(): integer
 public static "getMaxLength"(arg0: integer): integer
 public "getMaxLength"(arg0: $Direction$Axis$Type, arg1: integer): integer
-public "getMaxWidth"(): integer
 public "setHeight"(arg0: integer): void
 public "setWidth"(arg0: integer): void
+public "getExtraData"(): any
 public "setExtraData"(arg0: any): void
 public "modifyExtraData"(arg0: any): any
 public "getMainAxisOf"(arg0: $BlockEntity$Type): $Direction$Axis
-public "getExtraData"(): any
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "width"(): integer
 get "height"(): integer
-get "inventoryOfBlock"(): $ItemStackHandler
+get "controller"(): $BlockPos
+get "controllerBE"(): BE
 get "controller"(): boolean
 get "lastKnownPos"(): $BlockPos
 set "controller"(value: $BlockPos$Type)
 get "mainConnectionAxis"(): $Direction$Axis
-get "controller"(): $BlockPos
+get "inventoryOfBlock"(): $ItemStackHandler
 get "maxWidth"(): integer
 set "height"(value: integer)
 set "width"(value: integer)
-set "extraData"(value: any)
 get "extraData"(): any
+set "extraData"(value: any)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11086,8 +11088,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -11269,9 +11271,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($WhiteItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($WhiteItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -11358,9 +11360,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BlueBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BlueBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -11446,8 +11448,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -11492,8 +11494,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -11538,8 +11540,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -11584,8 +11586,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -11665,9 +11667,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($CyanBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($CyanBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -11787,8 +11789,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12045,8 +12047,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12159,8 +12161,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12328,8 +12330,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12374,8 +12376,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12488,8 +12490,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12534,8 +12536,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12716,8 +12718,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12797,9 +12799,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($PurpleShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($PurpleShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -12851,8 +12853,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -12966,9 +12968,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($OrangeBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($OrangeBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -13123,9 +13125,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($ShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($ShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($ShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -13334,8 +13336,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -13415,9 +13417,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($YellowShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($YellowShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -13518,32 +13520,32 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getBlockEntityClass"(): $Class<(BE)>
 public "getBlockEntityType"(): $BlockEntityType<(BE)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "getVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getVerticalVaultBlock"(): $Block
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
-public "isLarge"(arg0: $BlockState$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "onWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "isLarge"(arg0: $BlockState$Type): boolean
 public "isVault"(arg0: $BlockState$Type): boolean
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "onSneakWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): BE
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<(BE)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<(BE)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<(BE), ($InteractionResult$Type)>): $InteractionResult
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): BE
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -13662,9 +13664,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -13751,9 +13753,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($PinkItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($PinkItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -13805,8 +13807,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -13851,8 +13853,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14055,9 +14057,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($LightBlueItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($LightBlueItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -14143,8 +14145,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14224,9 +14226,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($PinkShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($PinkShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -14278,8 +14280,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14413,8 +14415,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14493,8 +14495,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14539,8 +14541,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14619,8 +14621,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14699,8 +14701,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -14903,9 +14905,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($OrangeItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($OrangeItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -15060,9 +15062,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BrownItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BrownItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -15238,9 +15240,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($YellowBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($YellowBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -15292,8 +15294,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -15373,9 +15375,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BlueItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BlueItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -15496,9 +15498,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($BrownBasicShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($BrownBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownBasicShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -15797,9 +15799,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($WhiteShippingContainerBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($WhiteShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteShippingContainerBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -16008,8 +16010,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16054,8 +16056,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16100,8 +16102,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16269,8 +16271,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16315,8 +16317,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16361,8 +16363,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16475,8 +16477,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16555,8 +16557,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16601,8 +16603,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16770,8 +16772,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -16816,8 +16818,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
@@ -17177,9 +17179,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($YellowItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($YellowItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -17300,9 +17302,9 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityClass"(): $Class<($MagentaItemVaultBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<($MagentaItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaItemVaultBlockEntity)>
+public "getVerticalVaultBlock"(): $Block
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
@@ -17354,8 +17356,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**

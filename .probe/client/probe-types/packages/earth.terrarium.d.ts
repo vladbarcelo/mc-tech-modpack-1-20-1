@@ -14,33 +14,33 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 export interface $EnergyContainer extends $Serializable, $Clearable {
 
  "getContainer"(direction: $Direction$Type): $EnergyContainer
+ "createSnapshot"(): $EnergySnapshot
+ "readSnapshot"(snapshot: $EnergySnapshot$Type): void
  "getMaxCapacity"(): long
+ "getStoredEnergy"(): long
  "insertEnergy"(arg0: long, arg1: boolean): long
  "internalInsert"(amount: long, simulate: boolean): long
  "extractEnergy"(arg0: long, arg1: boolean): long
  "internalExtract"(amount: long, simulate: boolean): long
  "allowsInsertion"(): boolean
  "allowsExtraction"(): boolean
- "createSnapshot"(): $EnergySnapshot
- "readSnapshot"(snapshot: $EnergySnapshot$Type): void
- "getStoredEnergy"(): long
  "setEnergy"(arg0: long): void
  "maxInsert"(): long
  "maxExtract"(): long
- "deserialize"(arg0: $CompoundTag$Type): void
  "serialize"(arg0: $CompoundTag$Type): $CompoundTag
+ "deserialize"(arg0: $CompoundTag$Type): void
  "clearContent"(): void
 }
 
 export namespace $EnergyContainer {
-function of(holder: $ItemStackHolder$Type): $EnergyContainer
-function of(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $EnergyContainer
-function of(block: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
 function of(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
-function holdsEnergy(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): boolean
+function of(holder: $ItemStackHolder$Type): $EnergyContainer
+function of(block: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
+function of(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $EnergyContainer
 function holdsEnergy(stack: $ItemStack$Type): boolean
 function holdsEnergy(block: $BlockEntity$Type, direction: $Direction$Type): boolean
 function holdsEnergy(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $BlockEntity$Type, direction: $Direction$Type): boolean
+function holdsEnergy(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): boolean
 function tryClear(arg0: any): void
 }
 /**
@@ -112,8 +112,8 @@ import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$Compo
 
 export interface $Serializable {
 
- "deserialize"(arg0: $CompoundTag$Type): void
  "serialize"(arg0: $CompoundTag$Type): $CompoundTag
+ "deserialize"(arg0: $CompoundTag$Type): void
 }
 
 export namespace $Serializable {
@@ -139,12 +139,12 @@ export class $ItemStackHolder {
 constructor(stack: $ItemStack$Type)
 
 public "isDirty"(): boolean
+public "setStack"(stack: $ItemStack$Type): void
 public "copy"(): $ItemStackHolder
 public "getStack"(): $ItemStack
-public "setStack"(stack: $ItemStack$Type): void
 get "dirty"(): boolean
-get "stack"(): $ItemStack
 set "stack"(value: $ItemStack$Type)
+get "stack"(): $ItemStack
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -205,32 +205,32 @@ public "toString"(): string
 public "hashCode"(): integer
 public "update"(object: $BlockEntity$Type): void
 public "container"(): $EnergyContainer
+public "blockEntity"(): $BlockEntity
+public "createSnapshot"(): $EnergySnapshot
 public "getMaxCapacity"(): long
+public "getStoredEnergy"(): long
+public "serialize"(nbt: $CompoundTag$Type): $CompoundTag
+public "deserialize"(nbt: $CompoundTag$Type): void
 public "insertEnergy"(energy: long, simulate: boolean): long
 public "internalInsert"(amount: long, simulate: boolean): long
 public "extractEnergy"(energy: long, simulate: boolean): long
 public "internalExtract"(amount: long, simulate: boolean): long
 public "allowsInsertion"(): boolean
 public "allowsExtraction"(): boolean
-public "createSnapshot"(): $EnergySnapshot
-public "blockEntity"(): $BlockEntity
-public "deserialize"(nbt: $CompoundTag$Type): void
-public "getStoredEnergy"(): long
-public "serialize"(nbt: $CompoundTag$Type): $CompoundTag
 public "clearContent"(): void
 public "setEnergy"(energy: long): void
 public "maxInsert"(): long
 public "maxExtract"(): long
-public static "of"(holder: $ItemStackHolder$Type): $EnergyContainer
-public static "of"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $EnergyContainer
-public static "of"(block: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
-public static "of"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
 public "getContainer"(direction: $Direction$Type): $EnergyContainer
-public static "holdsEnergy"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): boolean
+public static "of"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
+public static "of"(holder: $ItemStackHolder$Type): $EnergyContainer
+public static "of"(block: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
+public static "of"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $EnergyContainer
+public "readSnapshot"(snapshot: $EnergySnapshot$Type): void
 public static "holdsEnergy"(stack: $ItemStack$Type): boolean
 public static "holdsEnergy"(block: $BlockEntity$Type, direction: $Direction$Type): boolean
 public static "holdsEnergy"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $BlockEntity$Type, direction: $Direction$Type): boolean
-public "readSnapshot"(snapshot: $EnergySnapshot$Type): void
+public static "holdsEnergy"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): boolean
 public static "tryClear"(arg0: any): void
 get "maxCapacity"(): long
 get "storedEnergy"(): long

@@ -86,9 +86,9 @@ export class $CCRenderPipeline$PipelineBuilder {
 
 constructor(arg0: $CCRenderPipeline$Type, arg1: $CCRenderState$Type)
 
+public "build"(): void
 public "add"(...arg0: ($IVertexOperation$Type)[]): $CCRenderPipeline$PipelineBuilder
 public "add"(arg0: $IVertexOperation$Type): $CCRenderPipeline$PipelineBuilder
-public "build"(): void
 public "render"(): void
 }
 /**
@@ -147,13 +147,13 @@ export class $CCRenderPipeline {
 
 constructor(arg0: $CCRenderState$Type)
 
+public "addAttribute"(arg0: $VertexAttribute$Type<(any)>): void
 /**
  * 
  * @deprecated
  */
 public "builder"(): $CCRenderPipeline$PipelineBuilder
 public "reset"(): void
-public "addAttribute"(arg0: $VertexAttribute$Type<(any)>): void
 public "addRequirement"(arg0: integer): void
 public "addDependency"(arg0: $VertexAttribute$Type<(any)>): void
 public "setPipeline"(...arg0: ($IVertexOperation$Type)[]): void
@@ -183,17 +183,18 @@ export class $TransformationList extends $Transformation {
 static readonly "operationIndex": integer
 
 constructor(...arg0: ($Transformation$Type)[])
-constructor(arg0: $TransformationList$Type)
 constructor(arg0: $List$Type<($Transformation$Type)>)
+constructor(arg0: $TransformationList$Type)
 
 public "with"(arg0: $Transformation$Type): $TransformationList
+public "prepend"(arg0: $Transformation$Type): $TransformationList
 public "toString"(): string
 public "compile"(): $Matrix4
 public "apply"(arg0: $Vector3$Type): void
 public "apply"(arg0: $Matrix4$Type): void
 public "copy"(): $TransformationList
-public "prepend"(arg0: $Transformation$Type): $TransformationList
 public "isRedundant"(): boolean
+public "inverse"(): $Transformation
 public "reverseCompile"(): $Matrix4
 public "applyN"(arg0: $Vector3$Type): void
 public static "registerOperation"(): integer
@@ -226,24 +227,23 @@ export class $Quat implements $Copyable<($Quat)> {
  "s": double
 
 constructor(arg0: double, arg1: double, arg2: double, arg3: double)
-constructor(arg0: $Quaterniond$Type)
+constructor()
 constructor(arg0: $Quaternionf$Type)
 constructor(arg0: $Quat$Type)
-constructor()
+constructor(arg0: $Quaterniond$Type)
 
+public "multiply"(arg0: $Quat$Type): $Quat
+public "rotate"(arg0: $Vector3$Type): void
 public "toString"(): string
 public "set"(arg0: double, arg1: double, arg2: double, arg3: double): $Quat
 public "set"(arg0: $Quat$Type): $Quat
-public "copy"(): $Quat
 public "normalize"(): $Quat
 public "mag"(): double
-public "multiply"(arg0: $Quat$Type): $Quat
-public "rotate"(arg0: $Vector3$Type): void
-public "rightMultiply"(arg0: $Quat$Type): $Quat
 public "setAroundAxis"(arg0: double, arg1: double, arg2: double, arg3: double): $Quat
 public "setAroundAxis"(arg0: $Vector3$Type, arg1: double): $Quat
 public "toQuaternionD"(): $Quaterniond
 public "toQuaternionF"(): $Quaternionf
+public "rightMultiply"(arg0: $Quat$Type): $Quat
 public "rotation"(): $Rotation
 public static "aroundAxis"(arg0: double, arg1: double, arg2: double, arg3: double): $Quat
 public static "aroundAxis"(arg0: $Vector3$Type, arg1: double): $Quat
@@ -326,14 +326,14 @@ export class $CapabilityCache {
 constructor()
 constructor(arg0: $Level$Type, arg1: $BlockPos$Type)
 
-public "clear"(): void
 public "tick"(): void
+public "clear"(): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "setWorldPos"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "onNeighborChanged"(arg0: $BlockPos$Type): void
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "setWaitTicks"(arg0: integer): void
-public "getCapabilityOr"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type, arg2: T): T
 public "getCapabilityOr"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type, arg2: $NonNullSupplier$Type<(T)>): T
+public "getCapabilityOr"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type, arg2: T): T
+public "setWaitTicks"(arg0: integer): void
 set "waitTicks"(value: integer)
 }
 /**
@@ -402,39 +402,39 @@ readonly "normal": $Vector3
  "sprite": $TextureAtlasSprite
 
 
-public "reset"(): void
 public static "instance"(): $CCRenderState
 public "bind"(arg0: $RenderType$Type, arg1: $MultiBufferSource$Type, arg2: $PoseStack$Type): void
-public "bind"(arg0: $RenderType$Type, arg1: $MultiBufferSource$Type): void
-public "bind"(arg0: $RenderType$Type, arg1: $MultiBufferSource$Type, arg2: $Matrix4$Type): void
 public "bind"(arg0: $VertexConsumer$Type, arg1: $VertexFormat$Type): void
+public "bind"(arg0: $RenderType$Type, arg1: $MultiBufferSource$Type): void
 public "bind"(arg0: $BufferBuilder$Type): void
-public "getConsumer"(): $VertexConsumer
+public "bind"(arg0: $RenderType$Type, arg1: $MultiBufferSource$Type, arg2: $Matrix4$Type): void
+public "reset"(): void
+public "startDrawing"(arg0: $VertexFormat$Mode$Type, arg1: $VertexFormat$Type): $BufferBuilder
+public "startDrawing"(arg0: $VertexFormat$Mode$Type, arg1: $VertexFormat$Type, arg2: $BufferBuilder$Type): $BufferBuilder
 public "getVertexFormat"(): $VertexFormat
-public "draw"(): void
+public "getConsumer"(): $VertexConsumer
 public "render"(...arg0: ($IVertexOperation$Type)[]): void
 public "render"(): void
-public "startDrawing"(arg0: $VertexFormat$Mode$Type, arg1: $VertexFormat$Type, arg2: $BufferBuilder$Type): $BufferBuilder
-public "startDrawing"(arg0: $VertexFormat$Mode$Type, arg1: $VertexFormat$Type): $BufferBuilder
-public "setBrightness"(arg0: $BlockAndTintGetter$Type, arg1: $BlockPos$Type): void
+public "draw"(): void
 public "setBrightness"(arg0: $Entity$Type, arg1: float): void
-public "preRenderWorld"(arg0: $BlockAndTintGetter$Type, arg1: $BlockPos$Type): void
-public "setVertexRange"(arg0: integer, arg1: integer): void
-public "runPipeline"(): void
+public "setBrightness"(arg0: $BlockAndTintGetter$Type, arg1: $BlockPos$Type): void
+public "setPipeline"(...arg0: ($IVertexOperation$Type)[]): void
+public "setPipeline"(arg0: $IVertexSource$Type, arg1: integer, arg2: integer, ...arg3: ($IVertexOperation$Type)[]): void
 public "setFluidColour"(arg0: $FluidStack$Type, arg1: integer): void
 public "setFluidColour"(arg0: $FluidStack$Type): void
-public "setPipeline"(arg0: $IVertexSource$Type, arg1: integer, arg2: integer, ...arg3: ($IVertexOperation$Type)[]): void
-public "setPipeline"(...arg0: ($IVertexOperation$Type)[]): void
+public "runPipeline"(): void
+public "setVertexRange"(arg0: integer, arg1: integer): void
+public "preRenderWorld"(arg0: $BlockAndTintGetter$Type, arg1: $BlockPos$Type): void
 public "getColour"(): $ColourRGBA
 public "setModel"(arg0: $IVertexSource$Type): void
 public "setModel"(arg0: $IVertexSource$Type, arg1: integer, arg2: integer): void
 public "setColour"(arg0: $Colour$Type): void
 public "bindModel"(arg0: $IVertexSource$Type): void
 public "writeVert"(): void
-get "consumer"(): $VertexConsumer
 get "vertexFormat"(): $VertexFormat
-set "fluidColour"(value: $FluidStack$Type)
+get "consumer"(): $VertexConsumer
 set "pipeline"(value: ($IVertexOperation$Type)[])
+set "fluidColour"(value: $FluidStack$Type)
 get "colour"(): $ColourRGBA
 set "model"(value: $IVertexSource$Type)
 set "colour"(value: $Colour$Type)
@@ -460,17 +460,17 @@ export class $ColourRGBA extends $Colour {
  "b": byte
  "a": byte
 
-constructor(arg0: (float)[])
 constructor(arg0: $ColourRGBA$Type)
 constructor(arg0: integer)
 constructor(arg0: double, arg1: double, arg2: double, arg3: double)
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer)
+constructor(arg0: (float)[])
 
-public static "pack"(arg0: $Colour$Type): integer
 public "pack"(): integer
+public static "pack"(arg0: $Colour$Type): integer
+public static "multiply"(arg0: integer, arg1: integer): integer
 public "set"(arg0: integer): $Colour
 public "copy"(): $Colour
-public static "multiply"(arg0: integer, arg1: integer): integer
 public "packArray"(): (float)[]
 public static "multiplyC"(arg0: integer, arg1: float): integer
 }
@@ -498,60 +498,60 @@ export class $Colour implements $Copyable<($Colour)> {
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer)
 constructor(arg0: $Colour$Type)
 
-public "rgba"(): integer
-public "pack"(): integer
 public static "pack"(arg0: (integer)[]): integer
+public "pack"(): integer
+public "sub"(arg0: $Colour$Type): $Colour
+public "multiply"(arg0: $Colour$Type): $Colour
 public "rgb"(): integer
+public "rgba"(): integer
 public "add"(arg0: $Colour$Type): $Colour
-public "equals"(arg0: $Colour$Type): boolean
 public "equals"(arg0: any): boolean
+public "equals"(arg0: $Colour$Type): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "scale"(arg0: double): $Colour
 public "b"(): integer
 public "a"(): integer
-public "set"(arg0: float, arg1: float, arg2: float, arg3: float): $Colour
 public "set"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $Colour
 public "set"(arg0: (double)[]): $Colour
 public "set"(arg0: (float)[]): $Colour
 public "set"(arg0: integer): $Colour
 public "set"(arg0: $Colour$Type): $Colour
 public "set"(arg0: double, arg1: double, arg2: double, arg3: double): $Colour
+public "set"(arg0: float, arg1: float, arg2: float, arg3: float): $Colour
 public "g"(): integer
 public "r"(): integer
-public "multiply"(arg0: $Colour$Type): $Colour
-public "sub"(arg0: $Colour$Type): $Colour
-public "interpolate"(arg0: $Colour$Type, arg1: double): $Colour
-public static "unpack"(arg0: integer): (integer)[]
-public "invert"(): $Colour
-public "argb"(): integer
-public "aF"(): float
-public "aF"(arg0: float): $Colour
-public "aF"(arg0: integer): $Colour
-public "rF"(arg0: integer): $Colour
-public "rF"(arg0: float): $Colour
 public "rF"(): float
+public "rF"(arg0: float): $Colour
+public "rF"(arg0: integer): $Colour
+public "gF"(arg0: integer): $Colour
 public "gF"(arg0: float): $Colour
 public "gF"(): float
-public "gF"(arg0: integer): $Colour
-public "bF"(arg0: float): $Colour
-public "bF"(): float
+public static "unpack"(arg0: integer): (integer)[]
+public "invert"(): $Colour
+public "interpolate"(arg0: $Colour$Type, arg1: double): $Colour
 public "bF"(arg0: integer): $Colour
+public "bF"(): float
+public "bF"(arg0: float): $Colour
+public "argb"(): integer
+public "aF"(arg0: float): $Colour
+public "aF"(arg0: integer): $Colour
+public "aF"(): float
+public "getARGB"(): (float)[]
 public "packArray"(): (float)[]
 public "multiplyC"(arg0: double): $Colour
 public static "flipABGR"(arg0: integer): integer
 public "getRGBA"(): (float)[]
-public static "packRGBA"(arg0: byte, arg1: byte, arg2: byte, arg3: byte): integer
 public static "packRGBA"(arg0: (float)[]): integer
-public static "packRGBA"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): integer
+public static "packRGBA"(arg0: byte, arg1: byte, arg2: byte, arg3: byte): integer
 public static "packRGBA"(arg0: double, arg1: double, arg2: double, arg3: double): integer
+public static "packRGBA"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): integer
 public static "packARGB"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): integer
+public static "packARGB"(arg0: byte, arg1: byte, arg2: byte, arg3: byte): integer
 public static "packARGB"(arg0: double, arg1: double, arg2: double, arg3: double): integer
 public static "packARGB"(arg0: (float)[]): integer
-public static "packARGB"(arg0: byte, arg1: byte, arg2: byte, arg3: byte): integer
-public "getARGB"(): (float)[]
-get "rGBA"(): (float)[]
 get "aRGB"(): (float)[]
+get "rGBA"(): (float)[]
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -602,11 +602,12 @@ constructor(...arg0: ($UVTransformation$Type)[])
 constructor(arg0: $UVTransformationList$Type)
 
 public "with"(arg0: $UVTransformation$Type): $UVTransformationList
+public "prepend"(arg0: $UVTransformation$Type): $UVTransformationList
 public "toString"(): string
 public "apply"(arg0: $UV$Type): void
 public "copy"(): $UVTransformation
-public "prepend"(arg0: $UVTransformation$Type): $UVTransformationList
 public "isRedundant"(): boolean
+public "inverse"(): $UVTransformation
 public static "registerOperation"(): integer
 public static "operationCount"(): integer
 get "redundant"(): boolean
@@ -686,8 +687,8 @@ public "apply"(arg0: $Matrix4$Type): void
 public "merge"(arg0: $Transformation$Type): $Transformation
 public "copy"(): $Rotation
 public "isRedundant"(): boolean
-public static "sideOrientation"(arg0: integer, arg1: integer): $Transformation
 public static "getSidedRotation"(arg0: $Player$Type, arg1: integer): integer
+public static "sideOrientation"(arg0: integer, arg1: integer): $Transformation
 public static "getSideFromLookAngle"(arg0: $LivingEntity$Type): integer
 public static "rotationTo"(arg0: integer, arg1: integer): integer
 public "applyN"(arg0: $Vector3$Type): void
@@ -823,8 +824,8 @@ import {$DataInput, $DataInput$Type} from "packages/java/io/$DataInput"
 import {$IForgeRegistry, $IForgeRegistry$Type} from "packages/net/minecraftforge/registries/$IForgeRegistry"
 import {$Vector3f, $Vector3f$Type} from "packages/org/joml/$Vector3f"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
-import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$FluidStack, $FluidStack$Type} from "packages/net/minecraftforge/fluids/$FluidStack"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$Vector3, $Vector3$Type} from "packages/codechicken/lib/vec/$Vector3"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$CharBuffer, $CharBuffer$Type} from "packages/java/nio/$CharBuffer"
@@ -847,19 +848,18 @@ import {$IntBuffer, $IntBuffer$Type} from "packages/java/nio/$IntBuffer"
 
 export interface $MCDataInput {
 
- "readUShort"(): integer
- "readUByte"(): short
- "readChar"(): character
+ "toInputStream"(): $InputStream
  "readString"(): string
  "readLong"(): long
  "readBoolean"(): boolean
  "readByte"(): byte
  "readShort"(): short
  "readDouble"(): double
- "readInt"(): integer
- "readBytes"(): (byte)[]
  "readFloat"(): float
- "toInputStream"(): $InputStream
+ "readBytes"(): (byte)[]
+ "readChar"(): character
+ "readUShort"(): integer
+ "readUByte"(): short
  "readEnum"<T extends $Enum<(T)>>(arg0: $Class$Type<(T)>): T
  "readInts"(): (integer)[]
  "readLongs"(): (long)[]
@@ -868,6 +868,9 @@ export interface $MCDataInput {
  "readShorts"(): (short)[]
  "readChars"(): (character)[]
  "readBooleans"(): (boolean)[]
+ "readInt"(): integer
+ "readRegistryId"<T>(): T
+ "readFluidStack"(): $FluidStack
  "readVarLong"(): long
  "readRegistryIdDirect"<T>(arg0: $IForgeRegistry$Type<(T)>): T
  "readSignedVarInt"(): integer
@@ -889,17 +892,15 @@ export interface $MCDataInput {
  "toDataInput"(): $DataInput
  "readByteBuf"(): $ByteBuf
  "readTextComponent"(): $MutableComponent
- "readRegistryId"<T>(): T
- "readFluidStack"(): $FluidStack
  "readItemStack"(): $ItemStack
- "readPos"(): $BlockPos
- "readVector"(): $Vector3
+ "readUUID"(): $UUID
+ "readVarInt"(): integer
  "readCuboid"(): $Cuboid6
  "readVec3d"(): $Vec3
  "readVec3f"(): $Vector3f
- "readUUID"(): $UUID
- "readVarInt"(): integer
  "readVec3i"(): $Vec3i
+ "readPos"(): $BlockPos
+ "readVector"(): $Vector3
 }
 
 export namespace $MCDataInput {
@@ -918,8 +919,8 @@ declare global {
 export type $MCDataInput_ = $MCDataInput$Type;
 }}
 declare module "packages/codechicken/lib/vec/$Matrix4" {
-import {$FloatBuffer, $FloatBuffer$Type} from "packages/java/nio/$FloatBuffer"
 import {$DoubleBuffer, $DoubleBuffer$Type} from "packages/java/nio/$DoubleBuffer"
+import {$FloatBuffer, $FloatBuffer$Type} from "packages/java/nio/$FloatBuffer"
 import {$Rotation, $Rotation$Type} from "packages/codechicken/lib/vec/$Rotation"
 import {$Transformation, $Transformation$Type} from "packages/codechicken/lib/vec/$Transformation"
 import {$Vector4f, $Vector4f$Type} from "packages/org/joml/$Vector4f"
@@ -948,44 +949,45 @@ export class $Matrix4 extends $Transformation {
  "m33": double
 static readonly "operationIndex": integer
 
-constructor(arg0: (double)[])
-constructor(arg0: $FloatBuffer$Type)
 constructor(arg0: $DoubleBuffer$Type)
 constructor(arg0: $Matrix4f$Type)
 constructor(arg0: $PoseStack$Type)
-constructor()
 constructor(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double, arg6: double, arg7: double, arg8: double, arg9: double, arg10: double, arg11: double, arg12: double, arg13: double, arg14: double, arg15: double)
+constructor()
 constructor(arg0: $Matrix4$Type)
 constructor(arg0: (float)[])
+constructor(arg0: (double)[])
+constructor(arg0: $FloatBuffer$Type)
 
+public "multiply"(arg0: $Matrix4$Type): $Matrix4
+public "rotate"(arg0: double, arg1: $Vector3$Type): $Matrix4
+public "rotate"(arg0: $Rotation$Type): $Matrix4
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "scale"(arg0: double, arg1: double, arg2: double): $Matrix4
 public "scale"(arg0: $Vector3$Type): $Matrix4
 public "scale"(arg0: double): $Matrix4
-public "apply"(arg0: $Vector3$Type): void
 public "apply"(arg0: $Matrix4$Type): void
+public "apply"(arg0: $Vector3$Type): void
 public "apply"(arg0: $Transformation$Type): $Matrix4
-public "set"(arg0: (double)[]): $Matrix4
-public "set"(arg0: $FloatBuffer$Type): $Matrix4
-public "set"(arg0: (float)[]): $Matrix4
 public "set"(arg0: $DoubleBuffer$Type): $Matrix4
+public "set"(arg0: $FloatBuffer$Type): $Matrix4
 public "set"(arg0: $PoseStack$Type): $Matrix4
 public "set"(arg0: $Matrix4f$Type): $Matrix4
 public "set"(arg0: $Matrix4$Type): $Matrix4
-public "save"(arg0: $FloatBuffer$Type): void
+public "set"(arg0: (float)[]): $Matrix4
+public "set"(arg0: (double)[]): $Matrix4
 public "save"(arg0: $DoubleBuffer$Type): void
-public "multiply"(arg0: $Matrix4$Type): $Matrix4
-public "rotate"(arg0: $Rotation$Type): $Matrix4
-public "rotate"(arg0: double, arg1: $Vector3$Type): $Matrix4
+public "save"(arg0: $FloatBuffer$Type): void
 public "setIdentity"(): $Matrix4
 public "leftMultiply"(arg0: $Matrix4$Type): $Matrix4
 public "toFloatBuffer"(): $FloatBuffer
 public "toDoubleBuffer"(): $DoubleBuffer
 public "transpose"(): $Matrix4
-public "translate"(arg0: $Vector3$Type): $Matrix4
+public "inverse"(): $Transformation
 public "translate"(arg0: $Vec3i$Type): $Matrix4
+public "translate"(arg0: $Vector3$Type): $Matrix4
 public "translate"(arg0: double, arg1: double, arg2: double): $Matrix4
 public "applyN"(arg0: $Vector3$Type): void
 public "multMatrix"(arg0: $Vector4f$Type): void
@@ -1056,9 +1058,9 @@ export interface $IVertexSource {
 
  "getAttribute"<T>(arg0: $AttributeKey$Type<(T)>): T
  "hasAttribute"(arg0: $AttributeKey$Type<(any)>): boolean
+ "getVertices"(): ($Vertex5)[]
  "getVertexCount"(): integer
  "prepareVertex"(arg0: $CCRenderState$Type): void
- "getVertices"(): ($Vertex5)[]
 }
 
 export namespace $IVertexSource {
@@ -1144,21 +1146,21 @@ export class $UV implements $Copyable<($UV)> {
  "v": double
  "tex": integer
 
+constructor()
 constructor(arg0: $UV$Type)
 constructor(arg0: double, arg1: double, arg2: integer)
 constructor(arg0: double, arg1: double)
-constructor()
 
+public "multiply"(arg0: double): $UV
 public "add"(arg0: $UV$Type): $UV
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "apply"(arg0: $UVTransformation$Type): $UV
-public "set"(arg0: (float)[]): $UV
-public "set"(arg0: double, arg1: double, arg2: integer): $UV
 public "set"(arg0: double, arg1: double): $UV
+public "set"(arg0: double, arg1: double, arg2: integer): $UV
 public "set"(arg0: (double)[]): $UV
+public "set"(arg0: (float)[]): $UV
 public "set"(arg0: $UV$Type): $UV
-public "multiply"(arg0: double): $UV
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1189,10 +1191,10 @@ static "full": $Cuboid6
  "min": $Vector3
  "max": $Vector3
 
-constructor()
-constructor(arg0: $Vector3$Type, arg1: $Vector3$Type)
-constructor(arg0: $Vec3i$Type, arg1: $Vec3i$Type)
 constructor(arg0: $AABB$Type)
+constructor(arg0: $Vec3i$Type, arg1: $Vec3i$Type)
+constructor(arg0: $Vector3$Type, arg1: $Vector3$Type)
+constructor()
 constructor(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double)
 constructor(arg0: $Cuboid6$Type)
 constructor(arg0: $CompoundTag$Type)
@@ -1203,45 +1205,45 @@ public "subtract"(arg0: $Vec3i$Type): $Cuboid6
 public "subtract"(arg0: double, arg1: double, arg2: double): $Cuboid6
 public "subtract"(arg0: double): $Cuboid6
 public "subtract"(arg0: $Vector3$Type): $Cuboid6
+public "shape"(): $VoxelShape
+public "intersects"(arg0: $Cuboid6$Type): boolean
+public "add"(arg0: double, arg1: double, arg2: double): $Cuboid6
+public "add"(arg0: $BlockPos$Type): $Cuboid6
 public "add"(arg0: $Vec3i$Type): $Cuboid6
 public "add"(arg0: $Vector3$Type): $Cuboid6
 public "add"(arg0: double): $Cuboid6
-public "add"(arg0: double, arg1: double, arg2: double): $Cuboid6
-public "add"(arg0: $BlockPos$Type): $Cuboid6
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "apply"(arg0: $Transformation$Type): $Cuboid6
 public "offset"(arg0: $Cuboid6$Type): $Cuboid6
-public "contains"(arg0: double, arg1: double, arg2: double): boolean
 public "contains"(arg0: $Vector3$Type): boolean
+public "contains"(arg0: double, arg1: double, arg2: double): boolean
 public "set"(arg0: $AABB$Type): $Cuboid6
-public "set"(arg0: $Cuboid6$Type): $Cuboid6
-public "set"(arg0: $Vec3i$Type, arg1: $Vec3i$Type): $Cuboid6
 public "set"(arg0: $Vector3$Type, arg1: $Vector3$Type): $Cuboid6
+public "set"(arg0: $Cuboid6$Type): $Cuboid6
 public "set"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): $Cuboid6
+public "set"(arg0: $Vec3i$Type, arg1: $Vec3i$Type): $Cuboid6
 public "copy"(): $Cuboid6
 public "expand"(arg0: double): $Cuboid6
-public "expand"(arg0: double, arg1: double, arg2: double): $Cuboid6
 public "expand"(arg0: $Vector3$Type): $Cuboid6
-public "shape"(): $VoxelShape
-public "intersects"(arg0: $Cuboid6$Type): boolean
+public "expand"(arg0: double, arg1: double, arg2: double): $Cuboid6
 public "getSideSize"(arg0: $Direction$Type): double
-public "getSide"(arg0: $Direction$Type): double
 public "getSide"(arg0: integer): double
-public "setSide"(arg0: $Direction$Type, arg1: double): $Cuboid6
+public "getSide"(arg0: $Direction$Type): double
 public "setSide"(arg0: integer, arg1: double): $Cuboid6
+public "setSide"(arg0: $Direction$Type, arg1: double): $Cuboid6
 public "center"(): $Vector3
 public "aabb"(): $AABB
 public "volume"(): double
+public "enclose"(arg0: $Cuboid6$Type): $Cuboid6
+public "enclose"(arg0: $Vector3$Type): $Cuboid6
+public "enclose"(arg0: double, arg1: double, arg2: double): $Cuboid6
+public "enclose"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): $Cuboid6
+public "writeToNBT"(arg0: $CompoundTag$Type): $CompoundTag
 public "expandSide"(arg0: $Direction$Type, arg1: integer): $Cuboid6
 public "shrinkSide"(arg0: $Direction$Type, arg1: integer): $Cuboid6
 public "equalsT"(arg0: $Cuboid6$Type): boolean
-public "enclose"(arg0: $Vector3$Type): $Cuboid6
-public "enclose"(arg0: $Cuboid6$Type): $Cuboid6
-public "enclose"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): $Cuboid6
-public "enclose"(arg0: double, arg1: double, arg2: double): $Cuboid6
-public "writeToNBT"(arg0: $CompoundTag$Type): $CompoundTag
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1372,8 +1374,8 @@ constructor()
 public "load"(arg0: $CCRenderState$Type): boolean
 public "ao"(arg0: integer): (float)[]
 public "operationID"(): integer
-public static "interpBrightness"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): integer
 public "locate"(arg0: $BlockAndTintGetter$Type, arg1: $BlockPos$Type): void
+public static "interpBrightness"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): integer
 public "sample"(arg0: integer): void
 public "brightness"(arg0: integer): (integer)[]
 public "operate"(arg0: $CCRenderState$Type): void
@@ -1396,16 +1398,16 @@ export type $LightMatrix_ = $LightMatrix$Type;
 }}
 declare module "packages/codechicken/lib/data/$MCDataOutput" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
-import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$IForgeRegistry, $IForgeRegistry$Type} from "packages/net/minecraftforge/registries/$IForgeRegistry"
+import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$Vector3f, $Vector3f$Type} from "packages/org/joml/$Vector3f"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
+import {$FluidStack, $FluidStack$Type} from "packages/net/minecraftforge/fluids/$FluidStack"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$Vector3, $Vector3$Type} from "packages/codechicken/lib/vec/$Vector3"
-import {$FluidStack, $FluidStack$Type} from "packages/net/minecraftforge/fluids/$FluidStack"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$CharBuffer, $CharBuffer$Type} from "packages/java/nio/$CharBuffer"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$CharBuffer, $CharBuffer$Type} from "packages/java/nio/$CharBuffer"
 import {$FloatBuffer, $FloatBuffer$Type} from "packages/java/nio/$FloatBuffer"
 import {$ByteBuf, $ByteBuf$Type} from "packages/io/netty/buffer/$ByteBuf"
 import {$Cuboid6, $Cuboid6$Type} from "packages/codechicken/lib/vec/$Cuboid6"
@@ -1423,7 +1425,6 @@ import {$IntBuffer, $IntBuffer$Type} from "packages/java/nio/$IntBuffer"
 
 export interface $MCDataOutput {
 
- "writeChar"(arg0: integer): $MCDataOutput
  "writeString"(arg0: string, arg1: integer): $MCDataOutput
  "writeString"(arg0: string): $MCDataOutput
  "writeLong"(arg0: long): $MCDataOutput
@@ -1431,39 +1432,43 @@ export interface $MCDataOutput {
  "writeByte"(arg0: integer): $MCDataOutput
  "writeShort"(arg0: integer): $MCDataOutput
  "writeDouble"(arg0: double): $MCDataOutput
- "writeChars"(arg0: (character)[]): $MCDataOutput
  "writeChars"(arg0: (character)[], arg1: integer, arg2: integer): $MCDataOutput
+ "writeChars"(arg0: (character)[]): $MCDataOutput
+ "writeFloat"(arg0: float): $MCDataOutput
+ "writeBytes"(arg0: (byte)[], arg1: integer, arg2: integer): $MCDataOutput
+ "writeBytes"(arg0: (byte)[]): $MCDataOutput
+ "writeChar"(arg0: integer): $MCDataOutput
+ "append"(arg0: (byte)[]): $MCDataOutput
+ "append"(arg0: $ByteBuf$Type): $MCDataOutput
+ "writeInt"(arg0: integer): $MCDataOutput
  "writeEnum"(arg0: $Enum$Type<(any)>): $MCDataOutput
  "writeInts"(arg0: (integer)[]): $MCDataOutput
  "writeInts"(arg0: (integer)[], arg1: integer, arg2: integer): $MCDataOutput
- "writeLongs"(arg0: (long)[]): $MCDataOutput
  "writeLongs"(arg0: (long)[], arg1: integer, arg2: integer): $MCDataOutput
+ "writeLongs"(arg0: (long)[]): $MCDataOutput
  "writeFloats"(arg0: (float)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeFloats"(arg0: (float)[]): $MCDataOutput
- "writeDoubles"(arg0: (double)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeDoubles"(arg0: (double)[]): $MCDataOutput
- "writeShorts"(arg0: (short)[], arg1: integer, arg2: integer): $MCDataOutput
+ "writeDoubles"(arg0: (double)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeShorts"(arg0: (short)[]): $MCDataOutput
+ "writeShorts"(arg0: (short)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeBooleans"(arg0: (boolean)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeBooleans"(arg0: (boolean)[]): $MCDataOutput
- "append"(arg0: $ByteBuf$Type): $MCDataOutput
- "append"(arg0: (byte)[]): $MCDataOutput
- "writeInt"(arg0: integer): $MCDataOutput
- "writeBytes"(arg0: (byte)[], arg1: integer, arg2: integer): $MCDataOutput
- "writeBytes"(arg0: (byte)[]): $MCDataOutput
- "writeFloat"(arg0: float): $MCDataOutput
- "writeVarLong"(arg0: long): $MCDataOutput
- "writeVarInt"(arg0: integer): $MCDataOutput
+ "writeItemStack"(arg0: $ItemStack$Type, arg1: boolean): $MCDataOutput
+ "writeItemStack"(arg0: $ItemStack$Type): $MCDataOutput
+ "writeRegistryId"<T>(arg0: $IForgeRegistry$Type<(T)>, arg1: T): $MCDataOutput
+ "writeRegistryId"<T>(arg0: $IForgeRegistry$Type<(T)>, arg1: $ResourceLocation$Type): $MCDataOutput
+ "writeFluidStack"(arg0: $FluidStack$Type): $MCDataOutput
  "writeSignedVarInt"(arg0: integer): $MCDataOutput
  "writeSignedVarLong"(arg0: long): $MCDataOutput
  "writeVarInts"(arg0: (integer)[]): $MCDataOutput
  "writeVarInts"(arg0: (integer)[], arg1: integer, arg2: integer): $MCDataOutput
- "writeVarLongs"(arg0: (long)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeVarLongs"(arg0: (long)[]): $MCDataOutput
- "writeSignedVarInts"(arg0: (integer)[], arg1: integer, arg2: integer): $MCDataOutput
+ "writeVarLongs"(arg0: (long)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeSignedVarInts"(arg0: (integer)[]): $MCDataOutput
- "writeSignedVarLongs"(arg0: (long)[], arg1: integer, arg2: integer): $MCDataOutput
+ "writeSignedVarInts"(arg0: (integer)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeSignedVarLongs"(arg0: (long)[]): $MCDataOutput
+ "writeSignedVarLongs"(arg0: (long)[], arg1: integer, arg2: integer): $MCDataOutput
  "writeByteBuffer"(arg0: $ByteBuffer$Type): $MCDataOutput
  "writeCharBuffer"(arg0: $CharBuffer$Type): $MCDataOutput
  "writeShortBuffer"(arg0: $ShortBuffer$Type): $MCDataOutput
@@ -1479,19 +1484,16 @@ export interface $MCDataOutput {
  "writeTextComponent"(arg0: $Component$Type): $MCDataOutput
  "writeByteBuf"(arg0: $ByteBuf$Type): $MCDataOutput
  "toOutputStream"(): $OutputStream
- "writeVector"(arg0: $Vector3$Type): $MCDataOutput
+ "writeVarLong"(arg0: long): $MCDataOutput
+ "writeVarInt"(arg0: integer): $MCDataOutput
  "writeRegistryIdDirect"<T>(arg0: $IForgeRegistry$Type<(T)>, arg1: $ResourceLocation$Type): $MCDataOutput
  "writeRegistryIdDirect"<T>(arg0: $IForgeRegistry$Type<(T)>, arg1: T): $MCDataOutput
- "writeRegistryId"<T>(arg0: $IForgeRegistry$Type<(T)>, arg1: T): $MCDataOutput
- "writeRegistryId"<T>(arg0: $IForgeRegistry$Type<(T)>, arg1: $ResourceLocation$Type): $MCDataOutput
- "writeItemStack"(arg0: $ItemStack$Type): $MCDataOutput
- "writeItemStack"(arg0: $ItemStack$Type, arg1: boolean): $MCDataOutput
- "writeFluidStack"(arg0: $FluidStack$Type): $MCDataOutput
+ "writeVector"(arg0: $Vector3$Type): $MCDataOutput
+ "writeUUID"(arg0: $UUID$Type): $MCDataOutput
  "writePos"(arg0: $BlockPos$Type): $MCDataOutput
+ "writeVec3i"(arg0: $Vec3i$Type): $MCDataOutput
  "writeVec3f"(arg0: $Vector3f$Type): $MCDataOutput
  "writeVec3d"(arg0: $Vec3$Type): $MCDataOutput
- "writeUUID"(arg0: $UUID$Type): $MCDataOutput
- "writeVec3i"(arg0: $Vec3i$Type): $MCDataOutput
 }
 
 export namespace $MCDataOutput {
@@ -1568,44 +1570,43 @@ constructor(arg0: (double)[])
 constructor(arg0: (float)[])
 constructor(arg0: $Vec3$Type)
 
-public "subtract"(arg0: $BlockPos$Type): $Vector3
-public "subtract"(arg0: $Vec3$Type): $Vector3
 public "subtract"(arg0: $Vector3$Type): $Vector3
+public "subtract"(arg0: $Vec3$Type): $Vector3
 public "subtract"(arg0: double): $Vector3
+public "subtract"(arg0: $BlockPos$Type): $Vector3
 public "subtract"(arg0: double, arg1: double, arg2: double): $Vector3
-public "add"(arg0: $Vector3$Type): $Vector3
-public "add"(arg0: $BlockPos$Type): $Vector3
+public "isZero"(): boolean
+public "negate"(): $Vector3
+public "divide"(arg0: $Vector3$Type): $Vector3
+public "divide"(arg0: double, arg1: double, arg2: double): $Vector3
+public "divide"(arg0: $BlockPos$Type): $Vector3
+public "divide"(arg0: double): $Vector3
+public "multiply"(arg0: $Vector3$Type): $Vector3
+public "multiply"(arg0: double): $Vector3
+public "multiply"(arg0: double, arg1: double, arg2: double): $Vector3
+public "rotate"(arg0: double, arg1: $Vector3$Type): $Vector3
+public "rotate"(arg0: $Quat$Type): $Vector3
 public "add"(arg0: double): $Vector3
-public "add"(arg0: $Vec3$Type): $Vector3
+public "add"(arg0: $Vector3$Type): $Vector3
 public "add"(arg0: double, arg1: double, arg2: double): $Vector3
+public "add"(arg0: $BlockPos$Type): $Vector3
+public "add"(arg0: $Vec3$Type): $Vector3
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "floor"(): $Vector3
 public "ceil"(): $Vector3
 public "apply"(arg0: $Transformation$Type): $Vector3
-public "set"(arg0: double): $Vector3
 public "set"(arg0: $Vector3$Type): $Vector3
-public "set"(arg0: (double)[]): $Vector3
-public "set"(arg0: (float)[]): $Vector3
-public "set"(arg0: double, arg1: double, arg2: double): $Vector3
 public "set"(arg0: $Vec3i$Type): $Vector3
-public "copy"(): $Vector3
+public "set"(arg0: (float)[]): $Vector3
+public "set"(arg0: double): $Vector3
+public "set"(arg0: double, arg1: double, arg2: double): $Vector3
+public "set"(arg0: (double)[]): $Vector3
 public "pos"(): $BlockPos
 public "normalize"(): $Vector3
 public "mag"(): double
 public "distance"(arg0: $Vector3$Type): double
-public "multiply"(arg0: double): $Vector3
-public "multiply"(arg0: $Vector3$Type): $Vector3
-public "multiply"(arg0: double, arg1: double, arg2: double): $Vector3
-public "rotate"(arg0: double, arg1: $Vector3$Type): $Vector3
-public "rotate"(arg0: $Quat$Type): $Vector3
-public "negate"(): $Vector3
-public "divide"(arg0: double, arg1: double, arg2: double): $Vector3
-public "divide"(arg0: $Vector3$Type): $Vector3
-public "divide"(arg0: double): $Vector3
-public "divide"(arg0: $BlockPos$Type): $Vector3
-public "isZero"(): boolean
 public static "fromBlockPos"(arg0: $BlockPos$Type): $Vector3
 public static "fromBlockPosCenter"(arg0: $BlockPos$Type): $Vector3
 public static "fromEntityCenter"(arg0: $Entity$Type): $Vector3
@@ -1620,26 +1621,22 @@ public "YZintercept"(arg0: $Vector3$Type, arg1: double): $Vector3
 public "XZintercept"(arg0: $Vector3$Type, arg1: double): $Vector3
 public "XYintercept"(arg0: $Vector3$Type, arg1: double): $Vector3
 public "unary_$tilde"(): $Vector3
-public "distanceSquared"(arg0: $Vector3$Type): double
-public "translation"(): $Translation
 public "getSide"(arg0: integer): double
 public "setSide"(arg0: integer, arg1: double): $Vector3
-public "vec3"(): $Vec3
-public "vector4f"(): $Vector4f
-public "vector3f"(): $Vector3f
+public "translation"(): $Translation
+public "distanceSquared"(arg0: $Vector3$Type): double
 public "angle"(arg0: $Vector3$Type): double
 public "project"(arg0: $Vector3$Type): $Vector3
+public "vector4f"(): $Vector4f
+public "vector3f"(): $Vector3f
+public "vec3"(): $Vec3
 public static "fromNBT"(arg0: $CompoundTag$Type): $Vector3
-public static "fromEntity"(arg0: $Entity$Type): $Vector3
-public "toArrayF"(): (float)[]
-public "toArrayD"(): (double)[]
-public static "fromVec3i"(arg0: $Vec3i$Type): $Vector3
-public "equalsT"(arg0: $Vector3$Type): boolean
+public "writeToNBT"(arg0: $CompoundTag$Type): $CompoundTag
 public static "fromTile"(arg0: $BlockEntity$Type): $Vector3
 public static "fromAxes"(arg0: (float)[]): $Vector3
 public static "fromAxes"(arg0: (double)[]): $Vector3
-public static "fromArray"(arg0: (float)[]): $Vector3
 public static "fromArray"(arg0: (double)[]): $Vector3
+public static "fromArray"(arg0: (float)[]): $Vector3
 public "magSquared"(): double
 public "dotProduct"(arg0: $Vector3$Type): double
 public "dotProduct"(arg0: double, arg1: double, arg2: double): double
@@ -1651,7 +1648,11 @@ public "$times"(arg0: $Vector3$Type): $Vector3
 public "$times"(arg0: double): $Vector3
 public "$div"(arg0: double): $Vector3
 public "$dot$times"(arg0: $Vector3$Type): double
-public "writeToNBT"(arg0: $CompoundTag$Type): $CompoundTag
+public static "fromVec3i"(arg0: $Vec3i$Type): $Vector3
+public "equalsT"(arg0: $Vector3$Type): boolean
+public static "fromEntity"(arg0: $Entity$Type): $Vector3
+public "toArrayF"(): (float)[]
+public "toArrayD"(): (double)[]
 get "zero"(): boolean
 get "axial"(): boolean
 }
@@ -1729,14 +1730,14 @@ static readonly "RED": $EnumColour
 static readonly "BLACK": $EnumColour
 
 
-public "rgba"(): integer
-public "rgba"(arg0: integer): integer
-public "rgb"(): integer
-public static "values"(): ($EnumColour)[]
-public static "valueOf"(arg0: string): $EnumColour
 public "mix"(arg0: $EnumColour$Type): $EnumColour
 public static "mix"(arg0: $EnumColour$Type, arg1: $EnumColour$Type): $EnumColour
+public "rgb"(): integer
 public "getLocalizedName"(): string
+public "rgba"(arg0: integer): integer
+public "rgba"(): integer
+public static "values"(): ($EnumColour)[]
+public static "valueOf"(arg0: string): $EnumColour
 public "getDyeTagName"(): $ResourceLocation
 public "getWoolTagName"(): $ResourceLocation
 public "getUnlocalizedName"(): string
@@ -1746,16 +1747,16 @@ public static "fromDyeMeta"(arg0: integer): $EnumColour
 public static "fromWoolTag"(arg0: $ResourceLocation$Type): $EnumColour
 public static "fromDyeStack"(arg0: $ItemStack$Type): $EnumColour
 public static "fromWoolStack"(arg0: $ItemStack$Type): $EnumColour
-public "argb"(arg0: integer): integer
-public "argb"(): integer
-public "getSerializedName"(): string
-public "getColour"(): $ColourRGBA
-public "getColour"(arg0: integer): $ColourRGBA
-public "getDyeMeta"(): integer
 public "rF"(): float
 public "gF"(): float
 public "bF"(): float
+public "argb"(): integer
+public "argb"(arg0: integer): integer
+public "getSerializedName"(): string
 public static "fromDyeTag"(arg0: $ResourceLocation$Type): $EnumColour
+public "getColour"(arg0: integer): $ColourRGBA
+public "getColour"(): $ColourRGBA
+public "getDyeMeta"(): integer
 public static "fromName"(arg0: string): $EnumColour
 public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>): $StringRepresentable$EnumCodec<(E)>
 public static "fromEnumWithMapping"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>, arg1: $Function$Type<(string), (string)>): $StringRepresentable$EnumCodec<(E)>

@@ -1,0 +1,17 @@
+{
+	"type": "createmetallurgy:casting_in_table",
+	"ingredients": [
+		{
+			"item": "kubejs:oil_can_graphite_mold"
+		},
+		{
+			"amount": 90,
+			"fluid": "createmetallurgy:molten_copper",
+			"nbt": {}
+		}
+	],
+	"processingTime": 100,
+	"result": {
+		"item": "hardcore_torches:oil_can"
+	}
+}

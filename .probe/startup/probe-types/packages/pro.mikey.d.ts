@@ -170,15 +170,15 @@ export class $LevelKu {
 
 constructor(arg0: $ServerLevel$Type)
 
-public "getRandomLocation"(arg0: $BlockPos$Type, arg1: integer, arg2: integer): $BlockPos
 public "findSingleBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $BlockPos
-public "findBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $List<($BlockPos)>
-public "seekCollectionOfBlocks"(arg0: $BlockPos$Type, arg1: integer, arg2: $Predicate$Type<($BlockPos$Type)>, arg3: $Predicate$Type<($BlockPos$Type)>): $List<($BlockPos)>
-public "findEntitiesWithinRadius"(arg0: $ResourceLocation$Type, arg1: $BlockPos$Type, arg2: integer): $List<($LivingEntity)>
+public "getRandomLocation"(arg0: $BlockPos$Type, arg1: integer, arg2: integer): $BlockPos
+public "getStructureIdsAtLocation"(arg0: $BlockPos$Type): $List<($ResourceLocation)>
 public "getStructuresAtLocation"(arg0: $BlockPos$Type): $Set<($Structure)>
 public "isStructureAtLocation"(arg0: $BlockPos$Type, arg1: $ResourceLocation$Type): boolean
-public "getStructureIdsAtLocation"(arg0: $BlockPos$Type): $List<($ResourceLocation)>
 public "spawnStructure"(arg0: string, arg1: $BlockPos$Type): void
+public "findEntitiesWithinRadius"(arg0: $ResourceLocation$Type, arg1: $BlockPos$Type, arg2: integer): $List<($LivingEntity)>
+public "seekCollectionOfBlocks"(arg0: $BlockPos$Type, arg1: integer, arg2: $Predicate$Type<($BlockPos$Type)>, arg3: $Predicate$Type<($BlockPos$Type)>): $List<($BlockPos)>
+public "findBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $List<($BlockPos)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

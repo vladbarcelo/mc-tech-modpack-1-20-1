@@ -31,10 +31,11 @@ readonly "canRepair": boolean
 
 constructor()
 
+public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
 public "getState"(arg0: $ItemStack$Type): $CompassState
 public "fail"(arg0: $ItemStack$Type, arg1: integer, arg2: integer): void
 public "isActive"(arg0: $ItemStack$Type): boolean
-public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
+public "getStructureKey"(arg0: $ItemStack$Type): $ResourceLocation
 public "setSearching"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
 public "setDisplayCoordinates"(arg0: $ItemStack$Type, arg1: boolean): void
 public "setNotFound"(arg0: $ItemStack$Type, arg1: integer, arg2: integer): void
@@ -43,7 +44,6 @@ public "setSearchRadius"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Typ
 public "getSearchRadius"(arg0: $ItemStack$Type): integer
 public "getDistanceToBiome"(arg0: $Player$Type, arg1: $ItemStack$Type): integer
 public "shouldDisplayCoordinates"(arg0: $ItemStack$Type): boolean
-public "getStructureKey"(arg0: $ItemStack$Type): $ResourceLocation
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "searchForStructure"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ResourceLocation$Type, arg3: $List$Type<($ResourceLocation$Type)>, arg4: $BlockPos$Type, arg5: $ItemStack$Type): void
 public "setFoundStructureX"(arg0: $ItemStack$Type, arg1: integer, arg2: $Player$Type): void
@@ -102,10 +102,11 @@ readonly "canRepair": boolean
 
 constructor()
 
+public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
 public "getState"(arg0: $ItemStack$Type): $CompassState
 public "fail"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: integer, arg3: integer): void
 public "isActive"(arg0: $ItemStack$Type): boolean
-public "setState"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $CompassState$Type, arg3: $Player$Type): void
+public "getBiomeKey"(arg0: $ItemStack$Type): $ResourceLocation
 public "searchForBiome"(arg0: $ServerLevel$Type, arg1: $Player$Type, arg2: $ResourceLocation$Type, arg3: $BlockPos$Type, arg4: $ItemStack$Type): void
 public "setSearching"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type, arg2: $Player$Type): void
 public "setDisplayCoordinates"(arg0: $ItemStack$Type, arg1: boolean): void
@@ -120,7 +121,6 @@ public "getFoundBiomeZ"(arg0: $ItemStack$Type): integer
 public "getSearchRadius"(arg0: $ItemStack$Type): integer
 public "getDistanceToBiome"(arg0: $Player$Type, arg1: $ItemStack$Type): integer
 public "shouldDisplayCoordinates"(arg0: $ItemStack$Type): boolean
-public "getBiomeKey"(arg0: $ItemStack$Type): $ResourceLocation
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "succeed"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: integer, arg3: integer, arg4: integer, arg5: boolean): void

@@ -62,11 +62,11 @@ export class $FastMap<Value> {
 
 constructor(arg0: $Collection$Type<($Property$Type<(any)>)>, arg1: $Map$Type<($Map$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>), (Value)>, arg2: boolean)
 
-public "with"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>, arg2: T): Value
-public "getValue"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>): T
-public "getValue"(arg0: integer, arg1: any): $Comparable<(any)>
-public "getKey"(arg0: integer): $FastMapKey<(any)>
 public "getEntry"(arg0: integer, arg1: integer): $Map$Entry<($Property<(any)>), ($Comparable<(any)>)>
+public "with"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>, arg2: T): Value
+public "getValue"(arg0: integer, arg1: any): $Comparable<(any)>
+public "getValue"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>): T
+public "getKey"(arg0: integer): $FastMapKey<(any)>
 public "numProperties"(): integer
 public "isSingleState"(): boolean
 public "getPropertySet"(): $ImmutableSet<($Property<(any)>)>
@@ -118,19 +118,19 @@ export type $BlockStateCacheAccess_ = $BlockStateCacheAccess$Type;
 declare module "packages/malte0811/ferritecore/ducks/$FastMapStateHolder" {
 import {$Comparable, $Comparable$Type} from "packages/java/lang/$Comparable"
 import {$Table, $Table$Type} from "packages/com/google/common/collect/$Table"
-import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$FastMap, $FastMap$Type} from "packages/malte0811/ferritecore/fastmap/$FastMap"
+import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$ImmutableMap, $ImmutableMap$Type} from "packages/com/google/common/collect/$ImmutableMap"
 
 export interface $FastMapStateHolder<S> {
 
- "getVanillaPropertyMap"(): $ImmutableMap<($Property<(any)>), ($Comparable<(any)>)>
- "setNeighborTable"(arg0: $Table$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>), (S)>): void
- "getNeighborTable"(): $Table<($Property<(any)>), ($Comparable<(any)>), (S)>
- "setStateMap"(arg0: $FastMap$Type<(S)>): void
- "setStateIndex"(arg0: integer): void
  "getStateMap"(): $FastMap<(S)>
  "getStateIndex"(): integer
+ "getVanillaPropertyMap"(): $ImmutableMap<($Property<(any)>), ($Comparable<(any)>)>
+ "setStateMap"(arg0: $FastMap$Type<(S)>): void
+ "setStateIndex"(arg0: integer): void
+ "setNeighborTable"(arg0: $Table$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>), (S)>): void
+ "getNeighborTable"(): $Table<($Property<(any)>), ($Comparable<(any)>), (S)>
  "replacePropertyMap"(arg0: $ImmutableMap$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>): void
 }
 
@@ -156,9 +156,9 @@ import {$Property, $Property$Type} from "packages/net/minecraft/world/level/bloc
 export class $FastMapKey<T extends $Comparable<(T)>> {
 
 
+public "numValues"(): integer
 public "getProperty"(): $Property<(T)>
 public "getValue"(arg0: integer): T
-public "numValues"(): integer
 get "property"(): $Property<(T)>
 }
 /**

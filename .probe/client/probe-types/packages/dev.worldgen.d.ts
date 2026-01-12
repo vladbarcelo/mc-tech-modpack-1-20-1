@@ -352,8 +352,8 @@ static readonly "CODEC": $Codec<($VinesConfig)>
 
 constructor(blocks: $SimpleWeightedRandomList$Type<($Block$Type)>, canPlaceOn: $Optional$Type<($HolderSet$Type<($Block$Type)>)>, maxLength: $IntProvider$Type)
 
-public "blocks"(): $SimpleWeightedRandomList<($Block)>
 public "maxLength"(): $IntProvider
+public "blocks"(): $SimpleWeightedRandomList<($Block)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -617,7 +617,7 @@ constructor(stateProvider: $BlockStateProvider$Type, replaceableBlocks: $HolderS
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "replaceableBlocks"(): $HolderSet<($Block)>
+public "stateProvider"(): $BlockStateProvider
 public "floorToCeilingSearchRange"(): integer
 public "columnRadius"(): $IntProvider
 public "heightScale"(): $FloatProvider
@@ -625,7 +625,7 @@ public "stalactiteBluntness"(): $FloatProvider
 public "stalagmiteBluntness"(): $FloatProvider
 public "minRadiusForWind"(): integer
 public "minBluntnessForWind"(): float
-public "stateProvider"(): $BlockStateProvider
+public "replaceableBlocks"(): $HolderSet<($Block)>
 public "maxColumnRadiusToCaveHeightRatio"(): float
 public "windSpeed"(): $FloatProvider
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -788,8 +788,8 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "startJigsawName"(): $Optional<($ResourceLocation)>
-public "template"(): $ResourceLocation
 public "processors"(): $Holder<($StructureProcessorList)>
+public "template"(): $ResourceLocation
 public "rotation"(): $Optional<($Rotation)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -1044,10 +1044,10 @@ static readonly "CODEC": $Codec<($OreConfig$Target)>
 
 constructor(predicate: $BlockPredicate$Type, stateProvider: $BlockStateProvider$Type)
 
+public "predicate"(): $BlockPredicate
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "predicate"(): $BlockPredicate
 public "stateProvider"(): $BlockStateProvider
 }
 /**
@@ -1351,16 +1351,16 @@ static readonly "CODEC": $Codec<($WellConfig)>
 
 constructor(groundProvider: $BlockStateProvider$Type, suspiciousProvider: $BlockStateProvider$Type, standardProvider: $BlockStateProvider$Type, slabProvider: $BlockStateProvider$Type, fluidProvider: $BlockStateProvider$Type, suspiciousPlacements: $IntProvider$Type, suspiciousLootTable: $ResourceLocation$Type)
 
+public "standardProvider"(): $BlockStateProvider
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "standardProvider"(): $BlockStateProvider
-public "suspiciousLootTable"(): $ResourceLocation
-public "slabProvider"(): $BlockStateProvider
-public "suspiciousPlacements"(): $IntProvider
 public "groundProvider"(): $BlockStateProvider
 public "fluidProvider"(): $BlockStateProvider
+public "slabProvider"(): $BlockStateProvider
+public "suspiciousPlacements"(): $IntProvider
 public "suspiciousProvider"(): $BlockStateProvider
+public "suspiciousLootTable"(): $ResourceLocation
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -1418,9 +1418,9 @@ import {$ObjectArrayList, $ObjectArrayList$Type} from "packages/it/unimi/dsi/fas
 
 export interface $StructureTemplatePoolAccessor {
 
- "getRawTemplates"(): $List<($Pair<($StructurePoolElement), (integer)>)>
- "getVanillaTemplates"(): $ObjectArrayList<($StructurePoolElement)>
  "setRawTemplates"(arg0: $List$Type<($Pair$Type<($StructurePoolElement$Type), (integer)>)>): void
+ "getVanillaTemplates"(): $ObjectArrayList<($StructurePoolElement)>
+ "getRawTemplates"(): $List<($Pair<($StructurePoolElement), (integer)>)>
  "setVanillaTemplates"(arg0: $ObjectArrayList$Type<($StructurePoolElement$Type)>): void
 }
 
@@ -1449,8 +1449,8 @@ import {$StructureTemplate, $StructureTemplate$Type} from "packages/net/minecraf
 export interface $SinglePoolElementAccessor {
 
  "setProcessors"(arg0: $Holder$Type<($StructureProcessorList$Type)>): void
- "getTemplate"(): $Either<($ResourceLocation), ($StructureTemplate)>
  "getProcessors"(): $Holder<($StructureProcessorList)>
+ "getTemplate"(): $Either<($ResourceLocation), ($StructureTemplate)>
 }
 
 export namespace $SinglePoolElementAccessor {
@@ -1490,12 +1490,12 @@ constructor(minOpenings: integer, maxOpenings: integer, radius: $IntProvider$Typ
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "floorProvider"(): $BlockStateProvider
-public "maxOpenings"(): integer
-public "minOpenings"(): integer
-public "spawnerMobs"(): $SimpleWeightedRandomList<($EntityType<(any)>)>
-public "wallProvider"(): $BlockStateProvider
 public "dungeonInvalidBlocks"(): $TagKey<($Block)>
+public "spawnerMobs"(): $SimpleWeightedRandomList<($EntityType<(any)>)>
+public "minOpenings"(): integer
+public "maxOpenings"(): integer
+public "floorProvider"(): $BlockStateProvider
+public "wallProvider"(): $BlockStateProvider
 public "radius"(): $IntProvider
 public "lootTable"(): $ResourceLocation
 public "maxChests"(): integer
@@ -1517,8 +1517,8 @@ export type $DungeonConfig_ = $DungeonConfig$Type;
 declare module "packages/dev/worldgen/lithostitched/worldgen/structure/$LithostitchedTemplates" {
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$StructurePoolElement, $StructurePoolElement$Type} from "packages/net/minecraft/world/level/levelgen/structure/pools/$StructurePoolElement"
 import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 import {$Spliterator, $Spliterator$Type} from "packages/java/util/$Spliterator"
@@ -1528,10 +1528,10 @@ export class $LithostitchedTemplates implements $Iterable<($StructurePoolElement
 
 constructor()
 
+public "shuffle"(arg0: $RandomSource$Type): $List<($StructurePoolElement)>
 public "add"(arg0: $StructurePoolElement$Type, arg1: integer): $LithostitchedTemplates
 public "iterator"(): $Iterator<($StructurePoolElement)>
 public "stream"(): $Stream<($StructurePoolElement)>
-public "shuffle"(arg0: $RandomSource$Type): $List<($StructurePoolElement)>
 public "spliterator"(): $Spliterator<($StructurePoolElement)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 [Symbol.iterator](): IterableIterator<$StructurePoolElement>;

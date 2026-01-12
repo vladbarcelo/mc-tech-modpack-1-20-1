@@ -60,10 +60,10 @@ export interface $ClientLevelKJS extends $LevelKJS {
  "getSide"(): $ScriptType
  "getEntities"(): $EntityArrayList
  "spawnParticles"(options: $ParticleOptions$Type, overrideLimiter: boolean, x: double, y: double, z: double, vx: double, vy: double, vz: double, count: integer, speed: double): void
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
  "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "getDimension"(): $ResourceLocation
  "isOverworld"(): boolean
  "getBlock"(blockEntity: $BlockEntity$Type): $BlockContainerJS
@@ -148,8 +148,8 @@ constructor(context: $UnitContext$Type, input: string)
 public "readFully"(): $UnitToken
 public "toString"(): string
 public "nextToken"(): $UnitToken
-public "ifNextToken"(token: $UnitToken$Type): boolean
 public "readSingleToken"(): $UnitToken
+public "ifNextToken"(token: $UnitToken$Type): boolean
 public "getUnit"(): $Unit
 public "peekToken"(): $UnitToken
 get "unit"(): $Unit
@@ -173,9 +173,9 @@ export class $VariantBlockStateGenerator$Model {
 
 constructor()
 
+public "model"(s: string): $VariantBlockStateGenerator$Model
 public "x"(_x: integer): $VariantBlockStateGenerator$Model
 public "y"(_y: integer): $VariantBlockStateGenerator$Model
-public "model"(s: string): $VariantBlockStateGenerator$Model
 public "toJson"(): $JsonObject
 public "uvlock"(): $VariantBlockStateGenerator$Model
 }
@@ -311,13 +311,13 @@ constructor(player: $ServerPlayer$Type, chatComponent: $ChatEvent$ChatComponent$
  */
 public "getMessage"(): string
 /**
- * Sets the message that the player sent.
- */
-public "setComponent"(text: $Component$Type): void
-/**
  * Gets the username of the player that sent the message.
  */
 public "getUsername"(): string
+/**
+ * Sets the message that the player sent.
+ */
+public "setMessage"(text: $Component$Type): void
 /**
  * Gets the message that the player sent.
  */
@@ -325,12 +325,12 @@ public "getComponent"(): $Component
 /**
  * Sets the message that the player sent.
  */
-public "setMessage"(text: $Component$Type): void
+public "setComponent"(text: $Component$Type): void
 get "message"(): string
-set "component"(value: $Component$Type)
 get "username"(): string
-get "component"(): $Component
 set "message"(value: $Component$Type)
+get "component"(): $Component
+set "component"(value: $Component$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -459,8 +459,8 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "slots"(s: ($EquipmentSlot$Type)[]): $EnchantmentBuilder
 public "category"(c: $EnchantmentCategory$Type): $EnchantmentBuilder
+public "slots"(s: ($EquipmentSlot$Type)[]): $EnchantmentBuilder
 public "getRegistryType"(): $RegistryInfo<(any)>
 public "minLevel"(i: integer): $EnchantmentBuilder
 public "maxLevel"(i: integer): $EnchantmentBuilder
@@ -470,14 +470,15 @@ public "checkCompatibility"(i: $Object2BooleanFunction$Type<($ResourceLocation$T
 public "treasureOnly"(): $EnchantmentBuilder
 public "untradeable"(): $EnchantmentBuilder
 public "undiscoverable"(): $EnchantmentBuilder
-public "rarity"(r: $Enchantment$Rarity$Type): $EnchantmentBuilder
 public "breakable"(): $EnchantmentBuilder
-public "bow"(): $EnchantmentBuilder
-public "crossbow"(): $EnchantmentBuilder
-public "armor"(): $EnchantmentBuilder
+public "rarity"(r: $Enchantment$Rarity$Type): $EnchantmentBuilder
 public "trident"(): $EnchantmentBuilder
+public "armor"(): $EnchantmentBuilder
+public "crossbow"(): $EnchantmentBuilder
+public "bow"(): $EnchantmentBuilder
 public "weapon"(): $EnchantmentBuilder
 public "rare"(): $EnchantmentBuilder
+public "curse"(): $EnchantmentBuilder
 public "minCost"(i: $Int2IntFunction$Type): $EnchantmentBuilder
 public "maxCost"(i: $Int2IntFunction$Type): $EnchantmentBuilder
 public "canEnchant"(i: $Object2BooleanFunction$Type<($ItemStack$Type)>): $EnchantmentBuilder
@@ -492,7 +493,6 @@ public "armorFeet"(): $EnchantmentBuilder
 public "fishingRod"(): $EnchantmentBuilder
 public "wearable"(): $EnchantmentBuilder
 public "vanishable"(): $EnchantmentBuilder
-public "curse"(): $EnchantmentBuilder
 get "registryType"(): $RegistryInfo<(any)>
 }
 /**
@@ -528,32 +528,32 @@ import {$MinecraftServer, $MinecraftServer$Type} from "packages/net/minecraft/se
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$ScheduledEvents$Callback, $ScheduledEvents$Callback$Type} from "packages/dev/latvian/mods/kubejs/util/$ScheduledEvents$Callback"
 import {$ScheduledEvents$ScheduledEvent, $ScheduledEvents$ScheduledEvent$Type} from "packages/dev/latvian/mods/kubejs/util/$ScheduledEvents$ScheduledEvent"
-import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $MinecraftServerKJS extends $WithAttachedData<($MinecraftServer)>, $WithPersistentData, $DataSenderKJS, $MinecraftEnvironmentKJS {
 
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
+ "getPlayers"(): $EntityArrayList
+ "getEntities"(): $EntityArrayList
+ "getLevel"(dimension: $ResourceLocation$Type): $ServerLevel
+ "sendData"(channel: string, data: $CompoundTag$Type): void
+ "getAdvancement"(id: $ResourceLocation$Type): $AdvancementJS
+ "restoreInventories"(): $Map<($UUID), ($Map<(integer), ($ItemStack)>)>
  "getOverworld"(): $ServerLevel
  "getReloadableResources"(): $MinecraftServer$ReloadableResources
  "getPlayer"(selector: $PlayerSelector$Type): $ServerPlayer
- "getAdvancement"(id: $ResourceLocation$Type): $AdvancementJS
- "restoreInventories"(): $Map<($UUID), ($Map<(integer), ($ItemStack)>)>
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
- "getLevel"(dimension: $ResourceLocation$Type): $ServerLevel
- "getPlayers"(): $EntityArrayList
- "getEntities"(): $EntityArrayList
- "sendData"(channel: string, data: $CompoundTag$Type): void
- "tell"(message: $Component$Type): void
  "self"(): $MinecraftServer
+ "tell"(message: $Component$Type): void
  "getData"(): $AttachedData<($MinecraftServer)>
  "getPersistentData"(): $CompoundTag
  "sendData"(channel: string): void
- "schedule"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
- "scheduleInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
  "scheduleRepeating"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
+ "scheduleInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
+ "schedule"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
  "getScheduledEvents"(): $ScheduledEvents
  "scheduleRepeatingInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
  "getDisplayName"(): $Component
@@ -589,12 +589,12 @@ constructor(r: $RegistryInfo$Type<(T)>)
 
 public "create"(id: string): $BuilderBase<(any)>
 public "create"(id: string, type: string): $BuilderBase<(any)>
-public "createCustom"(id: string, object: () => T): $CustomBuilderObject
 /**
  * 
  * @deprecated
  */
 public "custom"(id: string, object: any): $CustomBuilderObject
+public "createCustom"(id: string, object: () => T): $CustomBuilderObject
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -632,36 +632,24 @@ import {$ClickEvent, $ClickEvent$Type} from "packages/net/minecraft/network/chat
 export interface $ComponentKJS extends $Component, $JsonSerializable, $WrappedJS {
 
  "forEach"(action: $Consumer$Type<(any)>): void
- "asIterable"(): $Iterable<($Component)>
- "darkGreen"(): $MutableComponent
- "hasStyle"(): boolean
- "hasSiblings"(): boolean
  "darkBlue"(): $MutableComponent
  "darkAqua"(): $MutableComponent
- "darkRed"(): $MutableComponent
- "darkPurple"(): $MutableComponent
- "darkGray"(): $MutableComponent
- "lightPurple"(): $MutableComponent
+ "hasSiblings"(): boolean
+ "darkGreen"(): $MutableComponent
  "noColor"(): $MutableComponent
+ "obfuscated"(): $MutableComponent
+ "obfuscated"(value: boolean): $MutableComponent
+ "clickRunCommand"(command: string): $MutableComponent
+ "insertion"(s: string): $MutableComponent
+ "clickSuggestCommand"(command: string): $MutableComponent
+ "strikethrough"(value: boolean): $MutableComponent
+ "strikethrough"(): $MutableComponent
  "underlined"(): $MutableComponent
  "underlined"(value: boolean): $MutableComponent
- "strikethrough"(): $MutableComponent
- "strikethrough"(value: boolean): $MutableComponent
- "obfuscated"(value: boolean): $MutableComponent
- "obfuscated"(): $MutableComponent
- "insertion"(s: string): $MutableComponent
- "clickRunCommand"(command: string): $MutableComponent
- "clickSuggestCommand"(command: string): $MutableComponent
- "clickCopy"(text: string): $MutableComponent
- "clickChangePage"(page: string): $MutableComponent
- "clickOpenUrl"(url: string): $MutableComponent
- "clickOpenFile"(path: string): $MutableComponent
-/**
- * 
- * @deprecated
- */
- "rawComponent"(): $MutableComponent
- "isEmpty"(): boolean
+ "darkPurple"(): $MutableComponent
+ "darkGray"(): $MutableComponent
+ "darkRed"(): $MutableComponent
+ "lightPurple"(): $MutableComponent
 /**
  * 
  * @deprecated
@@ -672,6 +660,18 @@ export interface $ComponentKJS extends $Component, $JsonSerializable, $WrappedJS
  * @deprecated
  */
  "rawCopy"(): $MutableComponent
+/**
+ * 
+ * @deprecated
+ */
+ "rawComponent"(): $MutableComponent
+ "isEmpty"(): boolean
+ "clickOpenFile"(path: string): $MutableComponent
+ "clickOpenUrl"(url: string): $MutableComponent
+ "clickChangePage"(page: string): $MutableComponent
+ "clickCopy"(text: string): $MutableComponent
+ "hasStyle"(): boolean
+ "asIterable"(): $Iterable<($Component)>
  "self"(): $MutableComponent
  "toJson"(): $JsonElement
  "black"(): $MutableComponent
@@ -718,9 +718,9 @@ function keybind(arg0: string): $MutableComponent
 function nbt(arg0: string, arg1: boolean, arg2: $Optional$Type<($Component$Type)>, arg3: $DataSource$Type): $MutableComponent
 function score(arg0: string, arg1: string): $MutableComponent
 function selector(arg0: string, arg1: $Optional$Type<($Component$Type)>): $MutableComponent
-function composite(...arg0: ($FormattedText$Type)[]): $FormattedText
-function of(arg0: string, arg1: $Style$Type): $FormattedText
 function of(arg0: string): $FormattedText
+function of(arg0: string, arg1: $Style$Type): $FormattedText
+function composite(...arg0: ($FormattedText$Type)[]): $FormattedText
 function composite(arg0: $List$Type<(any)>): $FormattedText
 }
 /**
@@ -750,27 +750,12 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$Attribute, $Attribute$Type} from "packages/net/minecraft/world/entity/ai/attributes/$Attribute"
 import {$AttributeModifier$Operation, $AttributeModifier$Operation$Type} from "packages/net/minecraft/world/entity/ai/attributes/$AttributeModifier$Operation"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$ItemBuilder, $ItemBuilder$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemBuilder"
 import {$AttributeModifier, $AttributeModifier$Type} from "packages/net/minecraft/world/entity/ai/attributes/$AttributeModifier"
+import {$ItemBuilder, $ItemBuilder$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemBuilder"
 import {$ItemStackKey, $ItemStackKey$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemStackKey"
 
 export interface $ItemKJS extends $IngredientSupplierKJS {
 
- "removeAttribute"(attribute: $Attribute$Type, uuid: $UUID$Type): void
- "getItemBuilder"(): $ItemBuilder
- "setNameKey"(key: string): void
- "getIdLocation"(): $ResourceLocation
- "getTypeData"(): $CompoundTag
- "setRarity"(r: $Rarity$Type): void
- "setMaxStackSize"(i: integer): void
- "setCraftingRemainder"(i: $Item$Type): void
- "setItemBuilder"(b: $ItemBuilder$Type): void
- "setBurnTime"(i: integer): void
- "getTypeItemStackKey"(): $ItemStackKey
- "setFireResistant"(b: boolean): void
- "setFoodProperties"(consumer: $Consumer$Type<($FoodBuilder$Type)>): void
- "setFoodProperties"(properties: $FoodProperties$Type): void
- "setMaxDamage"(i: integer): void
  "getCreativeTab"(): string
  "setDigSpeed"(speed: float): void
  "getDigSpeed"(): float
@@ -781,10 +766,25 @@ export interface $ItemKJS extends $IngredientSupplierKJS {
  "setArmorProtection"(armorProtection: double): void
  "setArmorToughness"(armorToughness: double): void
  "getAttributes"(attribute: $Attribute$Type): $List<($AttributeModifier)>
+ "getIdLocation"(): $ResourceLocation
+ "getTypeData"(): $CompoundTag
+ "removeAttribute"(attribute: $Attribute$Type, uuid: $UUID$Type): void
+ "getItemBuilder"(): $ItemBuilder
+ "setNameKey"(key: string): void
+ "setItemBuilder"(b: $ItemBuilder$Type): void
+ "setBurnTime"(i: integer): void
+ "getTypeItemStackKey"(): $ItemStackKey
+ "setMaxStackSize"(i: integer): void
+ "setMaxDamage"(i: integer): void
+ "setCraftingRemainder"(i: $Item$Type): void
+ "setFireResistant"(b: boolean): void
+ "setRarity"(r: $Rarity$Type): void
+ "setFoodProperties"(properties: $FoodProperties$Type): void
+ "setFoodProperties"(consumer: $Consumer$Type<($FoodBuilder$Type)>): void
  "setArmorKnockbackResistance"(knockbackResistance: double): void
+ "self"(): $Item
  "getId"(): string
  "getMod"(): string
- "self"(): $Item
  "kjs$asIngredient"(): $Ingredient
 }
 
@@ -1186,6 +1186,7 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
+public "createObject"(): $PoiType
 public "blocks"(r: ($BlockState$Type)[]): $PoiTypeBuilder
 public "block"(r: $Block$Type): $PoiTypeBuilder
 public "getRegistryType"(): $RegistryInfo<(any)>
@@ -1324,98 +1325,98 @@ import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/leve
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$ExplosionJS, $ExplosionJS$Type} from "packages/dev/latvian/mods/kubejs/level/$ExplosionJS"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
+import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 
 export class $BlockContainerJS implements $SpecialEquality {
 readonly "minecraftLevel": $Level
 
-constructor(blockEntity: $BlockEntity$Type)
 constructor(w: $Level$Type, p: $BlockPos$Type)
+constructor(blockEntity: $BlockEntity$Type)
 
 public "getEntity"(): $BlockEntity
-public "getDimension"(): $ResourceLocation
 public "getItem"(): $ItemStack
-public "createEntity"(type: $EntityType$Type<(any)>): $Entity
+public "getDimension"(): $ResourceLocation
+public "clearCache"(): void
+public "getY"(): integer
+public "getX"(): integer
 public "equals"(obj: any): boolean
 public "toString"(): string
+public "offset"(f: $Direction$Type, d: integer): $BlockContainerJS
 public "offset"(f: $Direction$Type): $BlockContainerJS
 public "offset"(x: integer, y: integer, z: integer): $BlockContainerJS
-public "offset"(f: $Direction$Type, d: integer): $BlockContainerJS
-public "set"(id: $ResourceLocation$Type): void
 public "set"(id: $ResourceLocation$Type, properties: $Map$Type<(any), (any)>, flags: integer): void
+public "set"(id: $ResourceLocation$Type): void
 public "set"(id: $ResourceLocation$Type, properties: $Map$Type<(any), (any)>): void
 public "getProperties"(): $Map<(string), (string)>
 public "getId"(): string
-public "clearCache"(): void
-public "getX"(): integer
-public "getY"(): integer
-public "getEntityData"(): $CompoundTag
+public "createEntity"(type: $EntityType$Type<(any)>): $Entity
+public "specialEquals"(o: any, shallow: boolean): boolean
+public "getEntityId"(): string
+public "setBlockState"(state: $BlockState$Type, flags: integer): void
 public "getInventory"(facing: $Direction$Type): $InventoryKJS
 public "getInventory"(): $InventoryKJS
-public "setBlockState"(state: $BlockState$Type, flags: integer): void
-public "getEntityId"(): string
-public "specialEquals"(o: any, shallow: boolean): boolean
-public "getBlockState"(): $BlockState
+public "getEntityData"(): $CompoundTag
 public "getLevel"(): $Level
+public "getBlockState"(): $BlockState
+public "setEntityData"(tag: $CompoundTag$Type): void
+public "createExplosion"(): $ExplosionJS
 public "mergeEntityData"(tag: $CompoundTag$Type): void
 public "getSkyLight"(): integer
 public "getBlockLight"(): integer
 public "getCanSeeSky"(): boolean
 public "canSeeSkyFromBelowWater"(): boolean
+public "spawnLightning"(effectOnly: boolean, player: $ServerPlayer$Type): void
 public "spawnLightning"(effectOnly: boolean): void
 public "spawnLightning"(): void
-public "spawnLightning"(effectOnly: boolean, player: $ServerPlayer$Type): void
 public "spawnFireworks"(fireworks: $FireworksJS$Type): void
 public "popItemFromFace"(item: $ItemStack$Type, dir: $Direction$Type): void
-public "getPlayersInRadius"(radius: double): $EntityArrayList
 public "getPlayersInRadius"(): $EntityArrayList
+public "getPlayersInRadius"(radius: double): $EntityArrayList
 public "getTypeData"(): $CompoundTag
-public "createExplosion"(): $ExplosionJS
-public "setEntityData"(tag: $CompoundTag$Type): void
 public "getZ"(): integer
-public "getDrops"(entity: $Entity$Type, heldItem: $ItemStack$Type): $List<($ItemStack)>
-public "getDrops"(): $List<($ItemStack)>
+public "getTags"(): $Collection<($ResourceLocation)>
 public "getPos"(): $BlockPos
 public "hasTag"(tag: $ResourceLocation$Type): boolean
-public "getTags"(): $Collection<($ResourceLocation)>
+public "getDrops"(entity: $Entity$Type, heldItem: $ItemStack$Type): $List<($ItemStack)>
+public "getDrops"(): $List<($ItemStack)>
 public "getLight"(): integer
+public "getBiomeId"(): $ResourceLocation
 public "getUp"(): $BlockContainerJS
 public "getDown"(): $BlockContainerJS
 public "popItem"(item: $ItemStack$Type): void
-public "getBiomeId"(): $ResourceLocation
 public "getNorth"(): $BlockContainerJS
 public "getSouth"(): $BlockContainerJS
 public "getWest"(): $BlockContainerJS
 public "getEast"(): $BlockContainerJS
 public static "checkSpecialEquality"(o: any, o1: any, shallow: boolean): boolean
 get "entity"(): $BlockEntity
-get "dimension"(): $ResourceLocation
 get "item"(): $ItemStack
+get "dimension"(): $ResourceLocation
+get "y"(): integer
+get "x"(): integer
 get "properties"(): $Map<(string), (string)>
 get "id"(): string
-get "x"(): integer
-get "y"(): integer
-get "entityData"(): $CompoundTag
-get "inventory"(): $InventoryKJS
 get "entityId"(): string
-get "blockState"(): $BlockState
+get "inventory"(): $InventoryKJS
+get "entityData"(): $CompoundTag
 get "level"(): $Level
+get "blockState"(): $BlockState
+set "entityData"(value: $CompoundTag$Type)
 get "skyLight"(): integer
 get "blockLight"(): integer
 get "canSeeSky"(): boolean
 get "playersInRadius"(): $EntityArrayList
 get "typeData"(): $CompoundTag
-set "entityData"(value: $CompoundTag$Type)
 get "z"(): integer
-get "drops"(): $List<($ItemStack)>
-get "pos"(): $BlockPos
 get "tags"(): $Collection<($ResourceLocation)>
+get "pos"(): $BlockPos
+get "drops"(): $List<($ItemStack)>
 get "light"(): integer
+get "biomeId"(): $ResourceLocation
 get "up"(): $BlockContainerJS
 get "down"(): $BlockContainerJS
-get "biomeId"(): $ResourceLocation
 get "north"(): $BlockContainerJS
 get "south"(): $BlockContainerJS
 get "west"(): $BlockContainerJS
@@ -1446,9 +1447,10 @@ export class $EntityFallenOnBlockCallbackJS extends $EntitySteppedOnBlockCallbac
 constructor(level: $Level$Type, entity: $Entity$Type, pos: $BlockPos$Type, state: $BlockState$Type, fallHeight: float)
 
 /**
- * Get the height the entity has fallen
+ * Applies fall damage to the entity, multiplier by the multiplier.
+ * Note this does not force it, so entities that do not take fall damage are not affected.
  */
-public "getFallHeight"(): float
+public "applyFallDamage"(multiplier: float): boolean
 /**
  * Applies fall damage to the entity as if they had fallen from the provided height, and multiplies it by the provided multiplier.
  * Note this does not force it, so entities that do not take fall damage are not affected.
@@ -1460,15 +1462,14 @@ public "applyFallDamage"(fallHeight: float, multiplier: float): boolean
  */
 public "applyFallDamage"(fallHeight: float, multiplier: float, damageSource: $DamageSource$Type): boolean
 /**
- * Applies fall damage to the entity, multiplier by the multiplier.
- * Note this does not force it, so entities that do not take fall damage are not affected.
- */
-public "applyFallDamage"(multiplier: float): boolean
-/**
  * Applies default fall damage to the entity.
  * Note this does not force it, so entities that do not take fall damage are not affected.
  */
 public "applyFallDamage"(): boolean
+/**
+ * Get the height the entity has fallen
+ */
+public "getFallHeight"(): float
 get "fallHeight"(): float
 }
 /**
@@ -1682,8 +1683,8 @@ export class $RecipeSchemaRegistryEventJS extends $EventJS {
 
 constructor(namespaces: $Map$Type<(string), ($RecipeNamespace$Type)>, mappedRecipes: $Map$Type<(string), ($ResourceLocation$Type)>)
 
-public "register"(id: $ResourceLocation$Type, schema: $RecipeSchema$Type): void
 public "namespace"(namespace: string): $RecipeNamespace
+public "register"(id: $ResourceLocation$Type, schema: $RecipeSchema$Type): void
 public "getComponents"(): $Map<(string), ($RecipeComponentFactory)>
 public "mapRecipe"(name: string, type: string): void
 public "mapRecipe"(name: string, type: $ResourceLocation$Type): void
@@ -1860,6 +1861,7 @@ constructor(p: $Player$Type, s: $StatsCounter$Type)
 public "add"(stat: $Stat$Type<(any)>, value: integer): void
 public "get"(stat: $Stat$Type<(any)>): integer
 public "set"(stat: $Stat$Type<(any)>, value: integer): void
+public "getItemsUsed"(item: $Item$Type): integer
 public "getPlayTime"(): integer
 public "getTimeSinceDeath"(): integer
 public "getTimeSinceRest"(): integer
@@ -1885,7 +1887,6 @@ public "getItemsBroken"(item: $Item$Type): integer
 public "getItemsPickedUp"(item: $Item$Type): integer
 public "getItemsDropped"(item: $Item$Type): integer
 public "getKilledBy"(entity: $EntityType$Type<(any)>): integer
-public "getItemsUsed"(item: $Item$Type): integer
 public static "statOf"(o: any): $Stat<(any)>
 public "getJumps"(): integer
 public "getDeaths"(): integer
@@ -1926,16 +1927,17 @@ export type $PlayerStatsJS_ = $PlayerStatsJS$Type;
 }}
 declare module "packages/dev/latvian/mods/kubejs/block/custom/$CropBlockBuilder" {
 import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
-import {$BlockBuilder, $BlockBuilder$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockBuilder"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
-import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$LootBuilder, $LootBuilder$Type} from "packages/dev/latvian/mods/kubejs/loot/$LootBuilder"
 import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
-import {$CropBlockBuilder$SurviveCallback, $CropBlockBuilder$SurviveCallback$Type} from "packages/dev/latvian/mods/kubejs/block/custom/$CropBlockBuilder$SurviveCallback"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RandomTickCallbackJS, $RandomTickCallbackJS$Type} from "packages/dev/latvian/mods/kubejs/block/$RandomTickCallbackJS"
-import {$ToDoubleFunction, $ToDoubleFunction$Type} from "packages/java/util/function/$ToDoubleFunction"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$CropBlockBuilder$ShapeBuilder, $CropBlockBuilder$ShapeBuilder$Type} from "packages/dev/latvian/mods/kubejs/block/custom/$CropBlockBuilder$ShapeBuilder"
+import {$BlockBuilder, $BlockBuilder$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockBuilder"
+import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
+import {$CropBlockBuilder$SurviveCallback, $CropBlockBuilder$SurviveCallback$Type} from "packages/dev/latvian/mods/kubejs/block/custom/$CropBlockBuilder$SurviveCallback"
+import {$ToDoubleFunction, $ToDoubleFunction$Type} from "packages/java/util/function/$ToDoubleFunction"
 
 export class $CropBlockBuilder extends $BlockBuilder {
  "randomTickCallback": $Consumer<($RandomTickCallbackJS)>
@@ -1949,15 +1951,16 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "texture"(id: string, tex: string): $BlockBuilder
-/**
- * Set the age of the crop and the shape of the crop at that age.
- */
-public "age"(age: integer, builder: $Consumer$Type<($CropBlockBuilder$ShapeBuilder$Type)>): $CropBlockBuilder
+public "createObject"(): $Block
 /**
  * Set the age of the crop. Note that the box will be the same for all ages (A full block size).
  */
 public "age"(age: integer): $CropBlockBuilder
+/**
+ * Set the age of the crop and the shape of the crop at that age.
+ */
+public "age"(age: integer, builder: $Consumer$Type<($CropBlockBuilder$ShapeBuilder$Type)>): $CropBlockBuilder
+public "texture"(id: string, tex: string): $BlockBuilder
 public "randomTick"(randomTickCallback: $Consumer$Type<($RandomTickCallbackJS$Type)>): $BlockBuilder
 /**
  * Add a crop output with a specific chance.
@@ -2257,15 +2260,14 @@ readonly "entries": $JsonArray
 
 constructor()
 
-public "addEntry"(json: $JsonObject$Type): $LootTableEntry
-public "addItem"(item: $ItemStack$Type, weight: integer, count: $NumberProvider$Type): $LootTableEntry
-public "addItem"(item: $ItemStack$Type): $LootTableEntry
 public "addItem"(item: $ItemStack$Type, weight: integer): $LootTableEntry
+public "addItem"(item: $ItemStack$Type): $LootTableEntry
+public "addItem"(item: $ItemStack$Type, weight: integer, count: $NumberProvider$Type): $LootTableEntry
+public "addEntry"(json: $JsonObject$Type): $LootTableEntry
 public "addLootTable"(table: $ResourceLocation$Type): $LootTableEntry
 public "toJson"(): $JsonObject
 public "setUniformRolls"(min: float, max: float): void
 public "setBinomialRolls"(n: integer, p: float): void
-public "addFunction"(o: $JsonObject$Type): $LootBuilderPool
 public "addTag"(tag: string, expand: boolean): $LootTableEntry
 public "addEmpty"(weight: integer): $LootTableEntry
 public "name"(name: $Component$Type, entity: $LootContext$EntityTarget$Type): $FunctionContainer
@@ -2276,16 +2278,16 @@ public "enchantWithLevels"(levels: $NumberProvider$Type, treasure: boolean): $Fu
 public "enchantRandomly"(enchantments: ($ResourceLocation$Type)[]): $FunctionContainer
 public "furnaceSmelt"(): $FunctionContainer
 public "lootingEnchant"(count: $NumberProvider$Type, limit: integer): $FunctionContainer
-public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "damage"(damage: $NumberProvider$Type): $FunctionContainer
+public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "lootTable"(table: $ResourceLocation$Type, seed: long): $FunctionContainer
 public "copyName"(source: $CopyNameFunction$NameSource$Type): $FunctionContainer
 public "survivesExplosion"(): $ConditionContainer
+public "randomChance"(chance: double): $ConditionContainer
 public "randomChanceWithLooting"(chance: double, multiplier: double): $ConditionContainer
 public "entityProperties"(entity: $LootContext$EntityTarget$Type, properties: $JsonObject$Type): $ConditionContainer
 public "killedByPlayer"(): $ConditionContainer
 public "entityScores"(entity: $LootContext$EntityTarget$Type, scores: $Map$Type<(string), (any)>): $ConditionContainer
-public "randomChance"(chance: double): $ConditionContainer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2622,15 +2624,15 @@ readonly "path": $Path
 readonly "nameStrip": string
 
 
+public "negate"(): $ScriptTypePredicate
 public static "values"(): ($ScriptType)[]
 public "test"(type: $ScriptType$Type): boolean
 public static "valueOf"(name: string): $ScriptType
-public "negate"(): $ScriptTypePredicate
-public "getValidTypes"(): $List<($ScriptType)>
 public "kjs$getScriptType"(): $ScriptType
+public "getValidTypes"(): $List<($ScriptType)>
 public "isClient"(): boolean
-public static "getCurrent"(cx: $Context$Type): $ScriptType
 public "isServer"(): boolean
+public static "getCurrent"(cx: $Context$Type): $ScriptType
 public "getLogFile"(): $Path
 public "isStartup"(): boolean
 public static "isEqual"<T>(arg0: any): $Predicate<($ScriptType)>
@@ -2780,6 +2782,9 @@ import {$JsonSerializable, $JsonSerializable$Type} from "packages/dev/latvian/mo
 
 export interface $IngredientKJS extends $IngredientSupplierKJS, $JsonSerializable {
 
+ "asIngredient"(): $Ingredient
+ "isWildcard"(): boolean
+ "withCount"(count: integer): $InputItem
  "testItem"(item: $Item$Type): boolean
  "getStacks"(): $ItemStackSet
  "getDisplayStacks"(): $ItemStackSet
@@ -2789,9 +2794,6 @@ export interface $IngredientKJS extends $IngredientSupplierKJS, $JsonSerializabl
  "subtract"(subtracted: $Ingredient$Type): $Ingredient
  "asStack"(): $InputItem
  "canBeUsedForMatching"(): boolean
- "isWildcard"(): boolean
- "withCount"(count: integer): $InputItem
- "asIngredient"(): $Ingredient
  "self"(): $Ingredient
  "toJson"(): $JsonElement
  "and"(ingredient: $Ingredient$Type): $Ingredient
@@ -2872,30 +2874,30 @@ static readonly "PERMANENT": integer
 static readonly "UNINITIALIZED_CONST": integer
 static readonly "CONST": integer
 
-constructor(scope: $Scriptable$Type, prototype: $Scriptable$Type)
 constructor()
+constructor(scope: $Scriptable$Type, prototype: $Scriptable$Type)
 
 public "has"(cx: $Context$Type, name: string, start: $Scriptable$Type): boolean
 public "has"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type): boolean
 public "setAttributes"(cx: $Context$Type, name: string, attributes: integer): void
-public "get"(cx: $Context$Type, name: string, start: $Scriptable$Type): any
 public "get"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type): any
-public "put"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type, value: any): void
+public "get"(cx: $Context$Type, name: string, start: $Scriptable$Type): any
 public "put"(cx: $Context$Type, name: string, start: $Scriptable$Type, value: any): void
-public "delete"(cx: $Context$Type, name: string): void
+public "put"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type, value: any): void
 public "delete"(cx: $Context$Type, key: $Symbol$Type): void
-public "getAttributes"(cx: $Context$Type, name: string): integer
+public "delete"(cx: $Context$Type, name: string): void
 public "getAttributes"(cx: $Context$Type, key: $Symbol$Type): integer
+public "getAttributes"(cx: $Context$Type, name: string): integer
 public "defineOwnProperty"(cx: $Context$Type, key: any, desc: $ScriptableObject$Type): void
 public "exportAsJSClass"(maxPrototypeId: integer, scope: $Scriptable$Type, sealed: boolean, cx: $Context$Type): $IdFunctionObject
 public "activatePrototypeMap"(maxPrototypeId: integer): void
 public "hasPrototypeMap"(): boolean
-public "initPrototypeMethod"(tag: any, id: integer, key: $Symbol$Type, functionName: string, arity: integer, cx: $Context$Type): $IdFunctionObject
 public "initPrototypeMethod"(tag: any, id: integer, propertyName: string, functionName: string, arity: integer, cx: $Context$Type): $IdFunctionObject
+public "initPrototypeMethod"(tag: any, id: integer, key: $Symbol$Type, functionName: string, arity: integer, cx: $Context$Type): $IdFunctionObject
 public "initPrototypeMethod"(tag: any, id: integer, name: string, arity: integer, cx: $Context$Type): $IdFunctionObject
 public "initPrototypeConstructor"(f: $IdFunctionObject$Type, cx: $Context$Type): void
-public "initPrototypeValue"(id: integer, name: string, value: any, attributes: integer): void
 public "initPrototypeValue"(id: integer, key: $Symbol$Type, value: any, attributes: integer): void
+public "initPrototypeValue"(id: integer, name: string, value: any, attributes: integer): void
 public "execIdCall"(f: $IdFunctionObject$Type, cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
 }
 /**
@@ -3292,7 +3294,6 @@ declare global {
 export type $AddJEIEventJS_<T> = $AddJEIEventJS$Type<(T)>;
 }}
 declare module "packages/dev/latvian/mods/kubejs/item/custom/$ShearsItemBuilder" {
-import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$ArmorMaterial, $ArmorMaterial$Type} from "packages/net/minecraft/world/item/$ArmorMaterial"
@@ -3317,7 +3318,6 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "createObject"(): $Item
 public static "isCustomShears"(stack: $ItemStack$Type): boolean
 public "speedBaseline"(f: float): $ShearsItemBuilder
 }
@@ -3458,15 +3458,21 @@ public "write"(recipe: $RecipeJS$Type, value: $Either$Type<(H), (L)>): $JsonElem
 public "read"(recipe: $RecipeJS$Type, from: any): $Either<(H), (L)>
 public "high"(): $RecipeComponent<(H)>
 public "low"(): $RecipeComponent<(L)>
-public "componentClass"(): $Class<(any)>
-public "replaceOutput"(recipe: $RecipeJS$Type, original: $Either$Type<(H), (L)>, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): $Either<(H), (L)>
 public "replaceInput"(recipe: $RecipeJS$Type, original: $Either$Type<(H), (L)>, match: $ReplacementMatch$Type, arg3: $InputReplacement$Type): $Either<(H), (L)>
+public "replaceOutput"(recipe: $RecipeJS$Type, original: $Either$Type<(H), (L)>, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): $Either<(H), (L)>
+public "componentClass"(): $Class<(any)>
 public "constructorDescription"(ctx: $DescriptionContext$Type): $TypeDescJS
 public "checkValueHasChanged"(oldValue: $Either$Type<(H), (L)>, newValue: $Either$Type<(H), (L)>): boolean
 public "role"(): $ComponentRole
 public "isOutput"(recipe: $RecipeJS$Type, value: $Either$Type<(H), (L)>, match: $ReplacementMatch$Type): boolean
 public "isInput"(recipe: $RecipeJS$Type, value: $Either$Type<(H), (L)>, match: $ReplacementMatch$Type): boolean
+public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<($Either<(H), (L)>), (O)>
+public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<($Either<(H), (L)>), (O)>
 public "asArray"(): $ArrayRecipeComponent<($Either<(H), (L)>)>
+/**
+ * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
+ */
+public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<($Either<(H), (L)>)>
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read, and the mappingFrom function after the component writes to json, before that json is saved
  */
@@ -3474,14 +3480,8 @@ public "map"(mappingTo: $UnaryOperator$Type<(any)>, mappingFrom: $UnaryOperator$
 public static "builder"(): $RecipeComponentBuilder
 public static "builder"(...key: ($RecipeKey$Type<(any)>)[]): $RecipeComponentBuilder
 public "key"(name: string): $RecipeKey<($Either<(H), (L)>)>
-public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<($Either<(H), (L)>), (O)>
-public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<($Either<(H), (L)>), (O)>
-/**
- * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
- */
-public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<($Either<(H), (L)>)>
-public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Either$Type<(H), (L)>)>, json: $JsonObject$Type): void
 public "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Either$Type<(H), (L)>)>, json: $JsonObject$Type): void
+public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Either$Type<(H), (L)>)>, json: $JsonObject$Type): void
 public "asMap"<K>(key: $RecipeComponent$Type<(K)>): $RecipeComponent<($TinyMap<(K), ($Either<(H), (L)>)>)>
 public "readFromMap"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Either$Type<(H), (L)>)>, map: $Map$Type<(any), (any)>): void
 public "hasPriority"(recipe: $RecipeJS$Type, from: any): boolean
@@ -3516,8 +3516,8 @@ export type $OrRecipeComponent_<H, L> = $OrRecipeComponent$Type<(H), (L)>;
 }}
 declare module "packages/dev/latvian/mods/kubejs/block/callbacks/$BlockExplodedCallbackJS" {
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$List, $List$Type} from "packages/java/util/$List"
 import {$DamageSource, $DamageSource$Type} from "packages/net/minecraft/world/damagesource/$DamageSource"
+import {$List, $List$Type} from "packages/java/util/$List"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Explosion, $Explosion$Type} from "packages/net/minecraft/world/level/$Explosion"
@@ -3530,22 +3530,22 @@ export class $BlockExplodedCallbackJS {
 
 constructor(level: $Level$Type, pos: $BlockPos$Type, explosion: $Explosion$Type)
 
-public "getCause"(): $Entity
 public "getBlock"(): $BlockContainerJS
+public "getCause"(): $Entity
 public "getExplosion"(): $Explosion
-public "getBlockState"(): $BlockState
 public "getLevel"(): $Level
-public "getAffectedPlayers"(): $List<($Player)>
+public "getBlockState"(): $BlockState
 public "getDamageSource"(): $DamageSource
+public "getAffectedPlayers"(): $List<($Player)>
 public "getRadius"(): float
 public "getIgniter"(): $LivingEntity
-get "cause"(): $Entity
 get "block"(): $BlockContainerJS
+get "cause"(): $Entity
 get "explosion"(): $Explosion
-get "blockState"(): $BlockState
 get "level"(): $Level
-get "affectedPlayers"(): $List<($Player)>
+get "blockState"(): $BlockState
 get "damageSource"(): $DamageSource
+get "affectedPlayers"(): $List<($Player)>
 get "radius"(): float
 get "igniter"(): $LivingEntity
 }
@@ -3570,13 +3570,13 @@ import {$OutputReplacement, $OutputReplacement$Type} from "packages/dev/latvian/
 
 export interface $RecipeKJS {
 
- "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
- "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
- "getSchema"(): $RecipeSchema
- "getOrCreateId"(): $ResourceLocation
- "setGroup"(group: string): void
- "getGroup"(): string
  "getType"(): $ResourceLocation
+ "getGroup"(): string
+ "setGroup"(group: string): void
+ "getOrCreateId"(): $ResourceLocation
+ "getSchema"(): $RecipeSchema
+ "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+ "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
  "getMod"(): string
  "hasInput"(match: $ReplacementMatch$Type): boolean
  "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -3616,9 +3616,9 @@ constructor(name: string)
 public static "getAll"(): $Map<(string), ($RecipeNamespace)>
 public "toString"(): string
 public "register"(id: string, type: $RecipeSchema$Type): $RecipeNamespace
+public "special"(id: string): $RecipeNamespace
 public "registerBasic"(id: string, ...keys: ($RecipeKey$Type<(any)>)[]): $RecipeNamespace
 public static "getMappedRecipes"(): $Map<(string), ($ResourceLocation)>
-public "special"(id: string): $RecipeNamespace
 public "shaped"(id: string): $RecipeNamespace
 public "shapeless"(id: string): $RecipeNamespace
 public "remove"(arg0: any): V
@@ -3754,7 +3754,13 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "generateLang"(lang: $LangEventJS$Type): void
+/**
+ * Sets the name for this smithing template.
+ * Note that the normal display name for all smithing templates is the same and cannot be changed, this instead sets the name in the tooltip (see vanilla smithing templates for what this looks like).
+ * 
+ * This will be overridden by a lang file if it exists.
+ */
+public "displayName"(name: $Component$Type): $SmithingTemplateItemBuilder
 /**
  * Sets the description text that shows in the item tooltip to describe what ingredients can be added.
  * Using 'Ingots & Crystals' or 'Netherite Ingot' will use the vanilla language keys so it is translated into other languages automatically.
@@ -3763,6 +3769,7 @@ public "generateLang"(lang: $LangEventJS$Type): void
  * If you wish to apply non standard formatting (like change the colour) set the `ingredientsText` field.
  */
 public "ingredients"(text: string): $SmithingTemplateItemBuilder
+public "generateLang"(lang: $LangEventJS$Type): void
 /**
  * Sets the description text that shows when you hover over the base item slot when this item is put in smithing table as a template.
  * Using 'Add a piece of armor' or 'Add diamond armor, weapon, or tool' will use the vanilla language keys so it is translated into other languages automatically.
@@ -4046,11 +4053,11 @@ import {$OutputReplacement, $OutputReplacement$Type} from "packages/dev/latvian/
 
 export interface $KubeJSCraftingRecipe extends $CraftingRecipe {
 
- "kjs$getModifyResult"(): $ModifyRecipeResultCallback
- "kjs$getStage"(): string
- "kjs$getIngredientActions"(): $List<($IngredientAction)>
- "kjs$getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
  "kjs$assemble"(container: $CraftingContainer$Type, registryAccess: $RegistryAccess$Type): $ItemStack
+ "kjs$getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
+ "kjs$getStage"(): string
+ "kjs$getModifyResult"(): $ModifyRecipeResultCallback
+ "kjs$getIngredientActions"(): $List<($IngredientAction)>
  "category"(): $CraftingBookCategory
  "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
  "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
@@ -4064,13 +4071,13 @@ export interface $KubeJSCraftingRecipe extends $CraftingRecipe {
  "getToastSymbol"(): $ItemStack
  "getSerializer"(): $RecipeSerializer<(any)>
  "isIncomplete"(): boolean
- "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
- "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
- "getSchema"(): $RecipeSchema
- "getOrCreateId"(): $ResourceLocation
- "setGroup"(group: string): void
- "getGroup"(): string
  "getType"(): $ResourceLocation
+ "getGroup"(): string
+ "setGroup"(group: string): void
+ "getOrCreateId"(): $ResourceLocation
+ "getSchema"(): $RecipeSchema
+ "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+ "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
  "getMod"(): string
  "hasInput"(match: $ReplacementMatch$Type): boolean
  "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -4126,6 +4133,7 @@ export type $ScriptFile_ = $ScriptFile$Type;
 }}
 declare module "packages/dev/latvian/mods/kubejs/core/$ItemStackKJS" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
@@ -4142,6 +4150,10 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ItemStackKJS extends $SpecialEquality, $NBTSerializable, $JsonSerializable, $IngredientSupplierKJS {
 
+ "specialEquals"(o: any, shallow: boolean): boolean
+ "getIdLocation"(): $ResourceLocation
+ "getTypeData"(): $CompoundTag
+ "asIngredient"(): $Ingredient
  "equalsIgnoringCount"(stack: $ItemStack$Type): boolean
  "getTags"(): $Collection<($ResourceLocation)>
  "isBlock"(): boolean
@@ -4163,18 +4175,15 @@ export interface $ItemStackKJS extends $SpecialEquality, $NBTSerializable, $Json
  "strongNBT"(): $Ingredient
  "areItemsEqual"(other: $ItemStack$Type): boolean
  "isNBTEqual"(other: $ItemStack$Type): boolean
- "getHarvestSpeed"(block: $BlockContainerJS$Type): float
  "getHarvestSpeed"(): float
+ "getHarvestSpeed"(block: $BlockContainerJS$Type): float
  "toItemString"(): string
  "withChance"(chance: double): $OutputItem
  "withLore"(text: ($Component$Type)[]): $ItemStack
- "specialEquals"(o: any, shallow: boolean): boolean
- "getIdLocation"(): $ResourceLocation
- "getTypeData"(): $CompoundTag
- "asIngredient"(): $Ingredient
+ "self"(): $ItemStack
+ "toJson"(): $JsonObject
  "getId"(): string
  "getMod"(): string
- "self"(): $ItemStack
  "hasTag"(tag: $ResourceLocation$Type): boolean
 }
 
@@ -4205,28 +4214,28 @@ import {$ScheduledEvents$ScheduledEvent, $ScheduledEvents$ScheduledEvent$Type} f
 
 export interface $MinecraftClientKJS extends $MinecraftEnvironmentKJS {
 
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
- "getCurrentScreen"(): $Screen
- "setCurrentScreen"(gui: $Screen$Type): void
- "setTitle"(t: string): void
- "getCurrentWorldName"(): string
- "isKeyDown"(key: integer): boolean
- "isShiftDown"(): boolean
- "isCtrlDown"(): boolean
  "isAltDown"(): boolean
- "tell"(message: $Component$Type): void
+ "isCtrlDown"(): boolean
+ "isShiftDown"(): boolean
+ "isKeyDown"(key: integer): boolean
+ "getCurrentWorldName"(): string
+ "setTitle"(t: string): void
+ "setCurrentScreen"(gui: $Screen$Type): void
+ "getCurrentScreen"(): $Screen
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "self"(): $Minecraft
- "schedule"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
- "scheduleInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
+ "tell"(message: $Component$Type): void
  "scheduleRepeating"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
+ "scheduleInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
+ "schedule"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
  "getScheduledEvents"(): $ScheduledEvents
  "scheduleRepeatingInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
  "getDisplayName"(): $Component
 
-(): $Component
+(): boolean
 }
 
 export namespace $MinecraftClientKJS {
@@ -4402,14 +4411,14 @@ export interface $FunctionContainer {
  "name"(name: $Component$Type, entity: $LootContext$EntityTarget$Type): $FunctionContainer
  "name"(name: $Component$Type): $FunctionContainer
  "count"(count: $NumberProvider$Type): $FunctionContainer
+ "addFunction"(arg0: $JsonObject$Type): $FunctionContainer
  "addConditionalFunction"(func: $Consumer$Type<($ConditionalFunction$Type)>): $FunctionContainer
  "enchantWithLevels"(levels: $NumberProvider$Type, treasure: boolean): $FunctionContainer
  "enchantRandomly"(enchantments: ($ResourceLocation$Type)[]): $FunctionContainer
  "furnaceSmelt"(): $FunctionContainer
  "lootingEnchant"(count: $NumberProvider$Type, limit: integer): $FunctionContainer
- "addFunction"(arg0: $JsonObject$Type): $FunctionContainer
- "nbt"(tag: $CompoundTag$Type): $FunctionContainer
  "damage"(damage: $NumberProvider$Type): $FunctionContainer
+ "nbt"(tag: $CompoundTag$Type): $FunctionContainer
  "lootTable"(table: $ResourceLocation$Type, seed: long): $FunctionContainer
  "copyName"(source: $CopyNameFunction$NameSource$Type): $FunctionContainer
 
@@ -4524,21 +4533,21 @@ export class $IngredientForgeHelper implements $IngredientPlatformHelper {
 constructor()
 
 public "subtract"(base: $Ingredient$Type, subtracted: $Ingredient$Type): $Ingredient
+public "or"(ingredients: ($Ingredient$Type)[]): $Ingredient
+public "and"(ingredients: ($Ingredient$Type)[]): $Ingredient
+public "wildcard"(): $Ingredient
 public "regex"(pattern: $Pattern$Type): $Ingredient
 public static "register"(): void
 public "mod"(mod: string): $Ingredient
-public "wildcard"(): $Ingredient
-public "or"(ingredients: ($Ingredient$Type)[]): $Ingredient
-public "and"(ingredients: ($Ingredient$Type)[]): $Ingredient
 public "creativeTab"(tab: $CreativeModeTab$Type): $Ingredient
 public "custom"(parent: $Ingredient$Type, predicate: $Predicate$Type<($ItemStack$Type)>): $Ingredient
 public "custom"(parent: $Ingredient$Type, uuid: $UUID$Type): $Ingredient
 public "isWildcard"(ingredient: $Ingredient$Type): boolean
 public "weakNBT"(item: $ItemStack$Type): $Ingredient
 public "strongNBT"(item: $ItemStack$Type): $Ingredient
+public "tag"(tag: string): $Ingredient
 public static "get"(): $IngredientPlatformHelper
 public "stack"(ingredient: $Ingredient$Type, count: integer): $InputItem
-public "tag"(tag: string): $Ingredient
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4574,10 +4583,10 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $LevelKJS extends $WithAttachedData<($Level)>, $ScriptTypeHolder {
 
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
  "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "getSide"(): $ScriptType
  "getDimension"(): $ResourceLocation
  "isOverworld"(): boolean
@@ -4592,12 +4601,12 @@ export interface $LevelKJS extends $WithAttachedData<($Level)>, $ScriptTypeHolde
  "spawnFireworks"(x: double, y: double, z: double, f: $FireworksJS$Type): void
  "getEntitiesWithin"(aabb: $AABB$Type): $EntityArrayList
  "spawnParticles"(options: $ParticleOptions$Type, overrideLimiter: boolean, x: double, y: double, z: double, vx: double, vy: double, vz: double, count: integer, speed: double): void
- "tell"(message: $Component$Type): void
  "self"(): $Level
+ "tell"(message: $Component$Type): void
  "getData"(): $AttachedData<($Level)>
  "getDisplayName"(): $Component
 
-(): $Component
+(command: string): integer
 }
 
 export namespace $LevelKJS {
@@ -4648,13 +4657,13 @@ readonly "attachments": ($BlockEntityAttachment)[]
 
 constructor(blockPos: $BlockPos$Type, blockState: $BlockState$Type, entityInfo: $BlockEntityInfo$Type)
 
-public "save"(): void
 public "sync"(): void
 public "getBlock"(): $BlockContainerJS
-public "getUpdatePacket"(): $Packet<($ClientGamePacketListener)>
-public "getUpdateTag"(): $CompoundTag
+public "save"(): void
 public "triggerEvent"(eventId: integer, data: integer): boolean
 public "load"(tag: $CompoundTag$Type): void
+public "getUpdatePacket"(): $Packet<($ClientGamePacketListener)>
+public "getUpdateTag"(): $CompoundTag
 public "sendEvent"(eventId: integer, data: integer): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "block"(): $BlockContainerJS
@@ -4700,28 +4709,41 @@ readonly "lock": any
  "generateObserverCount": boolean
 
 
-public static "reportError"(cx: $Context$Type, message: string, lineno: integer, lineSource: string, lineOffset: integer, sourceName: string): void
-public static "reportError"(cx: $Context$Type, message: string): void
 public "getImplementationVersion"(): string
+public "createClassLoader"(parent: $ClassLoader$Type): $GeneratedClassLoader
+public static "reportError"(cx: $Context$Type, message: string): void
+public static "reportError"(cx: $Context$Type, message: string, lineno: integer, lineSource: string, lineOffset: integer, sourceName: string): void
+public "toBoolean"(value: any): boolean
 public "getProperty"(key: string): any
 public "getProperty"<T>(key: string, def: T): T
 public "toString"(value: any): string
-public "newArray"(scope: $Scriptable$Type, elements: (any)[]): $Scriptable
 public "newArray"(scope: $Scriptable$Type, length: integer): $Scriptable
+public "newArray"(scope: $Scriptable$Type, elements: (any)[]): $Scriptable
 public "setProperty"(key: string, value: any): void
-public "toBoolean"(value: any): boolean
-public "createClassLoader"(parent: $ClassLoader$Type): $GeneratedClassLoader
-public "getTypeWrappers"(): $TypeWrappers
-public "getErrorReporter"(): $ErrorReporter
-public "compileString"(source: string, sourceName: string, lineno: integer, securityDomain: any): $Script
 public "getRemapper"(): $Remapper
-public "isStrictMode"(): boolean
+public "compileString"(source: string, sourceName: string, lineno: integer, securityDomain: any): $Script
 public "evaluateString"(scope: $Scriptable$Type, source: string, sourceName: string, lineno: integer, securityDomain: any): any
+public "getErrorReporter"(): $ErrorReporter
+public "getTypeWrappers"(): $TypeWrappers
 public static "enter"(): $Context
+public "isStrictMode"(): boolean
 public "getMaximumInterpreterStackDepth"(): integer
 public "setMaximumInterpreterStackDepth"(max: integer): void
 public "getInstructionObserverThreshold"(): integer
 public "setInstructionObserverThreshold"(threshold: integer): void
+public "initStandardObjects"(scope: $ScriptableObject$Type): $Scriptable
+public "initStandardObjects"(): $ScriptableObject
+public "initStandardObjects"(scope: $ScriptableObject$Type, sealed: boolean): $ScriptableObject
+public "setClassShutter"(shutter: $ClassShutter$Type): void
+public "setRemapper"(remapper: $Remapper$Type): void
+public "setApplicationClassLoader"(loader: $ClassLoader$Type): void
+public static "reportRuntimeError"(message: string, cx: $Context$Type): $EvaluatorException
+public static "reportRuntimeError"(cx: $Context$Type, message: string, sourceName: string, lineno: integer, lineSource: string, lineOffset: integer): $EvaluatorException
+public static "getSourcePositionFromStack"(cx: $Context$Type, linep: (integer)[]): string
+public static "reportWarning"(cx: $Context$Type, message: string, sourceName: string, lineno: integer, lineSource: string, lineOffset: integer): void
+public static "reportWarning"(message: string, cx: $Context$Type): void
+public static "reportRuntimeError0"(messageId: string, cx: $Context$Type): $EvaluatorException
+public static "reportRuntimeError1"(messageId: string, arg1: any, cx: $Context$Type): $EvaluatorException
 public static "reportRuntimeError2"(messageId: string, arg1: any, arg2: any, cx: $Context$Type): $EvaluatorException
 public static "reportRuntimeError3"(messageId: string, arg1: any, arg2: any, arg3: any, cx: $Context$Type): $EvaluatorException
 public static "reportRuntimeError4"(messageId: string, arg1: any, arg2: any, arg3: any, arg4: any, cx: $Context$Type): $EvaluatorException
@@ -4729,9 +4751,9 @@ public static "getUndefinedValue"(): any
 public "getWrapFactory"(): $WrapFactory
 public "hasTypeWrappers"(): boolean
 public static "throwAsScriptRuntimeEx"(e: $Throwable$Type, cx: $Context$Type): $RuntimeException
+public "initSafeStandardObjects"(scope: $ScriptableObject$Type, sealed: boolean): $ScriptableObject
 public "initSafeStandardObjects"(scope: $ScriptableObject$Type): $Scriptable
 public "initSafeStandardObjects"(): $ScriptableObject
-public "initSafeStandardObjects"(scope: $ScriptableObject$Type, sealed: boolean): $ScriptableObject
 public "evaluateReader"(scope: $Scriptable$Type, arg1: $Reader$Type, sourceName: string, lineno: integer, securityDomain: any): any
 public "compileReader"(arg0: $Reader$Type, sourceName: string, lineno: integer, securityDomain: any): $Script
 public "getThreadLocal"(key: any): any
@@ -4750,25 +4772,12 @@ public "getTopCallScope"(): $Scriptable
 public "getTopCallOrThrow"(): $Scriptable
 public "storeScriptable"(value: $Scriptable$Type): void
 public "lastStoredScriptable"(): $Scriptable
-public static "getSourcePositionFromStack"(cx: $Context$Type, linep: (integer)[]): string
-public "initStandardObjects"(scope: $ScriptableObject$Type): $Scriptable
-public "initStandardObjects"(): $ScriptableObject
-public "initStandardObjects"(scope: $ScriptableObject$Type, sealed: boolean): $ScriptableObject
-public "setClassShutter"(shutter: $ClassShutter$Type): void
-public "setRemapper"(remapper: $Remapper$Type): void
-public "setApplicationClassLoader"(loader: $ClassLoader$Type): void
-public static "reportRuntimeError"(cx: $Context$Type, message: string, sourceName: string, lineno: integer, lineSource: string, lineOffset: integer): $EvaluatorException
-public static "reportRuntimeError"(message: string, cx: $Context$Type): $EvaluatorException
-public static "reportWarning"(message: string, cx: $Context$Type): void
-public static "reportWarning"(cx: $Context$Type, message: string, sourceName: string, lineno: integer, lineSource: string, lineOffset: integer): void
-public static "reportRuntimeError0"(messageId: string, cx: $Context$Type): $EvaluatorException
-public static "reportRuntimeError1"(messageId: string, arg1: any, cx: $Context$Type): $EvaluatorException
-public "newObject"(scope: $Scriptable$Type, constructorName: string): $Scriptable
-public "newObject"(scope: $Scriptable$Type): $Scriptable
-public "newObject"(scope: $Scriptable$Type, constructorName: string, args: (any)[]): $Scriptable
 public "toNumber"(value: any): double
 public "toObject"(value: any, scope: $Scriptable$Type): $Scriptable
 public "getRegExp"(): $RegExp
+public "newObject"(scope: $Scriptable$Type, constructorName: string, args: (any)[]): $Scriptable
+public "newObject"(scope: $Scriptable$Type, constructorName: string): $Scriptable
+public "newObject"(scope: $Scriptable$Type): $Scriptable
 public static "javaToJS"(cx: $Context$Type, value: any, scope: $Scriptable$Type): any
 public static "jsToJava"(cx: $Context$Type, value: any, desiredType: $Class$Type<(any)>): any
 public "addToScope"(scope: $Scriptable$Type, name: string, value: any): void
@@ -4776,14 +4785,17 @@ public "setTopCall"(scope: $Scriptable$Type): void
 public "callSync"(callable: $Callable$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
 public "doTopCall"(scope: $Scriptable$Type, callable: $Callable$Type, thisObj: $Scriptable$Type, args: (any)[], isTopLevelStrict: boolean): any
 get "implementationVersion"(): string
-get "typeWrappers"(): $TypeWrappers
-get "errorReporter"(): $ErrorReporter
 get "remapper"(): $Remapper
+get "errorReporter"(): $ErrorReporter
+get "typeWrappers"(): $TypeWrappers
 get "strictMode"(): boolean
 get "maximumInterpreterStackDepth"(): integer
 set "maximumInterpreterStackDepth"(value: integer)
 get "instructionObserverThreshold"(): integer
 set "instructionObserverThreshold"(value: integer)
+set "classShutter"(value: $ClassShutter$Type)
+set "remapper"(value: $Remapper$Type)
+set "applicationClassLoader"(value: $ClassLoader$Type)
 get "undefinedValue"(): any
 get "wrapFactory"(): $WrapFactory
 set "generateObserverCount"(value: boolean)
@@ -4792,9 +4804,6 @@ get "classShutter"(): $ClassShutter
 set "wrapFactory"(value: $WrapFactory$Type)
 get "topCallScope"(): $Scriptable
 get "topCallOrThrow"(): $Scriptable
-set "classShutter"(value: $ClassShutter$Type)
-set "remapper"(value: $Remapper$Type)
-set "applicationClassLoader"(value: $ClassLoader$Type)
 get "regExp"(): $RegExp
 set "topCall"(value: $Scriptable$Type)
 }
@@ -4818,9 +4827,9 @@ export class $ModelGenerator$Face {
 
 constructor()
 
+public "toJson"(): $JsonObject
 public "tex"(t: string): $ModelGenerator$Face
 public "uv"(u0: double, v0: double, u1: double, v1: double): $ModelGenerator$Face
-public "toJson"(): $JsonObject
 public "cull"(): $ModelGenerator$Face
 public "cull"(d: $Direction$Type): $ModelGenerator$Face
 public "tintindex"(i: integer): $ModelGenerator$Face
@@ -4976,8 +4985,8 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "getTranslationKeyGroup"(): string
 public "generateAssetJsons"(generator: $AssetJsonGenerator$Type): void
+public "getTranslationKeyGroup"(): string
 get "translationKeyGroup"(): string
 }
 /**
@@ -5015,18 +5024,18 @@ public static "ceil"(value: double): long
 public static "map"(value: double, min0: double, max0: double, min1: double, max1: double): double
 public static "v3"(x: double, y: double, z: double): $Vec3
 public static "block"(x: double, y: double, z: double): $BlockPos
-public static "isPowerOfTwo"(value: integer): boolean
 public static "clamp"(value: double, min: double, max: double): double
-public static "clampedLerp"(value: double, min: double, max: double): double
-public static "wrapDegrees"(d: double): double
-public static "degreesDifference"(current: double, target: double): double
+public static "isPowerOfTwo"(value: integer): boolean
 public static "rotateIfNecessary"(current: double, target: double, max: double): double
 public static "approachDegrees"(current: double, target: double, speed: double): double
-public static "lerp"(value: double, min: double, max: double): double
+public static "wrapDegrees"(d: double): double
+public static "degreesDifference"(current: double, target: double): double
+public static "clampedLerp"(value: double, min: double, max: double): double
 public static "rad"(value: double): double
+public static "lerp"(value: double, min: double, max: double): double
 public static "quaternion"(x: float, y: float, z: float, w: float): $Quaternionf
-public static "approach"(current: double, target: double, speed: double): double
 public static "deg"(value: double): double
+public static "approach"(current: double, target: double, speed: double): double
 public static "v3d"(x: double, y: double, z: double): $Vector3d
 public static "v3f"(x: float, y: float, z: float): $Vector3f
 public static "v4f"(x: float, y: float, z: float, w: float): $Vector4f
@@ -5126,10 +5135,10 @@ readonly "slots": ($ChestMenuSlot)[]
 
 constructor(player: $ServerPlayer$Type, title: $Component$Type, rows: integer)
 
+public "sync"(): void
 public "slot"(x0: integer, y0: integer, x1: integer, y1: integer, slot: $Consumer$Type<($ChestMenuSlot$Type)>): void
 public "slot"(x: integer, y: integer, slot: $Consumer$Type<($ChestMenuSlot$Type)>): void
 public "getSlot"(x: integer, y: integer): $ChestMenuSlot
-public "sync"(): void
 public "handleClick"(index: integer, type: $ClickType$Type, button: integer): void
 public "button"(x: integer, y: integer, stack: $ItemStack$Type, displayName: $Component$Type, leftClicked: $ChestMenuClickEvent$Callback$Type): void
 }
@@ -5213,6 +5222,7 @@ readonly "id": $ResourceLocation
 constructor(i: $ResourceLocation$Type)
 
 public "content"(content: $CreativeTabContentSupplier$Type): $CreativeTabBuilder
+public "createObject"(): $CreativeModeTab
 public "getRegistryType"(): $RegistryInfo<(any)>
 public "icon"(icon: $CreativeTabIconSupplier$Type): $CreativeTabBuilder
 get "registryType"(): $RegistryInfo<(any)>
@@ -5353,7 +5363,13 @@ public "write"(recipe: $RecipeJS$Type, value: $Pair$Type<(A), (B)>): $JsonArray
 public "componentClass"(): $Class<(any)>
 public "constructorDescription"(ctx: $DescriptionContext$Type): $TypeDescJS
 public "role"(): $ComponentRole
+public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<($Pair<(A), (B)>), (O)>
+public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<($Pair<(A), (B)>), (O)>
 public "asArray"(): $ArrayRecipeComponent<($Pair<(A), (B)>)>
+/**
+ * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
+ */
+public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<($Pair<(A), (B)>)>
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read, and the mappingFrom function after the component writes to json, before that json is saved
  */
@@ -5361,16 +5377,10 @@ public "map"(mappingTo: $UnaryOperator$Type<(any)>, mappingFrom: $UnaryOperator$
 public static "builder"(): $RecipeComponentBuilder
 public static "builder"(...key: ($RecipeKey$Type<(any)>)[]): $RecipeComponentBuilder
 public "key"(name: string): $RecipeKey<($Pair<(A), (B)>)>
-public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<($Pair<(A), (B)>), (O)>
-public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<($Pair<(A), (B)>), (O)>
-/**
- * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
- */
-public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<($Pair<(A), (B)>)>
-public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Pair$Type<(A), (B)>)>, json: $JsonObject$Type): void
-public "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Pair$Type<(A), (B)>)>, json: $JsonObject$Type): void
-public "replaceOutput"(recipe: $RecipeJS$Type, original: $Pair$Type<(A), (B)>, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): $Pair<(A), (B)>
 public "replaceInput"(recipe: $RecipeJS$Type, original: $Pair$Type<(A), (B)>, match: $ReplacementMatch$Type, arg3: $InputReplacement$Type): $Pair<(A), (B)>
+public "replaceOutput"(recipe: $RecipeJS$Type, original: $Pair$Type<(A), (B)>, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): $Pair<(A), (B)>
+public "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Pair$Type<(A), (B)>)>, json: $JsonObject$Type): void
+public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Pair$Type<(A), (B)>)>, json: $JsonObject$Type): void
 public "asMap"<K>(key: $RecipeComponent$Type<(K)>): $RecipeComponent<($TinyMap<(K), ($Pair<(A), (B)>)>)>
 public "readFromMap"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($Pair$Type<(A), (B)>)>, map: $Map$Type<(any), (any)>): void
 public "hasPriority"(recipe: $RecipeJS$Type, from: any): boolean
@@ -5385,14 +5395,14 @@ public "asPatternKey"(): $RecipeComponent<($TinyMap<(character), ($Pair<(A), (B)
  * If you wish to handle those situations use the actual map function
  */
 public "simpleMap"(mappings: any): $SimpleMappingRecipeComponent<($Pair<(A), (B)>)>
-public "checkEmpty"(key: $RecipeKey$Type<($Pair$Type<(A), (B)>)>, value: $Pair$Type<(A), (B)>): string
 public "isOutput"(recipe: $RecipeJS$Type, value: $Pair$Type<(A), (B)>, match: $ReplacementMatch$Type): boolean
+public "checkEmpty"(key: $RecipeKey$Type<($Pair$Type<(A), (B)>)>, value: $Pair$Type<(A), (B)>): string
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read
  */
 public "mapIn"(mappingTo: $UnaryOperator$Type<(any)>): $MappingRecipeComponent<($Pair<(A), (B)>)>
-public "isInput"(recipe: $RecipeJS$Type, value: $Pair$Type<(A), (B)>, match: $ReplacementMatch$Type): boolean
 public "orSelf"(): $RecipeComponent<($Pair<(A), (B)>)>
+public "isInput"(recipe: $RecipeJS$Type, value: $Pair$Type<(A), (B)>, match: $ReplacementMatch$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5481,24 +5491,24 @@ constructor(gui: $ChestMenuData$Type, index: integer)
 public "getItem"(): $ItemStack
 public "toString"(): string
 public "setThrown"(callback: $ChestMenuClickEvent$Callback$Type): void
-public "resetClickHandlers"(): void
 public "setRightClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
-public "setMiddleClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
-public "setLeftClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
 public "setDoubleClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
 public "setShiftRightClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
 public "setShiftLeftClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
+public "setMiddleClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
+public "resetClickHandlers"(): void
+public "setLeftClicked"(callback: $ChestMenuClickEvent$Callback$Type): void
 public "setItem"(stack: $ItemStack$Type): void
 public "clicked"(type: $ClickType$Type, button: integer, callback: $ChestMenuClickEvent$Callback$Type, autoHandle: boolean): void
 public "setSwapped"(callback: $ChestMenuClickEvent$Callback$Type): void
 get "item"(): $ItemStack
 set "thrown"(value: $ChestMenuClickEvent$Callback$Type)
 set "rightClicked"(value: $ChestMenuClickEvent$Callback$Type)
-set "middleClicked"(value: $ChestMenuClickEvent$Callback$Type)
-set "leftClicked"(value: $ChestMenuClickEvent$Callback$Type)
 set "doubleClicked"(value: $ChestMenuClickEvent$Callback$Type)
 set "shiftRightClicked"(value: $ChestMenuClickEvent$Callback$Type)
 set "shiftLeftClicked"(value: $ChestMenuClickEvent$Callback$Type)
+set "middleClicked"(value: $ChestMenuClickEvent$Callback$Type)
+set "leftClicked"(value: $ChestMenuClickEvent$Callback$Type)
 set "item"(value: $ItemStack$Type)
 set "swapped"(value: $ChestMenuClickEvent$Callback$Type)
 }
@@ -5619,10 +5629,10 @@ constructor(r: $IJeiRuntime$Type)
 
 public "remove"(...categoriesToYeet: ($ResourceLocation$Type)[]): void
 public "removeIf"(filter: $Predicate$Type<($IRecipeCategory$Type<(any)>)>): void
-public "getCategoryIds"(): $Collection<($ResourceLocation)>
 public "getCategories"(): $Collection<($IRecipeCategory<(any)>)>
-get "categoryIds"(): $Collection<($ResourceLocation)>
+public "getCategoryIds"(): $Collection<($ResourceLocation)>
 get "categories"(): $Collection<($IRecipeCategory<(any)>)>
+get "categoryIds"(): $Collection<($ResourceLocation)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5681,11 +5691,11 @@ constructor()
 public static "getRemaining"(container: $CraftingContainer$Type, index: integer, ingredientActions: $List$Type<($IngredientAction$Type)>): $ItemStack
 public "transform"(arg0: $ItemStack$Type, arg1: integer, arg2: $CraftingContainer$Type): $ItemStack
 public "getType"(): string
-public "toJson"(json: $JsonObject$Type): void
 public "toJson"(): $JsonObject
+public "toJson"(json: $JsonObject$Type): void
 public static "readList"(buf: $FriendlyByteBuf$Type): $List<($IngredientAction)>
-public static "parseList"(json: $JsonElement$Type): $List<($IngredientAction)>
 public static "writeList"(buf: $FriendlyByteBuf$Type, list: $List$Type<($IngredientAction$Type)>): void
+public static "parseList"(json: $JsonElement$Type): $List<($IngredientAction)>
 get "type"(): string
 }
 /**
@@ -5756,8 +5766,8 @@ static readonly "UUID": $ArgumentTypeWrappers
 static readonly "OBJECTIVE": $ArgumentTypeWrappers
 
 
-public "time"(minRequired: integer): $ArgumentTypeWrapper
 public "getResult"(context: $CommandContext$Type<($CommandSourceStack$Type)>, input: string): any
+public "time"(minRequired: integer): $ArgumentTypeWrapper
 public static "values"(): ($ArgumentTypeWrappers)[]
 public static "valueOf"(name: string): $ArgumentTypeWrappers
 public "create"(event: $CommandRegistryEventJS$Type): $ArgumentType<(any)>
@@ -5878,15 +5888,15 @@ public "copy"(): $FluidStackJS
 public "getFluidStack"(): $FluidStack
 public "toJson"(): $JsonObject
 public static "fromJson"(e: $JsonElement$Type): $FluidStackJS
+public "getAmount"(): long
 public "removeChance"(): void
 public "strongEquals"(o: any): boolean
-public "getAmount"(): long
 public "getFluid"(): $Fluid
+public "getTags"(): $Collection<($ResourceLocation)>
+public "getNbt"(): $CompoundTag
 public "setNbt"(arg0: $CompoundTag$Type): void
 public "hasTag"(tag: $ResourceLocation$Type): boolean
 public "toNBT"(): $CompoundTag
-public "getNbt"(): $CompoundTag
-public "getTags"(): $Collection<($ResourceLocation)>
 public "getChance"(): double
 public "setAmount"(arg0: long): void
 public "copy"(arg0: long): $FluidStackJS
@@ -5904,9 +5914,9 @@ get "id"(): string
 get "fluidStack"(): $FluidStack
 get "amount"(): long
 get "fluid"(): $Fluid
-set "nbt"(value: $CompoundTag$Type)
-get "nbt"(): $CompoundTag
 get "tags"(): $Collection<($ResourceLocation)>
+get "nbt"(): $CompoundTag
+set "nbt"(value: $CompoundTag$Type)
 get "chance"(): double
 set "amount"(value: long)
 set "chance"(value: double)
@@ -5962,20 +5972,20 @@ export class $FunctionFactory extends $Record {
 
 constructor(name: string, minArgs: integer, maxArgs: integer, supplier: $FunctionFactory$FuncSupplier$Type)
 
+public static "of0"(name: string, supplier: $Supplier$Type<($Unit$Type)>): $FunctionFactory
 public "name"(): string
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public static "of"(name: string, args: integer, supplier: $FunctionFactory$FuncSupplier$Type): $FunctionFactory
 public static "of"(name: string, minArgs: integer, maxArgs: integer, supplier: $FunctionFactory$FuncSupplier$Type): $FunctionFactory
+public static "of"(name: string, args: integer, supplier: $FunctionFactory$FuncSupplier$Type): $FunctionFactory
 public "create"(args: ($Unit$Type)[]): $Unit
 public "supplier"(): $FunctionFactory$FuncSupplier
-public static "of0"(name: string, supplier: $Supplier$Type<($Unit$Type)>): $FunctionFactory
+public static "of2"(name: string, supplier: $FunctionFactory$Arg2$Type): $FunctionFactory
 public "minArgs"(): integer
 public "maxArgs"(): integer
 public static "of3"(name: string, supplier: $FunctionFactory$Arg3$Type): $FunctionFactory
 public static "of1"(name: string, supplier: $FunctionFactory$Arg1$Type): $FunctionFactory
-public static "of2"(name: string, supplier: $FunctionFactory$Arg2$Type): $FunctionFactory
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6047,6 +6057,7 @@ export class $JsonIO {
 
 constructor()
 
+public static "parse"(string: string): any
 public static "readString"(path: $Path$Type): string
 public static "toString"(json: $JsonElement$Type): string
 public static "toArray"(element: $JsonElement$Type): $JsonArray
@@ -6054,15 +6065,14 @@ public static "of"(o: any): $JsonElement
 public static "write"(path: $Path$Type, json: $JsonObject$Type): void
 public static "read"(path: $Path$Type): $Map<(any), (any)>
 public static "copy"(element: $JsonElement$Type): $JsonElement
-public static "parse"(string: string): any
 public static "toPrettyString"(json: $JsonElement$Type): string
 public static "toPrimitive"(element: $JsonElement$Type): any
+public static "primitiveOf"(o: any): $JsonPrimitive
+public static "getJsonHashString"(json: $JsonElement$Type): string
 public static "writeJsonHash"(stream: $DataOutputStream$Type, element: $JsonElement$Type): void
 public static "getJsonHashBytes"(json: $JsonElement$Type): (byte)[]
-public static "getJsonHashString"(json: $JsonElement$Type): string
-public static "primitiveOf"(o: any): $JsonPrimitive
-public static "readJson"(path: $Path$Type): $JsonElement
 public static "toObject"(json: $JsonElement$Type): any
+public static "readJson"(path: $Path$Type): $JsonElement
 public static "parseRaw"(string: string): $JsonElement
 }
 /**
@@ -6125,61 +6135,62 @@ import {$EntityKJS, $EntityKJS$Type} from "packages/dev/latvian/mods/kubejs/core
 import {$MinecraftServer, $MinecraftServer$Type} from "packages/net/minecraft/server/$MinecraftServer"
 import {$GameProfile, $GameProfile$Type} from "packages/com/mojang/authlib/$GameProfile"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 
 export interface $ItemEntityKJS extends $EntityKJS {
 
  "getItem"(): $ItemStack
- "setLifespan"(lifespan: integer): void
- "setNoPickUpDelay"(): void
- "getTicksUntilDespawn"(): integer
- "setNoDespawn"(): void
- "setDefaultPickUpDelay"(): void
- "setInfinitePickUpDelay"(): void
  "getLifespan"(): integer
+ "setLifespan"(lifespan: integer): void
+ "setDefaultPickUpDelay"(): void
+ "setNoPickUpDelay"(): void
+ "setInfinitePickUpDelay"(): void
+ "setNoDespawn"(): void
+ "getTicksUntilDespawn"(): integer
  "setTicksUntilDespawn"(ticks: integer): void
- "getName"(): $Component
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
- "getType"(): string
- "getServer"(): $MinecraftServer
- "getLevel"(): $Level
- "getProfile"(): $GameProfile
- "isPlayer"(): boolean
- "isFrame"(): boolean
- "isLiving"(): boolean
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "getName"(): $Component
+ "getScriptType"(): $ScriptType
+ "getBlock"(): $BlockContainerJS
  "isMonster"(): boolean
  "isAnimal"(): boolean
- "isAmbientCreature"(): boolean
- "isWaterCreature"(): boolean
- "isPeacefulCreature"(): boolean
- "setPosition"(block: $BlockContainerJS$Type): void
- "setPosition"(x: double, y: double, z: double): void
- "getMotionX"(): double
- "setMotionX"(x: double): void
- "getMotionY"(): double
- "setMotionY"(y: double): void
- "getMotionZ"(): double
- "setMotionZ"(z: double): void
- "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isLiving"(): boolean
  "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
  "setRotation"(yaw: float, pitch: float): void
+ "mergeNbt"(tag: $CompoundTag$Type): $Entity
  "getPassengers"(): $EntityArrayList
  "getTeamId"(): string
  "isOnScoreboardTeam"(teamId: string): boolean
  "getFacing"(): $Direction
- "mergeNbt"(tag: $CompoundTag$Type): $Entity
+ "isPeacefulCreature"(): boolean
+ "setPosition"(x: double, y: double, z: double): void
+ "setPosition"(block: $BlockContainerJS$Type): void
+ "getMotionZ"(): double
+ "getMotionX"(): double
+ "setMotionX"(x: double): void
+ "getMotionY"(): double
+ "setMotionY"(y: double): void
+ "setMotionZ"(z: double): void
+ "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isAmbientCreature"(): boolean
+ "isWaterCreature"(): boolean
+ "isFrame"(): boolean
+ "getLevel"(): $Level
+ "getServer"(): $MinecraftServer
+ "isPlayer"(): boolean
+ "getType"(): string
+ "getProfile"(): $GameProfile
  "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
  "playSound"(id: $SoundEvent$Type): void
- "getDistance"(pos: $BlockPos$Type): double
  "getDistance"(x: double, y: double, z: double): double
+ "getDistance"(pos: $BlockPos$Type): double
  "getDistanceSq"(pos: $BlockPos$Type): double
  "rayTrace"(distance: double): $RayTraceResultJS
  "rayTrace"(distance: double, fluids: boolean): $RayTraceResultJS
- "getScriptType"(): $ScriptType
- "getBlock"(): $BlockContainerJS
+ "tell"(message: $Component$Type): void
  "setX"(x: double): void
  "setY"(y: double): void
  "setZ"(z: double): void
@@ -6187,7 +6198,6 @@ export interface $ItemEntityKJS extends $EntityKJS {
  "setNbt"(nbt: $CompoundTag$Type): void
  "spawn"(): void
  "attack"(hp: float): void
- "tell"(message: $Component$Type): void
  "getPersistentData"(): $CompoundTag
  "setStatusMessage"(message: $Component$Type): void
 }
@@ -6301,15 +6311,15 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ConditionContainer {
 
- "addCondition"(arg0: $JsonObject$Type): $ConditionContainer
  "survivesExplosion"(): $ConditionContainer
+ "addCondition"(arg0: $JsonObject$Type): $ConditionContainer
+ "randomChance"(chance: double): $ConditionContainer
  "randomChanceWithLooting"(chance: double, multiplier: double): $ConditionContainer
  "entityProperties"(entity: $LootContext$EntityTarget$Type, properties: $JsonObject$Type): $ConditionContainer
  "killedByPlayer"(): $ConditionContainer
  "entityScores"(entity: $LootContext$EntityTarget$Type, scores: $Map$Type<(string), (any)>): $ConditionContainer
- "randomChance"(chance: double): $ConditionContainer
 
-(arg0: $JsonObject$Type): $ConditionContainer
+(): $ConditionContainer
 }
 
 export namespace $ConditionContainer {
@@ -6464,27 +6474,27 @@ readonly "screen": $Screen
 
 constructor(m: $Minecraft$Type, g: $GuiGraphics$Type, d: float, s: $Screen$Type)
 
+public "push"(): void
+public "pop"(): void
+public "multiply"(q: $Quaternionf$Type): void
 public "blend"(enabled: boolean): void
 public "scale"(x: float, y: float, z: float): void
 public "end"(): void
 public "begin"(type: $VertexFormat$Mode$Type, format: $VertexFormat$Type): void
-public "multiply"(q: $Quaternionf$Type): void
-public "push"(): void
-public "pop"(): void
-public "bindTextureForSetup"(tex: $ResourceLocation$Type): void
 public "setShaderTexture"(tex: $ResourceLocation$Type): void
 public "setShaderColor"(r: float, g: float, b: float, a: float): void
+public "bindTextureForSetup"(tex: $ResourceLocation$Type): void
 public "translate"(x: double, y: double, z: double): void
 public "setPositionColorTextureShader"(): void
 public "multiplyWithMatrix"(m: $Matrix4f$Type): void
 public "setShaderInstance"(shader: $Supplier$Type<($ShaderInstance$Type)>): void
 public "setPositionColorShader"(): void
 public "resetShaderColor"(): void
-public "vertex"(m: $Matrix4f$Type, x: float, y: float, z: float, col: integer): void
 public "vertex"(m: $Matrix4f$Type, x: float, y: float, z: float, col: integer, u: float, v: float): void
+public "vertex"(m: $Matrix4f$Type, x: float, y: float, z: float, col: integer): void
 public "getMatrix"(): $Matrix4f
-public "beginQuads"(texture: boolean): void
 public "beginQuads"(format: $VertexFormat$Type): void
+public "beginQuads"(texture: boolean): void
 set "shaderTexture"(value: $ResourceLocation$Type)
 set "shaderInstance"(value: $Supplier$Type<($ShaderInstance$Type)>)
 get "matrix"(): $Matrix4f
@@ -6564,10 +6574,10 @@ function getId(item: $Item$Type): $ResourceLocation
 function exists(id: $ResourceLocation$Type): boolean
 function getTypeList(): $List<(string)>
 function getList(): $List<($ItemStack)>
+function getEmpty(): $ItemStack
 function getTypeToStackMap(): $Map<($ResourceLocation), ($Collection<($ItemStack)>)>
 function playerHeadFromUrl(url: string): $ItemStack
 function playerHeadFromSkinHash(hash: string): $ItemStack
-function getEmpty(): $ItemStack
 function isItem(o: any): boolean
 function fireworks(properties: $Map$Type<(string), (any)>): $FireworksJS
 function playerHead(uuid: $UUID$Type, textureBase64: string): $ItemStack
@@ -6737,16 +6747,16 @@ import {$ScheduledEvents$ScheduledEvent, $ScheduledEvents$ScheduledEvent$Type} f
 
 export interface $MinecraftEnvironmentKJS extends $MessageSenderKJS {
 
- "schedule"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
- "scheduleInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
  "scheduleRepeating"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
+ "scheduleInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
+ "schedule"(timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
  "getScheduledEvents"(): $ScheduledEvents
  "scheduleRepeatingInTicks"(ticks: long, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "tell"(message: $Component$Type): void
 
 (timer: $TemporalAmount$Type, callback: $ScheduledEvents$Callback$Type): $ScheduledEvents$ScheduledEvent
@@ -6928,53 +6938,54 @@ import {$EntityKJS, $EntityKJS$Type} from "packages/dev/latvian/mods/kubejs/core
 import {$MinecraftServer, $MinecraftServer$Type} from "packages/net/minecraft/server/$MinecraftServer"
 import {$GameProfile, $GameProfile$Type} from "packages/com/mojang/authlib/$GameProfile"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 
 export interface $ItemFrameEntityKJS extends $EntityKJS {
 
  "getItem"(): $ItemStack
  "isFrame"(): boolean
- "getName"(): $Component
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
- "getType"(): string
- "getServer"(): $MinecraftServer
- "getLevel"(): $Level
- "getProfile"(): $GameProfile
- "isPlayer"(): boolean
- "isLiving"(): boolean
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "getName"(): $Component
+ "getScriptType"(): $ScriptType
+ "getBlock"(): $BlockContainerJS
  "isMonster"(): boolean
  "isAnimal"(): boolean
- "isAmbientCreature"(): boolean
- "isWaterCreature"(): boolean
- "isPeacefulCreature"(): boolean
- "setPosition"(block: $BlockContainerJS$Type): void
- "setPosition"(x: double, y: double, z: double): void
- "getMotionX"(): double
- "setMotionX"(x: double): void
- "getMotionY"(): double
- "setMotionY"(y: double): void
- "getMotionZ"(): double
- "setMotionZ"(z: double): void
- "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isLiving"(): boolean
  "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
  "setRotation"(yaw: float, pitch: float): void
+ "mergeNbt"(tag: $CompoundTag$Type): $Entity
  "getPassengers"(): $EntityArrayList
  "getTeamId"(): string
  "isOnScoreboardTeam"(teamId: string): boolean
  "getFacing"(): $Direction
- "mergeNbt"(tag: $CompoundTag$Type): $Entity
+ "isPeacefulCreature"(): boolean
+ "setPosition"(x: double, y: double, z: double): void
+ "setPosition"(block: $BlockContainerJS$Type): void
+ "getMotionZ"(): double
+ "getMotionX"(): double
+ "setMotionX"(x: double): void
+ "getMotionY"(): double
+ "setMotionY"(y: double): void
+ "setMotionZ"(z: double): void
+ "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isAmbientCreature"(): boolean
+ "isWaterCreature"(): boolean
+ "getLevel"(): $Level
+ "getServer"(): $MinecraftServer
+ "isPlayer"(): boolean
+ "getType"(): string
+ "getProfile"(): $GameProfile
  "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
  "playSound"(id: $SoundEvent$Type): void
- "getDistance"(pos: $BlockPos$Type): double
  "getDistance"(x: double, y: double, z: double): double
+ "getDistance"(pos: $BlockPos$Type): double
  "getDistanceSq"(pos: $BlockPos$Type): double
  "rayTrace"(distance: double): $RayTraceResultJS
  "rayTrace"(distance: double, fluids: boolean): $RayTraceResultJS
- "getScriptType"(): $ScriptType
- "getBlock"(): $BlockContainerJS
+ "tell"(message: $Component$Type): void
  "setX"(x: double): void
  "setY"(y: double): void
  "setZ"(z: double): void
@@ -6982,7 +6993,6 @@ export interface $ItemFrameEntityKJS extends $EntityKJS {
  "setNbt"(nbt: $CompoundTag$Type): void
  "spawn"(): void
  "attack"(hp: float): void
- "tell"(message: $Component$Type): void
  "getPersistentData"(): $CompoundTag
  "setStatusMessage"(message: $Component$Type): void
 }
@@ -7041,8 +7051,8 @@ import {$AndRecipeComponent, $AndRecipeComponent$Type} from "packages/dev/latvia
 import {$RecipeComponentValue, $RecipeComponentValue$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$RecipeComponentValue"
 import {$ComponentRole, $ComponentRole$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$ComponentRole"
 import {$TinyMap, $TinyMap$Type} from "packages/dev/latvian/mods/kubejs/util/$TinyMap"
-import {$UnaryOperator, $UnaryOperator$Type} from "packages/java/util/function/$UnaryOperator"
 import {$OrRecipeComponent, $OrRecipeComponent$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$OrRecipeComponent"
+import {$UnaryOperator, $UnaryOperator$Type} from "packages/java/util/function/$UnaryOperator"
 import {$RecipeJS, $RecipeJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$RecipeJS"
 import {$TypeDescJS, $TypeDescJS$Type} from "packages/dev/latvian/mods/kubejs/typings/desc/$TypeDescJS"
 import {$MappingRecipeComponent, $MappingRecipeComponent$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$MappingRecipeComponent"
@@ -7053,7 +7063,13 @@ import {$SimpleMappingRecipeComponent, $SimpleMappingRecipeComponent$Type} from 
 
 export interface $RecipeComponent<T> {
 
+ "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<(T), (O)>
+ "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<(T), (O)>
  "asArray"(): $ArrayRecipeComponent<(T)>
+/**
+ * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
+ */
+ "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<(T)>
  "componentType"(): string
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read, and the mappingFrom function after the component writes to json, before that json is saved
@@ -7062,17 +7078,11 @@ export interface $RecipeComponent<T> {
  "write"(arg0: $RecipeJS$Type, arg1: T): $JsonElement
  "key"(name: string): $RecipeKey<(T)>
  "read"(arg0: $RecipeJS$Type, arg1: any): T
- "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<(T), (O)>
- "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<(T), (O)>
-/**
- * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
- */
- "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<(T)>
- "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
- "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
- "componentClass"(): $Class<(any)>
- "replaceOutput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): T
  "replaceInput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $InputReplacement$Type): T
+ "replaceOutput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): T
+ "componentClass"(): $Class<(any)>
+ "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
+ "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
  "asMap"<K>(key: $RecipeComponent$Type<(K)>): $RecipeComponent<($TinyMap<(K), (T)>)>
  "constructorDescription"(ctx: $DescriptionContext$Type): $TypeDescJS
  "readFromMap"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, map: $Map$Type<(any), (any)>): void
@@ -7080,7 +7090,6 @@ export interface $RecipeComponent<T> {
  "checkValueHasChanged"(oldValue: T, newValue: T): boolean
  "asArrayOrSelf"(): $ArrayRecipeComponent<(T)>
  "asPatternKey"(): $RecipeComponent<($TinyMap<(character), (T)>)>
- "role"(): $ComponentRole
 /**
  * Returns a new RecipeComponent that maps the keys in a JsonObject according to the provided map, both before the json gets passed to the component and after the component returns a written json object.
  * The mappings should be provided in the format `{recipe: "component"}` where recipe is the key as in the recipe, and component is the key as how the RecipeComponent expects it.
@@ -7089,14 +7098,15 @@ export interface $RecipeComponent<T> {
  * If you wish to handle those situations use the actual map function
  */
  "simpleMap"(mappings: any): $SimpleMappingRecipeComponent<(T)>
- "checkEmpty"(key: $RecipeKey$Type<(T)>, value: T): string
+ "role"(): $ComponentRole
  "isOutput"(recipe: $RecipeJS$Type, value: T, match: $ReplacementMatch$Type): boolean
+ "checkEmpty"(key: $RecipeKey$Type<(T)>, value: T): string
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read
  */
  "mapIn"(mappingTo: $UnaryOperator$Type<(any)>): $MappingRecipeComponent<(T)>
- "isInput"(recipe: $RecipeJS$Type, value: T, match: $ReplacementMatch$Type): boolean
  "orSelf"(): $RecipeComponent<(T)>
+ "isInput"(recipe: $RecipeJS$Type, value: T, match: $ReplacementMatch$Type): boolean
 }
 
 export namespace $RecipeComponent {
@@ -7176,9 +7186,9 @@ readonly "parent": $Tier
 constructor(p: $Tier$Type)
 
 public "setLevel"(i: integer): void
-public "setEnchantmentValue"(i: integer): void
-public "setRepairIngredient"(arg0: $Ingredient$Type): void
 public "setAttackDamageBonus"(f: float): void
+public "setRepairIngredient"(arg0: $Ingredient$Type): void
+public "setEnchantmentValue"(i: integer): void
 public "getUses"(): integer
 public "getSpeed"(): float
 public "getAttackDamageBonus"(): float
@@ -7189,9 +7199,9 @@ public "setSpeed"(f: float): void
 public "setUses"(i: integer): void
 public "getTag"(): $TagKey<($Block)>
 set "level"(value: integer)
-set "enchantmentValue"(value: integer)
-set "repairIngredient"(value: $Ingredient$Type)
 set "attackDamageBonus"(value: float)
+set "repairIngredient"(value: $Ingredient$Type)
+set "enchantmentValue"(value: integer)
 get "uses"(): integer
 get "speed"(): float
 get "attackDamageBonus"(): float
@@ -7427,11 +7437,11 @@ readonly "packs": $Map<(string), ($ScriptPack)>
 
 constructor(t: $ScriptType$Type)
 
-public "load"(): void
-public "unload"(): void
 public "reload"(resourceManager: $ResourceManager$Type): void
+public "unload"(): void
+public "load"(): void
 public static "getCurrentContext"(): $Context
-public "handler$dpm000$probejs$loadJavaClass"(name0: string, warn: boolean, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$eak000$probejs$loadJavaClass"(name0: string, warn: boolean, cir: $CallbackInfoReturnable$Type<(any)>): void
 public "loadFromDirectory"(): void
 public "isClassAllowed"(name: string): boolean
 public "loadJavaClass"(name: string, error: boolean): $NativeJavaClass
@@ -7457,9 +7467,9 @@ import {$AttributeModifier, $AttributeModifier$Type} from "packages/net/minecraf
 
 export interface $ModifiableItemKJS {
 
- "kjs$setAttributeMap"(attributes: $Multimap$Type<($Attribute$Type), ($AttributeModifier$Type)>): void
  "kjs$getMutableAttributeMap"(): $Multimap<($Attribute), ($AttributeModifier)>
  "kjs$getAttributeMap"(): $Multimap<($Attribute), ($AttributeModifier)>
+ "kjs$setAttributeMap"(attributes: $Multimap$Type<($Attribute$Type), ($AttributeModifier$Type)>): void
 }
 
 export namespace $ModifiableItemKJS {
@@ -7515,16 +7525,16 @@ import {$Lazy, $Lazy$Type} from "packages/dev/latvian/mods/kubejs/util/$Lazy"
 export interface $IngredientPlatformHelper {
 
  "subtract"(arg0: $Ingredient$Type, arg1: $Ingredient$Type): $Ingredient
+ "tag"(tag: string): $Ingredient
+ "or"(arg0: ($Ingredient$Type)[]): $Ingredient
+ "and"(arg0: ($Ingredient$Type)[]): $Ingredient
+ "wildcard"(): $Ingredient
  "regex"(arg0: $Pattern$Type): $Ingredient
  "stack"(ingredient: $Ingredient$Type, count: integer): $InputItem
  "mod"(arg0: string): $Ingredient
- "wildcard"(): $Ingredient
- "or"(arg0: ($Ingredient$Type)[]): $Ingredient
- "and"(arg0: ($Ingredient$Type)[]): $Ingredient
- "tag"(tag: string): $Ingredient
  "creativeTab"(arg0: $CreativeModeTab$Type): $Ingredient
- "custom"(arg0: $Ingredient$Type, arg1: $Predicate$Type<($ItemStack$Type)>): $Ingredient
  "custom"(arg0: $Ingredient$Type, arg1: $UUID$Type): $Ingredient
+ "custom"(arg0: $Ingredient$Type, arg1: $Predicate$Type<($ItemStack$Type)>): $Ingredient
  "isWildcard"(arg0: $Ingredient$Type): boolean
  "weakNBT"(arg0: $ItemStack$Type): $Ingredient
  "strongNBT"(arg0: $ItemStack$Type): $Ingredient
@@ -7570,14 +7580,14 @@ public "isEmpty"(): boolean
 public static "of"(item: $ItemStack$Type, chance: double): $OutputItem
 public static "of"(from: $OutputItem$Type): $OutputItem
 public "replaceOutput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type, original: $OutputReplacement$Type): any
+public "getNbt"(): $CompoundTag
 public "weakNBT"(): $InputItem
 public "strongNBT"(): $InputItem
-public "getNbt"(): $CompoundTag
-public "withCount"(count: integer): $OutputItem
 public "getChance"(): double
+public "withCount"(count: integer): $OutputItem
 public "withChance"(chance: double): $OutputItem
-public "withRolls"(min: integer, max: integer): $OutputItem
 public "withRolls"(rolls: $IntProvider$Type): $OutputItem
+public "withRolls"(min: integer, max: integer): $OutputItem
 public "hasChance"(): boolean
 /**
  * 
@@ -7624,8 +7634,8 @@ import {$AbstractContainerMenu, $AbstractContainerMenu$Type} from "packages/net/
 import {$EntityPotionEffectsJS, $EntityPotionEffectsJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$EntityPotionEffectsJS"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$LivingEntityKJS, $LivingEntityKJS$Type} from "packages/dev/latvian/mods/kubejs/core/$LivingEntityKJS"
-import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$AttachedData, $AttachedData$Type} from "packages/dev/latvian/mods/kubejs/util/$AttachedData"
 import {$KubeJSInventoryListener, $KubeJSInventoryListener$Type} from "packages/dev/latvian/mods/kubejs/player/$KubeJSInventoryListener"
 import {$PlayerStatsJS, $PlayerStatsJS$Type} from "packages/dev/latvian/mods/kubejs/player/$PlayerStatsJS"
@@ -7642,78 +7652,78 @@ import {$AttributeModifier$Operation, $AttributeModifier$Operation$Type} from "p
 export interface $PlayerKJS extends $LivingEntityKJS, $DataSenderKJS, $WithAttachedData<($Player)> {
 
  "setStatusMessage"(message: $Component$Type): void
- "getProfile"(): $GameProfile
  "isPlayer"(): boolean
- "sendInventoryUpdate"(): void
- "setSaturation"(saturation: float): void
- "giveInHand"(item: $ItemStack$Type): void
- "addExhaustion"(exhaustion: float): void
- "isMiningBlock"(): boolean
- "getStats"(): $PlayerStatsJS
- "getSelectedSlot"(): integer
- "setFoodLevel"(foodLevel: integer): void
- "getFoodLevel"(): integer
- "setSelectedSlot"(index: integer): void
- "getSaturation"(): float
- "addFood"(f: integer, m: float): void
- "setMouseItem"(item: $ItemStack$Type): void
- "getMouseItem"(): $ItemStack
- "addItemCooldown"(item: $Item$Type, ticks: integer): void
- "getXpLevel"(): integer
- "setXpLevel"(l: integer): void
- "boostElytraFlight"(): void
- "addXPLevels"(l: integer): void
+ "getProfile"(): $GameProfile
  "getOpenInventory"(): $AbstractContainerMenu
+ "addItemCooldown"(item: $Item$Type, ticks: integer): void
+ "getSaturation"(): float
+ "boostElytraFlight"(): void
+ "getXpLevel"(): integer
+ "addXPLevels"(l: integer): void
+ "setXpLevel"(l: integer): void
+ "setSaturation"(saturation: float): void
+ "addExhaustion"(exhaustion: float): void
+ "getStats"(): $PlayerStatsJS
+ "isMiningBlock"(): boolean
+ "sendInventoryUpdate"(): void
+ "setFoodLevel"(foodLevel: integer): void
+ "giveInHand"(item: $ItemStack$Type): void
+ "getSelectedSlot"(): integer
+ "setSelectedSlot"(index: integer): void
+ "getMouseItem"(): $ItemStack
+ "setMouseItem"(item: $ItemStack$Type): void
+ "addFood"(f: integer, m: float): void
+ "getFoodLevel"(): integer
  "getStages"(): $Stages
  "getInventory"(): $InventoryKJS
  "getCraftingGrid"(): $InventoryKJS
  "getInventoryChangeListener"(): $KubeJSInventoryListener
- "spawn"(): void
- "paint"(renderer: $CompoundTag$Type): void
  "isFake"(): boolean
+ "paint"(renderer: $CompoundTag$Type): void
  "give"(item: $ItemStack$Type): void
  "addXP"(xp: integer): void
  "setXp"(xp: integer): void
  "getXp"(): integer
- "notify"(builder: $NotificationBuilder$Type): void
  "notify"(title: $Component$Type, text: $Component$Type): void
- "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
- "getReachDistance"(): double
- "isUndead"(): boolean
- "setHeadArmorItem"(item: $ItemStack$Type): void
- "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
- "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
- "getAttributeTotalValue"(attribute: $Attribute$Type): double
- "setMaxHealth"(hp: float): void
- "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
- "getAttributeBaseValue"(attribute: $Attribute$Type): double
- "getPotionEffects"(): $EntityPotionEffectsJS
- "getHeadArmorItem"(): $ItemStack
- "getOffHandItem"(): $ItemStack
- "setMainHandItem"(item: $ItemStack$Type): void
- "getMainHandItem"(): $ItemStack
- "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
- "setOffHandItem"(item: $ItemStack$Type): void
- "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
- "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
- "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
- "getChestArmorItem"(): $ItemStack
- "getLegsArmorItem"(): $ItemStack
- "setChestArmorItem"(item: $ItemStack$Type): void
- "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
- "damageHeldItem"(): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
- "damageEquipment"(slot: $EquipmentSlot$Type): void
- "getTotalMovementSpeed"(): double
- "setFeetArmorItem"(item: $ItemStack$Type): void
- "getFeetArmorItem"(): $ItemStack
- "setLegsArmorItem"(item: $ItemStack$Type): void
- "foodEaten"(is: $ItemStack$Type): void
+ "notify"(builder: $NotificationBuilder$Type): void
+ "spawn"(): void
  "isLiving"(): boolean
  "rayTrace"(): $RayTraceResultJS
+ "foodEaten"(is: $ItemStack$Type): void
+ "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
+ "getReachDistance"(): double
+ "getAttributeTotalValue"(attribute: $Attribute$Type): double
+ "getAttributeBaseValue"(attribute: $Attribute$Type): double
+ "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
+ "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
+ "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
+ "setMaxHealth"(hp: float): void
+ "isUndead"(): boolean
+ "getPotionEffects"(): $EntityPotionEffectsJS
+ "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
+ "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
+ "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
+ "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
+ "getMainHandItem"(): $ItemStack
+ "setMainHandItem"(item: $ItemStack$Type): void
+ "getOffHandItem"(): $ItemStack
+ "setOffHandItem"(item: $ItemStack$Type): void
+ "getHeadArmorItem"(): $ItemStack
+ "setHeadArmorItem"(item: $ItemStack$Type): void
+ "getChestArmorItem"(): $ItemStack
+ "setChestArmorItem"(item: $ItemStack$Type): void
+ "getLegsArmorItem"(): $ItemStack
+ "setLegsArmorItem"(item: $ItemStack$Type): void
+ "getFeetArmorItem"(): $ItemStack
+ "setFeetArmorItem"(item: $ItemStack$Type): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageEquipment"(slot: $EquipmentSlot$Type): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageHeldItem"(): void
+ "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
+ "getTotalMovementSpeed"(): double
  "getDefaultMovementSpeed"(): double
  "setDefaultMovementSpeed"(speed: double): void
  "setMovementSpeedAddition"(speed: double): void
@@ -7724,52 +7734,52 @@ export interface $PlayerKJS extends $LivingEntityKJS, $DataSenderKJS, $WithAttac
  "sendData"(channel: string, data: $CompoundTag$Type): void
  "sendData"(channel: string): void
  "getData"(): $AttachedData<($Player)>
- "getName"(): $Component
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
- "getType"(): string
- "getServer"(): $MinecraftServer
- "getLevel"(): $Level
- "getItem"(): $ItemStack
- "isFrame"(): boolean
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "getName"(): $Component
+ "getScriptType"(): $ScriptType
+ "getBlock"(): $BlockContainerJS
  "isMonster"(): boolean
  "isAnimal"(): boolean
- "isAmbientCreature"(): boolean
- "isWaterCreature"(): boolean
- "isPeacefulCreature"(): boolean
- "setPosition"(block: $BlockContainerJS$Type): void
- "setPosition"(x: double, y: double, z: double): void
- "getMotionX"(): double
- "setMotionX"(x: double): void
- "getMotionY"(): double
- "setMotionY"(y: double): void
- "getMotionZ"(): double
- "setMotionZ"(z: double): void
- "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
  "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
  "setRotation"(yaw: float, pitch: float): void
+ "mergeNbt"(tag: $CompoundTag$Type): $Entity
  "getPassengers"(): $EntityArrayList
  "getTeamId"(): string
  "isOnScoreboardTeam"(teamId: string): boolean
  "getFacing"(): $Direction
- "mergeNbt"(tag: $CompoundTag$Type): $Entity
+ "getItem"(): $ItemStack
+ "isPeacefulCreature"(): boolean
+ "setPosition"(x: double, y: double, z: double): void
+ "setPosition"(block: $BlockContainerJS$Type): void
+ "getMotionZ"(): double
+ "getMotionX"(): double
+ "setMotionX"(x: double): void
+ "getMotionY"(): double
+ "setMotionY"(y: double): void
+ "setMotionZ"(z: double): void
+ "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isAmbientCreature"(): boolean
+ "isWaterCreature"(): boolean
+ "isFrame"(): boolean
+ "getLevel"(): $Level
+ "getServer"(): $MinecraftServer
+ "getType"(): string
  "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
  "playSound"(id: $SoundEvent$Type): void
- "getDistance"(pos: $BlockPos$Type): double
  "getDistance"(x: double, y: double, z: double): double
+ "getDistance"(pos: $BlockPos$Type): double
  "getDistanceSq"(pos: $BlockPos$Type): double
  "rayTrace"(distance: double): $RayTraceResultJS
  "rayTrace"(distance: double, fluids: boolean): $RayTraceResultJS
- "getScriptType"(): $ScriptType
- "getBlock"(): $BlockContainerJS
+ "tell"(message: $Component$Type): void
  "setX"(x: double): void
  "setY"(y: double): void
  "setZ"(z: double): void
  "getNbt"(): $CompoundTag
  "setNbt"(nbt: $CompoundTag$Type): void
  "attack"(hp: float): void
- "tell"(message: $Component$Type): void
  "getPersistentData"(): $CompoundTag
 
 (message: $Component$Type): void
@@ -7935,8 +7945,8 @@ constructor(wrappedClass: $Class$Type<(T)>)
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "wrappedClass"(): $Class<(T)>
 public "convertJavaToJs"(cx: $Context$Type, scope: $Scriptable$Type, staticType: $Class$Type<(any)>): $Scriptable
+public "wrappedClass"(): $Class<(T)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7966,8 +7976,8 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "getRegistryType"(): $RegistryInfo<(any)>
 public "overrideLimiter"(o: boolean): $ParticleTypeBuilder
+public "getRegistryType"(): $RegistryInfo<(any)>
 public "deserializer"(d: $ParticleOptions$Deserializer$Type<(any)>): $ParticleTypeBuilder
 get "registryType"(): $RegistryInfo<(any)>
 }
@@ -8023,12 +8033,12 @@ export class $BlockLootEventJS extends $LootEventJS {
 
 constructor(c: $Map$Type<($ResourceLocation$Type), ($JsonElement$Type)>)
 
-public "getType"(): string
 public "build"(blocks: $BlockStatePredicate$Type, b: $Consumer$Type<($LootBuilder$Type)>): void
+public "getType"(): string
 public "modifyBlock"(blocks: $BlockStatePredicate$Type, b: $Consumer$Type<($LootBuilder$Type)>): void
-public "getDirectory"(): string
 public "addSimpleBlock"(blocks: $BlockStatePredicate$Type): void
 public "addSimpleBlock"(blocks: $BlockStatePredicate$Type, item: $ItemStack$Type): void
+public "getDirectory"(): string
 public "addBlock"(blocks: $BlockStatePredicate$Type, b: $Consumer$Type<($LootBuilder$Type)>): void
 get "type"(): string
 get "directory"(): string
@@ -8121,13 +8131,13 @@ readonly "screen": $Screen
 constructor(m: $Minecraft$Type, s: $Screen$Type, graphics: $GuiGraphics$Type, painter: $Painter$Type, mx: integer, my: integer, d: float)
 constructor(m: $Minecraft$Type, graphics: $GuiGraphics$Type, painter: $Painter$Type, d: float)
 
-public "scale"(x: float, y: float): void
-public "scale"(scale: float): void
 public "text"(text: $Component$Type, x: integer, y: integer, color: integer, shadow: boolean): void
-public "getVariables"(): $VariableSet
+public "scale"(scale: float): void
+public "scale"(x: float, y: float): void
 public "translate"(x: double, y: double): void
-public "rectangle"(x: float, y: float, z: float, w: float, h: float, color: integer, u0: float, v0: float, u1: float, v1: float): void
+public "getVariables"(): $VariableSet
 public "rectangle"(x: float, y: float, z: float, w: float, h: float, color: integer): void
+public "rectangle"(x: float, y: float, z: float, w: float, h: float, color: integer, u0: float, v0: float, u1: float, v1: float): void
 public "rawText"(text: $FormattedCharSequence$Type, x: integer, y: integer, color: integer, shadow: boolean): void
 public "alignX"(x: float, w: float, alignX: $AlignMode$Type): float
 public "alignY"(y: float, h: float, alignY: $AlignMode$Type): float
@@ -8187,14 +8197,14 @@ export class $EventResult {
 static readonly "PASS": $EventResult
 
 
+public "pass"(): boolean
+public "error"(): boolean
 public "type"(): $EventResult$Type
 public "value"(): any
 public "override"(): boolean
-public "error"(): boolean
-public "pass"(): boolean
-public "interruptDefault"(): boolean
 public "interruptFalse"(): boolean
 public "interruptTrue"(): boolean
+public "interruptDefault"(): boolean
 public "archCompound"<T>(): $CompoundEventResult<(T)>
 public "arch"(): $EventResult$0
 }
@@ -8221,21 +8231,21 @@ export class $ObjectDescJS extends $Record implements $TypeDescJS {
 
 constructor(types: $List$Type<($ObjectDescJS$Entry$Type)>)
 
+public "build"(builder: $StringBuilder$Type): void
 public "add"(key: string, value: $TypeDescJS$Type, optional: boolean): $ObjectDescJS
 public "add"(key: string, value: $TypeDescJS$Type): $ObjectDescJS
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "types"(): $List<($ObjectDescJS$Entry)>
-public "build"(builder: $StringBuilder$Type): void
 public static "any"(...types: ($TypeDescJS$Type)[]): $TypeDescJS
-public "asArray"(): $TypeDescJS
-public static "object"(): $ObjectDescJS
-public static "object"(init: integer): $ObjectDescJS
-public "build"(): string
 public "or"(type: $TypeDescJS$Type): $TypeDescJS
-public "asMap"(key: $TypeDescJS$Type): $TypeDescJS
+public static "object"(init: integer): $ObjectDescJS
+public static "object"(): $ObjectDescJS
+public "build"(): string
+public "asArray"(): $TypeDescJS
 public "asMap"(): $TypeDescJS
+public "asMap"(key: $TypeDescJS$Type): $TypeDescJS
 public "withGenerics"(...types: ($TypeDescJS$Type)[]): $TypeDescJS
 public static "fixedArray"(...types: ($TypeDescJS$Type)[]): $TypeDescJS
 }
@@ -8259,11 +8269,11 @@ import {$MessageSenderKJS, $MessageSenderKJS$Type} from "packages/dev/latvian/mo
 export interface $WithPersistentData extends $MessageSenderKJS {
 
  "getPersistentData"(): $CompoundTag
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "tell"(message: $Component$Type): void
 }
 
@@ -8402,14 +8412,14 @@ readonly "keys": $List<($RecipeKey<(any)>)>
 
 constructor(init: integer)
 
+public "createCopy"(): $RecipeComponentBuilder
 public "add"(key: $RecipeKey$Type<(any)>): $RecipeComponentBuilder
 public "toString"(): string
 public "componentType"(): string
 public "write"(recipe: $RecipeJS$Type, value: $RecipeComponentBuilderMap$Type): $JsonElement
-public "createCopy"(): $RecipeComponentBuilder
-public "componentClass"(): $Class<(any)>
-public "replaceOutput"(recipe: $RecipeJS$Type, original: $RecipeComponentBuilderMap$Type, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): $RecipeComponentBuilderMap
 public "replaceInput"(recipe: $RecipeJS$Type, original: $RecipeComponentBuilderMap$Type, match: $ReplacementMatch$Type, arg3: $InputReplacement$Type): $RecipeComponentBuilderMap
+public "replaceOutput"(recipe: $RecipeJS$Type, original: $RecipeComponentBuilderMap$Type, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): $RecipeComponentBuilderMap
+public "componentClass"(): $Class<(any)>
 public "constructorDescription"(ctx: $DescriptionContext$Type): $TypeDescJS
 public "hasPriority"(hasPriority: $Predicate$Type<($Set$Type<(string)>)>): $RecipeComponentBuilder
 public "hasPriority"(recipe: $RecipeJS$Type, from: any): boolean
@@ -8419,7 +8429,13 @@ public "isOutput"(recipe: $RecipeJS$Type, value: $RecipeComponentBuilderMap$Type
 public "isInput"(recipe: $RecipeJS$Type, value: $RecipeComponentBuilderMap$Type, match: $ReplacementMatch$Type): boolean
 public "inputRole"(): $RecipeComponentBuilder
 public "outputRole"(): $RecipeComponentBuilder
+public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<($RecipeComponentBuilderMap), (O)>
+public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<($RecipeComponentBuilderMap), (O)>
 public "asArray"(): $ArrayRecipeComponent<($RecipeComponentBuilderMap)>
+/**
+ * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
+ */
+public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<($RecipeComponentBuilderMap)>
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read, and the mappingFrom function after the component writes to json, before that json is saved
  */
@@ -8427,14 +8443,8 @@ public "map"(mappingTo: $UnaryOperator$Type<(any)>, mappingFrom: $UnaryOperator$
 public static "builder"(): $RecipeComponentBuilder
 public static "builder"(...key: ($RecipeKey$Type<(any)>)[]): $RecipeComponentBuilder
 public "key"(name: string): $RecipeKey<($RecipeComponentBuilderMap)>
-public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<($RecipeComponentBuilderMap), (O)>
-public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<($RecipeComponentBuilderMap), (O)>
-/**
- * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
- */
-public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<($RecipeComponentBuilderMap)>
-public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($RecipeComponentBuilderMap$Type)>, json: $JsonObject$Type): void
 public "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($RecipeComponentBuilderMap$Type)>, json: $JsonObject$Type): void
+public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($RecipeComponentBuilderMap$Type)>, json: $JsonObject$Type): void
 public "asMap"<K>(key: $RecipeComponent$Type<(K)>): $RecipeComponent<($TinyMap<(K), ($RecipeComponentBuilderMap)>)>
 public "readFromMap"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<($RecipeComponentBuilderMap$Type)>, map: $Map$Type<(any), (any)>): void
 public "asArrayOrSelf"(): $ArrayRecipeComponent<($RecipeComponentBuilderMap)>
@@ -8506,21 +8516,21 @@ readonly "advancement": $Advancement
 
 constructor(a: $Advancement$Type)
 
+public "getChildren"(): $Set<($AdvancementJS)>
+public "getDescription"(): $Component
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "id"(): $ResourceLocation
 public "getParent"(): $AdvancementJS
 public "getId"(): $ResourceLocation
-public "getDescription"(): $Component
-public "getChildren"(): $Set<($AdvancementJS)>
 public "getTitle"(): $Component
-public "getDisplayText"(): $Component
 public "addChild"(a: $AdvancementJS$Type): void
+public "getDisplayText"(): $Component
 public "hasDisplay"(): boolean
-get "parent"(): $AdvancementJS
-get "description"(): $Component
 get "children"(): $Set<($AdvancementJS)>
+get "description"(): $Component
+get "parent"(): $AdvancementJS
 get "title"(): $Component
 get "displayText"(): $Component
 }
@@ -8624,15 +8634,25 @@ readonly "id": $ResourceLocation
 constructor(i: $ResourceLocation$Type)
 
 /**
+ * Sets the display name for this object, e.g. `Stone`.
+ * 
+ * This will be overridden by a lang file if it exists.
+ */
+public "displayName"(name: $Component$Type): $BuilderBase<($Block)>
+/**
+ * Modifies the block's item representation.
+ */
+public "item"(i: $Consumer$Type<($BlockItemBuilder$Type)>): $BlockBuilder
+/**
  * Add a blockstate property to the block.
  * 
  * For example, facing, lit, etc.
  */
 public "property"(property: $Property$Type<(any)>): $BlockBuilder
 /**
- * Modifies the block's item representation.
+ * Set the block's model.
  */
-public "item"(i: $Consumer$Type<($BlockItemBuilder$Type)>): $BlockBuilder
+public "model"(m: string): $BlockBuilder
 public "createProperties"(): $BlockBehaviour$Properties
 /**
  * Set the shape of the block.
@@ -8645,62 +8665,11 @@ public "box"(x0: double, y0: double, z0: double, x1: double, y1: double, z1: dou
 /**
  * Set the color of a specific layer of the block.
  */
-public "color"(color: $BlockTintFunction$Type): $BlockBuilder
+public "color"(index: integer, color: $BlockTintFunction$Type): $BlockBuilder
 /**
  * Set the color of a specific layer of the block.
  */
-public "color"(index: integer, color: $BlockTintFunction$Type): $BlockBuilder
-/**
- * Sets the display name for this object, e.g. `Stone`.
- * 
- * This will be overridden by a lang file if it exists.
- */
-public "displayName"(name: $Component$Type): $BuilderBase<($Block)>
-/**
- * Set the block's model.
- */
-public "model"(m: string): $BlockBuilder
-/**
- * Tags both the block and the item with the given tag.
- */
-public "tag"(tag: $ResourceLocation$Type): $BlockBuilder
-/**
- * Makes the block not collide with entities.
- */
-public "noCollision"(): $BlockBuilder
-/**
- * Makes the block transparent.
- */
-public "transparent"(b: boolean): $BlockBuilder
-/**
- * Set if the block can be replaced by something else.
- */
-public "canBeReplaced"(callbackJS: $Predicate$Type<($CanBeReplacedCallbackJS$Type)>): $BlockBuilder
-/**
- * Helper method for setting the render type of the block to `cutout` correctly.
- */
-public "defaultCutout"(): $BlockBuilder
-public "getRegistryType"(): $RegistryInfo<(any)>
-public "transformObject"(obj: $Block$Type): $Block
-public "createAdditionalObjects"(): void
-/**
- * Set the default state of the block.
- */
-public "defaultState"(callbackJS: $Consumer$Type<($BlockStateModifyCallbackJS$Type)>): $BlockBuilder
-public "generateDataJsons"(generator: $DataJsonGenerator$Type): void
-public "generateAssetJsons"(generator: $AssetJsonGenerator$Type): void
-/**
- * Texture a specific side of the block.
- */
-public "textureSide"(direction: $Direction$Type, tex: string): $BlockBuilder
-/**
- * Set the callback for determining the blocks state when placed.
- */
-public "placementState"(callbackJS: $Consumer$Type<($BlockStateModifyPlacementCallbackJS$Type)>): $BlockBuilder
-/**
- * Set how slippery the block is.
- */
-public "slipperiness"(f: float): $BlockBuilder
+public "color"(color: $BlockTintFunction$Type): $BlockBuilder
 /**
  * Creates a Block Entity for this block
  */
@@ -8718,9 +8687,47 @@ public "speedFactor"(f: float): $BlockBuilder
  */
 public "waterlogged"(): $BlockBuilder
 /**
+ * Set how slippery the block is.
+ */
+public "slipperiness"(f: float): $BlockBuilder
+/**
+ * Set the callback for determining the blocks state when placed.
+ */
+public "placementState"(callbackJS: $Consumer$Type<($BlockStateModifyPlacementCallbackJS$Type)>): $BlockBuilder
+/**
+ * Set the default state of the block.
+ */
+public "defaultState"(callbackJS: $Consumer$Type<($BlockStateModifyCallbackJS$Type)>): $BlockBuilder
+public "generateDataJsons"(generator: $DataJsonGenerator$Type): void
+public "generateAssetJsons"(generator: $AssetJsonGenerator$Type): void
+/**
+ * Texture a specific side of the block.
+ */
+public "textureSide"(direction: $Direction$Type, tex: string): $BlockBuilder
+public "getRegistryType"(): $RegistryInfo<(any)>
+public "transformObject"(obj: $Block$Type): $Block
+public "createAdditionalObjects"(): void
+/**
+ * Makes the block transparent.
+ */
+public "transparent"(b: boolean): $BlockBuilder
+/**
+ * Makes the block not collide with entities.
+ */
+public "noCollision"(): $BlockBuilder
+/**
+ * Set if the block can be replaced by something else.
+ */
+public "canBeReplaced"(callbackJS: $Predicate$Type<($CanBeReplacedCallbackJS$Type)>): $BlockBuilder
+/**
+ * Helper method for setting the render type of the block to `cutout` correctly.
+ */
+public "defaultCutout"(): $BlockBuilder
+/**
  * Texture a specific texture key of the block.
  */
 public "texture"(id: string, tex: string): $BlockBuilder
+public static "createShape"(boxes: $List$Type<($AABB$Type)>): $VoxelShape
 /**
  * Makes the block unbreakable.
  */
@@ -8792,15 +8799,6 @@ public "rotateState"(callbackJS: $Consumer$Type<($BlockStateRotateCallbackJS$Typ
  * Set the callback used for determining how the block is mirrored
  */
 public "mirrorState"(callbackJS: $Consumer$Type<($BlockStateMirrorCallbackJS$Type)>): $BlockBuilder
-public static "createShape"(boxes: $List$Type<($AABB$Type)>): $VoxelShape
-/**
- * Note block instrument.
- */
-public "instrument"(i: $NoteBlockInstrument$Type): $BlockBuilder
-/**
- * Sets random tick callback for this black.
- */
-public "randomTick"(randomTickCallback: $Consumer$Type<($RandomTickCallbackJS$Type)>): $BlockBuilder
 /**
  * Sets the block's sound type. Defaults to wood.
  */
@@ -8810,35 +8808,43 @@ public "soundType"(m: $SoundType$Type): $BlockBuilder
  */
 public "jumpFactor"(f: float): $BlockBuilder
 /**
+ * Sets random tick callback for this black.
+ */
+public "randomTick"(randomTickCallback: $Consumer$Type<($RandomTickCallbackJS$Type)>): $BlockBuilder
+/**
+ * Note block instrument.
+ */
+public "instrument"(i: $NoteBlockInstrument$Type): $BlockBuilder
+/**
  * Sets the blast resistance of the block. Defaults to 3.
  */
 public "resistance"(r: float): $BlockBuilder
 /**
+ * Sets the render type of the block. Can be `cutout`, `cutout_mipped`, `translucent`, or `basic`.
+ */
+public "renderType"(l: string): $BlockBuilder
+public "material"(material: string): $BlockBuilder
+/**
  * Sets the light level of the block. Defaults to 0 (no light).
  */
 public "lightLevel"(light: float): $BlockBuilder
-public "material"(material: string): $BlockBuilder
 /**
  * Set the callback used for right-clicking on the block
  */
 public "rightClick"(callbackJS: $Consumer$Type<($BlockRightClickedEventJS$Type)>): $BlockBuilder
 /**
- * Sets the render type of the block. Can be `cutout`, `cutout_mipped`, `translucent`, or `basic`.
- */
-public "renderType"(l: string): $BlockBuilder
-/**
  * Sets the block should be a full block or not, like cactus or doors.
  */
 public "fullBlock"(f: boolean): $BlockBuilder
+/**
+ * Sets the block's map color. Defaults to NONE.
+ */
+public "mapColor"(m: $MapColor$Type): $BlockBuilder
 /**
  * Bounces entities that land on this block by bounciness * their fall velocity.
  * Do not make bounciness negative, as that is a recipe for a long and laggy trip to the void
  */
 public "bounciness"(bounciness: float): $BlockBuilder
-/**
- * Sets the block's map color. Defaults to NONE.
- */
-public "mapColor"(m: $MapColor$Type): $BlockBuilder
 /**
  * Sets the hardness of the block. Defaults to 1.5.
  * 
@@ -8975,8 +8981,8 @@ constructor(buf: $FriendlyByteBuf$Type)
 
 public "toString"(): string
 public "getText"(): string
-public "withExternalFile"(path: $Path$Type): $ConsoleLine
 public "withSourceLine"(source: string, line: integer): $ConsoleLine
+public "withExternalFile"(path: $Path$Type): $ConsoleLine
 public static "writeToNet"(buf: $FriendlyByteBuf$Type, line: $ConsoleLine$Type): void
 get "text"(): string
 }
@@ -9106,8 +9112,8 @@ declare module "packages/dev/latvian/mods/rhino/$ExternalArrayData" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ExternalArrayData {
 
- "getArrayElement"(arg0: integer): any
  "getArrayLength"(): integer
+ "getArrayElement"(arg0: integer): any
  "setArrayElement"(arg0: integer, arg1: any): void
 }
 
@@ -9170,8 +9176,8 @@ import {$ItemBuilder$NameCallback, $ItemBuilder$NameCallback$Type} from "package
 import {$ItemBuilder$UseCallback, $ItemBuilder$UseCallback$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemBuilder$UseCallback"
 import {$ItemBuilder$HurtEnemyContext, $ItemBuilder$HurtEnemyContext$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemBuilder$HurtEnemyContext"
 import {$ToIntFunction, $ToIntFunction$Type} from "packages/java/util/function/$ToIntFunction"
-import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$ItemBuilder$FinishUsingCallback, $ItemBuilder$FinishUsingCallback$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemBuilder$FinishUsingCallback"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$RegistryInfo, $RegistryInfo$Type} from "packages/dev/latvian/mods/kubejs/registry/$RegistryInfo"
@@ -9198,23 +9204,6 @@ readonly "id": $ResourceLocation
 constructor(i: $ResourceLocation$Type)
 
 /**
- * Sets the item's name dynamically.
- */
-public "name"(name: $ItemBuilder$NameCallback$Type): $ItemBuilder
-/**
- * 
- * @deprecated
- */
-public "group"(g: string): $ItemBuilder
-/**
- * Colorizes item's texture of the given index. Useful for coloring items, like GT ores ore dusts.
- */
-public "color"(callback: $ItemTintFunction$Type): $ItemBuilder
-/**
- * Colorizes item's texture of the given index. Index is used when you have multiple layers, e.g. a crushed ore (of rock + ore).
- */
-public "color"(index: integer, color: $ItemTintFunction$Type): $ItemBuilder
-/**
  * Sets the item's max stack size. Default is 64.
  */
 public "maxStackSize"(v: integer): $ItemBuilder
@@ -9225,25 +9214,68 @@ public "maxStackSize"(v: integer): $ItemBuilder
  */
 public "use"(use: $ItemBuilder$UseCallback$Type): $ItemBuilder
 /**
+ * Sets the item's name dynamically.
+ */
+public "name"(name: $ItemBuilder$NameCallback$Type): $ItemBuilder
+/**
+ * 
+ * @deprecated
+ */
+public "group"(g: string): $ItemBuilder
+/**
+ * Colorizes item's texture of the given index. Index is used when you have multiple layers, e.g. a crushed ore (of rock + ore).
+ */
+public "color"(index: integer, color: $ItemTintFunction$Type): $ItemBuilder
+/**
+ * Colorizes item's texture of the given index. Useful for coloring items, like GT ores ore dusts.
+ */
+public "color"(callback: $ItemTintFunction$Type): $ItemBuilder
+public "attachCapability"(builder: $CapabilityBuilder$Type<(any), (any), (any)>): $ItemBuilder
+/**
+ * The duration when the item is used.
+ * 
+ * For example, when eating food, this is the time it takes to eat the food.
+ * This can change the eating speed, or be used for other things (like making a custom bow).
+ */
+public "useDuration"(useDuration: $ToIntFunction$Type<($ItemStack$Type)>): $ItemBuilder
+/**
+ * When players finish using the item.
+ * 
+ * This is called only when `useDuration` ticks have passed.
+ * 
+ * For example, when eating food, this is called when the player has finished eating the food, so hunger is restored.
+ */
+public "finishUsing"(finishUsing: $ItemBuilder$FinishUsingCallback$Type): $ItemBuilder
+/**
+ * When players did not finish using the item but released the right mouse button halfway through.
+ * 
+ * An example is the bow, where the arrow is shot when the player releases the right mouse button.
+ * 
+ * To ensure the bow won't finish using, Minecraft sets the `useDuration` to a very high number (1h).
+ */
+public "releaseUsing"(releaseUsing: $ItemBuilder$ReleaseUsingCallback$Type): $ItemBuilder
+/**
+ * Directlys set the item's texture json.
+ */
+public "textureJson"(json: $JsonObject$Type): $ItemBuilder
+public "generateDataJsons"(generator: $DataJsonGenerator$Type): void
+public "generateAssetJsons"(generator: $AssetJsonGenerator$Type): void
+/**
  * Sets the item's container item, e.g. a bucket for a milk bucket.
  */
 public "containerItem"(id: $ResourceLocation$Type): $ItemBuilder
-/**
- * Makes the item fire resistant like netherite tools.
- */
-public "fireResistant"(): $ItemBuilder
 /**
  * Makes the item fire resistant like netherite tools (or not).
  */
 public "fireResistant"(isFireResistant: boolean): $ItemBuilder
 /**
+ * Makes the item fire resistant like netherite tools.
+ */
+public "fireResistant"(): $ItemBuilder
+/**
  * Sets the item's model (parent).
  */
 public "parentModel"(m: string): $ItemBuilder
-/**
- * Directlys set the item's texture json.
- */
-public "textureJson"(json: $JsonObject$Type): $ItemBuilder
 public static "toArmorMaterial"(o: any): $ArmorMaterial
 /**
  * Makes the item not stackable, equivalent to setting the item's max stack size to 1.
@@ -9269,32 +9301,6 @@ public "modifyAttribute"(attribute: $ResourceLocation$Type, identifier: string, 
 public "useAnimation"(animation: $UseAnim$Type): $ItemBuilder
 public "getRegistryType"(): $RegistryInfo<(any)>
 public "transformObject"(obj: $Item$Type): $Item
-public "generateDataJsons"(generator: $DataJsonGenerator$Type): void
-public "generateAssetJsons"(generator: $AssetJsonGenerator$Type): void
-public "attachCapability"(builder: $CapabilityBuilder$Type<(any), (any), (any)>): $ItemBuilder
-/**
- * The duration when the item is used.
- * 
- * For example, when eating food, this is the time it takes to eat the food.
- * This can change the eating speed, or be used for other things (like making a custom bow).
- */
-public "useDuration"(useDuration: $ToIntFunction$Type<($ItemStack$Type)>): $ItemBuilder
-/**
- * When players finish using the item.
- * 
- * This is called only when `useDuration` ticks have passed.
- * 
- * For example, when eating food, this is called when the player has finished eating the food, so hunger is restored.
- */
-public "finishUsing"(finishUsing: $ItemBuilder$FinishUsingCallback$Type): $ItemBuilder
-/**
- * When players did not finish using the item but released the right mouse button halfway through.
- * 
- * An example is the bow, where the arrow is shot when the player releases the right mouse button.
- * 
- * To ensure the bow won't finish using, Minecraft sets the `useDuration` to a very high number (1h).
- */
-public "releaseUsing"(releaseUsing: $ItemBuilder$ReleaseUsingCallback$Type): $ItemBuilder
 /**
  * Sets the item's texture (layer0).
  */
@@ -9557,10 +9563,10 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "getInventorySize"(filter: $ItemStack$Type): integer
 public static "getInventory"(stack: $ItemStack$Type): $ItemInventory
 public "clearFilterCache"(filter: $ItemStack$Type): void
 public "resetFilterData"(filter: $ItemStack$Type): void
+public "getInventorySize"(filter: $ItemStack$Type): integer
 public "use"(world: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "addSlots"(filter: $ItemStack$Type, list: $List$Type<($InventoryFilterItem$FilterSlot$Type)>): void
 public "addInfo"(filter: $ItemStack$Type, info: $FilterInfo$Type, expanded: boolean): void
@@ -9706,34 +9712,34 @@ export class $PlatformWrapper {
 
 constructor()
 
-public static "getName"(): string
-public static "isLoaded"(modId: string): boolean
 public static "getInfo"(modID: string): $PlatformWrapper$ModInfo
+public static "isLoaded"(modId: string): boolean
+public static "getName"(): string
+public static "getModVersion"(): string
 public static "getMinecraftVersion"(): integer
 public static "isClientEnvironment"(): boolean
-public static "getModVersion"(): string
-public static "isDevelopmentEnvironment"(): boolean
-public static "getMods"(): $Map<(string), ($PlatformWrapper$ModInfo)>
 public static "getList"(): $Set<(string)>
+public static "getMods"(): $Map<(string), ($PlatformWrapper$ModInfo)>
+public static "isDevelopmentEnvironment"(): boolean
+public static "getMcVersion"(): string
 public static "getMinecraftVersionString"(): string
 public static "isGeneratingData"(): boolean
-public static "getMcVersion"(): string
-public static "isForge"(): boolean
 public static "isFabric"(): boolean
-public static "breakpoint"(...args: (any)[]): void
+public static "isForge"(): boolean
 public static "setModName"(modId: string, name: string): void
+public static "breakpoint"(...args: (any)[]): void
 get "name"(): string
+get "modVersion"(): string
 get "minecraftVersion"(): integer
 get "clientEnvironment"(): boolean
-get "modVersion"(): string
-get "developmentEnvironment"(): boolean
-get "mods"(): $Map<(string), ($PlatformWrapper$ModInfo)>
 get "list"(): $Set<(string)>
+get "mods"(): $Map<(string), ($PlatformWrapper$ModInfo)>
+get "developmentEnvironment"(): boolean
+get "mcVersion"(): string
 get "minecraftVersionString"(): string
 get "generatingData"(): boolean
-get "mcVersion"(): string
-get "forge"(): boolean
 get "fabric"(): boolean
+get "forge"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10222,8 +10228,8 @@ export interface $ExportablePackResources extends $PackResources {
  "listResources"(arg0: $PackType$Type, arg1: string, arg2: string, arg3: $PackResources$ResourceOutput$Type): void
  "getNamespaces"(arg0: $PackType$Type): $Set<(string)>
  "isBuiltin"(): boolean
- "isHidden"(): boolean
  "getChildren"(): $Collection<($PackResources)>
+ "isHidden"(): boolean
 }
 
 export namespace $ExportablePackResources {
@@ -10695,6 +10701,7 @@ constructor(p: $Player$Type)
 
 public "has"(stage: string): boolean
 public "getAll"(): $Collection<(string)>
+public "sync"(): void
 public "add"(stage: string): boolean
 public "remove"(stage: string): boolean
 public static "get"(player: $Player$Type): $Stages
@@ -10704,7 +10711,6 @@ public "set"(stage: string, enabled: boolean): boolean
 public static "create"(player: $Player$Type): $Stages
 public static "added"(event: $Consumer$Type<($StageChangeEvent$Type)>): void
 public static "removed"(event: $Consumer$Type<($StageChangeEvent$Type)>): void
-public "sync"(): void
 public static "overrideCreation"(event: $Consumer$Type<($StageCreationEvent$Type)>): void
 public static "invokeAdded"(stages: $Stages$Type, stage: string): void
 public static "invokeRemoved"(stages: $Stages$Type, stage: string): void
@@ -10778,6 +10784,13 @@ readonly "scriptType": $ScriptType
 
 constructor(m: $ScriptType$Type, log: $Logger$Type)
 
+public "groupEnd"(): void
+public "error"(message: any): $ConsoleLine
+public "error"(message: string, error: $Throwable$Type, exitPattern: $Pattern$Type): $ConsoleLine
+public "error"(message: string, throwable: $Throwable$Type): $ConsoleLine
+public "warn"(message: string, error: $Throwable$Type, exitPattern: $Pattern$Type): $ConsoleLine
+public "warn"(message: string, error: $Throwable$Type): $ConsoleLine
+public "warn"(message: any): $ConsoleLine
 public "group"(): void
 public "log"(...message: (any)[]): void
 public "flush"(sync: boolean): void
@@ -10785,20 +10798,13 @@ public "info"(message: any): $ConsoleLine
 public "getLogger"(): $Logger
 public "trace"(): void
 public "debug"(message: any): $ConsoleLine
-public "warn"(message: any): $ConsoleLine
-public "warn"(message: string, error: $Throwable$Type): $ConsoleLine
-public "warn"(message: string, error: $Throwable$Type, exitPattern: $Pattern$Type): $ConsoleLine
-public "error"(message: string, throwable: $Throwable$Type): $ConsoleLine
-public "error"(message: any): $ConsoleLine
-public "error"(message: string, error: $Throwable$Type, exitPattern: $Pattern$Type): $ConsoleLine
-public "groupEnd"(): void
-public "errorsComponent"(command: string): $Component
 public "setCapturingErrors"(enabled: boolean): void
-public "printObject"(o: any, tree: boolean): void
-public "printObject"(o: any): void
-public "handleError"(line: $ConsoleLine$Type, error: $Throwable$Type, exitPattern: $Pattern$Type, print: boolean): void
+public "errorsComponent"(command: string): $Component
 public "writeToFile"(type: $LogType$Type, line: string): void
 public "writeToFile"(type: $LogType$Type, timestamp: long, line: string): void
+public "handleError"(line: $ConsoleLine$Type, error: $Throwable$Type, exitPattern: $Pattern$Type, print: boolean): void
+public "printObject"(o: any, tree: boolean): void
+public "printObject"(o: any): void
 public "setDebugEnabled"(m: boolean): void
 public "getDebugEnabled"(): boolean
 public "setWriteToFile"(m: boolean): void
@@ -10807,7 +10813,6 @@ public "shouldPrintDebug"(): boolean
 public "getScriptLine"(): integer
 public static "getCurrent"(def: $ConsoleJS$Type): $ConsoleJS
 public static "getCurrent"(cx: $Context$Type): $ConsoleJS
-public "resetFile"(): void
 public "setMuted"(m: boolean): void
 public "getMuted"(): boolean
 public "infof"(message: string, ...args: (any)[]): $ConsoleLine
@@ -10816,6 +10821,7 @@ public "errorf"(message: string, ...args: (any)[]): $ConsoleLine
 public "debugf"(message: string, ...args: (any)[]): $ConsoleLine
 public "printClass"(className: string, tree: boolean): void
 public "printClass"(className: string): void
+public "resetFile"(): void
 get "logger"(): $Logger
 set "capturingErrors"(value: boolean)
 set "debugEnabled"(value: boolean)
@@ -10860,6 +10866,8 @@ const VALUE_UNWRAPPER: $ValueUnwrapper
 const COMPOUND_TYPE: $TagType<($OrderedCompoundTag)>
 const LIST_TYPE: $TagType<($ListTag)>
 function stringTag(v: string): $Tag
+function convertType(tagType: $TagType$Type<(any)>): $TagType<(any)>
+function ia(v: (integer)[]): $Tag
 function i(v: integer): $Tag
 function b(v: byte): $Tag
 function ba(v: (byte)[]): $Tag
@@ -10868,24 +10876,22 @@ function f(v: float): $Tag
 function l(v: long): $Tag
 function d(v: double): $Tag
 function read(buf: $FriendlyByteBuf$Type): $OrderedCompoundTag
-function ia(v: (integer)[]): $Tag
-function convertType(tagType: $TagType$Type<(any)>): $TagType<(any)>
-function quoteAndEscapeForJS(stringBuilder: $StringBuilder$Type, string: string): void
 function compoundTag(): $Tag
 function compoundTag(map: $Map$Type<(any), (any)>): $Tag
-function la(v: (long)[]): $Tag
+function quoteAndEscapeForJS(stringBuilder: $StringBuilder$Type, string: string): void
 function toJson(t: $Tag$Type): $JsonElement
+function la(v: (long)[]): $Tag
+function isTagCompound(o: any): boolean
+function toTagCompound(v: any): $CompoundTag
+function isTagCollection(o: any): boolean
+function toTagCollection(v: any): $CollectionTag<(any)>
+function toTagCollection(c: $Collection$Type<(any)>): $CollectionTag<(any)>
 function intArrayTag(v: (integer)[]): $Tag
 function longArrayTag(v: (long)[]): $Tag
 function byteArrayTag(v: (byte)[]): $Tag
 function accessTagMap(tag: $CompoundTag$Type): $Map<(string), ($Tag)>
-function isTagCompound(o: any): boolean
-function toTagCompound(v: any): $CompoundTag
-function isTagCollection(o: any): boolean
-function toTagCollection(c: $Collection$Type<(any)>): $CollectionTag<(any)>
-function toTagCollection(v: any): $CollectionTag<(any)>
-function listTag(list: $List$Type<(any)>): $Tag
 function listTag(): $Tag
+function listTag(list: $List$Type<(any)>): $Tag
 function toTag(v: any): $Tag
 function fromTag(t: $Tag$Type): any
 function intTag(v: integer): $Tag
@@ -10920,13 +10926,13 @@ readonly "parent": $ArmorMaterial
 constructor(id: string, p: $ArmorMaterial$Type)
 
 public "setName"(name: string): void
-public "setDurabilityMultiplier"(m: integer): void
-public "setSlotProtections"(p: (integer)[]): void
-public "setEnchantmentValue"(i: integer): void
 public "setEquipSound"(e: $SoundEvent$Type): void
 public "setRepairIngredient"(arg0: $Ingredient$Type): void
 public "setToughness"(f: float): void
 public "setKnockbackResistance"(f: float): void
+public "setDurabilityMultiplier"(m: integer): void
+public "setSlotProtections"(p: (integer)[]): void
+public "setEnchantmentValue"(i: integer): void
 public "getDurabilityForType"(equipmentSlot: $ArmorItem$Type$Type): integer
 public "getDefenseForType"(equipmentSlot: $ArmorItem$Type$Type): integer
 public "getEnchantmentValue"(): integer
@@ -10936,13 +10942,13 @@ public "getName"(): string
 public "getToughness"(): float
 public "getKnockbackResistance"(): float
 set "name"(value: string)
-set "durabilityMultiplier"(value: integer)
-set "slotProtections"(value: (integer)[])
-set "enchantmentValue"(value: integer)
 set "equipSound"(value: $SoundEvent$Type)
 set "repairIngredient"(value: $Ingredient$Type)
 set "toughness"(value: float)
 set "knockbackResistance"(value: float)
+set "durabilityMultiplier"(value: integer)
+set "slotProtections"(value: (integer)[])
+set "enchantmentValue"(value: integer)
 get "enchantmentValue"(): integer
 get "equipSound"(): $SoundEvent
 get "vanillaRepairIngredient"(): $Ingredient
@@ -10973,10 +10979,12 @@ import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 
 export class $ItemStackSet implements $Iterable<($ItemStack)> {
 
-constructor(...items: ($ItemStack$Type)[])
-constructor()
 constructor(initialSize: integer)
+constructor()
+constructor(...items: ($ItemStack$Type)[])
 
+public "getFirst"(): $ItemStack
+public "addItem"(item: $Item$Type): void
 public "add"(stack: $ItemStack$Type): void
 public "remove"(stack: $ItemStack$Type): void
 public "isEmpty"(): boolean
@@ -10986,12 +10994,10 @@ public "iterator"(): $Iterator<($ItemStack)>
 public "toList"(): $List<($ItemStack)>
 public "contains"(stack: $ItemStack$Type): boolean
 public "forEach"(action: $Consumer$Type<(any)>): void
-public "getFirst"(): $ItemStack
-public "addItem"(item: $Item$Type): void
 public "spliterator"(): $Spliterator<($ItemStack)>
 [Symbol.iterator](): IterableIterator<$ItemStack>;
-get "empty"(): boolean
 get "first"(): $ItemStack
+get "empty"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11078,36 +11084,36 @@ export class $CanBeReplacedCallbackJS {
 constructor(blockPlaceContext: $BlockPlaceContext$Type, state: $BlockState$Type)
 
 public "getItem"(): $ItemStack
-public "canBeReplaced"(): boolean
-public "getRotation"(): float
-public "getLevel"(): $Level
-public "getClickedBlock"(): $BlockContainerJS
-public "getHorizontalDirection"(): $Direction
-public "getNearestLookingVerticalDirection"(): $Direction
 public "getNearestLookingDirections"(): ($Direction)[]
-public "getClickedPos"(): $BlockPos
-public "getNearestLookingDirection"(): $Direction
-public "getClickLocation"(): $Vec3
-public "getClickedFace"(): $Direction
-public "isSecondaryUseActive"(): boolean
+public "getNearestLookingVerticalDirection"(): $Direction
+public "getRotation"(): float
+public "canBeReplaced"(): boolean
+public "getLevel"(): $Level
+public "getHorizontalDirection"(): $Direction
+public "getClickedBlock"(): $BlockContainerJS
 public "getFluidStateAtClickedPos"(): $FluidState
 public "isClickedPosIn"(fluid: $Fluid$Type): boolean
+public "isSecondaryUseActive"(): boolean
+public "getClickLocation"(): $Vec3
+public "getClickedFace"(): $Direction
+public "getNearestLookingDirection"(): $Direction
+public "getClickedPos"(): $BlockPos
 public "getPlayer"(): $Player
 public "getHand"(): $InteractionHand
 public "isInside"(): boolean
 get "item"(): $ItemStack
+get "nearestLookingDirections"(): ($Direction)[]
+get "nearestLookingVerticalDirection"(): $Direction
 get "rotation"(): float
 get "level"(): $Level
-get "clickedBlock"(): $BlockContainerJS
 get "horizontalDirection"(): $Direction
-get "nearestLookingVerticalDirection"(): $Direction
-get "nearestLookingDirections"(): ($Direction)[]
-get "clickedPos"(): $BlockPos
-get "nearestLookingDirection"(): $Direction
+get "clickedBlock"(): $BlockContainerJS
+get "fluidStateAtClickedPos"(): $FluidState
+get "secondaryUseActive"(): boolean
 get "clickLocation"(): $Vec3
 get "clickedFace"(): $Direction
-get "secondaryUseActive"(): boolean
-get "fluidStateAtClickedPos"(): $FluidState
+get "nearestLookingDirection"(): $Direction
+get "clickedPos"(): $BlockPos
 get "player"(): $Player
 get "hand"(): $InteractionHand
 get "inside"(): boolean
@@ -11148,13 +11154,13 @@ static "itemErrors": boolean
 
 constructor()
 
-public "superheated"(): $RecipeJS
-public "heatLevel"(arg0: $HeatCondition$Type): $RecipeJS
 public "inputItemHasPriority"(from: any): boolean
-public "readOutputItem"(from: any): $OutputItem
 public "writeInputFluid"(value: $InputFluid$Type): $JsonElement
 public "readInputFluid"(from: any): $InputFluid
 public "inputFluidHasPriority"(from: any): boolean
+public "superheated"(): $RecipeJS
+public "heatLevel"(arg0: $HeatCondition$Type): $RecipeJS
+public "readOutputItem"(from: any): $OutputItem
 public "heated"(): $RecipeJS
 public "lowheated"(): $RecipeJS
 }
@@ -11206,19 +11212,19 @@ import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packa
 import {$SimpleWaterloggedBlock, $SimpleWaterloggedBlock$Type} from "packages/net/minecraft/world/level/block/$SimpleWaterloggedBlock"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$RandomTickCallbackJS, $RandomTickCallbackJS$Type} from "packages/dev/latvian/mods/kubejs/block/$RandomTickCallbackJS"
-import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$MutableComponent, $MutableComponent$Type} from "packages/net/minecraft/network/chat/$MutableComponent"
+import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
@@ -11279,14 +11285,17 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(p: $BlockBuilder$Type)
 
 public "getBlockBuilder"(): $BlockBuilder
-public "isRandomlyTicking"(state: $BlockState$Type): boolean
-public "propagatesSkylightDown"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
-public "wasExploded"(level: $Level$Type, blockPos: $BlockPos$Type, explosion: $Explosion$Type): void
-public "stepOn"(level: $Level$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, entity: $Entity$Type): void
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(level: $Level$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, livingEntity: $LivingEntity$Type, itemStack: $ItemStack$Type): void
-public "fallOn"(level: $Level$Type, blockState: $BlockState$Type, blockPos: $BlockPos$Type, entity: $Entity$Type, f: float): void
-public "updateEntityAfterFallOn"(blockGetter: $BlockGetter$Type, entity: $Entity$Type): void
+public "getName"(): $MutableComponent
+/**
+ * 
+ * @deprecated
+ */
+public "getVisualShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 /**
  * 
  * @deprecated
@@ -11317,22 +11326,18 @@ public "getShadeBrightness"(state: $BlockState$Type, level: $BlockGetter$Type, p
  * @deprecated
  */
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-/**
- * 
- * @deprecated
- */
-public "getVisualShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, ctx: $CollisionContext$Type): $VoxelShape
-/**
- * 
- * @deprecated
- */
-public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getName"(): $MutableComponent
+public "setPlacedBy"(level: $Level$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, livingEntity: $LivingEntity$Type, itemStack: $ItemStack$Type): void
+public "fallOn"(level: $Level$Type, blockState: $BlockState$Type, blockPos: $BlockPos$Type, entity: $Entity$Type, f: float): void
+public "updateEntityAfterFallOn"(blockGetter: $BlockGetter$Type, entity: $Entity$Type): void
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
+public "propagatesSkylightDown"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
+public "wasExploded"(level: $Level$Type, blockPos: $BlockPos$Type, explosion: $Explosion$Type): void
+public "stepOn"(level: $Level$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, entity: $Entity$Type): void
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, fluid: $Fluid$Type): boolean
 public "placeLiquid"(levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, fluidState: $FluidState$Type): boolean
 public "pickupBlock"(levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): $ItemStack
 public "getPickupSound"(): $Optional<($SoundEvent)>
-public "setNameKey"(key: string): void
 public "getIdLocation"(): $ResourceLocation
 public "setBlockBuilder"(b: $BlockBuilder$Type): void
 public "getTypeData"(): $CompoundTag
@@ -11344,13 +11349,13 @@ public "setSoundType"(v: $SoundType$Type): void
 public "setFriction"(v: float): void
 public "setSpeedFactor"(v: float): void
 public "setJumpFactor"(v: float): void
+public "setNameKey"(key: string): void
 public "getId"(): string
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
 get "blockBuilder"(): $BlockBuilder
 get "name"(): $MutableComponent
 get "pickupSound"(): $Optional<($SoundEvent)>
-set "nameKey"(value: string)
 get "idLocation"(): $ResourceLocation
 set "blockBuilder"(value: $BlockBuilder$Type)
 get "typeData"(): $CompoundTag
@@ -11361,6 +11366,7 @@ set "soundType"(value: $SoundType$Type)
 set "friction"(value: float)
 set "speedFactor"(value: float)
 set "jumpFactor"(value: float)
+set "nameKey"(value: string)
 get "id"(): string
 }
 /**
@@ -11431,13 +11437,13 @@ readonly "constants": $Map<(string), ($Unit)>
 
 constructor()
 
-public "addConstant"(s: string, u: $Unit$Type): void
-public "isDebug"(): boolean
 public "parse"(input: string): $Unit
 public "sub"(): $UnitContext
+public "addConstant"(s: string, u: $Unit$Type): void
+public "isDebug"(): boolean
 public "createStream"(input: string): $UnitTokenStream
-public "getFunctionFactory"(name: string): $FunctionFactory
 public "addFunction"(factory: $FunctionFactory$Type): void
+public "getFunctionFactory"(name: string): $FunctionFactory
 public "debugInfo"(s: string, values: $Collection$Type<(any)>): void
 public "debugInfo"(s: string): void
 public "pushDebug"(): void
@@ -11685,8 +11691,8 @@ import {$MinecraftServer, $MinecraftServer$Type} from "packages/net/minecraft/se
 import {$GameProfile, $GameProfile$Type} from "packages/com/mojang/authlib/$GameProfile"
 import {$EntityPotionEffectsJS, $EntityPotionEffectsJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$EntityPotionEffectsJS"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$RayTraceResultJS, $RayTraceResultJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$RayTraceResultJS"
 import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
@@ -11699,43 +11705,43 @@ import {$AttributeModifier$Operation, $AttributeModifier$Operation$Type} from "p
 
 export interface $LivingEntityKJS extends $EntityKJS {
 
- "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
- "getReachDistance"(): double
- "isUndead"(): boolean
- "setHeadArmorItem"(item: $ItemStack$Type): void
- "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
- "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
- "getAttributeTotalValue"(attribute: $Attribute$Type): double
- "setMaxHealth"(hp: float): void
- "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
- "getAttributeBaseValue"(attribute: $Attribute$Type): double
- "getPotionEffects"(): $EntityPotionEffectsJS
- "getHeadArmorItem"(): $ItemStack
- "getOffHandItem"(): $ItemStack
- "setMainHandItem"(item: $ItemStack$Type): void
- "getMainHandItem"(): $ItemStack
- "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
- "setOffHandItem"(item: $ItemStack$Type): void
- "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
- "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
- "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
- "getChestArmorItem"(): $ItemStack
- "getLegsArmorItem"(): $ItemStack
- "setChestArmorItem"(item: $ItemStack$Type): void
- "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
- "damageHeldItem"(): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
- "damageEquipment"(slot: $EquipmentSlot$Type): void
- "getTotalMovementSpeed"(): double
- "setFeetArmorItem"(item: $ItemStack$Type): void
- "getFeetArmorItem"(): $ItemStack
- "setLegsArmorItem"(item: $ItemStack$Type): void
- "foodEaten"(is: $ItemStack$Type): void
  "isLiving"(): boolean
  "rayTrace"(): $RayTraceResultJS
+ "foodEaten"(is: $ItemStack$Type): void
+ "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
+ "getReachDistance"(): double
+ "getAttributeTotalValue"(attribute: $Attribute$Type): double
+ "getAttributeBaseValue"(attribute: $Attribute$Type): double
+ "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
+ "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
+ "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
+ "setMaxHealth"(hp: float): void
+ "isUndead"(): boolean
+ "getPotionEffects"(): $EntityPotionEffectsJS
+ "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
+ "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
+ "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
+ "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
+ "getMainHandItem"(): $ItemStack
+ "setMainHandItem"(item: $ItemStack$Type): void
+ "getOffHandItem"(): $ItemStack
+ "setOffHandItem"(item: $ItemStack$Type): void
+ "getHeadArmorItem"(): $ItemStack
+ "setHeadArmorItem"(item: $ItemStack$Type): void
+ "getChestArmorItem"(): $ItemStack
+ "setChestArmorItem"(item: $ItemStack$Type): void
+ "getLegsArmorItem"(): $ItemStack
+ "setLegsArmorItem"(item: $ItemStack$Type): void
+ "getFeetArmorItem"(): $ItemStack
+ "setFeetArmorItem"(item: $ItemStack$Type): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageEquipment"(slot: $EquipmentSlot$Type): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageHeldItem"(): void
+ "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
+ "getTotalMovementSpeed"(): double
  "getDefaultMovementSpeed"(): double
  "setDefaultMovementSpeed"(speed: double): void
  "setMovementSpeedAddition"(speed: double): void
@@ -11743,47 +11749,48 @@ export interface $LivingEntityKJS extends $EntityKJS {
  "setTotalMovementSpeedMultiplier"(speed: double): void
  "swing"(hand: $InteractionHand$Type): void
  "swing"(): void
- "getName"(): $Component
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
- "getType"(): string
- "getServer"(): $MinecraftServer
- "getLevel"(): $Level
- "getProfile"(): $GameProfile
- "isPlayer"(): boolean
- "getItem"(): $ItemStack
- "isFrame"(): boolean
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "getName"(): $Component
+ "getScriptType"(): $ScriptType
+ "getBlock"(): $BlockContainerJS
  "isMonster"(): boolean
  "isAnimal"(): boolean
- "isAmbientCreature"(): boolean
- "isWaterCreature"(): boolean
- "isPeacefulCreature"(): boolean
- "setPosition"(block: $BlockContainerJS$Type): void
- "setPosition"(x: double, y: double, z: double): void
- "getMotionX"(): double
- "setMotionX"(x: double): void
- "getMotionY"(): double
- "setMotionY"(y: double): void
- "getMotionZ"(): double
- "setMotionZ"(z: double): void
- "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
  "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
  "setRotation"(yaw: float, pitch: float): void
+ "mergeNbt"(tag: $CompoundTag$Type): $Entity
  "getPassengers"(): $EntityArrayList
  "getTeamId"(): string
  "isOnScoreboardTeam"(teamId: string): boolean
  "getFacing"(): $Direction
- "mergeNbt"(tag: $CompoundTag$Type): $Entity
+ "getItem"(): $ItemStack
+ "isPeacefulCreature"(): boolean
+ "setPosition"(x: double, y: double, z: double): void
+ "setPosition"(block: $BlockContainerJS$Type): void
+ "getMotionZ"(): double
+ "getMotionX"(): double
+ "setMotionX"(x: double): void
+ "getMotionY"(): double
+ "setMotionY"(y: double): void
+ "setMotionZ"(z: double): void
+ "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isAmbientCreature"(): boolean
+ "isWaterCreature"(): boolean
+ "isFrame"(): boolean
+ "getLevel"(): $Level
+ "getServer"(): $MinecraftServer
+ "isPlayer"(): boolean
+ "getType"(): string
+ "getProfile"(): $GameProfile
  "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
  "playSound"(id: $SoundEvent$Type): void
- "getDistance"(pos: $BlockPos$Type): double
  "getDistance"(x: double, y: double, z: double): double
+ "getDistance"(pos: $BlockPos$Type): double
  "getDistanceSq"(pos: $BlockPos$Type): double
  "rayTrace"(distance: double): $RayTraceResultJS
  "rayTrace"(distance: double, fluids: boolean): $RayTraceResultJS
- "getScriptType"(): $ScriptType
- "getBlock"(): $BlockContainerJS
+ "tell"(message: $Component$Type): void
  "setX"(x: double): void
  "setY"(y: double): void
  "setZ"(z: double): void
@@ -11791,7 +11798,6 @@ export interface $LivingEntityKJS extends $EntityKJS {
  "setNbt"(nbt: $CompoundTag$Type): void
  "spawn"(): void
  "attack"(hp: float): void
- "tell"(message: $Component$Type): void
  "getPersistentData"(): $CompoundTag
  "setStatusMessage"(message: $Component$Type): void
 }
@@ -11850,9 +11856,13 @@ export class $TextWrapper {
 constructor()
 
 /**
- * Returns a component of the input, colored dark gray
+ * Returns a plain component of the input
  */
-public static "darkGray"(text: any): $MutableComponent
+public static "literal"(text: string): $MutableComponent
+/**
+ * Returns a component of the input, colored red
+ */
+public static "red"(text: any): $MutableComponent
 /**
  * Returns a plain component of the passed in string, even if empty
  */
@@ -11862,17 +11872,21 @@ public static "string"(text: string): $MutableComponent
  */
 public static "gray"(text: any): $MutableComponent
 /**
+ * Returns a component of the input, colored dark gray
+ */
+public static "darkGray"(text: any): $MutableComponent
+/**
  * Checks if the passed in component, and all its children are empty
  */
 public static "isEmpty"(component: $Component$Type): boolean
 /**
- * Joins all components
- */
-public static "join"(...texts: ($Component$Type)[]): $MutableComponent
-/**
  * Joins all components in the list with the separator component
  */
 public static "join"(separator: $MutableComponent$Type, texts: $Iterable$Type<(any)>): $MutableComponent
+/**
+ * Joins all components
+ */
+public static "join"(...texts: ($Component$Type)[]): $MutableComponent
 /**
  * Returns a Component of the input
  */
@@ -11882,45 +11896,17 @@ public static "of"(o: $MutableComponent$Type): $MutableComponent
  */
 public static "empty"(): $MutableComponent
 /**
- * Returns a component of the input, colored red
- */
-public static "red"(text: any): $MutableComponent
-/**
- * Returns a plain component of the input
- */
-public static "literal"(text: string): $MutableComponent
-/**
- * Returns a translatable component of the input key, with args of the objects
- */
-public static "translatable"(key: string, ...objects: (any)[]): $MutableComponent
-/**
  * Returns a translatable component of the input key
  */
 public static "translatable"(key: string): $MutableComponent
 /**
  * Returns a translatable component of the input key, with args of the objects
  */
-public static "translate"(key: string, ...objects: (any)[]): $MutableComponent
-/**
- * Returns a translatable component of the input key
- */
-public static "translate"(key: string): $MutableComponent
-/**
- * Returns a score component of the input objective, for the provided selector
- */
-public static "score"(selector: string, objective: string): $MutableComponent
+public static "translatable"(key: string, ...objects: (any)[]): $MutableComponent
 /**
  * Returns a component of the input, colored black
  */
 public static "black"(text: any): $MutableComponent
-/**
- * Returns a component of the input, colored white
- */
-public static "white"(text: any): $MutableComponent
-/**
- * Returns a component of the input, colored yellow
- */
-public static "yellow"(text: any): $MutableComponent
 /**
  * Returns a component of the input, colored blue
  */
@@ -11930,13 +11916,37 @@ public static "blue"(text: any): $MutableComponent
  */
 public static "green"(text: any): $MutableComponent
 /**
+ * Returns a component displaying all entities matching the input selector, with a custom separator
+ */
+public static "selector"(selector: string, separator: $Component$Type): $MutableComponent
+/**
  * Returns a component displaying all entities matching the input selector
  */
 public static "selector"(selector: string): $MutableComponent
 /**
- * Returns a component displaying all entities matching the input selector, with a custom separator
+ * Returns a component of the input, colored white
  */
-public static "selector"(selector: string, separator: $Component$Type): $MutableComponent
+public static "white"(text: any): $MutableComponent
+/**
+ * Returns a component of the input, colored yellow
+ */
+public static "yellow"(text: any): $MutableComponent
+/**
+ * Returns a score component of the input objective, for the provided selector
+ */
+public static "score"(selector: string, objective: string): $MutableComponent
+/**
+ * Returns a translatable component of the input key
+ */
+public static "translate"(key: string): $MutableComponent
+/**
+ * Returns a translatable component of the input key, with args of the objects
+ */
+public static "translate"(key: string, ...objects: (any)[]): $MutableComponent
+/**
+ * Returns a ClickEvent of the input
+ */
+public static "clickEventOf"(o: any): $ClickEvent
 /**
  * Returns a colorful representation of the input nbt. Useful for displaying NBT to the player
  */
@@ -11946,29 +11956,25 @@ public static "prettyPrintNbt"(tag: $Tag$Type): $Component
  */
 public static "lightPurple"(text: any): $MutableComponent
 /**
- * Returns a ClickEvent of the input
+ * Returns a keybinding component of the input keybinding descriptor
  */
-public static "clickEventOf"(o: any): $ClickEvent
+public static "keybind"(keybind: string): $MutableComponent
 /**
  * Returns a component of the input, colored gold
  */
 public static "gold"(text: any): $MutableComponent
 /**
- * Returns a keybinding component of the input keybinding descriptor
- */
-public static "keybind"(keybind: string): $MutableComponent
-/**
  * Returns a plain component of the string, or empty if it is an empty string
  */
 public static "ofString"(s: string): $MutableComponent
 /**
- * Returns a component of the input, colored aqua
- */
-public static "aqua"(text: any): $MutableComponent
-/**
  * Returns a component of the input, colored dark green
  */
 public static "darkGreen"(text: any): $MutableComponent
+/**
+ * Returns a component of the input, colored aqua
+ */
+public static "aqua"(text: any): $MutableComponent
 /**
  * Returns a component of the input, colored dark blue
  */
@@ -12016,14 +12022,14 @@ readonly "names": $Set<(string)>
 
 constructor(component: $RecipeComponent$Type<(T)>, name: string)
 
+public "optional"(value: $RecipeOptional$Type<(T)>): $RecipeKey<(T)>
+public "optional"(): boolean
+public "optional"(value: T): $RecipeKey<(T)>
+public "alt"(name: string): $RecipeKey<(T)>
+public "alt"(...names: (string)[]): $RecipeKey<(T)>
 public "preferred"(name: string): $RecipeKey<(T)>
 public "toString"(): string
 public "hashCode"(): integer
-public "optional"(): boolean
-public "optional"(value: $RecipeOptional$Type<(T)>): $RecipeKey<(T)>
-public "optional"(value: T): $RecipeKey<(T)>
-public "alt"(...names: (string)[]): $RecipeKey<(T)>
-public "alt"(name: string): $RecipeKey<(T)>
 public "alwaysWrite"(): $RecipeKey<(T)>
 public "defaultOptional"(): $RecipeKey<(T)>
 public "includeInAutoConstructors"(): boolean
@@ -12079,8 +12085,8 @@ constructor()
 
 public "getValue"(filter: $ItemStack$Type): string
 public "setValue"(filter: $ItemStack$Type, v: string): void
-public "resetFilterData"(filter: $ItemStack$Type): void
 public "getStringValueData"<T extends $StringValueData<(any)>>(filter: $ItemStack$Type): T
+public "resetFilterData"(filter: $ItemStack$Type): void
 public "use"(world: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "createData"(arg0: $ItemStack$Type): $StringValueData<(any)>
 public "addInfo"(filter: $ItemStack$Type, info: $FilterInfo$Type, expanded: boolean): void
@@ -12124,16 +12130,16 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $ServerLevelKJS extends $LevelKJS, $WithPersistentData {
 
- "spawnLightning"(x: double, y: double, z: double, effectOnly: boolean, player: $ServerPlayer$Type): void
- "spawnLightning"(x: double, y: double, z: double, effectOnly: boolean): void
- "setTime"(time: long): void
  "getSide"(): $ScriptType
  "getEntities"(): $EntityArrayList
  "spawnParticles"(options: $ParticleOptions$Type, overrideLimiter: boolean, x: double, y: double, z: double, vx: double, vy: double, vz: double, count: integer, speed: double): void
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
+ "spawnLightning"(x: double, y: double, z: double, effectOnly: boolean): void
+ "spawnLightning"(x: double, y: double, z: double, effectOnly: boolean, player: $ServerPlayer$Type): void
+ "setTime"(time: long): void
  "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "getDimension"(): $ResourceLocation
  "isOverworld"(): boolean
  "getBlock"(blockEntity: $BlockEntity$Type): $BlockContainerJS
@@ -12150,7 +12156,7 @@ export interface $ServerLevelKJS extends $LevelKJS, $WithPersistentData {
  "getData"(): $AttachedData<($Level)>
  "getDisplayName"(): $Component
 
-(x: double, y: double, z: double, effectOnly: boolean, player: $ServerPlayer$Type): void
+(): $ScriptType
 }
 
 export namespace $ServerLevelKJS {
@@ -12234,16 +12240,16 @@ public "enchantWithLevels"(levels: $NumberProvider$Type, treasure: boolean): $Fu
 public "enchantRandomly"(enchantments: ($ResourceLocation$Type)[]): $FunctionContainer
 public "furnaceSmelt"(): $FunctionContainer
 public "lootingEnchant"(count: $NumberProvider$Type, limit: integer): $FunctionContainer
-public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "damage"(damage: $NumberProvider$Type): $FunctionContainer
+public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "lootTable"(table: $ResourceLocation$Type, seed: long): $FunctionContainer
 public "copyName"(source: $CopyNameFunction$NameSource$Type): $FunctionContainer
 public "survivesExplosion"(): $ConditionContainer
+public "randomChance"(chance: double): $ConditionContainer
 public "randomChanceWithLooting"(chance: double, multiplier: double): $ConditionContainer
 public "entityProperties"(entity: $LootContext$EntityTarget$Type, properties: $JsonObject$Type): $ConditionContainer
 public "killedByPlayer"(): $ConditionContainer
 public "entityScores"(entity: $LootContext$EntityTarget$Type, scores: $Map$Type<(string), (any)>): $ConditionContainer
-public "randomChance"(chance: double): $ConditionContainer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12359,9 +12365,9 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 
 export interface $FilterInfo {
 
- "add"(arg0: $Component$Type): void
  "push"(): void
  "pop"(): void
+ "add"(arg0: $Component$Type): void
 }
 
 export namespace $FilterInfo {
@@ -12557,57 +12563,37 @@ constructor(context: $BlockPlaceContext$Type, block: $Block$Type)
  */
 public "getItem"(): $ItemStack
 /**
- * Get the horizontal rotation of the player
+ * Gets an array of all directions, ordered by which the player is looking closest to
  */
-public "getRotation"(): float
-/**
- * Set this block as waterlogged if it is in water
- */
-public "waterlogged"(): $BlockStateModifyPlacementCallbackJS
-/**
- * Set if this block is waterlogged or not
- */
-public "waterlogged"(waterlogged: boolean): $BlockStateModifyPlacementCallbackJS
-/**
- * Gets the level
- */
-public "getLevel"(): $Level
-/**
- * Gets the clicked block
- */
-public "getClickedBlock"(): $BlockContainerJS
-/**
- * Gets the nearest horizontal direction to where the player is looking. NORTH if there is no player
- */
-public "getHorizontalDirection"(): $Direction
+public "getNearestLookingDirections"(): ($Direction)[]
 /**
  * Gets the vertical direction (UP/DOWN) closest to where the player is currently looking
  */
 public "getNearestLookingVerticalDirection"(): $Direction
 /**
- * Gets an array of all directions, ordered by which the player is looking closest to
+ * Get the horizontal rotation of the player
  */
-public "getNearestLookingDirections"(): ($Direction)[]
+public "getRotation"(): float
 /**
- * Gets the clicked position in world
+ * Set if this block is waterlogged or not
  */
-public "getClickedPos"(): $BlockPos
+public "waterlogged"(waterlogged: boolean): $BlockStateModifyPlacementCallbackJS
 /**
- * Gets the direction closes to where the player is currently looking
+ * Set this block as waterlogged if it is in water
  */
-public "getNearestLookingDirection"(): $Direction
+public "waterlogged"(): $BlockStateModifyPlacementCallbackJS
 /**
- * Gets the position in the block-space of where it was clicked
+ * Gets the level
  */
-public "getClickLocation"(): $Vec3
+public "getLevel"(): $Level
 /**
- * Gets the facing direction of the clicked block face
+ * Gets the nearest horizontal direction to where the player is looking. NORTH if there is no player
  */
-public "getClickedFace"(): $Direction
+public "getHorizontalDirection"(): $Direction
 /**
- * Returns if the player is using the 'secondary' function of this item. Basically checks if they are holding shift
+ * Gets the clicked block
  */
-public "isSecondaryUseActive"(): boolean
+public "getClickedBlock"(): $BlockContainerJS
 /**
  * Gets the FluidSate at the clicked position
  */
@@ -12617,26 +12603,46 @@ public "getFluidStateAtClickedPos"(): $FluidState
  */
 public "isClickedPosIn"(fluid: $Fluid$Type): boolean
 /**
- * Returns if the block being placed is replacing the block clicked
- */
-public "replacingClickedOnBlock"(): boolean
-/**
  * Checks if the block currently occupying the position this is being placed in is the same block type.
  * Used for things like candles, where multiple can be in the same block-space.
  */
 public "isReplacingSelf"(): boolean
 /**
+ * Returns if the player is using the 'secondary' function of this item. Basically checks if they are holding shift
+ */
+public "isSecondaryUseActive"(): boolean
+/**
+ * Gets the position in the block-space of where it was clicked
+ */
+public "getClickLocation"(): $Vec3
+/**
+ * Gets the facing direction of the clicked block face
+ */
+public "getClickedFace"(): $Direction
+/**
+ * Gets the direction closes to where the player is currently looking
+ */
+public "getNearestLookingDirection"(): $Direction
+/**
+ * Returns if the block being placed is replacing the block clicked
+ */
+public "replacingClickedOnBlock"(): boolean
+/**
+ * Gets the clicked position in world
+ */
+public "getClickedPos"(): $BlockPos
+/**
  * Gets the player placing the block, if available
  */
 public "getPlayer"(): $Player
 /**
- * Gets the hand that is placing the block
- */
-public "getHand"(): $InteractionHand
-/**
  * Returns if the block being placed thinks it can be placed here. This is used for replacement checks, like placing blocks in water or tall grass
  */
 public "canPlace"(): boolean
+/**
+ * Gets the hand that is placing the block
+ */
+public "getHand"(): $InteractionHand
 /**
  * Returns if the hit posiiton in the block-space is inside the 1x1x1 cube of the block
  */
@@ -12646,19 +12652,19 @@ public "isInside"(): boolean
  */
 public "isInWater"(): boolean
 get "item"(): $ItemStack
+get "nearestLookingDirections"(): ($Direction)[]
+get "nearestLookingVerticalDirection"(): $Direction
 get "rotation"(): float
 get "level"(): $Level
-get "clickedBlock"(): $BlockContainerJS
 get "horizontalDirection"(): $Direction
-get "nearestLookingVerticalDirection"(): $Direction
-get "nearestLookingDirections"(): ($Direction)[]
-get "clickedPos"(): $BlockPos
-get "nearestLookingDirection"(): $Direction
-get "clickLocation"(): $Vec3
-get "clickedFace"(): $Direction
-get "secondaryUseActive"(): boolean
+get "clickedBlock"(): $BlockContainerJS
 get "fluidStateAtClickedPos"(): $FluidState
 get "replacingSelf"(): boolean
+get "secondaryUseActive"(): boolean
+get "clickLocation"(): $Vec3
+get "clickedFace"(): $Direction
+get "nearestLookingDirection"(): $Direction
+get "clickedPos"(): $BlockPos
 get "player"(): $Player
 get "hand"(): $InteractionHand
 get "inside"(): boolean
@@ -12683,12 +12689,12 @@ export class $LangEventJS$Key extends $Record {
 
 constructor(namespace: string, lang: string, key: string)
 
+public "lang"(): string
+public "namespace"(): string
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "key"(): string
-public "lang"(): string
-public "namespace"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12786,8 +12792,6 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "get"(): T
-public "toString"(): string
 /**
  * Sets the display name for this object, e.g. `Stone`.
  * 
@@ -12799,26 +12803,28 @@ public "displayName"(name: $Component$Type): $BuilderBase<(T)>
  */
 public "tag"(tag: $ResourceLocation$Type): $BuilderBase<(T)>
 public "createObject"(): T
+public "get"(): T
+public "toString"(): string
 /**
- * Combined method of formattedDisplayName().displayName(name).
+ * Sets the translation key for this object, e.g. `block.minecraft.stone`.
  */
-public "formattedDisplayName"(name: $Component$Type): $BuilderBase<(T)>
+public "translationKey"(key: string): $BuilderBase<(T)>
+public "generateDataJsons"(generator: $DataJsonGenerator$Type): void
+public "generateAssetJsons"(generator: $AssetJsonGenerator$Type): void
+public "generateLang"(lang: $LangEventJS$Type): void
 /**
  * Makes displayName() override language files.
  */
 public "formattedDisplayName"(): $BuilderBase<(T)>
+/**
+ * Combined method of formattedDisplayName().displayName(name).
+ */
+public "formattedDisplayName"(name: $Component$Type): $BuilderBase<(T)>
 public "getRegistryType"(): $RegistryInfo<(any)>
 public "transformObject"(obj: T): T
 public "createAdditionalObjects"(): void
 public "getTranslationKeyGroup"(): string
 public "getBuilderTranslationKey"(): string
-public "generateDataJsons"(generator: $DataJsonGenerator$Type): void
-public "generateAssetJsons"(generator: $AssetJsonGenerator$Type): void
-public "generateLang"(lang: $LangEventJS$Type): void
-/**
- * Sets the translation key for this object, e.g. `block.minecraft.stone`.
- */
-public "translationKey"(key: string): $BuilderBase<(T)>
 public "newID"(pre: string, post: string): $ResourceLocation
 get "registryType"(): $RegistryInfo<(any)>
 get "translationKeyGroup"(): string
@@ -13077,16 +13083,17 @@ constructor(is: $ItemStack$Type)
 
 public "save"(): void
 public "setChanged"(): void
-public "stillValid"(player: $Player$Type): boolean
-public "getMaxStackSize"(): integer
-public "getItems"(): $List<($ItemStack)>
-public "setItem"(index: integer, stack: $ItemStack$Type): void
-public "removeItem"(index: integer, count: integer): $ItemStack
-public "isEmpty"(): boolean
-public "clearContent"(): void
 public "getContainerSize"(): integer
 public "getItem"(index: integer): $ItemStack
 public "removeItemNoUpdate"(index: integer): $ItemStack
+public "removeItem"(index: integer, count: integer): $ItemStack
+public "isEmpty"(): boolean
+public "clearContent"(): void
+public "setItem"(index: integer, stack: $ItemStack$Type): void
+public "getMaxStackSize"(): integer
+public "stillValid"(player: $Player$Type): boolean
+public "getItems"(): $List<($ItemStack)>
+public "getBlock"(level: $Level$Type): $BlockContainerJS
 public "isMutable"(): boolean
 public "getSlots"(): integer
 public "getStackInSlot"(slot: integer): $ItemStack
@@ -13099,10 +13106,9 @@ public "getWidth"(): integer
 public "getHeight"(): integer
 public "setChanged"(): void
 public "asContainer"(): $Container
-public "getBlock"(level: $Level$Type): $BlockContainerJS
 public "kjs$self"(): $Container
-public "stopOpen"(arg0: $Player$Type): void
 public "startOpen"(arg0: $Player$Type): void
+public "stopOpen"(arg0: $Player$Type): void
 public "canPlaceItem"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "canTakeItem"(arg0: $Container$Type, arg1: integer, arg2: $ItemStack$Type): boolean
 public "countItem"(arg0: $Item$Type): integer
@@ -13112,26 +13118,26 @@ public static "stillValidBlockEntity"(arg0: $BlockEntity$Type, arg1: $Player$Typ
 public static "stillValidBlockEntity"(arg0: $BlockEntity$Type, arg1: $Player$Type, arg2: integer): boolean
 public "clear"(): void
 public static "tryClear"(arg0: any): void
-public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
-public "countNonEmpty"(): integer
-public "countNonEmpty"(ingredient: $Ingredient$Type): integer
-public "getAllItems"(): $List<($ItemStack)>
 public "isEmpty"(): boolean
+public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
+public "countNonEmpty"(ingredient: $Ingredient$Type): integer
+public "countNonEmpty"(): integer
+public "getAllItems"(): $List<($ItemStack)>
 public "clear"(ingredient: $Ingredient$Type): void
 public "find"(ingredient: $Ingredient$Type): integer
 public "find"(): integer
 public "count"(ingredient: $Ingredient$Type): integer
 public "count"(): integer
+get "containerSize"(): integer
+get "empty"(): boolean
 get "maxStackSize"(): integer
 get "items"(): $List<($ItemStack)>
-get "empty"(): boolean
-get "containerSize"(): integer
 get "mutable"(): boolean
 get "slots"(): integer
 get "width"(): integer
 get "height"(): integer
-get "allItems"(): $List<($ItemStack)>
 get "empty"(): boolean
+get "allItems"(): $List<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13158,8 +13164,8 @@ import {$ComponentRole, $ComponentRole$Type} from "packages/dev/latvian/mods/kub
 import {$RecipeComponentValue, $RecipeComponentValue$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$RecipeComponentValue"
 import {$TinyMap, $TinyMap$Type} from "packages/dev/latvian/mods/kubejs/util/$TinyMap"
 import {$Record, $Record$Type} from "packages/java/lang/$Record"
-import {$UnaryOperator, $UnaryOperator$Type} from "packages/java/util/function/$UnaryOperator"
 import {$OrRecipeComponent, $OrRecipeComponent$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$OrRecipeComponent"
+import {$UnaryOperator, $UnaryOperator$Type} from "packages/java/util/function/$UnaryOperator"
 import {$RecipeComponent, $RecipeComponent$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$RecipeComponent"
 import {$RecipeJS, $RecipeJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$RecipeJS"
 import {$TypeDescJS, $TypeDescJS$Type} from "packages/dev/latvian/mods/kubejs/typings/desc/$TypeDescJS"
@@ -13173,6 +13179,7 @@ export class $ArrayRecipeComponent<T> extends $Record implements $RecipeComponen
 
 constructor(component: $RecipeComponent$Type<(T)>, canWriteSelf: boolean, arrayClass: $Class$Type<(any)>, emptyArray: (T)[])
 
+public "emptyArray"(): (T)[]
 public "add"(array: (T)[], value: T): (T)[]
 public "remove"(array: (T)[], index: integer): (T)[]
 public "equals"(o: any): boolean
@@ -13183,18 +13190,24 @@ public "componentType"(): string
 public "addAll"(array: (T)[], ...values: (T)[]): (T)[]
 public "component"(): $RecipeComponent<(T)>
 public "write"(recipe: $RecipeJS$Type, value: (T)[]): $JsonElement
+public "read"(recipe: $RecipeJS$Type, from: any): (T)[]
 public "arrayClass"(): $Class<(any)>
-public "emptyArray"(): (T)[]
-public "componentClass"(): $Class<(any)>
-public "replaceOutput"(recipe: $RecipeJS$Type, original: (T)[], match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): (T)[]
 public "replaceInput"(recipe: $RecipeJS$Type, original: (T)[], match: $ReplacementMatch$Type, arg3: $InputReplacement$Type): (T)[]
+public "replaceOutput"(recipe: $RecipeJS$Type, original: (T)[], match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): (T)[]
+public "componentClass"(): $Class<(any)>
 public "constructorDescription"(ctx: $DescriptionContext$Type): $TypeDescJS
 public "hasPriority"(recipe: $RecipeJS$Type, from: any): boolean
 public "canWriteSelf"(): boolean
 public "role"(): $ComponentRole
 public "isOutput"(recipe: $RecipeJS$Type, value: (T)[], match: $ReplacementMatch$Type): boolean
 public "isInput"(recipe: $RecipeJS$Type, value: (T)[], match: $ReplacementMatch$Type): boolean
+public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<((T)[]), (O)>
+public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<((T)[]), (O)>
 public "asArray"(): $ArrayRecipeComponent<((T)[])>
+/**
+ * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
+ */
+public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<((T)[])>
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read, and the mappingFrom function after the component writes to json, before that json is saved
  */
@@ -13202,14 +13215,8 @@ public "map"(mappingTo: $UnaryOperator$Type<(any)>, mappingFrom: $UnaryOperator$
 public static "builder"(): $RecipeComponentBuilder
 public static "builder"(...key: ($RecipeKey$Type<(any)>)[]): $RecipeComponentBuilder
 public "key"(name: string): $RecipeKey<((T)[])>
-public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<((T)[]), (O)>
-public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<((T)[]), (O)>
-/**
- * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
- */
-public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<((T)[])>
-public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<((T)[])>, json: $JsonObject$Type): void
 public "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<((T)[])>, json: $JsonObject$Type): void
+public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<((T)[])>, json: $JsonObject$Type): void
 public "asMap"<K>(key: $RecipeComponent$Type<(K)>): $RecipeComponent<($TinyMap<(K), ((T)[])>)>
 public "readFromMap"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<((T)[])>, map: $Map$Type<(any), (any)>): void
 public "checkValueHasChanged"(oldValue: (T)[], newValue: (T)[]): boolean
@@ -13261,8 +13268,8 @@ import {$GameProfile, $GameProfile$Type} from "packages/com/mojang/authlib/$Game
 import {$AbstractContainerMenu, $AbstractContainerMenu$Type} from "packages/net/minecraft/world/inventory/$AbstractContainerMenu"
 import {$EntityPotionEffectsJS, $EntityPotionEffectsJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$EntityPotionEffectsJS"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$AttachedData, $AttachedData$Type} from "packages/dev/latvian/mods/kubejs/util/$AttachedData"
 import {$KubeJSInventoryListener, $KubeJSInventoryListener$Type} from "packages/dev/latvian/mods/kubejs/player/$KubeJSInventoryListener"
 import {$PlayerStatsJS, $PlayerStatsJS$Type} from "packages/dev/latvian/mods/kubejs/player/$PlayerStatsJS"
@@ -13279,81 +13286,81 @@ import {$PlayerKJS, $PlayerKJS$Type} from "packages/dev/latvian/mods/kubejs/core
 
 export interface $ClientPlayerKJS extends $PlayerKJS {
 
- "isMiningBlock"(): boolean
- "getStats"(): $PlayerStatsJS
  "sendData"(channel: string, data: $CompoundTag$Type): void
+ "getStats"(): $PlayerStatsJS
+ "isMiningBlock"(): boolean
  "isSelf"(): boolean
  "paint"(tag: $CompoundTag$Type): void
  "notify"(notification: $NotificationBuilder$Type): void
  "setStatusMessage"(message: $Component$Type): void
- "getProfile"(): $GameProfile
  "isPlayer"(): boolean
- "sendInventoryUpdate"(): void
- "setSaturation"(saturation: float): void
- "giveInHand"(item: $ItemStack$Type): void
- "addExhaustion"(exhaustion: float): void
- "getSelectedSlot"(): integer
- "setFoodLevel"(foodLevel: integer): void
- "getFoodLevel"(): integer
- "setSelectedSlot"(index: integer): void
- "getSaturation"(): float
- "addFood"(f: integer, m: float): void
- "setMouseItem"(item: $ItemStack$Type): void
- "getMouseItem"(): $ItemStack
- "addItemCooldown"(item: $Item$Type, ticks: integer): void
- "getXpLevel"(): integer
- "setXpLevel"(l: integer): void
- "boostElytraFlight"(): void
- "addXPLevels"(l: integer): void
+ "getProfile"(): $GameProfile
  "getOpenInventory"(): $AbstractContainerMenu
+ "addItemCooldown"(item: $Item$Type, ticks: integer): void
+ "getSaturation"(): float
+ "boostElytraFlight"(): void
+ "getXpLevel"(): integer
+ "addXPLevels"(l: integer): void
+ "setXpLevel"(l: integer): void
+ "setSaturation"(saturation: float): void
+ "addExhaustion"(exhaustion: float): void
+ "sendInventoryUpdate"(): void
+ "setFoodLevel"(foodLevel: integer): void
+ "giveInHand"(item: $ItemStack$Type): void
+ "getSelectedSlot"(): integer
+ "setSelectedSlot"(index: integer): void
+ "getMouseItem"(): $ItemStack
+ "setMouseItem"(item: $ItemStack$Type): void
+ "addFood"(f: integer, m: float): void
+ "getFoodLevel"(): integer
  "getStages"(): $Stages
  "getInventory"(): $InventoryKJS
  "getCraftingGrid"(): $InventoryKJS
  "getInventoryChangeListener"(): $KubeJSInventoryListener
- "spawn"(): void
  "isFake"(): boolean
  "give"(item: $ItemStack$Type): void
  "addXP"(xp: integer): void
  "setXp"(xp: integer): void
  "getXp"(): integer
  "notify"(title: $Component$Type, text: $Component$Type): void
- "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
- "getReachDistance"(): double
- "isUndead"(): boolean
- "setHeadArmorItem"(item: $ItemStack$Type): void
- "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
- "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
- "getAttributeTotalValue"(attribute: $Attribute$Type): double
- "setMaxHealth"(hp: float): void
- "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
- "getAttributeBaseValue"(attribute: $Attribute$Type): double
- "getPotionEffects"(): $EntityPotionEffectsJS
- "getHeadArmorItem"(): $ItemStack
- "getOffHandItem"(): $ItemStack
- "setMainHandItem"(item: $ItemStack$Type): void
- "getMainHandItem"(): $ItemStack
- "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
- "setOffHandItem"(item: $ItemStack$Type): void
- "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
- "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
- "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
- "getChestArmorItem"(): $ItemStack
- "getLegsArmorItem"(): $ItemStack
- "setChestArmorItem"(item: $ItemStack$Type): void
- "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
- "damageHeldItem"(): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
- "damageEquipment"(slot: $EquipmentSlot$Type): void
- "getTotalMovementSpeed"(): double
- "setFeetArmorItem"(item: $ItemStack$Type): void
- "getFeetArmorItem"(): $ItemStack
- "setLegsArmorItem"(item: $ItemStack$Type): void
- "foodEaten"(is: $ItemStack$Type): void
+ "spawn"(): void
  "isLiving"(): boolean
  "rayTrace"(): $RayTraceResultJS
+ "foodEaten"(is: $ItemStack$Type): void
+ "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
+ "getReachDistance"(): double
+ "getAttributeTotalValue"(attribute: $Attribute$Type): double
+ "getAttributeBaseValue"(attribute: $Attribute$Type): double
+ "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
+ "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
+ "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
+ "setMaxHealth"(hp: float): void
+ "isUndead"(): boolean
+ "getPotionEffects"(): $EntityPotionEffectsJS
+ "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
+ "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
+ "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
+ "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
+ "getMainHandItem"(): $ItemStack
+ "setMainHandItem"(item: $ItemStack$Type): void
+ "getOffHandItem"(): $ItemStack
+ "setOffHandItem"(item: $ItemStack$Type): void
+ "getHeadArmorItem"(): $ItemStack
+ "setHeadArmorItem"(item: $ItemStack$Type): void
+ "getChestArmorItem"(): $ItemStack
+ "setChestArmorItem"(item: $ItemStack$Type): void
+ "getLegsArmorItem"(): $ItemStack
+ "setLegsArmorItem"(item: $ItemStack$Type): void
+ "getFeetArmorItem"(): $ItemStack
+ "setFeetArmorItem"(item: $ItemStack$Type): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageEquipment"(slot: $EquipmentSlot$Type): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageHeldItem"(): void
+ "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
+ "getTotalMovementSpeed"(): double
  "getDefaultMovementSpeed"(): double
  "setDefaultMovementSpeed"(speed: double): void
  "setMovementSpeedAddition"(speed: double): void
@@ -13363,55 +13370,55 @@ export interface $ClientPlayerKJS extends $PlayerKJS {
  "swing"(): void
  "sendData"(channel: string): void
  "getData"(): $AttachedData<($Player)>
- "getName"(): $Component
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
- "getType"(): string
- "getServer"(): $MinecraftServer
- "getLevel"(): $Level
- "getItem"(): $ItemStack
- "isFrame"(): boolean
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "getName"(): $Component
+ "getScriptType"(): $ScriptType
+ "getBlock"(): $BlockContainerJS
  "isMonster"(): boolean
  "isAnimal"(): boolean
- "isAmbientCreature"(): boolean
- "isWaterCreature"(): boolean
- "isPeacefulCreature"(): boolean
- "setPosition"(block: $BlockContainerJS$Type): void
- "setPosition"(x: double, y: double, z: double): void
- "getMotionX"(): double
- "setMotionX"(x: double): void
- "getMotionY"(): double
- "setMotionY"(y: double): void
- "getMotionZ"(): double
- "setMotionZ"(z: double): void
- "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
  "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
  "setRotation"(yaw: float, pitch: float): void
+ "mergeNbt"(tag: $CompoundTag$Type): $Entity
  "getPassengers"(): $EntityArrayList
  "getTeamId"(): string
  "isOnScoreboardTeam"(teamId: string): boolean
  "getFacing"(): $Direction
- "mergeNbt"(tag: $CompoundTag$Type): $Entity
+ "getItem"(): $ItemStack
+ "isPeacefulCreature"(): boolean
+ "setPosition"(x: double, y: double, z: double): void
+ "setPosition"(block: $BlockContainerJS$Type): void
+ "getMotionZ"(): double
+ "getMotionX"(): double
+ "setMotionX"(x: double): void
+ "getMotionY"(): double
+ "setMotionY"(y: double): void
+ "setMotionZ"(z: double): void
+ "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isAmbientCreature"(): boolean
+ "isWaterCreature"(): boolean
+ "isFrame"(): boolean
+ "getLevel"(): $Level
+ "getServer"(): $MinecraftServer
+ "getType"(): string
  "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
  "playSound"(id: $SoundEvent$Type): void
- "getDistance"(pos: $BlockPos$Type): double
  "getDistance"(x: double, y: double, z: double): double
+ "getDistance"(pos: $BlockPos$Type): double
  "getDistanceSq"(pos: $BlockPos$Type): double
  "rayTrace"(distance: double): $RayTraceResultJS
  "rayTrace"(distance: double, fluids: boolean): $RayTraceResultJS
- "getScriptType"(): $ScriptType
- "getBlock"(): $BlockContainerJS
+ "tell"(message: $Component$Type): void
  "setX"(x: double): void
  "setY"(y: double): void
  "setZ"(z: double): void
  "getNbt"(): $CompoundTag
  "setNbt"(nbt: $CompoundTag$Type): void
  "attack"(hp: float): void
- "tell"(message: $Component$Type): void
  "getPersistentData"(): $CompoundTag
 
-(): boolean
+(channel: string, data: $CompoundTag$Type): void
 }
 
 export namespace $ClientPlayerKJS {
@@ -13460,11 +13467,11 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 
 export interface $MessageSenderKJS {
 
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "tell"(message: $Component$Type): void
 }
 
@@ -13526,16 +13533,16 @@ export class $ExplosionEventJS extends $LevelEventJS {
 constructor(level: $Level$Type, explosion: $Explosion$Type)
 
 public "getPosition"(): $Vec3
-public "getX"(): double
 public "getBlock"(): $BlockContainerJS
 public "getY"(): double
+public "getX"(): double
 public "getExploder"(): $LivingEntity
 public "getLevel"(): $Level
 public "getZ"(): double
 get "position"(): $Vec3
-get "x"(): double
 get "block"(): $BlockContainerJS
 get "y"(): double
+get "x"(): double
 get "exploder"(): $LivingEntity
 get "level"(): $Level
 get "z"(): double
@@ -13603,12 +13610,12 @@ export class $CustomCommandEventJS extends $EntityEventJS {
 constructor(l: $Level$Type, e: $Entity$Type, p: $BlockPos$Type, i: string)
 
 public "getEntity"(): $Entity
-public "getId"(): string
 public "getBlock"(): $BlockContainerJS
+public "getId"(): string
 public "getLevel"(): $Level
 get "entity"(): $Entity
-get "id"(): string
 get "block"(): $BlockContainerJS
+get "id"(): string
 get "level"(): $Level
 }
 /**
@@ -13682,9 +13689,9 @@ public "addConstructor"(factory: $RecipeConstructor$Factory$Type, ...keys: ($Rec
 public "addConstructor"(...keys: ($RecipeKey$Type<(any)>)[]): $RecipeSchema
 public "constructors"(): $Int2ObjectMap<($RecipeConstructor)>
 public "outputCount"(): integer
-public "deserialize"(type: $RecipeTypeFunction$Type, id: $ResourceLocation$Type, json: $JsonObject$Type): $RecipeJS
-public "uniqueId"(uniqueIdFunction: $Function$Type<($RecipeJS$Type), (string)>): $RecipeSchema
 public "uuid"(): $UUID
+public "uniqueId"(uniqueIdFunction: $Function$Type<($RecipeJS$Type), (string)>): $RecipeSchema
+public "deserialize"(type: $RecipeTypeFunction$Type, id: $ResourceLocation$Type, json: $JsonObject$Type): $RecipeJS
 public "minRequiredArguments"(): integer
 public static "normalizeId"(id: string): string
 public "uniqueOutputId"(resultItemKey: $RecipeKey$Type<($OutputItem$Type)>): $RecipeSchema
@@ -13813,6 +13820,29 @@ constructor(properties: $FoodProperties$Type)
 
 public "build"(): $FoodProperties
 /**
+ * Sets the saturation modifier. Note that the saturation restored is hunger * saturation.
+ */
+public "saturation"(s: float): $FoodBuilder
+/**
+ * Sets whether the food is always edible.
+ */
+public "alwaysEdible"(flag: boolean): $FoodBuilder
+/**
+ * Sets the food is always edible.
+ */
+public "alwaysEdible"(): $FoodBuilder
+/**
+ * Removes an effect from the food.
+ */
+public "removeEffect"(mobEffect: $MobEffect$Type): $FoodBuilder
+/**
+ * Sets a callback that is called when the food is eaten.
+ * 
+ * Note: This is currently not having effect in `ItemEvents.modification`,
+ * as firing this callback requires an `ItemBuilder` instance in the `Item`.
+ */
+public "eaten"(e: $Consumer$Type<($FoodEatenEventJS$Type)>): $FoodBuilder
+/**
  * Adds an effect to the food. Note that the effect duration is in ticks (20 ticks = 1 second).
  * 
  * @param mobEffectId - The id of the effect. Can be either a string or a ResourceLocation.
@@ -13822,32 +13852,9 @@ public "build"(): $FoodProperties
  */
 public "effect"(mobEffectId: $ResourceLocation$Type, duration: integer, amplifier: integer, probability: float): $FoodBuilder
 /**
- * Sets the saturation modifier. Note that the saturation restored is hunger * saturation.
- */
-public "saturation"(s: float): $FoodBuilder
-/**
- * Sets the food is always edible.
- */
-public "alwaysEdible"(): $FoodBuilder
-/**
- * Sets whether the food is always edible.
- */
-public "alwaysEdible"(flag: boolean): $FoodBuilder
-/**
- * Removes an effect from the food.
- */
-public "removeEffect"(mobEffect: $MobEffect$Type): $FoodBuilder
-/**
  * Sets the hunger restored.
  */
 public "hunger"(h: integer): $FoodBuilder
-/**
- * Sets a callback that is called when the food is eaten.
- * 
- * Note: This is currently not having effect in `ItemEvents.modification`,
- * as firing this callback requires an `ItemBuilder` instance in the `Item`.
- */
-public "eaten"(e: $Consumer$Type<($FoodEatenEventJS$Type)>): $FoodBuilder
 /**
  * Sets the food is meat.
  */
@@ -13900,13 +13907,17 @@ constructor(m: $Map$Type<($Item$Type), ($List$Type<($ItemTooltipEventJS$StaticTo
  */
 public "add"(item: $Ingredient$Type, text: any): void
 /**
+ * Adds a dynamic tooltip handler to all items matching the ingredient.
+ */
+public "addAdvanced"(item: $Ingredient$Type, handler: $ItemTooltipEventJS$StaticTooltipHandlerFromJS$Type): void
+/**
  * Adds a dynamic tooltip handler to all items.
  */
 public "addAdvancedToAll"(handler: $ItemTooltipEventJS$StaticTooltipHandlerFromJS$Type): void
 /**
- * Adds a dynamic tooltip handler to all items matching the ingredient.
+ * Adds text to all items.
  */
-public "addAdvanced"(item: $Ingredient$Type, handler: $ItemTooltipEventJS$StaticTooltipHandlerFromJS$Type): void
+public "addToAll"(text: any): void
 /**
  * Is shift key pressed.
  */
@@ -13919,10 +13930,6 @@ public "isCtrl"(): boolean
  * Is alt key pressed.
  */
 public "isAlt"(): boolean
-/**
- * Adds text to all items.
- */
-public "addToAll"(text: any): void
 get "shift"(): boolean
 get "ctrl"(): boolean
 get "alt"(): boolean
@@ -14018,10 +14025,10 @@ const none: $Ingredient
 const all: $Ingredient
 function of(ingredient: $Ingredient$Type): $Ingredient
 function of(ingredient: $Ingredient$Type, count: integer): $InputItem
-function isIngredient(o: any): boolean
-function custom(predicate: $Predicate$Type<($ItemStack$Type)>): $Ingredient
 function custom(parent: $Ingredient$Type, predicate: $Predicate$Type<($ItemStack$Type)>): $Ingredient
+function custom(predicate: $Predicate$Type<($ItemStack$Type)>): $Ingredient
 function registerCustomIngredientAction(id: string, callback: $CustomIngredientActionCallback$Type): void
+function isIngredient(o: any): boolean
 function customNBT(arg0: $Ingredient$Type, predicate: $Predicate$Type<($CompoundTag$Type)>): $Ingredient
 }
 /**
@@ -14387,10 +14394,10 @@ static "itemErrors": boolean
 
 constructor()
 
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "deserialize"(merge: boolean): void
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "serialize"(): void
+public "deserialize"(merge: boolean): void
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
 }
@@ -14437,16 +14444,16 @@ public "enchantWithLevels"(levels: $NumberProvider$Type, treasure: boolean): $Fu
 public "enchantRandomly"(enchantments: ($ResourceLocation$Type)[]): $FunctionContainer
 public "furnaceSmelt"(): $FunctionContainer
 public "lootingEnchant"(count: $NumberProvider$Type, limit: integer): $FunctionContainer
-public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "damage"(damage: $NumberProvider$Type): $FunctionContainer
+public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "lootTable"(table: $ResourceLocation$Type, seed: long): $FunctionContainer
 public "copyName"(source: $CopyNameFunction$NameSource$Type): $FunctionContainer
 public "survivesExplosion"(): $ConditionContainer
+public "randomChance"(chance: double): $ConditionContainer
 public "randomChanceWithLooting"(chance: double, multiplier: double): $ConditionContainer
 public "entityProperties"(entity: $LootContext$EntityTarget$Type, properties: $JsonObject$Type): $ConditionContainer
 public "killedByPlayer"(): $ConditionContainer
 public "entityScores"(entity: $LootContext$EntityTarget$Type, scores: $Map$Type<(string), (any)>): $ConditionContainer
-public "randomChance"(chance: double): $ConditionContainer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14597,12 +14604,12 @@ import {$ObjectDescJS, $ObjectDescJS$Type} from "packages/dev/latvian/mods/kubej
 
 export interface $TypeDescJS {
 
- "asArray"(): $TypeDescJS
- "build"(arg0: $StringBuilder$Type): void
- "build"(): string
  "or"(type: $TypeDescJS$Type): $TypeDescJS
- "asMap"(key: $TypeDescJS$Type): $TypeDescJS
+ "build"(): string
+ "build"(arg0: $StringBuilder$Type): void
+ "asArray"(): $TypeDescJS
  "asMap"(): $TypeDescJS
+ "asMap"(key: $TypeDescJS$Type): $TypeDescJS
  "withGenerics"(...types: ($TypeDescJS$Type)[]): $TypeDescJS
 
 (...types: ($TypeDescJS$Type)[]): $TypeDescJS
@@ -14617,8 +14624,8 @@ const BOOLEAN: $TypeDescJS
 const MAP: $TypeDescJS
 const ANY_MAP: $TypeDescJS
 function any(...types: ($TypeDescJS$Type)[]): $TypeDescJS
-function object(): $ObjectDescJS
 function object(init: integer): $ObjectDescJS
+function object(): $ObjectDescJS
 function fixedArray(...types: ($TypeDescJS$Type)[]): $TypeDescJS
 }
 /**
@@ -14663,14 +14670,14 @@ readonly "showNotification": boolean
 constructor(id: $ResourceLocation$Type, group: string, category: $CraftingBookCategory$Type, width: integer, height: integer, ingredients: $NonNullList$Type<($Ingredient$Type)>, result: $ItemStack$Type, mirror: boolean, ingredientActions: $List$Type<($IngredientAction$Type)>, modifyResult: $ModifyRecipeResultCallback$Type, stage: string)
 
 public "getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
-public "kjs$getModifyResult"(): $ModifyRecipeResultCallback
 public "kjs$getStage"(): string
+public "kjs$getModifyResult"(): $ModifyRecipeResultCallback
 public "kjs$getIngredientActions"(): $List<($IngredientAction)>
 public "assemble"(container: $CraftingContainer$Type, registryAccess: $RegistryAccess$Type): $ItemStack
 public "matches"(craftingContainer: $CraftingContainer$Type, level: $Level$Type): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "kjs$getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
 public "kjs$assemble"(container: $CraftingContainer$Type, registryAccess: $RegistryAccess$Type): $ItemStack
+public "kjs$getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
 get "serializer"(): $RecipeSerializer<(any)>
 }
 /**
@@ -14695,60 +14702,62 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 import {$ScriptType, $ScriptType$Type} from "packages/dev/latvian/mods/kubejs/script/$ScriptType"
 import {$ScriptTypeHolder, $ScriptTypeHolder$Type} from "packages/dev/latvian/mods/kubejs/script/$ScriptTypeHolder"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$BlockContainerJS, $BlockContainerJS$Type} from "packages/dev/latvian/mods/kubejs/level/$BlockContainerJS"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$WithPersistentData, $WithPersistentData$Type} from "packages/dev/latvian/mods/kubejs/core/$WithPersistentData"
 import {$MinecraftServer, $MinecraftServer$Type} from "packages/net/minecraft/server/$MinecraftServer"
 import {$GameProfile, $GameProfile$Type} from "packages/com/mojang/authlib/$GameProfile"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 
 export interface $EntityKJS extends $WithPersistentData, $MessageSenderKJS, $ScriptTypeHolder {
 
- "getName"(): $Component
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
- "getType"(): string
- "getServer"(): $MinecraftServer
- "getLevel"(): $Level
- "getProfile"(): $GameProfile
- "isPlayer"(): boolean
- "getItem"(): $ItemStack
- "isFrame"(): boolean
- "isLiving"(): boolean
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "getName"(): $Component
+ "getScriptType"(): $ScriptType
+ "getBlock"(): $BlockContainerJS
  "isMonster"(): boolean
  "isAnimal"(): boolean
- "isAmbientCreature"(): boolean
- "isWaterCreature"(): boolean
- "isPeacefulCreature"(): boolean
- "setPosition"(block: $BlockContainerJS$Type): void
- "setPosition"(x: double, y: double, z: double): void
- "getMotionX"(): double
- "setMotionX"(x: double): void
- "getMotionY"(): double
- "setMotionY"(y: double): void
- "getMotionZ"(): double
- "setMotionZ"(z: double): void
- "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isLiving"(): boolean
  "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
  "setRotation"(yaw: float, pitch: float): void
+ "mergeNbt"(tag: $CompoundTag$Type): $Entity
  "getPassengers"(): $EntityArrayList
  "getTeamId"(): string
  "isOnScoreboardTeam"(teamId: string): boolean
  "getFacing"(): $Direction
- "mergeNbt"(tag: $CompoundTag$Type): $Entity
+ "getItem"(): $ItemStack
+ "isPeacefulCreature"(): boolean
+ "setPosition"(x: double, y: double, z: double): void
+ "setPosition"(block: $BlockContainerJS$Type): void
+ "getMotionZ"(): double
+ "getMotionX"(): double
+ "setMotionX"(x: double): void
+ "getMotionY"(): double
+ "setMotionY"(y: double): void
+ "setMotionZ"(z: double): void
+ "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isAmbientCreature"(): boolean
+ "isWaterCreature"(): boolean
+ "isFrame"(): boolean
+ "getLevel"(): $Level
+ "getServer"(): $MinecraftServer
+ "isPlayer"(): boolean
+ "getType"(): string
+ "getProfile"(): $GameProfile
  "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
  "playSound"(id: $SoundEvent$Type): void
- "getDistance"(pos: $BlockPos$Type): double
  "getDistance"(x: double, y: double, z: double): double
+ "getDistance"(pos: $BlockPos$Type): double
  "getDistanceSq"(pos: $BlockPos$Type): double
  "rayTrace"(distance: double): $RayTraceResultJS
  "rayTrace"(distance: double, fluids: boolean): $RayTraceResultJS
- "getScriptType"(): $ScriptType
- "getBlock"(): $BlockContainerJS
+ "self"(): $Entity
+ "tell"(message: $Component$Type): void
  "setX"(x: double): void
  "setY"(y: double): void
  "setZ"(z: double): void
@@ -14756,8 +14765,6 @@ export interface $EntityKJS extends $WithPersistentData, $MessageSenderKJS, $Scr
  "setNbt"(nbt: $CompoundTag$Type): void
  "spawn"(): void
  "attack"(hp: float): void
- "tell"(message: $Component$Type): void
- "self"(): $Entity
  "getPersistentData"(): $CompoundTag
  "setStatusMessage"(message: $Component$Type): void
 }
@@ -14816,20 +14823,20 @@ export class $BlockEntityInfo {
 
 constructor(blockBuilder: $BlockBuilder$Type)
 
+public "tick"(frequency: integer, offset: integer, callback: $BlockEntityCallback$Type): void
+public "tick"(callback: $BlockEntityCallback$Type): void
+public "attach"(type: string, args: $Map$Type<(string), (any)>): void
 public "toString"(): string
 public "eventHandler"(eventId: integer, callback: $BlockEntityEventCallback$Type): void
-public "attach"(type: string, args: $Map$Type<(string), (any)>): void
-public "tick"(callback: $BlockEntityCallback$Type): void
-public "tick"(frequency: integer, offset: integer, callback: $BlockEntityCallback$Type): void
-public "initialData"(data: $CompoundTag$Type): void
 public "attachCapability"(builder: $CapabilityBuilder$Type<(any), (any), (any)>): $BlockEntityInfo
+public "initialData"(data: $CompoundTag$Type): void
 public "rightClickOpensInventory"(): void
 public "clientTick"(frequency: integer, offset: integer, callback: $BlockEntityCallback$Type): void
 public "clientTick"(callback: $BlockEntityCallback$Type): void
 public "inventory"(width: integer, height: integer, inputFilter: $Ingredient$Type): void
 public "inventory"(width: integer, height: integer): void
-public "serverTick"(callback: $BlockEntityCallback$Type): void
 public "serverTick"(frequency: integer, offset: integer, callback: $BlockEntityCallback$Type): void
+public "serverTick"(callback: $BlockEntityCallback$Type): void
 public "enableSync"(): void
 }
 /**
@@ -14948,66 +14955,64 @@ static readonly "PERMANENT": integer
 static readonly "UNINITIALIZED_CONST": integer
 static readonly "CONST": integer
 
-constructor(scope: $Scriptable$Type, prototype: $Scriptable$Type)
 constructor()
+constructor(scope: $Scriptable$Type, prototype: $Scriptable$Type)
 
-public "has"(cx: $Context$Type, name: string, start: $Scriptable$Type): boolean
 public "has"(cx: $Context$Type, index: integer, start: $Scriptable$Type): boolean
+public "has"(cx: $Context$Type, name: string, start: $Scriptable$Type): boolean
 public "has"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type): boolean
 public "getIds"(cx: $Context$Type): (any)[]
+public "setAttributes"(cx: $Context$Type, key: $Symbol$Type, attributes: integer): void
 public "setAttributes"(cx: $Context$Type, index: integer, attributes: integer): void
 public "setAttributes"(cx: $Context$Type, name: string, attributes: integer): void
-public "setAttributes"(cx: $Context$Type, key: $Symbol$Type, attributes: integer): void
-public "get"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type): any
-public "get"(cx: $Context$Type, index: integer, start: $Scriptable$Type): any
-public "get"(cx: $Context$Type, name: string, start: $Scriptable$Type): any
 public "get"(cx: $Context$Type, key: any): any
+public "get"(cx: $Context$Type, name: string, start: $Scriptable$Type): any
+public "get"(cx: $Context$Type, index: integer, start: $Scriptable$Type): any
+public "get"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type): any
 public "put"(cx: $Context$Type, index: integer, start: $Scriptable$Type, value: any): void
-public "put"(cx: $Context$Type, name: string, start: $Scriptable$Type, value: any): void
 public "put"(cx: $Context$Type, key: $Symbol$Type, start: $Scriptable$Type, value: any): void
-public static "getProperty"(obj: $Scriptable$Type, key: $Symbol$Type, cx: $Context$Type): any
+public "put"(cx: $Context$Type, name: string, start: $Scriptable$Type, value: any): void
 public static "getProperty"(obj: $Scriptable$Type, index: integer, cx: $Context$Type): any
 public static "getProperty"(obj: $Scriptable$Type, name: string, cx: $Context$Type): any
+public static "getProperty"(obj: $Scriptable$Type, key: $Symbol$Type, cx: $Context$Type): any
 public "isEmpty"(): boolean
 public "size"(): integer
 public "isSealed"(cx: $Context$Type): boolean
-public static "defineClass"<T extends $Scriptable>(scope: $Scriptable$Type, clazz: $Class$Type<(T)>, sealed: boolean, mapInheritance: boolean, cx: $Context$Type): string
 public static "defineClass"<T extends $Scriptable>(scope: $Scriptable$Type, clazz: $Class$Type<(T)>, sealed: boolean, cx: $Context$Type): void
+public static "defineClass"<T extends $Scriptable>(scope: $Scriptable$Type, clazz: $Class$Type<(T)>, sealed: boolean, mapInheritance: boolean, cx: $Context$Type): string
 public static "defineClass"<T extends $Scriptable>(scope: $Scriptable$Type, clazz: $Class$Type<(T)>, cx: $Context$Type): void
 public "delete"(cx: $Context$Type, index: integer): void
 public "delete"(cx: $Context$Type, name: string): void
 public "delete"(cx: $Context$Type, key: $Symbol$Type): void
-public "getDefaultValue"(cx: $Context$Type, typeHint: $Class$Type<(any)>): any
 public static "getDefaultValue"(object: $Scriptable$Type, typeHint: $Class$Type<(any)>, cx: $Context$Type): any
+public "getDefaultValue"(cx: $Context$Type, typeHint: $Class$Type<(any)>): any
 public "getAttributes"(cx: $Context$Type, sym: $Symbol$Type): integer
 public "getAttributes"(cx: $Context$Type, index: integer): integer
 public "getAttributes"(cx: $Context$Type, name: string): integer
 public "getClassName"(): string
 public static "getPropertyIds"(cx: $Context$Type, obj: $Scriptable$Type): (any)[]
-public "defineProperty"(cx: $Context$Type, propertyName: string, delegateTo: any, getter: $WrappedExecutable$Type, setter: $WrappedExecutable$Type, attributes: integer): void
-public "defineProperty"(cx: $Context$Type, propertyName: string, clazz: $Class$Type<(any)>, attributes: integer): void
-public "defineProperty"(cx: $Context$Type, propertyName: string, value: any, attributes: integer): void
-public "defineProperty"(cx: $Context$Type, key: $Symbol$Type, value: any, attributes: integer): void
-public static "defineProperty"(destination: $Scriptable$Type, propertyName: string, value: any, attributes: integer, cx: $Context$Type): void
-public static "hasProperty"(obj: $Scriptable$Type, name: string, cx: $Context$Type): boolean
 public static "hasProperty"(obj: $Scriptable$Type, index: integer, cx: $Context$Type): boolean
+public static "hasProperty"(obj: $Scriptable$Type, name: string, cx: $Context$Type): boolean
 public static "hasProperty"(obj: $Scriptable$Type, key: $Symbol$Type, cx: $Context$Type): boolean
 public "setPrototype"(m: $Scriptable$Type): void
-public "getPrototype"(cx: $Context$Type): $Scriptable
-public static "getObjectPrototype"(scope: $Scriptable$Type, cx: $Context$Type): $Scriptable
-public static "getFunctionPrototype"(scope: $Scriptable$Type, cx: $Context$Type): $Scriptable
-public static "getArrayPrototype"(scope: $Scriptable$Type, cx: $Context$Type): $Scriptable
-public "hasInstance"(cx: $Context$Type, instance: $Scriptable$Type): boolean
-public "preventExtensions"(): void
+public "defineOwnProperty"(cx: $Context$Type, id: any, desc: $ScriptableObject$Type): void
 public "isExtensible"(): boolean
+public "preventExtensions"(): void
 public static "deleteProperty"(obj: $Scriptable$Type, name: string, cx: $Context$Type): boolean
 public static "deleteProperty"(obj: $Scriptable$Type, index: integer, cx: $Context$Type): boolean
-public "defineOwnProperty"(cx: $Context$Type, id: any, desc: $ScriptableObject$Type): void
+public "hasInstance"(cx: $Context$Type, instance: $Scriptable$Type): boolean
+public static "getObjectPrototype"(scope: $Scriptable$Type, cx: $Context$Type): $Scriptable
+public "getPrototype"(cx: $Context$Type): $Scriptable
+public static "getFunctionPrototype"(scope: $Scriptable$Type, cx: $Context$Type): $Scriptable
+public static "getArrayPrototype"(scope: $Scriptable$Type, cx: $Context$Type): $Scriptable
+public "defineProperty"(cx: $Context$Type, propertyName: string, value: any, attributes: integer): void
+public static "defineProperty"(destination: $Scriptable$Type, propertyName: string, value: any, attributes: integer, cx: $Context$Type): void
+public "defineProperty"(cx: $Context$Type, key: $Symbol$Type, value: any, attributes: integer): void
+public "defineProperty"(cx: $Context$Type, propertyName: string, clazz: $Class$Type<(any)>, attributes: integer): void
+public "defineProperty"(cx: $Context$Type, propertyName: string, delegateTo: any, getter: $WrappedExecutable$Type, setter: $WrappedExecutable$Type, attributes: integer): void
 public static "getGeneratorFunctionPrototype"(scope: $Scriptable$Type, cx: $Context$Type): $Scriptable
-public static "putProperty"(obj: $Scriptable$Type, index: integer, value: any, cx: $Context$Type): void
-public static "putProperty"(obj: $Scriptable$Type, name: string, value: any, cx: $Context$Type): void
-public static "putProperty"(obj: $Scriptable$Type, key: $Symbol$Type, value: any, cx: $Context$Type): void
-public static "getTopLevelScope"(obj: $Scriptable$Type): $Scriptable
+public "setParentScope"(m: $Scriptable$Type): void
+public "getParentScope"(): $Scriptable
 public static "getClassPrototype"(scope: $Scriptable$Type, className: string, cx: $Context$Type): $Scriptable
 public static "defineConstProperty"(destination: $Scriptable$Type, propertyName: string, cx: $Context$Type): void
 public "defineConst"(cx: $Context$Type, name: string, start: $Scriptable$Type): void
@@ -15024,8 +15029,10 @@ public "getExternalArrayLength"(): any
 public "defineOwnProperties"(cx: $Context$Type, props: $ScriptableObject$Type): void
 public "defineFunctionProperties"(cx: $Context$Type, names: (string)[], clazz: $Class$Type<(any)>, attributes: integer): void
 public "associateValue"(key: any, value: any): any
-public "setParentScope"(m: $Scriptable$Type): void
-public "getParentScope"(): $Scriptable
+public static "putProperty"(obj: $Scriptable$Type, name: string, value: any, cx: $Context$Type): void
+public static "putProperty"(obj: $Scriptable$Type, index: integer, value: any, cx: $Context$Type): void
+public static "putProperty"(obj: $Scriptable$Type, key: $Symbol$Type, value: any, cx: $Context$Type): void
+public static "getTopLevelScope"(obj: $Scriptable$Type): $Scriptable
 public "isConst"(name: string): boolean
 public "getAllIds"(cx: $Context$Type): (any)[]
 public "getTypeOf"(): $MemberType
@@ -15037,10 +15044,10 @@ get "empty"(): boolean
 get "className"(): string
 set "prototype"(value: $Scriptable$Type)
 get "extensible"(): boolean
-get "externalArrayData"(): $ExternalArrayData
-get "externalArrayLength"(): any
 set "parentScope"(value: $Scriptable$Type)
 get "parentScope"(): $Scriptable
+get "externalArrayData"(): $ExternalArrayData
+get "externalArrayLength"(): any
 get "typeOf"(): $MemberType
 }
 /**
@@ -15183,14 +15190,14 @@ public static "of"(o: $FluidStackJS$Type, amount: integer): $FluidStackJS
 public static "getId"(fluid: $Fluid$Type): $ResourceLocation
 public static "getType"(id: $ResourceLocation$Type): $Fluid
 public static "exists"(id: $ResourceLocation$Type): boolean
-public static "getTypes"(): $List<(string)>
 public static "getEmpty"(): $FluidStackJS
-public static "lava"(amount: integer): $FluidStackJS
-public static "lava"(): $FluidStackJS
-public static "water"(amount: integer): $FluidStackJS
+public static "getTypes"(): $List<(string)>
 public static "water"(): $FluidStackJS
-get "types"(): $List<(string)>
+public static "water"(amount: integer): $FluidStackJS
+public static "lava"(): $FluidStackJS
+public static "lava"(amount: integer): $FluidStackJS
 get "empty"(): $FluidStackJS
+get "types"(): $List<(string)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15229,29 +15236,29 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "color"(c: $Color$Type): $FluidBuilder
 public "displayName"(name: $Component$Type): $BuilderBase<($FlowingFluid)>
 public "tag"(tag: $ResourceLocation$Type): $BuilderBase<($FlowingFluid)>
 public "createObject"(): $FlowingFluid
-public "getRegistryType"(): $RegistryInfo<(any)>
-public "createAdditionalObjects"(): void
+public "color"(c: $Color$Type): $FluidBuilder
+public "temperature"(temperature: integer): $FluidBuilder
+public "translucent"(): $FluidBuilder
 public "stillTexture"(id: $ResourceLocation$Type): $FluidBuilder
 public "flowingTexture"(id: $ResourceLocation$Type): $FluidBuilder
 public "createAttributes"(): $ArchitecturyFluidAttributes
-public "translucent"(): $FluidBuilder
-public "temperature"(temperature: integer): $FluidBuilder
-public "builtinTextures"(): $FluidBuilder
-public "thinTexture"(color: $Color$Type): $FluidBuilder
-public "thickTexture"(color: $Color$Type): $FluidBuilder
+public "getRegistryType"(): $RegistryInfo<(any)>
+public "createAdditionalObjects"(): void
 public "bucketColor"(c: $Color$Type): $FluidBuilder
+public "builtinTextures"(): $FluidBuilder
+public "thickTexture"(color: $Color$Type): $FluidBuilder
+public "thinTexture"(color: $Color$Type): $FluidBuilder
 public "rarity"(rarity: $Rarity$Type): $FluidBuilder
 public "gaseous"(): $FluidBuilder
-public "viscosity"(viscosity: integer): $FluidBuilder
-public "renderType"(l: string): $FluidBuilder
 public "density"(density: integer): $FluidBuilder
-public "luminosity"(luminosity: integer): $FluidBuilder
+public "renderType"(l: string): $FluidBuilder
+public "viscosity"(viscosity: integer): $FluidBuilder
 public "noBlock"(): $FluidBuilder
 public "noBucket"(): $FluidBuilder
+public "luminosity"(luminosity: integer): $FluidBuilder
 get "registryType"(): $RegistryInfo<(any)>
 }
 /**
@@ -15321,13 +15328,13 @@ readonly "spawner": $BaseSpawner
 constructor(entity: $LivingEntity$Type, level: $Level$Type, x: double, y: double, z: double, type: $MobSpawnType$Type, spawner: $BaseSpawner$Type)
 
 /**
- * The type of spawn.
- */
-public "getType"(): $MobSpawnType
-/**
  * The block the entity is being spawned on.
  */
 public "getBlock"(): $BlockContainerJS
+/**
+ * The type of spawn.
+ */
+public "getType"(): $MobSpawnType
 /**
  * The level the entity is being spawned into.
  */
@@ -15336,8 +15343,8 @@ public "getLevel"(): $Level
  * The spawner that spawned the entity. Can be null if the entity was spawned by worldgen.
  */
 public "getSpawner"(): $BaseSpawner
-get "type"(): $MobSpawnType
 get "block"(): $BlockContainerJS
+get "type"(): $MobSpawnType
 get "level"(): $Level
 get "spawner"(): $BaseSpawner
 }
@@ -15392,13 +15399,13 @@ export class $EntityPotionEffectsJS {
 constructor(e: $LivingEntity$Type)
 
 public "getDuration"(mobEffect: $MobEffect$Type): integer
-public "add"(mobEffect: $MobEffect$Type, duration: integer): void
-public "add"(mobEffect: $MobEffect$Type, duration: integer, amplifier: integer): void
+public "getMap"(): $Map<($MobEffect), ($MobEffectInstance)>
 public "add"(mobEffect: $MobEffect$Type): void
+public "add"(mobEffect: $MobEffect$Type, duration: integer, amplifier: integer): void
+public "add"(mobEffect: $MobEffect$Type, duration: integer): void
 public "add"(mobEffect: $MobEffect$Type, duration: integer, amplifier: integer, ambient: boolean, showParticles: boolean): void
 public "clear"(): void
 public "isActive"(mobEffect: $MobEffect$Type): boolean
-public "getMap"(): $Map<($MobEffect), ($MobEffectInstance)>
 public "isApplicable"(effect: $MobEffectInstance$Type): boolean
 public "getActive"(): $Collection<($MobEffectInstance)>
 public "getActive"(mobEffect: $MobEffect$Type): $MobEffectInstance
@@ -15452,8 +15459,8 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 import {$BlockPredicate, $BlockPredicate$Type} from "packages/dev/latvian/mods/kubejs/block/predicate/$BlockPredicate"
 import {$BlockIDPredicate, $BlockIDPredicate$Type} from "packages/dev/latvian/mods/kubejs/block/predicate/$BlockIDPredicate"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
-import {$BlockEntityPredicate, $BlockEntityPredicate$Type} from "packages/dev/latvian/mods/kubejs/block/predicate/$BlockEntityPredicate"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$BlockEntityPredicate, $BlockEntityPredicate$Type} from "packages/dev/latvian/mods/kubejs/block/predicate/$BlockEntityPredicate"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 /**
@@ -15463,17 +15470,17 @@ export class $BlockWrapper {
 
 constructor()
 
-public static "entity"(id: $ResourceLocation$Type): $BlockEntityPredicate
+/**
+ * Gets a Block from a block id
+ */
+public static "getBlock"(id: $ResourceLocation$Type): $Block
 public static "id"(id: $ResourceLocation$Type, properties: $Map$Type<(string), (any)>): $BlockIDPredicate
 public static "id"(id: $ResourceLocation$Type): $BlockIDPredicate
 /**
  * Gets a blocks id from the Block
  */
 public static "getId"(block: $Block$Type): $ResourceLocation
-/**
- * Gets a Block from a block id
- */
-public static "getBlock"(id: $ResourceLocation$Type): $Block
+public static "entity"(id: $ResourceLocation$Type): $BlockEntityPredicate
 /**
  * Gets a list of the classname of all registered blocks
  */
@@ -15577,13 +15584,13 @@ readonly "ingredients": $NonNullList<($Ingredient)>
 constructor(original: $ShapelessRecipe$Type, ingredientActions: $List$Type<($IngredientAction$Type)>, modifyResult: $ModifyRecipeResultCallback$Type, stage: string)
 
 public "getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
-public "kjs$getModifyResult"(): $ModifyRecipeResultCallback
 public "kjs$getStage"(): string
+public "kjs$getModifyResult"(): $ModifyRecipeResultCallback
 public "kjs$getIngredientActions"(): $List<($IngredientAction)>
 public "assemble"(container: $CraftingContainer$Type, registryAccess: $RegistryAccess$Type): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "kjs$getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
 public "kjs$assemble"(container: $CraftingContainer$Type, registryAccess: $RegistryAccess$Type): $ItemStack
+public "kjs$getRemainingItems"(container: $CraftingContainer$Type): $NonNullList<($ItemStack)>
 get "serializer"(): $RecipeSerializer<(any)>
 }
 /**
@@ -15725,12 +15732,12 @@ constructor(gen: $AssetJsonGenerator$Type)
 
 public "add"(location: $ResourceLocation$Type, json: $JsonElement$Type): void
 public "addBlockState"(id: $ResourceLocation$Type, consumer: $Consumer$Type<($VariantBlockStateGenerator$Type)>): void
-public "defaultItemModel"(id: $ResourceLocation$Type): void
 public "addMultipartBlockState"(id: $ResourceLocation$Type, consumer: $Consumer$Type<($MultipartBlockStateGenerator$Type)>): void
+public "defaultItemModel"(id: $ResourceLocation$Type): void
 public "defaultHandheldItemModel"(id: $ResourceLocation$Type): void
-public "addModel"(type: string, id: $ResourceLocation$Type, consumer: $Consumer$Type<($ModelGenerator$Type)>): void
-public "stencil"(target: $ResourceLocation$Type, stencil: string, colors: $JsonObject$Type): void
 public "addLang"(key: string, value: string): void
+public "stencil"(target: $ResourceLocation$Type, stencil: string, colors: $JsonObject$Type): void
+public "addModel"(type: string, id: $ResourceLocation$Type, consumer: $Consumer$Type<($ModelGenerator$Type)>): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15786,8 +15793,8 @@ import {$Scriptable, $Scriptable$Type} from "packages/dev/latvian/mods/rhino/$Sc
 
 export interface $Function extends $Scriptable, $Callable {
 
- "construct"(arg0: $Context$Type, arg1: $Scriptable$Type, arg2: (any)[]): $Scriptable
  "call"(arg0: $Context$Type, arg1: $Scriptable$Type, arg2: $Scriptable$Type, arg3: (any)[]): any
+ "construct"(arg0: $Context$Type, arg1: $Scriptable$Type, arg2: (any)[]): $Scriptable
  "has"(arg0: $Context$Type, arg1: string, arg2: $Scriptable$Type): boolean
  "has"(arg0: $Context$Type, arg1: integer, arg2: $Scriptable$Type): boolean
  "getIds"(arg0: $Context$Type): (any)[]
@@ -15800,8 +15807,8 @@ export interface $Function extends $Scriptable, $Callable {
  "getDefaultValue"(arg0: $Context$Type, arg1: $Class$Type<(any)>): any
  "getClassName"(): string
  "setPrototype"(arg0: $Scriptable$Type): void
- "getPrototype"(arg0: $Context$Type): $Scriptable
  "hasInstance"(arg0: $Context$Type, arg1: $Scriptable$Type): boolean
+ "getPrototype"(arg0: $Context$Type): $Scriptable
  "setParentScope"(arg0: $Scriptable$Type): void
  "getParentScope"(): $Scriptable
  "enumerationIteratorHasNext"(cx: $Context$Type, currentId: $Consumer$Type<(any)>): boolean
@@ -15895,8 +15902,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 export interface $JEISubtypesEventJS$Interpreter extends $Function<($ItemStack), (any)> {
 
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<($ItemStack), (V)>
- "apply"(arg0: $ItemStack$Type): any
  "compose"<V>(arg0: $Function$Type<(any), (any)>): $Function<(V), (any)>
+ "apply"(arg0: $ItemStack$Type): any
 
 (arg0: $Function$Type<(any), (any)>): $Function<($ItemStack), (V)>
 }
@@ -15927,15 +15934,15 @@ export class $PlatformWrapper$ModInfo {
 
 constructor(i: string)
 
+public "getVersion"(): string
 public "getName"(): string
 public "setName"(n: string): void
 public "getId"(): string
-public "getVersion"(): string
 public "getCustomName"(): string
+get "version"(): string
 get "name"(): string
 set "name"(value: string)
 get "id"(): string
-get "version"(): string
 get "customName"(): string
 }
 /**
@@ -15965,8 +15972,8 @@ export class $AfterRecipesLoadedEventJS extends $EventJS {
 constructor(r: $Map$Type<($RecipeType$Type<(any)>), ($Map$Type<($ResourceLocation$Type), ($Recipe$Type<(any)>)>)>, n: $Map$Type<($ResourceLocation$Type), ($Recipe$Type<(any)>)>)
 
 public "remove"(filter: $RecipeFilter$Type): integer
-public "countRecipes"(filter: $RecipeFilter$Type): integer
 public "forEachRecipe"(filter: $RecipeFilter$Type, consumer: $Consumer$Type<($RecipeKJS$Type)>): void
+public "countRecipes"(filter: $RecipeFilter$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15990,7 +15997,7 @@ export interface $PlayerSelector {
  "or"(fallback: $PlayerSelector$Type): $PlayerSelector
  "getPlayer"(arg0: $MinecraftServer$Type): $ServerPlayer
 
-(name: string): $PlayerSelector
+(fallback: $PlayerSelector$Type): $PlayerSelector
 }
 
 export namespace $PlayerSelector {
@@ -16048,12 +16055,12 @@ public static "canConvert"(cx: $Context$Type, fromObj: any, to: $Class$Type<(any
 public "unwrap"(): any
 public "getClassName"(): string
 public "setPrototype"(m: $Scriptable$Type): void
-public "getPrototype"(cx: $Context$Type): $Scriptable
 public "hasInstance"(cx: $Context$Type, value: $Scriptable$Type): boolean
-public "addCustomProperty"(name: string, getter: $CustomProperty$Type): void
-public static "createInterfaceAdapter"(cx: $Context$Type, type: $Class$Type<(any)>, so: $ScriptableObject$Type): any
+public "getPrototype"(cx: $Context$Type): $Scriptable
 public "setParentScope"(m: $Scriptable$Type): void
 public "getParentScope"(): $Scriptable
+public static "createInterfaceAdapter"(cx: $Context$Type, type: $Class$Type<(any)>, so: $ScriptableObject$Type): any
+public "addCustomProperty"(name: string, getter: $CustomProperty$Type): void
 public "enumerationIteratorHasNext"(cx: $Context$Type, currentId: $Consumer$Type<(any)>): boolean
 public "enumerationIteratorNext"(cx: $Context$Type, currentId: $Consumer$Type<(any)>): boolean
 public "getAllIds"(cx: $Context$Type): (any)[]
@@ -16115,17 +16122,17 @@ readonly "server": $MinecraftServer
 
 constructor(e: $CommandPerformEvent$Type)
 
-public "setException"(exception: $Throwable$Type): void
 public "getInput"(): string
+public "setException"(exception: $Throwable$Type): void
 public "getException"(): $Throwable
-public "setParseResults"(parse: $ParseResults$Type<($CommandSourceStack$Type)>): void
 public "getParseResults"(): $ParseResults<($CommandSourceStack)>
+public "setParseResults"(parse: $ParseResults$Type<($CommandSourceStack$Type)>): void
 public "getCommandName"(): string
-set "exception"(value: $Throwable$Type)
 get "input"(): string
+set "exception"(value: $Throwable$Type)
 get "exception"(): $Throwable
-set "parseResults"(value: $ParseResults$Type<($CommandSourceStack$Type)>)
 get "parseResults"(): $ParseResults<($CommandSourceStack)>
+set "parseResults"(value: $ParseResults$Type<($CommandSourceStack$Type)>)
 get "commandName"(): string
 }
 /**
@@ -16199,8 +16206,8 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "color"(col: $Color$Type): $MobEffectBuilder
 public "category"(c: $MobEffectCategory$Type): $MobEffectBuilder
+public "color"(col: $Color$Type): $MobEffectBuilder
 public "modifyAttribute"(attribute: $ResourceLocation$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): $MobEffectBuilder
 public "getRegistryType"(): $RegistryInfo<(any)>
 public "effectTick"(effectTick: $MobEffectBuilder$EffectTickCallback$Type): $MobEffectBuilder
@@ -16325,17 +16332,17 @@ public "write"(): void
 public "setValue"(newValue: T): T
 public "copy"(): $RecipeComponentValue<(T)>
 public "getIndex"(): integer
-public "replaceOutput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type, arg2: $OutputReplacement$Type): boolean
 public "replaceInput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type, arg2: $InputReplacement$Type): boolean
+public "replaceOutput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type, arg2: $OutputReplacement$Type): boolean
 public "shouldWrite"(): boolean
-public "checkEmpty"(): string
 public "isOutput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type): boolean
+public "checkEmpty"(): string
 public "isInput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type): boolean
-public static "copyOf"<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<($RecipeKey<(T)>), (T)>
-public static "comparingByKey"<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<($RecipeKey<(T)>), (T)>)>
 public static "comparingByKey"<K extends $Comparable<(any)>, V>(): $Comparator<($Map$Entry<($RecipeKey<(T)>), (T)>)>
+public static "comparingByKey"<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<($RecipeKey<(T)>), (T)>)>
 public static "comparingByValue"<K, V extends $Comparable<(any)>>(): $Comparator<($Map$Entry<($RecipeKey<(T)>), (T)>)>
 public static "comparingByValue"<K, V>(arg0: $Comparator$Type<(any)>): $Comparator<($Map$Entry<($RecipeKey<(T)>), (T)>)>
+public static "copyOf"<K, V>(arg0: $Map$Entry$Type<(any), (any)>): $Map$Entry<($RecipeKey<(T)>), (T)>
 get "value"(): T
 set "value"(value: T)
 get "index"(): integer
@@ -16400,9 +16407,9 @@ constructor()
 
 public "parent"(s: string): void
 public "element"(consumer: $Consumer$Type<($ModelGenerator$Element$Type)>): void
+public "toJson"(): $JsonObject
 public "textures"(json: $JsonObject$Type): void
 public "texture"(name: string, texture: string): void
-public "toJson"(): $JsonObject
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16548,10 +16555,11 @@ import {$Scriptable, $Scriptable$Type} from "packages/dev/latvian/mods/rhino/$Sc
 
 export class $NativeJavaClass extends $NativeJavaObject implements $Function {
 
+constructor()
 constructor(cx: $Context$Type, scope: $Scriptable$Type, cl: $Class$Type<(any)>, isAdapter: boolean)
 constructor(cx: $Context$Type, scope: $Scriptable$Type, cl: $Class$Type<(any)>)
-constructor()
 
+public "call"(cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
 public "construct"(cx: $Context$Type, scope: $Scriptable$Type, args: (any)[]): $Scriptable
 public "has"(cx: $Context$Type, name: string, start: $Scriptable$Type): boolean
 public "getIds"(cx: $Context$Type): (any)[]
@@ -16560,7 +16568,6 @@ public "put"(cx: $Context$Type, name: string, start: $Scriptable$Type, value: an
 public "toString"(): string
 public "getDefaultValue"(cx: $Context$Type, hint: $Class$Type<(any)>): any
 public "getClassName"(): string
-public "call"(cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
 public "hasInstance"(cx: $Context$Type, value: $Scriptable$Type): boolean
 public "getClassObject"(): $Class<(any)>
 public static "unwrapped"(o: any): any
@@ -16692,12 +16699,29 @@ static "EMPTY_ARRAY": ($Unit)[]
 constructor()
 
 public "subSet"(unit: $Unit$Type): $Unit
+public "bool"(): $Unit
 public "positive"(): $Unit
-public "add"(other: $Unit$Type): $Unit
+public "or"(other: $Unit$Type): $Unit
+public "sub"(other: $Unit$Type): $Unit
+public "sub"(value: double): $Unit
+public "negate"(): $Unit
+public "and"(other: $Unit$Type): $Unit
+public "xor"(other: $Unit$Type): $Unit
+public "lt"(other: $Unit$Type): $Unit
+public "atan"(): $Unit
+public "log1p"(): $Unit
+public "isFixed"(): boolean
+public "mul"(other: $Unit$Type): $Unit
+public "mul"(value: double): $Unit
+public "div"(value: double): $Unit
+public "div"(other: $Unit$Type): $Unit
+public "gt"(other: $Unit$Type): $Unit
+public "sq"(): $Unit
 public "add"(value: double): $Unit
+public "add"(other: $Unit$Type): $Unit
 public "get"(arg0: $UnitVariables$Type): double
-public "toString"(): string
 public "toString"(builder: $StringBuilder$Type): void
+public "toString"(): string
 public "abs"(): $Unit
 public "sin"(): $Unit
 public "cos"(): $Unit
@@ -16718,29 +16742,12 @@ public "set"(unit: $Unit$Type): $Unit
 public "mod"(other: $Unit$Type): $Unit
 public "mod"(value: double): $Unit
 public "eq"(other: $Unit$Type): $Unit
-public "lt"(other: $Unit$Type): $Unit
-public "atan"(): $Unit
-public "log1p"(): $Unit
-public "or"(other: $Unit$Type): $Unit
-public "sub"(other: $Unit$Type): $Unit
-public "sub"(value: double): $Unit
-public "negate"(): $Unit
-public "and"(other: $Unit$Type): $Unit
-public "xor"(other: $Unit$Type): $Unit
-public "isFixed"(): boolean
-public "gt"(other: $Unit$Type): $Unit
-public "bool"(): $Unit
-public "mul"(other: $Unit$Type): $Unit
-public "mul"(value: double): $Unit
-public "div"(value: double): $Unit
-public "div"(other: $Unit$Type): $Unit
-public "sq"(): $Unit
 public "clamp"(a: $Unit$Type, b: $Unit$Type): $Unit
-public "lerp"(a: $Unit$Type, b: $Unit$Type): $Unit
 public "rad"(): $Unit
-public "neq"(other: $Unit$Type): $Unit
-public "addSet"(unit: $Unit$Type): $Unit
+public "lerp"(a: $Unit$Type, b: $Unit$Type): $Unit
 public "deg"(): $Unit
+public "addSet"(unit: $Unit$Type): $Unit
+public "neq"(other: $Unit$Type): $Unit
 public "withAlpha"(a: $Unit$Type): $Unit
 public "lsh"(other: $Unit$Type): $Unit
 public "rsh"(other: $Unit$Type): $Unit
@@ -16789,15 +16796,15 @@ readonly "level": $Level
 constructor(l: $Level$Type, size: integer)
 constructor(l: $Level$Type, entities: $Iterable$Type<(any)>)
 
-public "filter"(filter: $Predicate$Type<($Entity$Type)>): $EntityArrayList
 public "getFirst"(): $Entity
-public "addAllIterable"(entities: $Iterable$Type<(any)>): void
-public "getName"(): $Component
-public "setStatusMessage"(message: $Component$Type): void
-public "runCommand"(command: string): integer
-public "runCommandSilent"(command: string): integer
+public "filter"(filter: $Predicate$Type<($Entity$Type)>): $EntityArrayList
 public "getDisplayName"(): $Component
+public "runCommandSilent"(command: string): integer
+public "runCommand"(command: string): integer
+public "setStatusMessage"(message: $Component$Type): void
+public "getName"(): $Component
 public "sendData"(channel: string, data: $CompoundTag$Type): void
+public "addAllIterable"(entities: $Iterable$Type<(any)>): void
 public "filterSelector"(selector: $EntitySelector$Type): $EntityArrayList
 public "tell"(message: $Component$Type): void
 public "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
@@ -16819,9 +16826,9 @@ public static "of"<E>(arg0: E, arg1: E, arg2: E, arg3: E, arg4: E, arg5: E, arg6
 public static "of"<E>(...arg0: (E)[]): $List<(E)>
 public "containsAll"(arg0: $Collection$Type<(any)>): boolean
 get "first"(): $Entity
-get "name"(): $Component
-set "statusMessage"(value: $Component$Type)
 get "displayName"(): $Component
+set "statusMessage"(value: $Component$Type)
+get "name"(): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16843,11 +16850,11 @@ import {$MessageSenderKJS, $MessageSenderKJS$Type} from "packages/dev/latvian/mo
 export interface $WithAttachedData<T> extends $MessageSenderKJS {
 
  "getData"(): $AttachedData<(T)>
- "getName"(): $Component
- "setStatusMessage"(message: $Component$Type): void
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "setStatusMessage"(message: $Component$Type): void
+ "getName"(): $Component
  "tell"(message: $Component$Type): void
 
 (): $AttachedData<(T)>
@@ -16875,11 +16882,11 @@ import {$Stages, $Stages$Type} from "packages/dev/latvian/mods/kubejs/stages/$St
 export class $StageCreationEvent {
 
 
-public "setPlayerStages"(s: $Stages$Type): void
 public "getPlayerStages"(): $Stages
+public "setPlayerStages"(s: $Stages$Type): void
 public "getPlayer"(): $Player
-set "playerStages"(value: $Stages$Type)
 get "playerStages"(): $Stages
+set "playerStages"(value: $Stages$Type)
 get "player"(): $Player
 }
 /**
@@ -16900,30 +16907,30 @@ import {$GenerationStep$Decoration, $GenerationStep$Decoration$Type} from "packa
 import {$StartupEventJS, $StartupEventJS$Type} from "packages/dev/latvian/mods/kubejs/event/$StartupEventJS"
 import {$RemoveSpawnsProperties, $RemoveSpawnsProperties$Type} from "packages/dev/latvian/mods/kubejs/level/gen/properties/$RemoveSpawnsProperties"
 import {$BiomeFilter, $BiomeFilter$Type} from "packages/dev/latvian/mods/kubejs/level/gen/filter/biome/$BiomeFilter"
-import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$MobCategory, $MobCategory$Type} from "packages/net/minecraft/world/entity/$MobCategory"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RemoveOresProperties, $RemoveOresProperties$Type} from "packages/dev/latvian/mods/kubejs/level/gen/properties/$RemoveOresProperties"
 
 export class $RemoveWorldgenEventJS extends $StartupEventJS {
 
 constructor()
 
-public "printFeatures"(type: $GenerationStep$Decoration$Type, filter: $BiomeFilter$Type): void
-public "printFeatures"(type: $GenerationStep$Decoration$Type): void
-public "printFeatures"(): void
-public "printFiltered"(type: $GenerationStep$Decoration$Type): void
-public "printFiltered"(type: $GenerationStep$Decoration$Type, filter: $BiomeFilter$Type): void
-public "printFiltered"(): void
-public "printFeaturesForType"(type: $GenerationStep$Decoration$Type, filter: $BiomeFilter$Type, afterRemoval: boolean): void
-public "removeFeatureById"(type: $GenerationStep$Decoration$Type, ids: ($ResourceLocation$Type)[]): void
-public "removeFeatureById"(filter: $BiomeFilter$Type, decoration: $GenerationStep$Decoration$Type, ids: ($ResourceLocation$Type)[]): void
-public "removeAllFeatures"(filter: $BiomeFilter$Type, type: $GenerationStep$Decoration$Type): void
-public "removeAllFeatures"(): void
-public "removeAllFeatures"(filter: $BiomeFilter$Type): void
 public "printSpawns"(): void
 public "printSpawns"(category: $MobCategory$Type): void
 public "removeSpawns"(p: $Consumer$Type<($RemoveSpawnsProperties$Type)>): void
 public "removeAllSpawns"(): void
+public "removeAllFeatures"(filter: $BiomeFilter$Type, type: $GenerationStep$Decoration$Type): void
+public "removeAllFeatures"(): void
+public "removeAllFeatures"(filter: $BiomeFilter$Type): void
+public "removeFeatureById"(type: $GenerationStep$Decoration$Type, ids: ($ResourceLocation$Type)[]): void
+public "removeFeatureById"(filter: $BiomeFilter$Type, decoration: $GenerationStep$Decoration$Type, ids: ($ResourceLocation$Type)[]): void
+public "printFiltered"(type: $GenerationStep$Decoration$Type): void
+public "printFiltered"(): void
+public "printFiltered"(type: $GenerationStep$Decoration$Type, filter: $BiomeFilter$Type): void
+public "printFeatures"(type: $GenerationStep$Decoration$Type, filter: $BiomeFilter$Type): void
+public "printFeatures"(type: $GenerationStep$Decoration$Type): void
+public "printFeatures"(): void
+public "printFeaturesForType"(type: $GenerationStep$Decoration$Type, filter: $BiomeFilter$Type, afterRemoval: boolean): void
 public "removeOres"(p: $Consumer$Type<($RemoveOresProperties$Type)>): void
 }
 /**
@@ -17162,15 +17169,15 @@ public "hashCode"(): integer
 public "wrap"(cx: $Context$Type, o: any): T
 public "getValue"(id: $ResourceLocation$Type): T
 public "iterator"(): $Iterator<($BuilderBase<(any)>)>
-public static "of"<T>(key: $ResourceKey$Type<(any)>, type: $Class$Type<(T)>): $RegistryInfo<(T)>
 public static "of"(key: $ResourceKey$Type<(any)>): $RegistryInfo<(any)>
+public static "of"<T>(key: $ResourceKey$Type<(any)>, type: $Class$Type<(T)>): $RegistryInfo<(T)>
 public "entrySet"(): $Set<($Map$Entry<($ResourceKey<(T)>), (T)>)>
 public "getId"(value: T): $ResourceLocation
-public "languageKeyPrefix"(prefix: string): $RegistryInfo<(T)>
+public "getVanillaRegistry"(): $Registry<(T)>
+public "getDefaultType"(): $BuilderType<(any)>
 public "fireRegistryEvent"(): void
 public "registerObjects"(arg0: $RegistryCallback$Type<(T)>): integer
-public "getDefaultType"(): $BuilderType<(any)>
-public "getVanillaRegistry"(): $Registry<(T)>
+public "languageKeyPrefix"(prefix: string): $RegistryInfo<(T)>
 public "getArchitecturyRegistrar"(): $Registrar<(T)>
 public "bypassServerOnly"(): $RegistryInfo<(T)>
 public "noAutoWrap"(): $RegistryInfo<(T)>
@@ -17178,8 +17185,8 @@ public "addBuilder"(builder: $BuilderBase$Type<(any)>): void
 public "spliterator"(): $Spliterator<($BuilderBase<(any)>)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 [Symbol.iterator](): IterableIterator<$BuilderBase<(any)>>;
-get "defaultType"(): $BuilderType<(any)>
 get "vanillaRegistry"(): $Registry<(T)>
+get "defaultType"(): $BuilderType<(any)>
 get "architecturyRegistrar"(): $Registrar<(T)>
 }
 /**
@@ -17296,13 +17303,13 @@ constructor(level: $Level$Type, entity: $Entity$Type, pos: $BlockPos$Type, state
  */
 public "getEntity"(): $Entity
 /**
- * Returns the BlockState
- */
-public "getState"(): $BlockState
-/**
  * Returns the block
  */
 public "getBlock"(): $BlockContainerJS
+/**
+ * Returns the BlockState
+ */
+public "getState"(): $BlockState
 /**
  * Returns the level
  */
@@ -17316,8 +17323,8 @@ public "isSuppressingBounce"(): boolean
  */
 public "getPos"(): $BlockPos
 get "entity"(): $Entity
-get "state"(): $BlockState
 get "block"(): $BlockContainerJS
+get "state"(): $BlockState
 get "level"(): $Level
 get "suppressingBounce"(): boolean
 get "pos"(): $BlockPos
@@ -17395,9 +17402,11 @@ export interface $UtilsWrapper {
 export namespace $UtilsWrapper {
 const ERROR_PARTICLE: $DustParticleOptions
 function lazy<T>(supplier: $Supplier$Type<(T)>): $Lazy<(T)>
-function supplyAsync(task: $Supplier$Type<(any)>): $CompletableFuture<(any)>
-function getRandom(): $Random
 function newList(): $List<(any)>
+function getRandom(): $Random
+function emptyMap<K, V>(): $Map<(K), (V)>
+function supplyAsync(task: $Supplier$Type<(any)>): $CompletableFuture<(any)>
+function runAsync(task: $Runnable$Type): $CompletableFuture<(void)>
 function regex(s: any): $Pattern
 function regex(pattern: string, flags: integer): $Pattern
 function id(namespace: string, path: string): $ResourceLocation
@@ -17406,27 +17415,25 @@ function emptyList<T>(): $List<(T)>
 function isWrapped(o: any): boolean
 function newMap(): $Map<(any), (any)>
 function copy(o: any): any
-function toTitleCase(s: string, ignoreSpecial: boolean): string
 function toTitleCase(s: string): string
+function toTitleCase(s: string, ignoreSpecial: boolean): string
 function parseInt(object: any, def: integer): integer
 function parseDouble(object: any, def: double): double
-function emptyMap<K, V>(): $Map<(K), (V)>
-function runAsync(task: $Runnable$Type): $CompletableFuture<(void)>
-function snakeCaseToTitleCase(string: string): string
-function particleOptions(o: any): $ParticleOptions
 function getRegistry(id: $ResourceLocation$Type): $RegistryInfo<(any)>
+function particleOptions(o: any): $ParticleOptions
+function snakeCaseToTitleCase(string: string): string
 function getServer(): $MinecraftServer
-function newCountingMap(): $CountingMap
-function getSystemTime(): long
-function getRegistryIds(id: $ResourceLocation$Type): $List<($ResourceLocation)>
-function expiringLazy<T>(supplier: $Supplier$Type<(T)>, time: long): $Lazy<(T)>
 function parseBlockState(o: any): $BlockState
 function rollChestLoot(id: $ResourceLocation$Type, entity: $Entity$Type): $List<($ItemStack)>
 function rollChestLoot(id: $ResourceLocation$Type): $List<($ItemStack)>
 function snakeCaseToCamelCase(string: string): string
 function findCreativeTab(id: $ResourceLocation$Type): $CreativeModeTab
-function getSound(id: $ResourceLocation$Type): $SoundEvent
+function newCountingMap(): $CountingMap
+function getSystemTime(): long
+function getRegistryIds(id: $ResourceLocation$Type): $List<($ResourceLocation)>
+function expiringLazy<T>(supplier: $Supplier$Type<(T)>, time: long): $Lazy<(T)>
 function getStat(id: $ResourceLocation$Type): $Stat<($ResourceLocation)>
+function getSound(id: $ResourceLocation$Type): $SoundEvent
 function queueIO(runnable: $Runnable$Type): void
 function newRandom(seed: long): $Random
 function randomOf(random: $Random$Type, objects: $Collection$Type<(any)>): any
@@ -17584,8 +17591,8 @@ import {$AndRecipeComponent, $AndRecipeComponent$Type} from "packages/dev/latvia
 import {$ComponentRole, $ComponentRole$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$ComponentRole"
 import {$RecipeComponentValue, $RecipeComponentValue$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$RecipeComponentValue"
 import {$TinyMap, $TinyMap$Type} from "packages/dev/latvian/mods/kubejs/util/$TinyMap"
-import {$UnaryOperator, $UnaryOperator$Type} from "packages/java/util/function/$UnaryOperator"
 import {$OrRecipeComponent, $OrRecipeComponent$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$OrRecipeComponent"
+import {$UnaryOperator, $UnaryOperator$Type} from "packages/java/util/function/$UnaryOperator"
 import {$RecipeJS, $RecipeJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$RecipeJS"
 import {$RecipeComponent, $RecipeComponent$Type} from "packages/dev/latvian/mods/kubejs/recipe/component/$RecipeComponent"
 import {$TypeDescJS, $TypeDescJS$Type} from "packages/dev/latvian/mods/kubejs/typings/desc/$TypeDescJS"
@@ -17600,30 +17607,30 @@ export interface $RecipeComponentWithParent<T> extends $RecipeComponent<(T)> {
  "componentType"(): string
  "write"(recipe: $RecipeJS$Type, value: T): $JsonElement
  "read"(recipe: $RecipeJS$Type, from: any): T
- "componentClass"(): $Class<(any)>
- "replaceOutput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): T
  "replaceInput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $InputReplacement$Type): T
+ "replaceOutput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): T
+ "componentClass"(): $Class<(any)>
+ "parentComponent"(): $RecipeComponent<(T)>
  "constructorDescription"(ctx: $DescriptionContext$Type): $TypeDescJS
  "hasPriority"(recipe: $RecipeJS$Type, from: any): boolean
- "parentComponent"(): $RecipeComponent<(T)>
  "role"(): $ComponentRole
- "checkEmpty"(key: $RecipeKey$Type<(T)>, value: T): string
  "isOutput"(recipe: $RecipeJS$Type, value: T, match: $ReplacementMatch$Type): boolean
+ "checkEmpty"(key: $RecipeKey$Type<(T)>, value: T): string
  "isInput"(recipe: $RecipeJS$Type, value: T, match: $ReplacementMatch$Type): boolean
+ "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<(T), (O)>
+ "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<(T), (O)>
  "asArray"(): $ArrayRecipeComponent<(T)>
+/**
+ * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
+ */
+ "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<(T)>
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read, and the mappingFrom function after the component writes to json, before that json is saved
  */
  "map"(mappingTo: $UnaryOperator$Type<(any)>, mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<(T)>
  "key"(name: string): $RecipeKey<(T)>
- "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<(T), (O)>
- "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<(T), (O)>
-/**
- * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
- */
- "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<(T)>
- "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
  "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
+ "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
  "asMap"<K>(key: $RecipeComponent$Type<(K)>): $RecipeComponent<($TinyMap<(K), (T)>)>
  "readFromMap"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, map: $Map$Type<(any), (any)>): void
  "checkValueHasChanged"(oldValue: T, newValue: T): boolean
@@ -17680,12 +17687,13 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
+public "createObject"(): $VillagerProfession
 public "getRegistryType"(): $RegistryInfo<(any)>
 public "requestedItems"(t: ($Item$Type)[]): $VillagerProfessionBuilder
 public "secondaryPoi"(t: ($Block$Type)[]): $VillagerProfessionBuilder
 public "poiType"(t: $ResourceLocation$Type): $VillagerProfessionBuilder
-public "poiTypeTag"(t: $ResourceLocation$Type): $VillagerProfessionBuilder
 public "workSound"(t: $SoundEvent$Type): $VillagerProfessionBuilder
+public "poiTypeTag"(t: $ResourceLocation$Type): $VillagerProfessionBuilder
 get "registryType"(): $RegistryInfo<(any)>
 }
 /**
@@ -17719,19 +17727,19 @@ static readonly "CONST": integer
 constructor(idcall: $IdFunctionCall$Type, tag: any, id: integer, name: string, arity: integer, scope: $Scriptable$Type)
 constructor(idcall: $IdFunctionCall$Type, tag: any, id: integer, arity: integer)
 
-public "getTag"(): any
-public "getLength"(): integer
 public "call"(cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
 public "createObject"(cx: $Context$Type, scope: $Scriptable$Type): $Scriptable
-public "getFunctionName"(): string
-public "markAsConstructor"(prototypeProperty: $Scriptable$Type): void
-public "initFunction"(name: string, scope: $Scriptable$Type): void
-public "getPrototype"(cx: $Context$Type): $Scriptable
+public "getTag"(): any
+public "getLength"(): integer
 public "unknown"(): $RuntimeException
+public "getPrototype"(cx: $Context$Type): $Scriptable
+public "getFunctionName"(): string
+public "initFunction"(name: string, scope: $Scriptable$Type): void
+public "markAsConstructor"(prototypeProperty: $Scriptable$Type): void
 public "exportAsScopeProperty"(cx: $Context$Type): void
 public "addAsProperty"(target: $Scriptable$Type, cx: $Context$Type): void
-public "methodId"(): integer
 public "getArity"(): integer
+public "methodId"(): integer
 public "hasTag"(tag: any): boolean
 public "has"(arg0: $Context$Type, arg1: integer, arg2: $Scriptable$Type): boolean
 public "getIds"(arg0: $Context$Type): (any)[]
@@ -17914,24 +17922,24 @@ constructor()
 
 public "stage"(filter: $RecipeFilter$Type, stage: string): void
 public "remove"(filter: $RecipeFilter$Type): void
-public "findRecipes"(filter: $RecipeFilter$Type): $Collection<($RecipeJS)>
-public "replaceOutput"(filter: $RecipeFilter$Type, match: $ReplacementMatch$Type, arg2: $OutputReplacement$Type): void
+public "handler$beb000$sliceanddice$injectRecipes"(arg0: $RecipeManager$Type, arg1: $Map$Type<(any), (any)>, arg2: $CallbackInfo$Type): void
 public "replaceInput"(filter: $RecipeFilter$Type, match: $ReplacementMatch$Type, arg2: $InputReplacement$Type): void
+public "replaceOutput"(filter: $RecipeFilter$Type, match: $ReplacementMatch$Type, arg2: $OutputReplacement$Type): void
 public "custom"(json: $JsonObject$Type): $RecipeJS
+public "findRecipes"(filter: $RecipeFilter$Type): $Collection<($RecipeJS)>
 public "customFilter"(filter: $Predicate$Type<($RecipeKJS$Type)>): $RecipeFilter
-public "handler$bdd000$sliceanddice$injectRecipes"(arg0: $RecipeManager$Type, arg1: $Map$Type<(any), (any)>, arg2: $CallbackInfo$Type): void
-public "setItemErrors"(b: boolean): void
+public static "runInParallel"<T>(callable: $Callable$Type<(T)>): T
+public static "runInParallel"(runnable: $Runnable$Type): void
+public "recipeStream"(filter: $RecipeFilter$Type): $Stream<($RecipeJS)>
+public "forEachRecipe"(filter: $RecipeFilter$Type, consumer: $Consumer$Type<($RecipeJS$Type)>): void
+public "countRecipes"(filter: $RecipeFilter$Type): integer
+public "containsRecipe"(filter: $RecipeFilter$Type): boolean
+public "findRecipeIds"(filter: $RecipeFilter$Type): $Collection<($ResourceLocation)>
 public "printAllTypes"(): void
 public "printExamples"(type: string): void
-public "recipeStream"(filter: $RecipeFilter$Type): $Stream<($RecipeJS)>
-public "countRecipes"(filter: $RecipeFilter$Type): integer
-public "findRecipeIds"(filter: $RecipeFilter$Type): $Collection<($ResourceLocation)>
-public "containsRecipe"(filter: $RecipeFilter$Type): boolean
-public "forEachRecipe"(filter: $RecipeFilter$Type, consumer: $Consumer$Type<($RecipeJS$Type)>): void
-public static "runInParallel"(runnable: $Runnable$Type): void
-public static "runInParallel"<T>(callable: $Callable$Type<(T)>): T
-public "getRecipeFunction"(id: string): $RecipeTypeFunction
+public "setItemErrors"(b: boolean): void
 public "printTypes"(): void
+public "getRecipeFunction"(id: string): $RecipeTypeFunction
 public "addRecipe"(r: $RecipeJS$Type, json: boolean): $RecipeJS
 public "getRecipes"(): $Map<(string), (any)>
 public "takeId"(recipe: $RecipeJS$Type, prefix: string, ids: string): $ResourceLocation
@@ -18054,24 +18062,11 @@ public "getId"(): string
 public "save"(): void
 public "setValue"<T>(key: $RecipeKey$Type<(T)>, value: T): $RecipeJS
 public "getPath"(): string
-public "outputValues"(): ($RecipeComponentValue<(any)>)[]
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
 /**
  * 
  * @deprecated
  */
-public "getSchema"(): $RecipeSchema
-/**
- * 
- * @deprecated
- */
-public "getOrCreateId"(): $ResourceLocation
-/**
- * 
- * @deprecated
- */
-public "setGroup"(group: string): void
+public "getType"(): $ResourceLocation
 /**
  * 
  * @deprecated
@@ -18081,48 +18076,61 @@ public "getGroup"(): string
  * 
  * @deprecated
  */
-public "getType"(): $ResourceLocation
-public "deserialize"(merge: boolean): void
+public "setGroup"(group: string): void
+/**
+ * 
+ * @deprecated
+ */
+public "getOrCreateId"(): $ResourceLocation
+/**
+ * 
+ * @deprecated
+ */
+public "getSchema"(): $RecipeSchema
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "serialize"(): void
+public "deserialize"(merge: boolean): void
 public "getSerializationTypeFunction"(): $RecipeTypeFunction
 public "getOriginalRecipeIngredients"(): $List<($Ingredient)>
+public "modifyResult"(callback: $ModifyRecipeResultCallback$Type): $RecipeJS
+public "inputValues"(): ($RecipeComponentValue<(any)>)[]
+public "outputValues"(): ($RecipeComponentValue<(any)>)[]
 public "convertJavaToJs"(cx: $Context$Type, scope: $Scriptable$Type, staticType: $Class$Type<(any)>): $Scriptable
 public "getAllValueMap"(): $Map<(string), ($RecipeComponentValue<(any)>)>
 public "afterLoaded"(): void
+public "inputItemHasPriority"(from: any): boolean
+public "writeInputItem"(value: $InputItem$Type): $JsonElement
+public "readInputItem"(from: any): $InputItem
+public "writeInputFluid"(value: $InputFluid$Type): $JsonElement
+public "readInputFluid"(from: any): $InputFluid
+public "inputFluidHasPriority"(from: any): boolean
+public "outputItemHasPriority"(from: any): boolean
+public "writeOutputItem"(value: $OutputItem$Type): $JsonElement
+public "readOutputItem"(from: any): $OutputItem
+public "writeOutputFluid"(value: $OutputFluid$Type): $JsonElement
+public "readOutputFluid"(from: any): $OutputFluid
+public "outputFluidHasPriority"(from: any): boolean
 public "getFromToString"(): string
 public "createRecipe"(): $Recipe<(any)>
 public "getOriginalRecipe"(): $Recipe<(any)>
 public "getOriginalRecipeResult"(): $ItemStack
 public "ingredientAction"(filter: $IngredientActionFilter$Type, action: $IngredientAction$Type): $RecipeJS
-public "damageIngredient"(filter: $IngredientActionFilter$Type): $RecipeJS
 public "damageIngredient"(filter: $IngredientActionFilter$Type, damage: integer): $RecipeJS
+public "damageIngredient"(filter: $IngredientActionFilter$Type): $RecipeJS
 public "replaceIngredient"(filter: $IngredientActionFilter$Type, item: $ItemStack$Type): $RecipeJS
 public "customIngredientAction"(filter: $IngredientActionFilter$Type, id: string): $RecipeJS
 public "keepIngredient"(filter: $IngredientActionFilter$Type): $RecipeJS
 public "consumeIngredient"(filter: $IngredientActionFilter$Type): $RecipeJS
-public "inputValues"(): ($RecipeComponentValue<(any)>)[]
-public "inputItemHasPriority"(from: any): boolean
-public "writeInputItem"(value: $InputItem$Type): $JsonElement
-public "readInputItem"(from: any): $InputItem
-public "outputItemHasPriority"(from: any): boolean
-public "writeOutputItem"(value: $OutputItem$Type): $JsonElement
-public "readOutputItem"(from: any): $OutputItem
-public "modifyResult"(callback: $ModifyRecipeResultCallback$Type): $RecipeJS
-public "writeOutputFluid"(value: $OutputFluid$Type): $JsonElement
-public "readOutputFluid"(from: any): $OutputFluid
-public "outputFluidHasPriority"(from: any): boolean
-public "writeInputFluid"(value: $InputFluid$Type): $JsonElement
-public "readInputFluid"(from: any): $InputFluid
-public "inputFluidHasPriority"(from: any): boolean
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
 public "hasChanged"(): boolean
 public "initValues"(created: boolean): void
 public "getMod"(): string
 get "path"(): string
-get "schema"(): $RecipeSchema
-get "orCreateId"(): $ResourceLocation
 get "type"(): $ResourceLocation
+get "orCreateId"(): $ResourceLocation
+get "schema"(): $RecipeSchema
 get "serializationTypeFunction"(): $RecipeTypeFunction
 get "originalRecipeIngredients"(): $List<($Ingredient)>
 get "allValueMap"(): $Map<(string), ($RecipeComponentValue<(any)>)>
@@ -18320,16 +18328,22 @@ public "componentType"(): string
 public "write"(recipe: $RecipeJS$Type, value: T): $JsonElement
 public "read"(recipe: $RecipeJS$Type, from: any): T
 public "parentComponent"(): $RecipeComponent<(T)>
-public "componentClass"(): $Class<(any)>
-public "replaceOutput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): T
 public "replaceInput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $InputReplacement$Type): T
+public "replaceOutput"(recipe: $RecipeJS$Type, original: T, match: $ReplacementMatch$Type, arg3: $OutputReplacement$Type): T
+public "componentClass"(): $Class<(any)>
 public "constructorDescription"(ctx: $DescriptionContext$Type): $TypeDescJS
 public "hasPriority"(recipe: $RecipeJS$Type, from: any): boolean
 public "role"(): $ComponentRole
-public "checkEmpty"(key: $RecipeKey$Type<(T)>, value: T): string
 public "isOutput"(recipe: $RecipeJS$Type, value: T, match: $ReplacementMatch$Type): boolean
+public "checkEmpty"(key: $RecipeKey$Type<(T)>, value: T): string
 public "isInput"(recipe: $RecipeJS$Type, value: T, match: $ReplacementMatch$Type): boolean
+public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<(T), (O)>
+public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<(T), (O)>
 public "asArray"(): $ArrayRecipeComponent<(T)>
+/**
+ * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
+ */
+public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<(T)>
 /**
  * Returns a new RecipeComponent that applies the mappingTo function to the input before it is passed to this component to be read, and the mappingFrom function after the component writes to json, before that json is saved
  */
@@ -18337,14 +18351,8 @@ public "map"(mappingTo: $UnaryOperator$Type<(any)>, mappingFrom: $UnaryOperator$
 public static "builder"(): $RecipeComponentBuilder
 public static "builder"(...key: ($RecipeKey$Type<(any)>)[]): $RecipeComponentBuilder
 public "key"(name: string): $RecipeKey<(T)>
-public "or"<O>(other: $RecipeComponent$Type<(O)>): $OrRecipeComponent<(T), (O)>
-public "and"<O>(other: $RecipeComponent$Type<(O)>): $AndRecipeComponent<(T), (O)>
-/**
- * Returns a new RecipeComponent that applies the mappingFrom function after the component writes to json, before that json is saved
- */
-public "mapOut"(mappingFrom: $UnaryOperator$Type<($JsonElement$Type)>): $MappingRecipeComponent<(T)>
-public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
 public "readFromJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
+public "writeToJson"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, json: $JsonObject$Type): void
 public "asMap"<K>(key: $RecipeComponent$Type<(K)>): $RecipeComponent<($TinyMap<(K), (T)>)>
 public "readFromMap"(recipe: $RecipeJS$Type, cv: $RecipeComponentValue$Type<(T)>, map: $Map$Type<(any), (any)>): void
 public "checkValueHasChanged"(oldValue: T, newValue: T): boolean
@@ -18390,15 +18398,15 @@ export class $PlayerRespawnedEventJS extends $PlayerEventJS {
 constructor(player: $ServerPlayer$Type, oldPlayer: $ServerPlayer$Type, keepData: boolean)
 
 /**
- * Gets whether the player's data was kept, e.g. when returning from the end.
- */
-public "getKeepData"(): boolean
-/**
  * Gets the player that was before respawn. Note that this entity is already removed from the world.
  */
 public "getOldPlayer"(): $ServerPlayer
-get "keepData"(): boolean
+/**
+ * Gets whether the player's data was kept, e.g. when returning from the end.
+ */
+public "getKeepData"(): boolean
 get "oldPlayer"(): $ServerPlayer
+get "keepData"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -18437,8 +18445,8 @@ public "isEmpty"(): boolean
 public static "of"(ingredient: $Ingredient$Type, count: integer): $InputItem
 public static "of"(o: $InputItem$Type): $InputItem
 public "unwrap"(): $List<($InputItem)>
-public "replaceInput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type, original: $InputReplacement$Type): any
 public "kjs$asIngredient"(): $Ingredient
+public "replaceInput"(recipe: $RecipeJS$Type, match: $ReplacementMatch$Type, original: $InputReplacement$Type): any
 public "validForMatching"(): boolean
 public "toJson"(): $JsonElement
 public "toJson"(alwaysNest: boolean): $JsonElement
@@ -18471,7 +18479,6 @@ import {$RandomTickCallbackJS, $RandomTickCallbackJS$Type} from "packages/dev/la
 
 export interface $BlockKJS extends $BlockBuilderProvider {
 
- "setNameKey"(key: string): void
  "getIdLocation"(): $ResourceLocation
  "setBlockBuilder"(b: $BlockBuilder$Type): void
  "getTypeData"(): $CompoundTag
@@ -18487,6 +18494,7 @@ export interface $BlockKJS extends $BlockBuilderProvider {
  "getBlockStates"(): $List<($BlockState)>
  "setLightEmission"(v: integer): void
  "setRequiresTool"(v: boolean): void
+ "setNameKey"(key: string): void
  "getId"(): string
  "getMod"(): string
  "getBlockBuilder"(): $BlockBuilder
@@ -18591,6 +18599,7 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$LootBuilder, $LootBuilder$Type} from "packages/dev/latvian/mods/kubejs/loot/$LootBuilder"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RandomTickCallbackJS, $RandomTickCallbackJS$Type} from "packages/dev/latvian/mods/kubejs/block/$RandomTickCallbackJS"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 
 export class $HorizontalDirectionalBlockBuilder extends $BlockBuilder {
  "randomTickCallback": $Consumer<($RandomTickCallbackJS)>
@@ -18604,6 +18613,7 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
+public "createObject"(): $Block
 public "textureAll"(tex: string): $HorizontalDirectionalBlockBuilder
 }
 /**
@@ -18703,11 +18713,11 @@ constructor(id: string)
 public "clear"(): void
 public "make"(type: string): $PainterObject
 public "getObject"(key: string): $PainterObject
-public "getVariables"(): $VariableSet
 public "setVariable"(key: string, variable: $Unit$Type): void
+public "getVariables"(): $VariableSet
+public "registerBuiltinObjects"(): void
 public "inGameScreenDraw"(graphics: $GuiGraphics$Type, delta: float): void
 public "guiScreenDraw"(screen: $Screen$Type, graphics: $GuiGraphics$Type, mouseX: integer, mouseY: integer, delta: float): void
-public "registerBuiltinObjects"(): void
 public "paint"(root: $CompoundTag$Type): void
 public "unitOf"(console: $ConsoleJS$Type, o: any): $Unit
 public "unitOf"(cx: $Context$Type, o: any): $Unit
@@ -18790,8 +18800,8 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 import {$ChestMenuData, $ChestMenuData$Type} from "packages/dev/latvian/mods/kubejs/gui/chest/$ChestMenuData"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$Stages, $Stages$Type} from "packages/dev/latvian/mods/kubejs/stages/$Stages"
-import {$BlockContainerJS, $BlockContainerJS$Type} from "packages/dev/latvian/mods/kubejs/level/$BlockContainerJS"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$BlockContainerJS, $BlockContainerJS$Type} from "packages/dev/latvian/mods/kubejs/level/$BlockContainerJS"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$InventoryKJS, $InventoryKJS$Type} from "packages/dev/latvian/mods/kubejs/core/$InventoryKJS"
@@ -18804,8 +18814,8 @@ import {$AbstractContainerMenu, $AbstractContainerMenu$Type} from "packages/net/
 import {$Container, $Container$Type} from "packages/net/minecraft/world/$Container"
 import {$EntityPotionEffectsJS, $EntityPotionEffectsJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$EntityPotionEffectsJS"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$EntityArrayList, $EntityArrayList$Type} from "packages/dev/latvian/mods/kubejs/player/$EntityArrayList"
 import {$AttachedData, $AttachedData$Type} from "packages/dev/latvian/mods/kubejs/util/$AttachedData"
 import {$KubeJSGUI, $KubeJSGUI$Type} from "packages/dev/latvian/mods/kubejs/gui/$KubeJSGUI"
 import {$ServerPlayer, $ServerPlayer$Type} from "packages/net/minecraft/server/level/$ServerPlayer"
@@ -18824,6 +18834,12 @@ import {$PlayerKJS, $PlayerKJS$Type} from "packages/dev/latvian/mods/kubejs/core
 
 export interface $ServerPlayerKJS extends $PlayerKJS {
 
+ "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
+ "sendData"(channel: string, data: $CompoundTag$Type): void
+ "getStats"(): $PlayerStatsJS
+ "isMiningBlock"(): boolean
+ "setSelectedSlot"(index: integer): void
+ "setMouseItem"(item: $ItemStack$Type): void
  "setCreativeMode"(mode: boolean): void
  "isAdvancementDone"(id: $ResourceLocation$Type): boolean
  "unlockAdvancement"(id: $ResourceLocation$Type): void
@@ -18834,86 +18850,80 @@ export interface $ServerPlayerKJS extends $PlayerKJS {
  "openInventoryGUI"(inventory: $InventoryKJS$Type, title: $Component$Type): void
  "captureInventory"(autoRestore: boolean): $Container
  "openChestGUI"(title: $Component$Type, rows: integer, gui: $Consumer$Type<($ChestMenuData$Type)>): void
- "setPositionAndRotation"(x: double, y: double, z: double, yaw: float, pitch: float): void
- "isMiningBlock"(): boolean
- "getStats"(): $PlayerStatsJS
- "setSelectedSlot"(index: integer): void
- "setMouseItem"(item: $ItemStack$Type): void
- "sendData"(channel: string, data: $CompoundTag$Type): void
  "self"(): $ServerPlayer
- "isOp"(): boolean
- "kick"(reason: $Component$Type): void
- "kick"(): void
- "ban"(banner: string, reason: string, expiresInMillis: long): void
  "paint"(renderer: $CompoundTag$Type): void
  "notify"(builder: $NotificationBuilder$Type): void
+ "isOp"(): boolean
+ "kick"(): void
+ "kick"(reason: $Component$Type): void
+ "ban"(banner: string, reason: string, expiresInMillis: long): void
  "setStatusMessage"(message: $Component$Type): void
- "getProfile"(): $GameProfile
  "isPlayer"(): boolean
- "sendInventoryUpdate"(): void
- "setSaturation"(saturation: float): void
- "giveInHand"(item: $ItemStack$Type): void
- "addExhaustion"(exhaustion: float): void
- "getSelectedSlot"(): integer
- "setFoodLevel"(foodLevel: integer): void
- "getFoodLevel"(): integer
- "getSaturation"(): float
- "addFood"(f: integer, m: float): void
- "getMouseItem"(): $ItemStack
- "addItemCooldown"(item: $Item$Type, ticks: integer): void
- "getXpLevel"(): integer
- "setXpLevel"(l: integer): void
- "boostElytraFlight"(): void
- "addXPLevels"(l: integer): void
+ "getProfile"(): $GameProfile
  "getOpenInventory"(): $AbstractContainerMenu
+ "addItemCooldown"(item: $Item$Type, ticks: integer): void
+ "getSaturation"(): float
+ "boostElytraFlight"(): void
+ "getXpLevel"(): integer
+ "addXPLevels"(l: integer): void
+ "setXpLevel"(l: integer): void
+ "setSaturation"(saturation: float): void
+ "addExhaustion"(exhaustion: float): void
+ "sendInventoryUpdate"(): void
+ "setFoodLevel"(foodLevel: integer): void
+ "giveInHand"(item: $ItemStack$Type): void
+ "getSelectedSlot"(): integer
+ "getMouseItem"(): $ItemStack
+ "addFood"(f: integer, m: float): void
+ "getFoodLevel"(): integer
  "getStages"(): $Stages
  "getInventory"(): $InventoryKJS
  "getCraftingGrid"(): $InventoryKJS
  "getInventoryChangeListener"(): $KubeJSInventoryListener
- "spawn"(): void
  "isFake"(): boolean
  "give"(item: $ItemStack$Type): void
  "addXP"(xp: integer): void
  "setXp"(xp: integer): void
  "getXp"(): integer
  "notify"(title: $Component$Type, text: $Component$Type): void
- "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
- "getReachDistance"(): double
- "isUndead"(): boolean
- "setHeadArmorItem"(item: $ItemStack$Type): void
- "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
- "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
- "getAttributeTotalValue"(attribute: $Attribute$Type): double
- "setMaxHealth"(hp: float): void
- "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
- "getAttributeBaseValue"(attribute: $Attribute$Type): double
- "getPotionEffects"(): $EntityPotionEffectsJS
- "getHeadArmorItem"(): $ItemStack
- "getOffHandItem"(): $ItemStack
- "setMainHandItem"(item: $ItemStack$Type): void
- "getMainHandItem"(): $ItemStack
- "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
- "setOffHandItem"(item: $ItemStack$Type): void
- "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
- "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
- "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
- "getChestArmorItem"(): $ItemStack
- "getLegsArmorItem"(): $ItemStack
- "setChestArmorItem"(item: $ItemStack$Type): void
- "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
- "damageHeldItem"(): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
- "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
- "damageEquipment"(slot: $EquipmentSlot$Type): void
- "getTotalMovementSpeed"(): double
- "setFeetArmorItem"(item: $ItemStack$Type): void
- "getFeetArmorItem"(): $ItemStack
- "setLegsArmorItem"(item: $ItemStack$Type): void
- "foodEaten"(is: $ItemStack$Type): void
+ "spawn"(): void
  "isLiving"(): boolean
  "rayTrace"(): $RayTraceResultJS
+ "foodEaten"(is: $ItemStack$Type): void
+ "canEntityBeSeen"(entity: $LivingEntity$Type): boolean
+ "getReachDistance"(): double
+ "getAttributeTotalValue"(attribute: $Attribute$Type): double
+ "getAttributeBaseValue"(attribute: $Attribute$Type): double
+ "setAttributeBaseValue"(attribute: $Attribute$Type, value: double): void
+ "modifyAttribute"(attribute: $Attribute$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): void
+ "removeAttribute"(attribute: $Attribute$Type, identifier: string): void
+ "setMaxHealth"(hp: float): void
+ "isUndead"(): boolean
+ "getPotionEffects"(): $EntityPotionEffectsJS
+ "getEquipment"(slot: $EquipmentSlot$Type): $ItemStack
+ "setEquipment"(slot: $EquipmentSlot$Type, item: $ItemStack$Type): void
+ "getHeldItem"(hand: $InteractionHand$Type): $ItemStack
+ "setHeldItem"(hand: $InteractionHand$Type, item: $ItemStack$Type): void
+ "getMainHandItem"(): $ItemStack
+ "setMainHandItem"(item: $ItemStack$Type): void
+ "getOffHandItem"(): $ItemStack
+ "setOffHandItem"(item: $ItemStack$Type): void
+ "getHeadArmorItem"(): $ItemStack
+ "setHeadArmorItem"(item: $ItemStack$Type): void
+ "getChestArmorItem"(): $ItemStack
+ "setChestArmorItem"(item: $ItemStack$Type): void
+ "getLegsArmorItem"(): $ItemStack
+ "setLegsArmorItem"(item: $ItemStack$Type): void
+ "getFeetArmorItem"(): $ItemStack
+ "setFeetArmorItem"(item: $ItemStack$Type): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer): void
+ "damageEquipment"(slot: $EquipmentSlot$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageEquipment"(slot: $EquipmentSlot$Type): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer): void
+ "damageHeldItem"(hand: $InteractionHand$Type, amount: integer, onBroken: $Consumer$Type<($ItemStack$Type)>): void
+ "damageHeldItem"(): void
+ "isHoldingInAnyHand"(i: $Ingredient$Type): boolean
+ "getTotalMovementSpeed"(): double
  "getDefaultMovementSpeed"(): double
  "setDefaultMovementSpeed"(speed: double): void
  "setMovementSpeedAddition"(speed: double): void
@@ -18923,54 +18933,54 @@ export interface $ServerPlayerKJS extends $PlayerKJS {
  "swing"(): void
  "sendData"(channel: string): void
  "getData"(): $AttachedData<($Player)>
- "getName"(): $Component
- "runCommand"(command: string): integer
- "runCommandSilent"(command: string): integer
  "getDisplayName"(): $Component
- "getType"(): string
- "getServer"(): $MinecraftServer
- "getLevel"(): $Level
- "getItem"(): $ItemStack
- "isFrame"(): boolean
+ "runCommandSilent"(command: string): integer
+ "runCommand"(command: string): integer
+ "getName"(): $Component
+ "getScriptType"(): $ScriptType
+ "getBlock"(): $BlockContainerJS
  "isMonster"(): boolean
  "isAnimal"(): boolean
- "isAmbientCreature"(): boolean
- "isWaterCreature"(): boolean
- "isPeacefulCreature"(): boolean
- "setPosition"(block: $BlockContainerJS$Type): void
- "setPosition"(x: double, y: double, z: double): void
- "getMotionX"(): double
- "setMotionX"(x: double): void
- "getMotionY"(): double
- "setMotionY"(y: double): void
- "getMotionZ"(): double
- "setMotionZ"(z: double): void
- "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
  "setRotation"(yaw: float, pitch: float): void
+ "mergeNbt"(tag: $CompoundTag$Type): $Entity
  "getPassengers"(): $EntityArrayList
  "getTeamId"(): string
  "isOnScoreboardTeam"(teamId: string): boolean
  "getFacing"(): $Direction
- "mergeNbt"(tag: $CompoundTag$Type): $Entity
+ "getItem"(): $ItemStack
+ "isPeacefulCreature"(): boolean
+ "setPosition"(x: double, y: double, z: double): void
+ "setPosition"(block: $BlockContainerJS$Type): void
+ "getMotionZ"(): double
+ "getMotionX"(): double
+ "setMotionX"(x: double): void
+ "getMotionY"(): double
+ "setMotionY"(y: double): void
+ "setMotionZ"(z: double): void
+ "teleportTo"(dimension: $ResourceLocation$Type, x: double, y: double, z: double, yaw: float, pitch: float): void
+ "isAmbientCreature"(): boolean
+ "isWaterCreature"(): boolean
+ "isFrame"(): boolean
+ "getLevel"(): $Level
+ "getServer"(): $MinecraftServer
+ "getType"(): string
  "playSound"(id: $SoundEvent$Type, volume: float, pitch: float): void
  "playSound"(id: $SoundEvent$Type): void
- "getDistance"(pos: $BlockPos$Type): double
  "getDistance"(x: double, y: double, z: double): double
+ "getDistance"(pos: $BlockPos$Type): double
  "getDistanceSq"(pos: $BlockPos$Type): double
  "rayTrace"(distance: double): $RayTraceResultJS
  "rayTrace"(distance: double, fluids: boolean): $RayTraceResultJS
- "getScriptType"(): $ScriptType
- "getBlock"(): $BlockContainerJS
+ "tell"(message: $Component$Type): void
  "setX"(x: double): void
  "setY"(y: double): void
  "setZ"(z: double): void
  "getNbt"(): $CompoundTag
  "setNbt"(nbt: $CompoundTag$Type): void
  "attack"(hp: float): void
- "tell"(message: $Component$Type): void
  "getPersistentData"(): $CompoundTag
 
-(mode: boolean): void
+(x: double, y: double, z: double, yaw: float, pitch: float): void
 }
 
 export namespace $ServerPlayerKJS {
@@ -19126,9 +19136,9 @@ import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/
 
 export interface $BlockEntityAttachment {
 
- "readAttachment"(tag: $CompoundTag$Type): void
- "writeAttachment"(): $CompoundTag
  "onRemove"(newState: $BlockState$Type): void
+ "writeAttachment"(): $CompoundTag
+ "readAttachment"(tag: $CompoundTag$Type): void
 }
 
 export namespace $BlockEntityAttachment {
@@ -19155,13 +19165,13 @@ export class $ObjectDescJS$Entry extends $Record {
 constructor(key: string, value: $TypeDescJS$Type, optional: boolean)
 constructor(key: string, value: $TypeDescJS$Type, optional: boolean, wrap: boolean)
 
+public "optional"(): boolean
 public "value"(): $TypeDescJS
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "wrap"(): boolean
 public "key"(): string
-public "optional"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -19311,12 +19321,14 @@ declare module "packages/dev/latvian/mods/kubejs/core/$InventoryKJS" {
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockContainerJS, $BlockContainerJS$Type} from "packages/dev/latvian/mods/kubejs/level/$BlockContainerJS"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Container, $Container$Type} from "packages/net/minecraft/world/$Container"
-import {$BlockContainerJS, $BlockContainerJS$Type} from "packages/dev/latvian/mods/kubejs/level/$BlockContainerJS"
 
 export interface $InventoryKJS {
 
+ "isEmpty"(): boolean
+ "getBlock"(level: $Level$Type): $BlockContainerJS
  "isMutable"(): boolean
  "getSlots"(): integer
  "getStackInSlot"(slot: integer): $ItemStack
@@ -19330,13 +19342,11 @@ export interface $InventoryKJS {
  "getHeight"(): integer
  "setChanged"(): void
  "asContainer"(): $Container
- "countNonEmpty"(): integer
  "countNonEmpty"(ingredient: $Ingredient$Type): integer
+ "countNonEmpty"(): integer
  "getAllItems"(): $List<($ItemStack)>
- "isEmpty"(): boolean
- "getBlock"(level: $Level$Type): $BlockContainerJS
- "clear"(): void
  "clear"(ingredient: $Ingredient$Type): void
+ "clear"(): void
  "find"(ingredient: $Ingredient$Type): integer
  "find"(): integer
  "count"(ingredient: $Ingredient$Type): integer
@@ -19448,6 +19458,10 @@ export class $BlockStateModifyCallbackJS {
 constructor(state: $BlockState$Type)
 
 /**
+ * Rotate the block using the specified Rotation
+ */
+public "rotate"(rotation: $Rotation$Type): $BlockStateModifyCallbackJS
+/**
  * Gets the value of the pased in property
  */
 public "get"<T extends $Comparable<(T)>>(property: $Property$Type<(T)>): T
@@ -19481,26 +19495,17 @@ public "getState"(): $BlockState
  */
 public "setValue"<T extends $Comparable<(T)>, V extends T>(property: $Property$Type<(T)>, comparable: V): $BlockStateModifyCallbackJS
 /**
- * Rotate the block using the specified Rotation
- */
-public "rotate"(rotation: $Rotation$Type): $BlockStateModifyCallbackJS
-/**
  * Updates the shape of this block. Mostly used in waterloggable blocks to update the water flow
  */
 public "updateShape"(direction: $Direction$Type, blockState: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockStateModifyCallbackJS
-/**
- * Checks if this block has the specified property
- */
-public "hasProperty"<T extends $Comparable<(T)>>(property: $Property$Type<(T)>): boolean
 /**
  * Mirror the block using the specified Mirror
  */
 public "mirror"(mirror: $Mirror$Type): $BlockStateModifyCallbackJS
 /**
- * Gets the value of the passed in property as an Optional. If the property does not exist in this block the Optional will be empty
+ * Checks if this block has the specified property
  */
-public "getOptionalValue"<T extends $Comparable<(T)>>(property: $Property$Type<(T)>): $Optional<(T)>
-public "populateNeighbours"(map: $Map$Type<($Map$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>), ($BlockState$Type)>): $BlockStateModifyCallbackJS
+public "hasProperty"<T extends $Comparable<(T)>>(property: $Property$Type<(T)>): boolean
 /**
  * Cycles the property
  */
@@ -19509,6 +19514,11 @@ public "cycle"<T extends $Comparable<(T)>>(property: $Property$Type<(T)>): $Bloc
  * Get a map of this blocks properties to it's value
  */
 public "getValues"(): $ImmutableMap<($Property<(any)>), ($Comparable<(any)>)>
+public "populateNeighbours"(map: $Map$Type<($Map$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>), ($BlockState$Type)>): $BlockStateModifyCallbackJS
+/**
+ * Gets the value of the passed in property as an Optional. If the property does not exist in this block the Optional will be empty
+ */
+public "getOptionalValue"<T extends $Comparable<(T)>>(property: $Property$Type<(T)>): $Optional<(T)>
 get "properties"(): $Collection<($Property<(any)>)>
 get "state"(): $BlockState
 get "values"(): $ImmutableMap<($Property<(any)>), ($Comparable<(any)>)>
@@ -19589,10 +19599,10 @@ constructor()
 
 public "action"(cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[], actionType: integer): any
 public "compileRegExp"(cx: $Context$Type, source: string, flags: string): any
+public "js_split"(cx: $Context$Type, scope: $Scriptable$Type, target: string, args: (any)[]): any
+public "isRegExp"(obj: $Scriptable$Type): boolean
 public "wrapRegExp"(cx: $Context$Type, scope: $Scriptable$Type, compiled: any): $Scriptable
 public "find_split"(cx: $Context$Type, scope: $Scriptable$Type, target: string, separator: string, reObj: $Scriptable$Type, ip: (integer)[], matchlen: (integer)[], matched: (boolean)[], parensp: ((string)[])[]): integer
-public "isRegExp"(obj: $Scriptable$Type): boolean
-public "js_split"(cx: $Context$Type, scope: $Scriptable$Type, target: string, args: (any)[]): any
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -19651,24 +19661,24 @@ export class $AfterEntityFallenOnBlockCallbackJS extends $EntitySteppedOnBlockCa
 constructor(blockGetter: $BlockGetter$Type, entity: $Entity$Type)
 
 /**
- * Sets the entity's velocity
+ * Returns the Vec3 of the entity's velocity. Use .x, .y and .z to get the respective components of that
  */
-public "setVelocity"(x: float, y: float, z: float): void
+public "getVelocity"(): $Vec3
 /**
  * Sets the entity's velocity
  */
 public "setVelocity"(vec: $Vec3$Type): void
 /**
- * Returns the Vec3 of the entity's velocity. Use .x, .y and .z to get the respective components of that
+ * Sets the entity's velocity
  */
-public "getVelocity"(): $Vec3
+public "setVelocity"(x: float, y: float, z: float): void
 /**
  * Bounce the entity upwards by bounciness * their fall velocity.
  * Do not make bounciness negative, as that is a recipe for a long and laggy trip to the void
  */
 public "bounce"(bounciness: float): void
-set "velocity"(value: $Vec3$Type)
 get "velocity"(): $Vec3
+set "velocity"(value: $Vec3$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -19694,13 +19704,13 @@ export class $ModifyRecipeCraftingGrid {
 
 constructor(c: $CraftingContainer$Type)
 
+public "findAll"(): $List<($ItemStack)>
+public "findAll"(ingredient: $Ingredient$Type): $List<($ItemStack)>
 public "getWidth"(): integer
 public "getHeight"(): integer
 public "get"(index: integer): $ItemStack
 public "find"(ingredient: $Ingredient$Type): $ItemStack
 public "find"(ingredient: $Ingredient$Type, skip: integer): $ItemStack
-public "findAll"(ingredient: $Ingredient$Type): $List<($ItemStack)>
-public "findAll"(): $List<($ItemStack)>
 public "getPlayer"(): $Player
 public "getMenu"(): $AbstractContainerMenu
 get "width"(): integer
@@ -19727,6 +19737,7 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$LootBuilder, $LootBuilder$Type} from "packages/dev/latvian/mods/kubejs/loot/$LootBuilder"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RandomTickCallbackJS, $RandomTickCallbackJS$Type} from "packages/dev/latvian/mods/kubejs/block/$RandomTickCallbackJS"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$BlockSetType, $BlockSetType$Type} from "packages/net/minecraft/world/level/block/state/properties/$BlockSetType"
 import {$ShapedBlockBuilder, $ShapedBlockBuilder$Type} from "packages/dev/latvian/mods/kubejs/block/custom/$ShapedBlockBuilder"
 
@@ -19742,8 +19753,9 @@ readonly "id": $ResourceLocation
 
 constructor(i: $ResourceLocation$Type)
 
-public "behaviour"(wt: $BlockSetType$Type): $PressurePlateBlockBuilder
+public "createObject"(): $Block
 public "behaviour"(wt: string): $PressurePlateBlockBuilder
+public "behaviour"(wt: $BlockSetType$Type): $PressurePlateBlockBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -19801,19 +19813,19 @@ static readonly "PERMANENT": integer
 static readonly "UNINITIALIZED_CONST": integer
 static readonly "CONST": integer
 
-constructor(isGenerator: boolean)
 constructor(scope: $Scriptable$Type, prototype: $Scriptable$Type)
 constructor()
+constructor(isGenerator: boolean)
 
+public "call"(cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
 public "construct"(cx: $Context$Type, scope: $Scriptable$Type, args: (any)[]): $Scriptable
+public "createObject"(cx: $Context$Type, scope: $Scriptable$Type): $Scriptable
 public "toString"(): string
 public "getLength"(): integer
 public "getClassName"(): string
-public "call"(cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
-public "createObject"(cx: $Context$Type, scope: $Scriptable$Type): $Scriptable
+public "hasInstance"(cx: $Context$Type, instance: $Scriptable$Type): boolean
 public "getFunctionName"(): string
 public "setImmunePrototypeProperty"(value: any): void
-public "hasInstance"(cx: $Context$Type, instance: $Scriptable$Type): boolean
 public "getArity"(): integer
 public "getTypeOf"(): $MemberType
 public "execIdCall"(f: $IdFunctionObject$Type, cx: $Context$Type, scope: $Scriptable$Type, thisObj: $Scriptable$Type, args: (any)[]): any
@@ -19890,9 +19902,9 @@ import {$TextColor, $TextColor$Type} from "packages/net/minecraft/network/chat/$
 export interface $Color extends $SpecialEquality {
 
  "createTextColorJS"(): $TextColor
- "getSerializeJS"(): string
- "getFireworkColorJS"(): integer
  "specialEquals"(o: any, shallow: boolean): boolean
+ "getFireworkColorJS"(): integer
+ "getSerializeJS"(): string
  "getArgbJS"(): integer
  "getRgbJS"(): integer
  "getHexJS"(): string
@@ -20163,8 +20175,8 @@ export interface $Scriptable extends $IdEnumerationIterator {
  "getDefaultValue"(arg0: $Context$Type, arg1: $Class$Type<(any)>): any
  "getClassName"(): string
  "setPrototype"(arg0: $Scriptable$Type): void
- "getPrototype"(arg0: $Context$Type): $Scriptable
  "hasInstance"(arg0: $Context$Type, arg1: $Scriptable$Type): boolean
+ "getPrototype"(arg0: $Context$Type): $Scriptable
  "setParentScope"(arg0: $Scriptable$Type): void
  "getParentScope"(): $Scriptable
  "enumerationIteratorHasNext"(cx: $Context$Type, currentId: $Consumer$Type<(any)>): boolean
@@ -20215,6 +20227,7 @@ export class $LootBuilder implements $FunctionContainer, $ConditionContainer {
 constructor(prev: $JsonElement$Type)
 
 public "toJson"(): $JsonObject
+public "addFunction"(o: $JsonObject$Type): $LootBuilder
 public "clearFunctions"(): void
 public "clearConditions"(): void
 public "addPool"(p: $Consumer$Type<($LootBuilderPool$Type)>): void
@@ -20227,16 +20240,16 @@ public "enchantWithLevels"(levels: $NumberProvider$Type, treasure: boolean): $Fu
 public "enchantRandomly"(enchantments: ($ResourceLocation$Type)[]): $FunctionContainer
 public "furnaceSmelt"(): $FunctionContainer
 public "lootingEnchant"(count: $NumberProvider$Type, limit: integer): $FunctionContainer
-public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "damage"(damage: $NumberProvider$Type): $FunctionContainer
+public "nbt"(tag: $CompoundTag$Type): $FunctionContainer
 public "lootTable"(table: $ResourceLocation$Type, seed: long): $FunctionContainer
 public "copyName"(source: $CopyNameFunction$NameSource$Type): $FunctionContainer
 public "survivesExplosion"(): $ConditionContainer
+public "randomChance"(chance: double): $ConditionContainer
 public "randomChanceWithLooting"(chance: double, multiplier: double): $ConditionContainer
 public "entityProperties"(entity: $LootContext$EntityTarget$Type, properties: $JsonObject$Type): $ConditionContainer
 public "killedByPlayer"(): $ConditionContainer
 public "entityScores"(entity: $LootContext$EntityTarget$Type, scores: $Map$Type<(string), (any)>): $ConditionContainer
-public "randomChance"(chance: double): $ConditionContainer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -20336,8 +20349,8 @@ export interface $BlockStatePredicate extends $Predicate<($BlockState)>, $Replac
  "getBlockStates"(): $Collection<($BlockState)>
  "getBlockIds"(): $Set<($ResourceLocation)>
  "getBlocks"(): $Collection<($Block)>
- "asRuleTest"(): $RuleTest
  "testBlock"(block: $Block$Type): boolean
+ "asRuleTest"(): $RuleTest
  "or"(arg0: $Predicate$Type<(any)>): $Predicate<($BlockState)>
  "negate"(): $Predicate<($BlockState)>
  "and"(arg0: $Predicate$Type<(any)>): $Predicate<($BlockState)>
@@ -20519,10 +20532,10 @@ export class $RemoveJEIRecipesEvent extends $EventJS {
 constructor(r: $IJeiRuntime$Type)
 
 public "remove"(category: $ResourceLocation$Type, recipesToRemove: ($ResourceLocation$Type)[]): void
-public "getCategoryIds"(): $Collection<($ResourceLocation)>
 public "getCategories"(): $Collection<($IRecipeCategory)>
-get "categoryIds"(): $Collection<($ResourceLocation)>
+public "getCategoryIds"(): $Collection<($ResourceLocation)>
 get "categories"(): $Collection<($IRecipeCategory)>
+get "categoryIds"(): $Collection<($ResourceLocation)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
