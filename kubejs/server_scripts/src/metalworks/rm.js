@@ -74,6 +74,7 @@ ServerEvents.recipes((event) => {
     'tconstruct:smeltery/entity_melting/water_breathing',
     'tconstruct:smeltery/entity_melting/wither',
     'tconstruct:smeltery/entity_melting/zombie',
+    'tfmg:crafting/fireproof_bricks',
   ]) {
     event.remove({ id: id })
   }

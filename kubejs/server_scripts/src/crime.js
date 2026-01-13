@@ -5,6 +5,11 @@ const MIN_HEARTS_IGNORE_CRIME = {
   vandalism: 10
 }
 
+const CRIME_HEARTS_LOSS = {
+  thievery: 10,
+  vandalism: 20
+}
+
 const MIN_HEARTS_PERMIT_RESIDENCY = 5
 
 
@@ -66,6 +71,7 @@ BlockEvents.rightClicked('', event => {
 })
 
 BlockEvents.broken('', event => {
+  if (!event.player) return
   commitCrime(event, 'vandalism')
 })
 
@@ -76,7 +82,7 @@ BlockEvents.broken('', event => {
  * @param {$BlockRightClickedEventJS_} event - The event that triggered the crime.
  * @param {string} crimeType - The type of crime. Can be 'thievery' or 'vandalism'.
  */
-function commitCrime(event, crimeType) {  
+function commitCrime(event, crimeType) {
   if (event.player.isCreative()) return
 
   console.log(`Checking possible crime ${crimeType} at ${event.block.pos}`)
@@ -93,7 +99,7 @@ function commitCrime(event, crimeType) {
     village.get().toggleAutoScan()
   }
 
-  console.log('Detected village presence, checking for building')
+  console.log(`Detected village presence ${village.get().getName()}, checking for building`)
   
   let building = village.get().getBuildingAt(event.block.pos)
   
@@ -102,9 +108,9 @@ function commitCrime(event, crimeType) {
   /** @type {$BlockPos_} */
   let playerSpawnPos = event.player.getRespawnPosition()
 
-  console.log('Detected building presence, checking if player lives in this building')
+  console.log(`Detected building presence (${building.get().getType()}), checking if player lives in this building`)
 
-  if (building.get().containsPos(playerSpawnPos)) return
+  if (playerSpawnPos && building.get().containsPos(playerSpawnPos)) return
   
   console.log(`Player commited crime "${crimeType}" at ${event.block.pos} in village ${village.get().getName()} building ${building.get().getType()}. Searching for witnesses...`)
 
@@ -122,13 +128,24 @@ function commitCrime(event, crimeType) {
         villager.isSleeping()
       ) return
 
+      // handle marriage status
+      /** @type {$Relationship_<$VillagerEntityMCA_} */
+      let relationship = villager.getRelationships()
+
+      if (
+        relationship.getPartnerUUID().isPresent() &&
+        relationship.getPartnerUUID().get().toString === event.player.getStringUuid()
+      ) {
+        return
+      }
+
       // crime was seen by somebody, we'll consider it reported
       crimeWasReported = true
       
       console.log(`Crime was reported by ${villager.getName().getString()}`);
 
       // lose reputation
-      villager.getVillagerBrain().getMemoriesForPlayer(event.player).modHearts(-1)
+      villager.getVillagerBrain().getMemoriesForPlayer(event.player).modHearts(-CRIME_HEARTS_LOSS[crimeType])
 
       // we'll handle the guards later
       if (villager.isGuard()) return
@@ -140,32 +157,37 @@ function commitCrime(event, crimeType) {
   if (!crimeWasReported) return
 
   nearbyVillagers.forEach(
-    /** @param {$VillagerEntityMCA_} villager */
-    villager => {
-      if (!villager.isGuard()) return
+    /** @param {$VillagerEntityMCA_} guard */
+    guard => {
+      if (!guard.isGuard()) return
 
-      let heartsForPardonSteal = MIN_HEARTS_IGNORE_CRIME[crimeType]
-      let playerReputation = villager.getVillagerBrain().getMemoriesForPlayer(event.player).getHearts()
+      let heartsForInstantPardon = MIN_HEARTS_IGNORE_CRIME[crimeType]
+
+      let playerVillageReputation = village.get().getReputation(event.player)
+      let playerGuardReputation = guard.getVillagerBrain().getMemoriesForPlayer(event.player).getHearts()
+      let playerReputation = Math.max(playerVillageReputation, playerGuardReputation)
 
       // good reputation
-      if (playerReputation > heartsForPardonSteal) {
+      if (playerReputation > heartsForInstantPardon) {
         if (!playerWasWarned) {
-          event.player.tell(`${villager.getName().getString()}: ${global.getRandomArrValue(CrimeWarnings[crimeType])}`)
+          event.player.tell(`${guard.getName().getString()}: ${global.getRandomArrValue(CrimeWarnings[crimeType])}`)
           playerWasWarned = true
         }
-      } else if (playerReputation === heartsForPardonSteal || playerReputation === -1 || playerReputation === 0) {
+      } else if (playerReputation === heartsForInstantPardon || playerReputation === -1 || playerReputation === 0) {
         // last pardonable offence
         if (!playerWasWarned) {
-          event.player.tell(`${villager.getName().getString()}: This is the last time we will look the other way. One more crime - and judgement will be swift, and I will personally see to it.`)
+          event.player.tell(`${guard.getName().getString()}: This is the last time we will look the other way. One more crime - and judgement will be swift, and I will see to it personally.`)
           playerWasWarned = true
         }
       } else {
         if (!playerWasWarned) {
-          event.player.tell(`${villager.getName().getString()}: We've had enough of you! Go away or face the consequences!`)
+          event.player.tell(`${guard.getName().getString()}: We've had enough of you! Go away or face the consequences!`)
           playerWasWarned = true
         }
-        villager.getBrain().setMemory('mca:small_bounty', Integer(`${villager.getSmallBounty() + 10}`))
-        villager.getBrain().setMemory('minecraft:attack_target', event.getPlayer());
+
+        // add bounty, otherwise guard won't attack
+        guard.getBrain().setMemory('mca:small_bounty', Integer(`${guard.getSmallBounty() + 10}`))
+        guard.getBrain().setMemory('minecraft:attack_target', event.getPlayer());
       }
     }
   )

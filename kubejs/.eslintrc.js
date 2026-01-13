@@ -26,6 +26,8 @@ module.exports = {
     'BlockEntityEvents': true,
     'BlockEvents': true,
     'BlockProperties': true,
+    'MEJSEvents': true,
+    'BlockPos': true,
     // helpers
     'getRandomArrValue': true,
     'toSentenceCase': true,

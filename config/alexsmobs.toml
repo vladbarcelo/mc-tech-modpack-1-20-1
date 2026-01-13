@@ -37,7 +37,7 @@
 	#Whether wild crows steal crops from farmland.
 	crowsStealCrops = true
 	#Whether fish oil gives players a special levitation effect.
-	fishOilMeme = true
+	fishOilMeme = false
 	#Whether soul vulture spawns should be restricted solely to the nether fossil structure or to whatever biome is specified in their respective biome config.
 	soulVultureSpawnOnFossil = true
 	#Whether acacia blossoms should drop from blocks tagged with #alexsmobs:drops_acacia_blossoms

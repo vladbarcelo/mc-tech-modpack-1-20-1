@@ -119,4 +119,54 @@ ServerEvents.recipes((event) => {
       B: 'minecraft:bricks',
     }
   )
+
+  event.remove({ id: 'create:crafting/kinetics/fluid_tank' })
+  event.shaped(
+    Item.of('create:fluid_tank', 1),
+    [
+      'AAA',
+      'ABA',
+      'AAA'
+    ],
+    {
+      A: '#forge:plates/copper',
+      B: 'kubejs:borosilicate_glass'
+    }
+  )
+
+  event.remove({ id: 'railways:crafting/fuel_tank' })
+  event.shaped(
+    Item.of('railways:fuel_tank', 1),
+    [
+      'AAA',
+      'ABA',
+      'AAA'
+    ],
+    {
+      A: '#forge:plates/brass',
+      B: 'kubejs:borosilicate_glass'
+    }
+  )
+
+  event.remove({ id: 'tfmg:crafting/steel_tank' })
+  event.shaped(
+    Item.of('tfmg:steel_fluid_tank', 1),
+    [
+      'AAA',
+      'ABA',
+      'AAA'
+    ],
+    {
+      A: '#forge:plates/steel',
+      B: 'kubejs:borosilicate_glass'
+    }
+  )
+
+  event.remove({ id: 'create_sa:small_fueling_tank_recipe' })
+  event.shapeless(
+    Item.of('create_sa:small_fueling_tank'),
+    [
+      'railways:fuel_tank'
+    ]
+  )
 });

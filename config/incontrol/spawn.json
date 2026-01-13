@@ -101,5 +101,11 @@
     "dimension": "minecraft:overworld",
     "when": "onjoin",
     "result": "deny"
+  },
+  {
+    "mob": "minecraft:iron_golem",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
   }
 ]

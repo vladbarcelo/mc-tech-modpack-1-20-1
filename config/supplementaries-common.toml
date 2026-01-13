@@ -51,7 +51,7 @@
 		fall_height_required = 5
 
 	[redstone.enderman_head]
-		enabled = true
+		enabled = false
 		drop_head = true
 		#Time to increase 1 power level when being looked at
 		#Range: 0 ~ 10000
@@ -60,14 +60,14 @@
 		work_from_any_side = false
 
 	[redstone.turn_table]
-		enabled = true
+		enabled = false
 		#can rotate entities standing on it?
 		rotate_entities = true
 		#Allows turn table to shuffle containers content when rotated over horizontal axis
 		shuffle_containers = true
 
 	[redstone.pulley_block]
-		enabled = true
+		enabled = false
 		#Chance for a new mineshaft elevator piece to spawn
 		#Range: 0.0 ~ 1.0
 		mineshaft_elevator = 0.035
@@ -78,14 +78,14 @@
 		adjust_projectile_angle = true
 
 	[redstone.faucet]
-		enabled = true
+		enabled = false
 		#Turn off to prevent faucets from dropping items
 		spill_items = true
 		#Allows faucets to fill entities inventories
 		fill_entities_below = false
 
 	[redstone.crystal_display]
-		enabled = true
+		enabled = false
 		#Allows chaining 2 crystal displays, letting one power the other to its left IF its own power exceeds 10. Given power will be its own divided by 10. Note that to work the decimal display must NOT have power directly behind it. Doing so will override the behavior to non chaining mode
 		chaining = true
 
@@ -107,7 +107,7 @@
 		replace_in_loot_tables = "NONE"
 
 	[functional.jar]
-		enabled = true
+		enabled = false
 		#Jar liquid capacity: leave at 12 for pixel accuracy
 		#Range: 0 ~ 1024
 		capacity = 12

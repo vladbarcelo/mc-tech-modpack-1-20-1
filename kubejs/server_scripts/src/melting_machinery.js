@@ -44,6 +44,7 @@ let machineryMeltingPoint = {
   'tfmg:aluminum_pipe': global.materialMeltingPointTemps.aluminum,
   'tfmg:aluminum_smart_fluid_pipe': global.materialMeltingPointTemps.aluminum,
   'tfmg:aluminum_mechanical_pump': global.materialMeltingPointTemps.aluminum,
+  'railways:fuel_tank': global.materialMeltingPointTemps.brass,
   'tfmg:brass_pipe': global.materialMeltingPointTemps.brass,
   'tfmg:brass_smart_fluid_pipe': global.materialMeltingPointTemps.brass,
   'tfmg:brass_mechanical_pump': global.materialMeltingPointTemps.brass,
