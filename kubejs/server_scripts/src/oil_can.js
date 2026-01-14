@@ -241,4 +241,11 @@ ServerEvents.recipes((event) => {
     },
     "fuel": 576000,
   })
+  event.shapeless(
+    Item.of('hardcore_torches:oil_can', 1, { Fuel: 576000 }),
+    [
+      'hardcore_torches:oil_can',
+      Item.of('morebuckets:wooden_bucket', 1, { Fluid: 'immersiveengineering:creosote' })
+    ]
+  )
 });

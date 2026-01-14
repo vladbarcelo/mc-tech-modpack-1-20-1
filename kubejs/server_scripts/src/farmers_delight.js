@@ -39,20 +39,6 @@ ServerEvents.recipes((event) => {
   )
 
   event.remove({ id: 'farmersdelight:cooking_pot' })
-  event.custom({
-    "type": "vintageimprovements:curving",
-    "mode": 1,
-    "ingredients": [
-      {
-        "tag": "forge:plates/cast_iron"
-      }
-    ],
-    "results": [
-      {
-        "item": "farmersdelight:cooking_pot"
-      }
-    ]
-  })
 
   event.remove({ id: 'butchersdelight:cleaver_recipe' })
   event.shaped(
@@ -64,6 +50,18 @@ ServerEvents.recipes((event) => {
     ],
     {
       A: '#forge:plates/cast_iron',
+      B: 'hot_iron:tool_handle'
+    }
+  )
+  event.shaped(
+    Item.of('butchersdelight:cleaver'),
+    [
+      'A',
+      'A',
+      'B',
+    ],
+    {
+      A: '#forge:plates/iron',
       B: 'hot_iron:tool_handle'
     }
   )

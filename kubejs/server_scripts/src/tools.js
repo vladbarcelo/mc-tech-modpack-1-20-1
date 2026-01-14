@@ -38,6 +38,17 @@ ServerEvents.recipes((event) => {
       B: 'hot_iron:tool_handle',
     }
   )
+  event.shaped(
+    Item.of('rechiseled:chisel', 1),
+    [
+      'A',
+      'B',
+    ],
+    {
+      A: '#forge:plates/iron',
+      B: 'hot_iron:tool_handle',
+    }
+  )
 
   // canteen
   event.remove({ id: 'thirstcanteen:leather_canteen' })

@@ -88,6 +88,18 @@ ServerEvents.recipes((event) => {
       B: 'create:andesite_alloy',
     }
   )
+  event.shaped(
+    Item.of('create:propeller', 1),
+    [
+      ' A ',
+      'ABA',
+      ' A '
+    ],
+    {
+      A: '#forge:plates/iron',
+      B: 'create:andesite_alloy',
+    }
+  )
 
   event.remove({
     id: 'steampowered:cast_iron_boiler'

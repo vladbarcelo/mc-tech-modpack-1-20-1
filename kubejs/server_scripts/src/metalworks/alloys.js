@@ -62,4 +62,21 @@ ServerEvents.recipes((event) => {
     },
     "time": 200
   });
+
+  event.custom({
+    "type": "immersiveengineering:alloy",
+    "input0": {
+      "tag": "forge:ingots/tin"
+    },
+    "input1": {
+      "item": "forge:ingots/copper"
+    },
+    "result": {
+      "base_ingredient": {
+        "item": "kubejs:hot_bronze_ingot"
+      },
+      "count": 1
+    },
+    "time": 200
+  })
 });

@@ -1,17 +1,3 @@
-// MoreEventsJS.handleServer('block_entity.tick', event => {
-//   let blockEntity = event.blockEntity;
-
-//   // Check if the block entity is a furnace
-//   if (blockEntity.id === 'create:fluid_pipe') {
-//     /** @type {import("packages/net/minecraft/world/level/block/state/$BlockState").$BlockState} */
-//     let blockState = blockEntity.blockState;
-
-//     for (let value of blockState.getValues()) {
-//       console.log(value)
-//     }
-//   }
-// });
-
 let checkableFluids = [
   'kubejs:molten_glass',
   'minecraft:lava',
@@ -24,14 +10,15 @@ let checkableFluids = [
   'createmetallurgy:molten_gold',
   'createmetallurgy:molten_copper',
   'kubejs:molten_cast_iron',
-  'kubejs:molten_uranium',
+  'tconstruct:molten_uranium',
+  'createmetallurgy:molten_tin',
   'createmetallurgy:molten_constantan',
   'createmetallurgy:molten_nickel',
   'createmetallurgy:molten_iron',
   'createmetallurgy:molten_steel',
   'kubejs:molten_palladium',
-  'kubejs:molten_platinum',
-  'kubejs:molten_chromium',
+  'tconstruct:molten_platinum',
+  'tconstruct:molten_chromium',
   'kubejs:molten_vanadium',
   'kubejs:molten_rhodium',
   'createmetallurgy:molten_tungsten',

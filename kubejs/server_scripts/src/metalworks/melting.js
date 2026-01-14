@@ -73,10 +73,12 @@ ServerEvents.recipes((event) => {
     'immersiveengineering:smelting/ingot_aluminum_from_dust_from_blasting',
     // brass
     'create:crafting/materials/brass_ingot_from_decompacting',
-    'immersiveengineering:crafting/storage_electrum_to_ingot_electrum',
     'create:crafting/materials/brass_ingot_from_compacting',
     'create:crafting/materials/brass_block_from_compacting',
     'tconstruct:smeltery/casting/metal/brass/wire_sand_cast',
+    // bronze
+    'tcintegrations:bronze_ingots_from_block',
+    'tcintegrations:bronze_nuggets_from_ingot',
     // silver
     'immersiveengineering:crafting/storage_silver_to_ingot_silver',
     'immersiveengineering:crafting/nugget_silver_to_ingot_silver',

@@ -60,4 +60,15 @@ ServerEvents.recipes((event) => {
       C: 'create:shaft'
     }
   )
+
+  event.shaped(
+    Item.of('notreepunching:iron_saw', 1),
+    [
+      'ABB',
+    ],
+    {
+      A: 'hot_iron:tool_handle',
+      B: '#forge:plates/iron'
+    }
+  )
 });

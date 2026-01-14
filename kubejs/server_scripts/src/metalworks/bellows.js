@@ -1,5 +1,19 @@
 ServerEvents.recipes((event) => {
   event.remove({ id: 'hot_iron:bellows' })
+  event.remove({ id: 'supplementaries:bellows' })
+
+  event.shaped(
+    Item.of('supplementaries:bellows', 1),
+    [
+      'AAA',
+      'B B',
+      'AAA'
+    ],
+    {
+      A: '#minecraft:wooden_slabs',
+      B: '#forge:leather'
+    }
+  )
 })
 
 BlockEntityEvents.tick((event) => {
