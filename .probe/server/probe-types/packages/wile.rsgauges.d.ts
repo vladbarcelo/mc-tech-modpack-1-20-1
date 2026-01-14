@@ -9,8 +9,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$Enchantment, $Enchantment$Type} from "packages/net/minecraft/world/item/enchantment/$Enchantment"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -35,18 +35,18 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
+public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public static "createFromPearl"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Player$Type): $ItemStack
 public static "cycleLinkMode"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): boolean
 public static "createForTarget"(arg0: $Level$Type, arg1: $BlockPos$Type): $ItemStack
+public "isFoil"(arg0: $ItemStack$Type): boolean
+public "isEnchantable"(arg0: $ItemStack$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "isBarVisible"(arg0: $ItemStack$Type): boolean
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "isFoil"(arg0: $ItemStack$Type): boolean
-public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public static "usePearl"(arg0: $Level$Type, arg1: $Player$Type): void
 }
 /**
@@ -195,8 +195,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 public "switchLinkOutputPower"(arg0: $Level$Type, arg1: $BlockPos$Type): $Optional<(integer)>
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -364,8 +364,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type)
 
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -464,13 +464,10 @@ public "power"(arg0: $BlockState$Type, arg1: boolean): integer
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "read"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "reset"(arg0: $LevelReader$Type): void
+public "configStatusTextComponentTranslation"(arg0: $SwitchBlock$Type): $MutableComponent
 public "unlinkAllSwitchLinks"(arg0: boolean): $ArrayList<($ItemStack)>
 public "click_config"(arg0: $SwitchBlock$Type, arg1: boolean): boolean
 public "touch_config"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: double, arg3: double): boolean
-public "configured_on_time"(arg0: integer): void
-public "configured_on_time"(): integer
-public "on_timer_reset"(arg0: integer): void
-public "on_timer_reset"(): void
 public "on_time_remaining"(): integer
 public "reschedule_block_tick"(): void
 public "activateSwitchLinks"(arg0: integer, arg1: integer, arg2: boolean): boolean
@@ -478,14 +475,17 @@ public "enabled_sides"(arg0: long): void
 public "enabled_sides"(): long
 public "on_timer_extend"(): void
 public "verifySwitchLinkTarget"(arg0: $SwitchLink$Type): boolean
-public "configStatusTextComponentTranslation"(arg0: $SwitchBlock$Type): $MutableComponent
+public "configured_on_time"(arg0: integer): void
+public "configured_on_time"(): integer
+public "on_timer_reset"(arg0: integer): void
+public "on_timer_reset"(): void
 public "inverted"(): boolean
 public "inverted"(arg0: boolean): void
-public "setpower"(arg0: integer): void
+public static "linktime"(): long
 public "setpower"(): integer
+public "setpower"(arg0: integer): void
 public "nooutput"(): boolean
 public "nooutput"(arg0: boolean): void
-public static "linktime"(): long
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 }
 /**
@@ -586,8 +586,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type)
 
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -714,8 +714,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type)
 
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -753,9 +753,11 @@ import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
 import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
 import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
 import {$SwitchBlock, $SwitchBlock$Type} from "packages/wile/rsgauges/blocks/$SwitchBlock"
+import {$ContactSwitchBlock$ContactSwitchTileEntity, $ContactSwitchBlock$ContactSwitchTileEntity$Type} from "packages/wile/rsgauges/blocks/$ContactSwitchBlock$ContactSwitchTileEntity"
 import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
 import {$GameEventListener, $GameEventListener$Type} from "packages/net/minecraft/world/level/gameevent/$GameEventListener"
 
@@ -865,11 +867,12 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getTe"(arg0: $LevelReader$Type, arg1: $BlockPos$Type): $ContactSwitchBlock$ContactSwitchTileEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -920,9 +923,9 @@ public static "fromTargetPosition"(arg0: $Level$Type, arg1: $BlockPos$Type): $Sw
 public "initializeTarget"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: integer, arg3: integer): void
 public "toSwitchLinkPearl"(): $ItemStack
 public "unlinkTarget"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public static "getComparatorInput"(arg0: $Level$Type, arg1: $BlockPos$Type): $Optional<(integer)>
-public static "getOutputPower"(arg0: $Level$Type, arg1: $BlockPos$Type): $Optional<(integer)>
 public static "fromNbt"(arg0: $CompoundTag$Type): $SwitchLink
+public static "getOutputPower"(arg0: $Level$Type, arg1: $BlockPos$Type): $Optional<(integer)>
+public static "getComparatorInput"(arg0: $Level$Type, arg1: $BlockPos$Type): $Optional<(integer)>
 public "toNbt"(): $CompoundTag
 public "isTooFar"(arg0: $BlockPos$Type): boolean
 }
@@ -955,12 +958,12 @@ import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/en
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$RsDirectedBlock, $RsDirectedBlock$Type} from "packages/wile/rsgauges/blocks/$RsDirectedBlock"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
+import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$RsBlock$RenderTypeHint, $RsBlock$RenderTypeHint$Type} from "packages/wile/rsgauges/blocks/$RsBlock$RenderTypeHint"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$SwitchBlock$SwitchTileEntity, $SwitchBlock$SwitchTileEntity$Type} from "packages/wile/rsgauges/blocks/$SwitchBlock$SwitchTileEntity"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -1088,8 +1091,7 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type, arg4: $ModResources$BlockSoundEvent$Type, arg5: $ModResources$BlockSoundEvent$Type)
 
-public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "getRenderTypeHint"(): $RsBlock$RenderTypeHint
+public "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
 public "switchLinkHasTargetSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
 public "switchLinkHasSourceSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
 public "switchLinkHasAnalogSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
@@ -1099,21 +1101,22 @@ public "switchLinkComparatorInput"(arg0: $Level$Type, arg1: $BlockPos$Type): $Op
 public "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
 public "switchLinkInit"(arg0: $SwitchLink$Type): void
 public "switchLinkUnlink"(arg0: $SwitchLink$Type): void
-public "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
+public "getRenderTypeHint"(): $RsBlock$RenderTypeHint
+public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "isSignalSource"(arg0: $BlockState$Type): boolean
+public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "attack"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): void
 public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
-public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "isSignalSource"(arg0: $BlockState$Type): boolean
-public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTe"(arg0: $LevelReader$Type, arg1: $BlockPos$Type): $SwitchBlock$SwitchTileEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "renderTypeHint"(): $RsBlock$RenderTypeHint
 }
@@ -1140,8 +1143,8 @@ import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/worl
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$ModResources$BlockSoundEvent, $ModResources$BlockSoundEvent$Type} from "packages/wile/rsgauges/detail/$ModResources$BlockSoundEvent"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
-import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
+import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -1262,12 +1265,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type, arg4: $ModResources$BlockSoundEvent$Type, arg5: $ModResources$BlockSoundEvent$Type, arg6: boolean)
 
+public "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
 public "switchLinkHasAnalogSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
 public "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
 public "switchLinkInit"(arg0: $SwitchLink$Type): void
-public "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1444,12 +1447,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type, arg4: $ModResources$BlockSoundEvent$Type, arg5: $ModResources$BlockSoundEvent$Type, arg6: boolean)
 
-public "getWeakChanges"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "switchLinkHasAnalogSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
+public "getWeakChanges"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1597,8 +1600,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 
 public "switchLinkOutputPower"(arg0: $Level$Type, arg1: $BlockPos$Type): $Optional<(integer)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1624,10 +1627,10 @@ constructor(arg0: $SoundEvent$Type)
 constructor(arg0: $SoundEvent$Type, arg1: float)
 constructor(arg0: $SoundEvent$Type, arg1: float, arg2: float)
 
-public "sound"(): $SoundEvent
-public "volume"(): float
 public "pitch"(): float
 public "play"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "volume"(): float
+public "sound"(): $SoundEvent
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1775,8 +1778,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 
 public "onNeighborBlockPlayerInteraction"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: $LivingEntity$Type, arg5: $InteractionHand$Type, arg6: boolean): boolean
 public "isCube"(): boolean
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "cube"(): boolean
 }
@@ -1793,9 +1796,9 @@ declare global {
 export type $BistableKnockSwitchBlock_ = $BistableKnockSwitchBlock$Type;
 }}
 declare module "packages/wile/rsgauges/detail/$SwitchLink$ISwitchLinkable" {
-import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
 import {$SwitchLink$LinkMode, $SwitchLink$LinkMode$Type} from "packages/wile/rsgauges/detail/$SwitchLink$LinkMode"
+import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$SwitchLink$RequestResult, $SwitchLink$RequestResult$Type} from "packages/wile/rsgauges/detail/$SwitchLink$RequestResult"
@@ -1803,6 +1806,7 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $SwitchLink$ISwitchLinkable {
 
+ "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
  "switchLinkHasTargetSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
  "switchLinkHasSourceSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
  "switchLinkHasAnalogSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
@@ -1812,7 +1816,6 @@ export interface $SwitchLink$ISwitchLinkable {
  "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
  "switchLinkInit"(arg0: $SwitchLink$Type): void
  "switchLinkUnlink"(arg0: $SwitchLink$Type): void
- "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
 }
 
 export namespace $SwitchLink$ISwitchLinkable {
@@ -1879,8 +1882,8 @@ import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$RsBlock$RenderTypeHint, $RsBlock$RenderTypeHint$Type} from "packages/wile/rsgauges/blocks/$RsBlock$RenderTypeHint"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
@@ -1947,13 +1950,10 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $VoxelShape
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type)
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type)
 
-public "isValidSpawn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $SpawnPlacements$Type$Type, arg4: $EntityType$Type<(any)>): boolean
-public "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
-public "getRenderTypeHint"(): $RsBlock$RenderTypeHint
 public "hasCustomBreakingProgress"(arg0: $BlockState$Type): boolean
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "attack"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getRenderTypeHint"(): $RsBlock$RenderTypeHint
+public "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
+public "isValidSpawn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $SpawnPlacements$Type$Type, arg4: $EntityType$Type<(any)>): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
@@ -1962,11 +1962,14 @@ public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "isPossibleToRespawnInThis"(arg0: $BlockState$Type): boolean
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "attack"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): void
 public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "isPossibleToRespawnInThis"(arg0: $BlockState$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "renderTypeHint"(): $RsBlock$RenderTypeHint
@@ -2121,8 +2124,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 public "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getTe"(arg0: $LevelReader$Type, arg1: $BlockPos$Type): $AutoSwitchBlock$AutoSwitchTileEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2150,8 +2153,8 @@ import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/leve
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$RsBlock$RenderTypeHint, $RsBlock$RenderTypeHint$Type} from "packages/wile/rsgauges/blocks/$RsBlock$RenderTypeHint"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
@@ -2213,16 +2216,16 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "shouldCheckWeakPower"(arg0: $BlockState$Type, arg1: $SignalGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
 public "getRenderTypeHint"(): $RsBlock$RenderTypeHint
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "shouldCheckWeakPower"(arg0: $BlockState$Type, arg1: $SignalGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
 public "skipRendering"(arg0: $BlockState$Type, arg1: $BlockState$Type, arg2: $Direction$Type): boolean
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getShadeBrightness"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): float
-public "isPossibleToRespawnInThis"(arg0: $BlockState$Type): boolean
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "isPossibleToRespawnInThis"(arg0: $BlockState$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "renderTypeHint"(): $RsBlock$RenderTypeHint
@@ -2370,8 +2373,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type)
 
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2521,12 +2524,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type, arg4: $ModResources$BlockSoundEvent$Type, arg5: $ModResources$BlockSoundEvent$Type)
 
 public "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2754,8 +2757,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type)
 
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2901,8 +2904,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type)
 
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3198,8 +3201,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 
 public "onNeighborBlockPlayerInteraction"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: $LivingEntity$Type, arg5: $InteractionHand$Type, arg6: boolean): boolean
 public "isCube"(): boolean
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "cube"(): boolean
 }
@@ -3347,8 +3350,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3492,8 +3495,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type, arg4: $ModResources$BlockSoundEvent$Type, arg5: $ModResources$BlockSoundEvent$Type)
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type)
 
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3645,8 +3648,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 public "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3678,8 +3681,8 @@ import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/en
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$RsDirectedBlock, $RsDirectedBlock$Type} from "packages/wile/rsgauges/blocks/$RsDirectedBlock"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
+import {$SwitchLink, $SwitchLink$Type} from "packages/wile/rsgauges/detail/$SwitchLink"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
@@ -3762,9 +3765,7 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $ModResources$BlockSoundEvent$Type, arg4: $ModResources$BlockSoundEvent$Type)
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type)
 
-public "shouldCheckWeakPower"(arg0: $BlockState$Type, arg1: $SignalGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "getWeakChanges"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
-public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
 public "isWallMount"(): boolean
 public "switchLinkHasTargetSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
 public "switchLinkHasSourceSupport"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
@@ -3775,18 +3776,20 @@ public "switchLinkComparatorInput"(arg0: $Level$Type, arg1: $BlockPos$Type): $Op
 public "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
 public "switchLinkInit"(arg0: $SwitchLink$Type): void
 public "switchLinkUnlink"(arg0: $SwitchLink$Type): void
-public "switchLinkGetSupportedTargetModes"(): $ImmutableList<($SwitchLink$LinkMode)>
-public "attack"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): void
+public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "getWeakChanges"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "shouldCheckWeakPower"(arg0: $BlockState$Type, arg1: $SignalGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "attack"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "isLateral"(): boolean
 public "isCube"(): boolean
 public "getTe"(arg0: $LevelReader$Type, arg1: $BlockPos$Type): $AbstractGaugeBlock$GaugeTileEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "wallMount"(): boolean
 get "lateral"(): boolean
@@ -3962,8 +3965,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTe"(arg0: $LevelReader$Type, arg1: $BlockPos$Type): $DoorSensorSwitchBlock$DoorSensorSwitchTileEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4112,8 +4115,8 @@ constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type,
 
 public "switchLinkTrigger"(arg0: $SwitchLink$Type): $SwitchLink$RequestResult
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4151,8 +4154,8 @@ public "tick"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "read"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "onServerPacketReceived"(arg0: $CompoundTag$Type): void
-public "load"(arg0: $CompoundTag$Type): void
 public "saveAdditional"(arg0: $CompoundTag$Type): void
+public "load"(arg0: $CompoundTag$Type): void
 public "onClientPacketReceived"(arg0: $Player$Type, arg1: $CompoundTag$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 }
@@ -4181,8 +4184,8 @@ import {$ModResources$BlockSoundEvent, $ModResources$BlockSoundEvent$Type} from 
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
@@ -4304,10 +4307,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type, arg4: $ModResources$BlockSoundEvent$Type, arg5: $ModResources$BlockSoundEvent$Type)
 
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4492,8 +4495,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type, arg4: $ModResources$BlockSoundEvent$Type, arg5: $ModResources$BlockSoundEvent$Type)
 constructor(arg0: long, arg1: $BlockBehaviour$Properties$Type, arg2: $AABB$Type, arg3: $AABB$Type)
 
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**

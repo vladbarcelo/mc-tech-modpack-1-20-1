@@ -26,14 +26,14 @@ export type $IMatcher_<T> = $IMatcher$Type<(T)>;
 declare module "packages/org/orecruncher/dsurround/mixins/core/$MixinParticleManager" {
 import {$Particle, $Particle$Type} from "packages/net/minecraft/client/particle/$Particle"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
-import {$ParticleOptions, $ParticleOptions$Type} from "packages/net/minecraft/core/particles/$ParticleOptions"
 import {$SpriteSet, $SpriteSet$Type} from "packages/net/minecraft/client/particle/$SpriteSet"
+import {$ParticleOptions, $ParticleOptions$Type} from "packages/net/minecraft/core/particles/$ParticleOptions"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $MixinParticleManager {
 
- "dsurround_createParticle"<T extends $ParticleOptions>(arg0: T, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double, arg6: double): $Particle
  "dsurround_getSpriteAwareFactories"(): $Map<($ResourceLocation), ($SpriteSet)>
+ "dsurround_createParticle"<T extends $ParticleOptions>(arg0: T, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double, arg6: double): $Particle
 }
 
 export namespace $MixinParticleManager {
@@ -188,11 +188,11 @@ public "update"(entry: $BiomeConfigRule$Type): void
 public "trim"(): void
 public "getBackgroundMusic"(random: $IRandomizer$Type): $Optional<($Music)>
 public "getFogColor"(): $TextColor
+public "mergeTraits"(configRule: $BiomeConfigRule$Type): void
 public "isDeepOcean"(): boolean
 public "findBiomeSoundMatches"(): $Collection<($ISoundFactory)>
 public "getExtraSound"(type: $SoundEventType$Type, random: $IRandomizer$Type): $Optional<($ISoundFactory)>
 public "getBiomeName"(): string
-public "mergeTraits"(configRule: $BiomeConfigRule$Type): void
 public "getTraits"(): $BiomeTraits
 public "hasTrait"(trait: string): boolean
 public "isRiver"(): boolean
@@ -229,8 +229,6 @@ export interface $IRandomizer extends $RandomSource {
 
  "nextFloat"(min: float, max: float): float
  "triangle"(midPoint: integer, range: integer): integer
- "nextFloat"(): float
- "nextDouble"(): double
  "nextLong"(): long
  "nextGaussian"(): double
  "fork"(): $RandomSource
@@ -242,6 +240,8 @@ export interface $IRandomizer extends $RandomSource {
  "triangle"(arg0: double, arg1: double): double
  "consumeCount"(arg0: integer): void
  "nextInt"(arg0: integer, arg1: integer): integer
+ "nextFloat"(): float
+ "nextDouble"(): double
  "nextInt"(arg0: integer): integer
 }
 
@@ -302,17 +302,17 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export interface $ISoundFactory {
 
  "getLocation"(): $ResourceLocation
+ "createBackgroundSoundLoopAt"(arg0: $BlockPos$Type): $BackgroundSoundLoop
+ "createAsMusic"(): $Music
+ "createBackgroundSoundLoop"(): $BackgroundSoundLoop
  "createAtLocation"(entity: $Entity$Type): $SimpleSoundInstance
- "createAtLocation"(pos: $BlockPos$Type, volumeScale: float): $SimpleSoundInstance
- "createAtLocation"(pos: $BlockPos$Type): $SimpleSoundInstance
  "createAtLocation"(position: $Vec3$Type): $SimpleSoundInstance
  "createAtLocation"(arg0: $Vec3$Type, arg1: float): $SimpleSoundInstance
- "createBackgroundSoundLoop"(): $BackgroundSoundLoop
+ "createAtLocation"(pos: $BlockPos$Type): $SimpleSoundInstance
+ "createAtLocation"(pos: $BlockPos$Type, volumeScale: float): $SimpleSoundInstance
  "createAsAdditional"(): $SimpleSoundInstance
  "createAsMood"(entity: $Entity$Type, minRange: integer, maxRange: integer): $SimpleSoundInstance
  "attachToEntity"(arg0: $Entity$Type): $EntityBoundSoundInstance
- "createAsMusic"(): $Music
- "createBackgroundSoundLoopAt"(arg0: $BlockPos$Type): $BackgroundSoundLoop
 }
 
 export namespace $ISoundFactory {
@@ -374,16 +374,16 @@ public "toString"(): string
 public "update"(config: $BlockConfigRule$Type): void
 public "trim"(): void
 public "isDefault"(): boolean
-public "getSoundReflectivity"(): float
-public "getSoundOcclusion"(): float
 public "hasSoundsOrEffects"(): boolean
 public "getSoundToPlay"(random: $IRandomizer$Type): $Optional<($ISoundFactory)>
 public "getEffectProducers"(): $Collection<($IBlockEffectProducer)>
+public "getSoundReflectivity"(): float
+public "getSoundOcclusion"(): float
 get "version"(): integer
 get "default"(): boolean
+get "effectProducers"(): $Collection<($IBlockEffectProducer)>
 get "soundReflectivity"(): float
 get "soundOcclusion"(): float
-get "effectProducers"(): $Collection<($IBlockEffectProducer)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -521,8 +521,8 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "match"(state: $BlockState$Type): boolean
-public "clearSounds"(): boolean
 public "soundChance"(): $Optional<($Script)>
+public "clearSounds"(): boolean
 public "effects"(): $List<($BlockEffectConfigRule)>
 public "acoustics"(): $List<($AcousticConfig)>
 }
@@ -573,11 +573,11 @@ import {$EntityEffectInfo, $EntityEffectInfo$Type} from "packages/org/orecrunche
 
 export interface $ILivingEntityExtended {
 
+ "dsurround_getPotionSwirlColor"(): integer
+ "dsurround_setPotionSwirlColor"(arg0: integer): void
  "dsurround_getEffectInfo"(): $EntityEffectInfo
  "dsurround_setEffectInfo"(arg0: $EntityEffectInfo$Type): void
  "dsurround_isJumping"(): boolean
- "dsurround_setPotionSwirlColor"(arg0: integer): void
- "dsurround_getPotionSwirlColor"(): integer
 }
 
 export namespace $ILivingEntityExtended {
@@ -610,8 +610,8 @@ static readonly "FIREFLY": $BlockEffectType
 static readonly "CODEC": $Codec<($BlockEffectType)>
 
 
-public "createInstance"(chance: $Script$Type, conditions: $Script$Type): $Optional<($IBlockEffectProducer)>
 public "isEnabled"(): boolean
+public "createInstance"(chance: $Script$Type, conditions: $Script$Type): $Optional<($IBlockEffectProducer)>
 public "getName"(): string
 public static "values"(): ($BlockEffectType)[]
 public static "valueOf"(name: string): $BlockEffectType
@@ -717,10 +717,10 @@ import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 
 export interface $MixinRaycastContextAccessor {
 
- "dsurround_setEndPoint"(arg0: $Vec3$Type): void
- "dsurround_setStartPoint"(arg0: $Vec3$Type): void
  "dsurround_getStartPoint"(): $Vec3
+ "dsurround_setStartPoint"(arg0: $Vec3$Type): void
  "dsurround_getEndPoint"(): $Vec3
+ "dsurround_setEndPoint"(arg0: $Vec3$Type): void
  "dsurround_setShapeContext"(arg0: $CollisionContext$Type): void
 }
 
@@ -791,16 +791,16 @@ export type $MixinSoundManagerAccessor_ = $MixinSoundManagerAccessor$Type;
 declare module "packages/org/orecruncher/dsurround/mixinutils/$IBiomeExtended" {
 import {$Biome$ClimateSettings, $Biome$ClimateSettings$Type} from "packages/net/minecraft/world/level/biome/$Biome$ClimateSettings"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$BiomeInfo, $BiomeInfo$Type} from "packages/org/orecruncher/dsurround/config/biome/$BiomeInfo"
 import {$BiomeSpecialEffects, $BiomeSpecialEffects$Type} from "packages/net/minecraft/world/level/biome/$BiomeSpecialEffects"
+import {$BiomeInfo, $BiomeInfo$Type} from "packages/org/orecruncher/dsurround/config/biome/$BiomeInfo"
 
 export interface $IBiomeExtended {
 
- "dsurround_setInfo"(arg0: $BiomeInfo$Type): void
- "dsurround_getTemperature"(arg0: $BlockPos$Type): float
- "dsurround_getInfo"(): $BiomeInfo
- "dsurround_getWeather"(): $Biome$ClimateSettings
  "dsurround_getSpecialEffects"(): $BiomeSpecialEffects
+ "dsurround_getInfo"(): $BiomeInfo
+ "dsurround_setInfo"(arg0: $BiomeInfo$Type): void
+ "dsurround_getWeather"(): $Biome$ClimateSettings
+ "dsurround_getTemperature"(arg0: $BlockPos$Type): float
 }
 
 export namespace $IBiomeExtended {
@@ -966,14 +966,14 @@ export class $EntityEffectInfo {
 constructor(version: integer, entity: $LivingEntity$Type, effects: $Collection$Type<($IEntityEffect$Type)>)
 
 public "getEntity"(): $LivingEntity
-public "getVersion"(): integer
 public "tick"(): void
+public "getVersion"(): integer
 public "isAlive"(): boolean
 public "isDefault"(): boolean
+public "isCurrentPlayer"(player: $LivingEntity$Type): boolean
 public static "createDefault"(version: integer): $EntityEffectInfo
 public "activate"(): void
 public "deactivate"(): void
-public "isCurrentPlayer"(player: $LivingEntity$Type): boolean
 public "isRemoved"(): boolean
 public "getEffects"(): $Collection<($IEntityEffect)>
 get "entity"(): $LivingEntity
@@ -1001,8 +1001,8 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IBlockEffect {
 
- "isDone"(): boolean
  "tick"(): void
+ "isDone"(): boolean
  "getPosition"(): $Vec3
  "remove"(): void
  "getPosIndex"(): long
@@ -1044,10 +1044,10 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "comment"(): $Optional<(string)>
-public "clearSounds"(): boolean
-public "biomeSelector"(): $Script
-public "moodSoundChance"(): $Optional<($Script)>
 public "additionalSoundChance"(): $Optional<($Script)>
+public "moodSoundChance"(): $Optional<($Script)>
+public "biomeSelector"(): $Script
+public "clearSounds"(): boolean
 public "traits"(): $List<($BiomeTrait)>
 public "acoustics"(): $List<($AcousticConfig)>
 public "fogColor"(): $Optional<($TextColor)>
@@ -1096,8 +1096,8 @@ import {$Button$OnPress, $Button$OnPress$Type} from "packages/net/minecraft/clie
 
 export interface $MixinButtonWidget {
 
- "dsurround_getPressAction"(): $Button$OnPress
  "dsurround_getNarrationSupplier"(): $Button$CreateNarration
+ "dsurround_getPressAction"(): $Button$OnPress
 }
 
 export namespace $MixinButtonWidget {
@@ -1145,19 +1145,19 @@ constructor(soundEvent: $SoundEvent$Type, pos: $BlockPos$Type)
 
 public "toString"(): string
 public "setScaleTarget"(target: float): void
-public "setPitch"(pitch: float): $BackgroundSoundLoop
-public "getPos"(): $BlockPos
 public "getVolume"(): float
+public "getPos"(): $BlockPos
+public "setPitch"(pitch: float): $BackgroundSoundLoop
 public "isFading"(): boolean
 public "fadeIn"(): void
 public "fadeOut"(): void
-public "setVolume"(volume: float): $BackgroundSoundLoop
 public "tick"(): void
+public "setVolume"(volume: float): $BackgroundSoundLoop
 public static "createUnseededRandom"(): $RandomSource
 set "scaleTarget"(value: float)
-set "pitch"(value: float)
-get "pos"(): $BlockPos
 get "volume"(): float
+get "pos"(): $BlockPos
+set "pitch"(value: float)
 get "fading"(): boolean
 set "volume"(value: float)
 }
@@ -1198,15 +1198,15 @@ declare global {
 export type $MixinClientWorldProperties_ = $MixinClientWorldProperties$Type;
 }}
 declare module "packages/org/orecruncher/dsurround/mixins/audio/$MixinSoundEngineAccessor" {
-import {$SoundInstance, $SoundInstance$Type} from "packages/net/minecraft/client/resources/sounds/$SoundInstance"
 import {$Listener, $Listener$Type} from "packages/com/mojang/blaze3d/audio/$Listener"
+import {$SoundInstance, $SoundInstance$Type} from "packages/net/minecraft/client/resources/sounds/$SoundInstance"
 import {$ChannelAccess$ChannelHandle, $ChannelAccess$ChannelHandle$Type} from "packages/net/minecraft/client/sounds/$ChannelAccess$ChannelHandle"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $MixinSoundEngineAccessor {
 
- "dsurround_getSources"(): $Map<($SoundInstance), ($ChannelAccess$ChannelHandle)>
  "dsurround_getListener"(): $Listener
+ "dsurround_getSources"(): $Map<($SoundInstance), ($ChannelAccess$ChannelHandle)>
 }
 
 export namespace $MixinSoundEngineAccessor {
@@ -1236,9 +1236,10 @@ export class $SourceContext implements $Callable<(void)> {
 
 constructor(sourceId: integer)
 
-public "isEnabled"(): boolean
-public "tick"(): void
 public "sync"(): any
+public "call"(): void
+public "tick"(): void
+public "isEnabled"(): boolean
 public "getPosition"(): $Vec3
 public "enable"(): void
 public "toString"(): string
@@ -1247,12 +1248,12 @@ public "exec"(): void
 public "shouldExecute"(): boolean
 public "getCategory"(): $SoundSource
 public "getSound"(): $SoundInstance
-public "attachSound"(sound: $SoundInstance$Type): void
 public "getLowPass0"(): $LowPassData
 public "getLowPass1"(): $LowPassData
 public "getLowPass2"(): $LowPassData
 public "getLowPass3"(): $LowPassData
 public "getAirAbsorb"(): $SourcePropertyFloat
+public "attachSound"(sound: $SoundInstance$Type): void
 public "getDirect"(): $LowPassData
 get "enabled"(): boolean
 get "position"(): $Vec3

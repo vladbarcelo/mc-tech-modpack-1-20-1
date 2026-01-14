@@ -50,9 +50,9 @@ readonly "canRepair": boolean
 
 constructor(settings: $Item$Properties$Type)
 
+public "getName"(stack: $ItemStack$Type): $Component
 public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "use"(world: $Level$Type, user: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "getName"(stack: $ItemStack$Type): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

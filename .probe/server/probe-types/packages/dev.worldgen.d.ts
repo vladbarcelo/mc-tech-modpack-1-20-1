@@ -357,8 +357,8 @@ public "blocks"(): $SimpleWeightedRandomList<($Block)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "canPlaceOn"(): $Optional<($HolderSet<($Block)>)>
 public "canPlaceOn"(arg0: $BlockState$Type): boolean
+public "canPlaceOn"(): $Optional<($HolderSet<($Block)>)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -617,16 +617,16 @@ constructor(stateProvider: $BlockStateProvider$Type, replaceableBlocks: $HolderS
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "stateProvider"(): $BlockStateProvider
-public "floorToCeilingSearchRange"(): integer
-public "columnRadius"(): $IntProvider
-public "heightScale"(): $FloatProvider
-public "stalactiteBluntness"(): $FloatProvider
+public "maxColumnRadiusToCaveHeightRatio"(): float
 public "stalagmiteBluntness"(): $FloatProvider
+public "stalactiteBluntness"(): $FloatProvider
+public "heightScale"(): $FloatProvider
+public "columnRadius"(): $IntProvider
+public "floorToCeilingSearchRange"(): integer
+public "replaceableBlocks"(): $HolderSet<($Block)>
+public "stateProvider"(): $BlockStateProvider
 public "minRadiusForWind"(): integer
 public "minBluntnessForWind"(): float
-public "replaceableBlocks"(): $HolderSet<($Block)>
-public "maxColumnRadiusToCaveHeightRatio"(): float
 public "windSpeed"(): $FloatProvider
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -788,8 +788,8 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "startJigsawName"(): $Optional<($ResourceLocation)>
-public "processors"(): $Holder<($StructureProcessorList)>
 public "template"(): $ResourceLocation
+public "processors"(): $Holder<($StructureProcessorList)>
 public "rotation"(): $Optional<($Rotation)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -824,10 +824,10 @@ static readonly "CODEC": $Codec<($SelectConfig)>
 
 constructor(features: $List$Type<($Pair$Type<($BlockPredicate$Type), ($Holder$Type<($PlacedFeature$Type)>)>)>)
 
+public "features"(): $List<($Pair<($BlockPredicate), ($Holder<($PlacedFeature)>)>)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "features"(): $List<($Pair<($BlockPredicate), ($Holder<($PlacedFeature)>)>)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
 /**
@@ -1015,10 +1015,10 @@ static readonly "CODEC": $Codec<($WeightedSelectorConfig)>
 
 constructor(features: $SimpleWeightedRandomList$Type<($Holder$Type<($PlacedFeature$Type)>)>)
 
+public "features"(): $SimpleWeightedRandomList<($Holder<($PlacedFeature)>)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "features"(): $SimpleWeightedRandomList<($Holder<($PlacedFeature)>)>
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
 /**
@@ -1355,12 +1355,12 @@ public "standardProvider"(): $BlockStateProvider
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "groundProvider"(): $BlockStateProvider
 public "fluidProvider"(): $BlockStateProvider
 public "slabProvider"(): $BlockStateProvider
 public "suspiciousPlacements"(): $IntProvider
 public "suspiciousProvider"(): $BlockStateProvider
 public "suspiciousLootTable"(): $ResourceLocation
+public "groundProvider"(): $BlockStateProvider
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -1391,10 +1391,10 @@ static readonly "CODEC": $Codec<($CompositeConfig)>
 
 constructor(features: $HolderSet$Type<($PlacedFeature$Type)>, placementType: $CompositeConfig$Type$Type)
 
+public "features"(): $HolderSet<($PlacedFeature)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "features"(): $HolderSet<($PlacedFeature)>
 public "placementType"(): $CompositeConfig$Type
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 }
@@ -1418,9 +1418,9 @@ import {$ObjectArrayList, $ObjectArrayList$Type} from "packages/it/unimi/dsi/fas
 
 export interface $StructureTemplatePoolAccessor {
 
- "setRawTemplates"(arg0: $List$Type<($Pair$Type<($StructurePoolElement$Type), (integer)>)>): void
- "getVanillaTemplates"(): $ObjectArrayList<($StructurePoolElement)>
  "getRawTemplates"(): $List<($Pair<($StructurePoolElement), (integer)>)>
+ "getVanillaTemplates"(): $ObjectArrayList<($StructurePoolElement)>
+ "setRawTemplates"(arg0: $List$Type<($Pair$Type<($StructurePoolElement$Type), (integer)>)>): void
  "setVanillaTemplates"(arg0: $ObjectArrayList$Type<($StructurePoolElement$Type)>): void
 }
 
@@ -1449,8 +1449,8 @@ import {$StructureTemplate, $StructureTemplate$Type} from "packages/net/minecraf
 export interface $SinglePoolElementAccessor {
 
  "setProcessors"(arg0: $Holder$Type<($StructureProcessorList$Type)>): void
- "getProcessors"(): $Holder<($StructureProcessorList)>
  "getTemplate"(): $Either<($ResourceLocation), ($StructureTemplate)>
+ "getProcessors"(): $Holder<($StructureProcessorList)>
 }
 
 export namespace $SinglePoolElementAccessor {
@@ -1490,12 +1490,12 @@ constructor(minOpenings: integer, maxOpenings: integer, radius: $IntProvider$Typ
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "dungeonInvalidBlocks"(): $TagKey<($Block)>
+public "wallProvider"(): $BlockStateProvider
 public "spawnerMobs"(): $SimpleWeightedRandomList<($EntityType<(any)>)>
-public "minOpenings"(): integer
+public "dungeonInvalidBlocks"(): $TagKey<($Block)>
 public "maxOpenings"(): integer
 public "floorProvider"(): $BlockStateProvider
-public "wallProvider"(): $BlockStateProvider
+public "minOpenings"(): integer
 public "radius"(): $IntProvider
 public "lootTable"(): $ResourceLocation
 public "maxChests"(): integer

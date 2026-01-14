@@ -5,8 +5,8 @@ import {$SoundEngine, $SoundEngine$Type} from "packages/eu/ha3/presencefootsteps
 
 export interface $StepSoundSource {
 
- "isStepBlocked"(): boolean
  "getStepGenerator"(arg0: $SoundEngine$Type): $Optional<($StepSoundGenerator)>
+ "isStepBlocked"(): boolean
 }
 
 export namespace $StepSoundSource {
@@ -39,10 +39,10 @@ static readonly "VALUES": ($EntitySelector)[]
 public static "values"(): ($EntitySelector)[]
 public static "valueOf"(name: string): $EntitySelector
 public static "isEqual"<T>(arg0: any): $Predicate<($Entity)>
-public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($Entity)>
 public "negate"(): $Predicate<($Entity)>
 public "and"(arg0: $Predicate$Type<(any)>): $Predicate<($Entity)>
 public static "not"<T>(arg0: $Predicate$Type<(any)>): $Predicate<($Entity)>
+public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($Entity)>
 public "test"(arg0: $Entity$Type): boolean
 }
 /**
@@ -66,19 +66,19 @@ export class $MotionTracker {
 
 constructor(generator: $TerrestrialStepSoundGenerator$Type)
 
-public "getSpeedScalingRatio"(entity: $LivingEntity$Type): float
 public "getHorizontalSpeed"(): double
-public "simulateMotionData"(ply: $LivingEntity$Type): void
+public "getSpeedScalingRatio"(entity: $LivingEntity$Type): float
 public "isStationary"(): boolean
+public "simulateMotionData"(ply: $LivingEntity$Type): void
 public "pickState"(ply: $LivingEntity$Type, walk: $State$Type, run: $State$Type): $State
 public "getMotionX"(): double
-public "getMotionZ"(): double
 public "getMotionY"(): double
+public "getMotionZ"(): double
 get "horizontalSpeed"(): double
 get "stationary"(): boolean
 get "motionX"(): double
-get "motionZ"(): double
 get "motionY"(): double
+get "motionZ"(): double
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -308,23 +308,23 @@ constructor(config: $PFConfig$Type)
 public "reload"(): void
 public "hasData"(): boolean
 public "shutdown"(): void
+public "onSoundRecieved"(event: $Holder$Type<($SoundEvent$Type)>, category: $SoundSource$Type): boolean
 public "getFabricId"(): $ResourceLocation
 public "getIsolator"(): $Isolator
-public "onSoundRecieved"(event: $Holder$Type<($SoundEvent$Type)>, category: $SoundSource$Type): boolean
 public "getVolumeForSource"(source: $LivingEntity$Type): float
 public "reloadEverything"(manager: $ResourceManager$Type): void
 public "isEnabledFor"(entity: $Entity$Type): boolean
+public "getSolver"(): $Solver
 public "isRunning"(client: $Minecraft$Type): boolean
 public "getConfig"(): $PFConfig
-public "getSolver"(): $Solver
 public "reload"(sync: $PreparableReloadListener$PreparationBarrier$Type, sender: $ResourceManager$Type, serverProfiler: $ProfilerFiller$Type, clientProfiler: $ProfilerFiller$Type, serverExecutor: $Executor$Type, clientExecutor: $Executor$Type): $CompletableFuture<(void)>
 public "onFrame"(client: $Minecraft$Type, cameraEntity: $Entity$Type): void
 public "getFabricDependencies"(): $Collection<($ResourceLocation)>
 public "getName"(): string
 get "fabricId"(): $ResourceLocation
 get "isolator"(): $Isolator
-get "config"(): $PFConfig
 get "solver"(): $Solver
+get "config"(): $PFConfig
 get "fabricDependencies"(): $Collection<($ResourceLocation)>
 get "name"(): string
 }
@@ -528,8 +528,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 
 export interface $DerivedBlock$Settings {
 
- "getBaseBlock"(): $Block
  "setBaseBlock"(arg0: $Block$Type): void
+ "getBaseBlock"(): $Block
 }
 
 export namespace $DerivedBlock$Settings {
@@ -618,8 +618,8 @@ public "toString"(): string
 public "hashCode"(): integer
 public "write"(writer: $JsonObjectWriter$Type, acoustics: $Map$Type<(string), ($Acoustic$Type)>): void
 public static "read"(reader: $Reader$Type, consumer: $BiConsumer$Type<(string), ($Acoustic$Type)>, ignoreVersion: boolean): $AcousticsFile
-public "defaultVolume"(): $Range
 public "defaultPitch"(): $Range
+public "defaultVolume"(): $Range
 public "getSoundName"(soundName: string): string
 public "soundRoot"(): string
 }
@@ -711,12 +711,12 @@ public "toString"(): string
 public "hashCode"(): integer
 public static "of"(names: string): $SoundsKey
 public "names"(): (string)[]
-public "isResult"(): boolean
 public "isSilent"(): boolean
 public "isEmitter"(): boolean
-get "result"(): boolean
+public "isResult"(): boolean
 get "silent"(): boolean
 get "emitter"(): boolean
+get "result"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -762,8 +762,8 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "load"(manager: $ResourceManager$Type): boolean
-public "writeToReport"(full: boolean, writer: $JsonObjectWriter$Type, groups: $Map$Type<(string), ($SoundType$Type)>): void
 public "locomotions"(): $Index<($Entity), ($Locomotion)>
+public "writeToReport"(full: boolean, writer: $JsonObjectWriter$Type, groups: $Map$Type<(string), ($SoundType$Type)>): void
 public "heuristics"(): $HeuristicStateLookup
 public "acoustics"(): $AcousticLibrary
 public "golems"(): $Lookup<($EntityType<(any)>)>
@@ -819,8 +819,8 @@ export class $UpdateChecker {
 
 constructor(config: $UpdaterConfig$Type, modid: string, server: string, reporter: $Reporter$Type)
 
-public "getLast"(): $Optional<($Versions)>
 public "attempt"(): void
+public "getLast"(): $Optional<($Versions)>
 public "getNewer"(): $Optional<($Versions)>
 public "checkNow"(): $CompletableFuture<($Optional<($Versions)>)>
 get "last"(): $Optional<($Versions)>
@@ -917,10 +917,10 @@ export class $TerrestrialStepSoundGenerator implements $StepSoundGenerator {
 
 constructor(entity: $LivingEntity$Type, engine: $SoundEngine$Type, modifier: $Modifier$Type<($TerrestrialStepSoundGenerator$Type)>)
 
-public "getMotionTracker"(): $MotionTracker
-public "generateFootsteps"(): void
 public "produceStep"(event: $State$Type): void
 public "produceStep"(event: $State$Type, verticalOffsetAsMinus: double): void
+public "getMotionTracker"(): $MotionTracker
+public "generateFootsteps"(): void
 get "motionTracker"(): $MotionTracker
 }
 /**
@@ -955,9 +955,9 @@ static readonly "FLYING_BIPED": $Locomotion
 
 public static "values"(): ($Locomotion)[]
 public static "valueOf"(name: string): $Locomotion
+public "supplyGenerator"(entity: $LivingEntity$Type, engine: $SoundEngine$Type): $Optional<($StepSoundGenerator)>
 public "getOptionTooltip"(): $Component
 public "getOptionName"(): $Component
-public "supplyGenerator"(entity: $LivingEntity$Type, engine: $SoundEngine$Type): $Optional<($StepSoundGenerator)>
 public static "byName"(name: string): $Locomotion
 public static "forLiving"(entity: $Entity$Type, fallback: $Locomotion$Type): $Locomotion
 public static "forPlayer"(ply: $Player$Type, preference: $Locomotion$Type): $Locomotion
@@ -1123,9 +1123,9 @@ constructor(entity: $LivingEntity$Type, engine: $SoundEngine$Type)
 
 public "get"(pos: $BlockPos$Type, state: $BlockState$Type, substrate: string): $SoundsKey
 public "reset"(): void
+public "wasLastMatchGolem"(): boolean
 public "findAssociation"(pos: $BlockPos$Type, strategy: string): $Association
 public "findAssociation"(verticalOffsetAsMinus: double, isRightFoot: boolean): $Association
-public "wasLastMatchGolem"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1159,13 +1159,13 @@ public "source"(): $LivingEntity
 public "pos"(): $BlockPos
 public "state"(): $BlockState
 public "dataEquals"(other: $Association$Type): boolean
+public "isSilent"(): boolean
+public "dry"(): $SoundsKey
 public "wet"(): $SoundsKey
 public "foliage"(): $SoundsKey
 public "isResult"(): boolean
-public "isSilent"(): boolean
-public "dry"(): $SoundsKey
-get "result"(): boolean
 get "silent"(): boolean
+get "result"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1247,8 +1247,8 @@ declare module "packages/eu/ha3/presencefootsteps/$PFConfig" {
 import {$Locomotion, $Locomotion$Type} from "packages/eu/ha3/presencefootsteps/sound/generator/$Locomotion"
 import {$Path, $Path$Type} from "packages/java/nio/file/$Path"
 import {$JsonFile, $JsonFile$Type} from "packages/eu/ha3/presencefootsteps/config/$JsonFile"
-import {$EntitySelector, $EntitySelector$Type} from "packages/eu/ha3/presencefootsteps/config/$EntitySelector"
 import {$CrashReportCategory, $CrashReportCategory$Type} from "packages/net/minecraft/$CrashReportCategory"
+import {$EntitySelector, $EntitySelector$Type} from "packages/eu/ha3/presencefootsteps/config/$EntitySelector"
 import {$VolumeOption, $VolumeOption$Type} from "packages/eu/ha3/presencefootsteps/config/$VolumeOption"
 import {$PresenceFootsteps, $PresenceFootsteps$Type} from "packages/eu/ha3/presencefootsteps/$PresenceFootsteps"
 
@@ -1263,6 +1263,9 @@ export class $PFConfig extends $JsonFile {
 
 constructor(file: $Path$Type, pf: $PresenceFootsteps$Type)
 
+public "isVisualiserRunning"(): boolean
+public "getMaxSteppingEntities"(): integer
+public "populateCrashReport"(section: $CrashReportCategory$Type): void
 public "toggleDisabled"(): boolean
 public "getDisabled"(): boolean
 public "getGlobalVolume"(): integer
@@ -1280,10 +1283,9 @@ public "toggleFootwear"(): boolean
 public "toggleMultiplayer"(): boolean
 public "cycleTargetSelector"(): $EntitySelector
 public "setDisabled"(disabled: boolean): boolean
-public "isVisualiserRunning"(): boolean
-public "getMaxSteppingEntities"(): integer
-public "populateCrashReport"(section: $CrashReportCategory$Type): void
 public "getEnabled"(): boolean
+get "visualiserRunning"(): boolean
+get "maxSteppingEntities"(): integer
 get "disabled"(): boolean
 get "globalVolume"(): integer
 set "globalVolume"(value: float)
@@ -1296,8 +1298,6 @@ get "enabledMP"(): boolean
 get "enabledFootwear"(): boolean
 get "exclusiveMode"(): boolean
 set "disabled"(value: boolean)
-get "visualiserRunning"(): boolean
-get "maxSteppingEntities"(): integer
 get "enabled"(): boolean
 }
 /**

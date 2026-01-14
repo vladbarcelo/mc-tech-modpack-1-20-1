@@ -4,6 +4,7 @@ StartupEvents.registry('item', event => {
     addArmors(event, metal)
     addSheets(event, metal)
     addTools(event, metal)
+    addRods(event, metal)
   }
 });
 
@@ -368,6 +369,17 @@ function addSheets(event, metal) {
         "count": 1
       }
     });
+  }
+}
+
+function addRods(event, metal) {
+  let rodItem = global.metalRods[metal] || `kubejs:${metal}_rod`
+  if (!global.metalRods[metal]) {
+    event
+      .create(rodItem)
+      .texture(`minecraft:item/blaze_rod`)
+      .color(0, global.metalColors[metal])
+      .displayName(toSentenceCase(`${metal} Rod`))
   }
 }
 

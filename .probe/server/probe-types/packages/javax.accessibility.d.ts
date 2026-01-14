@@ -37,8 +37,8 @@ export interface $AccessibleText {
  "getBeforeIndex"(arg0: integer, arg1: integer): string
  "getCharacterAttribute"(arg0: integer): $AttributeSet
  "getSelectionStart"(): integer
- "getSelectedText"(): string
  "getSelectionEnd"(): integer
+ "getSelectedText"(): string
  "getCharCount"(): integer
  "getAtIndex"(arg0: integer, arg1: integer): string
 }
@@ -148,13 +148,13 @@ import {$Accessible, $Accessible$Type} from "packages/javax/accessibility/$Acces
 
 export interface $AccessibleSelection {
 
+ "getAccessibleSelection"(arg0: integer): $Accessible
+ "isAccessibleChildSelected"(arg0: integer): boolean
  "getAccessibleSelectionCount"(): integer
  "addAccessibleSelection"(arg0: integer): void
  "removeAccessibleSelection"(arg0: integer): void
  "clearAccessibleSelection"(): void
  "selectAllAccessibleSelection"(): void
- "getAccessibleSelection"(arg0: integer): $Accessible
- "isAccessibleChildSelected"(arg0: integer): boolean
 }
 
 export namespace $AccessibleSelection {
@@ -180,13 +180,13 @@ import {$AttributeSet, $AttributeSet$Type} from "packages/javax/swing/text/$Attr
 
 export interface $AccessibleEditableText extends $AccessibleText {
 
- "setAttributes"(arg0: integer, arg1: integer, arg2: $AttributeSet$Type): void
- "delete"(arg0: integer, arg1: integer): void
  "setTextContents"(arg0: string): void
  "insertTextAtIndex"(arg0: integer, arg1: string): void
  "getTextRange"(arg0: integer, arg1: integer): string
  "replaceText"(arg0: integer, arg1: integer, arg2: string): void
  "selectText"(arg0: integer, arg1: integer): void
+ "setAttributes"(arg0: integer, arg1: integer, arg2: $AttributeSet$Type): void
+ "delete"(arg0: integer, arg1: integer): void
  "cut"(arg0: integer, arg1: integer): void
  "paste"(arg0: integer): void
  "getIndexAtPoint"(arg0: $Point$Type): integer
@@ -196,8 +196,8 @@ export interface $AccessibleEditableText extends $AccessibleText {
  "getBeforeIndex"(arg0: integer, arg1: integer): string
  "getCharacterAttribute"(arg0: integer): $AttributeSet
  "getSelectionStart"(): integer
- "getSelectedText"(): string
  "getSelectionEnd"(): integer
+ "getSelectedText"(): string
  "getCharCount"(): integer
  "getAtIndex"(arg0: integer, arg1: integer): string
 }
@@ -511,12 +511,11 @@ static readonly "ACCESSIBLE_COMPONENT_BOUNDS_CHANGED": string
 public "getAccessibleChildrenCount"(): integer
 public "getAccessibleChild"(arg0: integer): $Accessible
 public "getAccessibleComponent"(): $AccessibleComponent
-public "firePropertyChange"(arg0: string, arg1: any, arg2: any): void
-public "getLocale"(): $Locale
 public "getAccessibleParent"(): $Accessible
 public "getAccessibleSelection"(): $AccessibleSelection
 public "getAccessibleIndexInParent"(): integer
-public "getAccessibleStateSet"(): $AccessibleStateSet
+public "firePropertyChange"(arg0: string, arg1: any, arg2: any): void
+public "getLocale"(): $Locale
 public "getAccessibleName"(): string
 public "setAccessibleName"(arg0: string): void
 public "getAccessibleDescription"(): string
@@ -530,15 +529,15 @@ public "getAccessibleValue"(): $AccessibleValue
 public "getAccessibleIcon"(): ($AccessibleIcon)[]
 public "getAccessibleRelationSet"(): $AccessibleRelationSet
 public "getAccessibleTable"(): $AccessibleTable
-public "addPropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
+public "getAccessibleStateSet"(): $AccessibleStateSet
 public "removePropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
+public "addPropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
 get "accessibleChildrenCount"(): integer
 get "accessibleComponent"(): $AccessibleComponent
-get "locale"(): $Locale
 get "accessibleParent"(): $Accessible
 get "accessibleSelection"(): $AccessibleSelection
 get "accessibleIndexInParent"(): integer
-get "accessibleStateSet"(): $AccessibleStateSet
+get "locale"(): $Locale
 get "accessibleName"(): string
 set "accessibleName"(value: string)
 get "accessibleDescription"(): string
@@ -552,6 +551,7 @@ get "accessibleValue"(): $AccessibleValue
 get "accessibleIcon"(): ($AccessibleIcon)[]
 get "accessibleRelationSet"(): $AccessibleRelationSet
 get "accessibleTable"(): $AccessibleTable
+get "accessibleStateSet"(): $AccessibleStateSet
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -632,31 +632,31 @@ import {$Font, $Font$Type} from "packages/java/awt/$Font"
 
 export interface $AccessibleComponent {
 
- "setSize"(arg0: $Dimension$Type): void
- "isEnabled"(): boolean
- "getLocationOnScreen"(): $Point
  "isShowing"(): boolean
  "requestFocus"(): void
  "getAccessibleAt"(arg0: $Point$Type): $Accessible
+ "isFocusTraversable"(): boolean
+ "addFocusListener"(arg0: $FocusListener$Type): void
+ "removeFocusListener"(arg0: $FocusListener$Type): void
+ "setSize"(arg0: $Dimension$Type): void
+ "isEnabled"(): boolean
+ "getForeground"(): $Color
+ "setForeground"(arg0: $Color$Type): void
+ "getFontMetrics"(arg0: $Font$Type): $FontMetrics
  "contains"(arg0: $Point$Type): boolean
  "getBounds"(): $Rectangle
  "getLocation"(): $Point
  "getSize"(): $Dimension
- "getForeground"(): $Color
- "setForeground"(arg0: $Color$Type): void
- "isFocusTraversable"(): boolean
- "addFocusListener"(arg0: $FocusListener$Type): void
- "removeFocusListener"(arg0: $FocusListener$Type): void
- "getFontMetrics"(arg0: $Font$Type): $FontMetrics
+ "getLocationOnScreen"(): $Point
  "setBackground"(arg0: $Color$Type): void
  "getBackground"(): $Color
  "getCursor"(): $Cursor
  "setLocation"(arg0: $Point$Type): void
- "setBounds"(arg0: $Rectangle$Type): void
+ "setCursor"(arg0: $Cursor$Type): void
+ "getFont"(): $Font
  "setEnabled"(arg0: boolean): void
  "setVisible"(arg0: boolean): void
- "getFont"(): $Font
- "setCursor"(arg0: $Cursor$Type): void
+ "setBounds"(arg0: $Rectangle$Type): void
  "isVisible"(): boolean
  "setFont"(arg0: $Font$Type): void
 }

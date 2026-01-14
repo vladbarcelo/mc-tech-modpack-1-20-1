@@ -11,7 +11,7 @@ ServerEvents.recipes((event) => {
       B: 'immersiveengineering:creosote_bucket',
       C: '#forge:rods/wooden'
     }
-  ).customIngredientAction('immersiveengineering:creosote_bucket', 'keep_bucket');
+  )
 });
 
 MEJSEvents.entityTick(event => {

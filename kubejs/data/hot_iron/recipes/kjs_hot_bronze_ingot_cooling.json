@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_bronze_ingot"
+		}
+	],
+	"output": {
+		"item": "tcintegrations:bronze_ingot",
+		"count": 1
+	}
+}

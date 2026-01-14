@@ -2,7 +2,6 @@ import {$ClientInitEventJS, $ClientInitEventJS$Type} from "packages/dev/latvian/
 import {$ItemModelPropertiesEventJS, $ItemModelPropertiesEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemModelPropertiesEventJS"
 import {$BoilerHeaterHandlerEvent, $BoilerHeaterHandlerEvent$Type} from "packages/dev/latvian/mods/kubejs/create/events/$BoilerHeaterHandlerEvent"
 import {$WailaCommonRegistrationEventJS, $WailaCommonRegistrationEventJS$Type} from "packages/pie/ilikepiefoo/compat/jade/$WailaCommonRegistrationEventJS"
-import {$registerHeatEvent, $registerHeatEvent$Type} from "packages/com/xiaohunao/createheatjs/event/$registerHeatEvent"
 import {$EntityCapEventJS, $EntityCapEventJS$Type} from "packages/com/prunoideae/powerfuljs/events/$EntityCapEventJS"
 import {$AddWorldgenEventJS, $AddWorldgenEventJS$Type} from "packages/dev/latvian/mods/kubejs/level/gen/$AddWorldgenEventJS"
 import {$DynamicEntityEventJS, $DynamicEntityEventJS$Type} from "packages/com/prunoideae/powerfuljs/events/forge/$DynamicEntityEventJS"
@@ -24,9 +23,6 @@ import {$RemoveWorldgenEventJS, $RemoveWorldgenEventJS$Type} from "packages/dev/
 import {$ItemToolTierRegistryEventJS, $ItemToolTierRegistryEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/custom/$ItemToolTierRegistryEventJS"
 
 declare global {
-export namespace CreateHeatJS {
-function registerHeatEvent(handler: (event: $registerHeatEvent) => void): void
-}
 export namespace ArchEvents {
 function registry(handler: (event: $ArchEventRegisterEventJS) => void): void
 function handleStartup(extra: string, handler: (event: $ProxyEventJS) => void): void

@@ -17,13 +17,13 @@ export interface $EnergyContainer extends $Serializable, $Clearable {
  "createSnapshot"(): $EnergySnapshot
  "readSnapshot"(snapshot: $EnergySnapshot$Type): void
  "getMaxCapacity"(): long
- "getStoredEnergy"(): long
  "insertEnergy"(arg0: long, arg1: boolean): long
  "internalInsert"(amount: long, simulate: boolean): long
  "extractEnergy"(arg0: long, arg1: boolean): long
  "internalExtract"(amount: long, simulate: boolean): long
  "allowsInsertion"(): boolean
  "allowsExtraction"(): boolean
+ "getStoredEnergy"(): long
  "setEnergy"(arg0: long): void
  "maxInsert"(): long
  "maxExtract"(): long
@@ -38,9 +38,9 @@ function of(holder: $ItemStackHolder$Type): $EnergyContainer
 function of(block: $BlockEntity$Type, direction: $Direction$Type): $EnergyContainer
 function of(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $EnergyContainer
 function holdsEnergy(stack: $ItemStack$Type): boolean
-function holdsEnergy(block: $BlockEntity$Type, direction: $Direction$Type): boolean
 function holdsEnergy(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $BlockEntity$Type, direction: $Direction$Type): boolean
 function holdsEnergy(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): boolean
+function holdsEnergy(block: $BlockEntity$Type, direction: $Direction$Type): boolean
 function tryClear(arg0: any): void
 }
 /**
@@ -205,18 +205,18 @@ public "toString"(): string
 public "hashCode"(): integer
 public "update"(object: $BlockEntity$Type): void
 public "container"(): $EnergyContainer
-public "blockEntity"(): $BlockEntity
 public "createSnapshot"(): $EnergySnapshot
+public "blockEntity"(): $BlockEntity
 public "getMaxCapacity"(): long
-public "getStoredEnergy"(): long
-public "serialize"(nbt: $CompoundTag$Type): $CompoundTag
-public "deserialize"(nbt: $CompoundTag$Type): void
 public "insertEnergy"(energy: long, simulate: boolean): long
 public "internalInsert"(amount: long, simulate: boolean): long
 public "extractEnergy"(energy: long, simulate: boolean): long
 public "internalExtract"(amount: long, simulate: boolean): long
 public "allowsInsertion"(): boolean
 public "allowsExtraction"(): boolean
+public "getStoredEnergy"(): long
+public "serialize"(nbt: $CompoundTag$Type): $CompoundTag
+public "deserialize"(nbt: $CompoundTag$Type): void
 public "clearContent"(): void
 public "setEnergy"(energy: long): void
 public "maxInsert"(): long
@@ -228,9 +228,9 @@ public static "of"(block: $BlockEntity$Type, direction: $Direction$Type): $Energ
 public static "of"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): $EnergyContainer
 public "readSnapshot"(snapshot: $EnergySnapshot$Type): void
 public static "holdsEnergy"(stack: $ItemStack$Type): boolean
-public static "holdsEnergy"(block: $BlockEntity$Type, direction: $Direction$Type): boolean
 public static "holdsEnergy"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $BlockEntity$Type, direction: $Direction$Type): boolean
 public static "holdsEnergy"(level: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): boolean
+public static "holdsEnergy"(block: $BlockEntity$Type, direction: $Direction$Type): boolean
 public static "tryClear"(arg0: any): void
 get "maxCapacity"(): long
 get "storedEnergy"(): long

@@ -67,8 +67,8 @@ constructor(arg0: string, arg1: boolean)
 
 public "toString"(): string
 public "getId"(): string
-public "isCancellable"(): boolean
 public static "getCallInfoClassName"(arg0: $Type$Type): string
+public "isCancellable"(): boolean
 public "cancel"(): void
 public "isCancelled"(): boolean
 get "id"(): string

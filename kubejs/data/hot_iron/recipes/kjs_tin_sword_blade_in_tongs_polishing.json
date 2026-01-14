@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:tin_sword_blade_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:polished_tin_sword_blade_in_tongs",
+		"count": 1
+	}
+}

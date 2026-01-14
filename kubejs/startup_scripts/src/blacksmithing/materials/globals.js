@@ -1,8 +1,10 @@
 global.ingotDictionary = {
+  'tin': 'tinore:tin_ingot',
   'lead': 'immersiveengineering:ingot_lead',
   'zinc': 'create:zinc_ingot',
   'aluminum': 'immersiveengineering:ingot_aluminum',
   'brass': 'create:brass_ingot',
+  'bronze': 'tcintegrations:bronze_ingot',
   'electrum': 'createaddition:electrum_ingot',
   'silver': 'immersiveengineering:ingot_silver',
   'gold': 'minecraft:gold_ingot',
@@ -16,17 +18,19 @@ global.ingotDictionary = {
   'palladium': '',
   'platinum': '',
   'chromium': '',
-  'vanadium': '',
+  'vanadium': 'vintageimprovements:vanadium_ingot',
   'rhodium': '',
   'tungsten': 'createmetallurgy:tungsten_ingot',
 }
 
 
 global.metalBlocks = {
+  'tin': 'tinore:block_of_tin',
   'lead': 'immersiveengineering:storage_lead',
   'zinc': 'create:zinc_block',
   'aluminum': 'immersiveengineering:storage_aluminum',
   'brass': 'create:brass_block',
+  'bronze': 'tcintegrations:bronze_block',
   'electrum': 'immersiveengineering:storage_electrum',
   'silver': 'immersiveengineering:storage_silver',
   'gold': 'minecraft:gold_block',
@@ -46,10 +50,12 @@ global.metalBlocks = {
 }
 
 global.metalRods = {
+  'tin': 'vintageimprovements:tin_rod',
   'lead': 'vintageimprovements:lead_rod',
   'zinc': 'vintageimprovements:zinc_rod',
   'aluminum': 'immersiveengineering:stick_aluminum',
   'brass': 'createaddition:brass_rod',
+  'bronze': 'vintageimprovements:bronze_rod',
   'electrum': 'createaddition:electrum_rod',
   'silver': 'vintageimprovements:silver_rod',
   'gold': 'createaddition:gold_rod',
@@ -70,10 +76,12 @@ global.metalRods = {
 
 
 global.metalPlates = {
+  'tin': 'vintageimprovements:tin_sheet',
   'lead': 'immersiveengineering:plate_lead',
   'zinc': 'createdeco:zinc_sheet',
   'aluminum': 'immersiveengineering:plate_aluminum',
   'brass': 'create:brass_sheet',
+  'bronze': 'vintageimprovements:bronze_sheet',
   'electrum': 'immersiveengineering:plate_electrum',
   'silver': 'immersiveengineering:plate_silver',
   'gold': 'create:golden_sheet',

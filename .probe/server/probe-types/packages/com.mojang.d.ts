@@ -190,8 +190,8 @@ import {$Function5, $Function5$Type} from "packages/com/mojang/datafixers/util/$
 import {$Function9, $Function9$Type} from "packages/com/mojang/datafixers/util/$Function9"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
-import {$K1, $K1$Type} from "packages/com/mojang/datafixers/kinds/$K1"
 import {$App, $App$Type} from "packages/com/mojang/datafixers/kinds/$App"
+import {$K1, $K1$Type} from "packages/com/mojang/datafixers/kinds/$K1"
 import {$Products$P10, $Products$P10$Type} from "packages/com/mojang/datafixers/$Products$P10"
 import {$Products$P11, $Products$P11$Type} from "packages/com/mojang/datafixers/$Products$P11"
 import {$Products$P14, $Products$P14$Type} from "packages/com/mojang/datafixers/$Products$P14"
@@ -222,8 +222,8 @@ import {$Products$P6, $Products$P6$Type} from "packages/com/mojang/datafixers/$P
 
 export interface $Applicative<F extends $K1, Mu extends $Applicative$Mu> extends $Functor<(F), (Mu)> {
 
- "ap"<A, R>(arg0: $App$Type<(F), ($Function$Type<(A), (R)>)>, arg1: $App$Type<(F), (A)>): $App<(F), (R)>
  "ap"<A, R>(arg0: $Function$Type<(A), (R)>, arg1: $App$Type<(F), (A)>): $App<(F), (R)>
+ "ap"<A, R>(arg0: $App$Type<(F), ($Function$Type<(A), (R)>)>, arg1: $App$Type<(F), (A)>): $App<(F), (R)>
  "point"<A>(arg0: A): $App<(F), (A)>
  "lift1"<A, R>(arg0: $App$Type<(F), ($Function$Type<(A), (R)>)>): $Function<($App<(F), (A)>), ($App<(F), (R)>)>
  "ap2"<A, B, R>(arg0: $App$Type<(F), ($BiFunction$Type<(A), (B), (R)>)>, arg1: $App$Type<(F), (A)>, arg2: $App$Type<(F), (B)>): $App<(F), (R)>
@@ -346,19 +346,18 @@ export class $AbstractUniform {
 
 constructor()
 
-public "set"(arg0: $Vector3f$Type): void
+public "set"(arg0: float, arg1: float): void
 public "setSafe"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "setSafe"(arg0: float, arg1: float, arg2: float, arg3: float): void
 public "set"(arg0: (float)[]): void
+public "set"(arg0: $Vector3f$Type): void
 public "set"(arg0: $Matrix4f$Type): void
-public "set"(arg0: float, arg1: float): void
 public "set"(arg0: float): void
 public "set"(arg0: float, arg1: float, arg2: float): void
 public "set"(arg0: float, arg1: float, arg2: float, arg3: float): void
 public "set"(arg0: integer): void
-public "set"(arg0: integer, arg1: integer): void
 public "set"(arg0: $Matrix3f$Type): void
-public "set"(arg0: $Vector4f$Type): void
+public "set"(arg0: integer, arg1: integer): void
 public "set"(arg0: integer, arg1: integer, arg2: integer): void
 public "set"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "setMat2x2"(arg0: float, arg1: float, arg2: float, arg3: float): void
@@ -370,6 +369,7 @@ public "setMat3x4"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: flo
 public "setMat4x2"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float): void
 public "setMat4x3"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: float, arg10: float, arg11: float): void
 public "setMat4x4"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: float, arg10: float, arg11: float, arg12: float, arg13: float, arg14: float, arg15: float): void
+public "set"(arg0: $Vector4f$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -390,8 +390,8 @@ import {$Dynamic, $Dynamic$Type} from "packages/com/mojang/serialization/$Dynami
 
 export interface $DataFixer {
 
- "update"<T>(arg0: $DSL$TypeReference$Type, arg1: $Dynamic$Type<(T)>, arg2: integer, arg3: integer): $Dynamic<(T)>
  "getSchema"(arg0: integer): $Schema
+ "update"<T>(arg0: $DSL$TypeReference$Type, arg1: $Dynamic$Type<(T)>, arg2: integer, arg3: integer): $Dynamic<(T)>
 }
 
 export namespace $DataFixer {
@@ -459,16 +459,16 @@ public "result"(): $Optional<($Dynamic<(T)>)>
 public "flatMap"<U>(arg0: $Function$Type<(any), (any)>): $DataResult<(U)>
 public "orElseEmptyMap"(): $Dynamic<(T)>
 public "orElseEmptyList"(): $Dynamic<(T)>
-public "asString"(): $DataResult<(string)>
-public "asLongStreamOpt"(): $DataResult<($LongStream)>
-public "asIntStreamOpt"(): $DataResult<($IntStream)>
-public "asByteBufferOpt"(): $DataResult<($ByteBuffer)>
-public "asStreamOpt"(): $DataResult<($Stream<($Dynamic<(T)>)>)>
 public "getElementGeneric"(arg0: T): $DataResult<(T)>
-public "getGeneric"(arg0: T): $DataResult<(T)>
+public "asStreamOpt"(): $DataResult<($Stream<($Dynamic<(T)>)>)>
+public "asByteBufferOpt"(): $DataResult<($ByteBuffer)>
+public "asIntStreamOpt"(): $DataResult<($IntStream)>
+public "asLongStreamOpt"(): $DataResult<($LongStream)>
+public "asString"(): $DataResult<(string)>
 public "into"<V>(arg0: $Function$Type<(any), (any)>): $DataResult<(V)>
 public "asNumber"(): $DataResult<(number)>
 public "asMapOpt"(): $DataResult<($Stream<($Pair<($Dynamic<(T)>), ($Dynamic<(T)>)>)>)>
+public "getGeneric"(arg0: T): $DataResult<(T)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -700,15 +700,15 @@ constructor()
 public "point"<A>(arg0: A): $App<($RecordCodecBuilder$Mu<(O)>), (A)>
 public "point"<A>(arg0: A, arg1: $Lifecycle$Type): $App<($RecordCodecBuilder$Mu<(O)>), (A)>
 public "map"<T, R>(arg0: $Function$Type<(any), (any)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
+public "stable"<A>(arg0: A): $App<($RecordCodecBuilder$Mu<(O)>), (A)>
+public "deprecated"<A>(arg0: A, arg1: integer): $App<($RecordCodecBuilder$Mu<(O)>), (A)>
 public "lift1"<A, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function$Type<(A), (R)>)>): $Function<($App<($RecordCodecBuilder$Mu<(O)>), (A)>), ($App<($RecordCodecBuilder$Mu<(O)>), (R)>)>
 public "ap2"<A, B, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($BiFunction$Type<(A), (B), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (A)>, arg2: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (B)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
 public "ap3"<T1, T2, T3, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function3$Type<(T1), (T2), (T3), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T1)>, arg2: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T2)>, arg3: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T3)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
 public "ap4"<T1, T2, T3, T4, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function4$Type<(T1), (T2), (T3), (T4), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T1)>, arg2: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T2)>, arg3: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T3)>, arg4: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T4)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
-public "stable"<A>(arg0: A): $App<($RecordCodecBuilder$Mu<(O)>), (A)>
-public "deprecated"<A>(arg0: A, arg1: integer): $App<($RecordCodecBuilder$Mu<(O)>), (A)>
-public static "unbox"<F extends $K1, Mu extends $Applicative$Mu>(arg0: $App$Type<($RecordCodecBuilder$Instance$Mu$Type<(O)>), ($RecordCodecBuilder$Mu$Type<(O)>)>): $Applicative<($RecordCodecBuilder$Mu<(O)>), ($RecordCodecBuilder$Instance$Mu<(O)>)>
-public "ap"<A, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function$Type<(A), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (A)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
 public "ap"<A, R>(arg0: $Function$Type<(A), (R)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (A)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
+public "ap"<A, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function$Type<(A), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (A)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
+public static "unbox"<F extends $K1, Mu extends $Applicative$Mu>(arg0: $App$Type<($RecordCodecBuilder$Instance$Mu$Type<(O)>), ($RecordCodecBuilder$Mu$Type<(O)>)>): $Applicative<($RecordCodecBuilder$Mu<(O)>), ($RecordCodecBuilder$Instance$Mu<(O)>)>
 public "ap5"<T1, T2, T3, T4, T5, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function5$Type<(T1), (T2), (T3), (T4), (T5), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T1)>, arg2: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T2)>, arg3: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T3)>, arg4: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T4)>, arg5: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T5)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
 public "ap6"<T1, T2, T3, T4, T5, T6, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function6$Type<(T1), (T2), (T3), (T4), (T5), (T6), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T1)>, arg2: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T2)>, arg3: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T3)>, arg4: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T4)>, arg5: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T5)>, arg6: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T6)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
 public "ap7"<T1, T2, T3, T4, T5, T6, T7, R>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), ($Function7$Type<(T1), (T2), (T3), (T4), (T5), (T6), (T7), (R)>)>, arg1: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T1)>, arg2: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T2)>, arg3: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T3)>, arg4: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T4)>, arg5: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T5)>, arg6: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T6)>, arg7: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (T7)>): $App<($RecordCodecBuilder$Mu<(O)>), (R)>
@@ -776,8 +776,8 @@ static readonly "MULTIPLAYER_SCOPE": string
 
 constructor(id: $UUID$Type, expires: $Instant$Type, reason: string, reasonMessage: string)
 
-public "reason"(): string
 public "expires"(): $Instant
+public "reason"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -814,11 +814,11 @@ constructor(arg0: $Proxy$Type, arg1: string)
 constructor(arg0: $Proxy$Type, arg1: $Environment$Type)
 constructor(arg0: $Proxy$Type)
 
-public "createUserApiService"(arg0: string): $UserApiService
-public "getServicesKeySet"(): $ServicesKeySet
+public "createMinecraftSessionService"(): $MinecraftSessionService
 public "createUserAuthentication"(arg0: $Agent$Type): $UserAuthentication
 public "createProfileRepository"(): $GameProfileRepository
-public "createMinecraftSessionService"(): $MinecraftSessionService
+public "createUserApiService"(arg0: string): $UserApiService
+public "getServicesKeySet"(): $ServicesKeySet
 get "servicesKeySet"(): $ServicesKeySet
 }
 /**
@@ -843,10 +843,10 @@ export class $Program {
 
 constructor(arg0: $Program$Type$Type, arg1: integer, arg2: string)
 
+public "attachToShader"(arg0: $Shader$Type): void
 public "close"(): void
 public "getName"(): string
 public static "compileShader"(arg0: $Program$Type$Type, arg1: string, arg2: $InputStream$Type, arg3: string, arg4: $GlslPreprocessor$Type): $Program
-public "attachToShader"(arg0: $Shader$Type): void
 get "name"(): string
 }
 /**
@@ -1050,9 +1050,9 @@ import {$CommandContext, $CommandContext$Type} from "packages/com/mojang/brigadi
 export class $LongArgumentType implements $ArgumentType<(long)> {
 
 
-public "parse"(arg0: $StringReader$Type): long
 public "getMinimum"(): long
 public "getMaximum"(): long
+public "parse"(arg0: $StringReader$Type): long
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -1104,11 +1104,11 @@ import {$Program, $Program$Type} from "packages/com/mojang/blaze3d/shaders/$Prog
 
 export interface $Shader {
 
- "getVertexProgram"(): $Program
- "getFragmentProgram"(): $Program
  "markDirty"(): void
  "attachToProgram"(): void
  "getId"(): integer
+ "getVertexProgram"(): $Program
+ "getFragmentProgram"(): $Program
 }
 
 export namespace $Shader {
@@ -1134,12 +1134,12 @@ export class $StringReader implements $ImmutableStringReader {
 constructor(arg0: $StringReader$Type)
 constructor(arg0: string)
 
+public "getString"(): string
 public "readString"(): string
 public "readLong"(): long
 public "readBoolean"(): boolean
 public "readDouble"(): double
 public "getRemaining"(): string
-public "getString"(): string
 public "readFloat"(): float
 public "expect"(arg0: character): void
 public "read"(): character
@@ -1149,20 +1149,20 @@ public "canRead"(): boolean
 public "skip"(): void
 public "peek"(arg0: integer): character
 public "peek"(): character
+public static "isAllowedInUnquotedString"(arg0: character): boolean
+public "readUnquotedString"(): string
 public "getRemainingLength"(): integer
 public "getTotalLength"(): integer
-public "readUnquotedString"(): string
-public static "isAllowedInUnquotedString"(arg0: character): boolean
-public static "isAllowedNumber"(arg0: character): boolean
-public "readStringUntil"(arg0: character): string
 public static "isQuotedStringStart"(arg0: character): boolean
 public "readQuotedString"(): string
+public static "isAllowedNumber"(arg0: character): boolean
+public "readStringUntil"(arg0: character): string
 public "getCursor"(): integer
 public "skipWhitespace"(): void
-public "setCursor"(arg0: integer): void
 public "getRead"(): string
-get "remaining"(): string
+public "setCursor"(arg0: integer): void
 get "string"(): string
+get "remaining"(): string
 get "remainingLength"(): integer
 get "totalLength"(): integer
 get "cursor"(): integer
@@ -1522,14 +1522,6 @@ constructor()
 public "defaultColor"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "unsetDefaultColor"(): void
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: float, arg7: (integer)[], arg8: integer, arg9: boolean): void
-public "vertex"(arg0: double, arg1: double, arg2: double): $VertexConsumer
-public "uv"(arg0: float, arg1: float): $VertexConsumer
-public "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
-public "endVertex"(): void
-public "color"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $VertexConsumer
-public "overlayCoords"(arg0: integer, arg1: integer): $VertexConsumer
-public "uv2"(arg0: integer, arg1: integer): $VertexConsumer
-public "normal"(arg0: float, arg1: float, arg2: float): $VertexConsumer
 public "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
 public "overlayCoords"(arg0: integer): $VertexConsumer
 public "uv2"(arg0: integer): $VertexConsumer
@@ -1538,9 +1530,17 @@ public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: fl
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: (integer)[], arg7: integer, arg8: boolean): void
 public "vertex"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
 public "normal"(arg0: $Matrix3f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
+public "vertex"(arg0: double, arg1: double, arg2: double): $VertexConsumer
+public "uv"(arg0: float, arg1: float): $VertexConsumer
+public "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
+public "endVertex"(): void
+public "color"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $VertexConsumer
+public "overlayCoords"(arg0: integer, arg1: integer): $VertexConsumer
+public "uv2"(arg0: integer, arg1: integer): $VertexConsumer
+public "normal"(arg0: float, arg1: float, arg2: float): $VertexConsumer
+public "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: float, arg6: integer, arg7: integer, arg8: boolean): void
 public "applyBakedLighting"(arg0: integer, arg1: $ByteBuffer$Type): integer
-public "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
 public "misc"(arg0: $VertexFormatElement$Type, ...arg1: (integer)[]): $VertexConsumer
 }
 /**
@@ -1605,8 +1605,8 @@ public static "pair"<A, B>(arg0: $Typed$Type<(A)>, arg1: $Typed$Type<(B)>): $Typ
 public "getAll"<FT>(arg0: $TypedOptic$Type<(A), (any), (FT), (any)>): $List<(FT)>
 public "get"<FT>(arg0: $OpticFinder$Type<(FT)>): FT
 public "toString"(): string
-public "update"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Function$Type<(FT), (FR)>): $Typed<(any)>
 public "update"<FT>(arg0: $OpticFinder$Type<(FT)>, arg1: $Function$Type<(FT), (FT)>): $Typed<(any)>
+public "update"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Function$Type<(FT), (FR)>): $Typed<(any)>
 public "getValue"(): A
 public "out"(): $Typed<(A)>
 public "set"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Typed$Type<(FR)>): $Typed<(any)>
@@ -1615,11 +1615,11 @@ public "set"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2
 public "write"(): $DataResult<(any)>
 public "getOrDefault"<FT>(arg0: $OpticFinder$Type<(FT)>, arg1: FT): FT
 public "getType"(): $Type<(A)>
-public "updateTyped"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Function$Type<($Typed$Type<(any)>), ($Typed$Type<(any)>)>): $Typed<(any)>
-public "updateTyped"<FT>(arg0: $OpticFinder$Type<(FT)>, arg1: $Function$Type<($Typed$Type<(any)>), ($Typed$Type<(any)>)>): $Typed<(any)>
-public "getOptionalTyped"<FT>(arg0: $OpticFinder$Type<(FT)>): $Optional<($Typed<(FT)>)>
-public "getOrCreateTyped"<FT>(arg0: $OpticFinder$Type<(FT)>): $Typed<(FT)>
 public "getAllTyped"<FT>(arg0: $OpticFinder$Type<(FT)>): $List<($Typed<(FT)>)>
+public "updateTyped"<FT>(arg0: $OpticFinder$Type<(FT)>, arg1: $Function$Type<($Typed$Type<(any)>), ($Typed$Type<(any)>)>): $Typed<(any)>
+public "updateTyped"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Function$Type<($Typed$Type<(any)>), ($Typed$Type<(any)>)>): $Typed<(any)>
+public "getOrCreateTyped"<FT>(arg0: $OpticFinder$Type<(FT)>): $Typed<(FT)>
+public "getOptionalTyped"<FT>(arg0: $OpticFinder$Type<(FT)>): $Optional<($Typed<(FT)>)>
 public "updateRecursiveTyped"<FT>(arg0: $OpticFinder$Type<(FT)>, arg1: $Function$Type<($Typed$Type<(any)>), ($Typed$Type<(any)>)>): $Typed<(any)>
 public "updateRecursiveTyped"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Function$Type<($Typed$Type<(any)>), ($Typed$Type<(any)>)>): $Typed<(any)>
 public "updateRecursive"<FT>(arg0: $OpticFinder$Type<(FT)>, arg1: $Function$Type<(FT), (FT)>): $Typed<(any)>
@@ -1682,9 +1682,7 @@ constructor(format: $VertexFormat$Type, vertexCount: integer, indexCount: intege
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "handler$glf000$axiom$vertexBufferSize"(cir: $CallbackInfoReturnable$Type<(any)>): void
-public "vertexCount"(): integer
-public "format"(): $VertexFormat
+public "handler$gle000$axiom$vertexBufferSize"(cir: $CallbackInfoReturnable$Type<(any)>): void
 public "indexCount"(): integer
 public "indexType"(): $VertexFormat$IndexType
 public "mode"(): $VertexFormat$Mode
@@ -1696,6 +1694,8 @@ public "vertexBufferEnd"(): integer
 public "indexBufferStart"(): integer
 public "indexBufferEnd"(): integer
 public "bufferSize"(): integer
+public "vertexCount"(): integer
+public "format"(): $VertexFormat
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1752,11 +1752,11 @@ export interface $RecordBuilder<T> {
  "add"(arg0: string, arg1: T): $RecordBuilder<(T)>
  "add"(arg0: string, arg1: $DataResult$Type<(T)>): $RecordBuilder<(T)>
  "add"<E>(arg0: string, arg1: E, arg2: $Encoder$Type<(E)>): $RecordBuilder<(T)>
- "add"(arg0: $DataResult$Type<(T)>, arg1: $DataResult$Type<(T)>): $RecordBuilder<(T)>
  "add"(arg0: T, arg1: T): $RecordBuilder<(T)>
+ "add"(arg0: $DataResult$Type<(T)>, arg1: $DataResult$Type<(T)>): $RecordBuilder<(T)>
  "add"(arg0: T, arg1: $DataResult$Type<(T)>): $RecordBuilder<(T)>
- "setLifecycle"(arg0: $Lifecycle$Type): $RecordBuilder<(T)>
  "withErrorsFrom"(arg0: $DataResult$Type<(any)>): $RecordBuilder<(T)>
+ "setLifecycle"(arg0: $Lifecycle$Type): $RecordBuilder<(T)>
  "mapError"(arg0: $UnaryOperator$Type<(string)>): $RecordBuilder<(T)>
 }
 
@@ -1859,9 +1859,9 @@ public "toString"(): string
 public "hashCode"(): integer
 public "trailingContextMessageCount"(): integer
 public "maxOpinionCommentsLength"(): integer
-public "maxEvidenceMessageCount"(): integer
 public "maxReportedMessageCount"(): integer
 public "leadingContextMessageCount"(): integer
+public "maxEvidenceMessageCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1913,33 +1913,36 @@ export class $BufferBuilder extends $DefaultedVertexConsumer implements $BufferV
 constructor(arg0: integer)
 
 public "push"(arg0: $MemoryStack$Type, arg1: long, arg2: integer, arg3: $VertexFormatDescription$Type): void
-public "putBulkData"(arg0: $ByteBuffer$Type): void
-public "sodium$usingFixedColor"(): boolean
-public "sodium$moveToNextVertex"(): void
-public "sodium$getDelegate"(): $SodiumBufferBuilder
-public "sodium$getElementOffset"(): integer
-public "sodium$getBuffer"(): $ByteBuffer
-public "canUseIntrinsics"(): boolean
-public "axiom$release"(): void
-public "axiom$startVertex"(): void
-public "axiom$endVertexIfStarted"(): void
-public "axiom$reserve"(bytes: integer): long
-public "axiom$getVertexPointer"(): long
-public "etf$initETFVertexConsumer"(provider: $MultiBufferSource$Type, renderLayer: $RenderType$Type): void
-public "etf$getRenderLayer"(): $RenderType
-public "etf$getProvider"(): $MultiBufferSource
+public "localvar$gld000$axiom$modifyCapacity"(value: integer): integer
+public "handler$gld000$axiom$endVertex"(ci: $CallbackInfo$Type): void
+public "flywheel$appendBufferUnsafe"(arg0: $ByteBuffer$Type): void
+public "sodium$getFormatDescription"(): $VertexFormatDescription
+public "handler$gld001$axiom$begin"(ci: $CallbackInfo$Type): void
+public "handler$gld000$axiom$reset"(ci: $CallbackInfo$Type): void
+public "flywheel$getVertices"(): integer
+public "flywheel$freeBuffer"(): void
+public "flywheel$injectForRender"(arg0: $ByteBuffer$Type, arg1: $VertexFormat$Type, arg2: integer): void
 public "immediatelyFast$isReleased"(): boolean
 public "immediatelyFast$release"(): void
 public "etf$getETFTexture"(): $ETFTexture
-public "flywheel$injectForRender"(arg0: $ByteBuffer$Type, arg1: $VertexFormat$Type, arg2: integer): void
-public "handler$gle001$axiom$begin"(ci: $CallbackInfo$Type): void
-public "handler$gle000$axiom$reset"(ci: $CallbackInfo$Type): void
-public "flywheel$getVertices"(): integer
-public "flywheel$freeBuffer"(): void
-public "localvar$gle000$axiom$modifyCapacity"(value: integer): integer
-public "handler$gle000$axiom$endVertex"(ci: $CallbackInfo$Type): void
-public "flywheel$appendBufferUnsafe"(arg0: $ByteBuffer$Type): void
-public "sodium$getFormatDescription"(): $VertexFormatDescription
+public "etf$getProvider"(): $MultiBufferSource
+public "etf$getRenderLayer"(): $RenderType
+public "etf$initETFVertexConsumer"(provider: $MultiBufferSource$Type, renderLayer: $RenderType$Type): void
+public "axiom$getVertexPointer"(): long
+public "axiom$reserve"(bytes: integer): long
+public "axiom$endVertexIfStarted"(): void
+public "axiom$startVertex"(): void
+public "axiom$release"(): void
+public "canUseIntrinsics"(): boolean
+public "sodium$getBuffer"(): $ByteBuffer
+public "sodium$getElementOffset"(): integer
+public "sodium$getDelegate"(): $SodiumBufferBuilder
+public "sodium$moveToNextVertex"(): void
+public "sodium$usingFixedColor"(): boolean
+public "putBulkData"(arg0: $ByteBuffer$Type): void
+public "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
+public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: integer, arg6: integer): void
+public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: (integer)[], arg7: integer, arg8: boolean): void
 public "begin"(arg0: $VertexFormat$Mode$Type, arg1: $VertexFormat$Type): void
 public "end"(): $BufferBuilder$RenderedBuffer
 public "endVertex"(): void
@@ -1949,12 +1952,9 @@ public "putByte"(arg0: integer, arg1: byte): void
 public "putShort"(arg0: integer, arg1: short): void
 public "putFloat"(arg0: integer, arg1: float): void
 public "color"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $VertexConsumer
-public "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
-public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: integer, arg6: integer): void
-public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: (integer)[], arg7: integer, arg8: boolean): void
+public "clear"(): void
 public "building"(): boolean
 public "setQuadSorting"(arg0: $VertexSorting$Type): void
-public "clear"(): void
 public "getSortState"(): $BufferBuilder$SortState
 public "restoreSortState"(arg0: $BufferBuilder$SortState$Type): void
 public "isCurrentBatchEmpty"(): boolean
@@ -2035,14 +2035,14 @@ public "parse"(arg0: $StringReader$Type, arg1: $CommandContextBuilder$Type<(S)>)
 public "getName"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
-public "isValidInput"(arg0: string): boolean
+public "getUsageText"(): string
 public "listSuggestions"(arg0: $CommandContext$Type<(S)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 public "getExamples"(): $Collection<(string)>
-public "getUsageText"(): string
+public "isValidInput"(arg0: string): boolean
 public "createBuilder"(): $ArgumentBuilder<(S), (any)>
 get "name"(): string
-get "examples"(): $Collection<(string)>
 get "usageText"(): string
+get "examples"(): $Collection<(string)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2100,9 +2100,9 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getOffset"(arg0: integer): integer
+public "embeddium$getExtendedElements"(): ($ExtendedVertexFormat$Element)[]
 public "getElementMapping"(): $ImmutableMap<(string), ($VertexFormatElement)>
 public "hasPosition"(): boolean
-public "embeddium$getExtendedElements"(): ($ExtendedVertexFormat$Element)[]
 public "getVertexSize"(): integer
 public "getElementAttributeNames"(): $ImmutableList<(string)>
 public "getIntegerSize"(): integer
@@ -2176,12 +2176,12 @@ public "elementCodec"(): $Codec<(V)>
 public "keyCodec"(): $Codec<(K)>
 public "decode"<T>(arg0: $DynamicOps$Type<(T)>, arg1: $MapLike$Type<(T)>): $DataResult<($Map<(K), (V)>)>
 public "encode"<T>(arg0: $Map$Type<(K), (V)>, arg1: $DynamicOps$Type<(T)>, arg2: $RecordBuilder$Type<(T)>): $RecordBuilder<(T)>
-public static "pair"<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
-public "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<($Map<(K), (V)>)>
-public "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<($Map<(K), (V)>)>
-public "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<($Map<(K), (V)>)>
 public static "unit"<A>(arg0: $Map$Type<(K), (V)>): $Codec<($Map<(K), (V)>)>
 public static "unit"<A>(arg0: $Supplier$Type<($Map$Type<(K), (V)>)>): $Codec<($Map<(K), (V)>)>
+public static "pair"<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
+public "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<($Map<(K), (V)>)>
+public "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<($Map<(K), (V)>)>
+public "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<($Map<(K), (V)>)>
 public "dispatch"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
 public "dispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
 public static "of"<A>(arg0: $Encoder$Type<($Map$Type<(K), (V)>)>, arg1: $Decoder$Type<($Map$Type<(K), (V)>)>, arg2: string): $Codec<($Map<(K), (V)>)>
@@ -2193,20 +2193,24 @@ public "orElse"(arg0: $UnaryOperator$Type<(string)>, arg1: $Map$Type<(K), (V)>):
 public "orElse"(arg0: $Map$Type<(K), (V)>): $Codec<($Map<(K), (V)>)>
 public "orElse"(arg0: $Consumer$Type<(string)>, arg1: $Map$Type<(K), (V)>): $Codec<($Map<(K), (V)>)>
 public static "checkRange"<N extends (number) & ($Comparable<(N)>)>(arg0: N, arg1: N): $Function<(N), ($DataResult<(N)>)>
-public "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public static "optionalField"<F>(arg0: string, arg1: $Codec$Type<(F)>): $MapCodec<($Optional<(F)>)>
+public "promotePartial"(arg0: $Consumer$Type<(string)>): $Codec<($Map<(K), (V)>)>
 public "partialDispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
-public "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
 public "dispatchMap"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $MapCodec<(E)>
+public "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
 public static "compoundList"<K, V>(arg0: $Codec$Type<(K)>, arg1: $Codec$Type<(V)>): $Codec<($List<($Pair<(K), (V)>)>)>
 public "flatComapMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public "dispatchStable"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
 public static "doubleRange"(arg0: double, arg1: double): $Codec<(double)>
+public "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public "optionalFieldOf"(arg0: string, arg1: $Map$Type<(K), (V)>, arg2: $Lifecycle$Type): $MapCodec<($Map<(K), (V)>)>
-public "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: $Map$Type<(K), (V)>, arg3: $Lifecycle$Type): $MapCodec<($Map<(K), (V)>)>
 public "optionalFieldOf"(arg0: string): $MapCodec<($Optional<($Map<(K), (V)>)>)>
 public "optionalFieldOf"(arg0: string, arg1: $Map$Type<(K), (V)>): $MapCodec<($Map<(K), (V)>)>
+public "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: $Map$Type<(K), (V)>, arg3: $Lifecycle$Type): $MapCodec<($Map<(K), (V)>)>
 public static "unboundedMap"<K, V>(arg0: $Codec$Type<(K)>, arg1: $Codec$Type<(V)>): $UnboundedMapCodec<(K), (V)>
+public "stable"(): $Codec<($Map<(K), (V)>)>
+public "deprecated"(arg0: integer): $Codec<($Map<(K), (V)>)>
+public "fieldOf"(arg0: string): $MapCodec<($Map<(K), (V)>)>
 public "flatXmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public "mapResult"(arg0: $Codec$ResultFunction$Type<($Map$Type<(K), (V)>)>): $Codec<($Map<(K), (V)>)>
 public static "mapPair"<F, S>(arg0: $MapCodec$Type<(F)>, arg1: $MapCodec$Type<(S)>): $MapCodec<($Pair<(F), (S)>)>
@@ -2217,8 +2221,6 @@ public static "floatRange"(arg0: float, arg1: float): $Codec<(float)>
 public "listOf"(): $Codec<($List<($Map<(K), (V)>)>)>
 public static "either"<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Either<(F), (S)>)>
 public "xmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
-public "stable"(): $Codec<($Map<(K), (V)>)>
-public "deprecated"(arg0: integer): $Codec<($Map<(K), (V)>)>
 public static "error"<A>(arg0: string): $Encoder<($Map<(K), (V)>)>
 public static "empty"<A>(): $MapEncoder<($Map<(K), (V)>)>
 public "encodeStart"<T>(arg0: $DynamicOps$Type<(T)>, arg1: $Map$Type<(K), (V)>): $DataResult<(T)>
@@ -2229,8 +2231,8 @@ public "parse"<T>(arg0: $DynamicOps$Type<(T)>, arg1: T): $DataResult<($Map<(K), 
 public "decode"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<($Map<(K), (V)>), (T)>)>
 public "map"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
 public "flatMap"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
-public "boxed"(): $Decoder$Boxed<($Map<(K), (V)>)>
 public "terminal"(): $Decoder$Terminal<($Map<(K), (V)>)>
+public "boxed"(): $Decoder$Boxed<($Map<(K), (V)>)>
 public "simple"(): $Decoder$Simple<($Map<(K), (V)>)>
 public static "ofTerminal"<A>(arg0: $Decoder$Terminal$Type<(any)>): $Decoder<($Map<(K), (V)>)>
 public static "ofBoxed"<A>(arg0: $Decoder$Boxed$Type<(any)>): $Decoder<($Map<(K), (V)>)>
@@ -2617,13 +2619,13 @@ import {$FamilyOptic, $FamilyOptic$Type} from "packages/com/mojang/datafixers/$F
 import {$TypeFamily, $TypeFamily$Type} from "packages/com/mojang/datafixers/types/families/$TypeFamily"
 import {$TypeRewriteRule, $TypeRewriteRule$Type} from "packages/com/mojang/datafixers/$TypeRewriteRule"
 import {$Type, $Type$Type} from "packages/com/mojang/datafixers/types/$Type"
-import {$PointFreeRule, $PointFreeRule$Type} from "packages/com/mojang/datafixers/functions/$PointFreeRule"
 import {$Either, $Either$Type} from "packages/com/mojang/datafixers/util/$Either"
+import {$PointFreeRule, $PointFreeRule$Type} from "packages/com/mojang/datafixers/functions/$PointFreeRule"
 import {$Type$TypeMatcher, $Type$TypeMatcher$Type} from "packages/com/mojang/datafixers/types/$Type$TypeMatcher"
 import {$Algebra, $Algebra$Type} from "packages/com/mojang/datafixers/types/families/$Algebra"
 import {$IntFunction, $IntFunction$Type} from "packages/java/util/function/$IntFunction"
-import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$Type$FieldNotFoundException, $Type$FieldNotFoundException$Type} from "packages/com/mojang/datafixers/types/$Type$FieldNotFoundException"
+import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$RecursivePoint$RecursivePointType, $RecursivePoint$RecursivePointType$Type} from "packages/com/mojang/datafixers/types/templates/$RecursivePoint$RecursivePointType"
 import {$RewriteResult, $RewriteResult$Type} from "packages/com/mojang/datafixers/$RewriteResult"
 import {$TypedOptic, $TypedOptic$Type} from "packages/com/mojang/datafixers/$TypedOptic"
@@ -2642,8 +2644,8 @@ public "apply"(arg0: integer): $RecursivePoint$RecursivePointType<(any)>
 public "buildMuType"<A>(arg0: $Type$Type<(A)>, arg1: $RecursiveTypeFamily$Type): $RecursivePoint$RecursivePointType<(A)>
 public "template"(): $TypeTemplate
 public "fold"(arg0: $Algebra$Type, arg1: $RecursiveTypeFamily$Type): $IntFunction<($RewriteResult<(any), (any)>)>
-public "everywhere"(arg0: integer, arg1: $TypeRewriteRule$Type, arg2: $PointFreeRule$Type): $Optional<($RewriteResult<(any), (any)>)>
 public "findType"<A, B>(arg0: integer, arg1: $Type$Type<(A)>, arg2: $Type$Type<(B)>, arg3: $Type$TypeMatcher$Type<(A), (B)>, arg4: boolean): $Either<($TypedOptic<(any), (any), (A), (B)>), ($Type$FieldNotFoundException)>
+public "everywhere"(arg0: integer, arg1: $TypeRewriteRule$Type, arg2: $PointFreeRule$Type): $Optional<($RewriteResult<(any), (any)>)>
 public static "familyOptic"<A, B>(arg0: $IntFunction$Type<($TypedOptic$Type<(any), (any), (A), (B)>)>): $FamilyOptic<(A), (B)>
 }
 /**
@@ -2682,9 +2684,9 @@ declare module "packages/com/mojang/blaze3d/platform/$WindowEventHandler" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $WindowEventHandler {
 
+ "setWindowActive"(arg0: boolean): void
  "resizeDisplay"(): void
  "cursorEntered"(): void
- "setWindowActive"(arg0: boolean): void
 }
 
 export namespace $WindowEventHandler {
@@ -2914,13 +2916,13 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $DynamicOps<T> {
 
- "getMap"(arg0: T): $DataResult<($MapLike<(T)>)>
- "createMap"(arg0: $Stream$Type<($Pair$Type<(T), (T)>)>): T
- "createMap"(arg0: $Map$Type<(T), (T)>): T
  "createLong"(arg0: long): T
  "createString"(arg0: string): T
  "getStream"(arg0: T): $DataResult<($Stream<(T)>)>
  "emptyMap"(): T
+ "getMap"(arg0: T): $DataResult<($MapLike<(T)>)>
+ "createMap"(arg0: $Map$Type<(T), (T)>): T
+ "createMap"(arg0: $Stream$Type<($Pair$Type<(T), (T)>)>): T
  "remove"(arg0: T, arg1: string): T
  "get"(arg0: T, arg1: string): $DataResult<(T)>
  "update"(arg0: T, arg1: string, arg2: $Function$Type<(T), (T)>): T
@@ -2928,8 +2930,8 @@ export interface $DynamicOps<T> {
  "set"(arg0: T, arg1: string, arg2: T): T
  "emptyList"(): T
  "getByteBuffer"(arg0: T): $DataResult<($ByteBuffer)>
- "getList"(arg0: T): $DataResult<($Consumer<($Consumer<(T)>)>)>
  "createList"(arg0: $Stream$Type<(T)>): T
+ "getList"(arg0: T): $DataResult<($Consumer<($Consumer<(T)>)>)>
  "getBooleanValue"(arg0: T): $DataResult<(boolean)>
  "getStringValue"(arg0: T): $DataResult<(string)>
  "getNumberValue"(arg0: T, arg1: number): number
@@ -3173,8 +3175,8 @@ import {$ArgumentBuilder, $ArgumentBuilder$Type} from "packages/com/mojang/briga
 export class $LiteralArgumentBuilder<S> extends $ArgumentBuilder<(S), ($LiteralArgumentBuilder<(S)>)> {
 
 
-public static "literal"<S>(arg0: string): $LiteralArgumentBuilder<(S)>
 public "build"(): $LiteralCommandNode<(S)>
+public static "literal"<S>(arg0: string): $LiteralArgumentBuilder<(S)>
 public "getLiteral"(): string
 }
 /**
@@ -3219,9 +3221,9 @@ import {$CommandContext, $CommandContext$Type} from "packages/com/mojang/brigadi
 export class $IntegerArgumentType implements $ArgumentType<(integer)> {
 
 
-public "parse"(arg0: $StringReader$Type): integer
 public "getMinimum"(): integer
 public "getMaximum"(): integer
+public "parse"(arg0: $StringReader$Type): integer
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -3269,8 +3271,8 @@ export interface $UserAuthentication {
  "canLogIn"(): boolean
  "logIn"(): void
  "logOut"(): void
- "getUserID"(): string
  "isLoggedIn"(): boolean
+ "getUserID"(): string
 }
 
 export namespace $UserAuthentication {
@@ -3328,9 +3330,9 @@ import {$CommandContext, $CommandContext$Type} from "packages/com/mojang/brigadi
 export class $DoubleArgumentType implements $ArgumentType<(double)> {
 
 
-public "parse"(arg0: $StringReader$Type): double
 public "getMinimum"(): double
 public "getMaximum"(): double
+public "parse"(arg0: $StringReader$Type): double
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -3524,32 +3526,32 @@ import {$DynamicCommandExceptionType, $DynamicCommandExceptionType$Type} from "p
 
 export interface $BuiltInExceptionProvider {
 
- "longTooHigh"(): $Dynamic2CommandExceptionType
+ "dispatcherExpectedArgumentSeparator"(): $SimpleCommandExceptionType
  "integerTooLow"(): $Dynamic2CommandExceptionType
- "literalIncorrect"(): $DynamicCommandExceptionType
- "integerTooHigh"(): $Dynamic2CommandExceptionType
- "readerExpectedStartOfQuote"(): $SimpleCommandExceptionType
- "readerExpectedLong"(): $SimpleCommandExceptionType
- "readerExpectedEndOfQuote"(): $SimpleCommandExceptionType
- "readerInvalidInt"(): $DynamicCommandExceptionType
- "readerExpectedInt"(): $SimpleCommandExceptionType
- "readerInvalidBool"(): $DynamicCommandExceptionType
- "readerInvalidEscape"(): $DynamicCommandExceptionType
- "readerInvalidLong"(): $DynamicCommandExceptionType
- "readerExpectedDouble"(): $SimpleCommandExceptionType
- "readerInvalidDouble"(): $DynamicCommandExceptionType
- "readerExpectedFloat"(): $SimpleCommandExceptionType
- "readerExpectedSymbol"(): $DynamicCommandExceptionType
- "readerExpectedBool"(): $SimpleCommandExceptionType
- "dispatcherUnknownCommand"(): $SimpleCommandExceptionType
- "dispatcherParseException"(): $DynamicCommandExceptionType
- "dispatcherUnknownArgument"(): $SimpleCommandExceptionType
- "floatTooHigh"(): $Dynamic2CommandExceptionType
- "floatTooLow"(): $Dynamic2CommandExceptionType
  "doubleTooHigh"(): $Dynamic2CommandExceptionType
  "doubleTooLow"(): $Dynamic2CommandExceptionType
+ "floatTooLow"(): $Dynamic2CommandExceptionType
+ "floatTooHigh"(): $Dynamic2CommandExceptionType
+ "integerTooHigh"(): $Dynamic2CommandExceptionType
+ "longTooHigh"(): $Dynamic2CommandExceptionType
+ "literalIncorrect"(): $DynamicCommandExceptionType
+ "readerExpectedStartOfQuote"(): $SimpleCommandExceptionType
+ "readerExpectedEndOfQuote"(): $SimpleCommandExceptionType
+ "readerInvalidEscape"(): $DynamicCommandExceptionType
+ "readerInvalidBool"(): $DynamicCommandExceptionType
+ "readerInvalidInt"(): $DynamicCommandExceptionType
+ "readerExpectedInt"(): $SimpleCommandExceptionType
+ "readerInvalidLong"(): $DynamicCommandExceptionType
+ "readerExpectedLong"(): $SimpleCommandExceptionType
+ "readerInvalidDouble"(): $DynamicCommandExceptionType
+ "readerExpectedDouble"(): $SimpleCommandExceptionType
  "readerInvalidFloat"(): $DynamicCommandExceptionType
- "dispatcherExpectedArgumentSeparator"(): $SimpleCommandExceptionType
+ "readerExpectedFloat"(): $SimpleCommandExceptionType
+ "readerExpectedBool"(): $SimpleCommandExceptionType
+ "readerExpectedSymbol"(): $DynamicCommandExceptionType
+ "dispatcherUnknownCommand"(): $SimpleCommandExceptionType
+ "dispatcherUnknownArgument"(): $SimpleCommandExceptionType
+ "dispatcherParseException"(): $DynamicCommandExceptionType
  "longTooLow"(): $Dynamic2CommandExceptionType
 }
 
@@ -3581,8 +3583,8 @@ import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$Type$FieldNotFoundException, $Type$FieldNotFoundException$Type} from "packages/com/mojang/datafixers/types/$Type$FieldNotFoundException"
 import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 import {$RewriteResult, $RewriteResult$Type} from "packages/com/mojang/datafixers/$RewriteResult"
-import {$TypedOptic, $TypedOptic$Type} from "packages/com/mojang/datafixers/$TypedOptic"
 import {$TaggedChoice$TaggedChoiceType, $TaggedChoice$TaggedChoiceType$Type} from "packages/com/mojang/datafixers/types/templates/$TaggedChoice$TaggedChoiceType"
+import {$TypedOptic, $TypedOptic$Type} from "packages/com/mojang/datafixers/$TypedOptic"
 import {$TypeTemplate, $TypeTemplate$Type} from "packages/com/mojang/datafixers/types/templates/$TypeTemplate"
 
 export class $RecursivePoint$RecursivePointType<A> extends $Type<(A)> {
@@ -3600,12 +3602,12 @@ public "hashCode"(): integer
 public "out"(): $View<(A), (A)>
 public "in"(): $View<(A), (A)>
 public "findCheckedType"(arg0: integer): $Optional<($Type<(any)>)>
-public "buildTemplate"(): $TypeTemplate
-public "findFieldTypeOpt"(arg0: string): $Optional<($Type<(any)>)>
-public "findTypeInChildren"<FT, FR>(arg0: $Type$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Type$TypeMatcher$Type<(FT), (FR)>, arg3: boolean): $Either<($TypedOptic<(A), (any), (FT), (FR)>), ($Type$FieldNotFoundException)>
 public "findChoiceType"(arg0: string, arg1: integer): $Optional<($TaggedChoice$TaggedChoiceType<(any)>)>
-public "everywhere"(arg0: $TypeRewriteRule$Type, arg1: $PointFreeRule$Type, arg2: boolean, arg3: boolean): $Optional<($RewriteResult<(A), (any)>)>
+public "findTypeInChildren"<FT, FR>(arg0: $Type$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Type$TypeMatcher$Type<(FT), (FR)>, arg3: boolean): $Either<($TypedOptic<(A), (any), (FT), (FR)>), ($Type$FieldNotFoundException)>
+public "findFieldTypeOpt"(arg0: string): $Optional<($Type<(any)>)>
+public "buildTemplate"(): $TypeTemplate
 public "updateMu"(arg0: $RecursiveTypeFamily$Type): $Type<(any)>
+public "everywhere"(arg0: $TypeRewriteRule$Type, arg1: $PointFreeRule$Type, arg2: boolean, arg3: boolean): $Optional<($RewriteResult<(A), (any)>)>
 public "unfold"(): $Type<(A)>
 }
 /**
@@ -3681,27 +3683,27 @@ public "equals"(arg0: any): boolean
 public "hashCode"(): integer
 public "compareTo"(arg0: $CommandNode$Type<(S)>): integer
 public "canUse"(arg0: S): boolean
-public "listSuggestions"(arg0: $CommandContext$Type<(S)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
-public "getExamples"(): $Collection<(string)>
 public "findAmbiguities"(arg0: $AmbiguityConsumer$Type<(S)>): void
 public "getRedirectModifier"(): $RedirectModifier<(S)>
 public "getRelevantNodes"(arg0: $StringReader$Type): $Collection<(any)>
 public "getRedirect"(): $CommandNode<(S)>
 public "getUsageText"(): string
+public "listSuggestions"(arg0: $CommandContext$Type<(S)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
+public "getExamples"(): $Collection<(string)>
 public "getRequirement"(): $Predicate<(S)>
 public "createBuilder"(): $ArgumentBuilder<(S), (any)>
 public "addChild"(arg0: $CommandNode$Type<(S)>): void
-public "getCommand"(): $Command<(S)>
 public "isFork"(): boolean
+public "getCommand"(): $Command<(S)>
 get "children"(): $Collection<($CommandNode<(S)>)>
 get "name"(): string
-get "examples"(): $Collection<(string)>
 get "redirectModifier"(): $RedirectModifier<(S)>
 get "redirect"(): $CommandNode<(S)>
 get "usageText"(): string
+get "examples"(): $Collection<(string)>
 get "requirement"(): $Predicate<(S)>
-get "command"(): $Command<(S)>
 get "fork"(): boolean
+get "command"(): $Command<(S)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3754,20 +3756,20 @@ constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: in
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "getRedBits"(): integer
+public "getGreenBits"(): integer
+public "getBlueBits"(): integer
 public static "read"(arg0: string): $Optional<($VideoMode)>
 public "getWidth"(): integer
 public "getHeight"(): integer
 public "getRefreshRate"(): integer
-public "getRedBits"(): integer
-public "getGreenBits"(): integer
-public "getBlueBits"(): integer
 public "write"(): string
-get "width"(): integer
-get "height"(): integer
-get "refreshRate"(): integer
 get "redBits"(): integer
 get "greenBits"(): integer
 get "blueBits"(): integer
+get "width"(): integer
+get "height"(): integer
+get "refreshRate"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3782,6 +3784,7 @@ declare global {
 export type $VideoMode_ = $VideoMode$Type;
 }}
 declare module "packages/com/mojang/serialization/$MapCodec" {
+import {$Lifecycle, $Lifecycle$Type} from "packages/com/mojang/serialization/$Lifecycle"
 import {$MapEncoder, $MapEncoder$Type} from "packages/com/mojang/serialization/$MapEncoder"
 import {$RecordCodecBuilder, $RecordCodecBuilder$Type} from "packages/com/mojang/serialization/codecs/$RecordCodecBuilder"
 import {$Keyable, $Keyable$Type} from "packages/com/mojang/serialization/$Keyable"
@@ -3808,11 +3811,11 @@ export class $MapCodec<A> extends $CompressorHolder implements $MapDecoder<(A)>,
 
 constructor()
 
-public "orElseGet"(arg0: $Supplier$Type<(any)>): $MapCodec<(A)>
-public "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $MapCodec<(A)>
-public "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $MapCodec<(A)>
 public static "unit"<A>(arg0: A): $MapCodec<(A)>
 public static "unit"<A>(arg0: $Supplier$Type<(A)>): $MapCodec<(A)>
+public "orElseGet"(arg0: $Supplier$Type<(any)>): $MapCodec<(A)>
+public "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $MapCodec<(A)>
+public "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $MapCodec<(A)>
 public static "of"<A>(arg0: $MapEncoder$Type<(A)>, arg1: $MapDecoder$Type<(A)>): $MapCodec<(A)>
 public static "of"<A>(arg0: $MapEncoder$Type<(A)>, arg1: $MapDecoder$Type<(A)>, arg2: $Supplier$Type<(string)>): $MapCodec<(A)>
 public "keys"<T>(arg0: $DynamicOps$Type<(T)>): $Stream<(T)>
@@ -3820,6 +3823,9 @@ public "orElse"(arg0: A): $MapCodec<(A)>
 public "orElse"(arg0: $Consumer$Type<(string)>, arg1: A): $MapCodec<(A)>
 public "orElse"(arg0: $UnaryOperator$Type<(string)>, arg1: A): $MapCodec<(A)>
 public "dependent"<E>(arg0: $MapCodec$Type<(E)>, arg1: $Function$Type<(A), ($Pair$Type<(E), ($MapCodec$Type<(E)>)>)>, arg2: $BiFunction$Type<(A), (E), (A)>): $MapCodec<(A)>
+public "withLifecycle"(arg0: $Lifecycle$Type): $MapCodec<(A)>
+public "stable"(): $MapCodec<(A)>
+public "deprecated"(arg0: integer): $MapCodec<(A)>
 public "fieldOf"(arg0: string): $MapCodec<(A)>
 public "flatXmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $MapCodec<(S)>
 public "mapResult"(arg0: $MapCodec$ResultFunction$Type<(A)>): $MapCodec<(A)>
@@ -3827,10 +3833,8 @@ public "codec"(): $Codec<(A)>
 public "setPartial"(arg0: $Supplier$Type<(A)>): $MapCodec<(A)>
 public "forGetter"<O>(arg0: $Function$Type<(O), (A)>): $RecordCodecBuilder<(O), (A)>
 public "xmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $MapCodec<(S)>
-public "stable"(): $MapCodec<(A)>
-public "deprecated"(arg0: integer): $MapCodec<(A)>
-public "decoder"(): $Decoder<(A)>
 public "ap"<E>(arg0: $MapDecoder$Type<($Function$Type<(any), (any)>)>): $MapDecoder<(E)>
+public "decoder"(): $Decoder<(A)>
 public "decode"<T>(arg0: $DynamicOps$Type<(T)>, arg1: $MapLike$Type<(T)>): $DataResult<(A)>
 public "map"<B>(arg0: $Function$Type<(any), (any)>): $MapDecoder<(B)>
 public "flatMap"<B>(arg0: $Function$Type<(any), (any)>): $MapDecoder<(B)>
@@ -3953,9 +3957,9 @@ export class $Tesselator {
 constructor()
 constructor(arg0: integer)
 
+public "end"(): void
 public static "getInstance"(): $Tesselator
 public "getBuilder"(): $BufferBuilder
-public "end"(): void
 get "instance"(): $Tesselator
 get "builder"(): $BufferBuilder
 }
@@ -3987,17 +3991,17 @@ export class $CommandContextBuilder<S> {
 
 constructor(arg0: $CommandDispatcher$Type<(S)>, arg1: S, arg2: $CommandNode$Type<(S)>, arg3: integer)
 
-public "getSource"(): S
 public "build"(arg0: string): $CommandContext<(S)>
-public "getChild"(): $CommandContextBuilder<(S)>
+public "getSource"(): S
 public "getRange"(): $StringRange
-public "copy"(): $CommandContextBuilder<(S)>
+public "getChild"(): $CommandContextBuilder<(S)>
 public "getLastChild"(): $CommandContextBuilder<(S)>
-public "getDispatcher"(): $CommandDispatcher<(S)>
+public "copy"(): $CommandContextBuilder<(S)>
 public "withCommand"(arg0: $Command$Type<(S)>): $CommandContextBuilder<(S)>
 public "findSuggestionContext"(arg0: integer): $SuggestionContext<(S)>
-public "getArguments"(): $Map<(string), ($ParsedArgument<(S), (any)>)>
+public "getDispatcher"(): $CommandDispatcher<(S)>
 public "getRootNode"(): $CommandNode<(S)>
+public "getArguments"(): $Map<(string), ($ParsedArgument<(S), (any)>)>
 public "withArgument"(arg0: string, arg1: $ParsedArgument$Type<(S), (any)>): $CommandContextBuilder<(S)>
 public "withNode"(arg0: $CommandNode$Type<(S)>, arg1: $StringRange$Type): $CommandContextBuilder<(S)>
 public "getCommand"(): $Command<(S)>
@@ -4005,12 +4009,12 @@ public "withChild"(arg0: $CommandContextBuilder$Type<(S)>): $CommandContextBuild
 public "getNodes"(): $List<($ParsedCommandNode<(S)>)>
 public "withSource"(arg0: S): $CommandContextBuilder<(S)>
 get "source"(): S
-get "child"(): $CommandContextBuilder<(S)>
 get "range"(): $StringRange
+get "child"(): $CommandContextBuilder<(S)>
 get "lastChild"(): $CommandContextBuilder<(S)>
 get "dispatcher"(): $CommandDispatcher<(S)>
-get "arguments"(): $Map<(string), ($ParsedArgument<(S), (any)>)>
 get "rootNode"(): $CommandNode<(S)>
+get "arguments"(): $Map<(string), ($ParsedArgument<(S), (any)>)>
 get "command"(): $Command<(S)>
 get "nodes"(): $List<($ParsedCommandNode<(S)>)>
 }
@@ -4048,20 +4052,20 @@ export interface $Decoder<A> {
  "decode"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<(A), (T)>)>
  "map"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
  "flatMap"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
- "boxed"(): $Decoder$Boxed<(A)>
  "terminal"(): $Decoder$Terminal<(A)>
+ "boxed"(): $Decoder$Boxed<(A)>
  "withLifecycle"(arg0: $Lifecycle$Type): $Decoder<(A)>
  "promotePartial"(arg0: $Consumer$Type<(string)>): $Decoder<(A)>
  "fieldOf"(arg0: string): $MapDecoder<(A)>
  "simple"(): $Decoder$Simple<(A)>
 
-(arg0: $Dynamic$Type<(T)>): $DataResult<(A)>
+(arg0: $Supplier$Type<(A)>): $MapDecoder<(A)>
 }
 
 export namespace $Decoder {
-function error<A>(arg0: string): $Decoder<(A)>
 function unit<A>(arg0: $Supplier$Type<(A)>): $MapDecoder<(A)>
 function unit<A>(arg0: A): $MapDecoder<(A)>
+function error<A>(arg0: string): $Decoder<(A)>
 function ofTerminal<A>(arg0: $Decoder$Terminal$Type<(any)>): $Decoder<(A)>
 function ofBoxed<A>(arg0: $Decoder$Boxed$Type<(any)>): $Decoder<(A)>
 function ofSimple<A>(arg0: $Decoder$Simple$Type<(any)>): $Decoder<(A)>
@@ -4186,12 +4190,12 @@ public "outermost"(): $Optic<(any), (S), (T), (any), (any)>
 public static "instanceOf"<Proof2 extends $K1>(arg0: $Collection$Type<($TypeToken$Type<(any)>)>, arg1: $TypeToken$Type<(Proof2)>): boolean
 public "tType"(): $Type<(T)>
 public "bType"(): $Type<(B)>
+public "upCast"<Proof2 extends $K1>(arg0: $TypeToken$Type<(Proof2)>): $Optional<($Optic<(any), (S), (T), (A), (B)>)>
+public "castOuter"(arg0: $Type$Type<(S)>, arg1: $Type$Type<(T)>): $TypedOptic<(S), (T), (A), (B)>
 public static "proj2"<F, G, G2>(arg0: $Type$Type<(F)>, arg1: $Type$Type<(G)>, arg2: $Type$Type<(G2)>): $TypedOptic<($Pair<(F), (G)>), ($Pair<(F), (G2)>), (G), (G2)>
+public static "proj1"<F, G, F2>(arg0: $Type$Type<(F)>, arg1: $Type$Type<(G)>, arg2: $Type$Type<(F2)>): $TypedOptic<($Pair<(F), (G)>), ($Pair<(F2), (G)>), (F), (F2)>
 public static "inj1"<F, G, F2>(arg0: $Type$Type<(F)>, arg1: $Type$Type<(G)>, arg2: $Type$Type<(F2)>): $TypedOptic<($Either<(F), (G)>), ($Either<(F2), (G)>), (F), (F2)>
 public static "inj2"<F, G, G2>(arg0: $Type$Type<(F)>, arg1: $Type$Type<(G)>, arg2: $Type$Type<(G2)>): $TypedOptic<($Either<(F), (G)>), ($Either<(F), (G2)>), (G), (G2)>
-public static "proj1"<F, G, F2>(arg0: $Type$Type<(F)>, arg1: $Type$Type<(G)>, arg2: $Type$Type<(F2)>): $TypedOptic<($Pair<(F), (G)>), ($Pair<(F2), (G)>), (F), (F2)>
-public "castOuter"(arg0: $Type$Type<(S)>, arg1: $Type$Type<(T)>): $TypedOptic<(S), (T), (A), (B)>
-public "upCast"<Proof2 extends $K1>(arg0: $TypeToken$Type<(Proof2)>): $Optional<($Optic<(any), (S), (T), (A), (B)>)>
 public "innermost"(): $Optic<(any), (any), (any), (A), (B)>
 }
 /**
@@ -4220,8 +4224,8 @@ import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 
 export interface $MapDecoder<A> extends $Keyable {
 
- "decoder"(): $Decoder<(A)>
  "ap"<E>(arg0: $MapDecoder$Type<($Function$Type<(any), (any)>)>): $MapDecoder<(E)>
+ "decoder"(): $Decoder<(A)>
  "decode"<T>(arg0: $DynamicOps$Type<(T)>, arg1: $MapLike$Type<(T)>): $DataResult<(A)>
  "map"<B>(arg0: $Function$Type<(any), (any)>): $MapDecoder<(B)>
  "flatMap"<B>(arg0: $Function$Type<(any), (any)>): $MapDecoder<(B)>
@@ -4301,12 +4305,12 @@ public "getMatrix"(): $Matrix4f
 public "inverse"(): $Transformation
 public "slerp"(arg0: $Transformation$Type, arg1: float): $Transformation
 public "isIdentity"(): boolean
-public "transformPosition"(arg0: $Vector4f$Type): void
-public "transformNormal"(arg0: $Vector3f$Type): void
 public "rotateTransform"(arg0: $Direction$Type): $Direction
+public "transformNormal"(arg0: $Vector3f$Type): void
 public "blockCenterToCorner"(): $Transformation
 public "applyOrigin"(arg0: $Vector3f$Type): $Transformation
 public "blockCornerToCenter"(): $Transformation
+public "transformPosition"(arg0: $Vector4f$Type): void
 get "normalMatrix"(): $Matrix3f
 get "translation"(): $Vector3f
 get "leftRotation"(): $Quaternionf
@@ -4384,19 +4388,19 @@ constructor(arg0: $RootCommandNode$Type<(S)>)
 constructor()
 
 public "findNode"(arg0: $Collection$Type<(string)>): $CommandNode<(S)>
-public "parse"(arg0: string, arg1: S): $ParseResults<(S)>
 public "parse"(arg0: $StringReader$Type, arg1: S): $ParseResults<(S)>
+public "parse"(arg0: string, arg1: S): $ParseResults<(S)>
 public "register"(arg0: $LiteralArgumentBuilder$Type<(S)>): $LiteralCommandNode<(S)>
 public "execute"(arg0: $StringReader$Type, arg1: S): integer
 public "execute"(arg0: string, arg1: S): integer
 public "execute"(arg0: $ParseResults$Type<(S)>): integer
 public "getRoot"(): $RootCommandNode<(S)>
 public "getPath"(arg0: $CommandNode$Type<(S)>): $Collection<(string)>
-public "getCompletionSuggestions"(arg0: $ParseResults$Type<(S)>): $CompletableFuture<($Suggestions)>
-public "getCompletionSuggestions"(arg0: $ParseResults$Type<(S)>, arg1: integer): $CompletableFuture<($Suggestions)>
 public "getAllUsage"(arg0: $CommandNode$Type<(S)>, arg1: S, arg2: boolean): (string)[]
 public "getSmartUsage"(arg0: $CommandNode$Type<(S)>, arg1: S): $Map<($CommandNode<(S)>), (string)>
 public "findAmbiguities"(arg0: $AmbiguityConsumer$Type<(S)>): void
+public "getCompletionSuggestions"(arg0: $ParseResults$Type<(S)>): $CompletableFuture<($Suggestions)>
+public "getCompletionSuggestions"(arg0: $ParseResults$Type<(S)>, arg1: integer): $CompletableFuture<($Suggestions)>
 public "setConsumer"(arg0: $ResultConsumer$Type<(S)>): void
 get "root"(): $RootCommandNode<(S)>
 set "consumer"(value: $ResultConsumer$Type<(S)>)
@@ -4423,10 +4427,10 @@ import {$MinecraftProfileTexture, $MinecraftProfileTexture$Type} from "packages/
 
 export interface $MinecraftSessionService {
 
- "fillProfileProperties"(arg0: $GameProfile$Type, arg1: boolean): $GameProfile
  "hasJoinedServer"(arg0: $GameProfile$Type, arg1: string, arg2: $InetAddress$Type): $GameProfile
  "getTextures"(arg0: $GameProfile$Type, arg1: boolean): $Map<($MinecraftProfileTexture$Type), ($MinecraftProfileTexture)>
  "getSecurePropertyValue"(arg0: $Property$Type): string
+ "fillProfileProperties"(arg0: $GameProfile$Type, arg1: boolean): $GameProfile
  "joinServer"(arg0: $GameProfile$Type, arg1: string, arg2: string): void
 }
 
@@ -4481,12 +4485,12 @@ public "toString"(): string
 public "decode"<T>(arg0: $DynamicOps$Type<(T)>, arg1: T): $DataResult<($Pair<(A), (T)>)>
 public "encode"<T>(arg0: A, arg1: $DynamicOps$Type<(T)>, arg2: T): $DataResult<(T)>
 public "codec"(): $MapCodec<(A)>
-public static "pair"<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
-public "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<(A)>
-public "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
-public "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
 public static "unit"<A>(arg0: A): $Codec<(A)>
 public static "unit"<A>(arg0: $Supplier$Type<(A)>): $Codec<(A)>
+public static "pair"<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
+public "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
+public "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
+public "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<(A)>
 public "dispatch"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
 public "dispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
 public static "of"<A>(arg0: $Encoder$Type<(A)>, arg1: $Decoder$Type<(A)>, arg2: string): $Codec<(A)>
@@ -4498,20 +4502,24 @@ public "orElse"(arg0: $UnaryOperator$Type<(string)>, arg1: A): $Codec<(A)>
 public "orElse"(arg0: A): $Codec<(A)>
 public "orElse"(arg0: $Consumer$Type<(string)>, arg1: A): $Codec<(A)>
 public static "checkRange"<N extends (number) & ($Comparable<(N)>)>(arg0: N, arg1: N): $Function<(N), ($DataResult<(N)>)>
-public "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public static "optionalField"<F>(arg0: string, arg1: $Codec$Type<(F)>): $MapCodec<($Optional<(F)>)>
+public "promotePartial"(arg0: $Consumer$Type<(string)>): $Codec<(A)>
 public "partialDispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
-public "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
 public "dispatchMap"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $MapCodec<(E)>
+public "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
 public static "compoundList"<K, V>(arg0: $Codec$Type<(K)>, arg1: $Codec$Type<(V)>): $Codec<($List<($Pair<(K), (V)>)>)>
 public "flatComapMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public "dispatchStable"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
 public static "doubleRange"(arg0: double, arg1: double): $Codec<(double)>
+public "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public "optionalFieldOf"(arg0: string, arg1: A, arg2: $Lifecycle$Type): $MapCodec<(A)>
-public "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: A, arg3: $Lifecycle$Type): $MapCodec<(A)>
 public "optionalFieldOf"(arg0: string): $MapCodec<($Optional<(A)>)>
 public "optionalFieldOf"(arg0: string, arg1: A): $MapCodec<(A)>
+public "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: A, arg3: $Lifecycle$Type): $MapCodec<(A)>
 public static "unboundedMap"<K, V>(arg0: $Codec$Type<(K)>, arg1: $Codec$Type<(V)>): $UnboundedMapCodec<(K), (V)>
+public "stable"(): $Codec<(A)>
+public "deprecated"(arg0: integer): $Codec<(A)>
+public "fieldOf"(arg0: string): $MapCodec<(A)>
 public "flatXmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
 public "mapResult"(arg0: $Codec$ResultFunction$Type<(A)>): $Codec<(A)>
 public static "mapPair"<F, S>(arg0: $MapCodec$Type<(F)>, arg1: $MapCodec$Type<(S)>): $MapCodec<($Pair<(F), (S)>)>
@@ -4522,8 +4530,6 @@ public static "floatRange"(arg0: float, arg1: float): $Codec<(float)>
 public "listOf"(): $Codec<($List<(A)>)>
 public static "either"<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Either<(F), (S)>)>
 public "xmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
-public "stable"(): $Codec<(A)>
-public "deprecated"(arg0: integer): $Codec<(A)>
 public static "error"<A>(arg0: string): $Encoder<(A)>
 public static "empty"<A>(): $MapEncoder<(A)>
 public "encodeStart"<T>(arg0: $DynamicOps$Type<(T)>, arg1: A): $DataResult<(T)>
@@ -4534,8 +4540,8 @@ public "parse"<T>(arg0: $DynamicOps$Type<(T)>, arg1: T): $DataResult<(A)>
 public "decode"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<(A), (T)>)>
 public "map"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
 public "flatMap"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
-public "boxed"(): $Decoder$Boxed<(A)>
 public "terminal"(): $Decoder$Terminal<(A)>
+public "boxed"(): $Decoder$Boxed<(A)>
 public "simple"(): $Decoder$Simple<(A)>
 public static "ofTerminal"<A>(arg0: $Decoder$Terminal$Type<(any)>): $Decoder<(A)>
 public static "ofBoxed"<A>(arg0: $Decoder$Boxed$Type<(any)>): $Decoder<(A)>
@@ -4661,11 +4667,11 @@ import {$Shader, $Shader$Type} from "packages/com/mojang/blaze3d/shaders/$Shader
 
 export interface $Effect extends $Shader {
 
- "getVertexProgram"(): $Program
- "getFragmentProgram"(): $Program
  "markDirty"(): void
  "attachToProgram"(): void
  "getId"(): integer
+ "getVertexProgram"(): $Program
+ "getFragmentProgram"(): $Program
 }
 
 export namespace $Effect {
@@ -4742,14 +4748,6 @@ import {$BakedQuad, $BakedQuad$Type} from "packages/net/minecraft/client/rendere
 export interface $VertexConsumer extends $IForgeVertexConsumer {
 
  "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: float, arg7: (integer)[], arg8: integer, arg9: boolean): void
- "vertex"(arg0: double, arg1: double, arg2: double): $VertexConsumer
- "uv"(arg0: float, arg1: float): $VertexConsumer
- "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
- "endVertex"(): void
- "color"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $VertexConsumer
- "overlayCoords"(arg0: integer, arg1: integer): $VertexConsumer
- "uv2"(arg0: integer, arg1: integer): $VertexConsumer
- "normal"(arg0: float, arg1: float, arg2: float): $VertexConsumer
  "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
  "overlayCoords"(arg0: integer): $VertexConsumer
  "uv2"(arg0: integer): $VertexConsumer
@@ -4760,9 +4758,17 @@ export interface $VertexConsumer extends $IForgeVertexConsumer {
  "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: (integer)[], arg7: integer, arg8: boolean): void
  "vertex"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
  "normal"(arg0: $Matrix3f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
+ "vertex"(arg0: double, arg1: double, arg2: double): $VertexConsumer
+ "uv"(arg0: float, arg1: float): $VertexConsumer
+ "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
+ "endVertex"(): void
+ "color"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $VertexConsumer
+ "overlayCoords"(arg0: integer, arg1: integer): $VertexConsumer
+ "uv2"(arg0: integer, arg1: integer): $VertexConsumer
+ "normal"(arg0: float, arg1: float, arg2: float): $VertexConsumer
+ "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
  "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: float, arg6: integer, arg7: integer, arg8: boolean): void
  "applyBakedLighting"(arg0: integer, arg1: $ByteBuffer$Type): integer
- "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
  "misc"(arg0: $VertexFormatElement$Type, ...arg1: (integer)[]): $VertexConsumer
 }
 
@@ -4981,9 +4987,6 @@ declare module "packages/com/mojang/blaze3d/font/$SheetGlyphInfo" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $SheetGlyphInfo {
 
- "getOversample"(): float
- "getBearingX"(): float
- "getBearingY"(): float
  "isColored"(): boolean
  "upload"(arg0: integer, arg1: integer): void
  "getPixelWidth"(): integer
@@ -4992,6 +4995,9 @@ export interface $SheetGlyphInfo {
  "getRight"(): float
  "getUp"(): float
  "getDown"(): float
+ "getOversample"(): float
+ "getBearingX"(): float
+ "getBearingY"(): float
 }
 
 export namespace $SheetGlyphInfo {
@@ -5137,16 +5143,16 @@ import {$Function3, $Function3$Type} from "packages/com/mojang/datafixers/util/$
 export class $DataResult<R> implements $App<($DataResult$Mu), (R)> {
 
 
-public static "error"<R>(arg0: $Supplier$Type<(string)>, arg1: R, arg2: $Lifecycle$Type): $DataResult<(R)>
-public static "error"<R>(arg0: $Supplier$Type<(string)>, arg1: $Lifecycle$Type): $DataResult<(R)>
-public static "error"<R>(arg0: $Supplier$Type<(string)>): $DataResult<(R)>
-public static "error"<R>(arg0: $Supplier$Type<(string)>, arg1: R): $DataResult<(R)>
-public "error"(): $Optional<($DataResult$PartialResult<(R)>)>
-public static "unbox"<R>(arg0: $App$Type<($DataResult$Mu$Type), (R)>): $DataResult<(R)>
+public static "instance"(): $DataResult$Instance
 public "ap"<R2>(arg0: $DataResult$Type<($Function$Type<(R), (R2)>)>): $DataResult<(R2)>
 public static "success"<R>(arg0: R, arg1: $Lifecycle$Type): $DataResult<(R)>
 public static "success"<R>(arg0: R): $DataResult<(R)>
-public static "instance"(): $DataResult$Instance
+public "error"(): $Optional<($DataResult$PartialResult<(R)>)>
+public static "error"<R>(arg0: $Supplier$Type<(string)>, arg1: $Lifecycle$Type): $DataResult<(R)>
+public static "error"<R>(arg0: $Supplier$Type<(string)>, arg1: R, arg2: $Lifecycle$Type): $DataResult<(R)>
+public static "error"<R>(arg0: $Supplier$Type<(string)>, arg1: R): $DataResult<(R)>
+public static "error"<R>(arg0: $Supplier$Type<(string)>): $DataResult<(R)>
+public static "unbox"<R>(arg0: $App$Type<($DataResult$Mu$Type), (R)>): $DataResult<(R)>
 public "get"(): $Either<(R), ($DataResult$PartialResult<(R)>)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
@@ -5154,17 +5160,17 @@ public "hashCode"(): integer
 public "map"<T>(arg0: $Function$Type<(any), (any)>): $DataResult<(T)>
 public "result"(): $Optional<(R)>
 public "flatMap"<R2>(arg0: $Function$Type<(any), (any)>): $DataResult<(R2)>
-public "setLifecycle"(arg0: $Lifecycle$Type): $DataResult<(R)>
 public "promotePartial"(arg0: $Consumer$Type<(string)>): $DataResult<(R)>
+public "setLifecycle"(arg0: $Lifecycle$Type): $DataResult<(R)>
 public "resultOrPartial"(arg0: $Consumer$Type<(string)>): $Optional<(R)>
 public "apply2stable"<R2, S>(arg0: $BiFunction$Type<(R), (R2), (S)>, arg1: $DataResult$Type<(R2)>): $DataResult<(S)>
 public "addLifecycle"(arg0: $Lifecycle$Type): $DataResult<(R)>
 public "lifecycle"(): $Lifecycle
-public "mapError"(arg0: $UnaryOperator$Type<(string)>): $DataResult<(R)>
-public "setPartial"(arg0: $Supplier$Type<(R)>): $DataResult<(R)>
-public "setPartial"(arg0: R): $DataResult<(R)>
 public "apply2"<R2, S>(arg0: $BiFunction$Type<(R), (R2), (S)>, arg1: $DataResult$Type<(R2)>): $DataResult<(S)>
 public "apply3"<R2, R3, S>(arg0: $Function3$Type<(R), (R2), (R3), (S)>, arg1: $DataResult$Type<(R2)>, arg2: $DataResult$Type<(R3)>): $DataResult<(S)>
+public "setPartial"(arg0: $Supplier$Type<(R)>): $DataResult<(R)>
+public "setPartial"(arg0: R): $DataResult<(R)>
+public "mapError"(arg0: $UnaryOperator$Type<(string)>): $DataResult<(R)>
 public static "partialGet"<K, V>(arg0: $Function$Type<(K), (V)>, arg1: $Supplier$Type<(string)>): $Function<(K), ($DataResult<(V)>)>
 public "getOrThrow"(arg0: boolean, arg1: $Consumer$Type<(string)>): R
 set "partial"(value: $Supplier$Type<(R)>)
@@ -5204,22 +5210,22 @@ constructor(arg0: $NativeImage$Format$Type, arg1: integer, arg2: integer, arg3: 
 public "toString"(): string
 public "close"(): void
 public "axiom$asByteArray"(): (byte)[]
+public "copyFrom"(arg0: $NativeImage$Type): void
+public "writeToFile"(arg0: $Path$Type): void
 public static "read"(arg0: $InputStream$Type): $NativeImage
 public "getWidth"(): integer
 public "getHeight"(): integer
 public "upload"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: boolean, arg9: boolean, arg10: boolean): void
-public "copyFrom"(arg0: $NativeImage$Type): void
-public "writeToFile"(arg0: $Path$Type): void
-public "resizeSubRectTo"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $NativeImage$Type): void
-public "getPixelRGBA"(arg0: integer, arg1: integer): integer
 public "upload"(arg0: integer, arg1: integer, arg2: integer, arg3: boolean): void
+public "getPixelRGBA"(arg0: integer, arg1: integer): integer
 public "setPixelRGBA"(arg0: integer, arg1: integer, arg2: integer): void
+public "resizeSubRectTo"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $NativeImage$Type): void
 public "getPixelsRGBA"(): (integer)[]
 public "downloadTexture"(arg0: integer, arg1: boolean): void
 public "applyToAllPixels"(arg0: $IntUnaryOperator$Type): void
-public "asByteArray"(): (byte)[]
-public "upload"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: boolean): void
 public "fillRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer): void
+public "upload"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: boolean): void
+public "asByteArray"(): (byte)[]
 public static "read"(arg0: $NativeImage$Format$Type, arg1: $InputStream$Type): $NativeImage
 public static "read"(arg0: $NativeImage$Format$Type, arg1: $ByteBuffer$Type): $NativeImage
 public static "read"(arg0: $ByteBuffer$Type): $NativeImage
@@ -5315,20 +5321,22 @@ readonly "window": long
 constructor(arg0: $WindowEventHandler$Type, arg1: $ScreenManager$Type, arg2: $DisplayData$Type, arg3: string, arg4: string)
 
 public "close"(): void
-public "axiom$resize"(window: long, width: integer, height: integer): void
-public "handler$glc000$axiom$getScreenWidth"(cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$glc000$axiom$calculateScale"(scale: integer, forceEven: boolean, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$glc000$axiom$onResizeInject"(l: long, i: integer, j: integer, ci: $CallbackInfo$Type): void
-public "handler$glc000$axiom$getScreenHeight"(cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$glc000$axiom$getHeight"(cir: $CallbackInfoReturnable$Type<(any)>): void
-public "handler$glc000$axiom$setGuiScale"(d: double, ci: $CallbackInfo$Type): void
-public "handler$glc000$axiom$getWidth"(cir: $CallbackInfoReturnable$Type<(any)>): void
 public "axiom$refreshFramebufferSize"(): void
-public "getWidth"(): integer
-public "getHeight"(): integer
-public "getGuiScaledWidth"(): integer
-public "getGuiScaledHeight"(): integer
+public "handler$glb000$axiom$onResizeInject"(l: long, i: integer, j: integer, ci: $CallbackInfo$Type): void
+public "handler$glb000$axiom$calculateScale"(scale: integer, forceEven: boolean, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$glb000$axiom$setGuiScale"(d: double, ci: $CallbackInfo$Type): void
+public "handler$glb000$axiom$getWidth"(cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$glb000$axiom$getHeight"(cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$glb000$axiom$getScreenWidth"(cir: $CallbackInfoReturnable$Type<(any)>): void
+public "handler$glb000$axiom$getScreenHeight"(cir: $CallbackInfoReturnable$Type<(any)>): void
+public "axiom$resize"(window: long, width: integer, height: integer): void
 public "getGuiScale"(): double
+public "setIcon"(arg0: $PackResources$Type, arg1: $IconSet$Type): void
+public "setFramerateLimit"(arg0: integer): void
+public "setErrorSection"(arg0: string): void
+public "getWindow"(): long
+public "isFullscreen"(): boolean
+public "toggleFullScreen"(): void
 public "setWindowed"(arg0: integer, arg1: integer): void
 public "updateVsync"(arg0: boolean): void
 public "updateRawMouseInput"(arg0: boolean): void
@@ -5341,14 +5349,13 @@ public "setGuiScale"(arg0: double): void
 public "getFramerateLimit"(): integer
 public "setWidth"(arg0: integer): void
 public "setHeight"(arg0: integer): void
-public "setIcon"(arg0: $PackResources$Type, arg1: $IconSet$Type): void
-public "setFramerateLimit"(arg0: integer): void
-public "setErrorSection"(arg0: string): void
-public "getWindow"(): long
-public "isFullscreen"(): boolean
-public "toggleFullScreen"(): void
+public "getWidth"(): integer
+public "getHeight"(): integer
+public "getGuiScaledWidth"(): integer
+public "getGuiScaledHeight"(): integer
 public "getScreenWidth"(): integer
 public "getScreenHeight"(): integer
+public static "checkGlfwError"(arg0: $BiConsumer$Type<(integer), (string)>): void
 public "defaultErrorCallback"(arg0: integer, arg1: long): void
 public "getRefreshRate"(): integer
 public "setPreferredFullscreenVideoMode"(arg0: $Optional$Type<($VideoMode$Type)>): void
@@ -5357,22 +5364,21 @@ public "getX"(): integer
 public "getY"(): integer
 public "findBestMonitor"(): $Monitor
 public "getPreferredFullscreenVideoMode"(): $Optional<($VideoMode)>
-public static "checkGlfwError"(arg0: $BiConsumer$Type<(integer), (string)>): void
 public "kjs$loadIcons"(original: $List$Type<($IoSupplier$Type<($InputStream$Type)>)>): $List<($IoSupplier<($InputStream)>)>
-get "width"(): integer
-get "height"(): integer
-get "guiScaledWidth"(): integer
-get "guiScaledHeight"(): integer
 get "guiScale"(): double
+set "framerateLimit"(value: integer)
+set "errorSection"(value: string)
+get "window"(): long
+get "fullscreen"(): boolean
 set "title"(value: string)
 set "guiScale"(value: double)
 get "framerateLimit"(): integer
 set "width"(value: integer)
 set "height"(value: integer)
-set "framerateLimit"(value: integer)
-set "errorSection"(value: string)
-get "window"(): long
-get "fullscreen"(): boolean
+get "width"(): integer
+get "height"(): integer
+get "guiScaledWidth"(): integer
+get "guiScaledHeight"(): integer
 get "screenWidth"(): integer
 get "screenHeight"(): integer
 get "refreshRate"(): integer
@@ -5471,20 +5477,22 @@ readonly "poseStack": $Deque<($PoseStack$Pose)>
 
 constructor()
 
+public "multiply"(arg0: $Quaternionf$Type): $TransformStack
 public "scale"(arg0: float, arg1: float, arg2: float): $TransformStack
-public "translate"(arg0: double, arg1: double, arg2: double): $TransformStack
 public "embeddium$setCachingEnabled"(arg0: boolean): void
-public "pushPose"(): void
+public "translate"(arg0: double, arg1: double, arg2: double): $TransformStack
+public "mulPose"(arg0: $Quaternionf$Type): void
+public "translate"(arg0: double, arg1: double, arg2: double): void
 public "last"(): $PoseStack$Pose
+public "setIdentity"(): void
+public "pushPose"(): void
 public "translate"(arg0: float, arg1: float, arg2: float): void
 public "mulPoseMatrix"(arg0: $Matrix4f$Type): void
 public "scale"(arg0: float, arg1: float, arg2: float): void
 public "popPose"(): void
-public "setIdentity"(): void
-public "translate"(arg0: double, arg1: double, arg2: double): void
-public "mulPose"(arg0: $Quaternionf$Type): void
 public "rotateAround"(arg0: $Quaternionf$Type, arg1: float, arg2: float, arg3: float): void
 public "clear"(): boolean
+public "pushPose"(): $TransformStack
 public "popPose"(): $TransformStack
 public "pushTransformation"(arg0: $Transformation$Type): void
 public static "cast"(arg0: $PoseStack$Type): $TransformStack
@@ -5581,24 +5589,24 @@ export class $Library implements $ISoundEngine {
 
 constructor()
 
-public "constant$blf000$dsurround$initialize"(v: integer): integer
+public "constant$bkp000$dsurround$initialize"(v: integer): integer
 public "dsurround_getDevicePointer"(): long
-public "getDebugString"(): string
-public "getAvailableSoundDevices"(): $List<(string)>
-public "hasDefaultDeviceChanged"(): boolean
-public "getCurrentDeviceName"(): string
 public "getListener"(): $Listener
 public "init"(arg0: string, arg1: boolean): void
 public "cleanup"(): void
 public "isCurrentDeviceDisconnected"(): boolean
+public "getDebugString"(): string
+public "getAvailableSoundDevices"(): $List<(string)>
+public "hasDefaultDeviceChanged"(): boolean
+public "getCurrentDeviceName"(): string
 public static "getDefaultDeviceName"(): string
 public "acquireChannel"(arg0: $Library$Pool$Type): $Channel
 public "releaseChannel"(arg0: $Channel$Type): void
+get "listener"(): $Listener
+get "currentDeviceDisconnected"(): boolean
 get "debugString"(): string
 get "availableSoundDevices"(): $List<(string)>
 get "currentDeviceName"(): string
-get "listener"(): $Listener
-get "currentDeviceDisconnected"(): boolean
 get "defaultDeviceName"(): string
 }
 /**
@@ -5614,8 +5622,8 @@ declare global {
 export type $Library_ = $Library$Type;
 }}
 declare module "packages/com/mojang/serialization/codecs/$RecordCodecBuilder" {
-import {$Lifecycle, $Lifecycle$Type} from "packages/com/mojang/serialization/$Lifecycle"
 import {$MapCodec, $MapCodec$Type} from "packages/com/mojang/serialization/$MapCodec"
+import {$Lifecycle, $Lifecycle$Type} from "packages/com/mojang/serialization/$Lifecycle"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$MapEncoder, $MapEncoder$Type} from "packages/com/mojang/serialization/$MapEncoder"
 import {$RecordCodecBuilder$Mu, $RecordCodecBuilder$Mu$Type} from "packages/com/mojang/serialization/codecs/$RecordCodecBuilder$Mu"
@@ -5626,18 +5634,18 @@ import {$Codec, $Codec$Type} from "packages/com/mojang/serialization/$Codec"
 export class $RecordCodecBuilder<O, F> implements $App<($RecordCodecBuilder$Mu<(O)>), (F)> {
 
 
-public static "unbox"<O, F>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (F)>): $RecordCodecBuilder<(O), (F)>
-public static "point"<O, F>(arg0: F): $RecordCodecBuilder<(O), (F)>
-public static "point"<O, F>(arg0: F, arg1: $Lifecycle$Type): $RecordCodecBuilder<(O), (F)>
 public static "instance"<O>(): $RecordCodecBuilder$Instance<(O)>
 public static "build"<O>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (O)>): $MapCodec<(O)>
+public static "point"<O, F>(arg0: F): $RecordCodecBuilder<(O), (F)>
+public static "point"<O, F>(arg0: F, arg1: $Lifecycle$Type): $RecordCodecBuilder<(O), (F)>
+public static "unbox"<O, F>(arg0: $App$Type<($RecordCodecBuilder$Mu$Type<(O)>), (F)>): $RecordCodecBuilder<(O), (F)>
 public static "of"<O, F>(arg0: $Function$Type<(O), (F)>, arg1: $MapCodec$Type<(F)>): $RecordCodecBuilder<(O), (F)>
 public static "of"<O, F>(arg0: $Function$Type<(O), (F)>, arg1: string, arg2: $Codec$Type<(F)>): $RecordCodecBuilder<(O), (F)>
 public static "create"<O>(arg0: $Function$Type<($RecordCodecBuilder$Instance$Type<(O)>), (any)>): $Codec<(O)>
 public "dependent"<E>(arg0: $Function$Type<(O), (E)>, arg1: $MapEncoder$Type<(E)>, arg2: $Function$Type<(any), (any)>): $RecordCodecBuilder<(O), (E)>
-public static "mapCodec"<O>(arg0: $Function$Type<($RecordCodecBuilder$Instance$Type<(O)>), (any)>): $MapCodec<(O)>
 public static "stable"<O, F>(arg0: F): $RecordCodecBuilder<(O), (F)>
 public static "deprecated"<O, F>(arg0: F, arg1: integer): $RecordCodecBuilder<(O), (F)>
+public static "mapCodec"<O>(arg0: $Function$Type<($RecordCodecBuilder$Instance$Type<(O)>), (any)>): $MapCodec<(O)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5663,21 +5671,21 @@ export class $ArgumentBuilder<S, T extends $ArgumentBuilder<(S), (T)>> {
 
 constructor()
 
-public "redirect"(arg0: $CommandNode$Type<(S)>, arg1: $SingleRedirectModifier$Type<(S)>): T
-public "redirect"(arg0: $CommandNode$Type<(S)>): T
 public "build"(): $CommandNode<(S)>
+public "redirect"(arg0: $CommandNode$Type<(S)>): T
+public "redirect"(arg0: $CommandNode$Type<(S)>, arg1: $SingleRedirectModifier$Type<(S)>): T
 public "requires"(arg0: $Predicate$Type<(S)>): T
 public "fork"(arg0: $CommandNode$Type<(S)>, arg1: $RedirectModifier$Type<(S)>): T
 public "getRedirectModifier"(): $RedirectModifier<(S)>
 public "getRedirect"(): $CommandNode<(S)>
 public "getRequirement"(): $Predicate<(S)>
-public "then"(arg0: $CommandNode$Type<(S)>): T
 public "then"(arg0: $ArgumentBuilder$Type<(S), (any)>): T
+public "then"(arg0: $CommandNode$Type<(S)>): T
 public "getArguments"(): $Collection<($CommandNode<(S)>)>
 public "forward"(arg0: $CommandNode$Type<(S)>, arg1: $RedirectModifier$Type<(S)>, arg2: boolean): T
-public "executes"(arg0: $Command$Type<(S)>): T
-public "getCommand"(): $Command<(S)>
 public "isFork"(): boolean
+public "getCommand"(): $Command<(S)>
+public "executes"(arg0: $Command$Type<(S)>): T
 get "redirectModifier"(): $RedirectModifier<(S)>
 get "requirement"(): $Predicate<(S)>
 get "arguments"(): $Collection<($CommandNode<(S)>)>
@@ -5972,9 +5980,9 @@ export class $BaseAuthenticationService implements $AuthenticationService {
 
 constructor()
 
+public "createMinecraftSessionService"(): $MinecraftSessionService
 public "createUserAuthentication"(arg0: $Agent$Type): $UserAuthentication
 public "createProfileRepository"(): $GameProfileRepository
-public "createMinecraftSessionService"(): $MinecraftSessionService
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6195,8 +6203,8 @@ export interface $MapEncoder<A> extends $Keyable {
 
  "encoder"(): $Encoder<(A)>
  "encode"<T>(arg0: A, arg1: $DynamicOps$Type<(T)>, arg2: $RecordBuilder$Type<(T)>): $RecordBuilder<(T)>
- "withLifecycle"(arg0: $Lifecycle$Type): $MapEncoder<(A)>
  "compressedBuilder"<T>(arg0: $DynamicOps$Type<(T)>): $RecordBuilder<(T)>
+ "withLifecycle"(arg0: $Lifecycle$Type): $MapEncoder<(A)>
  "comap"<B>(arg0: $Function$Type<(any), (any)>): $MapEncoder<(B)>
  "flatComap"<B>(arg0: $Function$Type<(any), (any)>): $MapEncoder<(B)>
  "compressor"<T>(arg0: $DynamicOps$Type<(T)>): $KeyCompressor<(T)>
@@ -6322,8 +6330,6 @@ export interface $BufferVertexConsumer extends $VertexConsumer {
  "uv2"(arg0: integer, arg1: integer): $VertexConsumer
  "normal"(arg0: float, arg1: float, arg2: float): $VertexConsumer
  "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: float, arg7: (integer)[], arg8: integer, arg9: boolean): void
- "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
- "endVertex"(): void
  "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
  "overlayCoords"(arg0: integer): $VertexConsumer
  "uv2"(arg0: integer): $VertexConsumer
@@ -6334,9 +6340,11 @@ export interface $BufferVertexConsumer extends $VertexConsumer {
  "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: (integer)[], arg7: integer, arg8: boolean): void
  "vertex"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
  "normal"(arg0: $Matrix3f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
+ "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
+ "endVertex"(): void
+ "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
  "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: float, arg6: integer, arg7: integer, arg8: boolean): void
  "applyBakedLighting"(arg0: integer, arg1: $ByteBuffer$Type): integer
- "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
  "misc"(arg0: $VertexFormatElement$Type, ...arg1: (integer)[]): $VertexConsumer
 }
 
@@ -6365,14 +6373,14 @@ constructor()
 
 public "getPublicKey"(): string
 public "getPrivateKey"(): string
-public "getExpiresAt"(): string
 public "getRefreshedAfter"(): string
 public "getPublicKeySignature"(): $ByteBuffer
+public "getExpiresAt"(): string
 get "publicKey"(): string
 get "privateKey"(): string
-get "expiresAt"(): string
 get "refreshedAfter"(): string
 get "publicKeySignature"(): $ByteBuffer
+get "expiresAt"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6522,10 +6530,10 @@ export {} // Mark the file as a module, do not remove unless there are other imp
 export interface $Environment {
 
  "getName"(): string
- "getServicesHost"(): string
  "getAuthHost"(): string
  "getAccountsHost"(): string
  "getSessionHost"(): string
+ "getServicesHost"(): string
  "asString"(): string
 }
 
@@ -6577,12 +6585,12 @@ import {$App, $App$Type} from "packages/com/mojang/datafixers/kinds/$App"
 export class $Either<L, R> implements $App<($Either$Mu<(R)>), (L)> {
 
 
-public static "unbox"<L, R>(arg0: $App$Type<($Either$Mu$Type<(R)>), (L)>): $Either<(L), (R)>
-public static "left"<L, R>(arg0: L): $Either<(L), (R)>
 public "left"(): $Optional<(L)>
+public static "left"<L, R>(arg0: L): $Either<(L), (R)>
 public static "right"<L, R>(arg0: R): $Either<(L), (R)>
 public "right"(): $Optional<(R)>
 public "swap"(): $Either<(R), (L)>
+public static "unbox"<L, R>(arg0: $App$Type<($Either$Mu$Type<(R)>), (L)>): $Either<(L), (R)>
 public "map"<T>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): T
 public "flatMap"<L2>(arg0: $Function$Type<(L), ($Either$Type<(L2), (R)>)>): $Either<(L2), (R)>
 public "mapBoth"<C, D>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Either<(C), (D)>
@@ -6732,30 +6740,32 @@ import {$Pair, $Pair$Type} from "packages/com/mojang/datafixers/util/$Pair"
 
 export interface $Codec<A> extends $Encoder<(A)>, $Decoder<(A)> {
 
- "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<(A)>
- "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
  "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
+ "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
+ "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<(A)>
  "dispatch"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
  "dispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
  "orElse"(arg0: $UnaryOperator$Type<(string)>, arg1: A): $Codec<(A)>
  "orElse"(arg0: A): $Codec<(A)>
  "orElse"(arg0: $Consumer$Type<(string)>, arg1: A): $Codec<(A)>
- "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
+ "promotePartial"(arg0: $Consumer$Type<(string)>): $Codec<(A)>
  "partialDispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
- "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
  "dispatchMap"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $MapCodec<(E)>
+ "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
  "flatComapMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
  "dispatchStable"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
+ "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
  "optionalFieldOf"(arg0: string, arg1: A, arg2: $Lifecycle$Type): $MapCodec<(A)>
- "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: A, arg3: $Lifecycle$Type): $MapCodec<(A)>
  "optionalFieldOf"(arg0: string): $MapCodec<($Optional<(A)>)>
  "optionalFieldOf"(arg0: string, arg1: A): $MapCodec<(A)>
+ "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: A, arg3: $Lifecycle$Type): $MapCodec<(A)>
+ "stable"(): $Codec<(A)>
+ "deprecated"(arg0: integer): $Codec<(A)>
+ "fieldOf"(arg0: string): $MapCodec<(A)>
  "flatXmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
  "mapResult"(arg0: $Codec$ResultFunction$Type<(A)>): $Codec<(A)>
  "listOf"(): $Codec<($List<(A)>)>
  "xmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
- "stable"(): $Codec<(A)>
- "deprecated"(arg0: integer): $Codec<(A)>
  "encode"<T>(arg0: A, arg1: $DynamicOps$Type<(T)>, arg2: T): $DataResult<(T)>
  "encodeStart"<T>(arg0: $DynamicOps$Type<(T)>, arg1: A): $DataResult<(T)>
  "comap"<B>(arg0: $Function$Type<(any), (any)>): $Encoder<(B)>
@@ -6766,8 +6776,8 @@ export interface $Codec<A> extends $Encoder<(A)>, $Decoder<(A)> {
  "decode"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<(A), (T)>)>
  "map"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
  "flatMap"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
- "boxed"(): $Decoder$Boxed<(A)>
  "terminal"(): $Decoder$Terminal<(A)>
+ "boxed"(): $Decoder$Boxed<(A)>
  "simple"(): $Decoder$Simple<(A)>
 }
 
@@ -6795,9 +6805,9 @@ const probejsInternal$$Literal: Special.WorldgenMaterialRule
 const probejsInternal$$Tag: Special.WorldgenMaterialRuleTag
 const probejsInternal$$Literal: Special.WorldgenDensityFunctionType
 const probejsInternal$$Tag: Special.WorldgenDensityFunctionTypeTag
-function pair<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
 function unit<A>(arg0: A): $Codec<(A)>
 function unit<A>(arg0: $Supplier$Type<(A)>): $Codec<(A)>
+function pair<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
 function of<A>(arg0: $Encoder$Type<(A)>, arg1: $Decoder$Type<(A)>, arg2: string): $Codec<(A)>
 function of<A>(arg0: $Encoder$Type<(A)>, arg1: $Decoder$Type<(A)>): $Codec<(A)>
 function of<A>(arg0: $MapEncoder$Type<(A)>, arg1: $MapDecoder$Type<(A)>, arg2: $Supplier$Type<(string)>): $MapCodec<(A)>
@@ -6847,25 +6857,25 @@ export class $CommandContext<S> {
 
 constructor(arg0: S, arg1: string, arg2: $Map$Type<(string), ($ParsedArgument$Type<(S), (any)>)>, arg3: $Command$Type<(S)>, arg4: $CommandNode$Type<(S)>, arg5: $List$Type<($ParsedCommandNode$Type<(S)>)>, arg6: $StringRange$Type, arg7: $CommandContext$Type<(S)>, arg8: $RedirectModifier$Type<(S)>, arg9: boolean)
 
-public "getSource"(): S
 public "getInput"(): string
-public "getChild"(): $CommandContext<(S)>
+public "getSource"(): S
 public "getRange"(): $StringRange
+public "getChild"(): $CommandContext<(S)>
+public "getLastChild"(): $CommandContext<(S)>
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
-public "getLastChild"(): $CommandContext<(S)>
 public "getRedirectModifier"(): $RedirectModifier<(S)>
-public "getRootNode"(): $CommandNode<(S)>
 public "getArgument"<V>(arg0: string, arg1: $Class$Type<(V)>): V
+public "getRootNode"(): $CommandNode<(S)>
 public "copyFor"(arg0: S): $CommandContext<(S)>
 public "isForked"(): boolean
 public "hasNodes"(): boolean
 public "getCommand"(): $Command<(S)>
 public "getNodes"(): $List<($ParsedCommandNode<(S)>)>
-get "source"(): S
 get "input"(): string
-get "child"(): $CommandContext<(S)>
+get "source"(): S
 get "range"(): $StringRange
+get "child"(): $CommandContext<(S)>
 get "lastChild"(): $CommandContext<(S)>
 get "redirectModifier"(): $RedirectModifier<(S)>
 get "rootNode"(): $CommandNode<(S)>
@@ -7187,16 +7197,16 @@ export class $Listener {
 
 constructor()
 
+public "reset"(): void
+public "setGain"(arg0: float): void
 public "getListenerPosition"(): $Vec3
 public "getGain"(): float
 public "setListenerPosition"(arg0: $Vec3$Type): void
 public "setListenerOrientation"(arg0: $Vector3f$Type, arg1: $Vector3f$Type): void
-public "reset"(): void
-public "setGain"(arg0: float): void
+set "gain"(value: float)
 get "listenerPosition"(): $Vec3
 get "gain"(): float
 set "listenerPosition"(value: $Vec3$Type)
-set "gain"(value: float)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7349,12 +7359,12 @@ export class $Products$P3<F extends $K1, T1, T2, T3> {
 
 constructor(arg0: $App$Type<(F), (T1)>, arg1: $App$Type<(F), (T2)>, arg2: $App$Type<(F), (T3)>)
 
+public "t3"(): $App<(F), (T3)>
+public "and"<T4, T5>(arg0: $Products$P2$Type<(F), (T4), (T5)>): $Products$P5<(F), (T1), (T2), (T3), (T4), (T5)>
 public "and"<T4>(arg0: $App$Type<(F), (T4)>): $Products$P4<(F), (T1), (T2), (T3), (T4)>
 public "and"<T4, T5, T6>(arg0: $Products$P3$Type<(F), (T4), (T5), (T6)>): $Products$P6<(F), (T1), (T2), (T3), (T4), (T5), (T6)>
 public "and"<T4, T5, T6, T7>(arg0: $Products$P4$Type<(F), (T4), (T5), (T6), (T7)>): $Products$P7<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7)>
 public "and"<T4, T5, T6, T7, T8>(arg0: $Products$P5$Type<(F), (T4), (T5), (T6), (T7), (T8)>): $Products$P8<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7), (T8)>
-public "and"<T4, T5>(arg0: $Products$P2$Type<(F), (T4), (T5)>): $Products$P5<(F), (T1), (T2), (T3), (T4), (T5)>
-public "t3"(): $App<(F), (T3)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $Function3$Type<(T1), (T2), (T3), (R)>): $App<(F), (R)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $App$Type<(F), ($Function3$Type<(T1), (T2), (T3), (R)>)>): $App<(F), (R)>
 public "t1"(): $App<(F), (T1)>
@@ -7388,11 +7398,11 @@ export class $Products$P4<F extends $K1, T1, T2, T3, T4> {
 
 constructor(arg0: $App$Type<(F), (T1)>, arg1: $App$Type<(F), (T2)>, arg2: $App$Type<(F), (T3)>, arg3: $App$Type<(F), (T4)>)
 
+public "t3"(): $App<(F), (T3)>
 public "and"<T5, T6>(arg0: $Products$P2$Type<(F), (T5), (T6)>): $Products$P6<(F), (T1), (T2), (T3), (T4), (T5), (T6)>
+public "and"<T5>(arg0: $App$Type<(F), (T5)>): $Products$P5<(F), (T1), (T2), (T3), (T4), (T5)>
 public "and"<T5, T6, T7>(arg0: $Products$P3$Type<(F), (T5), (T6), (T7)>): $Products$P7<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7)>
 public "and"<T5, T6, T7, T8>(arg0: $Products$P4$Type<(F), (T5), (T6), (T7), (T8)>): $Products$P8<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7), (T8)>
-public "and"<T5>(arg0: $App$Type<(F), (T5)>): $Products$P5<(F), (T1), (T2), (T3), (T4), (T5)>
-public "t3"(): $App<(F), (T3)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $App$Type<(F), ($Function4$Type<(T1), (T2), (T3), (T4), (R)>)>): $App<(F), (R)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $Function4$Type<(T1), (T2), (T3), (T4), (R)>): $App<(F), (R)>
 public "t1"(): $App<(F), (T1)>
@@ -7526,9 +7536,9 @@ export class $Products$P7<F extends $K1, T1, T2, T3, T4, T5, T6, T7> {
 
 constructor(arg0: $App$Type<(F), (T1)>, arg1: $App$Type<(F), (T2)>, arg2: $App$Type<(F), (T3)>, arg3: $App$Type<(F), (T4)>, arg4: $App$Type<(F), (T5)>, arg5: $App$Type<(F), (T6)>, arg6: $App$Type<(F), (T7)>)
 
-public "and"<T8>(arg0: $App$Type<(F), (T8)>): $Products$P8<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7), (T8)>
 public "t3"(): $App<(F), (T3)>
 public "t5"(): $App<(F), (T5)>
+public "and"<T8>(arg0: $App$Type<(F), (T8)>): $Products$P8<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7), (T8)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $Function7$Type<(T1), (T2), (T3), (T4), (T5), (T6), (T7), (R)>): $App<(F), (R)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $App$Type<(F), ($Function7$Type<(T1), (T2), (T3), (T4), (T5), (T6), (T7), (R)>)>): $App<(F), (R)>
 public "t1"(): $App<(F), (T1)>
@@ -7597,11 +7607,11 @@ export class $Products$P5<F extends $K1, T1, T2, T3, T4, T5> {
 
 constructor(arg0: $App$Type<(F), (T1)>, arg1: $App$Type<(F), (T2)>, arg2: $App$Type<(F), (T3)>, arg3: $App$Type<(F), (T4)>, arg4: $App$Type<(F), (T5)>)
 
+public "t3"(): $App<(F), (T3)>
+public "t5"(): $App<(F), (T5)>
 public "and"<T6>(arg0: $App$Type<(F), (T6)>): $Products$P6<(F), (T1), (T2), (T3), (T4), (T5), (T6)>
 public "and"<T6, T7, T8>(arg0: $Products$P3$Type<(F), (T6), (T7), (T8)>): $Products$P8<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7), (T8)>
 public "and"<T6, T7>(arg0: $Products$P2$Type<(F), (T6), (T7)>): $Products$P7<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7)>
-public "t3"(): $App<(F), (T3)>
-public "t5"(): $App<(F), (T5)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $App$Type<(F), ($Function5$Type<(T1), (T2), (T3), (T4), (T5), (R)>)>): $App<(F), (R)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $Function5$Type<(T1), (T2), (T3), (T4), (T5), (R)>): $App<(F), (R)>
 public "t1"(): $App<(F), (T1)>
@@ -7633,10 +7643,10 @@ export class $Products$P6<F extends $K1, T1, T2, T3, T4, T5, T6> {
 
 constructor(arg0: $App$Type<(F), (T1)>, arg1: $App$Type<(F), (T2)>, arg2: $App$Type<(F), (T3)>, arg3: $App$Type<(F), (T4)>, arg4: $App$Type<(F), (T5)>, arg5: $App$Type<(F), (T6)>)
 
-public "and"<T7>(arg0: $App$Type<(F), (T7)>): $Products$P7<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7)>
-public "and"<T7, T8>(arg0: $Products$P2$Type<(F), (T7), (T8)>): $Products$P8<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7), (T8)>
 public "t3"(): $App<(F), (T3)>
 public "t5"(): $App<(F), (T5)>
+public "and"<T7>(arg0: $App$Type<(F), (T7)>): $Products$P7<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7)>
+public "and"<T7, T8>(arg0: $Products$P2$Type<(F), (T7), (T8)>): $Products$P8<(F), (T1), (T2), (T3), (T4), (T5), (T6), (T7), (T8)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $App$Type<(F), ($Function6$Type<(T1), (T2), (T3), (T4), (T5), (T6), (R)>)>): $App<(F), (R)>
 public "apply"<R>(arg0: $Applicative$Type<(F), (any)>, arg1: $Function6$Type<(T1), (T2), (T3), (T4), (T5), (T6), (R)>): $App<(F), (R)>
 public "t1"(): $App<(F), (T1)>
@@ -7672,8 +7682,8 @@ import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$Type$FieldNotFoundException, $Type$FieldNotFoundException$Type} from "packages/com/mojang/datafixers/types/$Type$FieldNotFoundException"
 import {$Pair, $Pair$Type} from "packages/com/mojang/datafixers/util/$Pair"
 import {$RewriteResult, $RewriteResult$Type} from "packages/com/mojang/datafixers/$RewriteResult"
-import {$TypedOptic, $TypedOptic$Type} from "packages/com/mojang/datafixers/$TypedOptic"
 import {$TaggedChoice$TaggedChoiceType, $TaggedChoice$TaggedChoiceType$Type} from "packages/com/mojang/datafixers/types/templates/$TaggedChoice$TaggedChoiceType"
+import {$TypedOptic, $TypedOptic$Type} from "packages/com/mojang/datafixers/$TypedOptic"
 import {$App, $App$Type} from "packages/com/mojang/datafixers/kinds/$App"
 import {$TypeTemplate, $TypeTemplate$Type} from "packages/com/mojang/datafixers/types/templates/$TypeTemplate"
 import {$Typed, $Typed$Type} from "packages/com/mojang/datafixers/$Typed"
@@ -7683,40 +7693,40 @@ export class $Type<A> implements $App<($Type$Mu), (A)> {
 constructor()
 
 public "all"(arg0: $TypeRewriteRule$Type, arg1: boolean, arg2: boolean): $RewriteResult<(A), (any)>
-public static "unbox"<A>(arg0: $App$Type<($Type$Mu$Type), (A)>): $Type<(A)>
 public "point"(arg0: $DynamicOps$Type<(any)>): $Optional<(A)>
+public static "unbox"<A>(arg0: $App$Type<($Type$Mu$Type), (A)>): $Type<(A)>
 public "one"(arg0: $TypeRewriteRule$Type): $Optional<($RewriteResult<(A), (any)>)>
-public "equals"(arg0: any): boolean
 public "equals"(arg0: any, arg1: boolean, arg2: boolean): boolean
+public "equals"(arg0: any): boolean
 public "write"<T>(arg0: $DynamicOps$Type<(T)>, arg1: A): $DataResult<(T)>
 public "read"<T>(arg0: $DynamicOps$Type<(T)>, arg1: $TypeRewriteRule$Type, arg2: $PointFreeRule$Type, arg3: T): $DataResult<($Pair<($Optional<(any)>), (T)>)>
 public "read"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<(A), ($Dynamic<(T)>)>)>
 public "finder"(): $OpticFinder<(A)>
 public "findCheckedType"(arg0: integer): $Optional<($Type<(any)>)>
-public "buildTemplate"(): $TypeTemplate
-public "findFieldTypeOpt"(arg0: string): $Optional<($Type<(any)>)>
+public "writeDynamic"<T>(arg0: $DynamicOps$Type<(T)>, arg1: A): $DataResult<($Dynamic<(T)>)>
+public "findChoiceType"(arg0: string, arg1: integer): $Optional<($TaggedChoice$TaggedChoiceType<(any)>)>
 public "findTypeInChildren"<FT, FR>(arg0: $Type$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Type$TypeMatcher$Type<(FT), (FR)>, arg3: boolean): $Either<($TypedOptic<(A), (any), (FT), (FR)>), ($Type$FieldNotFoundException)>
 public "rewriteOrNop"(arg0: $TypeRewriteRule$Type): $RewriteResult<(A), (any)>
 public "readAndWrite"<T>(arg0: $DynamicOps$Type<(T)>, arg1: $Type$Type<(any)>, arg2: $TypeRewriteRule$Type, arg3: $PointFreeRule$Type, arg4: T): $DataResult<(T)>
 public "findTypeCached"<FT, FR>(arg0: $Type$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Type$TypeMatcher$Type<(FT), (FR)>, arg3: boolean): $Either<($TypedOptic<(A), (any), (FT), (FR)>), ($Type$FieldNotFoundException)>
-public "writeDynamic"<T>(arg0: $DynamicOps$Type<(T)>, arg1: A): $DataResult<($Dynamic<(T)>)>
-public "findChoiceType"(arg0: string, arg1: integer): $Optional<($TaggedChoice$TaggedChoiceType<(any)>)>
+public "findFieldTypeOpt"(arg0: string): $Optional<($Type<(any)>)>
+public "buildTemplate"(): $TypeTemplate
 public "findFieldType"(arg0: string): $Type<(any)>
-public "rewrite"(arg0: $TypeRewriteRule$Type, arg1: $PointFreeRule$Type): $Optional<($RewriteResult<(A), (any)>)>
 public "template"(): $TypeTemplate
 public "findField"(arg0: string): $OpticFinder<(any)>
+public "rewrite"(arg0: $TypeRewriteRule$Type, arg1: $PointFreeRule$Type): $Optional<($RewriteResult<(A), (any)>)>
 public "codec"(): $Codec<(A)>
-public "ifSame"<B>(arg0: $Type$Type<(B)>, arg1: B): $Optional<(A)>
-public "ifSame"<B>(arg0: $Typed$Type<(B)>): $Optional<(A)>
-public "ifSame"<B>(arg0: $Type$Type<(B)>, arg1: $RewriteResult$Type<(B), (any)>): $Optional<($RewriteResult<(A), (any)>)>
-public "everywhere"(arg0: $TypeRewriteRule$Type, arg1: $PointFreeRule$Type, arg2: boolean, arg3: boolean): $Optional<($RewriteResult<(A), (any)>)>
-public "readTyped"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<($Typed<(A)>), (T)>)>
-public "readTyped"<T>(arg0: $DynamicOps$Type<(T)>, arg1: T): $DataResult<($Pair<($Typed<(A)>), (T)>)>
-public "pointTyped"(arg0: $DynamicOps$Type<(any)>): $Optional<($Typed<(A)>)>
 public "findType"<FT, FR>(arg0: $Type$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Type$TypeMatcher$Type<(FT), (FR)>, arg3: boolean): $Either<($TypedOptic<(A), (any), (FT), (FR)>), ($Type$FieldNotFoundException)>
 public static "opticView"<S, T, A, B>(arg0: $Type$Type<(S)>, arg1: $RewriteResult$Type<(A), (B)>, arg2: $TypedOptic$Type<(S), (T), (A), (B)>): $RewriteResult<(S), (T)>
 public "updateMu"(arg0: $RecursiveTypeFamily$Type): $Type<(any)>
 public "getSetType"<FT, FR>(arg0: $OpticFinder$Type<(FT)>, arg1: $Type$Type<(FR)>): $Type<(any)>
+public "ifSame"<B>(arg0: $Type$Type<(B)>, arg1: B): $Optional<(A)>
+public "ifSame"<B>(arg0: $Type$Type<(B)>, arg1: $RewriteResult$Type<(B), (any)>): $Optional<($RewriteResult<(A), (any)>)>
+public "ifSame"<B>(arg0: $Typed$Type<(B)>): $Optional<(A)>
+public "everywhere"(arg0: $TypeRewriteRule$Type, arg1: $PointFreeRule$Type, arg2: boolean, arg3: boolean): $Optional<($RewriteResult<(A), (any)>)>
+public "readTyped"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<($Typed<(A)>), (T)>)>
+public "readTyped"<T>(arg0: $DynamicOps$Type<(T)>, arg1: T): $DataResult<($Pair<($Typed<(A)>), (T)>)>
+public "pointTyped"(arg0: $DynamicOps$Type<(any)>): $Optional<($Typed<(A)>)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7791,9 +7801,9 @@ export interface $ListBuilder<T> {
  "build"(arg0: $DataResult$Type<(T)>): $DataResult<(T)>
  "build"(arg0: T): $DataResult<(T)>
  "ops"(): $DynamicOps<(T)>
- "add"(arg0: $DataResult$Type<(T)>): $ListBuilder<(T)>
  "add"<E>(arg0: E, arg1: $Encoder$Type<(E)>): $ListBuilder<(T)>
  "add"(arg0: T): $ListBuilder<(T)>
+ "add"(arg0: $DataResult$Type<(T)>): $ListBuilder<(T)>
  "addAll"<E>(arg0: $Iterable$Type<(E)>, arg1: $Encoder$Type<(E)>): $ListBuilder<(T)>
  "withErrorsFrom"(arg0: $DataResult$Type<(any)>): $ListBuilder<(T)>
  "mapError"(arg0: $UnaryOperator$Type<(string)>): $ListBuilder<(T)>
@@ -7963,8 +7973,8 @@ public "map"<T, R>(arg0: $Function$Type<(any), (any)>, arg1: $App$Type<($DataRes
 public "lift1"<A, R>(arg0: $App$Type<($DataResult$Mu$Type), ($Function$Type<(A), (R)>)>): $Function<($App<($DataResult$Mu), (A)>), ($App<($DataResult$Mu), (R)>)>
 public "ap2"<A, B, R>(arg0: $App$Type<($DataResult$Mu$Type), ($BiFunction$Type<(A), (B), (R)>)>, arg1: $App$Type<($DataResult$Mu$Type), (A)>, arg2: $App$Type<($DataResult$Mu$Type), (B)>): $App<($DataResult$Mu), (R)>
 public "ap3"<T1, T2, T3, R>(arg0: $App$Type<($DataResult$Mu$Type), ($Function3$Type<(T1), (T2), (T3), (R)>)>, arg1: $App$Type<($DataResult$Mu$Type), (T1)>, arg2: $App$Type<($DataResult$Mu$Type), (T2)>, arg3: $App$Type<($DataResult$Mu$Type), (T3)>): $App<($DataResult$Mu), (R)>
-public static "unbox"<F extends $K1, Mu extends $Applicative$Mu>(arg0: $App$Type<($DataResult$Instance$Mu$Type), ($DataResult$Mu$Type)>): $Applicative<($DataResult$Mu), ($DataResult$Instance$Mu)>
 public "ap"<A, R>(arg0: $Function$Type<(A), (R)>, arg1: $App$Type<($DataResult$Mu$Type), (A)>): $App<($DataResult$Mu), (R)>
+public static "unbox"<F extends $K1, Mu extends $Applicative$Mu>(arg0: $App$Type<($DataResult$Instance$Mu$Type), ($DataResult$Mu$Type)>): $Applicative<($DataResult$Mu), ($DataResult$Instance$Mu)>
 public "ap4"<T1, T2, T3, T4, R>(arg0: $App$Type<($DataResult$Mu$Type), ($Function4$Type<(T1), (T2), (T3), (T4), (R)>)>, arg1: $App$Type<($DataResult$Mu$Type), (T1)>, arg2: $App$Type<($DataResult$Mu$Type), (T2)>, arg3: $App$Type<($DataResult$Mu$Type), (T3)>, arg4: $App$Type<($DataResult$Mu$Type), (T4)>): $App<($DataResult$Mu), (R)>
 public "ap5"<T1, T2, T3, T4, T5, R>(arg0: $App$Type<($DataResult$Mu$Type), ($Function5$Type<(T1), (T2), (T3), (T4), (T5), (R)>)>, arg1: $App$Type<($DataResult$Mu$Type), (T1)>, arg2: $App$Type<($DataResult$Mu$Type), (T2)>, arg3: $App$Type<($DataResult$Mu$Type), (T3)>, arg4: $App$Type<($DataResult$Mu$Type), (T4)>, arg5: $App$Type<($DataResult$Mu$Type), (T5)>): $App<($DataResult$Mu), (R)>
 public "ap6"<T1, T2, T3, T4, T5, T6, R>(arg0: $App$Type<($DataResult$Mu$Type), ($Function6$Type<(T1), (T2), (T3), (T4), (T5), (T6), (R)>)>, arg1: $App$Type<($DataResult$Mu$Type), (T1)>, arg2: $App$Type<($DataResult$Mu$Type), (T2)>, arg3: $App$Type<($DataResult$Mu$Type), (T3)>, arg4: $App$Type<($DataResult$Mu$Type), (T4)>, arg5: $App$Type<($DataResult$Mu$Type), (T5)>, arg6: $App$Type<($DataResult$Mu$Type), (T6)>): $App<($DataResult$Mu), (R)>
@@ -8177,8 +8187,8 @@ export interface $TypeTemplate {
 
  "size"(): integer
  "apply"(arg0: $TypeFamily$Type): $TypeFamily
- "findFieldOrType"<A, B>(arg0: integer, arg1: string, arg2: $Type$Type<(A)>, arg3: $Type$Type<(B)>): $Either<($TypeTemplate), ($Type$FieldNotFoundException)>
  "toSimpleType"(): $Type<(any)>
+ "findFieldOrType"<A, B>(arg0: integer, arg1: string, arg2: $Type$Type<(A)>, arg3: $Type$Type<(B)>): $Either<($TypeTemplate), ($Type$FieldNotFoundException)>
  "hmap"(arg0: $TypeFamily$Type, arg1: $IntFunction$Type<($RewriteResult$Type<(any), (any)>)>): $IntFunction<($RewriteResult<(any), (any)>)>
  "applyO"<A, B>(arg0: $FamilyOptic$Type<(A), (B)>, arg1: $Type$Type<(A)>, arg2: $Type$Type<(B)>): $FamilyOptic<(A), (B)>
 }
@@ -8280,20 +8290,20 @@ public "map"(arg0: $Function$Type<(any), (any)>): $Dynamic<(T)>
 public "merge"(arg0: $Dynamic$Type<(any)>): $OptionalDynamic<(T)>
 public "merge"(arg0: $Dynamic$Type<(any)>, arg1: $Dynamic$Type<(any)>): $OptionalDynamic<(T)>
 public "set"(arg0: string, arg1: $Dynamic$Type<(any)>): $Dynamic<(T)>
+public "getElementGeneric"(arg0: T): $DataResult<(T)>
+public "updateMapValues"(arg0: $Function$Type<($Pair$Type<($Dynamic$Type<(any)>), ($Dynamic$Type<(any)>)>), ($Pair$Type<($Dynamic$Type<(any)>), ($Dynamic$Type<(any)>)>)>): $Dynamic<(T)>
+public "asStreamOpt"(): $DataResult<($Stream<($Dynamic<(T)>)>)>
+public "asByteBufferOpt"(): $DataResult<($ByteBuffer)>
+public "asIntStreamOpt"(): $DataResult<($IntStream)>
+public "asLongStreamOpt"(): $DataResult<($LongStream)>
 public "asString"(): $DataResult<(string)>
 public "getMapValues"(): $DataResult<($Map<($Dynamic<(T)>), ($Dynamic<(T)>)>)>
 public "updateGeneric"(arg0: T, arg1: $Function$Type<(T), (T)>): $Dynamic<(T)>
-public "asLongStreamOpt"(): $DataResult<($LongStream)>
-public "asIntStreamOpt"(): $DataResult<($IntStream)>
-public "asByteBufferOpt"(): $DataResult<($ByteBuffer)>
-public "asStreamOpt"(): $DataResult<($Stream<($Dynamic<(T)>)>)>
-public "updateMapValues"(arg0: $Function$Type<($Pair$Type<($Dynamic$Type<(any)>), ($Dynamic$Type<(any)>)>), ($Pair$Type<($Dynamic$Type<(any)>), ($Dynamic$Type<(any)>)>)>): $Dynamic<(T)>
-public "getElementGeneric"(arg0: T): $DataResult<(T)>
-public "getGeneric"(arg0: T): $DataResult<(T)>
 public "into"<V>(arg0: $Function$Type<(any), (any)>): V
 public "castTyped"<U>(arg0: $DynamicOps$Type<(U)>): $Dynamic<(U)>
 public "asNumber"(): $DataResult<(number)>
 public "asMapOpt"(): $DataResult<($Stream<($Pair<($Dynamic<(T)>), ($Dynamic<(T)>)>)>)>
+public "getGeneric"(arg0: T): $DataResult<(T)>
 get "value"(): T
 get "mapValues"(): $DataResult<($Map<($Dynamic<(T)>), ($Dynamic<(T)>)>)>
 }
@@ -8497,13 +8507,12 @@ export class $Schema {
 
 constructor(arg0: integer, arg1: $Schema$Type)
 
-public "register"(arg0: $Map$Type<(string), ($Supplier$Type<($TypeTemplate$Type)>)>, arg1: string, arg2: $Function$Type<(string), ($TypeTemplate$Type)>): void
 public "register"(arg0: $Map$Type<(string), ($Supplier$Type<($TypeTemplate$Type)>)>, arg1: string, arg2: $Supplier$Type<($TypeTemplate$Type)>): void
+public "register"(arg0: $Map$Type<(string), ($Supplier$Type<($TypeTemplate$Type)>)>, arg1: string, arg2: $Function$Type<(string), ($TypeTemplate$Type)>): void
 public "id"(arg0: string): $TypeTemplate
 public "getParent"(): $Schema
 public "getType"(arg0: $DSL$TypeReference$Type): $Type<(any)>
 public "types"(): $Set<(string)>
-public "getChoiceType"(arg0: $DSL$TypeReference$Type, arg1: string): $Type<(any)>
 public "registerEntities"(arg0: $Schema$Type): $Map<(string), ($Supplier<($TypeTemplate)>)>
 public "registerBlockEntities"(arg0: $Schema$Type): $Map<(string), ($Supplier<($TypeTemplate)>)>
 public "registerTypes"(arg0: $Schema$Type, arg1: $Map$Type<(string), ($Supplier$Type<($TypeTemplate$Type)>)>, arg2: $Map$Type<(string), ($Supplier$Type<($TypeTemplate$Type)>)>): void
@@ -8512,6 +8521,7 @@ public "registerSimple"(arg0: $Map$Type<(string), ($Supplier$Type<($TypeTemplate
 public "registerType"(arg0: boolean, arg1: $DSL$TypeReference$Type, arg2: $Supplier$Type<($TypeTemplate$Type)>): void
 public "getVersionKey"(): integer
 public "findChoiceType"(arg0: $DSL$TypeReference$Type): $TaggedChoice$TaggedChoiceType<(any)>
+public "getChoiceType"(arg0: $DSL$TypeReference$Type, arg1: string): $Type<(any)>
 public "getTypeRaw"(arg0: $DSL$TypeReference$Type): $Type<(any)>
 get "parent"(): $Schema
 get "versionKey"(): integer
@@ -8706,9 +8716,9 @@ import {$CommandContext, $CommandContext$Type} from "packages/com/mojang/brigadi
 export class $FloatArgumentType implements $ArgumentType<(float)> {
 
 
-public "parse"(arg0: $StringReader$Type): float
 public "getMinimum"(): float
 public "getMaximum"(): float
+public "parse"(arg0: $StringReader$Type): float
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -8792,9 +8802,9 @@ import {$MinecraftSessionService, $MinecraftSessionService$Type} from "packages/
 
 export interface $AuthenticationService {
 
+ "createMinecraftSessionService"(): $MinecraftSessionService
  "createUserAuthentication"(arg0: $Agent$Type): $UserAuthentication
  "createProfileRepository"(): $GameProfileRepository
- "createMinecraftSessionService"(): $MinecraftSessionService
 }
 
 export namespace $AuthenticationService {
@@ -8862,50 +8872,45 @@ export class $DynamicLike<T> {
 
 constructor(arg0: $DynamicOps$Type<(T)>)
 
-public "getElement"(arg0: string, arg1: T): T
-public "getElement"(arg0: string): $DataResult<(T)>
-public "asLongStream"(): $LongStream
-public "createMap"(arg0: $Map$Type<(any), (any)>): $Dynamic<(T)>
 public "createLong"(arg0: long): $Dynamic<(T)>
 public "createString"(arg0: string): $Dynamic<(T)>
+public "asLongStream"(): $LongStream
 public "emptyMap"(): $Dynamic<(T)>
+public "createMap"(arg0: $Map$Type<(any), (any)>): $Dynamic<(T)>
+public "getElement"(arg0: string, arg1: T): T
+public "getElement"(arg0: string): $DataResult<(T)>
 public "asInt"(arg0: integer): integer
 public "get"(arg0: string): $OptionalDynamic<(T)>
 public "decode"<A>(arg0: $Decoder$Type<(any)>): $DataResult<($Pair<(A), (T)>)>
 public "emptyList"(): $Dynamic<(T)>
 public "read"<A>(arg0: $Decoder$Type<(any)>): $DataResult<(A)>
 public "asList"<U>(arg0: $Function$Type<($Dynamic$Type<(T)>), (U)>): $List<(U)>
+public "getElementGeneric"(arg0: T, arg1: T): T
+public "getElementGeneric"(arg0: T): $DataResult<(T)>
+public "asStreamOpt"(): $DataResult<($Stream<($Dynamic<(T)>)>)>
+public "asByteBufferOpt"(): $DataResult<($ByteBuffer)>
+public "asIntStreamOpt"(): $DataResult<($IntStream)>
+public "asLongStreamOpt"(): $DataResult<($LongStream)>
 public "asIntStream"(): $IntStream
-public "asDouble"(arg0: double): double
-public "asMap"<K, V>(arg0: $Function$Type<($Dynamic$Type<(T)>), (K)>, arg1: $Function$Type<($Dynamic$Type<(T)>), (V)>): $Map<(K), (V)>
+public "createList"(arg0: $Stream$Type<(any)>): $Dynamic<(T)>
 public "asString"(): $DataResult<(string)>
 public "asString"(arg0: string): string
-public "createList"(arg0: $Stream$Type<(any)>): $Dynamic<(T)>
+public "asMap"<K, V>(arg0: $Function$Type<($Dynamic$Type<(T)>), (K)>, arg1: $Function$Type<($Dynamic$Type<(T)>), (V)>): $Map<(K), (V)>
+public "asDouble"(arg0: double): double
 public "createNumeric"(arg0: number): $Dynamic<(T)>
 public "createShort"(arg0: short): $Dynamic<(T)>
 public "createBoolean"(arg0: boolean): $Dynamic<(T)>
 public "createByteList"(arg0: $ByteBuffer$Type): $Dynamic<(any)>
 public "createIntList"(arg0: $IntStream$Type): $Dynamic<(any)>
 public "createLongList"(arg0: $LongStream$Type): $Dynamic<(any)>
+public "asByteBuffer"(): $ByteBuffer
 public "createFloat"(arg0: float): $Dynamic<(T)>
 public "createDouble"(arg0: double): $Dynamic<(T)>
-public "asByteBuffer"(): $ByteBuffer
-public "asLongStreamOpt"(): $DataResult<($LongStream)>
-public "asIntStreamOpt"(): $DataResult<($IntStream)>
-public "asByteBufferOpt"(): $DataResult<($ByteBuffer)>
-public "asStreamOpt"(): $DataResult<($Stream<($Dynamic<(T)>)>)>
-public "getElementGeneric"(arg0: T): $DataResult<(T)>
-public "getElementGeneric"(arg0: T, arg1: T): T
-public "createByte"(arg0: byte): $Dynamic<(T)>
-public "getGeneric"(arg0: T): $DataResult<(T)>
-public "createInt"(arg0: integer): $Dynamic<(T)>
-public "getOps"(): $DynamicOps<(T)>
-public "asLong"(arg0: long): long
 public "asBoolean"(arg0: boolean): boolean
 public "asNumber"(): $DataResult<(number)>
 public "asNumber"(arg0: number): number
-public "asMapOpt"<K, V>(arg0: $Function$Type<($Dynamic$Type<(T)>), (K)>, arg1: $Function$Type<($Dynamic$Type<(T)>), (V)>): $DataResult<($Map<(K), (V)>)>
 public "asMapOpt"(): $DataResult<($Stream<($Pair<($Dynamic<(T)>), ($Dynamic<(T)>)>)>)>
+public "asMapOpt"<K, V>(arg0: $Function$Type<($Dynamic$Type<(T)>), (K)>, arg1: $Function$Type<($Dynamic$Type<(T)>), (V)>): $DataResult<($Map<(K), (V)>)>
 public "asListOpt"<U>(arg0: $Function$Type<($Dynamic$Type<(T)>), (U)>): $DataResult<($List<(U)>)>
 public "readList"<E>(arg0: $Decoder$Type<(E)>): $DataResult<($List<(E)>)>
 public "readList"<E>(arg0: $Function$Type<(any), (any)>): $DataResult<($List<(E)>)>
@@ -8916,6 +8921,11 @@ public "asFloat"(arg0: float): float
 public "asByte"(arg0: byte): byte
 public "asShort"(arg0: short): short
 public "asStream"(): $Stream<($Dynamic<(T)>)>
+public "getOps"(): $DynamicOps<(T)>
+public "createByte"(arg0: byte): $Dynamic<(T)>
+public "getGeneric"(arg0: T): $DataResult<(T)>
+public "createInt"(arg0: integer): $Dynamic<(T)>
+public "asLong"(arg0: long): long
 get "ops"(): $DynamicOps<(T)>
 }
 /**
@@ -8989,30 +8999,32 @@ export interface $PrimitiveCodec<A> extends $Codec<(A)> {
  "encode"<T>(arg0: A, arg1: $DynamicOps$Type<(T)>, arg2: T): $DataResult<(T)>
  "write"<T>(arg0: $DynamicOps$Type<(T)>, arg1: A): T
  "read"<T>(arg0: $DynamicOps$Type<(T)>, arg1: T): $DataResult<(A)>
- "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<(A)>
- "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
  "orElseGet"(arg0: $Consumer$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
+ "orElseGet"(arg0: $UnaryOperator$Type<(string)>, arg1: $Supplier$Type<(any)>): $Codec<(A)>
+ "orElseGet"(arg0: $Supplier$Type<(any)>): $Codec<(A)>
  "dispatch"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
  "dispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
  "orElse"(arg0: $UnaryOperator$Type<(string)>, arg1: A): $Codec<(A)>
  "orElse"(arg0: A): $Codec<(A)>
  "orElse"(arg0: $Consumer$Type<(string)>, arg1: A): $Codec<(A)>
- "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
+ "promotePartial"(arg0: $Consumer$Type<(string)>): $Codec<(A)>
  "partialDispatch"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $Codec<(E)>
- "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
  "dispatchMap"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $MapCodec<(E)>
+ "dispatchMap"<E>(arg0: string, arg1: $Function$Type<(any), (any)>, arg2: $Function$Type<(any), (any)>): $MapCodec<(E)>
  "flatComapMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
  "dispatchStable"<E>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(E)>
+ "comapFlatMap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
  "optionalFieldOf"(arg0: string, arg1: A, arg2: $Lifecycle$Type): $MapCodec<(A)>
- "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: A, arg3: $Lifecycle$Type): $MapCodec<(A)>
  "optionalFieldOf"(arg0: string): $MapCodec<($Optional<(A)>)>
  "optionalFieldOf"(arg0: string, arg1: A): $MapCodec<(A)>
+ "optionalFieldOf"(arg0: string, arg1: $Lifecycle$Type, arg2: A, arg3: $Lifecycle$Type): $MapCodec<(A)>
+ "stable"(): $Codec<(A)>
+ "deprecated"(arg0: integer): $Codec<(A)>
+ "fieldOf"(arg0: string): $MapCodec<(A)>
  "flatXmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
  "mapResult"(arg0: $Codec$ResultFunction$Type<(A)>): $Codec<(A)>
  "listOf"(): $Codec<($List<(A)>)>
  "xmap"<S>(arg0: $Function$Type<(any), (any)>, arg1: $Function$Type<(any), (any)>): $Codec<(S)>
- "stable"(): $Codec<(A)>
- "deprecated"(arg0: integer): $Codec<(A)>
  "encodeStart"<T>(arg0: $DynamicOps$Type<(T)>, arg1: A): $DataResult<(T)>
  "comap"<B>(arg0: $Function$Type<(any), (any)>): $Encoder<(B)>
  "flatComap"<B>(arg0: $Function$Type<(any), (any)>): $Encoder<(B)>
@@ -9021,15 +9033,15 @@ export interface $PrimitiveCodec<A> extends $Codec<(A)> {
  "decode"<T>(arg0: $Dynamic$Type<(T)>): $DataResult<($Pair<(A), (T)>)>
  "map"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
  "flatMap"<B>(arg0: $Function$Type<(any), (any)>): $Decoder<(B)>
- "boxed"(): $Decoder$Boxed<(A)>
  "terminal"(): $Decoder$Terminal<(A)>
+ "boxed"(): $Decoder$Boxed<(A)>
  "simple"(): $Decoder$Simple<(A)>
 }
 
 export namespace $PrimitiveCodec {
-function pair<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
 function unit<A>(arg0: A): $Codec<(A)>
 function unit<A>(arg0: $Supplier$Type<(A)>): $Codec<(A)>
+function pair<F, S>(arg0: $Codec$Type<(F)>, arg1: $Codec$Type<(S)>): $Codec<($Pair<(F), (S)>)>
 function of<A>(arg0: $Encoder$Type<(A)>, arg1: $Decoder$Type<(A)>, arg2: string): $Codec<(A)>
 function of<A>(arg0: $Encoder$Type<(A)>, arg1: $Decoder$Type<(A)>): $Codec<(A)>
 function of<A>(arg0: $MapEncoder$Type<(A)>, arg1: $MapDecoder$Type<(A)>, arg2: $Supplier$Type<(string)>): $MapCodec<(A)>
@@ -9152,10 +9164,10 @@ export class $ScreenManager {
 
 constructor(arg0: $MonitorCreator$Type)
 
-public "getMonitor"(arg0: long): $Monitor
-public "findBestMonitor"(arg0: $Window$Type): $Monitor
 public "shutdown"(): void
 public static "clamp"(arg0: integer, arg1: integer, arg2: integer): integer
+public "getMonitor"(arg0: long): $Monitor
+public "findBestMonitor"(arg0: $Window$Type): $Monitor
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9331,12 +9343,12 @@ export interface $PointFreeRule {
  "rewriteOrNop"<A>(arg0: $PointFree$Type<(A)>): $PointFree<(A)>
  "rewrite"<A>(arg0: $PointFree$Type<(A)>): $Optional<(any)>
 
-(...arg0: ($PointFreeRule$Type)[]): $PointFreeRule
+(arg0: $PointFreeRule$Type): $PointFreeRule
 }
 
 export namespace $PointFreeRule {
-function choice(...arg0: ($PointFreeRule$Type)[]): $PointFreeRule
 function all(arg0: $PointFreeRule$Type): $PointFreeRule
+function choice(...arg0: ($PointFreeRule$Type)[]): $PointFreeRule
 function one(arg0: $PointFreeRule$Type): $PointFreeRule
 function seq(...arg0: ($PointFreeRule$Type)[]): $PointFreeRule
 function nop(): $PointFreeRule
@@ -9392,13 +9404,13 @@ export class $SuggestionsBuilder {
 constructor(arg0: string, arg1: string, arg2: integer)
 constructor(arg0: string, arg1: integer)
 
+public "build"(): $Suggestions
 public "getRemaining"(): string
 public "getInput"(): string
-public "build"(): $Suggestions
 public "add"(arg0: $SuggestionsBuilder$Type): $SuggestionsBuilder
+public "getRemainingLowerCase"(): string
 public "buildFuture"(): $CompletableFuture<($Suggestions)>
 public "createOffset"(arg0: integer): $SuggestionsBuilder
-public "getRemainingLowerCase"(): string
 public "getStart"(): integer
 public "suggest"(arg0: integer, arg1: $Message$Type): $SuggestionsBuilder
 public "suggest"(arg0: string): $SuggestionsBuilder
@@ -9503,8 +9515,8 @@ declare module "packages/com/mojang/brigadier/$ImmutableStringReader" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ImmutableStringReader {
 
- "getRemaining"(): string
  "getString"(): string
+ "getRemaining"(): string
  "canRead"(): boolean
  "canRead"(arg0: integer): boolean
  "peek"(): character
@@ -9555,15 +9567,15 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getType"(): $ArgumentType<(T)>
-public "isValidInput"(arg0: string): boolean
+public "getUsageText"(): string
 public "listSuggestions"(arg0: $CommandContext$Type<(S)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 public "getExamples"(): $Collection<(string)>
-public "getUsageText"(): string
+public "isValidInput"(arg0: string): boolean
 public "getCustomSuggestions"(): $SuggestionProvider<(S)>
 get "name"(): string
 get "type"(): $ArgumentType<(T)>
-get "examples"(): $Collection<(string)>
 get "usageText"(): string
+get "examples"(): $Collection<(string)>
 get "customSuggestions"(): $SuggestionProvider<(S)>
 }
 /**
@@ -9625,26 +9637,25 @@ static readonly "UT_MAT4": integer
 constructor(arg0: string, arg1: integer, arg2: integer, arg3: $Shader$Type)
 
 public "close"(): void
-public "set"(arg0: $Vector3f$Type): void
+public "set"(arg0: float, arg1: float): void
 public static "glBindAttribLocation"(arg0: integer, arg1: integer, arg2: charseq): void
-public static "glGetUniformLocation"(arg0: integer, arg1: charseq): integer
 public static "uploadInteger"(arg0: integer, arg1: integer): void
 public "upload"(): void
+public static "glGetUniformLocation"(arg0: integer, arg1: charseq): integer
 public "getName"(): string
 public "setLocation"(arg0: integer): void
 public static "getTypeFromString"(arg0: string): integer
 public "setSafe"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "setSafe"(arg0: float, arg1: float, arg2: float, arg3: float): void
 public "set"(arg0: (float)[]): void
+public "set"(arg0: $Vector3f$Type): void
 public "set"(arg0: $Matrix4f$Type): void
-public "set"(arg0: float, arg1: float): void
 public "set"(arg0: float): void
 public "set"(arg0: float, arg1: float, arg2: float): void
 public "set"(arg0: float, arg1: float, arg2: float, arg3: float): void
 public "set"(arg0: integer): void
-public "set"(arg0: integer, arg1: integer): void
 public "set"(arg0: $Matrix3f$Type): void
-public "set"(arg0: $Vector4f$Type): void
+public "set"(arg0: integer, arg1: integer): void
 public "set"(arg0: integer, arg1: integer, arg2: integer): void
 public "set"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "setMat2x2"(arg0: float, arg1: float, arg2: float, arg3: float): void
@@ -9663,6 +9674,7 @@ public "getCount"(): integer
 public "getType"(): integer
 public "getIntBuffer"(): $IntBuffer
 public "getFloatBuffer"(): $FloatBuffer
+public "set"(arg0: $Vector4f$Type): void
 get "name"(): string
 set "location"(value: integer)
 get "location"(): integer
@@ -9808,14 +9820,14 @@ public "getName"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "isValidInput"(arg0: string): boolean
+public "getUsageText"(): string
 public "listSuggestions"(arg0: $CommandContext$Type<(S)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 public "getExamples"(): $Collection<(string)>
-public "getUsageText"(): string
+public "isValidInput"(arg0: string): boolean
 public "getLiteral"(): string
 get "name"(): string
-get "examples"(): $Collection<(string)>
 get "usageText"(): string
+get "examples"(): $Collection<(string)>
 get "literal"(): string
 }
 /**
@@ -10007,17 +10019,17 @@ readonly "useDepth": boolean
 
 constructor(arg0: boolean)
 
+public "handler$glk000$axiom$blitToScreen"(width: integer, height: integer, noBlend: boolean, ci: $CallbackInfo$Type): void
+public "accessories$setUseHighlightShader"(useHighlightShader: boolean): void
 public "enableStencil"(): void
 public "isStencilEnabled"(): boolean
-public "handler$gll000$axiom$blitToScreen"(width: integer, height: integer, noBlend: boolean, ci: $CallbackInfo$Type): void
-public "accessories$setUseHighlightShader"(useHighlightShader: boolean): void
-public "destroyBuffers"(): void
+public "setClearColor"(arg0: float, arg1: float, arg2: float, arg3: float): void
+public "clear"(arg0: boolean): void
 public "bindWrite"(arg0: boolean): void
 public "unbindWrite"(): void
 public "blitToScreen"(arg0: integer, arg1: integer): void
 public "resize"(arg0: integer, arg1: integer, arg2: boolean): void
-public "setClearColor"(arg0: float, arg1: float, arg2: float, arg3: float): void
-public "clear"(arg0: boolean): void
+public "destroyBuffers"(): void
 public "getColorTextureId"(): integer
 public "createBuffers"(arg0: integer, arg1: integer, arg2: boolean): void
 public "unbindRead"(): void
@@ -10094,20 +10106,20 @@ export class $Monitor {
 constructor(arg0: long)
 
 public "toString"(): string
-public "getPreferredVidMode"(arg0: $Optional$Type<($VideoMode$Type)>): $VideoMode
-public "getX"(): integer
-public "getY"(): integer
-public "getMonitor"(): long
 public "getCurrentMode"(): $VideoMode
 public "refreshVideoModes"(): void
 public "getVideoModeIndex"(arg0: $VideoMode$Type): integer
 public "getMode"(arg0: integer): $VideoMode
 public "getModeCount"(): integer
+public "getPreferredVidMode"(arg0: $Optional$Type<($VideoMode$Type)>): $VideoMode
+public "getX"(): integer
+public "getY"(): integer
+public "getMonitor"(): long
+get "currentMode"(): $VideoMode
+get "modeCount"(): integer
 get "x"(): integer
 get "y"(): integer
 get "monitor"(): long
-get "currentMode"(): $VideoMode
-get "modeCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10133,16 +10145,16 @@ export class $Pair<F, S> implements $App<($Pair$Mu<(S)>), (F)> {
 constructor(arg0: F, arg1: S)
 
 public "getSecond"(): S
+public "swap"(): $Pair<(S), (F)>
 public "getFirst"(): F
 public static "unbox"<F, S>(arg0: $App$Type<($Pair$Mu$Type<(S)>), (F)>): $Pair<(F), (S)>
-public "swap"(): $Pair<(S), (F)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "of"<F, S>(arg0: F, arg1: S): $Pair<(F), (S)>
 public static "toMap"<F, S>(): $Collector<($Pair<(F), (S)>), (any), ($Map<(F), (S)>)>
-public "mapFirst"<F2>(arg0: $Function$Type<(any), (any)>): $Pair<(F2), (S)>
 public "mapSecond"<S2>(arg0: $Function$Type<(any), (any)>): $Pair<(F), (S2)>
+public "mapFirst"<F2>(arg0: $Function$Type<(any), (any)>): $Pair<(F2), (S)>
 get "second"(): S
 get "first"(): F
 }
@@ -10171,13 +10183,14 @@ export class $Channel implements $ISourceContext {
 static readonly "BUFFER_DURATION_SECONDS": integer
 
 
-public "handler$blg000$dsurround$onSourceStop"(ci: $CallbackInfo$Type): void
-public "handler$blg000$dsurround$onSourceTick"(ci: $CallbackInfo$Type): void
-public "handler$blg000$dsurround$onSourcePlay"(ci: $CallbackInfo$Type): void
-public "handler$blg000$dsurround$monoConversion"(soundBuffer: $SoundBuffer$Type, ci: $CallbackInfo$Type): void
+public "handler$bla000$dsurround$onSourceTick"(ci: $CallbackInfo$Type): void
+public "handler$bla000$dsurround$monoConversion"(soundBuffer: $SoundBuffer$Type, ci: $CallbackInfo$Type): void
+public "handler$bla000$dsurround$onSourceStop"(ci: $CallbackInfo$Type): void
+public "handler$bla000$dsurround$onSourcePlay"(ci: $CallbackInfo$Type): void
 public "dsurround_getId"(): integer
 public "dsurround_setData"(data: $SourceContext$Type): void
 public "dsurround_getData"(): $Optional<(any)>
+public "stop"(): void
 public "unpause"(): void
 public "pause"(): void
 public "attachBufferStream"(arg0: $AudioStream$Type): void
@@ -10190,11 +10203,10 @@ public "disableAttenuation"(): void
 public "setLooping"(arg0: boolean): void
 public "setSelfPosition"(arg0: $Vec3$Type): void
 public "setRelative"(arg0: boolean): void
-public "stop"(): void
 public "updateStream"(): void
 public "stopped"(): boolean
-public "destroy"(): void
 public "playing"(): boolean
+public "destroy"(): void
 set "pitch"(value: float)
 set "volume"(value: float)
 set "looping"(value: boolean)
@@ -10294,8 +10306,8 @@ export type $BufferBuilder$RenderedBuffer_ = $BufferBuilder$RenderedBuffer$Type;
 declare module "packages/com/mojang/blaze3d/platform/$InputConstants$Key" {
 import {$LazyLoadedValue, $LazyLoadedValue$Type} from "packages/net/minecraft/util/$LazyLoadedValue"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
-import {$InputConstants$Type, $InputConstants$Type$Type} from "packages/com/mojang/blaze3d/platform/$InputConstants$Type"
 import {$OptionalInt, $OptionalInt$Type} from "packages/java/util/$OptionalInt"
+import {$InputConstants$Type, $InputConstants$Type$Type} from "packages/com/mojang/blaze3d/platform/$InputConstants$Type"
 
 export class $InputConstants$Key {
  "displayName": $LazyLoadedValue<($Component)>
@@ -10304,16 +10316,16 @@ export class $InputConstants$Key {
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "getNumericKeyValue"(): $OptionalInt
 public "getType"(): $InputConstants$Type
 public "getValue"(): integer
 public "getName"(): string
 public "getDisplayName"(): $Component
-public "getNumericKeyValue"(): $OptionalInt
+get "numericKeyValue"(): $OptionalInt
 get "type"(): $InputConstants$Type
 get "value"(): integer
 get "name"(): string
 get "displayName"(): $Component
-get "numericKeyValue"(): $OptionalInt
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10349,8 +10361,8 @@ export class $TaggedChoice$TaggedChoiceType<K> extends $Type<($Pair<(K), (any)>)
 constructor(arg0: string, arg1: $Type$Type<(K)>, arg2: $Object2ObjectMap$Type<(K), ($Type$Type<(any)>)>)
 
 public "all"(arg0: $TypeRewriteRule$Type, arg1: boolean, arg2: boolean): $RewriteResult<($Pair<(K), (any)>), (any)>
-public "point"(arg0: $DynamicOps$Type<(any)>): $Optional<($Pair<(K), (any)>)>
 public "point"(arg0: $DynamicOps$Type<(any)>, arg1: K, arg2: any): $Optional<($Typed<($Pair<(K), (any)>)>)>
+public "point"(arg0: $DynamicOps$Type<(any)>): $Optional<($Pair<(K), (any)>)>
 public "one"(arg0: $TypeRewriteRule$Type): $Optional<($RewriteResult<($Pair<(K), (any)>), (any)>)>
 public "getName"(): string
 public "equals"(arg0: any, arg1: boolean, arg2: boolean): boolean
@@ -10358,14 +10370,14 @@ public "toString"(): string
 public "hashCode"(): integer
 public "types"(): $Map<(K), ($Type<(any)>)>
 public "findCheckedType"(arg0: integer): $Optional<($Type<(any)>)>
-public "buildTemplate"(): $TypeTemplate
-public "findFieldTypeOpt"(arg0: string): $Optional<($Type<(any)>)>
-public "findTypeInChildren"<FT, FR>(arg0: $Type$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Type$TypeMatcher$Type<(FT), (FR)>, arg3: boolean): $Either<($TypedOptic<($Pair<(K), (any)>), (any), (FT), (FR)>), ($Type$FieldNotFoundException)>
 public "findChoiceType"(arg0: string, arg1: integer): $Optional<($TaggedChoice$TaggedChoiceType<(any)>)>
+public "findTypeInChildren"<FT, FR>(arg0: $Type$Type<(FT)>, arg1: $Type$Type<(FR)>, arg2: $Type$TypeMatcher$Type<(FT), (FR)>, arg3: boolean): $Either<($TypedOptic<($Pair<(K), (any)>), (any), (FT), (FR)>), ($Type$FieldNotFoundException)>
+public "findFieldTypeOpt"(arg0: string): $Optional<($Type<(any)>)>
+public "buildTemplate"(): $TypeTemplate
 public static "elementResult"<K, FT, FR>(arg0: K, arg1: $TaggedChoice$TaggedChoiceType$Type<(K)>, arg2: $RewriteResult$Type<(FT), (FR)>): $RewriteResult<($Pair<(K), (any)>), ($Pair<(K), (any)>)>
+public "updateMu"(arg0: $RecursiveTypeFamily$Type): $Type<(any)>
 public "getKeyType"(): $Type<(K)>
 public "hasType"(arg0: K): boolean
-public "updateMu"(arg0: $RecursiveTypeFamily$Type): $Type<(any)>
 get "name"(): string
 get "keyType"(): $Type<(K)>
 }

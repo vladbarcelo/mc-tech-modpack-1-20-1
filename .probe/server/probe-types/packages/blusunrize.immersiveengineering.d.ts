@@ -61,8 +61,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IEBaseItem, $IEBaseItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEBaseItem"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$VoltmeterItem$RemoteRedstoneData, $VoltmeterItem$RemoteRedstoneData$Type} from "packages/blusunrize/immersiveengineering/common/items/$VoltmeterItem$RemoteRedstoneData"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$VoltmeterItem$RemoteEnergyData, $VoltmeterItem$RemoteEnergyData$Type} from "packages/blusunrize/immersiveengineering/common/items/$VoltmeterItem$RemoteEnergyData"
@@ -86,8 +86,8 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -102,8 +102,8 @@ declare global {
 export type $VoltmeterItem_ = $VoltmeterItem$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$SampleDrillBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IEServerTickableBE, $IEServerTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEServerTickableBE"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -116,8 +116,8 @@ import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/leve
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$IEBlockInterfaces$IHasDummyBlocks, $IEBlockInterfaces$IHasDummyBlocks$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IHasDummyBlocks"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 import {$IEClientTickableBE, $IEClientTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEClientTickableBE"
 import {$IModelOffsetProvider, $IModelOffsetProvider$Type} from "packages/blusunrize/immersiveengineering/api/client/$IModelOffsetProvider"
 import {$MutableEnergyStorage, $MutableEnergyStorage$Type} from "packages/blusunrize/immersiveengineering/api/energy/$MutableEnergyStorage"
@@ -143,30 +143,29 @@ export class $SampleDrillBlockEntity extends $IEBaseBlockEntity implements $IESe
 
 constructor(arg0: $BlockEntityType$Type<($SampleDrillBlockEntity$Type)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "getRenderBoundingBox"(): $AABB
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
 public "createCoreSample"(arg0: $MineralWorldInfo$Type): $ItemStack
 public "getSampleProgress"(): float
 public "isSamplingFinished"(): boolean
-public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
-public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "master"(): $SampleDrillBlockEntity
+public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
+public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "getRenderBoundingBox"(): $AABB
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "tickServer"(): void
 public "interact"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ItemStack$Type, arg4: float, arg5: float, arg6: float): boolean
 public "tickClient"(): void
+public "getVein"(): $List<($CoresampleItem$VeinSampleData)>
 public "canTickAny"(): boolean
 public "isDummy"(): boolean
-public "getVein"(): $List<($CoresampleItem$VeinSampleData)>
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "renderBoundingBox"(): $AABB
 get "sampleProgress"(): float
 get "samplingFinished"(): boolean
-get "dummy"(): boolean
+get "renderBoundingBox"(): $AABB
 get "vein"(): $List<($CoresampleItem$VeinSampleData)>
+get "dummy"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -219,13 +218,13 @@ export class $MineralVein {
 constructor(arg0: $ColumnPos$Type, arg1: $ResourceLocation$Type, arg2: integer)
 
 public "deplete"(): void
-public static "readFromNBT"(arg0: $CompoundTag$Type): $MineralVein
-public "getFailChance"(arg0: $BlockPos$Type): double
 public "getDepletion"(): integer
+public "getFailChance"(arg0: $BlockPos$Type): double
 public "setDepletion"(arg0: integer): void
+public static "readFromNBT"(arg0: $CompoundTag$Type): $MineralVein
 public "getPos"(): $ColumnPos
-public "writeToNBT"(): $CompoundTag
 public "getRadius"(): integer
+public "writeToNBT"(): $CompoundTag
 public "getMineral"(arg0: $Level$Type): $MineralMix
 public "isDepleted"(): boolean
 get "depletion"(): integer
@@ -303,10 +302,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $ToolUpgradeItem$ToolUpgrade$Type)
 
-public "getMaxStackSize"(arg0: $ItemStack$Type): integer
 public "getUpgradeTypes"(arg0: $ItemStack$Type): $Set<(string)>
 public "canApplyUpgrades"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "applyUpgrades"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $CompoundTag$Type): void
+public "getMaxStackSize"(arg0: $ItemStack$Type): integer
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 }
 /**
@@ -326,8 +325,8 @@ import {$MultiblockOrientation, $MultiblockOrientation$Type} from "packages/blus
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$RelativeBlockFace, $RelativeBlockFace$Type} from "packages/blusunrize/immersiveengineering/api/multiblocks/blocks/util/$RelativeBlockFace"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
@@ -335,10 +334,6 @@ import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 
 export interface $IMultiblockLevel {
 
- "getOrientation"(): $MultiblockOrientation
- "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
- "getMaxBuildHeight"(): integer
- "getBlockState"(arg0: $BlockPos$Type): $BlockState
  "updateNeighbourForOutputSignal"(arg0: $BlockPos$Type): void
  "getRawLevel"(): $Level
  "isThundering"(): boolean
@@ -346,14 +341,18 @@ export interface $IMultiblockLevel {
  "forciblyGetBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
  "getCapabilityValue"<T>(arg0: $Capability$Type<(T)>, arg1: $BlockPos$Type, arg2: $RelativeBlockFace$Type): T
  "getAbsoluteOrigin"(): $BlockPos
+ "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
+ "getOrientation"(): $MultiblockOrientation
+ "getMaxBuildHeight"(): integer
+ "getBlockState"(arg0: $BlockPos$Type): $BlockState
  "setBlock"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
  "isRaining"(): boolean
  "toAbsolute"(arg0: $BlockPos$Type): $BlockPos
- "toAbsolute"(arg0: $Vec3$Type): $Vec3
  "toAbsolute"(arg0: $RelativeBlockFace$Type): $Direction
+ "toAbsolute"(arg0: $Vec3$Type): $Vec3
  "toAbsolute"(arg0: $AABB$Type): $AABB
- "toRelative"(arg0: $BlockPos$Type): $BlockPos
  "toRelative"(arg0: $Direction$Type): $RelativeBlockFace
+ "toRelative"(arg0: $BlockPos$Type): $BlockPos
 }
 
 export namespace $IMultiblockLevel {
@@ -536,20 +535,20 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
-public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
 public "canConfigure"(arg0: $ItemStack$Type): boolean
 public "applyConfigOption"(arg0: $ItemStack$Type, arg1: string, arg2: any): void
+public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
 public static "getVolumeMod"(arg0: $ItemStack$Type): float
 public "getBooleanOptions"(arg0: $ItemStack$Type): ($IConfigurableTool$ToolConfig$ToolConfigBoolean)[]
 public "getFloatOptions"(arg0: $ItemStack$Type): ($IConfigurableTool$ToolConfig$ToolConfigFloat)[]
 public "fomatConfigName"(arg0: $ItemStack$Type, arg1: $IConfigurableTool$ToolConfig$Type): string
 public "fomatConfigDescription"(arg0: $ItemStack$Type, arg1: $IConfigurableTool$ToolConfig$Type): string
+public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "setColor"(arg0: $ItemStack$Type, arg1: integer): void
-public "getColor"(arg0: $ItemStack$Type): integer
 public "hasCustomColor"(arg0: $ItemStack$Type): boolean
 public "clearColor"(arg0: $ItemStack$Type): void
+public "getColor"(arg0: $ItemStack$Type): integer
+public "setColor"(arg0: $ItemStack$Type, arg1: integer): void
 public static "dyeArmor"(arg0: $ItemStack$Type, arg1: $List$Type<($DyeItem$Type)>): $ItemStack
 }
 /**
@@ -582,8 +581,8 @@ static readonly "VERT_UP": $WallmountBlock$Orientation
 public "toString"(): string
 public static "values"(): ($WallmountBlock$Orientation)[]
 public static "valueOf"(arg0: string): $WallmountBlock$Orientation
-public "modelSuffix"(): string
 public "attachedToSide"(): boolean
+public "modelSuffix"(): string
 public "getSerializedName"(): string
 public "getDual"(): $WallmountBlock$Orientation
 public "touchesTop"(): boolean
@@ -735,10 +734,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type)
 
 public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -913,8 +912,8 @@ export type $IEStairsBlock_ = $IEStairsBlock$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$FluidPipeBlockEntity" {
 import {$LevelEvent$Unload, $LevelEvent$Unload$Type} from "packages/net/minecraftforge/event/level/$LevelEvent$Unload"
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$IEBlockInterfaces$IAdditionalDrops, $IEBlockInterfaces$IAdditionalDrops$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IAdditionalDrops"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
@@ -942,8 +941,8 @@ import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$IFluidPipe, $IFluidPipe$Type} from "packages/blusunrize/immersiveengineering/api/fluid/$IFluidPipe"
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
 import {$IEBlockInterfaces$IPlayerInteraction, $IEBlockInterfaces$IPlayerInteraction$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IPlayerInteraction"
-import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$ArrayList, $ArrayList$Type} from "packages/java/util/$ArrayList"
 import {$IEBlockInterfaces$IColouredBE, $IEBlockInterfaces$IColouredBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IColouredBE"
 import {$IEBlockInterfaces$IHammerInteraction, $IEBlockInterfaces$IHammerInteraction$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IHammerInteraction"
@@ -960,34 +959,34 @@ static "climbablePipeCovers": $ArrayList<($Predicate<($Block)>)>
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
-public "onChunkUnloaded"(): void
-public static "onWorldUnload"(arg0: $LevelEvent$Unload$Type): void
-public "onLoad"(): void
-public "setSide"(arg0: $Direction$Type, arg1: boolean, arg2: boolean): void
-public "setSide"(arg0: $Direction$Type, arg1: boolean): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "getExtraDrops"(arg0: $Player$Type, arg1: $BlockState$Type): $Collection<($ItemStack)>
-public "getRenderColour"(arg0: integer): integer
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "setRemovedIE"(): void
-public "onNeighborBlockChange"(arg0: $BlockPos$Type): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public static "getConnectedFluidHandlers"(arg0: $BlockPos$Type, arg1: $Level$Type): $Set<($FluidPipeBlockEntity$DirectionalFluidOutput)>
 public "hasOutputConnection"(arg0: $Direction$Type): boolean
 public "updateConnectionByte"(arg0: $Direction$Type): boolean
 public "getAvailableConnectionByte"(): byte
 public "getConnectionStyle"(arg0: $Direction$Type): $FluidPipeBlockEntity$ConnectionStyle
+public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "getExtraDrops"(arg0: $Player$Type, arg1: $BlockState$Type): $Collection<($ItemStack)>
+public "setRemovedIE"(): void
+public "onNeighborBlockChange"(arg0: $BlockPos$Type): void
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
+public "getRenderColour"(arg0: integer): integer
+public static "onWorldUnload"(arg0: $LevelEvent$Unload$Type): void
+public "onChunkUnloaded"(): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "onLoad"(): void
+public "setSide"(arg0: $Direction$Type, arg1: boolean, arg2: boolean): void
+public "setSide"(arg0: $Direction$Type, arg1: boolean): void
 public "getColor"(): $DyeColor
 public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public "interact"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ItemStack$Type, arg4: float, arg5: float, arg6: float): boolean
-public static "initCovers"(): void
-public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
-public "dropCover"(arg0: $Player$Type): void
 public "toggleSide"(arg0: $Direction$Type): void
+public "dropCover"(arg0: $Player$Type): void
+public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
+public static "initCovers"(): void
 public static "getTransferableAmount"(arg0: boolean): integer
 public "stripPressureTag"(): boolean
 public "canOutputPressurized"(arg0: boolean): boolean
@@ -1088,10 +1087,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type)
 
 public "place"(arg0: $BlockPlaceContext$Type): $InteractionResult
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1135,8 +1134,8 @@ declare module "packages/blusunrize/immersiveengineering/api/utils/$PlayerUtils$
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $PlayerUtils$ConnectionAccess {
 
- "setAboveGroundTickCount"(arg0: integer): void
  "setClientIsFloating"(arg0: boolean): void
+ "setAboveGroundTickCount"(arg0: integer): void
 }
 
 export namespace $PlayerUtils$ConnectionAccess {
@@ -1217,10 +1216,10 @@ constructor(arg0: $ResourceLocation$Type, arg1: $Lazy$Type<($ItemStack$Type)>, a
 
 public "getTime"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): integer
 public "matches"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public "getOutputs"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $List<($Lazy<($ItemStack)>)>
 public static "isValidCombinationInMenu"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Level$Type): boolean
 public static "registerSoilTexture"(arg0: $Ingredient$Type, arg1: $ResourceLocation$Type): void
 public static "getSoilTexture"(arg0: $ItemStack$Type): $ResourceLocation
+public "getOutputs"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $List<($Lazy<($ItemStack)>)>
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
 public static "findRecipe"(arg0: $Level$Type, arg1: $ItemStack$Type, arg2: $ItemStack$Type, arg3: $ClocheRecipe$Type): $ClocheRecipe
 }
@@ -1245,8 +1244,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
-import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$IConfigurableTool$ToolConfig$ToolConfigBoolean, $IConfigurableTool$ToolConfig$ToolConfigBoolean$Type} from "packages/blusunrize/immersiveengineering/api/tool/$IConfigurableTool$ToolConfig$ToolConfigBoolean"
+import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$IConfigurableTool, $IConfigurableTool$Type} from "packages/blusunrize/immersiveengineering/api/tool/$IConfigurableTool"
 import {$IConfigurableTool$ToolConfig$ToolConfigFloat, $IConfigurableTool$ToolConfig$ToolConfigFloat$Type} from "packages/blusunrize/immersiveengineering/api/tool/$IConfigurableTool$ToolConfig$ToolConfigFloat"
 import {$IEItemInterfaces$IColouredItem, $IEItemInterfaces$IColouredItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEItemInterfaces$IColouredItem"
@@ -1283,20 +1282,20 @@ constructor()
 
 public static "getRGB"(arg0: $ItemStack$Type): (float)[]
 public static "setRGB"(arg0: $ItemStack$Type, arg1: (float)[]): void
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
 public "canConfigure"(arg0: $ItemStack$Type): boolean
 public "applyConfigOption"(arg0: $ItemStack$Type, arg1: string, arg2: any): void
-public static "getRGBFloat"(arg0: $ItemStack$Type, arg1: float): (float)[]
+public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
 public "getBooleanOptions"(arg0: $ItemStack$Type): ($IConfigurableTool$ToolConfig$ToolConfigBoolean)[]
 public "getFloatOptions"(arg0: $ItemStack$Type): ($IConfigurableTool$ToolConfig$ToolConfigFloat)[]
 public "fomatConfigName"(arg0: $ItemStack$Type, arg1: $IConfigurableTool$ToolConfig$Type): string
 public "fomatConfigDescription"(arg0: $ItemStack$Type, arg1: $IConfigurableTool$ToolConfig$Type): string
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
+public static "getRGBFloat"(arg0: $ItemStack$Type, arg1: float): (float)[]
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "onStrike"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $LivingEntity$Type, arg3: $Map$Type<(string), (any)>, arg4: $DamageSource$Type, arg5: $IElectricEquipment$ElectricSource$Type): void
+public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public static "isLit"(arg0: $ItemStack$Type): boolean
 public static "getRGBInt"(arg0: $ItemStack$Type, arg1: float): integer
 public static "setLit"(arg0: $ItemStack$Type, arg1: float): void
@@ -1445,12 +1444,12 @@ import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/wo
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$WireType, $WireType$Type} from "packages/blusunrize/immersiveengineering/api/wires/$WireType"
 import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
-import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$IImmersiveConnectable, $IImmersiveConnectable$Type} from "packages/blusunrize/immersiveengineering/api/wires/$IImmersiveConnectable"
+import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/fabric/api/attachment/v1/$AttachmentTarget"
 import {$IEBlockInterfaces$IStateBasedDirectional, $IEBlockInterfaces$IStateBasedDirectional$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IStateBasedDirectional"
-import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$Connection, $Connection$Type} from "packages/blusunrize/immersiveengineering/api/wires/$Connection"
+import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
 
@@ -1462,31 +1461,31 @@ export class $AbstractTransformerBlockEntity extends $ImmersiveConnectableBlockE
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "canConnect"(): boolean
-public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
-public "getFacingProperty"(): $Property<($Direction)>
+public "getHigherWiretype"(): string
 public "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
 public "removeCable"(arg0: $Connection$Type, arg1: $ConnectionPoint$Type): void
 public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
+public "getFacingProperty"(): $Property<($Direction)>
 public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
 public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
 public "getInternalConnections"(): $Iterable<(any)>
-public "getHigherWiretype"(): string
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "canConnect"(): boolean
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "getFacingLimitation"(): $PlacementLimitation
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "facingProperty"(): $Property<($Direction)>
-get "connectionPoints"(): $Collection<($ConnectionPoint)>
-get "internalConnections"(): $Iterable<(any)>
 get "higherWiretype"(): string
+get "connectionPoints"(): $Collection<($ConnectionPoint)>
+get "facingProperty"(): $Property<($Direction)>
+get "internalConnections"(): $Iterable<(any)>
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 get "facingLimitation"(): $PlacementLimitation
@@ -1854,12 +1853,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 /**
  * 
  * @deprecated
  */
 public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2084,8 +2083,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $IEFluids$FluidEntry$Type, arg1: $BlockBehaviour$Properties$Type)
 
 public static "withCopiedValue"<T extends $StateHolder<(any), (T)>, S extends $Comparable<(S)>>(arg0: $Property$Type<(S)>, arg1: T, arg2: $StateHolder$Type<(any), (any)>): T
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "setEffect"(arg0: $MobEffect$Type, arg1: integer, arg2: integer): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -2135,22 +2134,22 @@ export class $ShaderLayer {
 
 constructor(arg0: $ResourceLocation$Type, arg1: integer)
 
+public "isDynamicLayer"(): boolean
+public "getCutoutBounds"(): (double)[]
+public "getTextureBounds"(): (double)[]
+public "setTextureBounds"(...arg0: (double)[]): $ShaderLayer
+public "setCutoutBounds"(...arg0: (double)[]): $ShaderLayer
 public "isTranslucent"(): boolean
 public "getRenderType"(arg0: $RenderType$Type): $RenderType
 public "getTexture"(): $ResourceLocation
-public "getTextureBounds"(): (double)[]
-public "getCutoutBounds"(): (double)[]
-public "isDynamicLayer"(): boolean
-public "setTextureBounds"(...arg0: (double)[]): $ShaderLayer
-public "setCutoutBounds"(...arg0: (double)[]): $ShaderLayer
 public "getColor"(): $Vector4f
-get "translucent"(): boolean
-get "texture"(): $ResourceLocation
-get "textureBounds"(): (double)[]
-get "cutoutBounds"(): (double)[]
 get "dynamicLayer"(): boolean
+get "cutoutBounds"(): (double)[]
+get "textureBounds"(): (double)[]
 set "textureBounds"(value: (double)[])
 set "cutoutBounds"(value: (double)[])
+get "translucent"(): boolean
+get "texture"(): $ResourceLocation
 get "color"(): $Vector4f
 }
 /**
@@ -2187,9 +2186,9 @@ public "getHeight"(): integer
 public "getRecipeWidth"(): integer
 public "getRecipeHeight"(): integer
 public "toVanilla"(): $ShapedRecipe
+public "category"(): $CraftingBookCategory
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "category"(): $CraftingBookCategory
 get "width"(): integer
 get "height"(): integer
 get "recipeWidth"(): integer
@@ -2220,8 +2219,8 @@ import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/worl
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$UpgradeableToolItem, $UpgradeableToolItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$UpgradeableToolItem"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -2246,18 +2245,18 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "getSlotCount"(): integer
 public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
 public static "shouldLimitSpeed"(arg0: $ItemStack$Type): boolean
 public static "setLimitSpeed"(arg0: $ItemStack$Type, arg1: boolean): void
 public static "toggleSpeedLimit"(arg0: $ItemStack$Type): boolean
 public "getSkylineSpeed"(arg0: $ItemStack$Type): float
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
+public "getSlotCount"(): integer
 public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getUseDuration"(arg0: $ItemStack$Type): integer
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "canModify"(arg0: $ItemStack$Type): boolean
 get "slotCount"(): integer
 }
@@ -2494,15 +2493,15 @@ import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/ite
 
 export interface $IUpgradeableTool {
 
- "getUpgrades"(arg0: $ItemStack$Type): $CompoundTag
  "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
+ "getUpgradeAfterRemoval"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $ItemStack
+ "removeUpgrade"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $ItemStack$Type): void
  "canTakeFromWorkbench"(arg0: $ItemStack$Type): boolean
  "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
  "clearUpgrades"(arg0: $ItemStack$Type): void
  "finishUpgradeRecalculation"(arg0: $ItemStack$Type): void
  "recalculateUpgrades"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
- "getUpgradeAfterRemoval"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $ItemStack
- "removeUpgrade"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $ItemStack$Type): void
+ "getUpgrades"(arg0: $ItemStack$Type): $CompoundTag
  "canModify"(arg0: $ItemStack$Type): boolean
 }
 
@@ -2697,11 +2696,11 @@ public "receiveMessageFromScreen"(arg0: $CompoundTag$Type): void
 public static "onContainerOpened"(arg0: $PlayerContainerEvent$Open$Type): void
 public static "onContainerClosed"(arg0: $PlayerContainerEvent$Close$Type): void
 public static "multiblockCtx"(arg0: $MenuType$Type<(any)>, arg1: integer, arg2: $IEContainerMenu$MultiblockMenuContext$Type<(any)>): $IEContainerMenu$MenuContext
-public "broadcastChanges"(): void
-public "stillValid"(arg0: $Player$Type): boolean
-public "removed"(arg0: $Player$Type): void
 public "quickMoveStack"(arg0: $Player$Type, arg1: integer): $ItemStack
 public "clicked"(arg0: integer, arg1: integer, arg2: $ClickType$Type, arg3: $Player$Type): void
+public "removed"(arg0: $Player$Type): void
+public "broadcastChanges"(): void
+public "stillValid"(arg0: $Player$Type): boolean
 public static "blockCtx"(arg0: $MenuType$Type<(any)>, arg1: integer, arg2: $BlockEntity$Type): $IEContainerMenu$MenuContext
 public static "itemCtx"(arg0: $MenuType$Type<(any)>, arg1: integer, arg2: $Inventory$Type, arg3: $EquipmentSlot$Type, arg4: $ItemStack$Type): $IEContainerMenu$MenuContext
 public static "clientCtx"(arg0: $MenuType$Type<(any)>, arg1: integer): $IEContainerMenu$MenuContext
@@ -2741,31 +2740,31 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getLength"(): double
-public "transformPosition"(arg0: double, arg1: $ConnectionPoint$Type): double
+public "getOtherEnd"(arg0: $ConnectionPoint$Type): $ConnectionPoint
 public "getCatenaryData"(): $Connection$CatenaryData
 public static "makeCatenaryData"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: double): $Connection$CatenaryData
-public "getOtherEnd"(arg0: $ConnectionPoint$Type): $ConnectionPoint
-public "getEndAOffset"(): $Vec3
-public "getContainingNet"(arg0: $GlobalWireNetwork$Type): $LocalWireNetwork
-public "isPositiveEnd"(arg0: $ConnectionPoint$Type): boolean
 public "getEndBOffset"(): $Vec3
+public "isPositiveEnd"(arg0: $ConnectionPoint$Type): boolean
+public "transformPosition"(arg0: double, arg1: $ConnectionPoint$Type): double
+public "getContainingNet"(arg0: $GlobalWireNetwork$Type): $LocalWireNetwork
+public "getEndAOffset"(): $Vec3
 public "isInternal"(): boolean
 public "toNBT"(): $CompoundTag
 public "getPoint"(arg0: double, arg1: $ConnectionPoint$Type): $Vec3
 public "getEndA"(): $ConnectionPoint
 public "getSlope"(arg0: double, arg1: $ConnectionPoint$Type): double
-public "getEndB"(): $ConnectionPoint
-public "isEnd"(arg0: $ConnectionPoint$Type): boolean
 public "getEndFor"(arg0: $BlockPos$Type): $ConnectionPoint
 public "getEnds"(): ($ConnectionPoint)[]
+public "getEndB"(): $ConnectionPoint
+public "isEnd"(arg0: $ConnectionPoint$Type): boolean
 get "length"(): double
 get "catenaryData"(): $Connection$CatenaryData
-get "endAOffset"(): $Vec3
 get "endBOffset"(): $Vec3
+get "endAOffset"(): $Vec3
 get "internal"(): boolean
 get "endA"(): $ConnectionPoint
-get "endB"(): $ConnectionPoint
 get "ends"(): ($ConnectionPoint)[]
+get "endB"(): $ConnectionPoint
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2819,14 +2818,14 @@ constructor(arg0: $LogicCircuitHandler$LogicCircuitOperator$Type, arg1: $LogicCi
 
 public "getInputs"(): ($LogicCircuitHandler$LogicCircuitRegister)[]
 public "apply"(arg0: $LogicCircuitHandler$ILogicCircuitHandler$Type): void
-public "serialize"(): $CompoundTag
-public static "deserialize"(arg0: $CompoundTag$Type): $LogicCircuitHandler$LogicCircuitInstruction
-public "getOperator"(): $LogicCircuitHandler$LogicCircuitOperator
 public "getFormattedString"(): $Component
+public "serialize"(): $CompoundTag
+public "getOperator"(): $LogicCircuitHandler$LogicCircuitOperator
+public static "deserialize"(arg0: $CompoundTag$Type): $LogicCircuitHandler$LogicCircuitInstruction
 public "getOutput"(): $LogicCircuitHandler$LogicCircuitRegister
 get "inputs"(): ($LogicCircuitHandler$LogicCircuitRegister)[]
-get "operator"(): $LogicCircuitHandler$LogicCircuitOperator
 get "formattedString"(): $Component
+get "operator"(): $LogicCircuitHandler$LogicCircuitOperator
 get "output"(): $LogicCircuitHandler$LogicCircuitRegister
 }
 /**
@@ -2966,9 +2965,9 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 
 export interface $IEBlockInterfaces$IRedstoneOutput {
 
- "canConnectRedstone"(arg0: $Direction$Type): boolean
  "getWeakRSOutput"(arg0: $Direction$Type): integer
  "getStrongRSOutput"(arg0: $Direction$Type): integer
+ "canConnectRedstone"(arg0: $Direction$Type): boolean
 }
 
 export namespace $IEBlockInterfaces$IRedstoneOutput {
@@ -3000,8 +2999,8 @@ import {$StructureTemplate, $StructureTemplate$Type} from "packages/net/minecraf
 import {$BlockMatcher$MatcherPredicate, $BlockMatcher$MatcherPredicate$Type} from "packages/blusunrize/immersiveengineering/api/multiblocks/$BlockMatcher$MatcherPredicate"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
-import {$StructureTemplate$Palette, $StructureTemplate$Palette$Type} from "packages/net/minecraft/world/level/levelgen/structure/templatesystem/$StructureTemplate$Palette"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$StructureTemplate$Palette, $StructureTemplate$Palette$Type} from "packages/net/minecraft/world/level/levelgen/structure/templatesystem/$StructureTemplate$Palette"
 import {$StructureTemplate$StructureBlockInfo, $StructureTemplate$StructureBlockInfo$Type} from "packages/net/minecraft/world/level/levelgen/structure/templatesystem/$StructureTemplate$StructureBlockInfo"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$MultiblockHandler$IMultiblock, $MultiblockHandler$IMultiblock$Type} from "packages/blusunrize/immersiveengineering/api/multiblocks/$MultiblockHandler$IMultiblock"
@@ -3020,29 +3019,29 @@ constructor(arg0: $ResourceLocation$Type, arg1: $BlockPos$Type, arg2: $BlockPos$
 constructor(arg0: $ResourceLocation$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type, arg4: $List$Type<($BlockMatcher$MatcherPredicate$Type)>)
 
 public "getSize"(arg0: $Level$Type): $Vec3i
-public "getUniqueName"(): $ResourceLocation
-public "getStructure"(arg0: $Level$Type): $List<($StructureTemplate$StructureBlockInfo)>
-public "getTemplate"(arg0: $Level$Type): $TemplateMultiblock$TemplateData
-public "disassemble"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: boolean, arg3: $Direction$Type): void
-public "getTriggerOffset"(): $BlockPos
-public static "setCallbacks"(arg0: $Function$Type<($BlockState$Type), ($ItemStack$Type)>, arg1: $Function$Type<($StructureTemplate$Type), ($List$Type<($StructureTemplate$Palette$Type)>)>): void
 public "isBlockTrigger"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $Level$Type): boolean
 public "createStructure"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: $Player$Type): boolean
+public static "setCallbacks"(arg0: $Function$Type<($BlockState$Type), ($ItemStack$Type)>, arg1: $Function$Type<($StructureTemplate$Type), ($List$Type<($StructureTemplate$Palette$Type)>)>): void
+public "getTriggerOffset"(): $BlockPos
 public "getTemplateLocation"(): $ResourceLocation
 public "canBeMirrored"(): boolean
-public static "withSettingsAndOffset"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $Mirror$Type, arg3: $Rotation$Type): $BlockPos
 public static "withSettingsAndOffset"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: boolean, arg3: $Direction$Type): $BlockPos
+public static "withSettingsAndOffset"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $Mirror$Type, arg3: $Rotation$Type): $BlockPos
 public "getMasterFromOriginOffset"(): $BlockPos
-public static "getAbsoluteOffset"(arg0: $BlockPos$Type, arg1: $Mirror$Type, arg2: $Rotation$Type): $BlockPos
 public static "getAbsoluteOffset"(arg0: $BlockPos$Type, arg1: boolean, arg2: $Direction$Type): $BlockPos
+public static "getAbsoluteOffset"(arg0: $BlockPos$Type, arg1: $Mirror$Type, arg2: $Rotation$Type): $BlockPos
+public "getStructure"(arg0: $Level$Type): $List<($StructureTemplate$StructureBlockInfo)>
+public "getUniqueName"(): $ResourceLocation
+public "disassemble"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: boolean, arg3: $Direction$Type): void
+public "getTemplate"(arg0: $Level$Type): $TemplateMultiblock$TemplateData
 public "getDisplayName"(): $Component
 public "getBlock"(): $Block
-public "initializeClient"(arg0: $Consumer$Type<($ClientMultiblocks$MultiblockManualData$Type)>): void
 public "getManualScale"(): float
-get "uniqueName"(): $ResourceLocation
+public "initializeClient"(arg0: $Consumer$Type<($ClientMultiblocks$MultiblockManualData$Type)>): void
 get "triggerOffset"(): $BlockPos
 get "templateLocation"(): $ResourceLocation
 get "masterFromOriginOffset"(): $BlockPos
+get "uniqueName"(): $ResourceLocation
 get "displayName"(): $Component
 get "block"(): $Block
 get "manualScale"(): float
@@ -3060,8 +3059,8 @@ declare global {
 export type $TemplateMultiblock_ = $TemplateMultiblock$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$BlastFurnacePreheaterBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$IEBlockInterfaces$ISoundBE, $IEBlockInterfaces$ISoundBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$ISoundBE"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -3098,27 +3097,27 @@ readonly "energyStorage": $MutableEnergyStorage
 
 constructor(arg0: $BlockEntityType$Type<($BlastFurnacePreheaterBlockEntity$Type)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "shouldPlaySound"(arg0: string): boolean
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
 public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "shouldPlaySound"(arg0: string): boolean
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "tickClient"(): void
-public "isDummy"(): boolean
 public "doSpeedup"(): integer
 public "turnOff"(): void
+public "isDummy"(): boolean
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getSoundRadiusSq"(): float
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "canTickAny"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "facingLimitation"(): $PlacementLimitation
@@ -3233,8 +3232,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getFlammability"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "onCaughtFire"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $LivingEntity$Type): void
 public "onBlockExploded"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): void
+public "onCaughtFire"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $LivingEntity$Type): void
 public "wasExploded"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Explosion$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -3295,28 +3294,28 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public static "getMaxEnergyStored"(arg0: $ItemStack$Type): integer
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getSlotCount"(): integer
-public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
-public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
-public "clearUpgrades"(arg0: $ItemStack$Type): void
-public "recalculateUpgrades"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
-public "onScrollwheel"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: boolean): void
 public static "fireProjectile"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: $ItemStack$Type): $Entity
-public "getZoomSteps"(arg0: $ItemStack$Type, arg1: $Player$Type): (float)[]
+public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
+public "onScrollwheel"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: boolean): void
 public static "playChargeSound"(arg0: $LivingEntity$Type, arg1: $ItemStack$Type): void
 public static "getChargeTime"(arg0: $ItemStack$Type): integer
 public static "findAmmoInSlot"(arg0: $Player$Type, arg1: integer): $ItemStack
+public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
+public "clearUpgrades"(arg0: $ItemStack$Type): void
+public "recalculateUpgrades"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
+public "getSlotCount"(): integer
+public "getZoomSteps"(arg0: $ItemStack$Type, arg1: $Player$Type): (float)[]
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public static "getMaxEnergyStored"(arg0: $ItemStack$Type): integer
+public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public static "isAmmo"(arg0: $ItemStack$Type): boolean
+public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getUseDuration"(arg0: $ItemStack$Type): integer
-public static "isAmmo"(arg0: $ItemStack$Type): boolean
 public "canModify"(arg0: $ItemStack$Type): boolean
 public static "findAmmo"(arg0: $ItemStack$Type, arg1: $Player$Type): $ItemStack
 public "canZoom"(arg0: $ItemStack$Type, arg1: $Player$Type): boolean
@@ -3356,8 +3355,8 @@ import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$IClientItemExtensions, $IClientItemExtensions$Type} from "packages/net/minecraftforge/client/extensions/common/$IClientItemExtensions"
 import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Slot, $Slot$Type} from "packages/net/minecraft/world/inventory/$Slot"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 import {$Tier, $Tier$Type} from "packages/net/minecraft/world/item/$Tier"
 import {$Rarity, $Rarity$Type} from "packages/net/minecraft/world/item/$Rarity"
@@ -3385,18 +3384,7 @@ readonly "canRepair": boolean
 constructor()
 
 public "getHead"(arg0: $ItemStack$Type): $ItemStack
-public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
-public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
-public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
-public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<($Enchantment), (integer)>
-public "getSlotCount"(): integer
-public "getHeadDamage"(arg0: $ItemStack$Type): integer
-public "isEffective"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
 public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
-public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
-public "recalculateUpgrades"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
 public "getUpgradeAfterRemoval"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $ItemStack
 public "removeUpgrade"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $ItemStack$Type): void
 public "getMaxHeadDamage"(arg0: $ItemStack$Type): integer
@@ -3406,13 +3394,24 @@ public static "hasQuiverUpgrade"(arg0: $ItemStack$Type): boolean
 public static "getSawblade"(arg0: $ItemStack$Type, arg1: integer): $ItemStack
 public "setSawblade"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: integer): void
 public "onScrollwheel"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: boolean): void
+public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
+public "recalculateUpgrades"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
+public "isEffective"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
+public "getHeadDamage"(arg0: $ItemStack$Type): integer
+public "getSlotCount"(): integer
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
+public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
+public "getAllEnchantments"(arg0: $ItemStack$Type): $Map<($Enchantment), (integer)>
+public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
+public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "getRarity"(arg0: $ItemStack$Type): $Rarity
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
 public "mineBlock"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: $LivingEntity$Type): boolean
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getRarity"(arg0: $ItemStack$Type): $Rarity
-public "setHead"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): void
 public static "isSawblade"(arg0: $ItemStack$Type): boolean
+public "setHead"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): void
 get "slotCount"(): integer
 }
 /**
@@ -3436,16 +3435,16 @@ import {$WireType, $WireType$Type} from "packages/blusunrize/immersiveengineerin
 import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
-import {$Connection, $Connection$Type} from "packages/blusunrize/immersiveengineering/api/wires/$Connection"
 import {$TargetingInfo, $TargetingInfo$Type} from "packages/blusunrize/immersiveengineering/api/$TargetingInfo"
+import {$Connection, $Connection$Type} from "packages/blusunrize/immersiveengineering/api/wires/$Connection"
 import {$ILocalHandlerProvider, $ILocalHandlerProvider$Type} from "packages/blusunrize/immersiveengineering/api/wires/localhandlers/$ILocalHandlerProvider"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IImmersiveConnectable extends $ILocalHandlerProvider {
 
- "getPosition"(): $BlockPos
  "isProxy"(): boolean
- "canConnect"(): boolean
+ "getPosition"(): $BlockPos
+ "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
  "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
  "removeCable"(arg0: $Connection$Type, arg1: $ConnectionPoint$Type): void
  "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
@@ -3453,7 +3452,7 @@ export interface $IImmersiveConnectable extends $ILocalHandlerProvider {
  "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
  "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
  "getInternalConnections"(): $Iterable<(any)>
- "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
+ "canConnect"(): boolean
  "getIgnored"(arg0: $IImmersiveConnectable$Type): $Set<($BlockPos)>
  "getRequestedHandlers"(): $Collection<($ResourceLocation)>
 }
@@ -3649,12 +3648,12 @@ import {$IDropInventory, $IDropInventory$Type} from "packages/blusunrize/immersi
 
 export interface $IIEInventory extends $IDropInventory {
 
+ "doGraphicalUpdates"(): void
+ "getComparatedSize"(): integer
+ "getDroppedItems"(): $Stream<($ItemStack)>
  "getSlotLimit"(arg0: integer): integer
  "isStackValid"(arg0: integer, arg1: $ItemStack$Type): boolean
  "getInventory"(): $NonNullList<($ItemStack)>
- "getDroppedItems"(): $Stream<($ItemStack)>
- "getComparatedSize"(): integer
- "doGraphicalUpdates"(): void
 }
 
 export namespace $IIEInventory {
@@ -3717,8 +3716,8 @@ readonly "canRepair": boolean
 constructor(arg0: $BulletHandler$IBullet$Type)
 
 public "getType"(): $BulletHandler$IBullet
-public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
 public static "initBullets"(): void
+public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
 get "type"(): $BulletHandler$IBullet
@@ -3744,13 +3743,13 @@ export class $CapabilityShader$ShaderWrapper {
 
 constructor(arg0: $ResourceLocation$Type)
 
-public "setShaderType"(arg0: $ResourceLocation$Type): void
 public "setShaderItem"(arg0: $ItemStack$Type): void
+public "setShaderType"(arg0: $ResourceLocation$Type): void
 public "getShaderItem"(): $ItemStack
 public "getShaderType"(): $ResourceLocation
 public "getCase"(): $ShaderCase
-set "shaderType"(value: $ResourceLocation$Type)
 set "shaderItem"(value: $ItemStack$Type)
+set "shaderType"(value: $ResourceLocation$Type)
 get "shaderItem"(): $ItemStack
 get "shaderType"(): $ResourceLocation
 get "case"(): $ShaderCase
@@ -3954,8 +3953,8 @@ constructor(arg0: $GenericDataSerializers$DataSerializer$Type<(T)>, arg1: $Suppl
 constructor(arg0: $GenericDataSerializers$DataSerializer$Type<(T)>, arg1: $GetterAndSetter$Type<(T)>)
 
 public static "bool"(arg0: $Supplier$Type<(boolean)>, arg1: $Consumer$Type<(boolean)>): $GenericContainerData<(boolean)>
-public "needsUpdate"(): boolean
 public "processSync"(arg0: any): void
+public "needsUpdate"(): boolean
 public static "fluid"(arg0: $FluidTank$Type): $GenericContainerData<($FluidStack)>
 public static "energy"(arg0: $IMutableEnergyStorage$Type): $GenericContainerData<(any)>
 public "dataPair"(): $GenericDataSerializers$DataPair<(T)>
@@ -4077,27 +4076,27 @@ export class $LocalWireNetwork implements $IWorldTickable {
 constructor(arg0: $CompoundTag$Type, arg1: $GlobalWireNetwork$Type)
 constructor(arg0: $GlobalWireNetwork$Type)
 
-public "isValid"(): boolean
-public "isValid"(arg0: $ConnectionPoint$Type): boolean
 public "getVersion"(): integer
 public "getHandler"<T extends $LocalNetworkHandler>(arg0: $ResourceLocation$Type, arg1: $Class$Type<(T)>): T
+public "isValid"(): boolean
+public "isValid"(arg0: $ConnectionPoint$Type): boolean
 public "toString"(): string
 public "update"(arg0: $Level$Type): void
+public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
+public "getConnector"(arg0: $ConnectionPoint$Type): $IImmersiveConnectable
+public "getConnector"(arg0: $BlockPos$Type): $IImmersiveConnectable
+public "getAllHandlers"(): $Collection<($LocalNetworkHandler)>
+public "addAsFutureTask"(arg0: $Runnable$Type): void
 public "getConnectors"(): $Collection<($BlockPos)>
 public "getConnections"(arg0: $ConnectionPoint$Type): $Collection<($Connection)>
 public "getConnections"(arg0: $BlockPos$Type): $Collection<($Connection)>
-public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
-public "getConnector"(arg0: $BlockPos$Type): $IImmersiveConnectable
-public "getConnector"(arg0: $ConnectionPoint$Type): $IImmersiveConnectable
-public "getAllHandlers"(): $Collection<($LocalNetworkHandler)>
-public "addAsFutureTask"(arg0: $Runnable$Type): void
 public "writeToNBT"(): $CompoundTag
 public "setInvalid"(): void
-get "valid"(): boolean
 get "version"(): integer
-get "connectors"(): $Collection<($BlockPos)>
+get "valid"(): boolean
 get "connectionPoints"(): $Collection<($ConnectionPoint)>
 get "allHandlers"(): $Collection<($LocalNetworkHandler)>
+get "connectors"(): $Collection<($BlockPos)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4139,20 +4138,20 @@ readonly "stateDefinition": $StateDefinition<($Fluid), ($FluidState)>
 constructor(arg0: $IEFluids$FluidEntry$Type)
 
 public "getFluidType"(): $FluidType
-public static "createBuilder"(arg0: integer, arg1: integer): $Consumer<($FluidType$Properties)>
-public "getBucket"(): $Item
 public "getTickDelay"(arg0: $LevelReader$Type): integer
-public "isSource"(arg0: $FluidState$Type): boolean
-public "getAmount"(arg0: $FluidState$Type): integer
-public "isSame"(arg0: $Fluid$Type): boolean
+public static "createBuilder"(arg0: integer, arg1: integer): $Consumer<($FluidType$Properties)>
 public "getFlowing"(): $Fluid
 public "getSource"(): $Fluid
 public "canConvertToSource"(arg0: $Level$Type): boolean
+public "isSource"(arg0: $FluidState$Type): boolean
+public "getAmount"(arg0: $FluidState$Type): integer
+public "isSame"(arg0: $Fluid$Type): boolean
+public "getBucket"(): $Item
 public static "makeFluid"(arg0: $Function$Type<($IEFluids$FluidEntry$Type), (any)>, arg1: $IEFluids$FluidEntry$Type): $IEFluid
 get "fluidType"(): $FluidType
-get "bucket"(): $Item
 get "flowing"(): $Fluid
 get "source"(): $Fluid
+get "bucket"(): $Item
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4195,13 +4194,13 @@ constructor(arg0: $ResourceLocation$Type, arg1: $TagKey$Type<($Block$Type)>, arg
 
 public static "getSource"(arg0: $Level$Type, arg1: $Block$Type, arg2: $ThermoelectricSource$Type): $ThermoelectricSource
 public "matches"(arg0: $Block$Type): boolean
-public "getTemperature"(): integer
 public "getMatchingBlocks"(): $List<($Block)>
 public static "getThermalValuesSorted"(arg0: $Level$Type, arg1: boolean): $SortedMap<($Component), (integer)>
+public "getTemperature"(): integer
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
 public "getExample"(): $Block
-get "temperature"(): integer
 get "matchingBlocks"(): $List<($Block)>
+get "temperature"(): integer
 get "example"(): $Block
 }
 /**
@@ -4319,24 +4318,24 @@ import {$IConveyorBelt, $IConveyorBelt$Type} from "packages/blusunrize/immersive
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RenderType, $RenderType$Type} from "packages/net/minecraft/client/renderer/$RenderType"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
-import {$List, $List$Type} from "packages/java/util/$List"
 import {$Transformation, $Transformation$Type} from "packages/com/mojang/math/$Transformation"
+import {$List, $List$Type} from "packages/java/util/$List"
 import {$BasicConveyorCacheData, $BasicConveyorCacheData$Type} from "packages/blusunrize/immersiveengineering/api/tool/conveyor/$BasicConveyorCacheData"
 import {$ConveyorWall, $ConveyorWall$Type} from "packages/blusunrize/immersiveengineering/api/tool/conveyor/$ConveyorWall"
 import {$IConveyorModelRender$RenderContext, $IConveyorModelRender$RenderContext$Type} from "packages/blusunrize/immersiveengineering/api/tool/conveyor/$IConveyorModelRender$RenderContext"
-import {$BakedQuad, $BakedQuad$Type} from "packages/net/minecraft/client/renderer/block/model/$BakedQuad"
 import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlasSprite"
+import {$BakedQuad, $BakedQuad$Type} from "packages/net/minecraft/client/renderer/block/model/$BakedQuad"
 
 export interface $IConveyorModelRender<T extends $IConveyorBelt> {
 
- "modifyQuads"(arg0: $List$Type<($BakedQuad$Type)>, arg1: $IConveyorModelRender$RenderContext$Type<(T)>, arg2: $RenderType$Type): $List<($BakedQuad)>
- "getModelCacheKey"(arg0: $IConveyorModelRender$RenderContext$Type<(T)>): any
  "shouldRenderWall"(arg0: $Direction$Type, arg1: $ConveyorWall$Type, arg2: $IConveyorModelRender$RenderContext$Type<(T)>): boolean
  "modifyBaseRotationMatrix"(arg0: $Transformation$Type): $Transformation
  "getActiveTexture"(): $ResourceLocation
  "getInactiveTexture"(): $ResourceLocation
  "getColouredStripesTexture"(): $ResourceLocation
  "updateCachedModels"(arg0: $ModelBaker$Type, arg1: $Function$Type<($Material$Type), ($TextureAtlasSprite$Type)>): void
+ "getModelCacheKey"(arg0: $IConveyorModelRender$RenderContext$Type<(T)>): any
+ "modifyQuads"(arg0: $List$Type<($BakedQuad$Type)>, arg1: $IConveyorModelRender$RenderContext$Type<(T)>, arg2: $RenderType$Type): $List<($BakedQuad)>
 }
 
 export namespace $IConveyorModelRender {
@@ -4424,8 +4423,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type, arg1: $MultiblockRegistration$Type<(State)>)
 
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -4434,8 +4431,10 @@ public "getBlockSupportShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, a
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -4679,11 +4678,11 @@ readonly "canRepair": boolean
 constructor()
 
 public "getSlotCount"(): integer
+public "canFitInsideContainerItems"(): boolean
+public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "overrideOtherStackedOnMe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Slot$Type, arg3: $ClickAction$Type, arg4: $Player$Type, arg5: $SlotAccess$Type): boolean
-public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
-public "canFitInsideContainerItems"(): boolean
 get "slotCount"(): integer
 }
 /**
@@ -4733,8 +4732,8 @@ declare module "packages/blusunrize/immersiveengineering/common/items/$Engineers
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
@@ -4760,10 +4759,10 @@ readonly "canRepair": boolean
 
 constructor()
 
-public static "getCategory"(arg0: $ItemStack$Type): string
 public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
-public "getDescriptionId"(arg0: $ItemStack$Type): string
+public static "getCategory"(arg0: $ItemStack$Type): string
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getDescriptionId"(arg0: $ItemStack$Type): string
 public static "getRecipes"(arg0: $Level$Type, arg1: $ItemStack$Type): ($BlueprintCraftingRecipe)[]
 }
 /**
@@ -4891,8 +4890,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $ArmorItem$Type$Type)
 
-public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "getArmorTexture"(arg0: $ItemStack$Type, arg1: $Entity$Type, arg2: $EquipmentSlot$Type, arg3: string): string
+public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "onStrike"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $LivingEntity$Type, arg3: $Map$Type<(string), (any)>, arg4: $DamageSource$Type, arg5: $IElectricEquipment$ElectricSource$Type): void
 public static "applyToEntity"(arg0: $LivingEntity$Type, arg1: $DamageSource$Type, arg2: $IElectricEquipment$ElectricSource$Type): void
 public static "get"(arg0: $ItemStack$Type): $Equipable
@@ -5186,22 +5185,22 @@ readonly "canRepair": boolean
 constructor()
 
 public "getCapacity"(arg0: $ItemStack$Type, arg1: integer): integer
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getSlotCount"(): integer
 public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
+public "onScrollwheel"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: boolean): void
 public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
 public "finishUpgradeRecalculation"(arg0: $ItemStack$Type): void
-public "onScrollwheel"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: boolean): void
+public "getSlotCount"(): integer
 public static "isIgniteEnable"(arg0: $ItemStack$Type): boolean
 public static "setIgniteEnable"(arg0: $ItemStack$Type, arg1: boolean): void
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getUseDuration"(arg0: $ItemStack$Type): integer
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 public "canModify"(arg0: $ItemStack$Type): boolean
 public "getFluid"(arg0: $ItemStack$Type): $FluidStack
 public "allowFluid"(arg0: $ItemStack$Type, arg1: $FluidStack$Type): boolean
@@ -5226,12 +5225,12 @@ import {$WireType, $WireType$Type} from "packages/blusunrize/immersiveengineerin
 
 export interface $IWireCoil {
 
- "getWireType"(arg0: $ItemStack$Type): $WireType
- "getMaxLength"(arg0: $ItemStack$Type): integer
  "canConnectCable"(arg0: $ItemStack$Type, arg1: $BlockEntity$Type): boolean
  "consumeWire"(arg0: $ItemStack$Type, arg1: integer): void
+ "getWireType"(arg0: $ItemStack$Type): $WireType
+ "getMaxLength"(arg0: $ItemStack$Type): integer
 
-(arg0: $ItemStack$Type): $WireType
+(arg0: $ItemStack$Type, arg1: $BlockEntity$Type): boolean
 }
 
 export namespace $IWireCoil {
@@ -5433,10 +5432,10 @@ import {$Inventory, $Inventory$Type} from "packages/net/minecraft/world/entity/p
 export interface $IEBlockInterfaces$IInteractionObjectIE<T extends ($BlockEntity) & ($IEBlockInterfaces$IInteractionObjectIE<(T)>)> extends $MenuProvider {
 
  "isValid"(): boolean
- "getContainerType"(): $IEMenuTypes$ArgContainer<(any), (any)>
  "getGuiMaster"(): T
- "getDisplayName"(): $Component
+ "getContainerType"(): $IEMenuTypes$ArgContainer<(any), (any)>
  "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
+ "getDisplayName"(): $Component
  "canUseGui"(arg0: $Player$Type): boolean
  "shouldCloseCurrentScreen"(): boolean
 }
@@ -5478,12 +5477,12 @@ public "getDescription"(): $Component
 public static "values"(): ($LogicCircuitHandler$LogicCircuitOperator)[]
 public static "valueOf"(arg0: string): $LogicCircuitHandler$LogicCircuitOperator
 public "apply"(arg0: (boolean)[]): boolean
-public "getArgumentCount"(): integer
 public "getComplexity"(): integer
+public "getArgumentCount"(): integer
 public static "getByString"(arg0: string): $LogicCircuitHandler$LogicCircuitOperator
 get "description"(): $Component
-get "argumentCount"(): integer
 get "complexity"(): integer
+get "argumentCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5573,10 +5572,10 @@ static readonly "INVALID_RELOAD_COUNT": integer
 constructor(arg0: $Supplier$Type<($RecipeType$Type<(R)>)>, arg1: $Class$Type<(R)>)
 constructor(arg0: $IERecipeTypes$TypeWithClass$Type<(R)>)
 
-public static "onTagsUpdated"(arg0: $TagsUpdatedEvent$Type): void
+public "getRecipeNames"(arg0: $Level$Type): $Collection<($ResourceLocation)>
 public static "onRecipeUpdatedClient"(arg0: $RecipesUpdatedEvent$Type): void
 public static "getReloadCount"(): integer
-public "getRecipeNames"(arg0: $Level$Type): $Collection<($ResourceLocation)>
+public static "onTagsUpdated"(arg0: $TagsUpdatedEvent$Type): void
 public "getRecipes"(arg0: $Level$Type): $Collection<(R)>
 public "getById"(arg0: $Level$Type, arg1: $ResourceLocation$Type): R
 get "reloadCount"(): integer
@@ -5608,11 +5607,11 @@ export class $CapabilityReference<T> {
 
 public "get"(): T
 public "isPresent"(): boolean
-public "getNullable"(): T
-public static "forNeighbor"<T>(arg0: $BlockEntity$Type, arg1: $Capability$Type<(T)>, arg2: $NonNullSupplier$Type<($Direction$Type)>): $CapabilityReference<(T)>
-public static "forNeighbor"<T>(arg0: $BlockEntity$Type, arg1: $Capability$Type<(T)>, arg2: $Direction$Type): $CapabilityReference<(T)>
-public static "forBlockEntityAt"<T>(arg0: $BlockEntity$Type, arg1: $Supplier$Type<($DirectionalBlockPos$Type)>, arg2: $Capability$Type<(T)>): $CapabilityReference<(T)>
 public static "forAllNeighbors"<T>(arg0: $BlockEntity$Type, arg1: $Capability$Type<(T)>): $Map<($Direction), ($CapabilityReference<(T)>)>
+public static "forBlockEntityAt"<T>(arg0: $BlockEntity$Type, arg1: $Supplier$Type<($DirectionalBlockPos$Type)>, arg2: $Capability$Type<(T)>): $CapabilityReference<(T)>
+public static "forNeighbor"<T>(arg0: $BlockEntity$Type, arg1: $Capability$Type<(T)>, arg2: $Direction$Type): $CapabilityReference<(T)>
+public static "forNeighbor"<T>(arg0: $BlockEntity$Type, arg1: $Capability$Type<(T)>, arg2: $NonNullSupplier$Type<($Direction$Type)>): $CapabilityReference<(T)>
+public "getNullable"(): T
 public static "forRelative"<T>(arg0: $BlockEntity$Type, arg1: $Capability$Type<(T)>, arg2: $Vec3i$Type, arg3: $Direction$Type): $CapabilityReference<(T)>
 get "present"(): boolean
 get "nullable"(): T
@@ -5658,8 +5657,8 @@ import {$PlayerUtils$ConnectionAccess, $PlayerUtils$ConnectionAccess$Type} from 
 
 export interface $ServerPlayNetHandlerAccess extends $PlayerUtils$ConnectionAccess {
 
- "setAboveGroundTickCount"(arg0: integer): void
  "setClientIsFloating"(arg0: boolean): void
+ "setAboveGroundTickCount"(arg0: integer): void
 }
 
 export namespace $ServerPlayNetHandlerAccess {
@@ -5725,10 +5724,10 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "generator"(): $Function<(EarlyResult), ($List<(any)>)>
-public "serialized"(): $ResourceLocation
 public "makeEarlyResult"(): $Supplier<(EarlyResult)>
-public static "simple"<R extends $IESerializableRecipe>(arg0: $Supplier$Type<($List$Type<(any)>)>, arg1: $ResourceLocation$Type, arg2: $IERecipeTypes$TypeWithClass$Type<(R)>): $GeneratedListRecipe$RecipeListGenerator<(R), (any)>
+public "serialized"(): $ResourceLocation
 public "recipeType"(): $IERecipeTypes$TypeWithClass<(T)>
+public static "simple"<R extends $IESerializableRecipe>(arg0: $Supplier$Type<($List$Type<(any)>)>, arg1: $ResourceLocation$Type, arg2: $IERecipeTypes$TypeWithClass$Type<(R)>): $GeneratedListRecipe$RecipeListGenerator<(R), (any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5949,13 +5948,13 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public static "getVeinData"(arg0: $ItemStack$Type, arg1: $ResourceKey$Type<($Level$Type)>, arg2: $ColumnPos$Type): $ListTag
-public "finishUsingItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type): $ItemStack
-public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
+public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
+public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "getUseDuration"(arg0: $ItemStack$Type): integer
+public "finishUsingItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type): $ItemStack
+public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5984,13 +5983,13 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $BulletHandler$IBullet {
 
- "getProjectile"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $Entity$Type, arg3: boolean): $Entity
- "getTextures"(): ($ResourceLocation)[]
- "getTranslationKey"(arg0: $ItemStack$Type, arg1: string): string
- "isValidForTurret"(): boolean
  "isProperCartridge"(): boolean
- "onHitTarget"(arg0: $Level$Type, arg1: $HitResult$Type, arg2: $UUID$Type, arg3: $Entity$Type, arg4: boolean): void
  "getProjectileCount"(arg0: $Player$Type): integer
+ "onHitTarget"(arg0: $Level$Type, arg1: $HitResult$Type, arg2: $UUID$Type, arg3: $Entity$Type, arg4: boolean): void
+ "isValidForTurret"(): boolean
+ "getTextures"(): ($ResourceLocation)[]
+ "getProjectile"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $Entity$Type, arg3: boolean): $Entity
+ "getTranslationKey"(arg0: $ItemStack$Type, arg1: string): string
  "getSound"(): $SoundEvent
  "getColour"(arg0: $ItemStack$Type, arg1: integer): integer
  "addTooltip"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
@@ -6022,22 +6021,22 @@ import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$IImmersiveConnectable, $IImmersiveConnectable$Type} from "packages/blusunrize/immersiveengineering/api/wires/$IImmersiveConnectable"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
-import {$Connection, $Connection$Type} from "packages/blusunrize/immersiveengineering/api/wires/$Connection"
 import {$TargetingInfo, $TargetingInfo$Type} from "packages/blusunrize/immersiveengineering/api/$TargetingInfo"
+import {$Connection, $Connection$Type} from "packages/blusunrize/immersiveengineering/api/wires/$Connection"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $EnergyTransferHandler$EnergyConnector extends $IImmersiveConnectable {
 
- "insertEnergy"(arg0: integer): void
- "extractEnergy"(arg0: integer): void
  "getRequestedEnergy"(): integer
  "getAvailableEnergy"(): integer
  "onEnergyPassedThrough"(arg0: double): void
+ "insertEnergy"(arg0: integer): void
+ "extractEnergy"(arg0: integer): void
  "isSource"(arg0: $ConnectionPoint$Type): boolean
  "isSink"(arg0: $ConnectionPoint$Type): boolean
- "getPosition"(): $BlockPos
  "isProxy"(): boolean
- "canConnect"(): boolean
+ "getPosition"(): $BlockPos
+ "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
  "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
  "removeCable"(arg0: $Connection$Type, arg1: $ConnectionPoint$Type): void
  "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
@@ -6045,7 +6044,7 @@ export interface $EnergyTransferHandler$EnergyConnector extends $IImmersiveConne
  "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
  "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
  "getInternalConnections"(): $Iterable<(any)>
- "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
+ "canConnect"(): boolean
  "getIgnored"(arg0: $IImmersiveConnectable$Type): $Set<($BlockPos)>
  "getRequestedHandlers"(): $Collection<($ResourceLocation)>
 }
@@ -6103,14 +6102,14 @@ export class $MultiblockOrientation extends $Record {
 constructor(front: $Direction$Type, mirrored: boolean)
 constructor(arg0: $BlockState$Type, arg1: boolean)
 
-public "front"(): $Direction
 public "mirrored"(): boolean
+public "front"(): $Direction
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "getAbsoluteOffset"(arg0: $Vec3$Type): $Vec3
-public "getAbsoluteOffset"(arg0: $BlockPos$Type): $BlockPos
 public "transformRelativeShape"(arg0: $VoxelShape$Type): $VoxelShape
+public "getAbsoluteOffset"(arg0: $BlockPos$Type): $BlockPos
+public "getAbsoluteOffset"(arg0: $Vec3$Type): $Vec3
 public "getPosInMB"(arg0: $BlockPos$Type): $BlockPos
 }
 /**
@@ -6217,15 +6216,15 @@ export interface $IMultiblockContext<State> extends $ICommonMultiblockContext {
 
  "isValid"(): $BooleanSupplier
  "getState"(): State
- "getLevel"(): $IMultiblockLevel
- "registerCapability"<T>(arg0: T): $LazyOptional<(T)>
- "markMasterDirty"(): void
  "requestMasterBESync"(): void
+ "markMasterDirty"(): void
+ "registerCapability"<T>(arg0: T): $LazyOptional<(T)>
  "markDirtyAndSync"(): void
  "setComparatorOutputFor"(arg0: $BlockPos$Type, arg1: integer): void
  "getRedstoneInputValue"(arg0: $BlockPos$Type, arg1: $RelativeBlockFace$Type, arg2: integer): integer
  "getRedstoneInputValue"(arg0: $BlockPos$Type, arg1: integer): integer
  "getRedstoneInputValue"(arg0: $MultiblockFace$Type, arg1: integer): integer
+ "getLevel"(): $IMultiblockLevel
  "getCapabilityAt"<T>(arg0: $Capability$Type<(T)>, arg1: $MultiblockFace$Type): $CapabilityReference<(T)>
  "getCapabilityAt"<T>(arg0: $Capability$Type<(T)>, arg1: $BlockPos$Type, arg2: $RelativeBlockFace$Type): $CapabilityReference<(T)>
 }
@@ -6278,10 +6277,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Rarity$Type)
 
 public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
+public "getRarity"(arg0: $ItemStack$Type): $Rarity
+public "getName"(arg0: $ItemStack$Type): $Component
 public "getDescriptionId"(): string
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "getName"(arg0: $ItemStack$Type): $Component
-public "getRarity"(arg0: $ItemStack$Type): $Rarity
 get "descriptionId"(): string
 }
 /**
@@ -6321,23 +6320,23 @@ public "test"(arg0: $ItemStack$Type): boolean
 public static "of"(arg0: $ItemStack$Type): $IngredientWithSize
 public "write"(arg0: $FriendlyByteBuf$Type): void
 public static "read"(arg0: $FriendlyByteBuf$Type): $IngredientWithSize
-public "serialize"(): $JsonElement
-public static "deserialize"(arg0: $JsonElement$Type): $IngredientWithSize
-public "getMatchingStacks"(): ($ItemStack)[]
 public "hasNoMatchingItems"(): boolean
 public "testIgnoringSize"(arg0: $ItemStack$Type): boolean
 public "getBaseIngredient"(): $Ingredient
+public "getMatchingStacks"(): ($ItemStack)[]
 public "getMatchingStackList"(): $List<($ItemStack)>
 public "getRandomizedExampleStack"(arg0: integer): $ItemStack
+public "serialize"(): $JsonElement
+public static "deserialize"(arg0: $JsonElement$Type): $IngredientWithSize
 public "withSize"(arg0: integer): $IngredientWithSize
 public static "isEqual"<T>(arg0: any): $Predicate<($ItemStack)>
-public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($ItemStack)>
 public "negate"(): $Predicate<($ItemStack)>
 public "and"(arg0: $Predicate$Type<(any)>): $Predicate<($ItemStack)>
 public static "not"<T>(arg0: $Predicate$Type<(any)>): $Predicate<($ItemStack)>
+public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($ItemStack)>
 get "count"(): integer
-get "matchingStacks"(): ($ItemStack)[]
 get "baseIngredient"(): $Ingredient
+get "matchingStacks"(): ($ItemStack)[]
 get "matchingStackList"(): $List<($ItemStack)>
 }
 /**
@@ -6366,8 +6365,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$UpgradeableToolItem, $UpgradeableToolItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$UpgradeableToolItem"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$ICapabilityProvider, $ICapabilityProvider$Type} from "packages/net/minecraftforge/common/capabilities/$ICapabilityProvider"
@@ -6399,18 +6398,18 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "onArmorTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
-public static "getMaxEnergyStored"(arg0: $ItemStack$Type): integer
-public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
-public "getSlotCount"(): integer
-public static "getBannerStatic"(arg0: $ItemStack$Type): $ItemStack
 public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
 public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
+public static "getBannerStatic"(arg0: $ItemStack$Type): $ItemStack
+public "getSlotCount"(): integer
 public static "getCapacitorStatic"(arg0: $ItemStack$Type): $ItemStack
+public "onArmorTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
+public static "getMaxEnergyStored"(arg0: $ItemStack$Type): integer
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "canModify"(arg0: $ItemStack$Type): boolean
 get "slotCount"(): integer
 }
@@ -6537,12 +6536,12 @@ static readonly "LAZY_EMPTY": $Lazy<($ItemStack)>
 
 constructor(arg0: $ResourceLocation$Type, arg1: $FluidStack$Type, arg2: $Lazy$Type<($ItemStack$Type)>, arg3: $IngredientWithSize$Type, arg4: integer)
 
+public "getMultipleProcessTicks"(): integer
 public "setInputSize"(arg0: integer): $SqueezerRecipe
 public static "getFluidValuesSorted"(arg0: $Level$Type, arg1: $Fluid$Type, arg2: boolean): $SortedMap<($Component), (integer)>
-public "getMultipleProcessTicks"(): integer
 public static "findRecipe"(arg0: $Level$Type, arg1: $ItemStack$Type): $SqueezerRecipe
-set "inputSize"(value: integer)
 get "multipleProcessTicks"(): integer
+set "inputSize"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6603,13 +6602,13 @@ declare global {
 export type $ManualItem_ = $ManualItem$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$ChuteBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IEBlockInterfaces$ICollisionBounds, $IEBlockInterfaces$ICollisionBounds$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$ICollisionBounds"
 import {$IEBlockInterfaces$ISelectionBounds, $IEBlockInterfaces$ISelectionBounds$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$ISelectionBounds"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
-import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$PlacementLimitation, $PlacementLimitation$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$PlacementLimitation"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
@@ -6635,24 +6634,24 @@ export class $ChuteBlockEntity extends $IEBaseBlockEntity implements $IEBlockInt
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "isInwardConveyor"(arg0: $Direction$Type): boolean
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
+public "isInwardConveyor"(arg0: $Direction$Type): boolean
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public "isDiagonal"(): boolean
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
@@ -6736,19 +6735,19 @@ constructor(arg0: $Either$Type<($TagKey$Type<($Fluid$Type)>), ($List$Type<($Reso
 public "test"(arg0: $FluidStack$Type): boolean
 public "write"(arg0: $FriendlyByteBuf$Type): void
 public static "read"(arg0: $FriendlyByteBuf$Type): $FluidTagInput
-public "getMatchingFluidStacks"(): $List<($FluidStack)>
-public "extractFrom"(arg0: $IFluidHandler$Type, arg1: $IFluidHandler$FluidAction$Type): boolean
-public "serialize"(): $JsonElement
-public static "deserialize"(arg0: $JsonElement$Type): $FluidTagInput
 public "testIgnoringAmount"(arg0: $FluidStack$Type): boolean
 public "getRandomizedExampleStack"(arg0: integer): $FluidStack
+public "extractFrom"(arg0: $IFluidHandler$Type, arg1: $IFluidHandler$FluidAction$Type): boolean
+public "getMatchingFluidStacks"(): $List<($FluidStack)>
+public "serialize"(): $JsonElement
+public static "deserialize"(arg0: $JsonElement$Type): $FluidTagInput
 public "getAmount"(): integer
 public "withAmount"(arg0: integer): $FluidTagInput
 public static "isEqual"<T>(arg0: any): $Predicate<($FluidStack)>
-public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($FluidStack)>
 public "negate"(): $Predicate<($FluidStack)>
 public "and"(arg0: $Predicate$Type<(any)>): $Predicate<($FluidStack)>
 public static "not"<T>(arg0: $Predicate$Type<(any)>): $Predicate<($FluidStack)>
+public "or"(arg0: $Predicate$Type<(any)>): $Predicate<($FluidStack)>
 get "matchingFluidStacks"(): $List<($FluidStack)>
 get "amount"(): integer
 }
@@ -6775,7 +6774,6 @@ import {$IngredientWithSize, $IngredientWithSize$Type} from "packages/blusunrize
 export interface $IMultiblockRecipe {
 
  "shouldCheckItemAvailability"(): boolean
- "getDisplayStack"(arg0: $ItemStack$Type): $ItemStack
  "getItemOutputs"(): $NonNullList<($ItemStack)>
  "getItemInputs"(): $List<($IngredientWithSize)>
  "getFluidInputs"(): $List<($FluidTagInput)>
@@ -6785,6 +6783,7 @@ export interface $IMultiblockRecipe {
  "getActualItemOutputs"(): $NonNullList<($ItemStack)>
  "getActualFluidOutputs"(): $List<($FluidStack)>
  "getMultipleProcessTicks"(): integer
+ "getDisplayStack"(arg0: $ItemStack$Type): $ItemStack
 }
 
 export namespace $IMultiblockRecipe {
@@ -6920,9 +6919,9 @@ constructor(arg0: $ResourceLocation$Type, arg1: $TagKey$Type<($Fluid$Type)>, arg
 constructor(arg0: $ResourceLocation$Type, arg1: $List$Type<($Fluid$Type)>, arg2: integer)
 
 public "matches"(arg0: $Fluid$Type): boolean
-public "getBurnTime"(): integer
-public static "getRecipeFor"(arg0: $Level$Type, arg1: $Fluid$Type, arg2: $GeneratorFuel$Type): $GeneratorFuel
 public static "getManualFuelList"(arg0: $Level$Type): $SortedMap<($Component), (integer)>
+public static "getRecipeFor"(arg0: $Level$Type, arg1: $Fluid$Type, arg2: $GeneratorFuel$Type): $GeneratorFuel
+public "getBurnTime"(): integer
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
 public "getFluids"(): $List<($Fluid)>
 get "burnTime"(): integer
@@ -7118,31 +7117,31 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
  "sodiumdynamiclights$luminance": integer
 
 
-public "getCapability"<C>(arg0: $Capability$Type<(C)>, arg1: $Direction$Type): $LazyOptional<(C)>
-public "getComparatorLevel"(): integer
+public "getContainedBlockEntity"(): T
 public "writeTileToItem"(arg0: $ItemStack$Type): void
 public "readTileFromItem"(arg0: $LivingEntity$Type, arg1: $ItemStack$Type): void
-public "getContainedBlockEntity"(): T
-public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
-public "interact"(arg0: $Player$Type, arg1: $InteractionHand$Type): $InteractionResult
-public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
+public "getComparatorLevel"(): integer
+public "getCapability"<C>(arg0: $Capability$Type<(C)>, arg1: $Direction$Type): $LazyOptional<(C)>
 public "destroy"(arg0: $DamageSource$Type): void
 public "getMinecartType"(): $AbstractMinecart$Type
+public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
+public "interact"(arg0: $Player$Type, arg1: $InteractionHand$Type): $InteractionResult
+public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
 public "getDisplayName"(): $Component
 public "shouldCloseCurrentScreen"(): boolean
 public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
-public "sdl$getDynamicLightY"(): double
-public "sdl$resetDynamicLight"(): void
-public "sdl$getDynamicLightLevel"(): $Level
-public "sdl$getDynamicLightZ"(): double
-public "sdl$getDynamicLightX"(): double
 public "sdl$shouldUpdateDynamicLight"(): boolean
 public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
+public "sdl$getDynamicLightX"(): double
+public "sdl$getDynamicLightY"(): double
+public "sdl$getDynamicLightZ"(): double
+public "sdl$getDynamicLightLevel"(): $Level
+public "sdl$resetDynamicLight"(): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "comparatorLevel"(): integer
 get "containedBlockEntity"(): T
-get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
+get "comparatorLevel"(): integer
 get "minecartType"(): $AbstractMinecart$Type
+get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
 get "displayName"(): $Component
 }
 /**
@@ -7324,8 +7323,8 @@ declare global {
 export type $BETypeAccess_ = $BETypeAccess$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$FluidPumpBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$IEServerTickableBE, $IEServerTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEServerTickableBE"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -7362,33 +7361,33 @@ export class $FluidPumpBlockEntity extends $IEBaseBlockEntity implements $IEServ
 
 constructor(arg0: $BlockEntityType$Type<($FluidPumpBlockEntity$Type)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "outputFluid"(arg0: $FluidStack$Type, arg1: $IFluidHandler$FluidAction$Type): integer
-public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
-public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
-public "getSideConfig"(arg0: $Direction$Type): $IEEnums$IOSideConfig
-public "canOutputPressurized"(arg0: boolean): boolean
 public "getOverlayText"(arg0: $Player$Type, arg1: $HitResult$Type, arg2: boolean): ($Component)[]
 public "useNixieFont"(arg0: $Player$Type, arg1: $HitResult$Type): boolean
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
 public "prepareAreaCheck"(): void
 public "checkAreaTick"(): void
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
+public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "canOutputPressurized"(arg0: boolean): boolean
+public "getSideConfig"(arg0: $Direction$Type): $IEEnums$IOSideConfig
+public "outputFluid"(arg0: $FluidStack$Type, arg1: $IFluidHandler$FluidAction$Type): integer
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "master"(): $FluidPumpBlockEntity
 public "tickServer"(): void
-public "isDummy"(): boolean
-public "toggleSide"(arg0: $Direction$Type, arg1: $Player$Type): boolean
 public "setDummy"(arg0: boolean): void
+public "toggleSide"(arg0: $Direction$Type, arg1: $Player$Type): boolean
+public "isDummy"(): boolean
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public static "getTransferableAmount"(arg0: boolean): integer
 public "stripPressureTag"(): boolean
 public "canTickAny"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "dummy"(): boolean
 set "dummy"(value: boolean)
+get "dummy"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7408,8 +7407,8 @@ import {$List, $List$Type} from "packages/java/util/$List"
 
 export interface $ChatComponentAccess {
 
- "getAllMessages"(): $List<($GuiMessage)>
  "invokeRefreshTrimmedMessage"(): void
+ "getAllMessages"(): $List<($GuiMessage)>
 }
 
 export namespace $ChatComponentAccess {
@@ -7462,8 +7461,8 @@ import {$IEBlockInterfaces$IPlayerInteraction, $IEBlockInterfaces$IPlayerInterac
 import {$IEBlockInterfaces$IStateBasedDirectional, $IEBlockInterfaces$IStateBasedDirectional$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IStateBasedDirectional"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
-import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$TargetingInfo, $TargetingInfo$Type} from "packages/blusunrize/immersiveengineering/api/$TargetingInfo"
+import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
 
 export class $EnergyMeterBlockEntity extends $ImmersiveConnectableBlockEntity implements $IEServerTickableBE, $IEBlockInterfaces$IStateBasedDirectional, $IEBlockInterfaces$IHasDummyBlocks, $IEBlockInterfaces$IPlayerInteraction, $IEBlockInterfaces$IComparatorOverride, $EnergyTransferHandler$EnergyConnector, $IEBlockInterfaces$IBlockBounds, $IModelOffsetProvider {
@@ -7475,54 +7474,54 @@ readonly "lastPackets": $DoubleList
 
 constructor(arg0: $BlockEntityType$Type<($EnergyMeterBlockEntity$Type)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "canConnect"(): boolean
-public "onLoad"(): void
-public "getComparatorInputOverride"(): integer
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
-public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
-public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
-public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
-public "getFacingLimitation"(): $PlacementLimitation
-public "getFacingProperty"(): $Property<($Direction)>
+public "getAveragePower"(): integer
+public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
 public "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
 public "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
 public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
+public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
+public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
+public "getFacingLimitation"(): $PlacementLimitation
+public "getFacingProperty"(): $Property<($Direction)>
+public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getComparatorInputOverride"(): integer
 public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
 public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
 public "getInternalConnections"(): $Iterable<(any)>
-public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
-public "getAveragePower"(): integer
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "onLoad"(): void
 public "master"(): $IEBlockInterfaces$IGeneralMultiblock
 public "tickServer"(): void
 public "interact"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ItemStack$Type, arg4: float, arg5: float, arg6: float): boolean
+public "canConnect"(): boolean
 public "isSource"(arg0: $ConnectionPoint$Type): boolean
 public "getIgnored"(arg0: $IImmersiveConnectable$Type): $Set<($BlockPos)>
 public "isSink"(arg0: $ConnectionPoint$Type): boolean
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "insertEnergy"(arg0: integer): void
-public "extractEnergy"(arg0: integer): void
 public "getRequestedEnergy"(): integer
 public "getAvailableEnergy"(): integer
 public "onEnergyPassedThrough"(arg0: double): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "insertEnergy"(arg0: integer): void
+public "extractEnergy"(arg0: integer): void
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public "isDummy"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "comparatorInputOverride"(): integer
+get "averagePower"(): integer
+get "connectionPoints"(): $Collection<($ConnectionPoint)>
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-get "connectionPoints"(): $Collection<($ConnectionPoint)>
+get "comparatorInputOverride"(): integer
 get "internalConnections"(): $Iterable<(any)>
-get "averagePower"(): integer
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 get "requestedEnergy"(): integer
@@ -7586,9 +7585,11 @@ export class $StripCurtainBlockEntity extends $IEBaseBlockEntity implements $IES
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
-public "canConnectRedstone"(arg0: $Direction$Type): boolean
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "onDirectionalPlacement"(arg0: $Direction$Type, arg1: float, arg2: float, arg3: float, arg4: $LivingEntity$Type): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getRenderColour"(arg0: integer): integer
@@ -7598,22 +7599,20 @@ public "isCeilingAttached"(): boolean
 public "getFacingProperty"(): $Property<($Direction)>
 public "setCeilingAttached"(arg0: boolean): void
 public "getBlockEntityDrop"(arg0: $LootContext$Type, arg1: $Consumer$Type<($ItemStack$Type)>): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
+public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
+public "canConnectRedstone"(arg0: $Direction$Type): boolean
 public "tickServer"(): void
 public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "getPickBlock"(arg0: $Player$Type, arg1: $BlockState$Type, arg2: $HitResult$Type): $ItemStack
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "facingLimitation"(): $PlacementLimitation
 get "ceilingAttached"(): boolean
@@ -7676,15 +7675,15 @@ import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$Compo
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Potion, $Potion$Type} from "packages/net/minecraft/world/item/alchemy/$Potion"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IEBaseItem, $IEBaseItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEBaseItem"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$ICapabilityProvider, $ICapabilityProvider$Type} from "packages/net/minecraftforge/common/capabilities/$ICapabilityProvider"
@@ -7707,12 +7706,12 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
 public static "getPotion"(arg0: $ItemStack$Type): $Potion
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public static "forPotion"(arg0: $Potion$Type): $ItemStack
 }
 /**
@@ -7741,9 +7740,9 @@ constructor(template: $StructureTemplate$Type, blocksWithoutAir: $List$Type<($St
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "template"(): $StructureTemplate
 public "blocksWithoutAir"(): $List<($StructureTemplate$StructureBlockInfo)>
 public "triggerState"(): $BlockState
+public "template"(): $StructureTemplate
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7837,10 +7836,10 @@ export class $CapabilityShader$ShaderWrapper_Direct extends $CapabilityShader$Sh
 
 constructor(arg0: $ResourceLocation$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "deserializeNBT"(arg0: $CompoundTag$Type): void
 public "setShaderItem"(arg0: $ItemStack$Type): void
 public "getShaderItem"(): $ItemStack
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "deserializeNBT"(arg0: $CompoundTag$Type): void
 public "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
 set "shaderItem"(value: $ItemStack$Type)
 get "shaderItem"(): $ItemStack
@@ -7954,12 +7953,12 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type)
 
 public "getPlantType"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $PlantType
-public "getDescriptionId"(): string
 public "getPlant"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $BlockState
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
+public "getDescriptionId"(): string
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 get "descriptionId"(): string
 }
 /**
@@ -8005,16 +8004,16 @@ export class $RazorWireBlockEntity extends $ImmersiveConnectableBlockEntity impl
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "insertEnergy"(arg0: integer): void
+public "getRequestedEnergy"(): integer
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public static "applyDamage"(arg0: $LivingEntity$Type): void
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
 public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
 public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
-public static "applyDamage"(arg0: $LivingEntity$Type): void
-public "getRequestedEnergy"(): integer
+public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
+public "insertEnergy"(arg0: integer): void
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "isSource"(arg0: $ConnectionPoint$Type): boolean
 public "isOnGround"(): boolean
 public "renderWall"(arg0: boolean): boolean
@@ -8022,19 +8021,19 @@ public "isStacked"(): boolean
 public "isSink"(arg0: $ConnectionPoint$Type): boolean
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "extractEnergy"(arg0: integer): void
 public "getAvailableEnergy"(): integer
 public "onEnergyPassedThrough"(arg0: double): void
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
+public "extractEnergy"(arg0: integer): void
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
+get "requestedEnergy"(): integer
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-get "requestedEnergy"(): integer
 get "onGround"(): boolean
 get "stacked"(): boolean
 get "facing"(): $Direction
@@ -8204,8 +8203,8 @@ export class $CapabilityRedstoneNetwork$RedstoneBundleConnection {
 
 constructor()
 
-public "onChange"(arg0: (byte)[], arg1: $Direction$Type): void
 public "updateInput"(arg0: (byte)[], arg1: $Direction$Type): void
+public "onChange"(arg0: (byte)[], arg1: $Direction$Type): void
 public "markDirty"(): void
 public "pollDirty"(): boolean
 }
@@ -8315,61 +8314,62 @@ static readonly "ENERGY_CAPACITY": integer
 
 constructor(arg0: $BlockEntityType$Type<(T)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getCapability"<T2>(arg0: $Capability$Type<(T2)>, arg1: $Direction$Type): $LazyOptional<(T2)>
-public "canEntityDestroy"(arg0: $Entity$Type): boolean
-public "getRenderBoundingBox"(): $AABB
-public "getSlotLimit"(arg0: integer): integer
-public "isStackValid"(arg0: integer, arg1: $ItemStack$Type): boolean
-public "getInventory"(): $NonNullList<($ItemStack)>
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "resetTarget"(): void
+public "doGraphicalUpdates"(): void
 public "isValidTarget"(arg0: $LivingEntity$Type, arg1: boolean): boolean
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
 public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getGuiMaster"(): T
 public "getFacingProperty"(): $Property<($Direction)>
 public "getBlockEntityDrop"(arg0: $LootContext$Type, arg1: $Consumer$Type<($ItemStack$Type)>): void
-public "doGraphicalUpdates"(): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
-public "resetTarget"(): void
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "getRenderBoundingBox"(): $AABB
+public "getSlotLimit"(arg0: integer): integer
+public "getCapability"<T2>(arg0: $Capability$Type<(T2)>, arg1: $Direction$Type): $LazyOptional<(T2)>
+public "isStackValid"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "getInventory"(): $NonNullList<($ItemStack)>
+public "canEntityDestroy"(arg0: $Entity$Type): boolean
+public "master"(): $TurretBlockEntity<(T)>
 public "tickServer"(): void
 public "tickClient"(): void
-public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
+public "setDummy"(arg0: boolean): void
+public "tickCommon"(): void
 public "canUseGui"(arg0: $Player$Type): boolean
 public "isDummy"(): boolean
-public "tickCommon"(): void
-public "setDummy"(arg0: boolean): void
+public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
-public "getDroppedItems"(): $Stream<($ItemStack)>
 public "getComparatedSize"(): integer
+public "getDroppedItems"(): $Stream<($ItemStack)>
 public "getPickBlock"(arg0: $Player$Type, arg1: $BlockState$Type, arg2: $HitResult$Type): $ItemStack
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "isValid"(): boolean
 public "getContainerType"(): $IEMenuTypes$ArgContainer<(any), (any)>
-public "getDisplayName"(): $Component
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
+public "getDisplayName"(): $Component
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "shouldCloseCurrentScreen"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "renderBoundingBox"(): $AABB
-get "inventory"(): $NonNullList<($ItemStack)>
 get "facingLimitation"(): $PlacementLimitation
 get "guiMaster"(): T
 get "facingProperty"(): $Property<($Direction)>
-get "dummy"(): boolean
+get "renderBoundingBox"(): $AABB
+get "inventory"(): $NonNullList<($ItemStack)>
 set "dummy"(value: boolean)
-get "droppedItems"(): $Stream<($ItemStack)>
+get "dummy"(): boolean
 get "comparatedSize"(): integer
+get "droppedItems"(): $Stream<($ItemStack)>
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 get "valid"(): boolean
@@ -8517,12 +8517,12 @@ export class $FakeLightBlock$FakeLightBlockEntity extends $IEBaseBlockEntity imp
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "onChunkUnloaded"(): void
-public "onLoad"(): void
 public "getInterdictionRangeSquared"(): double
-public "setRemovedIE"(): void
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "setRemovedIE"(): void
+public "onChunkUnloaded"(): void
+public "onLoad"(): void
 public "tickServer"(): void
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "canTickAny"(): boolean
@@ -8571,19 +8571,19 @@ public static "builder"<State extends $IMultiblockState>(arg0: $IMultiblockLogic
 public "id"(): $ResourceLocation
 public "getSize"(): $Function<($Level), ($Vec3i)>
 public "block"(): $Supplier<(any)>
-public "getStructure"(): $Function<($Level), ($List<($StructureTemplate$StructureBlockInfo)>)>
-public "disassemble"(): $MultiblockRegistration$Disassembler
 public "hasComparatorOutput"(): boolean
+public "masterPosInMB"(): $BlockPos
 public "extraComponents"(): $List<($MultiblockRegistration$ExtraComponent<(State), (any)>)>
-public "redstoneInputAware"(): boolean
 public "postProcessesShape"(): boolean
 public "getMasterPosInMB"(): $Supplier<($BlockPos)>
-public "masterPosInMB"(): $BlockPos
+public "redstoneInputAware"(): boolean
+public "getStructure"(): $Function<($Level), ($List<($StructureTemplate$StructureBlockInfo)>)>
 public "blockItem"(): $Supplier<(any)>
+public "disassemble"(): $MultiblockRegistration$Disassembler
 public "iconStack"(): $ItemStack
 public "masterBE"(): $Supplier<($BlockEntityType<(any)>)>
-public "logic"(): $IMultiblockLogic<(State)>
 public "dummyBE"(): $Supplier<($BlockEntityType<(any)>)>
+public "logic"(): $IMultiblockLogic<(State)>
 public "mirrorable"(): boolean
 get "structure"(): $Function<($Level), ($List<($StructureTemplate$StructureBlockInfo)>)>
 }
@@ -8751,8 +8751,8 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 export class $WireCollisionData {
 
 
-public "removeConnection"(arg0: $Connection$Type): void
 public "addConnection"(arg0: $Connection$Type): void
+public "removeConnection"(arg0: $Connection$Type): void
 public "getCollisionInfo"(arg0: $BlockPos$Type): $Collection<($WireCollisionData$CollisionInfo)>
 public "getWiresIn"(arg0: $SectionPos$Type): $List<($WireCollisionData$ConnectionSegments)>
 }
@@ -8798,8 +8798,8 @@ import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$Compo
 import {$IEBlockInterfaces$ICollisionBounds, $IEBlockInterfaces$ICollisionBounds$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$ICollisionBounds"
 import {$IEBlockInterfaces$ISelectionBounds, $IEBlockInterfaces$ISelectionBounds$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$ISelectionBounds"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
-import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$PlacementLimitation, $PlacementLimitation$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$PlacementLimitation"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
@@ -8821,17 +8821,17 @@ export class $StructuralArmBlockEntity extends $IEBaseBlockEntity implements $IE
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getTotalLength"(): integer
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
+public "getSlopePosition"(): integer
+public "isOnCeiling"(): boolean
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "onNeighborBlockChange"(arg0: $BlockPos$Type): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
-public "onNeighborBlockChange"(arg0: $BlockPos$Type): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "getSlopePosition"(): integer
-public "isOnCeiling"(): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
+public "getTotalLength"(): integer
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
@@ -8839,11 +8839,11 @@ public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "totalLength"(): integer
-get "facingLimitation"(): $PlacementLimitation
-get "facingProperty"(): $Property<($Direction)>
 get "slopePosition"(): integer
 get "onCeiling"(): boolean
+get "facingLimitation"(): $PlacementLimitation
+get "facingProperty"(): $Property<($Direction)>
+get "totalLength"(): integer
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 }
@@ -8957,11 +8957,11 @@ export interface $IEBlockInterfaces$IStateBasedDirectional extends $IEBlockInter
  "getFacingProperty"(): $Property<($Direction)>
  "getFacing"(): $Direction
  "setFacing"(arg0: $Direction$Type): void
- "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
  "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
  "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
  "getFacingLimitation"(): $PlacementLimitation
  "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+ "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
  "setState"(arg0: $BlockState$Type): void
  "getState"(): $BlockState
 }
@@ -9154,8 +9154,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$DyeColor, $DyeColor$Type} from "packages/net/minecraft/world/item/$DyeColor"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$ItemEntity, $ItemEntity$Type} from "packages/net/minecraft/world/entity/item/$ItemEntity"
@@ -9166,17 +9166,7 @@ export interface $IConveyorBelt {
 
  "getType"(): $IConveyorType<(any)>
  "isActive"(): boolean
- "onEntityCollision"(arg0: $Entity$Type): void
- "getDirection"(arg0: $Entity$Type, arg1: boolean): $Vec3
- "getBlockEntity"(): $BlockEntity
- "getCollisionShape"(): $VoxelShape
- "getOutputInventory"(): $BlockPos
- "handleInsertion"(arg0: $ItemEntity$Type, arg1: $ConveyorHandler$ConveyorDirection$Type, arg2: double, arg3: double): void
- "getConveyorDirection"(): $ConveyorHandler$ConveyorDirection
- "changeConveyorDirection"(): boolean
- "setConveyorDirection"(arg0: $ConveyorHandler$ConveyorDirection$Type): boolean
- "onItemDeployed"(arg0: $ItemEntity$Type): void
- "playerInteraction"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $ItemStack$Type, arg3: float, arg4: float, arg5: float, arg6: $Direction$Type): boolean
+ "sigTransportDirections"(): ($Direction)[]
  "writeConveyorNBT"(): $CompoundTag
  "readConveyorNBT"(arg0: $CompoundTag$Type): void
  "setDyeColour"(arg0: $DyeColor$Type): boolean
@@ -9186,10 +9176,20 @@ export interface $IConveyorBelt {
  "isOutputBlocked"(): boolean
  "getNextConveyorCandidates"(): $List<($BlockPos)>
  "getOutputConveyor"(): $IConveyorBelt
- "sigTransportDirections"(): ($Direction)[]
+ "getConveyorDirection"(): $ConveyorHandler$ConveyorDirection
+ "changeConveyorDirection"(): boolean
+ "setConveyorDirection"(arg0: $ConveyorHandler$ConveyorDirection$Type): boolean
+ "onItemDeployed"(arg0: $ItemEntity$Type): void
+ "playerInteraction"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $ItemStack$Type, arg3: float, arg4: float, arg5: float, arg6: $Direction$Type): boolean
+ "handleInsertion"(arg0: $ItemEntity$Type, arg1: $ConveyorHandler$ConveyorDirection$Type, arg2: double, arg3: double): void
+ "getOutputInventory"(): $BlockPos
+ "getDirection"(arg0: $Entity$Type, arg1: boolean): $Vec3
+ "getBlockEntity"(): $BlockEntity
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "getCollisionShape"(): $VoxelShape
  "tickServer"(): void
- "isBlocked"(): boolean
  "getFacing"(): $Direction
+ "isBlocked"(): boolean
  "getCover"(): $Block
  "setCover"(arg0: $Block$Type): void
 }
@@ -9238,12 +9238,12 @@ static readonly "LAZY_EMPTY": $Lazy<($ItemStack)>
 
 constructor(arg0: $ResourceLocation$Type, arg1: $FluidStack$Type, arg2: $Lazy$Type<($ItemStack$Type)>, arg3: $IngredientWithSize$Type, arg4: integer)
 
+public "getMultipleProcessTicks"(): integer
 public "setInputSize"(arg0: integer): $FermenterRecipe
 public static "getFluidValuesSorted"(arg0: $Level$Type, arg1: $Fluid$Type, arg2: boolean): $SortedMap<($Component), (integer)>
-public "getMultipleProcessTicks"(): integer
 public static "findRecipe"(arg0: $Level$Type, arg1: $ItemStack$Type): $FermenterRecipe
-set "inputSize"(value: integer)
 get "multipleProcessTicks"(): integer
+set "inputSize"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9356,8 +9356,8 @@ readonly "stateDefinition": $StateDefinition<($Fluid), ($FluidState)>
 constructor(arg0: $IEFluids$FluidEntry$Type)
 
 public "getFlowingFluidState"(arg0: integer, arg1: boolean, arg2: $FluidState$Type, arg3: integer): $FluidState
-public "tick"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FluidState$Type): void
 public "getTickDelay"(arg0: $LevelReader$Type): integer
+public "tick"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FluidState$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9426,8 +9426,6 @@ static readonly "LAZY_EMPTY": $Lazy<($ItemStack)>
 constructor(arg0: $ResourceLocation$Type, arg1: $List$Type<($Lazy$Type<($ItemStack$Type)>)>, arg2: $Lazy$Type<($ItemStack$Type)>, arg3: $List$Type<($StackWithChance$Type)>, arg4: integer, arg5: integer, arg6: $IngredientWithSize$Type, ...arg7: ($IngredientWithSize$Type)[])
 
 public "matches"(arg0: $ItemStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>): boolean
-public "isValidInput"(arg0: $ItemStack$Type): boolean
-public "getMultipleProcessTicks"(): integer
 public "getBaseOutputs"(): $NonNullList<($ItemStack)>
 public "generateActualOutput"(arg0: $ItemStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: long): $NonNullList<($ItemStack)>
 public "getConsumedAdditives"(arg0: $NonNullList$Type<($ItemStack$Type)>, arg1: boolean): (integer)[]
@@ -9435,10 +9433,12 @@ public "isValidAdditive"(arg0: $ItemStack$Type): boolean
 public "setSpecialRecipeType"(arg0: string): $ArcFurnaceRecipe
 public static "isValidRecipeInput"(arg0: $Level$Type, arg1: $ItemStack$Type): boolean
 public static "isValidRecipeAdditive"(arg0: $Level$Type, arg1: $ItemStack$Type): boolean
+public "getMultipleProcessTicks"(): integer
+public "isValidInput"(arg0: $ItemStack$Type): boolean
 public static "findRecipe"(arg0: $Level$Type, arg1: $ItemStack$Type, arg2: $NonNullList$Type<($ItemStack$Type)>): $ArcFurnaceRecipe
-get "multipleProcessTicks"(): integer
 get "baseOutputs"(): $NonNullList<($ItemStack)>
 set "specialRecipeType"(value: string)
+get "multipleProcessTicks"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9608,8 +9608,8 @@ export type $DirectionalBlockPos_ = $DirectionalBlockPos$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/$IEBaseBlockEntity" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
-import {$ModelData, $ModelData$Type} from "packages/net/minecraftforge/client/model/data/$ModelData"
 import {$Connection, $Connection$Type} from "packages/net/minecraft/network/$Connection"
+import {$ModelData, $ModelData$Type} from "packages/net/minecraftforge/client/model/data/$ModelData"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
@@ -9631,28 +9631,25 @@ constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $Blo
 
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
-public "getLevelNonnull"(): $Level
-public "invalidateCaps"(): void
-public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
-public "onChunkUnloaded"(): void
-public "getModelData"(): $ModelData
-public "handleUpdateTag"(arg0: $CompoundTag$Type): void
-public "onDataPacket"(arg0: $Connection$Type, arg1: $ClientboundBlockEntityDataPacket$Type): void
-public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
-public "onLoad"(): void
 public "markContainingBlockForUpdate"(arg0: $BlockState$Type): void
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "receiveMessageFromClient"(arg0: $CompoundTag$Type): void
 public "receiveMessageFromServer"(arg0: $CompoundTag$Type): void
 public "markBlockForUpdate"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
 public "addCapInvalidateHook"(arg0: $Runnable$Type): void
 public "setRemovedIE"(): void
 public "setOverrideState"(arg0: $BlockState$Type): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "getLevelNonnull"(): $Level
+public "onChunkUnloaded"(): void
+public "onDataPacket"(arg0: $Connection$Type, arg1: $ClientboundBlockEntityDataPacket$Type): void
+public "handleUpdateTag"(arg0: $CompoundTag$Type): void
+public "getModelData"(): $ModelData
+public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
+public "invalidateCaps"(): void
+public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
+public "onLoad"(): void
 public "setChanged"(): void
-public "triggerEvent"(arg0: integer, arg1: integer): boolean
-public "getBlockState"(): $BlockState
-public "load"(arg0: $CompoundTag$Type): void
 public "setLevel"(arg0: $Level$Type): void
 public "getUpdateTag"(): $CompoundTag
 public "setRemoved"(): void
@@ -9661,17 +9658,20 @@ public "setRemoved"(): void
  * @deprecated
  */
 public "setBlockState"(arg0: $BlockState$Type): void
+public "triggerEvent"(arg0: integer, arg1: integer): boolean
+public "getBlockState"(): $BlockState
+public "load"(arg0: $CompoundTag$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 set "state"(value: $BlockState$Type)
 get "state"(): $BlockState
+set "overrideState"(value: $BlockState$Type)
 get "levelNonnull"(): $Level
 get "modelData"(): $ModelData
 get "updatePacket"(): $ClientboundBlockEntityDataPacket
-set "overrideState"(value: $BlockState$Type)
-get "blockState"(): $BlockState
 set "level"(value: $Level$Type)
 get "updateTag"(): $CompoundTag
 set "blockState"(value: $BlockState$Type)
+get "blockState"(): $BlockState
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9849,50 +9849,50 @@ export class $ElectricLanternBlockEntity extends $ImmersiveConnectableBlockEntit
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "onChunkUnloaded"(): void
-public "onLoad"(): void
-public "insertEnergy"(arg0: integer): void
 public "getInterdictionRangeSquared"(): double
+public "getRequestedEnergy"(): integer
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "setRemovedIE"(): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
 public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
 public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "getRequestedEnergy"(): integer
-public "setRemovedIE"(): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "triggerEvent"(arg0: integer, arg1: integer): boolean
+public "onChunkUnloaded"(): void
+public "insertEnergy"(arg0: integer): void
+public "onLoad"(): void
 public "tickServer"(): void
+public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public "isSource"(arg0: $ConnectionPoint$Type): boolean
 public "isSink"(arg0: $ConnectionPoint$Type): boolean
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "setActive"(arg0: boolean): void
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getIsActive"(): boolean
-public "extractEnergy"(arg0: integer): void
+public "setActive"(arg0: boolean): void
 public "getAvailableEnergy"(): integer
 public "onEnergyPassedThrough"(arg0: double): void
+public "extractEnergy"(arg0: integer): void
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "interdictionRangeSquared"(): double
+get "requestedEnergy"(): integer
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-get "requestedEnergy"(): integer
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
-set "active"(value: boolean)
 get "isActive"(): boolean
+set "active"(value: boolean)
 get "availableEnergy"(): integer
 set "state"(value: $BlockState$Type)
 get "state"(): $BlockState
@@ -9940,12 +9940,12 @@ public static "post"(arg0: string, arg1: $Supplier$Type<($BlockBehaviour$Propert
 public "get"(): T
 public "getProperties"(): $BlockBehaviour$Properties
 public "getId"(): $ResourceLocation
+public "getRegObject"(): $RegistryObject<(any)>
 public static "scaffolding"(arg0: string, arg1: $Supplier$Type<($BlockBehaviour$Properties$Type)>): $IEBlocks$BlockEntry<($ScaffoldingBlock)>
 public "defaultBlockState"(): $BlockState
-public "getRegObject"(): $RegistryObject<(any)>
+public "asItem"(): $Item
 public static "simple"(arg0: string, arg1: $Supplier$Type<($BlockBehaviour$Properties$Type)>, arg2: $Consumer$Type<($IEBaseBlock$Type)>): $IEBlocks$BlockEntry<($IEBaseBlock)>
 public static "simple"(arg0: string, arg1: $Supplier$Type<($BlockBehaviour$Properties$Type)>): $IEBlocks$BlockEntry<($IEBaseBlock)>
-public "asItem"(): $Item
 public static "barrel"(arg0: string, arg1: boolean): $IEBlocks$BlockEntry<($IEEntityBlock<(any)>)>
 public static "wallmount"(arg0: string, arg1: $Supplier$Type<($BlockBehaviour$Properties$Type)>): $IEBlocks$BlockEntry<($WallmountBlock)>
 get "properties"(): $BlockBehaviour$Properties
@@ -10002,8 +10002,8 @@ export class $FluidPipeBlockEntity$DirectionalFluidOutput extends $Record {
 
 constructor(output: $IFluidHandler$Type, direction: $Direction$Type, containingTile: $BlockEntity$Type)
 
-public "output"(): $IFluidHandler
 public "direction"(): $Direction
+public "output"(): $IFluidHandler
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -10049,20 +10049,20 @@ export class $TurntableBlockEntity extends $IEBaseBlockEntity implements $IEBloc
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
 public "verticalTransitionRotationMap"(arg0: $Direction$Type, arg1: $Direction$Type): void
-public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
-public "getFacingLimitation"(): $PlacementLimitation
-public "getFacingProperty"(): $Property<($Direction)>
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "onNeighborBlockChange"(arg0: $BlockPos$Type): void
 public "getRotationFromSide"(arg0: $Direction$Type): $Rotation
 public "rotateRotationMap"(arg0: $Rotation$Type): void
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "onNeighborBlockChange"(arg0: $BlockPos$Type): void
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
+public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
+public "getFacingLimitation"(): $PlacementLimitation
+public "getFacingProperty"(): $Property<($Direction)>
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
@@ -10219,8 +10219,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $RegistryObject$Type<($BlockEntityType$Type<(T)>)>, arg1: $BlockBehaviour$Properties$Type)
 
-public "canIEBlockBePlaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public static "placeDummies"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockPlaceContext$Type): void
+public "canIEBlockBePlaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public static "getDeskDummyOffset"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: $BlockPlaceContext$Type): $Direction
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
@@ -10252,8 +10252,8 @@ import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/worl
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IEMinecartEntity$MinecartConstructor, $IEMinecartEntity$MinecartConstructor$Type} from "packages/blusunrize/immersiveengineering/common/entities/$IEMinecartEntity$MinecartConstructor"
 import {$IEBaseItem, $IEBaseItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEBaseItem"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$DispenseItemBehavior, $DispenseItemBehavior$Type} from "packages/net/minecraft/core/dispenser/$DispenseItemBehavior"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -10275,9 +10275,9 @@ readonly "canRepair": boolean
 
 constructor(arg0: $IEMinecartEntity$MinecartConstructor$Type, arg1: boolean)
 
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "canFitInsideContainerItems"(): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "createCart"(arg0: $Level$Type, arg1: double, arg2: double, arg3: double, arg4: $ItemStack$Type): $IEMinecartEntity<(any)>
 }
 /**
@@ -10350,8 +10350,8 @@ declare global {
 export type $MineralMixSerializer_ = $MineralMixSerializer$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/wooden/$CraftingTableBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -10386,31 +10386,31 @@ static readonly "STORAGE_SIZE": integer
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "getContainerType"(): $IEMenuTypes$ArgContainer<($CraftingTableBlockEntity), (any)>
-public "getFacingLimitation"(): $PlacementLimitation
-public "getFacingProperty"(): $Property<($Direction)>
-public "getCraftingInventory"(): $NonNullList<($ItemStack)>
-public "getDroppedItems"(): $Stream<($ItemStack)>
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "getCraftingInventory"(): $NonNullList<($ItemStack)>
+public "getDroppedItems"(): $Stream<($ItemStack)>
+public "getFacingLimitation"(): $PlacementLimitation
+public "getFacingProperty"(): $Property<($Direction)>
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "getContainerType"(): $IEMenuTypes$ArgContainer<($CraftingTableBlockEntity), (any)>
 public "getDisplayName"(): $Component
 public "canUseGui"(arg0: $Player$Type): boolean
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "isValid"(): boolean
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "shouldCloseCurrentScreen"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "containerType"(): $IEMenuTypes$ArgContainer<($CraftingTableBlockEntity), (any)>
-get "facingLimitation"(): $PlacementLimitation
-get "facingProperty"(): $Property<($Direction)>
 get "craftingInventory"(): $NonNullList<($ItemStack)>
 get "droppedItems"(): $Stream<($ItemStack)>
+get "facingLimitation"(): $PlacementLimitation
+get "facingProperty"(): $Property<($Direction)>
+get "containerType"(): $IEMenuTypes$ArgContainer<($CraftingTableBlockEntity), (any)>
 get "displayName"(): $Component
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
@@ -10464,20 +10464,20 @@ readonly "canRepair": boolean
 
 constructor()
 
+public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
+public "isCorrectToolForDrops"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
+public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
+public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
 public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
 public "getMaxDamage"(arg0: $ItemStack$Type): integer
-public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
-public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
-public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
-public "isCorrectToolForDrops"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
+public "isEnchantable"(arg0: $ItemStack$Type): boolean
+public "getEnchantmentValue"(): integer
+public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "canBeDepleted"(): boolean
 public "mineBlock"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: $LivingEntity$Type): boolean
-public "isEnchantable"(arg0: $ItemStack$Type): boolean
-public "getEnchantmentValue"(): integer
-public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 get "enchantmentValue"(): integer
 }
 /**
@@ -10555,14 +10555,14 @@ constructor(arg0: $MineralMix$Type, arg1: double, arg2: double, arg3: integer)
 
 public "getType"(): $MineralMix
 public "getSaturation"(): double
-public "getDepletion"(): integer
 public "getPercentageInTotalSample"(): double
+public "getDepletion"(): integer
 public static "fromNBT"(arg0: $Level$Type, arg1: $CompoundTag$Type): $CoresampleItem$VeinSampleData
 public "toNBT"(): $CompoundTag
 get "type"(): $MineralMix
 get "saturation"(): double
-get "depletion"(): integer
 get "percentageInTotalSample"(): double
+get "depletion"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10590,8 +10590,8 @@ import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/worl
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$MineralWorldInfo, $MineralWorldInfo$Type} from "packages/blusunrize/immersiveengineering/api/excavator/$MineralWorldInfo"
 import {$IEBaseItem, $IEBaseItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEBaseItem"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$ColumnPos, $ColumnPos$Type} from "packages/net/minecraft/server/level/$ColumnPos"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
@@ -10616,13 +10616,13 @@ readonly "canRepair": boolean
 constructor()
 
 public static "getDimension"(arg0: $ItemStack$Type): $ResourceKey<($Level)>
-public static "setDimension"(arg0: $ItemStack$Type, arg1: $ResourceKey$Type<($Level$Type)>): void
-public static "getMineralMixes"(arg0: $Level$Type, arg1: $ItemStack$Type): ($MineralMix)[]
 public static "setMineralInfo"(arg0: $Level$Type, arg1: $ItemStack$Type, arg2: $MineralWorldInfo$Type, arg3: $BlockPos$Type): void
 public static "getSimplifiedMineralList"(arg0: $Level$Type, arg1: $ItemStack$Type): $ListTag
 public static "getCoresampleInfo"(arg0: $ItemStack$Type, arg1: $List$Type<($Component$Type)>, arg2: $ChatFormatting$Type, arg3: $Level$Type, arg4: boolean, arg5: boolean): void
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public static "getMineralMixes"(arg0: $Level$Type, arg1: $ItemStack$Type): ($MineralMix)[]
+public static "setDimension"(arg0: $ItemStack$Type, arg1: $ResourceKey$Type<($Level$Type)>): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public static "getCoords"(arg0: $ItemStack$Type): $ColumnPos
 public static "getVeins"(arg0: $Level$Type, arg1: $ItemStack$Type): $List<($CoresampleItem$VeinSampleData)>
 public static "setCoords"(arg0: $ItemStack$Type, arg1: $BlockPos$Type): void
@@ -10644,8 +10644,8 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$IShaderItem, $IShaderItem$Type} from "packages/blusunrize/immersiveengineering/api/shader/$IShaderItem"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
@@ -10653,8 +10653,8 @@ import {$Rarity, $Rarity$Type} from "packages/net/minecraft/world/item/$Rarity"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IEBaseItem, $IEBaseItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEBaseItem"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$IEItemInterfaces$IColouredItem, $IEItemInterfaces$IColouredItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEItemInterfaces$IColouredItem"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$ShaderCase, $ShaderCase$Type} from "packages/blusunrize/immersiveengineering/api/shader/$ShaderCase"
@@ -10677,14 +10677,14 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
 public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
 public "getShaderCase"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type): $ShaderCase
 public "getShaderName"(arg0: $ItemStack$Type): $ResourceLocation
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "getColourForIEItem"(arg0: $ItemStack$Type, arg1: integer): integer
+public "getRarity"(arg0: $ItemStack$Type): $Rarity
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getRarity"(arg0: $ItemStack$Type): $Rarity
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10756,8 +10756,8 @@ import {$IImmersiveConnectable, $IImmersiveConnectable$Type} from "packages/blus
 import {$IEBlockInterfaces$IStateBasedDirectional, $IEBlockInterfaces$IStateBasedDirectional$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IStateBasedDirectional"
 import {$HitResult, $HitResult$Type} from "packages/net/minecraft/world/phys/$HitResult"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
-import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$TargetingInfo, $TargetingInfo$Type} from "packages/blusunrize/immersiveengineering/api/$TargetingInfo"
+import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$IEBlockInterfaces$IBlockEntityDrop, $IEBlockInterfaces$IBlockEntityDrop$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IBlockEntityDrop"
 
 export class $FeedthroughBlockEntity extends $ImmersiveConnectableBlockEntity implements $IEBlockInterfaces$IBlockEntityDrop, $IEBlockInterfaces$IBlockBounds, $IEBlockInterfaces$IStateBasedDirectional {
@@ -10774,44 +10774,44 @@ static readonly "MIDDLE_STATE": string
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getPickBlock"(arg0: $Player$Type, arg1: $BlockState$Type, arg2: $HitResult$Type): $ItemStack
-public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
-public "getFacingLimitation"(): $PlacementLimitation
-public "getFacingProperty"(): $Property<($Direction)>
-public "getBlockEntityDrop"(arg0: $LootContext$Type, arg1: $Consumer$Type<($ItemStack$Type)>): void
+public static "getIndexForOffset"(arg0: integer): integer
+public "getPositivePoint"(): $ConnectionPoint
+public "getNegativePoint"(): $ConnectionPoint
+public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
 public "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
 public "removeCable"(arg0: $Connection$Type, arg1: $ConnectionPoint$Type): void
 public "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
 public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
-public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
-public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
-public "getInternalConnections"(): $Iterable<(any)>
-public static "getIndexForOffset"(arg0: integer): integer
-public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
+public "getPickBlock"(arg0: $Player$Type, arg1: $BlockState$Type, arg2: $HitResult$Type): $ItemStack
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "getPositivePoint"(): $ConnectionPoint
-public "getNegativePoint"(): $ConnectionPoint
+public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
+public "getFacingLimitation"(): $PlacementLimitation
+public "getFacingProperty"(): $Property<($Direction)>
+public "getBlockEntityDrop"(arg0: $LootContext$Type, arg1: $Consumer$Type<($ItemStack$Type)>): void
+public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
+public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
+public "getInternalConnections"(): $Iterable<(any)>
 public "triggerEvent"(arg0: integer, arg1: integer): boolean
-public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
 public "getIgnored"(arg0: $IImmersiveConnectable$Type): $Set<($BlockPos)>
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "facingLimitation"(): $PlacementLimitation
-get "facingProperty"(): $Property<($Direction)>
-get "connectionPoints"(): $Collection<($ConnectionPoint)>
-get "internalConnections"(): $Iterable<(any)>
 get "positivePoint"(): $ConnectionPoint
 get "negativePoint"(): $ConnectionPoint
+get "connectionPoints"(): $Collection<($ConnectionPoint)>
+get "facingLimitation"(): $PlacementLimitation
+get "facingProperty"(): $Property<($Direction)>
+get "internalConnections"(): $Iterable<(any)>
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 set "state"(value: $BlockState$Type)
@@ -10970,9 +10970,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
 public "getMaxAge"(): integer
 public "growCrops"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
@@ -11054,9 +11054,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "isAir"(arg0: $BlockState$Type): boolean
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "isAir"(arg0: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -11103,10 +11103,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $IEServerConfig$Machines$CapacitorConfig$Type)
 
 public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11266,11 +11266,11 @@ constructor()
 
 public "isDamageable"(arg0: $ItemStack$Type): boolean
 public "getMaxDamage"(arg0: $ItemStack$Type): integer
-public "getBarWidth"(arg0: $ItemStack$Type): integer
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "isDamaged"(arg0: $ItemStack$Type): boolean
 public "setDamage"(arg0: $ItemStack$Type, arg1: integer): void
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getBarWidth"(arg0: $ItemStack$Type): integer
 public "getDamage"(arg0: $ItemStack$Type): integer
 }
 /**
@@ -11366,8 +11366,8 @@ import {$IConveyorBelt, $IConveyorBelt$Type} from "packages/blusunrize/immersive
 
 export interface $ConveyorHandler$IConveyorBlockEntity<T extends $IConveyorBelt> extends $ConveyorHandler$IConveyorAttachable {
 
- "sigOutputDirections"(): ($Direction)[]
  "getConveyorInstance"(): T
+ "sigOutputDirections"(): ($Direction)[]
  "getFacing"(): $Direction
 }
 
@@ -11440,9 +11440,9 @@ import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/
 
 export interface $IEBlockInterfaces$IBlockBounds extends $IEBlockInterfaces$ISelectionBounds, $IEBlockInterfaces$ICollisionBounds {
 
- "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+ "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 
 (arg0: $CollisionContext$Type): $VoxelShape
 }
@@ -11497,13 +11497,13 @@ readonly "canRepair": boolean
 constructor()
 
 public "isEmpty"(arg0: $ItemStack$Type): boolean
-public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
-public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
-public "getSlotCount"(): integer
 public "getBulletCount"(arg0: $ItemStack$Type): integer
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
+public "getSlotCount"(): integer
+public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
+public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
 public "getBullets"(arg0: $ItemStack$Type): $NonNullList<($ItemStack)>
+public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 get "slotCount"(): integer
 }
 /**
@@ -11530,15 +11530,15 @@ import {$Tier, $Tier$Type} from "packages/net/minecraft/world/item/$Tier"
 
 export interface $IDrillHead {
 
- "getAttackDamage"(arg0: $ItemStack$Type): float
- "getMiningLevel"(arg0: $ItemStack$Type): $Tier
- "getHeadDamage"(arg0: $ItemStack$Type): integer
  "getDrillTexture"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $ResourceLocation
+ "getHeadDamage"(arg0: $ItemStack$Type): integer
+ "getMiningSpeed"(arg0: $ItemStack$Type): float
  "getMaximumHeadDamage"(arg0: $ItemStack$Type): integer
  "afterBlockbreak"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Player$Type): void
- "getMiningSpeed"(arg0: $ItemStack$Type): float
  "beforeBlockbreak"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Player$Type): boolean
  "getExtraBlocksDug"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type, arg3: $HitResult$Type): $ImmutableList<($BlockPos)>
+ "getAttackDamage"(arg0: $ItemStack$Type): float
+ "getMiningLevel"(arg0: $ItemStack$Type): $Tier
  "damageHead"(arg0: $ItemStack$Type, arg1: integer): void
 }
 
@@ -11796,8 +11796,8 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export interface $ClocheRenderFunction {
 
  "injectQuads"(arg0: $ItemStack$Type, arg1: float, arg2: $Consumer$Type<(any)>): void
- "getBlocks"(arg0: $ItemStack$Type, arg1: float): $Collection<($Pair<($BlockState), ($Transformation)>)>
  "getScale"(arg0: $ItemStack$Type, arg1: float): float
+ "getBlocks"(arg0: $ItemStack$Type, arg1: float): $Collection<($Pair<($BlockState), ($Transformation)>)>
 }
 
 export namespace $ClocheRenderFunction {
@@ -11872,8 +11872,8 @@ import {$IImmersiveConnectable, $IImmersiveConnectable$Type} from "packages/blus
 import {$IEBlockInterfaces$IPlayerInteraction, $IEBlockInterfaces$IPlayerInteraction$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IPlayerInteraction"
 import {$IEBlockInterfaces$IStateBasedDirectional, $IEBlockInterfaces$IStateBasedDirectional$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IStateBasedDirectional"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
-import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$TargetingInfo, $TargetingInfo$Type} from "packages/blusunrize/immersiveengineering/api/$TargetingInfo"
+import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$IEBlockInterfaces$IHammerInteraction, $IEBlockInterfaces$IHammerInteraction$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IHammerInteraction"
 
 export class $BreakerSwitchBlockEntity extends $ImmersiveConnectableBlockEntity implements $IEBlockInterfaces$IBlockBounds, $IEBlockInterfaces$IAdvancedDirectionalBE, $IEBlockInterfaces$IActiveState, $IEBlockInterfaces$IHammerInteraction, $IEBlockInterfaces$IScrewdriverInteraction, $IEBlockInterfaces$IPlayerInteraction, $IEBlockInterfaces$IRedstoneOutput, $IEBlockInterfaces$IStateBasedDirectional {
@@ -11890,46 +11890,46 @@ static readonly "RIGHT_INDEX": integer
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "canConnectRedstone"(arg0: $Direction$Type): boolean
-public "notifyNeighbours"(): void
+public "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
+public "removeCable"(arg0: $Connection$Type, arg1: $ConnectionPoint$Type): void
+public "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
+public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "onDirectionalPlacement"(arg0: $Direction$Type, arg1: float, arg2: float, arg3: float, arg4: $LivingEntity$Type): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
+public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getWeakRSOutput"(arg0: $Direction$Type): integer
 public "getStrongRSOutput"(arg0: $Direction$Type): integer
 public "getFacingProperty"(): $Property<($Direction)>
-public "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
-public "removeCable"(arg0: $Connection$Type, arg1: $ConnectionPoint$Type): void
-public "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
-public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
+public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
 public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
 public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
 public "getInternalConnections"(): $Iterable<(any)>
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
-public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "notifyNeighbours"(): void
+public "canConnectRedstone"(arg0: $Direction$Type): boolean
 public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public "interact"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ItemStack$Type, arg4: float, arg5: float, arg6: float): boolean
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "setActive"(arg0: boolean): void
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getIsActive"(): boolean
+public "setActive"(arg0: boolean): void
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
+get "connectionPoints"(): $Collection<($ConnectionPoint)>
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-get "connectionPoints"(): $Collection<($ConnectionPoint)>
 get "internalConnections"(): $Iterable<(any)>
-set "active"(value: boolean)
 get "isActive"(): boolean
+set "active"(value: boolean)
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 set "state"(value: $BlockState$Type)
@@ -12016,15 +12016,15 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 export class $ShaderCase {
 
 
-public "getTextureReplacement"(arg0: string, arg1: integer): $ResourceLocation
-public "getRenderColor"(arg0: string, arg1: integer, arg2: $Vector4f$Type): $Vector4f
 public "getShaderType"(): $ResourceLocation
 public "getLayerInsertionIndex"(): integer
 public "shouldRenderGroupForPass"(arg0: string, arg1: integer): boolean
 public "stitchIntoSheet"(): boolean
-public "getLayers"(): ($ShaderLayer)[]
-public "addLayers"(...arg0: ($ShaderLayer$Type)[]): $ShaderCase
+public "getTextureReplacement"(arg0: string, arg1: integer): $ResourceLocation
+public "getRenderColor"(arg0: string, arg1: integer, arg2: $Vector4f$Type): $Vector4f
 public "addLayers"(arg0: integer, ...arg1: ($ShaderLayer$Type)[]): $ShaderCase
+public "addLayers"(...arg0: ($ShaderLayer$Type)[]): $ShaderCase
+public "getLayers"(): ($ShaderLayer)[]
 get "shaderType"(): $ResourceLocation
 get "layerInsertionIndex"(): integer
 get "layers"(): ($ShaderLayer)[]
@@ -12115,24 +12115,24 @@ public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "getTarget"(): $Ingredient
 public "getColorKey"(): string
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "getId"(): $ResourceLocation
 public "isSpecial"(): boolean
-public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "category"(): $CraftingBookCategory
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "category"(): $CraftingBookCategory
-public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemStack)>
-public "getIngredients"(): $NonNullList<($Ingredient)>
 public "showNotification"(): boolean
+public "getIngredients"(): $NonNullList<($Ingredient)>
+public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemStack)>
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "getType"(): $ResourceLocation
-public "getGroup"(): string
-public "setGroup"(group: string): void
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "setGroup"(group: string): void
+public "getGroup"(): string
+public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -12144,11 +12144,11 @@ get "serializer"(): $RecipeSerializer<(any)>
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "type"(): $ResourceLocation
-get "group"(): string
-set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
+set "group"(value: string)
+get "group"(): string
+get "type"(): $ResourceLocation
 get "mod"(): string
 }
 /**
@@ -12182,8 +12182,8 @@ static readonly "HORIZONTAL": ($RelativeBlockFace)[]
 public static "values"(): ($RelativeBlockFace)[]
 public static "valueOf"(arg0: string): $RelativeBlockFace
 public static "from"(arg0: $MultiblockOrientation$Type, arg1: $Direction$Type): $RelativeBlockFace
-public "getOpposite"(): $RelativeBlockFace
 public "offsetRelative"(arg0: $BlockPos$Type, arg1: integer): $BlockPos
+public "getOpposite"(): $RelativeBlockFace
 public "forFront"(arg0: $MultiblockOrientation$Type): $Direction
 get "opposite"(): $RelativeBlockFace
 }
@@ -12275,11 +12275,11 @@ import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/en
 export interface $IEBlockInterfaces$IAdvancedDirectionalBE extends $IEBlockInterfaces$IDirectionalBE {
 
  "onDirectionalPlacement"(arg0: $Direction$Type, arg1: float, arg2: float, arg3: float, arg4: $LivingEntity$Type): void
- "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
  "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
  "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
  "getFacingLimitation"(): $PlacementLimitation
  "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+ "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
  "getFacing"(): $Direction
  "setFacing"(arg0: $Direction$Type): void
 }
@@ -12564,8 +12564,8 @@ export type $IEBlockInterfaces$IEntityProof_ = $IEBlockInterfaces$IEntityProof$T
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/cloth/$ShaderBannerBlockEntity" {
 import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/fabric/api/attachment/v1/$AttachmentTarget"
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IEBaseBlockEntity, $IEBaseBlockEntity$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBaseBlockEntity"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$CapabilityShader$ShaderWrapper_Direct, $CapabilityShader$ShaderWrapper_Direct$Type} from "packages/blusunrize/immersiveengineering/api/shader/$CapabilityShader$ShaderWrapper_Direct"
@@ -12583,9 +12583,9 @@ export class $ShaderBannerBlockEntity extends $IEBaseBlockEntity {
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 }
@@ -12776,12 +12776,12 @@ constructor(arg0: $BlockBehaviour$Properties$Type, arg1: boolean)
 
 public "isHidden"(): boolean
 public static "applyLocationalWaterlogging"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $BlockState
+public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
+public "fitsIntoContainer"(): boolean
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getNameForFlavour"(): string
 public "canIEBlockBePlaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "onIEBlockPlacedBy"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
-public "fitsIntoContainer"(): boolean
-public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "setHasFlavour"(arg0: boolean): $IEBaseBlock
 public "setLightOpacity"(arg0: integer): $IEBaseBlock
 public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -12794,14 +12794,14 @@ public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "getShadeBrightness"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): float
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
-public "hasFlavour"(): boolean
 public "setHidden"(arg0: boolean): $IEBaseBlock
+public "hasFlavour"(): boolean
 public "getPickupSound"(): $Optional<($SoundEvent)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
@@ -12916,11 +12916,11 @@ import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/en
 
 export interface $IEBlockInterfaces$IDirectionalBE {
 
- "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
  "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
  "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
  "getFacingLimitation"(): $PlacementLimitation
  "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+ "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
  "getFacing"(): $Direction
  "setFacing"(arg0: $Direction$Type): void
 }
@@ -13038,13 +13038,13 @@ declare global {
 export type $WindmillBiomeSerializer_ = $WindmillBiomeSerializer$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/cloth/$BalloonBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$ConnectionPoint, $ConnectionPoint$Type} from "packages/blusunrize/immersiveengineering/api/wires/$ConnectionPoint"
-import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
-import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$ImmersiveConnectableBlockEntity, $ImmersiveConnectableBlockEntity$Type} from "packages/blusunrize/immersiveengineering/common/blocks/generic/$ImmersiveConnectableBlockEntity"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
@@ -13073,18 +13073,18 @@ export class $BalloonBlockEntity extends $ImmersiveConnectableBlockEntity implem
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
-public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
+public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
+public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "triggerEvent"(arg0: integer, arg1: integer): boolean
-public "getShader"(): $CapabilityShader$ShaderWrapper
 public "interact"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ItemStack$Type, arg4: float, arg5: float, arg6: float): boolean
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getShader"(): $CapabilityShader$ShaderWrapper
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "shader"(): $CapabilityShader$ShaderWrapper
 }
@@ -13144,8 +13144,8 @@ declare global {
 export type $CrusherRecipe_ = $CrusherRecipe$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$ClocheBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$IEServerTickableBE, $IEServerTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEServerTickableBE"
 import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
@@ -13168,8 +13168,8 @@ import {$AbstractContainerMenu, $AbstractContainerMenu$Type} from "packages/net/
 import {$DistField, $DistField$Type} from "packages/blusunrize/immersiveengineering/client/utils/$DistField"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Inventory, $Inventory$Type} from "packages/net/minecraft/world/entity/player/$Inventory"
-import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 import {$IIEInventory, $IIEInventory$Type} from "packages/blusunrize/immersiveengineering/common/util/inventory/$IIEInventory"
 import {$IEClientTickableBE, $IEClientTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEClientTickableBE"
 import {$IModelOffsetProvider, $IModelOffsetProvider$Type} from "packages/blusunrize/immersiveengineering/api/client/$IModelOffsetProvider"
@@ -13208,53 +13208,55 @@ readonly "cachedRecipe": $Supplier<($ClocheRecipe)>
 
 constructor(arg0: $BlockEntityType$Type<($ClocheBlockEntity$Type)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "getRenderBoundingBox"(): $AABB
-public "getSlotLimit"(arg0: integer): integer
-public "isStackValid"(arg0: integer, arg1: $ItemStack$Type): boolean
-public "getContainerType"(): $IEMenuTypes$ArgContainer<($ClocheBlockEntity), (any)>
-public "getInventory"(): $NonNullList<($ItemStack)>
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "doGraphicalUpdates"(): void
+public "getGuiProgress"(): float
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "receiveMessageFromServer"(arg0: $CompoundTag$Type): void
 public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
 public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
 public "getFacingLimitation"(): $PlacementLimitation
+public "getGuiMaster"(): $ClocheBlockEntity
 public "getFacingProperty"(): $Property<($Direction)>
-public "doGraphicalUpdates"(): void
-public "receiveMessageFromServer"(arg0: $CompoundTag$Type): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getGuiProgress"(): float
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "getRenderBoundingBox"(): $AABB
+public "getSlotLimit"(arg0: integer): integer
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "isStackValid"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "getInventory"(): $NonNullList<($ItemStack)>
+public "getContainerType"(): $IEMenuTypes$ArgContainer<($ClocheBlockEntity), (any)>
 public "master"(): $ClocheBlockEntity
 public "tickServer"(): void
 public "tickClient"(): void
-public "setFacing"(arg0: $Direction$Type): void
 public "canUseGui"(arg0: $Player$Type): boolean
 public "canTickAny"(): boolean
 public "isDummy"(): boolean
+public "setFacing"(arg0: $Direction$Type): void
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getFacing"(): $Direction
-public "getDroppedItems"(): $Stream<($ItemStack)>
 public "getComparatedSize"(): integer
+public "getDroppedItems"(): $Stream<($ItemStack)>
 public "isValid"(): boolean
-public "getDisplayName"(): $Component
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
+public "getDisplayName"(): $Component
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "shouldCloseCurrentScreen"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "renderBoundingBox"(): $AABB
-get "containerType"(): $IEMenuTypes$ArgContainer<($ClocheBlockEntity), (any)>
-get "inventory"(): $NonNullList<($ItemStack)>
-get "facingLimitation"(): $PlacementLimitation
-get "facingProperty"(): $Property<($Direction)>
 get "guiProgress"(): float
-set "facing"(value: $Direction$Type)
+get "facingLimitation"(): $PlacementLimitation
+get "guiMaster"(): $ClocheBlockEntity
+get "facingProperty"(): $Property<($Direction)>
+get "renderBoundingBox"(): $AABB
+get "inventory"(): $NonNullList<($ItemStack)>
+get "containerType"(): $IEMenuTypes$ArgContainer<($ClocheBlockEntity), (any)>
 get "dummy"(): boolean
+set "facing"(value: $Direction$Type)
 get "facing"(): $Direction
-get "droppedItems"(): $Stream<($ItemStack)>
 get "comparatedSize"(): integer
+get "droppedItems"(): $Stream<($ItemStack)>
 get "valid"(): boolean
 get "displayName"(): $Component
 }
@@ -13372,20 +13374,20 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
+public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
+public "getSlotCount"(): integer
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public static "getMaxEnergyStored"(arg0: $ItemStack$Type): integer
-public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getSlotCount"(): integer
-public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
+public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
+public "isFoil"(arg0: $ItemStack$Type): boolean
+public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "isFoil"(arg0: $ItemStack$Type): boolean
-public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "canModify"(arg0: $ItemStack$Type): boolean
 public "hitShield"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $DamageSource$Type, arg3: float, arg4: $LivingAttackEvent$Type): void
 get "slotCount"(): integer
@@ -13404,8 +13406,8 @@ export type $IEShieldItem_ = $IEShieldItem$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$TeslaCoilBlockEntity" {
 import {$IEBlockInterfaces$IScrewdriverInteraction, $IEBlockInterfaces$IScrewdriverInteraction$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IScrewdriverInteraction"
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IEServerTickableBE, $IEServerTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEServerTickableBE"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -13420,8 +13422,8 @@ import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/leve
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$IEBlockInterfaces$IHasDummyBlocks, $IEBlockInterfaces$IHasDummyBlocks$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IHasDummyBlocks"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 import {$IEClientTickableBE, $IEClientTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEClientTickableBE"
 import {$IModelOffsetProvider, $IModelOffsetProvider$Type} from "packages/blusunrize/immersiveengineering/api/client/$IModelOffsetProvider"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
@@ -13450,20 +13452,20 @@ readonly "effectMap": $List<($TeslaCoilBlockEntity$LightningAnimation)>
 
 constructor(arg0: $BlockEntityType$Type<($TeslaCoilBlockEntity$Type)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "getRenderBoundingBox"(): $AABB
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "initFreeStreamer"(arg0: double, arg1: double, arg2: double): void
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "receiveMessageFromServer"(arg0: $CompoundTag$Type): void
 public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
 public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
-public "receiveMessageFromServer"(arg0: $CompoundTag$Type): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
-public "initFreeStreamer"(arg0: double, arg1: double, arg2: double): void
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public "getRenderBoundingBox"(): $AABB
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "master"(): $TeslaCoilBlockEntity
 public "tickServer"(): void
 public "tickClient"(): void
@@ -13471,17 +13473,17 @@ public "canRun"(arg0: integer): boolean
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "canTickAny"(): boolean
 public "isDummy"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "renderBoundingBox"(): $AABB
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
+get "renderBoundingBox"(): $AABB
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 get "dummy"(): boolean
@@ -13553,8 +13555,8 @@ import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$IEItemInterfaces$IBulletContainer, $IEItemInterfaces$IBulletContainer$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEItemInterfaces$IBulletContainer"
 import {$IClientItemExtensions, $IClientItemExtensions$Type} from "packages/net/minecraftforge/client/extensions/common/$IClientItemExtensions"
 import {$Slot, $Slot$Type} from "packages/net/minecraft/world/inventory/$Slot"
-import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$BulletHandler$IBullet, $BulletHandler$IBullet$Type} from "packages/blusunrize/immersiveengineering/api/tool/$BulletHandler$IBullet"
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
@@ -13589,38 +13591,38 @@ readonly "canRepair": boolean
 constructor()
 
 public "isEmpty"(arg0: $ItemStack$Type, arg1: boolean): boolean
-public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
-public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "getAttributeModifiers"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): $Multimap<($Attribute), ($AttributeModifier)>
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getSlotCount"(): integer
+public static "getUpgradeValue_d"(arg0: $ItemStack$Type, arg1: string): double
+public static "fireProjectile"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: $BulletHandler$IBullet$Type, arg4: $ItemStack$Type): float
 public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
 public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
 public "getUpgradeBase"(arg0: $ItemStack$Type): $CompoundTag
+public "getBulletCount"(arg0: $ItemStack$Type): integer
+public "getSlotCount"(): integer
 public static "copyBulletsToShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $CompoundTag
 public static "readBulletsFromShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
 public "getRevolverDisplayTag"(arg0: $ItemStack$Type): string
-public static "getUpgradeValue_d"(arg0: $ItemStack$Type, arg1: string): double
 public "getShootCooldown"(arg0: $ItemStack$Type): integer
-public static "fireProjectile"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: $BulletHandler$IBullet$Type, arg4: $ItemStack$Type): float
 public "rotateCylinder"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: boolean): void
 public "rotateCylinder"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: boolean, arg3: $NonNullList$Type<($ItemStack$Type)>): void
 public "getMaxShootCooldown"(arg0: $ItemStack$Type): integer
 public static "hasUpgradeValue"(arg0: $ItemStack$Type, arg1: string): boolean
 public "getZoomSteps"(arg0: $ItemStack$Type, arg1: $Player$Type): (float)[]
 public "applySpecialCrafting"(arg0: $ItemStack$Type, arg1: $RevolverItem$SpecialRevolver$Type): void
-public "getBulletCount"(arg0: $ItemStack$Type): integer
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
+public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public "getAttributeModifiers"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): $Multimap<($Attribute), ($AttributeModifier)>
+public "getBullets"(arg0: $ItemStack$Type): $NonNullList<($ItemStack)>
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getDescriptionId"(arg0: $ItemStack$Type): string
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "onCraftedBy"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
 public "canModify"(arg0: $ItemStack$Type): boolean
-public "getBullets"(arg0: $ItemStack$Type): $NonNullList<($ItemStack)>
 public static "getPerks"(arg0: $ItemStack$Type): $CompoundTag
 public "setBullets"(arg0: $ItemStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: boolean): void
 public "canZoom"(arg0: $ItemStack$Type, arg1: $Player$Type): boolean
@@ -13668,10 +13670,10 @@ declare module "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockI
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $IEBlockInterfaces$ISoundBE {
 
- "getSoundRadiusSq"(): float
  "shouldPlaySound"(arg0: string): boolean
+ "getSoundRadiusSq"(): float
 
-(): float
+(arg0: string): boolean
 }
 
 export namespace $IEBlockInterfaces$ISoundBE {
@@ -13770,8 +13772,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IEBaseItem, $IEBaseItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEBaseItem"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
@@ -13796,12 +13798,12 @@ readonly "canRepair": boolean
 constructor(arg0: $WireType$Type)
 
 public "getWireType"(arg0: $ItemStack$Type): $WireType
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public static "doCoilUse"(arg0: $IWireCoil$Type, arg1: $Player$Type, arg2: $Level$Type, arg3: $BlockPos$Type, arg4: $InteractionHand$Type, arg5: $Direction$Type, arg6: float, arg7: float, arg8: float): $InteractionResult
-public "getMaxLength"(arg0: $ItemStack$Type): integer
 public "canConnectCable"(arg0: $ItemStack$Type, arg1: $BlockEntity$Type): boolean
 public "consumeWire"(arg0: $ItemStack$Type, arg1: integer): void
+public "getMaxLength"(arg0: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13829,9 +13831,9 @@ constructor(posInMultiblock: $BlockPos$Type, side: $RelativeBlockFace$Type)
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "side"(): $RelativeBlockFace
-public "posInMultiblock"(): $BlockPos
 public "equalsOrNullFace"(arg0: $CapabilityPosition$Type): boolean
+public "posInMultiblock"(): $BlockPos
+public "side"(): $RelativeBlockFace
 public static "opposing"(arg0: $MultiblockFace$Type): $CapabilityPosition
 }
 /**
@@ -14018,8 +14020,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$IEBaseItem, $IEBaseItem$Type} from "packages/blusunrize/immersiveengineering/common/items/$IEBaseItem"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$ICapabilityProvider, $ICapabilityProvider$Type} from "packages/net/minecraftforge/common/capabilities/$ICapabilityProvider"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -14041,10 +14043,10 @@ readonly "canRepair": boolean
 constructor()
 
 public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
 public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14128,23 +14130,23 @@ constructor(arg0: T)
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemStack)>
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "getId"(): $ResourceLocation
 public "isSpecial"(): boolean
-public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
+public "category"(): $CraftingBookCategory
 public "getIngredients"(): $NonNullList<($Ingredient)>
+public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getToastSymbol"(): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
 public "isIncomplete"(): boolean
-public "category"(): $CraftingBookCategory
 public "showNotification"(): boolean
-public "getType"(): $ResourceLocation
-public "getGroup"(): string
-public "setGroup"(group: string): void
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "setGroup"(group: string): void
+public "getGroup"(): string
+public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -14154,11 +14156,11 @@ get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "serializer"(): $RecipeSerializer<(any)>
 get "incomplete"(): boolean
-get "type"(): $ResourceLocation
-get "group"(): string
-set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
+set "group"(value: string)
+get "group"(): string
+get "type"(): $ResourceLocation
 get "mod"(): string
 }
 /**
@@ -14195,11 +14197,11 @@ export class $PostTransformerBlockEntity extends $AbstractTransformerBlockEntity
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getFacingLimitation"(): $PlacementLimitation
 public "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
 public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getFacingLimitation"(): $PlacementLimitation
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
@@ -14573,23 +14575,23 @@ constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: $NonNullList$Type<
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemStack)>
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "getIngredients"(): $NonNullList<($Ingredient)>
+public "getId"(): $ResourceLocation
 public "category"(): $CraftingBookCategory
+public "getIngredients"(): $NonNullList<($Ingredient)>
 public "isSpecial"(): boolean
-public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "showNotification"(): boolean
+public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getToastSymbol"(): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
 public "isIncomplete"(): boolean
-public "getType"(): $ResourceLocation
-public "getGroup"(): string
-public "setGroup"(group: string): void
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "setGroup"(group: string): void
+public "getGroup"(): string
+public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -14599,11 +14601,11 @@ get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "serializer"(): $RecipeSerializer<(any)>
 get "incomplete"(): boolean
-get "type"(): $ResourceLocation
-get "group"(): string
-set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
+set "group"(value: string)
+get "group"(): string
+get "type"(): $ResourceLocation
 get "mod"(): string
 }
 /**
@@ -14678,11 +14680,11 @@ export class $MineralWorldInfo {
 
 constructor(arg0: $List$Type<($Pair$Type<($MineralVein$Type), (integer)>)>)
 
-public "getTotalWeight"(): integer
 public "getAllVeins"(): $List<($Pair<($MineralVein), (integer)>)>
 public "getMineralVein"(arg0: $Random$Type): $MineralVein
-get "totalWeight"(): integer
+public "getTotalWeight"(): integer
 get "allVeins"(): $List<($Pair<($MineralVein), (integer)>)>
+get "totalWeight"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14715,14 +14717,14 @@ static readonly "VALUES": ($IEEnums$IOSideConfig)[]
 public static "values"(): ($IEEnums$IOSideConfig)[]
 public static "valueOf"(arg0: string): $IEEnums$IOSideConfig
 public static "next"(arg0: $IEEnums$IOSideConfig$Type): $IEEnums$IOSideConfig
-public "getTextureName"(): string
 public "getTextComponent"(): $Component
+public "getTextureName"(): string
 public "getSerializedName"(): string
 public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>): $StringRepresentable$EnumCodec<(E)>
 public static "fromEnumWithMapping"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>, arg1: $Function$Type<(string), (string)>): $StringRepresentable$EnumCodec<(E)>
 public static "keys"(arg0: ($StringRepresentable$Type)[]): $Keyable
-get "textureName"(): string
 get "textComponent"(): $Component
+get "textureName"(): string
 get "serializedName"(): string
 }
 /**
@@ -14838,8 +14840,8 @@ declare global {
 export type $IConnectionTemplate$TemplateConnection_ = $IConnectionTemplate$TemplateConnection$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/wooden/$ItemBatcherBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$IEServerTickableBE, $IEServerTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEServerTickableBE"
 import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
@@ -14880,42 +14882,42 @@ static readonly "NUM_SLOTS": integer
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "getSlotLimit"(arg0: integer): integer
-public "isStackValid"(arg0: integer, arg1: $ItemStack$Type): boolean
-public "getContainerType"(): $IEMenuTypes$ArgContainer<($ItemBatcherBlockEntity), (any)>
-public "getInventory"(): $NonNullList<($ItemStack)>
-public "getFilters"(): $NonNullList<($ItemStack)>
-public "getFacingLimitation"(): $PlacementLimitation
-public "getFacingProperty"(): $Property<($Direction)>
 public "doGraphicalUpdates"(): void
-public "receiveMessageFromClient"(arg0: $CompoundTag$Type): void
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "receiveMessageFromClient"(arg0: $CompoundTag$Type): void
+public "getFacingLimitation"(): $PlacementLimitation
+public "getFacingProperty"(): $Property<($Direction)>
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getSlotLimit"(arg0: integer): integer
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "isStackValid"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "getInventory"(): $NonNullList<($ItemStack)>
+public "getContainerType"(): $IEMenuTypes$ArgContainer<($ItemBatcherBlockEntity), (any)>
+public "getFilters"(): $NonNullList<($ItemStack)>
 public "tickServer"(): void
 public "canUseGui"(arg0: $Player$Type): boolean
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
-public "getDroppedItems"(): $Stream<($ItemStack)>
 public "getComparatedSize"(): integer
+public "getDroppedItems"(): $Stream<($ItemStack)>
 public "isValid"(): boolean
-public "getDisplayName"(): $Component
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
+public "getDisplayName"(): $Component
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "shouldCloseCurrentScreen"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "containerType"(): $IEMenuTypes$ArgContainer<($ItemBatcherBlockEntity), (any)>
-get "inventory"(): $NonNullList<($ItemStack)>
-get "filters"(): $NonNullList<($ItemStack)>
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-get "droppedItems"(): $Stream<($ItemStack)>
+get "inventory"(): $NonNullList<($ItemStack)>
+get "containerType"(): $IEMenuTypes$ArgContainer<($ItemBatcherBlockEntity), (any)>
+get "filters"(): $NonNullList<($ItemStack)>
 get "comparatedSize"(): integer
+get "droppedItems"(): $Stream<($ItemStack)>
 get "valid"(): boolean
 get "displayName"(): $Component
 get "facing"(): $Direction
@@ -14975,8 +14977,8 @@ import {$IImmersiveConnectable, $IImmersiveConnectable$Type} from "packages/blus
 import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/fabric/api/attachment/v1/$AttachmentTarget"
 import {$IEBaseBlockEntity, $IEBaseBlockEntity$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBaseBlockEntity"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
-import {$Connection, $Connection$Type} from "packages/blusunrize/immersiveengineering/api/wires/$Connection"
 import {$TargetingInfo, $TargetingInfo$Type} from "packages/blusunrize/immersiveengineering/api/$TargetingInfo"
+import {$Connection, $Connection$Type} from "packages/blusunrize/immersiveengineering/api/wires/$Connection"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export class $ImmersiveConnectableBlockEntity extends $IEBaseBlockEntity implements $IImmersiveConnectable {
@@ -14988,18 +14990,18 @@ export class $ImmersiveConnectableBlockEntity extends $IEBaseBlockEntity impleme
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
 public "getPosition"(): $BlockPos
-public "onChunkUnloaded"(): void
-public "canConnect"(): boolean
-public "onLoad"(): void
+public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
 public "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
 public "removeCable"(arg0: $Connection$Type, arg1: $ConnectionPoint$Type): void
 public "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
 public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
-public "setRemovedIE"(): void
-public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "setRemovedIE"(): void
+public "onChunkUnloaded"(): void
+public "onLoad"(): void
 public "setLevel"(arg0: $Level$Type): void
+public "canConnect"(): boolean
 public "isProxy"(): boolean
 public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
 public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
@@ -15055,17 +15057,17 @@ public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getToastSymbol"(): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
-public "getRemainingItems"(arg0: $Container$Type): $NonNullList<($ItemStack)>
-public "getIngredients"(): $NonNullList<($Ingredient)>
 public "showNotification"(): boolean
+public "getIngredients"(): $NonNullList<($Ingredient)>
+public "getRemainingItems"(arg0: $Container$Type): $NonNullList<($ItemStack)>
 public "isIncomplete"(): boolean
-public "getType"(): $ResourceLocation
-public "getGroup"(): string
-public "setGroup"(group: string): void
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "setGroup"(group: string): void
+public "getGroup"(): string
+public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -15075,11 +15077,11 @@ get "toastSymbol"(): $ItemStack
 get "serializer"(): $RecipeSerializer<(any)>
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "incomplete"(): boolean
-get "type"(): $ResourceLocation
-get "group"(): string
-set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
+set "group"(value: string)
+get "group"(): string
+get "type"(): $ResourceLocation
 get "mod"(): string
 }
 /**
@@ -15162,16 +15164,16 @@ export class $WindmillBlockEntity extends $IEBaseBlockEntity implements $IEServe
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getRenderBoundingBox"(): $AABB
-public "getActualTurnSpeed"(): double
-public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
-public "getFacingLimitation"(): $PlacementLimitation
-public "getFacingProperty"(): $Property<($Direction)>
 public "computeTurnSpeed"(): float
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
+public "getFacingLimitation"(): $PlacementLimitation
+public "getFacingProperty"(): $Property<($Direction)>
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getActualTurnSpeed"(): double
+public "getRenderBoundingBox"(): $AABB
 public "tickServer"(): void
 public "interact"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ItemStack$Type, arg4: float, arg5: float, arg6: float): boolean
 public "tickClient"(): void
@@ -15179,16 +15181,16 @@ public "onBEPlaced"(arg0: $BlockPlaceContext$Type): void
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "renderBoundingBox"(): $AABB
-get "actualTurnSpeed"(): double
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
+get "actualTurnSpeed"(): double
+get "renderBoundingBox"(): $AABB
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 }
@@ -15233,10 +15235,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "getSlotCount"(): integer
-public "setContainedItems"(arg0: $ItemStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>): void
 public "getContainedItems"(arg0: $ItemStack$Type): $NonNullList<($ItemStack)>
+public "setContainedItems"(arg0: $ItemStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>): void
+public "getSlotCount"(): integer
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 get "slotCount"(): integer
 }
 /**
@@ -15341,8 +15343,8 @@ import {$ComputerControllable, $ComputerControllable$Type} from "packages/blusun
 import {$IEBlockInterfaces$ISpawnInterdiction, $IEBlockInterfaces$ISpawnInterdiction$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$ISpawnInterdiction"
 import {$IEBlockInterfaces$IStateBasedDirectional, $IEBlockInterfaces$IStateBasedDirectional$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IStateBasedDirectional"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
-import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$ArrayList, $ArrayList$Type} from "packages/java/util/$ArrayList"
+import {$Property, $Property$Type} from "packages/net/minecraft/world/level/block/state/properties/$Property"
 import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
 import {$IEBlockInterfaces$IHammerInteraction, $IEBlockInterfaces$IHammerInteraction$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IHammerInteraction"
 
@@ -15365,57 +15367,57 @@ readonly "computerControl": $ComputerControlState
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "onChunkUnloaded"(): void
-public "onLoad"(): void
-public "insertEnergy"(arg0: integer): void
 public "getInterdictionRangeSquared"(): double
 public "getAllComputerControlStates"(): $Stream<($ComputerControlState)>
+public "getRequestedEnergy"(): integer
+public "updateFakeLights"(arg0: boolean, arg1: boolean): void
+public "placeLightAlongVector"(arg0: $Vec3$Type, arg1: integer, arg2: $ArrayList$Type<($BlockPos$Type)>): void
+public "canComputerTurn"(): boolean
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "onDirectionalPlacement"(arg0: $Direction$Type, arg1: float, arg2: float, arg3: float, arg4: $LivingEntity$Type): void
+public "setRemovedIE"(): void
+public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
+public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
 public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
 public "getConnectionOffset"(arg0: $ConnectionPoint$Type, arg1: $ConnectionPoint$Type, arg2: $WireType$Type): $Vec3
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "getRequestedEnergy"(): integer
-public "setRemovedIE"(): void
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
-public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): $InteractionResult
-public "updateFakeLights"(arg0: boolean, arg1: boolean): void
-public "placeLightAlongVector"(arg0: $Vec3$Type, arg1: integer, arg2: $ArrayList$Type<($BlockPos$Type)>): void
-public "canComputerTurn"(): boolean
-public "triggerEvent"(arg0: integer, arg1: integer): boolean
+public "onChunkUnloaded"(): void
+public "insertEnergy"(arg0: integer): void
+public "onLoad"(): void
 public "tickServer"(): void
+public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public "isSource"(arg0: $ConnectionPoint$Type): boolean
-public "isSink"(arg0: $ConnectionPoint$Type): boolean
 public "turnY"(arg0: boolean, arg1: boolean): void
 public "turnX"(arg0: boolean, arg1: boolean): void
+public "isSink"(arg0: $ConnectionPoint$Type): boolean
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "setActive"(arg0: boolean): void
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getIsActive"(): boolean
-public "extractEnergy"(arg0: integer): void
+public "setActive"(arg0: boolean): void
 public "getAvailableEnergy"(): integer
 public "onEnergyPassedThrough"(arg0: double): void
+public "extractEnergy"(arg0: integer): void
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "interdictionRangeSquared"(): double
 get "allComputerControlStates"(): $Stream<($ComputerControlState)>
+get "requestedEnergy"(): integer
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-get "requestedEnergy"(): integer
-set "active"(value: boolean)
 get "isActive"(): boolean
+set "active"(value: boolean)
 get "availableEnergy"(): integer
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
@@ -15542,8 +15544,8 @@ declare global {
 export type $EnumMetals_ = $EnumMetals$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$ConveyorBeltBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IEServerTickableBE, $IEServerTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEServerTickableBE"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$PlacementLimitation, $PlacementLimitation$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$PlacementLimitation"
@@ -15587,32 +15589,32 @@ static readonly "BE_TYPES": $Map<($IConveyorType<(any)>), ($Supplier<($BlockEnti
 
 constructor(arg0: $IConveyorType$Type<(T)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getCapability"<T2>(arg0: $Capability$Type<(T2)>, arg1: $Direction$Type): $LazyOptional<(T2)>
-public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public static "registerConveyorBEsAndBlocks"(arg0: $NewRegistryEvent$Type): void
+public "getConveyorInstance"(): T
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "isRSPowered"(): boolean
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
-public "getConveyorInstance"(): T
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "getCapability"<T2>(arg0: $Capability$Type<(T2)>, arg1: $Direction$Type): $LazyOptional<(T2)>
+public "onEntityCollision"(arg0: $Level$Type, arg1: $Entity$Type): void
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "tickServer"(): void
 public "interact"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $ItemStack$Type, arg4: float, arg5: float, arg6: float): boolean
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "sigOutputDirections"(): ($Direction)[]
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "canTickAny"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "rSPowered"(): boolean
 get "conveyorInstance"(): T
+get "rSPowered"(): boolean
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
 get "facing"(): $Direction
@@ -15735,18 +15737,18 @@ constructor(arg0: $IMultiblockLogic$Type<(State)>, arg1: $ResourceLocation$Type)
 public "build"(): $MultiblockRegistration<(State)>
 public "component"(arg0: $IMultiblockComponent$Type<(State)>): Self
 public "component"<CS>(arg0: $IMultiblockComponent$Type<(CS)>, arg1: $IMultiblockComponent$StateWrapper$Type<(State), (CS)>): Self
-public "customBlock"(arg0: $DeferredRegister$Type<($Block$Type)>, arg1: $DeferredRegister$Type<($Item$Type)>, arg2: $Function$Type<($MultiblockRegistration$Type<(State)>), (any)>, arg3: $Function$Type<($Block$Type), ($Item$Type)>): Self
-public "customBlock"(arg0: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Block$Type)>, arg1: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Item$Type)>, arg2: $Function$Type<($MultiblockRegistration$Type<(State)>), (any)>, arg3: $Function$Type<($Block$Type), ($Item$Type)>): Self
-public "defaultBlock"(arg0: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Block$Type)>, arg1: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Item$Type)>, arg2: $BlockBehaviour$Properties$Type): Self
-public "defaultBlock"(arg0: $DeferredRegister$Type<($Block$Type)>, arg1: $DeferredRegister$Type<($Item$Type)>, arg2: $BlockBehaviour$Properties$Type): Self
+public "selfWrappingComponent"<CS, C extends ($IMultiblockComponent<(CS)>) & ($IMultiblockComponent$StateWrapper<(State), (CS)>)>(arg0: C): Self
 public "notMirrored"(): Self
-public "withComparator"(): Self
 public "postProcessesShape"(): Self
 public "redstoneAware"(): Self
-public "selfWrappingComponent"<CS, C extends ($IMultiblockComponent<(CS)>) & ($IMultiblockComponent$StateWrapper<(State), (CS)>)>(arg0: C): Self
+public "withComparator"(): Self
+public "customBlock"(arg0: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Block$Type)>, arg1: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Item$Type)>, arg2: $Function$Type<($MultiblockRegistration$Type<(State)>), (any)>, arg3: $Function$Type<($Block$Type), ($Item$Type)>): Self
+public "customBlock"(arg0: $DeferredRegister$Type<($Block$Type)>, arg1: $DeferredRegister$Type<($Item$Type)>, arg2: $Function$Type<($MultiblockRegistration$Type<(State)>), (any)>, arg3: $Function$Type<($Block$Type), ($Item$Type)>): Self
+public "defaultBlock"(arg0: $DeferredRegister$Type<($Block$Type)>, arg1: $DeferredRegister$Type<($Item$Type)>, arg2: $BlockBehaviour$Properties$Type): Self
+public "defaultBlock"(arg0: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Block$Type)>, arg1: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($Item$Type)>, arg2: $BlockBehaviour$Properties$Type): Self
 public "structure"(arg0: $Supplier$Type<($TemplateMultiblock$Type)>): Self
-public "defaultBEs"(arg0: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($BlockEntityType$Type<(any)>)>): Self
 public "defaultBEs"(arg0: $DeferredRegister$Type<($BlockEntityType$Type<(any)>)>): Self
+public "defaultBEs"(arg0: $MultiblockRegistrationBuilder$RegistrationMethod$Type<($BlockEntityType$Type<(any)>)>): Self
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15856,16 +15858,16 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
+public static "hasConnection"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "canConnectTransformer"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): boolean
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "canIEBlockBePlaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "onIEBlockPlacedBy"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "canConnectTransformer"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): boolean
-public static "hasConnection"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
-public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -15918,7 +15920,9 @@ export class $GetterAndSetter<T> extends $Record implements $Supplier<(T)>, $Con
 
 constructor(getter: $Supplier$Type<(T)>, setter: $Consumer$Type<(T)>)
 
+public "setter"(): $Consumer<(T)>
 public "getter"(): $Supplier<(T)>
+public static "standalone"<T>(arg0: T): $GetterAndSetter<(T)>
 public "get"(): T
 public "equals"(arg0: any): boolean
 public "toString"(): string
@@ -15926,8 +15930,6 @@ public "hashCode"(): integer
 public static "constant"<T>(arg0: T): $GetterAndSetter<(T)>
 public "set"(arg0: T): void
 public "accept"(arg0: T): void
-public static "standalone"<T>(arg0: T): $GetterAndSetter<(T)>
-public "setter"(): $Consumer<(T)>
 public static "forArray"<T>(arg0: (T)[]): $List<($GetterAndSetter<(T)>)>
 public static "getterOnly"<T>(arg0: $Supplier$Type<(T)>): $GetterAndSetter<(T)>
 public "andThen"(arg0: $Consumer$Type<(any)>): $Consumer<(T)>
@@ -15975,14 +15977,14 @@ static readonly "LAZY_EMPTY": $Lazy<($ItemStack)>
 
 constructor(arg0: $ResourceLocation$Type, arg1: ($StackWithChance$Type)[], arg2: ($StackWithChance$Type)[], arg3: integer, arg4: float, arg5: $List$Type<($ResourceKey$Type<($Level$Type)>)>, arg6: $Block$Type)
 
-public "getTranslationKey"(): string
-public "getRandomOre"(arg0: $Random$Type): $ItemStack
 public "getPlainName"(): string
 public "getRandomSpoil"(arg0: $Random$Type): $ItemStack
 public "validDimension"(arg0: $ResourceKey$Type<($Level$Type)>): boolean
+public "getRandomOre"(arg0: $Random$Type): $ItemStack
+public "getTranslationKey"(): string
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
-get "translationKey"(): string
 get "plainName"(): string
+get "translationKey"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16083,9 +16085,9 @@ public "tag"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "uuid"(): (string)[]
 public "baseUpgrades"(): $HashMap<(string), (any)>
 public "renderAdditions"(): (string)[]
+public "uuid"(): (string)[]
 public "flavour"(): string
 }
 /**
@@ -16105,12 +16107,12 @@ import {$IEnergyStorage, $IEnergyStorage$Type} from "packages/net/minecraftforge
 
 export interface $IMutableEnergyStorage extends $IEnergyStorage {
 
- "modifyEnergyStored"(arg0: integer): void
  "setStoredEnergy"(arg0: integer): void
- "getMaxEnergyStored"(): integer
- "getEnergyStored"(): integer
+ "modifyEnergyStored"(arg0: integer): void
  "receiveEnergy"(arg0: integer, arg1: boolean): integer
  "extractEnergy"(arg0: integer, arg1: boolean): integer
+ "getMaxEnergyStored"(): integer
+ "getEnergyStored"(): integer
  "canExtract"(): boolean
  "canReceive"(): boolean
 }
@@ -16165,8 +16167,8 @@ declare global {
 export type $IERecipeSerializer_<R> = $IERecipeSerializer$Type<(R)>;
 }}
 declare module "packages/blusunrize/immersiveengineering/api/wires/$GlobalWireNetwork" {
-import {$LevelEvent$Unload, $LevelEvent$Unload$Type} from "packages/net/minecraftforge/event/level/$LevelEvent$Unload"
 import {$ChunkPos, $ChunkPos$Type} from "packages/net/minecraft/world/level/$ChunkPos"
+import {$LevelEvent$Unload, $LevelEvent$Unload$Type} from "packages/net/minecraftforge/event/level/$LevelEvent$Unload"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$BooleanSupplier, $BooleanSupplier$Type} from "packages/java/util/function/$BooleanSupplier"
 import {$ConnectionPoint, $ConnectionPoint$Type} from "packages/blusunrize/immersiveengineering/api/wires/$ConnectionPoint"
@@ -16191,29 +16193,29 @@ static readonly "VALIDATE_CONNECTIONS": $SetRestrictedField<($BooleanSupplier)>
 constructor(arg0: boolean, arg1: $IICProxyProvider$Type, arg2: $IWireSyncManager$Type)
 
 public "update"(arg0: $Level$Type): void
-public static "onWorldUnload"(arg0: $LevelEvent$Unload$Type): void
-public "readFromNBT"(arg0: $CompoundTag$Type): void
 public "removeInsertAndDropConnection"(arg0: $Connection$Type, arg1: $Player$Type, arg2: $Level$Type): void
-public "getCollisionData"(): $WireCollisionData
-public "removeConnection"(arg0: $Connection$Type): void
-public "getLocalNet"(arg0: $BlockPos$Type): $LocalWireNetwork
-public "getLocalNet"(arg0: $ConnectionPoint$Type): $LocalWireNetwork
-public "removeAllConnectionsAt"(arg0: $IImmersiveConnectable$Type, arg1: $Consumer$Type<($Connection$Type)>): void
-public "removeAllConnectionsAt"(arg0: $ConnectionPoint$Type, arg1: $Consumer$Type<($Connection$Type)>): void
-public "getNullableLocalNet"(arg0: $ConnectionPoint$Type): $LocalWireNetwork
-public "getNullableLocalNet"(arg0: $BlockPos$Type): $LocalWireNetwork
 public "addConnection"(arg0: $Connection$Type): void
 public "updateCatenaryData"(arg0: $Connection$Type): void
+public "removeAllConnectionsAt"(arg0: $ConnectionPoint$Type, arg1: $Consumer$Type<($Connection$Type)>): void
+public "removeAllConnectionsAt"(arg0: $IImmersiveConnectable$Type, arg1: $Consumer$Type<($Connection$Type)>): void
+public "getNullableLocalNet"(arg0: $ConnectionPoint$Type): $LocalWireNetwork
+public "getNullableLocalNet"(arg0: $BlockPos$Type): $LocalWireNetwork
+public "getLocalNet"(arg0: $ConnectionPoint$Type): $LocalWireNetwork
+public "getLocalNet"(arg0: $BlockPos$Type): $LocalWireNetwork
+public "getCollisionData"(): $WireCollisionData
+public "removeConnection"(arg0: $Connection$Type): void
 public "removeAndDropConnection"(arg0: $Connection$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
 public "removeConnector"(arg0: $IImmersiveConnectable$Type): void
-public "onConnectorLoad"(arg0: $IImmersiveConnectable$Type, arg1: boolean): void
 public "onConnectorLoad"(arg0: $IImmersiveConnectable$Type, arg1: $Level$Type): void
+public "onConnectorLoad"(arg0: $IImmersiveConnectable$Type, arg1: boolean): void
 public "onConnectorUnload"(arg0: $IImmersiveConnectable$Type): void
 public "getAllConnectorsIn"(arg0: $ChunkPos$Type): $Collection<($ConnectionPoint)>
 public "getExistingConnector"(arg0: $ConnectionPoint$Type): $IImmersiveConnectable
 public "getProxyProvider"(): $IICProxyProvider
-public static "getNetwork"(arg0: $Level$Type): $GlobalWireNetwork
+public static "onWorldUnload"(arg0: $LevelEvent$Unload$Type): void
+public "readFromNBT"(arg0: $CompoundTag$Type): void
 public "writeToNBT"(): $CompoundTag
+public static "getNetwork"(arg0: $Level$Type): $GlobalWireNetwork
 get "collisionData"(): $WireCollisionData
 get "proxyProvider"(): $IICProxyProvider
 }
@@ -16381,8 +16383,8 @@ import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$RecipeType, $RecipeType$Type} from "packages/net/minecraft/world/item/crafting/$RecipeType"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -16406,14 +16408,14 @@ constructor()
 constructor(arg0: $Item$Properties$Type)
 
 public "isHidden"(): boolean
+public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
+public "isIERepairable"(arg0: $ItemStack$Type): boolean
+public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
+public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "isRepairable"(arg0: $ItemStack$Type): boolean
 public "setBurnTime"(arg0: integer): $IEBaseItem
-public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
-public "isIERepairable"(arg0: $ItemStack$Type): boolean
-public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
-public "getBarColor"(arg0: $ItemStack$Type): integer
 public "canEquip"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type, arg2: $Entity$Type): boolean
+public "getBarColor"(arg0: $ItemStack$Type): integer
 get "hidden"(): boolean
 set "burnTime"(value: integer)
 }
@@ -16830,12 +16832,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type, arg1: $Supplier$Type<(T)>)
 
-public "getNameForFlavour"(): string
-public static "isNormalCube"(arg0: $Supplier$Type<(any)>): $BlockBehaviour$StatePredicate
 public static "causesSuffocation"(arg0: $Supplier$Type<(any)>): $BlockBehaviour$StatePredicate
-public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+public static "isNormalCube"(arg0: $Supplier$Type<(any)>): $BlockBehaviour$StatePredicate
+public "getNameForFlavour"(): string
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
 public "hasFlavour"(): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "nameForFlavour"(): string
@@ -16858,8 +16860,8 @@ import {$IEBlockInterfaces$BlockstateProvider, $IEBlockInterfaces$BlockstateProv
 
 export interface $IEBlockInterfaces$IActiveState extends $IEBlockInterfaces$BlockstateProvider {
 
- "setActive"(arg0: boolean): void
  "getIsActive"(): boolean
+ "setActive"(arg0: boolean): void
  "setState"(arg0: $BlockState$Type): void
  "getState"(): $BlockState
 }
@@ -16975,20 +16977,20 @@ readonly "canRepair": boolean
 
 constructor(arg0: $DrillheadItem$DrillHeadPerm$Type)
 
-public "getAttackDamage"(arg0: $ItemStack$Type): float
-public "getMiningLevel"(arg0: $ItemStack$Type): $Tier
-public "getHeadDamage"(arg0: $ItemStack$Type): integer
 public static "setHeadDamage"(arg0: $ItemStack$Type, arg1: integer): void
 public "getDrillTexture"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $ResourceLocation
+public "getHeadDamage"(arg0: $ItemStack$Type): integer
+public "getMiningSpeed"(arg0: $ItemStack$Type): float
 public "getMaximumHeadDamage"(arg0: $ItemStack$Type): integer
 public "afterBlockbreak"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Player$Type): void
-public "getMiningSpeed"(arg0: $ItemStack$Type): float
 public "beforeBlockbreak"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Player$Type): boolean
 public "getExtraBlocksDug"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type, arg3: $HitResult$Type): $ImmutableList<($BlockPos)>
+public "getAttackDamage"(arg0: $ItemStack$Type): float
+public "getMiningLevel"(arg0: $ItemStack$Type): $Tier
+public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isBarVisible"(arg0: $ItemStack$Type): boolean
 public "getBarWidth"(arg0: $ItemStack$Type): integer
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "damageHead"(arg0: $ItemStack$Type, arg1: integer): void
 }
 /**
@@ -17029,14 +17031,14 @@ static readonly "LAZY_EMPTY": $Lazy<($ItemStack)>
 
 constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: $Lazy$Type<($ItemStack$Type)>, arg3: ($IngredientWithSize$Type)[])
 
-public static "findRecipes"(arg0: $Level$Type, arg1: string): ($BlueprintCraftingRecipe)[]
-public static "getTypedBlueprint"(arg0: string): $ItemStack
 public "getMultipleProcessTicks"(): integer
 public "matchesRecipe"(arg0: $NonNullList$Type<($ItemStack$Type)>): boolean
 public "getMaxCrafted"(arg0: $NonNullList$Type<($ItemStack$Type)>): integer
 public "consumeInputs"(arg0: $NonNullList$Type<($ItemStack$Type)>, arg1: integer): $NonNullList<($ItemStack)>
 public static "updateRecipeCategories"(arg0: $Level$Type): void
 public static "getCategoriesWithRecipes"(arg0: $Level$Type): $Set<(string)>
+public static "getTypedBlueprint"(arg0: string): $ItemStack
+public static "findRecipes"(arg0: $Level$Type, arg1: string): ($BlueprintCraftingRecipe)[]
 get "multipleProcessTicks"(): integer
 }
 /**
@@ -17068,8 +17070,8 @@ import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$IClientItemExtensions, $IClientItemExtensions$Type} from "packages/net/minecraftforge/client/extensions/common/$IClientItemExtensions"
 import {$Slot, $Slot$Type} from "packages/net/minecraft/world/inventory/$Slot"
 import {$PlayerEvent$HarvestCheck, $PlayerEvent$HarvestCheck$Type} from "packages/net/minecraftforge/event/entity/player/$PlayerEvent$HarvestCheck"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 import {$Tier, $Tier$Type} from "packages/net/minecraft/world/item/$Tier"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
@@ -17095,25 +17097,25 @@ readonly "canRepair": boolean
 constructor()
 
 public "getHead"(arg0: $ItemStack$Type): $ItemStack
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "onBlockStartBreak"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $Player$Type): boolean
-public "getSlotCount"(): integer
-public "getHeadDamage"(arg0: $ItemStack$Type): integer
-public "isEffective"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
+public static "getHeadStatic"(arg0: $ItemStack$Type): $ItemStack
+public static "isSingleBlockMode"(arg0: $ItemStack$Type): boolean
 public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
-public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
-public "finishUpgradeRecalculation"(arg0: $ItemStack$Type): void
 public "getMaxHeadDamage"(arg0: $ItemStack$Type): integer
 public "getHarvestLevel"(arg0: $ItemStack$Type, arg1: $Player$Type): $Tier
 public "canToolBeUsed"(arg0: $ItemStack$Type): boolean
-public static "getHeadStatic"(arg0: $ItemStack$Type): $ItemStack
-public static "isSingleBlockMode"(arg0: $ItemStack$Type): boolean
+public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
+public "finishUpgradeRecalculation"(arg0: $ItemStack$Type): void
+public "isEffective"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
+public "getHeadDamage"(arg0: $ItemStack$Type): integer
+public "getSlotCount"(): integer
 public static "handleUnderwaterDrill"(arg0: $PlayerEvent$HarvestCheck$Type): void
 public "canBreakExtraBlock"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type, arg4: $ItemStack$Type, arg5: $ItemStack$Type): boolean
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "onBlockStartBreak"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $Player$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "mineBlock"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: $LivingEntity$Type): boolean
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "setHead"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): void
 get "slotCount"(): integer
 }
@@ -17156,8 +17158,8 @@ constructor(arg0: $ResourceLocation$Type, arg1: $List$Type<($Lazy$Type<($ItemSta
 constructor(arg0: $ResourceLocation$Type, arg1: $List$Type<($Lazy$Type<($ItemStack$Type)>)>, arg2: $IngredientWithSize$Type, arg3: $FluidTagInput$Type)
 
 public "matches"(arg0: ($ItemStack$Type)[], arg1: $FluidStack$Type): boolean
-public "getDisplayStacks"(arg0: ($ItemStack$Type)[]): $NonNullList<($ItemStack)>
 public "getMultipleProcessTicks"(): integer
+public "getDisplayStacks"(arg0: ($ItemStack$Type)[]): $NonNullList<($ItemStack)>
 public static "findRecipe"(arg0: $Level$Type, arg1: $FluidStack$Type, ...arg2: ($ItemStack$Type)[]): $BottlingMachineRecipe
 get "multipleProcessTicks"(): integer
 }
@@ -17263,16 +17265,16 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 constructor(arg0: $Block$Type)
 
-public "setBurnTime"(arg0: integer): $BlockItemIE
 public "getBurnTime"(arg0: $ItemStack$Type, arg1: $RecipeType$Type<(any)>): integer
-public "getDescriptionId"(arg0: $ItemStack$Type): string
+public "setBurnTime"(arg0: integer): $BlockItemIE
+public "canFitInsideContainerItems"(): boolean
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
-public "canFitInsideContainerItems"(): boolean
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
+public "getDescriptionId"(arg0: $ItemStack$Type): string
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 set "burnTime"(value: integer)
 }
 /**
@@ -17319,7 +17321,6 @@ readonly "canRepair": boolean
 constructor(arg0: integer, arg1: float, arg2: float, arg3: $ResourceLocation$Type)
 constructor(arg0: integer, arg1: float, arg2: float)
 
-public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "modifyEnchants"(arg0: $Map$Type<($Enchantment$Type), (integer)>): void
 public "getSawbladeDamage"(): float
 public "getSawbladeDamageFromBlock"(arg0: boolean): integer
@@ -17328,8 +17329,9 @@ public "getSawbladeSpeed"(): float
 public "getToolActions"(): $Set<($ToolAction)>
 public "canSawbladeFellTree"(): boolean
 public "getSawbladeTexture"(): $ResourceLocation
-public "canBeDepleted"(): boolean
+public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
+public "canBeDepleted"(): boolean
 get "sawbladeDamage"(): float
 get "sawbladeMaterials"(): $Predicate<($BlockState)>
 get "sawbladeSpeed"(): float
@@ -17412,20 +17414,20 @@ readonly "canRepair": boolean
 
 constructor()
 
-public "getMaxDamage"(arg0: $ItemStack$Type): integer
-public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
 public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "isBookEnchantable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public "canApplyAtEnchantingTable"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): boolean
-public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
-public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
+public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "isCorrectToolForDrops"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
-public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
-public "interactLivingEntity"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $LivingEntity$Type, arg3: $InteractionHand$Type): $InteractionResult
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
+public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
+public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "getEnchantmentValue"(): integer
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
+public "interactLivingEntity"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $LivingEntity$Type, arg3: $InteractionHand$Type): $InteractionResult
 get "enchantmentValue"(): integer
 }
 /**
@@ -17516,8 +17518,8 @@ import {$Property, $Property$Type} from "packages/net/minecraft/world/level/bloc
 import {$IEBlockInterfaces$IHasDummyBlocks, $IEBlockInterfaces$IHasDummyBlocks$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IHasDummyBlocks"
 import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 
 export class $WatermillBlockEntity extends $IEBaseBlockEntity implements $IEServerTickableBE, $IEClientTickableBE, $IEBlockInterfaces$IStateBasedDirectional, $IEBlockInterfaces$IHasDummyBlocks {
  "offset": (integer)[]
@@ -17531,20 +17533,20 @@ export class $WatermillBlockEntity extends $IEBaseBlockEntity implements $IEServ
 
 constructor(arg0: $BlockEntityType$Type<($WatermillBlockEntity$Type)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getRenderBoundingBox"(): $AABB
+public "getRotationVec"(): $Vec3
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
 public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
-public "getRotationVec"(): $Vec3
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
+public "getRenderBoundingBox"(): $AABB
 public "master"(): $IEBlockInterfaces$IGeneralMultiblock
-public "triggerEvent"(arg0: integer, arg1: integer): boolean
-public "tickServer"(): void
 public "getPower"(): double
+public "tickServer"(): void
+public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public "isBlocked"(): boolean
 public "tickClient"(): void
 public "isDummy"(): boolean
@@ -17552,13 +17554,13 @@ public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "renderBoundingBox"(): $AABB
+get "rotationVec"(): $Vec3
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-get "rotationVec"(): $Vec3
+get "renderBoundingBox"(): $AABB
 get "power"(): double
 get "blocked"(): boolean
 get "dummy"(): boolean
@@ -17627,14 +17629,14 @@ static readonly "LAZY_EMPTY": $Lazy<($ItemStack)>
 constructor(arg0: $ResourceLocation$Type, arg1: $Lazy$Type<($ItemStack$Type)>, arg2: $IngredientWithSize$Type, arg3: $Item$Type, arg4: integer)
 
 public "matches"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Level$Type): boolean
-public "setInputSize"(arg0: integer): $MetalPressRecipe
 public "getMultipleProcessTicks"(): integer
 public static "addSpecialRecipe"(arg0: $MetalPressRecipe$Type): void
 public "getActualRecipe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Level$Type): $MetalPressRecipe
 public static "isValidMold"(arg0: $Level$Type, arg1: $ItemStack$Type): boolean
+public "setInputSize"(arg0: integer): $MetalPressRecipe
 public static "findRecipe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Level$Type): $MetalPressRecipe
-set "inputSize"(value: integer)
 get "multipleProcessTicks"(): integer
+set "inputSize"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17847,14 +17849,14 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type, arg1: string)
 
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public static "getUpgradesStatic"(arg0: $ItemStack$Type): $CompoundTag
-public "getUpgrades"(arg0: $ItemStack$Type): $CompoundTag
 public "canTakeFromWorkbench"(arg0: $ItemStack$Type): boolean
 public "removeFromWorkbench"(arg0: $Player$Type, arg1: $ItemStack$Type): void
 public "clearUpgrades"(arg0: $ItemStack$Type): void
 public "finishUpgradeRecalculation"(arg0: $ItemStack$Type): void
 public "recalculateUpgrades"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
 public "getUpgradeBase"(arg0: $ItemStack$Type): $CompoundTag
+public "getUpgrades"(arg0: $ItemStack$Type): $CompoundTag
+public static "getUpgradesStatic"(arg0: $ItemStack$Type): $CompoundTag
 public "getWorkbenchSlots"(arg0: $AbstractContainerMenu$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $Supplier$Type<($Player$Type)>, arg4: $IItemHandler$Type): ($Slot)[]
 public "getUpgradeAfterRemoval"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $ItemStack
 public "removeUpgrade"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $ItemStack$Type): void
@@ -17904,8 +17906,8 @@ import {$Multimap, $Multimap$Type} from "packages/com/google/common/collect/$Mul
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$FluidStack, $FluidStack$Type} from "packages/net/minecraftforge/fluids/$FluidStack"
-import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$Tier, $Tier$Type} from "packages/net/minecraft/world/item/$Tier"
@@ -17938,24 +17940,24 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type, arg1: string)
 
 public "getCapacity"(arg0: $ItemStack$Type, arg1: integer): integer
-public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
-public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "onEntitySwing"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "getAttributeModifiers"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): $Multimap<($Attribute), ($AttributeModifier)>
-public "isCorrectToolForDrops"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public "getHeadDamage"(arg0: $ItemStack$Type): integer
-public "isEffective"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
-public "finishUpgradeRecalculation"(arg0: $ItemStack$Type): void
 public "getMaxHeadDamage"(arg0: $ItemStack$Type): integer
 public "getHarvestLevel"(arg0: $ItemStack$Type, arg1: $Player$Type): $Tier
 public "canToolBeUsed"(arg0: $ItemStack$Type): boolean
+public "finishUpgradeRecalculation"(arg0: $ItemStack$Type): void
+public "isEffective"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
+public "getHeadDamage"(arg0: $ItemStack$Type): integer
+public "readShareTag"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): void
+public "getShareTag"(arg0: $ItemStack$Type): $CompoundTag
+public "onEntitySwing"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
+public "isCorrectToolForDrops"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
+public "getAttributeModifiers"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): $Multimap<($Attribute), ($AttributeModifier)>
+public "getEnchantmentValue"(): integer
 public "isBarVisible"(arg0: $ItemStack$Type): boolean
 public "getBarWidth"(arg0: $ItemStack$Type): integer
 public "hurtEnemy"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: $LivingEntity$Type): boolean
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "getEnchantmentValue"(): integer
 public "canModify"(arg0: $ItemStack$Type): boolean
 public "allowFluid"(arg0: $ItemStack$Type, arg1: $FluidStack$Type): boolean
 public "getFluid"(arg0: $ItemStack$Type): $FluidStack
@@ -18008,13 +18010,13 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type)
 
+public "getName"(arg0: $ItemStack$Type): $Component
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "getName"(arg0: $ItemStack$Type): $Component
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -18167,8 +18169,8 @@ declare global {
 export type $IEBlockInterfaces$IHasDummyBlocks_ = $IEBlockInterfaces$IHasDummyBlocks$Type;
 }}
 declare module "packages/blusunrize/immersiveengineering/common/blocks/metal/$FurnaceHeaterBlockEntity" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IEBlockInterfaces$IActiveState, $IEBlockInterfaces$IActiveState$Type} from "packages/blusunrize/immersiveengineering/common/blocks/$IEBlockInterfaces$IActiveState"
 import {$IEServerTickableBE, $IEServerTickableBE$Type} from "packages/blusunrize/immersiveengineering/common/blocks/ticking/$IEServerTickableBE"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -18200,29 +18202,29 @@ export class $FurnaceHeaterBlockEntity extends $IEBaseBlockEntity implements $IE
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
 public "canHammerRotate"(arg0: $Direction$Type, arg1: $Vec3$Type, arg2: $LivingEntity$Type): boolean
 public "getFacingLimitation"(): $PlacementLimitation
 public "getFacingProperty"(): $Property<($Direction)>
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Vec3$Type): boolean
-public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "mirrorFacingOnPlacement"(arg0: $LivingEntity$Type): boolean
-public "triggerEvent"(arg0: integer, arg1: integer): boolean
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "tickServer"(): void
+public "triggerEvent"(arg0: integer, arg1: integer): boolean
 public static "makeTicker"<T extends $BlockEntity>(): $BlockEntityTicker<(T)>
-public "setActive"(arg0: boolean): void
 public "getIsActive"(): boolean
+public "setActive"(arg0: boolean): void
 public "getFacing"(): $Direction
 public "setFacing"(arg0: $Direction$Type): void
 public "canTickAny"(): boolean
-public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public "afterRotation"(arg0: $Direction$Type, arg1: $Direction$Type): void
+public "getFacingForPlacement"(arg0: $BlockPlaceContext$Type): $Direction
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "facingLimitation"(): $PlacementLimitation
 get "facingProperty"(): $Property<($Direction)>
-set "active"(value: boolean)
 get "isActive"(): boolean
+set "active"(value: boolean)
 get "facing"(): $Direction
 set "facing"(value: $Direction$Type)
 }
@@ -18265,10 +18267,10 @@ public "getTotalProcessEnergy"(): integer
 public "modifyTimeAndEnergy"(arg0: $DoubleSupplier$Type, arg1: $DoubleSupplier$Type): void
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
 public "shouldCheckItemAvailability"(): boolean
-public "getDisplayStack"(arg0: $ItemStack$Type): $ItemStack
 public "getActualItemOutputs"(): $NonNullList<($ItemStack)>
 public "getActualFluidOutputs"(): $List<($FluidStack)>
 public "getMultipleProcessTicks"(): integer
+public "getDisplayStack"(arg0: $ItemStack$Type): $ItemStack
 public "listInJEI"(): boolean
 get "itemOutputs"(): $NonNullList<($ItemStack)>
 get "itemInputs"(): $List<($IngredientWithSize)>
@@ -18316,16 +18318,16 @@ readonly "stateDefinition": $StateDefinition<($Fluid), ($FluidState)>
 constructor()
 
 public static "getType"(arg0: $FluidStack$Type): $Potion
+public static "getFluidStackForType"(arg0: $Potion$Type, arg1: integer): $FluidStack
 public "getFluidType"(): $FluidType
 public "addInformation"(arg0: $FluidStack$Type, arg1: $Consumer$Type<($Component$Type)>): void
-public static "getFluidStackForType"(arg0: $Potion$Type, arg1: integer): $FluidStack
-public "getBucket"(): $Item
 public "getTickDelay"(arg0: $LevelReader$Type): integer
 public "getHeight"(arg0: $FluidState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): float
 public "getOwnHeight"(arg0: $FluidState$Type): float
 public "isSource"(arg0: $FluidState$Type): boolean
 public "getAmount"(arg0: $FluidState$Type): integer
 public "getShape"(arg0: $FluidState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): $VoxelShape
+public "getBucket"(): $Item
 public static "fromTag"(arg0: $CompoundTag$Type): $Potion
 get "fluidType"(): $FluidType
 get "bucket"(): $Item
@@ -18369,10 +18371,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type)
 
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -18584,9 +18586,9 @@ export class $ConnectionPoint extends $Record implements $Comparable<($Connectio
 constructor(arg0: $CompoundTag$Type)
 constructor(position: $BlockPos$Type, index: integer)
 
+public "getX"(): integer
 public "createTag"(): $CompoundTag
 public "getY"(): integer
-public "getX"(): integer
 public "index"(): integer
 public "equals"(arg0: any): boolean
 public "toString"(): string
@@ -18594,8 +18596,8 @@ public "hashCode"(): integer
 public "compareTo"(arg0: $ConnectionPoint$Type): integer
 public "position"(): $BlockPos
 public "getZ"(): integer
-get "y"(): integer
 get "x"(): integer
+get "y"(): integer
 get "z"(): integer
 }
 /**
@@ -18646,12 +18648,12 @@ constructor()
 public "canElytraFly"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
 public "elytraFlightTick"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: integer): boolean
 public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "isValidRepairItem"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getEquipmentSlot"(): $EquipmentSlot
+public "swapWithEquipmentSlot"(arg0: $Item$Type, arg1: $Level$Type, arg2: $Player$Type, arg3: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public static "get"(arg0: $ItemStack$Type): $Equipable
 public "getEquipSound"(): $SoundEvent
-public "swapWithEquipmentSlot"(arg0: $Item$Type, arg1: $Level$Type, arg2: $Player$Type, arg3: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 get "equipmentSlot"(): $EquipmentSlot
 get "equipSound"(): $SoundEvent
 }
@@ -18683,9 +18685,9 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $IMultiblockComponent<State> {
 
+ "dropExtraItems"(arg0: State, arg1: $Consumer$Type<($ItemStack$Type)>): void
  "getCapability"<T>(arg0: $IMultiblockContext$Type<(State)>, arg1: $CapabilityPosition$Type, arg2: $Capability$Type<(T)>): $LazyOptional<(T)>
  "onEntityCollision"(arg0: $IMultiblockContext$Type<(State)>, arg1: $BlockPos$Type, arg2: $Entity$Type): void
- "dropExtraItems"(arg0: State, arg1: $Consumer$Type<($ItemStack$Type)>): void
  "click"(arg0: $IMultiblockContext$Type<(State)>, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $InteractionHand$Type, arg4: $BlockHitResult$Type, arg5: boolean): $InteractionResult
 }
 
@@ -18762,9 +18764,9 @@ constructor(arg0: $ResourceLocation$Type, arg1: $FluidStack$Type, arg2: $FluidTa
 
 public "matches"(arg0: $FluidStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>): boolean
 public "shouldCheckItemAvailability"(): boolean
+public "getMultipleProcessTicks"(): integer
 public "getFluidOutput"(arg0: $FluidStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>): $FluidStack
 public "getUsedSlots"(arg0: $FluidStack$Type, arg1: $NonNullList$Type<($ItemStack$Type)>): (integer)[]
-public "getMultipleProcessTicks"(): integer
 public static "findRecipe"(arg0: $Level$Type, arg1: $FluidStack$Type, arg2: $NonNullList$Type<($ItemStack$Type)>): $MixerRecipe
 get "multipleProcessTicks"(): integer
 }
@@ -18857,20 +18859,16 @@ constructor(arg0: $RegistryObject$Type<($BlockEntityType$Type<(T)>)>, arg1: $Blo
 constructor(arg0: $BiFunction$Type<($BlockPos$Type), ($BlockState$Type), (T)>, arg1: $BlockBehaviour$Properties$Type, arg2: boolean)
 constructor(arg0: $BiFunction$Type<($BlockPos$Type), ($BlockState$Type), (T)>, arg1: $BlockBehaviour$Properties$Type)
 
-public "canEntityDestroy"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
-public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
+public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "onIEBlockPlacedBy"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
+public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "setHasColours"(): $IEEntityBlock<(any)>
 public "hasCustomBlockColours"(): boolean
 public "getRenderColour"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: integer): integer
 public static "areAllReplaceable"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $BlockPlaceContext$Type): boolean
-public "hammerUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "screwdriverUseSide"(arg0: $Direction$Type, arg1: $Player$Type, arg2: $InteractionHand$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "getTicker"<T2 extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T2)>): $BlockEntityTicker<(T2)>
+public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
+public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "canEntityDestroy"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -18881,8 +18879,12 @@ public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2
 public "getInteractionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): $VoxelShape
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
+public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
+public "getTicker"<T2 extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T2)>): $BlockEntityTicker<(T2)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -18973,31 +18975,31 @@ export class $TransformerBlockEntity extends $AbstractTransformerBlockEntity imp
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
-public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
-public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
-public "getFacingLimitation"(): $PlacementLimitation
+public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
 public "connectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $IImmersiveConnectable$Type, arg3: $ConnectionPoint$Type): void
 public "getTargetedPoint"(arg0: $TargetingInfo$Type, arg1: $Vec3i$Type): $ConnectionPoint
 public "getConnectionPoints"(): $Collection<($ConnectionPoint)>
-public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
-public "getInternalConnections"(): $Iterable<(any)>
-public "getConnectionMaster"(arg0: $WireType$Type, arg1: $TargetingInfo$Type): $BlockPos
 public "readCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "writeCustomNBT"(arg0: $CompoundTag$Type, arg1: boolean): void
+public "breakDummies"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
+public "placeDummies"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
 public "getBlockBounds"(arg0: $CollisionContext$Type): $VoxelShape
+public "getFacingLimitation"(): $PlacementLimitation
+public "canConnectCable"(arg0: $WireType$Type, arg1: $ConnectionPoint$Type, arg2: $Vec3i$Type): boolean
+public "getInternalConnections"(): $Iterable<(any)>
+public "getModelOffset"(arg0: $BlockState$Type, arg1: $Vec3i$Type): $BlockPos
 public "master"(): $IEBlockInterfaces$IGeneralMultiblock
 public "getIgnored"(arg0: $IImmersiveConnectable$Type): $Set<($BlockPos)>
 public "isDummy"(): boolean
 public "setMirrored"(arg0: boolean): void
 public "getIsMirrored"(): boolean
-public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getSelectionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "setState"(arg0: $BlockState$Type): void
 public "getState"(): $BlockState
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "facingLimitation"(): $PlacementLimitation
 get "connectionPoints"(): $Collection<($ConnectionPoint)>
+get "facingLimitation"(): $PlacementLimitation
 get "internalConnections"(): $Iterable<(any)>
 get "dummy"(): boolean
 set "mirrored"(value: boolean)
@@ -19054,8 +19056,8 @@ public "connection"(): $Connection
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "firstPointToRender"(): integer
 public "lastPointToRender"(): integer
+public "firstPointToRender"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -19173,11 +19175,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $IConveyorType$Type<(any)>, arg1: $BlockBehaviour$Properties$Type)
 
 public "getType"(): $IConveyorType<(any)>
-public "onIEBlockPlacedBy"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
 public "fillCreativeTab"(arg0: $CreativeModeTab$Output$Type): void
+public "onIEBlockPlacedBy"(arg0: $BlockPlaceContext$Type, arg1: $BlockState$Type): void
 public static "makeCovered"(arg0: $ItemLike$Type, arg1: $Block$Type): $ItemStack
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getCover"(arg0: $ItemStack$Type): $Block
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "type"(): $IConveyorType<(any)>
@@ -19291,10 +19293,10 @@ readonly "canRepair": boolean
 
 constructor()
 
-public static "getInstruction"(arg0: $ItemStack$Type): $LogicCircuitHandler$LogicCircuitInstruction
 public static "buildCircuitBoard"(arg0: $LogicCircuitHandler$LogicCircuitInstruction$Type): $ItemStack
-public "getDescriptionId"(arg0: $ItemStack$Type): string
+public static "getInstruction"(arg0: $ItemStack$Type): $LogicCircuitHandler$LogicCircuitInstruction
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getDescriptionId"(arg0: $ItemStack$Type): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -19316,9 +19318,9 @@ import {$ObjectArrayList, $ObjectArrayList$Type} from "packages/it/unimi/dsi/fas
 
 export interface $TemplatePoolAccess {
 
- "getTemplates"(): $ObjectArrayList<($StructurePoolElement)>
- "setRawTemplates"(arg0: $List$Type<($Pair$Type<($StructurePoolElement$Type), (integer)>)>): void
  "getRawTemplates"(): $List<($Pair<($StructurePoolElement), (integer)>)>
+ "setRawTemplates"(arg0: $List$Type<($Pair$Type<($StructurePoolElement$Type), (integer)>)>): void
+ "getTemplates"(): $ObjectArrayList<($StructurePoolElement)>
 }
 
 export namespace $TemplatePoolAccess {
@@ -19434,21 +19436,21 @@ static "INTERNAL_CONNECTION": $WireType
 constructor()
 
 public static "getValue"(arg0: string): $WireType
-public "getUniqueName"(): string
-public "getCategory"(): string
-public "getMaxLength"(): integer
 public "getRenderDiameter"(): double
 public "getWireCoil"(arg0: $Connection$Type): $ItemStack
 public static "getIEWireTypes"(): $Collection<($WireType)>
+public "getUniqueName"(): string
+public "getCategory"(): string
+public "getMaxLength"(): integer
 public static "getValues"(): $LinkedHashSet<($WireType)>
 public "getColour"(arg0: $Connection$Type): integer
 public "getSlack"(): double
 public "getRequestedHandlers"(): $Collection<($ResourceLocation)>
+get "renderDiameter"(): double
+get "iEWireTypes"(): $Collection<($WireType)>
 get "uniqueName"(): string
 get "category"(): string
 get "maxLength"(): integer
-get "renderDiameter"(): double
-get "iEWireTypes"(): $Collection<($WireType)>
 get "values"(): $LinkedHashSet<($WireType)>
 get "slack"(): double
 get "requestedHandlers"(): $Collection<($ResourceLocation)>
@@ -19591,9 +19593,9 @@ public static "common"<T>(): $SetRestrictedField<(T)>
 public static "lock"(arg0: boolean): void
 public "getValue"(): T
 public "setValue"(arg0: T): void
+public static "startInitializing"(arg0: boolean): void
 public static "client"<T>(): $SetRestrictedField<(T)>
 public "isInitialized"(): boolean
-public static "startInitializing"(arg0: boolean): void
 get "value"(): T
 set "value"(value: T)
 get "initialized"(): boolean
@@ -19630,14 +19632,14 @@ export interface $MultiblockHandler$IMultiblock {
  "getDisplayName"(): $Component
  "getBlock"(): $Block
  "getSize"(arg0: $Level$Type): $Vec3i
- "getUniqueName"(): $ResourceLocation
- "initializeClient"(arg0: $Consumer$Type<($ClientMultiblocks$MultiblockManualData$Type)>): void
- "getStructure"(arg0: $Level$Type): $List<($StructureTemplate$StructureBlockInfo)>
- "disassemble"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: boolean, arg3: $Direction$Type): void
- "getManualScale"(): float
- "getTriggerOffset"(): $BlockPos
  "isBlockTrigger"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $Level$Type): boolean
  "createStructure"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: $Player$Type): boolean
+ "getTriggerOffset"(): $BlockPos
+ "getManualScale"(): float
+ "initializeClient"(arg0: $Consumer$Type<($ClientMultiblocks$MultiblockManualData$Type)>): void
+ "getStructure"(arg0: $Level$Type): $List<($StructureTemplate$StructureBlockInfo)>
+ "getUniqueName"(): $ResourceLocation
+ "disassemble"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: boolean, arg3: $Direction$Type): void
 }
 
 export namespace $MultiblockHandler$IMultiblock {
@@ -19708,9 +19710,9 @@ export interface $IMultiblockLogic<State extends $IMultiblockState> extends $IMu
  "createInitialState"(arg0: $IInitialMultiblockContext$Type<(State)>): State
  "shapeGetter"(arg0: $ShapeType$Type): $Function<($BlockPos), ($VoxelShape)>
  "postProcessAbsoluteShape"(arg0: $IMultiblockContext$Type<(State)>, arg1: $VoxelShape$Type, arg2: $CollisionContext$Type, arg3: $BlockPos$Type, arg4: $ShapeType$Type): $VoxelShape
+ "dropExtraItems"(arg0: State, arg1: $Consumer$Type<($ItemStack$Type)>): void
  "getCapability"<T>(arg0: $IMultiblockContext$Type<(State)>, arg1: $CapabilityPosition$Type, arg2: $Capability$Type<(T)>): $LazyOptional<(T)>
  "onEntityCollision"(arg0: $IMultiblockContext$Type<(State)>, arg1: $BlockPos$Type, arg2: $Entity$Type): void
- "dropExtraItems"(arg0: State, arg1: $Consumer$Type<($ItemStack$Type)>): void
  "click"(arg0: $IMultiblockContext$Type<(State)>, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $InteractionHand$Type, arg4: $BlockHitResult$Type, arg5: boolean): $InteractionResult
 }
 

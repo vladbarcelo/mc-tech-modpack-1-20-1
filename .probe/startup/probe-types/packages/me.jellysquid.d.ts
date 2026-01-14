@@ -123,11 +123,11 @@ public "getTransform"(): $CameraTransform
 public "isBoxVisible"(arg0: integer, arg1: integer, arg2: integer, arg3: float, arg4: float, arg5: float): boolean
 public "isBoxVisible"(arg0: integer, arg1: integer, arg2: integer, arg3: float): boolean
 public "isBoxVisible"(arg0: $AABB$Type): boolean
-public "getChunkCoord"(): $SectionPos
 public "getBlockCoord"(): $BlockPos
+public "getChunkCoord"(): $SectionPos
 get "transform"(): $CameraTransform
-get "chunkCoord"(): $SectionPos
 get "blockCoord"(): $BlockPos
+get "chunkCoord"(): $SectionPos
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -175,11 +175,11 @@ export class $ChunkTracker implements $ClientChunkEventListener {
 
 constructor()
 
-public "onChunkStatusRemoved"(arg0: integer, arg1: integer, arg2: integer): void
-public "onChunkStatusAdded"(arg0: integer, arg1: integer, arg2: integer): void
-public static "forEachChunk"(arg0: $LongCollection$Type, arg1: $ChunkTracker$ChunkEventHandler$Type): void
 public "forEachEvent"(arg0: $ChunkTracker$ChunkEventHandler$Type, arg1: $ChunkTracker$ChunkEventHandler$Type): void
 public "getReadyChunks"(): $LongCollection
+public static "forEachChunk"(arg0: $LongCollection$Type, arg1: $ChunkTracker$ChunkEventHandler$Type): void
+public "onChunkStatusAdded"(arg0: integer, arg1: integer, arg2: integer): void
+public "onChunkStatusRemoved"(arg0: integer, arg1: integer, arg2: integer): void
 public "updateMapCenter"(arg0: integer, arg1: integer): void
 public "updateLoadDistance"(arg0: integer): void
 get "readyChunks"(): $LongCollection
@@ -231,8 +231,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 
 export interface $BlockColorsExtended {
 
- "sodium$getProviders"(): $Reference2ReferenceMap<($Block), ($BlockColor)>
  "embeddium$getOverridenVanillaBlocks"(): $ReferenceSet<($Block)>
+ "sodium$getProviders"(): $Reference2ReferenceMap<($Block), ($BlockColor)>
 }
 
 export namespace $BlockColorsExtended {
@@ -262,8 +262,8 @@ import {$Long2ObjectMap, $Long2ObjectMap$Type} from "packages/it/unimi/dsi/fastu
 import {$Minecraft, $Minecraft$Type} from "packages/net/minecraft/client/$Minecraft"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$SortedSet, $SortedSet$Type} from "packages/java/util/$SortedSet"
-import {$RenderBuffers, $RenderBuffers$Type} from "packages/net/minecraft/client/renderer/$RenderBuffers"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$RenderBuffers, $RenderBuffers$Type} from "packages/net/minecraft/client/renderer/$RenderBuffers"
 import {$PoseStack, $PoseStack$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack"
 import {$Iterator, $Iterator$Type} from "packages/java/util/$Iterator"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
@@ -272,22 +272,10 @@ export class $SodiumWorldRenderer {
 
 constructor(arg0: $Minecraft$Type)
 
-public "reload"(): void
 public static "instance"(): $SodiumWorldRenderer
-public "getVisibleChunkCount"(): integer
-public "isTerrainRenderComplete"(): boolean
-public "scheduleTerrainUpdate"(): void
-public "drawChunkLayer"(arg0: $RenderType$Type, arg1: $PoseStack$Type, arg2: double, arg3: double, arg4: double): void
-public "setupTerrain"(arg0: $Camera$Type, arg1: $Viewport$Type, arg2: integer, arg3: boolean, arg4: boolean): void
-public "scheduleRebuildForChunks"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: boolean): void
-public "scheduleRebuildForChunk"(arg0: integer, arg1: integer, arg2: integer, arg3: boolean): void
-public "isSectionReady"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "renderBlockEntities"(arg0: $PoseStack$Type, arg1: $RenderBuffers$Type, arg2: $Long2ObjectMap$Type<($SortedSet$Type<($BlockDestructionProgress$Type)>)>, arg3: $Camera$Type, arg4: float): void
-public "getChunksDebugString"(): string
-public static "instanceNullable"(): $SodiumWorldRenderer
-public "isEntityVisible"(arg0: $Entity$Type): boolean
-public "scheduleRebuildForBlockArea"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: boolean): void
+public "reload"(): void
 public "didBlockEntityRequestOutline"(): boolean
+public "scheduleRebuildForBlockArea"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: boolean): void
 /**
  * 
  * @deprecated
@@ -307,11 +295,23 @@ public "getDebugStrings"(): $Collection<(string)>
  * @deprecated
  */
 public "onChunkLightAdded"(arg0: integer, arg1: integer): void
+public static "instanceNullable"(): $SodiumWorldRenderer
+public "isEntityVisible"(arg0: $Entity$Type): boolean
+public "scheduleTerrainUpdate"(): void
+public "isTerrainRenderComplete"(): boolean
+public "getVisibleChunkCount"(): integer
+public "drawChunkLayer"(arg0: $RenderType$Type, arg1: $PoseStack$Type, arg2: double, arg3: double, arg4: double): void
+public "scheduleRebuildForChunks"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: boolean): void
+public "scheduleRebuildForChunk"(arg0: integer, arg1: integer, arg2: integer, arg3: boolean): void
+public "setupTerrain"(arg0: $Camera$Type, arg1: $Viewport$Type, arg2: integer, arg3: boolean, arg4: boolean): void
+public "renderBlockEntities"(arg0: $PoseStack$Type, arg1: $RenderBuffers$Type, arg2: $Long2ObjectMap$Type<($SortedSet$Type<($BlockDestructionProgress$Type)>)>, arg3: $Camera$Type, arg4: float): void
+public "isSectionReady"(arg0: integer, arg1: integer, arg2: integer): boolean
+public "getChunksDebugString"(): string
 public "setWorld"(arg0: $ClientLevel$Type): void
-get "visibleChunkCount"(): integer
-get "terrainRenderComplete"(): boolean
-get "chunksDebugString"(): string
 get "debugStrings"(): $Collection<(string)>
+get "terrainRenderComplete"(): boolean
+get "visibleChunkCount"(): integer
+get "chunksDebugString"(): string
 set "world"(value: $ClientLevel$Type)
 }
 /**
@@ -380,8 +380,8 @@ import {$ModelCuboid, $ModelCuboid$Type} from "packages/me/jellysquid/mods/sodiu
 
 export interface $ModelCuboidAccessor {
 
- "sodium$copy"(): $ModelCuboid
  "embeddium$getSimpleCuboid"(): $ModelCuboid
+ "sodium$copy"(): $ModelCuboid
 }
 
 export namespace $ModelCuboidAccessor {
@@ -436,21 +436,21 @@ export interface $BakedQuadView extends $ModelQuadView {
  "getNormalFace"(): $ModelQuadFacing
  "hasShade"(): boolean
  "getFlags"(): integer
- "getY"(arg0: integer): float
  "getX"(arg0: integer): float
- "getModFaceNormal"(): integer
- "getForgeNormal"(arg0: integer): integer
- "getLightFace"(): $Direction
- "hasAmbientOcclusion"(): boolean
- "getComputedFaceNormal"(): integer
+ "getY"(arg0: integer): float
  "getColorIndex"(): integer
- "getColor"(arg0: integer): integer
+ "getModFaceNormal"(): integer
+ "hasAmbientOcclusion"(): boolean
+ "getForgeNormal"(arg0: integer): integer
+ "getComputedFaceNormal"(): integer
+ "getLightFace"(): $Direction
  "getZ"(arg0: integer): float
- "getSprite"(): $TextureAtlasSprite
+ "getColor"(arg0: integer): integer
+ "hasColor"(): boolean
  "getTexU"(arg0: integer): float
  "getTexV"(arg0: integer): float
  "getLight"(arg0: integer): integer
- "hasColor"(): boolean
+ "getSprite"(): $TextureAtlasSprite
 }
 
 export namespace $BakedQuadView {
@@ -498,18 +498,18 @@ declare module "packages/me/jellysquid/mods/sodium/client/render/vertex/buffer/$
 import {$VertexConsumer, $VertexConsumer$Type} from "packages/com/mojang/blaze3d/vertex/$VertexConsumer"
 import {$MemoryStack, $MemoryStack$Type} from "packages/org/lwjgl/system/$MemoryStack"
 import {$SodiumBufferBuilder, $SodiumBufferBuilder$Type} from "packages/me/jellysquid/mods/sodium/client/render/vertex/buffer/$SodiumBufferBuilder"
-import {$ByteBuffer, $ByteBuffer$Type} from "packages/java/nio/$ByteBuffer"
 import {$VertexFormatDescription, $VertexFormatDescription$Type} from "packages/net/caffeinemc/mods/sodium/api/vertex/format/$VertexFormatDescription"
+import {$ByteBuffer, $ByteBuffer$Type} from "packages/java/nio/$ByteBuffer"
 import {$VertexBufferWriter, $VertexBufferWriter$Type} from "packages/net/caffeinemc/mods/sodium/api/vertex/buffer/$VertexBufferWriter"
 
 export interface $ExtendedBufferBuilder extends $VertexBufferWriter {
 
- "sodium$usingFixedColor"(): boolean
- "sodium$moveToNextVertex"(): void
- "sodium$getDelegate"(): $SodiumBufferBuilder
- "sodium$getElementOffset"(): integer
- "sodium$getBuffer"(): $ByteBuffer
  "sodium$getFormatDescription"(): $VertexFormatDescription
+ "sodium$getBuffer"(): $ByteBuffer
+ "sodium$getElementOffset"(): integer
+ "sodium$getDelegate"(): $SodiumBufferBuilder
+ "sodium$moveToNextVertex"(): void
+ "sodium$usingFixedColor"(): boolean
  "push"(arg0: $MemoryStack$Type, arg1: long, arg2: integer, arg3: $VertexFormatDescription$Type): void
  "canUseIntrinsics"(): boolean
 /**
@@ -778,8 +778,8 @@ declare module "packages/me/jellysquid/mods/sodium/client/render/chunk/map/$Clie
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ClientChunkEventListener {
 
- "onChunkStatusRemoved"(arg0: integer, arg1: integer, arg2: integer): void
  "onChunkStatusAdded"(arg0: integer, arg1: integer, arg2: integer): void
+ "onChunkStatusRemoved"(arg0: integer, arg1: integer, arg2: integer): void
  "updateMapCenter"(arg0: integer, arg1: integer): void
  "updateLoadDistance"(arg0: integer): void
 }
@@ -915,21 +915,21 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 export interface $ModelQuadView {
 
  "getFlags"(): integer
- "getY"(arg0: integer): float
  "getX"(arg0: integer): float
- "getModFaceNormal"(): integer
- "getForgeNormal"(arg0: integer): integer
- "getLightFace"(): $Direction
- "hasAmbientOcclusion"(): boolean
- "getComputedFaceNormal"(): integer
+ "getY"(arg0: integer): float
  "getColorIndex"(): integer
- "getColor"(arg0: integer): integer
+ "getModFaceNormal"(): integer
+ "hasAmbientOcclusion"(): boolean
+ "getForgeNormal"(arg0: integer): integer
+ "getComputedFaceNormal"(): integer
+ "getLightFace"(): $Direction
  "getZ"(arg0: integer): float
- "getSprite"(): $TextureAtlasSprite
+ "getColor"(arg0: integer): integer
+ "hasColor"(): boolean
  "getTexU"(arg0: integer): float
  "getTexV"(arg0: integer): float
  "getLight"(arg0: integer): integer
- "hasColor"(): boolean
+ "getSprite"(): $TextureAtlasSprite
 }
 
 export namespace $ModelQuadView {
@@ -972,12 +972,18 @@ constructor(arg0: $ExtendedBufferBuilder$Type)
 
 public "push"(arg0: $MemoryStack$Type, arg1: long, arg2: integer, arg3: $VertexFormatDescription$Type): void
 public "reset"(): void
-public "canUseIntrinsics"(): boolean
-public "etf$initETFVertexConsumer"(provider: $MultiBufferSource$Type, renderLayer: $RenderType$Type): void
-public "etf$getRenderLayer"(): $RenderType
-public "etf$getProvider"(): $MultiBufferSource
-public "etf$getETFTexture"(): $ETFTexture
 public "getOriginalBufferBuilder"(): $BufferBuilder
+public "etf$getETFTexture"(): $ETFTexture
+public "etf$getProvider"(): $MultiBufferSource
+public "etf$getRenderLayer"(): $RenderType
+public "etf$initETFVertexConsumer"(provider: $MultiBufferSource$Type, renderLayer: $RenderType$Type): void
+public "canUseIntrinsics"(): boolean
+public "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
+public "overlayCoords"(arg0: integer): $VertexConsumer
+public "uv2"(arg0: integer): $VertexConsumer
+public "defaultColor"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "unsetDefaultColor"(): void
+public "color"(arg0: integer): $VertexConsumer
 public "vertex"(arg0: double, arg1: double, arg2: double): $VertexConsumer
 public "uv"(arg0: float, arg1: float): $VertexConsumer
 public "endVertex"(): void
@@ -985,18 +991,12 @@ public "color"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $Ver
 public "overlayCoords"(arg0: integer, arg1: integer): $VertexConsumer
 public "uv2"(arg0: integer, arg1: integer): $VertexConsumer
 public "normal"(arg0: float, arg1: float, arg2: float): $VertexConsumer
-public "vertex"(arg0: float, arg1: float, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: integer, arg10: integer, arg11: float, arg12: float, arg13: float): void
-public "overlayCoords"(arg0: integer): $VertexConsumer
-public "uv2"(arg0: integer): $VertexConsumer
-public "defaultColor"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "unsetDefaultColor"(): void
-public "color"(arg0: integer): $VertexConsumer
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: float, arg7: (integer)[], arg8: integer, arg9: boolean): void
-public "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: integer, arg6: integer): void
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: (float)[], arg3: float, arg4: float, arg5: float, arg6: (integer)[], arg7: integer, arg8: boolean): void
 public "vertex"(arg0: $Matrix4f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
 public "normal"(arg0: $Matrix3f$Type, arg1: float, arg2: float, arg3: float): $VertexConsumer
+public "color"(arg0: float, arg1: float, arg2: float, arg3: float): $VertexConsumer
 public static "copyInto"(arg0: $VertexBufferWriter$Type, arg1: $MemoryStack$Type, arg2: long, arg3: integer, arg4: $VertexFormatDescription$Type): void
 public static "of"(arg0: $VertexConsumer$Type): $VertexBufferWriter
 /**
@@ -1005,9 +1005,9 @@ public static "of"(arg0: $VertexConsumer$Type): $VertexBufferWriter
  */
 public "isFullWriter"(): boolean
 public static "tryOf"(arg0: $VertexConsumer$Type): $VertexBufferWriter
+public "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
 public "putBulkData"(arg0: $PoseStack$Pose$Type, arg1: $BakedQuad$Type, arg2: float, arg3: float, arg4: float, arg5: float, arg6: integer, arg7: integer, arg8: boolean): void
 public "applyBakedLighting"(arg0: integer, arg1: $ByteBuffer$Type): integer
-public "applyBakedNormals"(arg0: $Vector3f$Type, arg1: $ByteBuffer$Type, arg2: $Matrix3f$Type): void
 public "misc"(arg0: $VertexFormatElement$Type, ...arg1: (integer)[]): $VertexConsumer
 get "originalBufferBuilder"(): $BufferBuilder
 get "fullWriter"(): boolean

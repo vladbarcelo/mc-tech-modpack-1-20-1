@@ -1,0 +1,15 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:rough_bronze_pickaxe_head"
+		}
+	],
+	"output": {
+		"item": "tconstruct:pick_head",
+		"count": 1,
+		"nbt": {
+			"Material": "tconstruct:bronze"
+		}
+	}
+}

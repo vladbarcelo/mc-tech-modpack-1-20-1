@@ -25,7 +25,6 @@ ServerEvents.recipes((event) => {
     'vintageimprovements:pressing/platinum_ingot',
     'vintageimprovements:pressing/rhodium_ingot',
     'create:pressing/copper_ingot',
-    'vintageimprovements:pressing/lead_ingot',
     'createdeco:pressing/zinc_sheet',
     'createaddition:pressing/zinc_ingot',
     'vintageimprovements:pressing/aluminum_ingot',

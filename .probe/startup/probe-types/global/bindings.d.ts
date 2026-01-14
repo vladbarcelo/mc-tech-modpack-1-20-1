@@ -69,7 +69,6 @@ import {$CapabilitiesCurios, $CapabilitiesCurios$Type} from "packages/com/prunoi
 import {$ICurioRenderer, $ICurioRenderer$Type} from "packages/top/theillusivec4/curios/api/client/$ICurioRenderer"
 import {$Items, $Items$Type} from "packages/net/minecraft/world/item/$Items"
 import {$TextWrapper, $TextWrapper$Type} from "packages/dev/latvian/mods/kubejs/bindings/$TextWrapper"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$LabelWidget, $LabelWidget$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$LabelWidget"
 import {$ColorRectTexture, $ColorRectTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$ColorRectTexture"
 import {$Math, $Math$Type} from "packages/java/lang/$Math"
@@ -190,7 +189,6 @@ const Vec3d: typeof $Vec3
 const ItemUIFactory: typeof $ItemUIJSFactory
 const ItemTransferHelper: typeof $ItemTransferHelperImpl
 const GuiPos: typeof $Position
-const BlockState: typeof $BlockState
 const ForgeEvents: $ForgeEventWrapper
 const InputItem: typeof $InputItem
 const LabelWidget: typeof $LabelWidget

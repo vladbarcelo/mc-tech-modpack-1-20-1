@@ -37,22 +37,22 @@ import {$AlgorithmParameterSpec, $AlgorithmParameterSpec$Type} from "packages/ja
 export class $Signature extends $SignatureSpi {
 
 
-public "getAlgorithm"(): string
-public "initVerify"(arg0: $Certificate$Type): void
-public "initVerify"(arg0: $PublicKey$Type): void
-public "initSign"(arg0: $PrivateKey$Type): void
-public "initSign"(arg0: $PrivateKey$Type, arg1: $SecureRandom$Type): void
-public "getProvider"(): $Provider
-public "verify"(arg0: (byte)[]): boolean
-public "verify"(arg0: (byte)[], arg1: integer, arg2: integer): boolean
 public "sign"(): (byte)[]
 public "sign"(arg0: (byte)[], arg1: integer, arg2: integer): integer
-public "setParameter"(arg0: $AlgorithmParameterSpec$Type): void
+public "getAlgorithm"(): string
+public "getProvider"(): $Provider
+public "initVerify"(arg0: $Certificate$Type): void
+public "initVerify"(arg0: $PublicKey$Type): void
+public "initSign"(arg0: $PrivateKey$Type, arg1: $SecureRandom$Type): void
+public "initSign"(arg0: $PrivateKey$Type): void
+public "verify"(arg0: (byte)[]): boolean
+public "verify"(arg0: (byte)[], arg1: integer, arg2: integer): boolean
 /**
  * 
  * @deprecated
  */
 public "setParameter"(arg0: string, arg1: any): void
+public "setParameter"(arg0: $AlgorithmParameterSpec$Type): void
 /**
  * 
  * @deprecated
@@ -97,8 +97,8 @@ constructor()
 constructor(arg0: (byte)[])
 
 public "getAlgorithm"(): string
-public static "getSeed"(arg0: integer): (byte)[]
 public "getProvider"(): $Provider
+public static "getSeed"(arg0: integer): (byte)[]
 public "nextBytes"(arg0: (byte)[]): void
 public "nextBytes"(arg0: (byte)[], arg1: $SecureRandomParameters$Type): void
 public "setSeed"(arg0: long): void
@@ -239,10 +239,6 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export class $Provider extends $Properties {
 
 
-public "configure"(arg0: string): $Provider
-public "isConfigured"(): boolean
-public "getVersionStr"(): string
-public "getInfo"(): string
 /**
  * 
  * @deprecated
@@ -250,6 +246,10 @@ public "getInfo"(): string
 public "getVersion"(): double
 public "getService"(arg0: string, arg1: string): $Provider$Service
 public "getServices"(): $Set<($Provider$Service)>
+public "configure"(arg0: string): $Provider
+public "isConfigured"(): boolean
+public "getVersionStr"(): string
+public "getInfo"(): string
 public "getName"(): string
 public "remove"(arg0: any): any
 public "remove"(arg0: any, arg1: any): boolean
@@ -289,11 +289,11 @@ public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, a
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V, arg8: K, arg9: V, arg10: K, arg11: V): $Map<(K), (V)>
 public static "entry"<K, V>(arg0: K, arg1: V): $Map$Entry<(K), (V)>
 public static "ofEntries"<K, V>(...arg0: ($Map$Entry$Type<(any), (any)>)[]): $Map<(K), (V)>
+get "version"(): double
+get "services"(): $Set<($Provider$Service)>
 get "configured"(): boolean
 get "versionStr"(): string
 get "info"(): string
-get "version"(): double
-get "services"(): $Set<($Provider$Service)>
 get "name"(): string
 }
 /**
@@ -526,9 +526,9 @@ export class $Provider$Service {
 constructor(arg0: $Provider$Type, arg1: string, arg2: string, arg3: string, arg4: $List$Type<(string)>, arg5: $Map$Type<(string), (string)>)
 
 public "getAlgorithm"(): string
-public "supportsParameter"(arg0: any): boolean
-public "getAttribute"(arg0: string): string
 public "getProvider"(): $Provider
+public "getAttribute"(arg0: string): string
+public "supportsParameter"(arg0: any): boolean
 public "toString"(): string
 public "newInstance"(arg0: any): any
 public "getType"(): string

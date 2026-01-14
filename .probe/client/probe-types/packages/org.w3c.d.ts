@@ -44,13 +44,9 @@ export interface $CDATASection extends $Text {
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
- "getLength"(): integer
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
+ "getLength"(): integer
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -65,10 +61,12 @@ export interface $CDATASection extends $Text {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -83,6 +81,8 @@ export interface $CDATASection extends $Text {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -151,10 +151,6 @@ export interface $Document extends $Node {
  "createElementNS"(arg0: string, arg1: string): $Element
  "createElement"(arg0: string): $Element
  "getDocumentElement"(): $Element
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -169,10 +165,12 @@ export interface $Document extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -187,6 +185,8 @@ export interface $Document extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -214,16 +214,12 @@ import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $DocumentType extends $Node {
 
- "getInternalSubset"(): string
- "getName"(): string
  "getSystemId"(): string
  "getPublicId"(): string
+ "getInternalSubset"(): string
  "getEntities"(): $NamedNodeMap
  "getNotations"(): $NamedNodeMap
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
+ "getName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -238,10 +234,12 @@ export interface $DocumentType extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -256,6 +254,8 @@ export interface $DocumentType extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -283,10 +283,6 @@ import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $EntityReference extends $Node {
 
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -301,10 +297,12 @@ export interface $EntityReference extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -319,6 +317,8 @@ export interface $EntityReference extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -345,10 +345,6 @@ import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $Node {
 
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -363,10 +359,12 @@ export interface $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -381,6 +379,8 @@ export interface $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -430,13 +430,9 @@ export interface $CharacterData extends $Node {
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
- "getLength"(): integer
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
+ "getLength"(): integer
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -451,10 +447,12 @@ export interface $CharacterData extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -469,6 +467,8 @@ export interface $CharacterData extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -533,13 +533,9 @@ export interface $Text extends $CharacterData {
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
- "getLength"(): integer
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
+ "getLength"(): integer
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -554,10 +550,12 @@ export interface $Text extends $CharacterData {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -572,6 +570,8 @@ export interface $Text extends $CharacterData {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -598,10 +598,10 @@ export interface $NamedNodeMap {
  "item"(arg0: integer): $Node
  "getNamedItemNS"(arg0: string, arg1: string): $Node
  "removeNamedItemNS"(arg0: string, arg1: string): $Node
- "getLength"(): integer
  "getNamedItem"(arg0: string): $Node
  "setNamedItem"(arg0: $Node$Type): $Node
  "setNamedItemNS"(arg0: $Node$Type): $Node
+ "getLength"(): integer
  "removeNamedItem"(arg0: string): $Node
 }
 
@@ -638,10 +638,6 @@ export interface $Attr extends $Node {
  "getName"(): string
  "getValue"(): string
  "setValue"(arg0: string): void
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -656,10 +652,12 @@ export interface $Attr extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -674,6 +672,8 @@ export interface $Attr extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -707,13 +707,9 @@ export interface $Comment extends $CharacterData {
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
- "getLength"(): integer
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
+ "getLength"(): integer
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -728,10 +724,12 @@ export interface $Comment extends $CharacterData {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -746,6 +744,8 @@ export interface $Comment extends $CharacterData {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -804,11 +804,11 @@ import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $Element extends $Node {
 
- "setAttribute"(arg0: string, arg1: string): void
- "getAttribute"(arg0: string): string
  "removeAttributeNode"(arg0: $Attr$Type): $Attr
  "getElementsByTagName"(arg0: string): $NodeList
  "getElementsByTagNameNS"(arg0: string, arg1: string): $NodeList
+ "getAttribute"(arg0: string): string
+ "setAttribute"(arg0: string, arg1: string): void
  "removeAttribute"(arg0: string): void
  "getAttributeNS"(arg0: string, arg1: string): string
  "removeAttributeNS"(arg0: string, arg1: string): void
@@ -824,10 +824,6 @@ export interface $Element extends $Node {
  "setAttributeNS"(arg0: string, arg1: string, arg2: string): void
  "setIdAttribute"(arg0: string, arg1: boolean): void
  "getTagName"(): string
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -842,10 +838,12 @@ export interface $Element extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -860,6 +858,8 @@ export interface $Element extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -913,10 +913,6 @@ import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $DocumentFragment extends $Node {
 
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -931,10 +927,12 @@ export interface $DocumentFragment extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -949,6 +947,8 @@ export interface $DocumentFragment extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 
@@ -1003,10 +1003,6 @@ export interface $ProcessingInstruction extends $Node {
  "getData"(): string
  "setData"(arg0: string): void
  "getTarget"(): string
- "getPrefix"(): string
- "isSupported"(arg0: string, arg1: string): boolean
- "hasAttributes"(): boolean
- "getLocalName"(): string
  "getOwnerDocument"(): $Document
  "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "hasChildNodes"(): boolean
@@ -1021,10 +1017,12 @@ export interface $ProcessingInstruction extends $Node {
  "lookupNamespaceURI"(arg0: string): string
  "isEqualNode"(arg0: $Node$Type): boolean
  "getUserData"(arg0: string): any
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
  "getFeature"(arg0: string, arg1: string): any
+ "hasAttributes"(): boolean
+ "getLocalName"(): string
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
+ "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -1039,6 +1037,8 @@ export interface $ProcessingInstruction extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
  "getChildNodes"(): $NodeList
 }
 

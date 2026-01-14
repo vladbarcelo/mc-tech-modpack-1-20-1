@@ -39,8 +39,7 @@ export {} // Mark the file as a module, do not remove unless there are other imp
  */
 export interface $DataInput {
 
- "readFully"(arg0: (byte)[]): void
- "readFully"(arg0: (byte)[], arg1: integer, arg2: integer): void
+ "readChar"(): character
  "readLong"(): long
  "skipBytes"(arg0: integer): integer
  "readBoolean"(): boolean
@@ -49,8 +48,9 @@ export interface $DataInput {
  "readShort"(): short
  "readUnsignedShort"(): integer
  "readDouble"(): double
+ "readFully"(arg0: (byte)[], arg1: integer, arg2: integer): void
+ "readFully"(arg0: (byte)[]): void
  "readFloat"(): float
- "readChar"(): character
  "readLine"(): string
  "readInt"(): integer
  "readUTF"(): string
@@ -187,15 +187,15 @@ export interface $ObjectOutput extends $DataOutput, $AutoCloseable {
  "write"(arg0: integer): void
  "writeObject"(arg0: any): void
  "close"(): void
+ "writeChar"(arg0: integer): void
  "writeLong"(arg0: long): void
  "writeBoolean"(arg0: boolean): void
  "writeByte"(arg0: integer): void
  "writeShort"(arg0: integer): void
  "writeDouble"(arg0: double): void
  "writeChars"(arg0: string): void
- "writeFloat"(arg0: float): void
  "writeBytes"(arg0: string): void
- "writeChar"(arg0: integer): void
+ "writeFloat"(arg0: float): void
  "writeInt"(arg0: integer): void
  "writeUTF"(arg0: string): void
 }
@@ -413,18 +413,18 @@ export {} // Mark the file as a module, do not remove unless there are other imp
  */
 export interface $DataOutput {
 
+ "writeChar"(arg0: integer): void
  "writeLong"(arg0: long): void
  "writeBoolean"(arg0: boolean): void
  "writeByte"(arg0: integer): void
  "writeShort"(arg0: integer): void
  "writeDouble"(arg0: double): void
  "writeChars"(arg0: string): void
- "writeFloat"(arg0: float): void
  "writeBytes"(arg0: string): void
- "writeChar"(arg0: integer): void
- "write"(arg0: integer): void
- "write"(arg0: (byte)[]): void
+ "writeFloat"(arg0: float): void
  "write"(arg0: (byte)[], arg1: integer, arg2: integer): void
+ "write"(arg0: (byte)[]): void
+ "write"(arg0: integer): void
  "writeInt"(arg0: integer): void
  "writeUTF"(arg0: string): void
 }
@@ -628,10 +628,10 @@ static readonly "separator": string
 static readonly "pathSeparatorChar": character
 static readonly "pathSeparator": string
 
-constructor(arg0: $URI$Type)
-constructor(arg0: string, arg1: string)
-constructor(arg0: $File$Type, arg1: string)
 constructor(arg0: string)
+constructor(arg0: string, arg1: string)
+constructor(arg0: $URI$Type)
+constructor(arg0: $File$Type, arg1: string)
 
 public "getAbsolutePath"(): string
 public "getCanonicalPath"(): string
@@ -643,10 +643,10 @@ public "getParentFile"(): $File
 public "mkdirs"(): boolean
 public "setWritable"(arg0: boolean, arg1: boolean): boolean
 public "setWritable"(arg0: boolean): boolean
-public "setReadable"(arg0: boolean): boolean
 public "setReadable"(arg0: boolean, arg1: boolean): boolean
-public "setExecutable"(arg0: boolean): boolean
+public "setReadable"(arg0: boolean): boolean
 public "setExecutable"(arg0: boolean, arg1: boolean): boolean
+public "setExecutable"(arg0: boolean): boolean
 public static "listRoots"(): ($File)[]
 public static "createTempFile"(arg0: string, arg1: string): $File
 public static "createTempFile"(arg0: string, arg1: string, arg2: $File$Type): $File
@@ -655,8 +655,8 @@ public "isFile"(): boolean
 public "lastModified"(): long
 public "deleteOnExit"(): void
 public "listFiles"(arg0: $FileFilter$Type): ($File)[]
-public "listFiles"(): ($File)[]
 public "listFiles"(arg0: $FilenameFilter$Type): ($File)[]
+public "listFiles"(): ($File)[]
 public "setLastModified"(arg0: long): boolean
 public "canExecute"(): boolean
 public "getTotalSpace"(): long
@@ -732,15 +732,15 @@ export class $DataOutputStream extends $FilterOutputStream implements $DataOutpu
 
 constructor(arg0: $OutputStream$Type)
 
+public "writeChar"(arg0: integer): void
 public "writeLong"(arg0: long): void
 public "writeBoolean"(arg0: boolean): void
 public "writeByte"(arg0: integer): void
 public "writeShort"(arg0: integer): void
 public "writeDouble"(arg0: double): void
 public "writeChars"(arg0: string): void
-public "writeFloat"(arg0: float): void
 public "writeBytes"(arg0: string): void
-public "writeChar"(arg0: integer): void
+public "writeFloat"(arg0: float): void
 public "flush"(): void
 public "size"(): integer
 public "write"(arg0: integer): void
@@ -845,8 +845,7 @@ export class $DataInputStream extends $FilterInputStream implements $DataInput {
 
 constructor(arg0: $InputStream$Type)
 
-public "readFully"(arg0: (byte)[], arg1: integer, arg2: integer): void
-public "readFully"(arg0: (byte)[]): void
+public "readChar"(): character
 public "readLong"(): long
 public "skipBytes"(arg0: integer): integer
 public "readBoolean"(): boolean
@@ -855,8 +854,9 @@ public "readUnsignedByte"(): integer
 public "readShort"(): short
 public "readUnsignedShort"(): integer
 public "readDouble"(): double
+public "readFully"(arg0: (byte)[], arg1: integer, arg2: integer): void
+public "readFully"(arg0: (byte)[]): void
 public "readFloat"(): float
-public "readChar"(): character
 public "read"(arg0: (byte)[], arg1: integer, arg2: integer): integer
 public "read"(arg0: (byte)[]): integer
 /**
@@ -937,8 +937,7 @@ export interface $ObjectInput extends $DataInput, $AutoCloseable {
  "close"(): void
  "skip"(arg0: long): long
  "available"(): integer
- "readFully"(arg0: (byte)[]): void
- "readFully"(arg0: (byte)[], arg1: integer, arg2: integer): void
+ "readChar"(): character
  "readLong"(): long
  "skipBytes"(arg0: integer): integer
  "readBoolean"(): boolean
@@ -947,8 +946,9 @@ export interface $ObjectInput extends $DataInput, $AutoCloseable {
  "readShort"(): short
  "readUnsignedShort"(): integer
  "readDouble"(): double
+ "readFully"(arg0: (byte)[], arg1: integer, arg2: integer): void
+ "readFully"(arg0: (byte)[]): void
  "readFloat"(): float
- "readChar"(): character
  "readLine"(): string
  "readInt"(): integer
  "readUTF"(): string

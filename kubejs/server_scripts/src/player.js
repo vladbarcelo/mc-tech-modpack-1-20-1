@@ -25,19 +25,19 @@ ServerEvents.tick(event => {
     // lava buckets
     let ironLavaBucketSlot = player.inventory.find('minecraft:lava_bucket');
     if (ironLavaBucketSlot != -1) {
-      dropLavaDestroyBucket(player, ironLavaBucketSlot, false)
+      dropHotLiquidDestroyBucket(player, ironLavaBucketSlot, false)
     }
 
     for (let dynamicBucket of ['wooden_bucket', 'gold_bucket', 'diamond_bucket', 'obsidian_bucket']) {
       let dynamicBucketSlot = player.inventory.find(`morebuckets:${dynamicBucket}`);
       if (dynamicBucketSlot != -1) {
-        dropLavaDestroyBucket(player, dynamicBucketSlot, true)
+        dropHotLiquidDestroyBucket(player, dynamicBucketSlot, true)
       }
     }
   });
 });
 
-function dropLavaDestroyBucket(player, slot, checkNBT) {
+function dropHotLiquidDestroyBucket(player, slot, checkNBT) {
   let performAction = false
   if (checkNBT) {
     let item = player.inventory.getItem(slot)

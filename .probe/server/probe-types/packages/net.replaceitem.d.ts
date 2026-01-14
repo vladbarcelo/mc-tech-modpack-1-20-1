@@ -26,8 +26,8 @@ public static "fromVanillaDirection"(facing: $Direction$Type, direction: $Direct
 public static "fromVanillaDirection"(direction: $Direction$Type): $FlatDirection
 public static "fromVanillaDirection"(circuit: $BlockState$Type, direction: $Direction$Type): $FlatDirection
 public "getOpposite"(): $FlatDirection
-public "rotatedCounterclockwise"(times: integer): $FlatDirection
 public "getAxis"(): $FlatDirection$Axis
+public "rotatedCounterclockwise"(times: integer): $FlatDirection
 public "rotated"(times: integer): $FlatDirection
 public static "forAxis"(axis: $FlatDirection$Axis$Type): ($FlatDirection)[]
 get "index"(): integer
@@ -134,8 +134,8 @@ import {$DyeColor, $DyeColor$Type} from "packages/net/minecraft/world/item/$DyeC
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
@@ -200,9 +200,6 @@ constructor(settings: $BlockBehaviour$Properties$Type)
 public "updateTarget"(world: $Level$Type, pos: $BlockPos$Type, direction: $Direction$Type): void
 public "getInputPower"(view: $SignalGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, dir: $FlatDirection$Type): integer
 public "getPortRenderStrength"(view: $BlockAndTintGetter$Type, pos: $BlockPos$Type, circuitDirection: $FlatDirection$Type): integer
-public "tick"(state: $BlockState$Type, world: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getSignal"(state: $BlockState$Type, view: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
-public "getDirectSignal"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
 public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "neighborChanged"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, sourceBlock: $Block$Type, sourcePos: $BlockPos$Type, notify: boolean): void
 public "onPlace"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, notify: boolean): void
@@ -212,13 +209,16 @@ public "isSignalSource"(state: $BlockState$Type): boolean
 public "getDrops"(state: $BlockState$Type, builder: $LootParams$Builder$Type): $List<($ItemStack)>
 public "canSurvive"(state: $BlockState$Type, world: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
+public "tick"(state: $BlockState$Type, world: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "getSignal"(state: $BlockState$Type, view: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
+public "getDirectSignal"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, itemStack: $ItemStack$Type): void
 public "playerWillDestroy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
-public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
-public "newBlockEntity"(pos: $BlockPos$Type, state: $BlockState$Type): $BlockEntity
 public static "fromColor"(color: $DyeColor$Type): $IntegratedCircuitBlock
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "newBlockEntity"(pos: $BlockPos$Type, state: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -264,10 +264,10 @@ readonly "canRepair": boolean
 constructor(block: $IntegratedCircuitBlock$Type)
 
 public "getName"(stack: $ItemStack$Type): $Component
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

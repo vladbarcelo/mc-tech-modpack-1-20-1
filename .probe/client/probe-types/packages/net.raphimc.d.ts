@@ -60,12 +60,12 @@ constructor(id: integer)
 public "getIdentifier"(): $ResourceLocation
 public "getId"(): integer
 public "close"(): void
-public "getTexture"(): $DynamicTexture
 public "getNextMapLocation"(): integer
+public "getTexture"(): $DynamicTexture
 get "identifier"(): $ResourceLocation
 get "id"(): integer
-get "texture"(): $DynamicTexture
 get "nextMapLocation"(): integer
+get "texture"(): $DynamicTexture
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

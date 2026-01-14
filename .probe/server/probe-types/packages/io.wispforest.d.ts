@@ -5,10 +5,10 @@ import {$AbstractButton, $AbstractButton$Type} from "packages/net/minecraft/clie
 
 export interface $AbstractButtonExtension {
 
- "adjustRendering"<B extends $AbstractButton>(event: $ButtonEvents$AdjustRendering$Type): B
  "getRenderingEvent"(): $Event<($ButtonEvents$AdjustRendering)>
+ "adjustRendering"<B extends $AbstractButton>(event: $ButtonEvents$AdjustRendering$Type): B
 
-(event: $ButtonEvents$AdjustRendering$Type): B
+(): $Event<($ButtonEvents$AdjustRendering)>
 }
 
 export namespace $AbstractButtonExtension {
@@ -38,14 +38,14 @@ export interface $SlotReference {
 
  "isValid"(): boolean
  "setStack"(stack: $ItemStack$Type): boolean
+ "entity"(): $LivingEntity
  "slot"(): integer
  "type"(): $SlotType
  "getStack"(): $ItemStack
- "entity"(): $LivingEntity
  "slotContainer"(): $AccessoriesContainer
  "createSlotPath"(): string
- "capability"(): $AccessoriesCapability
  "slotName"(): string
+ "capability"(): $AccessoriesCapability
 }
 
 export namespace $SlotReference {
@@ -97,20 +97,20 @@ export interface $StructEndec<T> extends $Endec<(T)> {
  "flatFieldOf"<S>(arg0: $Function$Type<(S), (T)>): $StructField<(S), (T)>
  "optionalOf"(): $Endec<($Optional<(T)>)>
  "validate"(arg0: $Consumer$Type<(T)>): $Endec<(T)>
- "encodeFully"<E>(arg0: $Supplier$Type<($Serializer$Type<(E)>)>, arg1: T): E
  "encodeFully"<E>(arg0: $SerializationContext$Type, arg1: $Supplier$Type<($Serializer$Type<(E)>)>, arg2: T): E
+ "encodeFully"<E>(arg0: $Supplier$Type<($Serializer$Type<(E)>)>, arg1: T): E
  "decodeFully"<E>(arg0: $Function$Type<(E), ($Deserializer$Type<(E)>)>, arg1: E): T
  "decodeFully"<E>(arg0: $SerializationContext$Type, arg1: $Function$Type<(E), ($Deserializer$Type<(E)>)>, arg2: E): T
  "catchErrors"(arg0: $Endec$DecoderWithError$Type<(T)>): $Endec<(T)>
  "optionalFieldOf"<S>(arg0: string, arg1: $Function$Type<(S), (T)>, arg2: $Supplier$Type<(T)>): $StructField<(S), (T)>
  "optionalFieldOf"<S>(arg0: string, arg1: $Function$Type<(S), (T)>, arg2: T): $StructField<(S), (T)>
+ "setOf"(): $Endec<($Set<(T)>)>
+ "mapOf"(): $Endec<($Map<(string), (T)>)>
  "fieldOf"<S>(arg0: string, arg1: $Function$Type<(S), (T)>): $StructField<(S), (T)>
  "listOf"(): $Endec<($List<(T)>)>
- "mapOf"(): $Endec<($Map<(string), (T)>)>
- "setOf"(): $Endec<($Set<(T)>)>
- "nullableOf"(): $Endec<(T)>
- "keyed"(arg0: string, arg1: T): $KeyedEndec<(T)>
  "keyed"(arg0: string, arg1: $Supplier$Type<(T)>): $KeyedEndec<(T)>
+ "keyed"(arg0: string, arg1: T): $KeyedEndec<(T)>
+ "nullableOf"(): $Endec<(T)>
 }
 
 export namespace $StructEndec {
@@ -121,9 +121,9 @@ function map<K, V>(arg0: $Endec$Type<(K)>, arg1: $Endec$Type<(V)>): $Endec<($Map
 function of<T>(arg0: $Endec$Encoder$Type<(T)>, arg1: $Endec$Decoder$Type<(T)>): $Endec<(T)>
 function dispatchedStruct<T, K>(arg0: $Function$Type<(K), ($StructEndec$Type<(any)>)>, arg1: $Function$Type<(T), (K)>, arg2: $Endec$Type<(K)>): $Endec<(T)>
 function dispatchedStruct<T, K>(arg0: $Function$Type<(K), ($StructEndec$Type<(any)>)>, arg1: $Function$Type<(T), (K)>, arg2: $Endec$Type<(K)>, arg3: string): $Endec<(T)>
+function forEnum<E>(arg0: $Class$Type<(E)>): $Endec<(E)>
 function ifAttr<T>(arg0: $SerializationAttribute$Type, arg1: $Endec$Type<(T)>): $AttributeEndecBuilder<(T)>
 function dispatched<T, K>(arg0: $Function$Type<(K), ($Endec$Type<(any)>)>, arg1: $Function$Type<(T), (K)>, arg2: $Endec$Type<(K)>): $Endec<(T)>
-function forEnum<E>(arg0: $Class$Type<(E)>): $Endec<(E)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -235,34 +235,34 @@ export interface $Accessory {
  * @deprecated
  */
  "getModifiers"(stack: $ItemStack$Type, reference: $SlotReference$Type, builder: $AccessoryAttributeBuilder$Type): void
- "getDynamicModifiers"(stack: $ItemStack$Type, reference: $SlotReference$Type, builder: $AccessoryAttributeBuilder$Type): void
- "getStaticModifiers"(item: $Item$Type, builder: $AccessoryItemAttributeModifiers$Builder$Type): void
  "getDropRule"(stack: $ItemStack$Type, reference: $SlotReference$Type, source: $DamageSource$Type): $DropRule
- "onEquipFromUse"(stack: $ItemStack$Type, reference: $SlotReference$Type): void
  "getEquipSound"(stack: $ItemStack$Type, reference: $SlotReference$Type): $SoundEventData
- "canEquipFromUse"(stack: $ItemStack$Type): boolean
 /**
  * 
  * @deprecated
  */
  "canEquipFromUse"(stack: $ItemStack$Type, reference: $SlotReference$Type): boolean
+ "canEquipFromUse"(stack: $ItemStack$Type): boolean
+ "getAttributesTooltip"(stack: $ItemStack$Type, type: $SlotType$Type, tooltips: $List$Type<($Component$Type)>, tooltipType: $TooltipFlag$Type): void
 /**
  * 
  * @deprecated
  */
  "getAttributesTooltip"(stack: $ItemStack$Type, type: $SlotType$Type, tooltips: $List$Type<($Component$Type)>): void
- "getAttributesTooltip"(stack: $ItemStack$Type, type: $SlotType$Type, tooltips: $List$Type<($Component$Type)>, tooltipType: $TooltipFlag$Type): void
- "getExtraTooltip"(stack: $ItemStack$Type, tooltips: $List$Type<($Component$Type)>, tooltipType: $TooltipFlag$Type): void
 /**
  * 
  * @deprecated
  */
  "getExtraTooltip"(stack: $ItemStack$Type, tooltips: $List$Type<($Component$Type)>): void
+ "getExtraTooltip"(stack: $ItemStack$Type, tooltips: $List$Type<($Component$Type)>, tooltipType: $TooltipFlag$Type): void
+ "getDynamicModifiers"(stack: $ItemStack$Type, reference: $SlotReference$Type, builder: $AccessoryAttributeBuilder$Type): void
+ "getStaticModifiers"(item: $Item$Type, builder: $AccessoryItemAttributeModifiers$Builder$Type): void
+ "onEquipFromUse"(stack: $ItemStack$Type, reference: $SlotReference$Type): void
  "canEquip"(stack: $ItemStack$Type, reference: $SlotReference$Type): boolean
- "canUnequip"(stack: $ItemStack$Type, reference: $SlotReference$Type): boolean
+ "onBreak"(stack: $ItemStack$Type, reference: $SlotReference$Type): void
  "onEquip"(stack: $ItemStack$Type, reference: $SlotReference$Type): void
  "onUnequip"(stack: $ItemStack$Type, reference: $SlotReference$Type): void
- "onBreak"(stack: $ItemStack$Type, reference: $SlotReference$Type): void
+ "canUnequip"(stack: $ItemStack$Type, reference: $SlotReference$Type): boolean
 }
 
 export namespace $Accessory {
@@ -332,13 +332,13 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "builder"(): $AccessoryItemAttributeModifiers$Builder
-public "hasModifier"(holder: $Attribute$Type, location: $ResourceLocation$Type): boolean
-public "getModifier"(holder: $Attribute$Type, location: $ResourceLocation$Type): $AttributeModifier
-public "withModifierAdded"(holder: $Attribute$Type, attributeModifier: $AttributeModifier$Type, slotName: string, isStackable: boolean): $AccessoryItemAttributeModifiers
+public "withoutModifier"(holder: $Holder$Type<($Attribute$Type)>, location: $ResourceLocation$Type): $AccessoryItemAttributeModifiers
 public "withModifierAdded"(holder: $Attribute$Type, location: $ResourceLocation$Type, amount: double, operation: $AttributeModifier$Operation$Type, slotName: string, isStackable: boolean): $AccessoryItemAttributeModifiers
+public "withModifierAdded"(holder: $Attribute$Type, attributeModifier: $AttributeModifier$Type, slotName: string, isStackable: boolean): $AccessoryItemAttributeModifiers
 public "showInTooltip"(): boolean
 public "gatherAttributes"(slotReference: $SlotReference$Type): $AccessoryAttributeBuilder
-public "withoutModifier"(holder: $Holder$Type<($Attribute$Type)>, location: $ResourceLocation$Type): $AccessoryItemAttributeModifiers
+public "getModifier"(holder: $Attribute$Type, location: $ResourceLocation$Type): $AttributeModifier
+public "hasModifier"(holder: $Attribute$Type, location: $ResourceLocation$Type): boolean
 public "withModifierAddedForAny"(holder: $Attribute$Type, location: $ResourceLocation$Type, amount: double, operation: $AttributeModifier$Operation$Type, slotName: string, isStackable: boolean): $AccessoryItemAttributeModifiers
 public "withModifierAddedForAny"(holder: $Attribute$Type, attributeModifier: $AttributeModifier$Type, slotName: string, isStackable: boolean): $AccessoryItemAttributeModifiers
 }
@@ -361,12 +361,12 @@ import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/en
 
 export interface $AccessoriesHolder {
 
+ "showUnusedSlots"(): boolean
+ "showUnusedSlots"(arg0: boolean): $AccessoriesHolder
+ "showUniqueSlots"(arg0: boolean): $AccessoriesHolder
+ "showUniqueSlots"(): boolean
  "cosmeticsShown"(arg0: boolean): $AccessoriesHolder
  "cosmeticsShown"(): boolean
- "showUnusedSlots"(arg0: boolean): $AccessoriesHolder
- "showUnusedSlots"(): boolean
- "showUniqueSlots"(): boolean
- "showUniqueSlots"(arg0: boolean): $AccessoriesHolder
  "scrolledSlot"(arg0: integer): $AccessoriesHolder
  "scrolledSlot"(): integer
  "equipControl"(arg0: $PlayerEquipControl$Type): $AccessoriesHolder
@@ -462,11 +462,11 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "of"<A extends $ArgumentType<(any)>>(argTypeConstructor: $Function$Type<($CommandBuildContext$Type), (A)>): $RecordArgumentTypeInfo<(A), (void)>
+public "fromTemplate"(): $BiFunction<($CommandBuildContext), (T), (A)>
 public "serializeToNetwork"(template: $RecordArgumentTypeInfo$RecordInfoTemplate$Type<(A), (T)>, buffer: $FriendlyByteBuf$Type): void
 public "deserializeFromNetwork"(buffer: $FriendlyByteBuf$Type): $RecordArgumentTypeInfo$RecordInfoTemplate<(A), (T)>
 public "serializeToJson"(template: $RecordArgumentTypeInfo$RecordInfoTemplate$Type<(A), (T)>, json: $JsonObject$Type): void
 public "unpack"(argument: A): $RecordArgumentTypeInfo$RecordInfoTemplate<(A), (T)>
-public "fromTemplate"(): $BiFunction<($CommandBuildContext), (T), (A)>
 public "endec"(): $StructEndec<(T)>
 public "toTemplate"(): $Function<(A), (T)>
 }
@@ -681,8 +681,8 @@ import {$SlotType, $SlotType$Type} from "packages/io/wispforest/accessories/api/
 import {$Pair, $Pair$Type} from "packages/it/unimi/dsi/fastutil/$Pair"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$TriFunction, $TriFunction$Type} from "packages/org/apache/commons/lang3/function/$TriFunction"
-import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$AttributeModifier, $AttributeModifier$Type} from "packages/net/minecraft/world/entity/ai/attributes/$AttributeModifier"
+import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$SlotReference, $SlotReference$Type} from "packages/io/wispforest/accessories/api/slot/$SlotReference"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
@@ -690,30 +690,14 @@ export interface $AccessoriesCapability {
 
  "getContainer"(slotType: $SlotType$Type): $AccessoriesContainer
  "getContainer"(reference: $SlotTypeReference$Type): $AccessoriesContainer
- "reset"(arg0: boolean): void
  "entity"(): $LivingEntity
- "getAllEquipped"(arg0: boolean): $List<($SlotEntryReference)>
- "getAllEquipped"(): $List<($SlotEntryReference)>
- "isAnotherEquipped"(slotReference: $SlotReference$Type, predicate: $Predicate$Type<($ItemStack$Type)>): boolean
- "isAnotherEquipped"(slotReference: $SlotReference$Type, item: $Item$Type): boolean
- "attemptToEquipAccessory"(stack: $ItemStack$Type): $SlotReference
- "attemptToEquipAccessory"(stack: $ItemStack$Type, allowSwapping: boolean): $Pair<($SlotReference), ($Optional<($ItemStack)>)>
- "clearSlotModifiers"(): void
- "getEquipped"(arg0: $Predicate$Type<($ItemStack$Type)>): $List<($SlotEntryReference)>
- "getEquipped"(item: $Item$Type): $List<($SlotEntryReference)>
- "getFirstEquipped"(item: $Item$Type): $SlotEntryReference
- "getFirstEquipped"(item: $Item$Type, check: $EquipmentChecking$Type): $SlotEntryReference
- "getFirstEquipped"(predicate: $Predicate$Type<($ItemStack$Type)>): $SlotEntryReference
- "getFirstEquipped"(arg0: $Predicate$Type<($ItemStack$Type)>, arg1: $EquipmentChecking$Type): $SlotEntryReference
- "updateContainers"(): void
+ "reset"(arg0: boolean): void
  "addTransientSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
- "addPersistentSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
  "clearCachedSlotModifiers"(): void
+ "addPersistentSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
  "removeSlotModifiers"(arg0: $Multimap$Type<(string), ($AttributeModifier$Type)>): void
- "getContainers"(): $Map<(string), ($AccessoriesContainer)>
- "canEquipAccessory"(stack: $ItemStack$Type, allowSwapping: boolean): $Pair<($SlotReference), ($EquipAction)>
- "canEquipAccessory"(arg0: $ItemStack$Type, arg1: boolean, arg2: $EquipCheck$Type): $Pair<($SlotReference), ($EquipAction)>
  "getSlotModifiers"(): $Multimap<(string), ($AttributeModifier)>
+ "clearSlotModifiers"(): void
 /**
  * 
  * @deprecated
@@ -729,11 +713,27 @@ export interface $AccessoriesCapability {
  * @deprecated
  */
  "equipAccessory"(stack: $ItemStack$Type, allowSwapping: boolean): $Pair<($SlotReference), ($List<($ItemStack)>)>
+ "getEquipped"(arg0: $Predicate$Type<($ItemStack$Type)>): $List<($SlotEntryReference)>
+ "getEquipped"(item: $Item$Type): $List<($SlotEntryReference)>
+ "canEquipAccessory"(stack: $ItemStack$Type, allowSwapping: boolean): $Pair<($SlotReference), ($EquipAction)>
+ "canEquipAccessory"(arg0: $ItemStack$Type, arg1: boolean, arg2: $EquipCheck$Type): $Pair<($SlotReference), ($EquipAction)>
+ "isAnotherEquipped"(slotReference: $SlotReference$Type, predicate: $Predicate$Type<($ItemStack$Type)>): boolean
+ "isAnotherEquipped"(slotReference: $SlotReference$Type, item: $Item$Type): boolean
+ "getFirstEquipped"(item: $Item$Type, check: $EquipmentChecking$Type): $SlotEntryReference
+ "getFirstEquipped"(arg0: $Predicate$Type<($ItemStack$Type)>, arg1: $EquipmentChecking$Type): $SlotEntryReference
+ "getFirstEquipped"(item: $Item$Type): $SlotEntryReference
+ "getFirstEquipped"(predicate: $Predicate$Type<($ItemStack$Type)>): $SlotEntryReference
+ "attemptToEquipAccessory"(stack: $ItemStack$Type): $SlotReference
+ "attemptToEquipAccessory"(stack: $ItemStack$Type, allowSwapping: boolean): $Pair<($SlotReference), ($Optional<($ItemStack)>)>
+ "getContainers"(): $Map<(string), ($AccessoriesContainer)>
+ "updateContainers"(): void
+ "getAllEquipped"(): $List<($SlotEntryReference)>
+ "getAllEquipped"(arg0: boolean): $List<($SlotEntryReference)>
  "getHolder"(): $AccessoriesHolder
+ "isEquipped"(item: $Item$Type, check: $EquipmentChecking$Type): boolean
+ "isEquipped"(item: $Item$Type): boolean
  "isEquipped"(predicate: $Predicate$Type<($ItemStack$Type)>, check: $EquipmentChecking$Type): boolean
  "isEquipped"(predicate: $Predicate$Type<($ItemStack$Type)>): boolean
- "isEquipped"(item: $Item$Type): boolean
- "isEquipped"(item: $Item$Type, check: $EquipmentChecking$Type): boolean
 }
 
 export namespace $AccessoriesCapability {
@@ -770,25 +770,25 @@ export interface $AccessoriesContainer {
  "getModifiers"(): $Map<($UUID), ($AttributeModifier)>
  "update"(): void
  "getSize"(): integer
- "hasModifier"(arg0: $UUID$Type): boolean
- "removeModifier"(arg0: $UUID$Type): void
- "clearModifiers"(): void
  "getAccessories"(): $ExpandedSimpleContainer
  "getCosmeticAccessories"(): $ExpandedSimpleContainer
- "shouldRender"(index: integer): boolean
- "getSlotName"(): string
+ "removeModifier"(arg0: $UUID$Type): void
+ "clearModifiers"(): void
+ "hasModifier"(arg0: $UUID$Type): boolean
  "renderOptions"(): $List<(boolean)>
  "markChanged"(): void
  "markChanged"(arg0: boolean): void
+ "getSlotName"(): string
+ "shouldRender"(index: integer): boolean
  "createReference"(index: integer): $SlotReference
- "removeCachedModifiers"(arg0: $AttributeModifier$Type): void
- "getModifiersForOperation"(arg0: $AttributeModifier$Operation$Type): $Collection<($AttributeModifier)>
  "addTransientModifier"(arg0: $AttributeModifier$Type): void
  "addPersistentModifier"(arg0: $AttributeModifier$Type): void
  "getCachedModifiers"(): $Set<($AttributeModifier)>
  "clearCachedModifiers"(): void
- "capability"(): $AccessoriesCapability
+ "getModifiersForOperation"(arg0: $AttributeModifier$Operation$Type): $Collection<($AttributeModifier)>
+ "removeCachedModifiers"(arg0: $AttributeModifier$Type): void
  "slotType"(): $SlotType
+ "capability"(): $AccessoriesCapability
  "hasChanged"(): boolean
 }
 
@@ -818,18 +818,18 @@ import {$Deserializer$Sequence, $Deserializer$Sequence$Type} from "packages/io/w
 
 export interface $Deserializer<T> {
 
- "sequence"<E>(arg0: $SerializationContext$Type, arg1: $Endec$Type<(E)>): $Deserializer$Sequence<(E)>
+ "tryRead"<V>(arg0: $Function$Type<($Deserializer$Type<(T)>), (V)>): V
  "readString"(arg0: $SerializationContext$Type): string
  "readLong"(arg0: $SerializationContext$Type): long
  "readBoolean"(arg0: $SerializationContext$Type): boolean
  "readByte"(arg0: $SerializationContext$Type): byte
  "readShort"(arg0: $SerializationContext$Type): short
  "readDouble"(arg0: $SerializationContext$Type): double
- "readFloat"(arg0: $SerializationContext$Type): float
  "readBytes"(arg0: $SerializationContext$Type): (byte)[]
+ "sequence"<E>(arg0: $SerializationContext$Type, arg1: $Endec$Type<(E)>): $Deserializer$Sequence<(E)>
+ "readFloat"(arg0: $SerializationContext$Type): float
  "map"<V>(arg0: $SerializationContext$Type, arg1: $Endec$Type<(V)>): $Deserializer$Map<(V)>
  "readInt"(arg0: $SerializationContext$Type): integer
- "tryRead"<V>(arg0: $Function$Type<($Deserializer$Type<(T)>), (V)>): V
  "setupContext"(arg0: $SerializationContext$Type): $SerializationContext
  "readOptional"<V>(arg0: $SerializationContext$Type, arg1: $Endec$Type<(V)>): $Optional<(V)>
  "readVarLong"(arg0: $SerializationContext$Type): long
@@ -891,8 +891,8 @@ constructor(arg0: string, arg1: $Endec$Type<(F)>, arg2: $Function$Type<(S), (F)>
 constructor(arg0: string, arg1: $Endec$Type<(F)>, arg2: $Function$Type<(S), (F)>)
 constructor(arg0: string, arg1: $Endec$Type<(F)>, arg2: $Function$Type<(S), (F)>, arg3: F)
 
-public "encodeField"(arg0: $SerializationContext$Type, arg1: $Serializer$Type<(any)>, arg2: $Serializer$Struct$Type, arg3: S): void
 public "decodeField"(arg0: $SerializationContext$Type, arg1: $Deserializer$Type<(any)>, arg2: $Deserializer$Struct$Type): F
+public "encodeField"(arg0: $SerializationContext$Type, arg1: $Serializer$Type<(any)>, arg2: $Serializer$Struct$Type, arg3: S): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -987,22 +987,22 @@ export interface $Endec<T> {
  "decode"(arg0: $SerializationContext$Type, arg1: $Deserializer$Type<(any)>): T
  "encode"(arg0: $SerializationContext$Type, arg1: $Serializer$Type<(any)>, arg2: T): void
  "validate"(arg0: $Consumer$Type<(T)>): $Endec<(T)>
- "encodeFully"<E>(arg0: $Supplier$Type<($Serializer$Type<(E)>)>, arg1: T): E
+ "xmapWithContext"<R>(arg0: $BiFunction$Type<($SerializationContext$Type), (T), (R)>, arg1: $BiFunction$Type<($SerializationContext$Type), (R), (T)>): $Endec<(R)>
  "encodeFully"<E>(arg0: $SerializationContext$Type, arg1: $Supplier$Type<($Serializer$Type<(E)>)>, arg2: T): E
+ "encodeFully"<E>(arg0: $Supplier$Type<($Serializer$Type<(E)>)>, arg1: T): E
  "decodeFully"<E>(arg0: $Function$Type<(E), ($Deserializer$Type<(E)>)>, arg1: E): T
  "decodeFully"<E>(arg0: $SerializationContext$Type, arg1: $Function$Type<(E), ($Deserializer$Type<(E)>)>, arg2: E): T
  "catchErrors"(arg0: $Endec$DecoderWithError$Type<(T)>): $Endec<(T)>
- "xmapWithContext"<R>(arg0: $BiFunction$Type<($SerializationContext$Type), (T), (R)>, arg1: $BiFunction$Type<($SerializationContext$Type), (R), (T)>): $Endec<(R)>
  "optionalFieldOf"<S>(arg0: string, arg1: $Function$Type<(S), (T)>, arg2: $Supplier$Type<(T)>): $StructField<(S), (T)>
  "optionalFieldOf"<S>(arg0: string, arg1: $Function$Type<(S), (T)>, arg2: T): $StructField<(S), (T)>
+ "setOf"(): $Endec<($Set<(T)>)>
+ "mapOf"(): $Endec<($Map<(string), (T)>)>
  "fieldOf"<S>(arg0: string, arg1: $Function$Type<(S), (T)>): $StructField<(S), (T)>
  "listOf"(): $Endec<($List<(T)>)>
  "xmap"<R>(arg0: $Function$Type<(T), (R)>, arg1: $Function$Type<(R), (T)>): $Endec<(R)>
- "mapOf"(): $Endec<($Map<(string), (T)>)>
- "setOf"(): $Endec<($Set<(T)>)>
- "nullableOf"(): $Endec<(T)>
- "keyed"(arg0: string, arg1: T): $KeyedEndec<(T)>
  "keyed"(arg0: string, arg1: $Supplier$Type<(T)>): $KeyedEndec<(T)>
+ "keyed"(arg0: string, arg1: T): $KeyedEndec<(T)>
+ "nullableOf"(): $Endec<(T)>
 }
 
 export namespace $Endec {
@@ -1023,9 +1023,9 @@ function map<K, V>(arg0: $Endec$Type<(K)>, arg1: $Endec$Type<(V)>): $Endec<($Map
 function of<T>(arg0: $Endec$Encoder$Type<(T)>, arg1: $Endec$Decoder$Type<(T)>): $Endec<(T)>
 function dispatchedStruct<T, K>(arg0: $Function$Type<(K), ($StructEndec$Type<(any)>)>, arg1: $Function$Type<(T), (K)>, arg2: $Endec$Type<(K)>): $Endec<(T)>
 function dispatchedStruct<T, K>(arg0: $Function$Type<(K), ($StructEndec$Type<(any)>)>, arg1: $Function$Type<(T), (K)>, arg2: $Endec$Type<(K)>, arg3: string): $Endec<(T)>
+function forEnum<E>(arg0: $Class$Type<(E)>): $Endec<(E)>
 function ifAttr<T>(arg0: $SerializationAttribute$Type, arg1: $Endec$Type<(T)>): $AttributeEndecBuilder<(T)>
 function dispatched<T, K>(arg0: $Function$Type<(K), ($Endec$Type<(any)>)>, arg1: $Function$Type<(T), (K)>, arg2: $Endec$Type<(K)>): $Endec<(T)>
-function forEnum<E>(arg0: $Class$Type<(E)>): $Endec<(E)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1181,15 +1181,15 @@ import {$Serializer$Sequence, $Serializer$Sequence$Type} from "packages/io/wispf
 
 export interface $Serializer<T> {
 
- "sequence"<E>(arg0: $SerializationContext$Type, arg1: $Endec$Type<(E)>, arg2: integer): $Serializer$Sequence<(E)>
  "writeString"(arg0: $SerializationContext$Type, arg1: string): void
  "writeLong"(arg0: $SerializationContext$Type, arg1: long): void
  "writeBoolean"(arg0: $SerializationContext$Type, arg1: boolean): void
  "writeByte"(arg0: $SerializationContext$Type, arg1: byte): void
  "writeShort"(arg0: $SerializationContext$Type, arg1: short): void
  "writeDouble"(arg0: $SerializationContext$Type, arg1: double): void
- "writeFloat"(arg0: $SerializationContext$Type, arg1: float): void
  "writeBytes"(arg0: $SerializationContext$Type, arg1: (byte)[]): void
+ "sequence"<E>(arg0: $SerializationContext$Type, arg1: $Endec$Type<(E)>, arg2: integer): $Serializer$Sequence<(E)>
+ "writeFloat"(arg0: $SerializationContext$Type, arg1: float): void
  "map"<V>(arg0: $SerializationContext$Type, arg1: $Endec$Type<(V)>, arg2: integer): $Serializer$Map<(V)>
  "result"(): T
  "writeInt"(arg0: $SerializationContext$Type, arg1: integer): void
@@ -1227,8 +1227,8 @@ public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "event"(): $SoundEvent
-public "volume"(): float
 public "pitch"(): float
+public "volume"(): float
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1281,8 +1281,8 @@ public "attribute"(): $Attribute
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "modifier"(): $AttributeModifier
 public "isStackable"(): boolean
+public "modifier"(): $AttributeModifier
 public "slotName"(): string
 get "stackable"(): boolean
 }
@@ -1341,32 +1341,32 @@ public "getModifiers"(): $Map<($UUID), ($AttributeModifier)>
 public "update"(): void
 public "write"(carrier: $MapCarrier$Type, ctx: $SerializationContext$Type): void
 public "write"(carrier: $MapCarrier$Type, ctx: $SerializationContext$Type, sync: boolean): void
-public "read"(carrier: $MapCarrier$Type, ctx: $SerializationContext$Type): void
 public "read"(carrier: $MapCarrier$Type, ctx: $SerializationContext$Type, sync: boolean): void
+public "read"(carrier: $MapCarrier$Type, ctx: $SerializationContext$Type): void
 public "getSize"(): integer
-public "hasModifier"(id: $UUID$Type): boolean
-public "removeModifier"(id: $UUID$Type): void
-public "clearModifiers"(): void
 public "getAccessories"(): $ExpandedSimpleContainer
 public "getCosmeticAccessories"(): $ExpandedSimpleContainer
-public "getSlotName"(): string
+public "removeModifier"(id: $UUID$Type): void
+public "clearModifiers"(): void
+public "hasModifier"(id: $UUID$Type): boolean
 public "renderOptions"(): $List<(boolean)>
 public "markChanged"(resizingUpdate: boolean): void
+public "getSlotName"(): string
 public static "copyContainerList"(container: $SimpleContainer$Type): $SimpleContainer
 public static "readContainers"(carrier: $MapCarrier$Type, ctx: $SerializationContext$Type, ...keys: ($KeyedEndec$Type<($ListTag$Type)>)[]): $List<($SimpleContainer)>
-public "getBaseSize"(): integer
-public "removeCachedModifiers"(modifier: $AttributeModifier$Type): void
-public "getModifiersForOperation"(operation: $AttributeModifier$Operation$Type): $Collection<($AttributeModifier)>
+public "containerChanged"(container: $Container$Type): void
 public "addTransientModifier"(modifier: $AttributeModifier$Type): void
 public "addPersistentModifier"(modifier: $AttributeModifier$Type): void
 public "getCachedModifiers"(): $Set<($AttributeModifier)>
 public "clearCachedModifiers"(): void
+public "getModifiersForOperation"(operation: $AttributeModifier$Operation$Type): $Collection<($AttributeModifier)>
+public "removeCachedModifiers"(modifier: $AttributeModifier$Type): void
 public static "readContainer"(carrier: $MapCarrier$Type, ctx: $SerializationContext$Type, key: $KeyedEndec$Type<($ListTag$Type)>): $SimpleContainer
+public "getBaseSize"(): integer
 public "capability"(): $AccessoriesCapability
-public "containerChanged"(container: $Container$Type): void
 public "hasChanged"(): boolean
-public "shouldRender"(index: integer): boolean
 public "markChanged"(): void
+public "shouldRender"(index: integer): boolean
 public "createReference"(index: integer): $SlotReference
 public "slotType"(): $SlotType
 public static "constructed"<T extends $InstanceEndec>(supplier: $Supplier$Type<(T)>): $Endec<(T)>
@@ -1375,8 +1375,8 @@ get "size"(): integer
 get "accessories"(): $ExpandedSimpleContainer
 get "cosmeticAccessories"(): $ExpandedSimpleContainer
 get "slotName"(): string
-get "baseSize"(): integer
 get "cachedModifiers"(): $Set<($AttributeModifier)>
+get "baseSize"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1579,17 +1579,17 @@ import {$SerializationAttribute$WithValue, $SerializationAttribute$WithValue$Typ
 export class $SerializationContext {
 
 
+public static "attributes"(...arg0: ($SerializationAttribute$Instance$Type)[]): $SerializationContext
 public "getAttributeValue"<A>(arg0: $SerializationAttribute$WithValue$Type<(A)>): A
 public "and"(arg0: $SerializationContext$Type): $SerializationContext
-public static "attributes"(...arg0: ($SerializationAttribute$Instance$Type)[]): $SerializationContext
 public "hasAttribute"(arg0: $SerializationAttribute$Type): boolean
 public static "empty"(): $SerializationContext
 public static "suppressed"(...arg0: ($SerializationAttribute$Type)[]): $SerializationContext
-public "withAttributes"(...arg0: ($SerializationAttribute$Instance$Type)[]): $SerializationContext
 public "requireAttributeValue"<A>(arg0: $SerializationAttribute$WithValue$Type<(A)>): A
 public "withoutAttributes"(...arg0: ($SerializationAttribute$Type)[]): $SerializationContext
 public "withSuppressed"(...arg0: ($SerializationAttribute$Type)[]): $SerializationContext
 public "withoutSuppressed"(...arg0: ($SerializationAttribute$Type)[]): $SerializationContext
+public "withAttributes"(...arg0: ($SerializationAttribute$Instance$Type)[]): $SerializationContext
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1640,8 +1640,8 @@ export interface $SlotType {
  "amount"(): integer
  "name"(): string
  "order"(): integer
- "icon"(): $ResourceLocation
  "validators"(): $Set<($ResourceLocation)>
+ "icon"(): $ResourceLocation
  "translation"(): string
  "dropRule"(): $DropRule
 }
@@ -1816,12 +1816,12 @@ public "isSlotFlagged"(slot: integer): boolean
 public "setPreviousItem"(slot: integer, stack: $ItemStack$Type): void
 public "getPreviousItem"(slot: integer): $ItemStack
 public "setFromPrev"(prevContainer: $ExpandedSimpleContainer$Type): void
+public "setItem"(slot: integer, stack: $ItemStack$Type): void
+public "removeItem"(slot: integer, amount: integer): $ItemStack
 public "getItem"(slot: integer): $ItemStack
 public "removeItemNoUpdate"(slot: integer): $ItemStack
 public "fromTag"(containerNbt: $ListTag$Type): void
 public "createTag"(): $ListTag
-public "removeItem"(slot: integer, amount: integer): $ItemStack
-public "setItem"(slot: integer, stack: $ItemStack$Type): void
 public "copyPrev"(prevContainer: $ExpandedSimpleContainer$Type): void
 public "spliterator"(): $Spliterator<($Pair<(integer), ($ItemStack)>)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
@@ -1863,13 +1863,13 @@ constructor(slotReference: $SlotReference$Type)
 
 public "equals"(obj: any): boolean
 public "isEmpty"(): boolean
+public "getSlotModifiers"(): $Multimap<(string), ($AttributeModifier)>
+public "addModifier"(attribute: $Attribute$Type, modifier: $AttributeModifier$Type, slotReference: $SlotReference$Type, locationBuilder: $Function$Type<(string), ($ResourceLocation$Type)>): $AccessoryAttributeBuilder
+public "getAttributeModifiers"(filterSlots: boolean): $Multimap<($Attribute), ($AttributeModifier)>
 public "exclusiveAttributes"(): $Map<($Attribute), ($Map<($ResourceLocation), ($AttributeModificationData)>)>
 public "stackedAttributes"(): $Multimap<($Attribute), ($AttributeModificationData)>
 public "addExclusive"(attribute: $Attribute$Type, location: $ResourceLocation$Type, amount: double, operation: $AttributeModifier$Operation$Type): $AccessoryAttributeBuilder
 public "addExclusive"(attribute: $Attribute$Type, modifier: $AttributeModifier$Type): $AccessoryAttributeBuilder
-public "addStackable"(attribute: $Attribute$Type, location: $ResourceLocation$Type, amount: double, operation: $AttributeModifier$Operation$Type): $AccessoryAttributeBuilder
-public "addModifier"(attribute: $Attribute$Type, modifier: $AttributeModifier$Type, slotReference: $SlotReference$Type, locationBuilder: $Function$Type<(string), ($ResourceLocation$Type)>): $AccessoryAttributeBuilder
-public "getSlotModifiers"(): $Multimap<(string), ($AttributeModifier)>
 /**
  * 
  * @deprecated
@@ -1880,12 +1880,12 @@ public static "createSlotPath"(slotname: string, slot: integer): string
  * @deprecated
  */
 public static "createSlotPath"(ref: $SlotReference$Type): string
+public "addStackable"(attribute: $Attribute$Type, location: $ResourceLocation$Type, amount: double, operation: $AttributeModifier$Operation$Type): $AccessoryAttributeBuilder
 public "getExclusive"(attribute: $Attribute$Type, location: $ResourceLocation$Type): $AttributeModificationData
 public "removeExclusive"(attribute: $Attribute$Type, location: $ResourceLocation$Type): $AttributeModificationData
 public "removeStacks"(attribute: $Attribute$Type, location: $ResourceLocation$Type): $Collection<($AttributeModificationData)>
-public "getAttributeModifiers"(filterSlots: boolean): $Multimap<($Attribute), ($AttributeModifier)>
-public "getStacks"(attribute: $Attribute$Type, location: $ResourceLocation$Type): $Collection<($AttributeModificationData)>
 public "addFrom"(builder: $AccessoryAttributeBuilder$Type): $AccessoryAttributeBuilder
+public "getStacks"(attribute: $Attribute$Type, location: $ResourceLocation$Type): $Collection<($AttributeModificationData)>
 get "empty"(): boolean
 get "slotModifiers"(): $Multimap<(string), ($AttributeModifier)>
 }

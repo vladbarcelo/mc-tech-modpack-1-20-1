@@ -67,50 +67,50 @@ export class $SampleModel {
 
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer)
 
-public "getTransferType"(): integer
-public "getSampleFloat"(arg0: integer, arg1: integer, arg2: integer, arg3: $DataBuffer$Type): float
-public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: double, arg4: $DataBuffer$Type): void
-public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: float, arg4: $DataBuffer$Type): void
-public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $DataBuffer$Type): void
-public "createSubsetSampleModel"(arg0: (integer)[]): $SampleModel
-public "createDataBuffer"(): $DataBuffer
-public "getSampleDouble"(arg0: integer, arg1: integer, arg2: integer, arg3: $DataBuffer$Type): double
 public "getWidth"(): integer
 public "getHeight"(): integer
 public "getNumBands"(): integer
-public "getDataElements"(arg0: integer, arg1: integer, arg2: any, arg3: $DataBuffer$Type): any
 public "getDataElements"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: any, arg5: $DataBuffer$Type): any
+public "getDataElements"(arg0: integer, arg1: integer, arg2: any, arg3: $DataBuffer$Type): any
 public "getDataType"(): integer
-public "setDataElements"(arg0: integer, arg1: integer, arg2: any, arg3: $DataBuffer$Type): void
 public "setDataElements"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: any, arg5: $DataBuffer$Type): void
+public "setDataElements"(arg0: integer, arg1: integer, arg2: any, arg3: $DataBuffer$Type): void
 public "createCompatibleSampleModel"(arg0: integer, arg1: integer): $SampleModel
-public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: $DataBuffer$Type): (integer)[]
 public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (float)[], arg5: $DataBuffer$Type): (float)[]
+public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: $DataBuffer$Type): (integer)[]
 public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (double)[], arg5: $DataBuffer$Type): (double)[]
-public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (float)[], arg5: $DataBuffer$Type): void
 public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (double)[], arg5: $DataBuffer$Type): void
 public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: $DataBuffer$Type): void
-public "getSampleSize"(): (integer)[]
-public "getSampleSize"(arg0: integer): integer
+public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (float)[], arg5: $DataBuffer$Type): void
+public "createDataBuffer"(): $DataBuffer
+public "createSubsetSampleModel"(arg0: (integer)[]): $SampleModel
+public "getSampleFloat"(arg0: integer, arg1: integer, arg2: integer, arg3: $DataBuffer$Type): float
+public "getSampleDouble"(arg0: integer, arg1: integer, arg2: integer, arg3: $DataBuffer$Type): double
 public "getPixel"(arg0: integer, arg1: integer, arg2: (float)[], arg3: $DataBuffer$Type): (float)[]
-public "getPixel"(arg0: integer, arg1: integer, arg2: (double)[], arg3: $DataBuffer$Type): (double)[]
 public "getPixel"(arg0: integer, arg1: integer, arg2: (integer)[], arg3: $DataBuffer$Type): (integer)[]
-public "setPixel"(arg0: integer, arg1: integer, arg2: (double)[], arg3: $DataBuffer$Type): void
+public "getPixel"(arg0: integer, arg1: integer, arg2: (double)[], arg3: $DataBuffer$Type): (double)[]
 public "setPixel"(arg0: integer, arg1: integer, arg2: (float)[], arg3: $DataBuffer$Type): void
+public "setPixel"(arg0: integer, arg1: integer, arg2: (double)[], arg3: $DataBuffer$Type): void
 public "setPixel"(arg0: integer, arg1: integer, arg2: (integer)[], arg3: $DataBuffer$Type): void
+public "getTransferType"(): integer
+public "getSampleSize"(arg0: integer): integer
+public "getSampleSize"(): (integer)[]
 public "getNumDataElements"(): integer
 public "getSample"(arg0: integer, arg1: integer, arg2: integer, arg3: $DataBuffer$Type): integer
-public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (integer)[], arg6: $DataBuffer$Type): void
-public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (float)[], arg6: $DataBuffer$Type): void
 public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (double)[], arg6: $DataBuffer$Type): void
+public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (float)[], arg6: $DataBuffer$Type): void
+public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (integer)[], arg6: $DataBuffer$Type): void
+public "getSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (float)[], arg6: $DataBuffer$Type): (float)[]
 public "getSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (integer)[], arg6: $DataBuffer$Type): (integer)[]
 public "getSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (double)[], arg6: $DataBuffer$Type): (double)[]
-public "getSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (float)[], arg6: $DataBuffer$Type): (float)[]
-get "transferType"(): integer
+public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $DataBuffer$Type): void
+public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: double, arg4: $DataBuffer$Type): void
+public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: float, arg4: $DataBuffer$Type): void
 get "width"(): integer
 get "height"(): integer
 get "numBands"(): integer
 get "dataType"(): integer
+get "transferType"(): integer
 get "sampleSize"(): (integer)[]
 get "numDataElements"(): integer
 }
@@ -132,8 +132,8 @@ import {$Cloneable, $Cloneable$Type} from "packages/java/lang/$Cloneable"
 export class $Point2D implements $Cloneable {
 
 
-public "getY"(): double
 public "getX"(): double
+public "getY"(): double
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
 public "clone"(): any
@@ -145,8 +145,8 @@ public "setLocation"(arg0: double, arg1: double): void
 public "distanceSq"(arg0: double, arg1: double): double
 public static "distanceSq"(arg0: double, arg1: double, arg2: double, arg3: double): double
 public "distanceSq"(arg0: $Point2D$Type): double
-get "y"(): double
 get "x"(): double
+get "y"(): double
 set "location"(value: $Point2D$Type)
 }
 /**
@@ -208,22 +208,22 @@ static readonly "SCALE_REPLICATE": integer
 static readonly "SCALE_AREA_AVERAGING": integer
 
 
-public "getSource"(): $ImageProducer
 public "getCapabilities"(): $ImageCapabilities
 public "getWidth"(): integer
 public "getHeight"(): integer
 public "getGraphics"(): $Graphics
 public "createGraphics"(): $Graphics2D
 public "getTransparency"(): integer
-public "validate"(arg0: $GraphicsConfiguration$Type): integer
 public "contentsLost"(): boolean
+public "getSource"(): $ImageProducer
+public "validate"(arg0: $GraphicsConfiguration$Type): integer
 public "getSnapshot"(): $BufferedImage
-get "source"(): $ImageProducer
 get "capabilities"(): $ImageCapabilities
 get "width"(): integer
 get "height"(): integer
 get "graphics"(): $Graphics
 get "transparency"(): integer
+get "source"(): $ImageProducer
 get "snapshot"(): $BufferedImage
 }
 /**
@@ -379,11 +379,11 @@ export class $InputContext {
 
 
 public "removeNotify"(arg0: $Component$Type): void
-public "getLocale"(): $Locale
+public "endComposition"(): void
 public "dispatchEvent"(arg0: $AWTEvent$Type): void
 public "dispose"(): void
+public "getLocale"(): $Locale
 public static "getInstance"(): $InputContext
-public "endComposition"(): void
 public "selectInputMethod"(arg0: $Locale$Type): boolean
 public "setCharacterSubsets"(arg0: ($Character$Subset$Type)[]): void
 public "setCompositionEnabled"(arg0: boolean): void
@@ -574,8 +574,8 @@ import {$Raster, $Raster$Type} from "packages/java/awt/image/$Raster"
 
 export interface $CompositeContext {
 
- "compose"(arg0: $Raster$Type, arg1: $Raster$Type, arg2: $WritableRaster$Type): void
  "dispose"(): void
+ "compose"(arg0: $Raster$Type, arg1: $Raster$Type, arg2: $WritableRaster$Type): void
 }
 
 export namespace $CompositeContext {
@@ -656,9 +656,9 @@ export {} // Mark the file as a module, do not remove unless there are other imp
 export class $RenderingHints$Key {
 
 
+public "isCompatibleValue"(arg0: any): boolean
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
-public "isCompatibleValue"(arg0: any): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -680,9 +680,9 @@ export interface $MouseListener extends $EventListener {
 
  "mouseExited"(arg0: $MouseEvent$Type): void
  "mouseEntered"(arg0: $MouseEvent$Type): void
+ "mousePressed"(arg0: $MouseEvent$Type): void
  "mouseClicked"(arg0: $MouseEvent$Type): void
  "mouseReleased"(arg0: $MouseEvent$Type): void
- "mousePressed"(arg0: $MouseEvent$Type): void
 }
 
 export namespace $MouseListener {
@@ -732,26 +732,14 @@ import {$ColorModel, $ColorModel$Type} from "packages/java/awt/image/$ColorModel
 
 export class $IndexColorModel extends $ColorModel {
 
+constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: (byte)[], arg4: (byte)[], arg5: (byte)[])
+constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: integer, arg4: boolean)
+constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: (byte)[], arg4: (byte)[], arg5: integer)
 constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: (byte)[], arg4: (byte)[])
 constructor(arg0: integer, arg1: integer, arg2: (integer)[], arg3: integer, arg4: integer, arg5: $BigInteger$Type)
 constructor(arg0: integer, arg1: integer, arg2: (integer)[], arg3: integer, arg4: boolean, arg5: integer, arg6: integer)
 constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: integer, arg4: boolean, arg5: integer)
-constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: integer, arg4: boolean)
-constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: (byte)[], arg4: (byte)[], arg5: (byte)[])
-constructor(arg0: integer, arg1: integer, arg2: (byte)[], arg3: (byte)[], arg4: (byte)[], arg5: integer)
 
-public "isValid"(arg0: integer): boolean
-public "isValid"(): boolean
-public "convertToIntDiscrete"(arg0: $Raster$Type, arg1: boolean): $BufferedImage
-public "isCompatibleSampleModel"(arg0: $SampleModel$Type): boolean
-public "getReds"(arg0: (byte)[]): void
-public "getGreens"(arg0: (byte)[]): void
-public "getBlues"(arg0: (byte)[]): void
-public "getAlphas"(arg0: (byte)[]): void
-public "getTransparentPixel"(): integer
-public "getRGBs"(arg0: (integer)[]): void
-public "getDataElement"(arg0: (integer)[], arg1: integer): integer
-public "getValidPixels"(): $BigInteger
 public "createCompatibleWritableRaster"(arg0: integer, arg1: integer): $WritableRaster
 public "getMapSize"(): integer
 public "isCompatibleRaster"(arg0: $Raster$Type): boolean
@@ -761,6 +749,8 @@ public "getDataElements"(arg0: (integer)[], arg1: integer, arg2: any): any
 public "getRGB"(arg0: integer): integer
 public "createCompatibleSampleModel"(arg0: integer, arg1: integer): $SampleModel
 public "getTransparency"(): integer
+public "isValid"(arg0: integer): boolean
+public "isValid"(): boolean
 /**
  * 
  * @deprecated
@@ -769,18 +759,28 @@ public "finalize"(): void
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "getReds"(arg0: (byte)[]): void
+public "getGreens"(arg0: (byte)[]): void
+public "getBlues"(arg0: (byte)[]): void
+public "getAlphas"(arg0: (byte)[]): void
+public "getDataElement"(arg0: (integer)[], arg1: integer): integer
+public "getRGBs"(arg0: (integer)[]): void
+public "getValidPixels"(): $BigInteger
+public "convertToIntDiscrete"(arg0: $Raster$Type, arg1: boolean): $BufferedImage
+public "isCompatibleSampleModel"(arg0: $SampleModel$Type): boolean
+public "getTransparentPixel"(): integer
 public "getComponents"(arg0: any, arg1: (integer)[], arg2: integer): (integer)[]
 public "getComponents"(arg0: integer, arg1: (integer)[], arg2: integer): (integer)[]
 public "getAlpha"(arg0: integer): integer
 public "getRed"(arg0: integer): integer
 public "getGreen"(arg0: integer): integer
 public "getBlue"(arg0: integer): integer
-get "valid"(): boolean
-get "transparentPixel"(): integer
-get "validPixels"(): $BigInteger
 get "mapSize"(): integer
 get "componentSize"(): (integer)[]
 get "transparency"(): integer
+get "valid"(): boolean
+get "validPixels"(): $BigInteger
+get "transparentPixel"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -833,10 +833,10 @@ public "removeDragSourceMotionListener"(arg0: $DragSourceMotionListener$Type): v
 public "getDragSourceMotionListeners"(): ($DragSourceMotionListener)[]
 public static "getDragThreshold"(): integer
 public "getListeners"<T extends $EventListener>(arg0: $Class$Type<(T)>): (T)[]
-public "startDrag"(arg0: $DragGestureEvent$Type, arg1: $Cursor$Type, arg2: $Transferable$Type, arg3: $DragSourceListener$Type): void
 public "startDrag"(arg0: $DragGestureEvent$Type, arg1: $Cursor$Type, arg2: $Image$Type, arg3: $Point$Type, arg4: $Transferable$Type, arg5: $DragSourceListener$Type, arg6: $FlavorMap$Type): void
 public "startDrag"(arg0: $DragGestureEvent$Type, arg1: $Cursor$Type, arg2: $Transferable$Type, arg3: $DragSourceListener$Type, arg4: $FlavorMap$Type): void
 public "startDrag"(arg0: $DragGestureEvent$Type, arg1: $Cursor$Type, arg2: $Image$Type, arg3: $Point$Type, arg4: $Transferable$Type, arg5: $DragSourceListener$Type): void
+public "startDrag"(arg0: $DragGestureEvent$Type, arg1: $Cursor$Type, arg2: $Transferable$Type, arg3: $DragSourceListener$Type): void
 get "defaultDragSource"(): $DragSource
 get "dragImageSupported"(): boolean
 get "flavorMap"(): $FlavorMap
@@ -935,26 +935,14 @@ import {$RenderableImage, $RenderableImage$Type} from "packages/java/awt/image/r
 import {$Paint, $Paint$Type} from "packages/java/awt/$Paint"
 import {$FontRenderContext, $FontRenderContext$Type} from "packages/java/awt/font/$FontRenderContext"
 import {$Image, $Image$Type} from "packages/java/awt/$Image"
-import {$RenderingHints$Key, $RenderingHints$Key$Type} from "packages/java/awt/$RenderingHints$Key"
 import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$AffineTransform"
+import {$RenderingHints$Key, $RenderingHints$Key$Type} from "packages/java/awt/$RenderingHints$Key"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export class $Graphics2D extends $Graphics {
 
 
 public "hit"(arg0: $Rectangle$Type, arg1: $Shape$Type, arg2: boolean): boolean
-public "getRenderingHints"(): $RenderingHints
-public "getFontRenderContext"(): $FontRenderContext
-public "setComposite"(arg0: $Composite$Type): void
-public "rotate"(arg0: double, arg1: double, arg2: double): void
-public "rotate"(arg0: double): void
-public "setRenderingHint"(arg0: $RenderingHints$Key$Type, arg1: any): void
-public "scale"(arg0: double, arg1: double): void
-public "fill"(arg0: $Shape$Type): void
-public "transform"(arg0: $AffineTransform$Type): void
-public "getDeviceConfiguration"(): $GraphicsConfiguration
-public "drawGlyphVector"(arg0: $GlyphVector$Type, arg1: float, arg2: float): void
-public "getTransform"(): $AffineTransform
 public "setPaint"(arg0: $Paint$Type): void
 public "drawRenderedImage"(arg0: $RenderedImage$Type, arg1: $AffineTransform$Type): void
 public "setStroke"(arg0: $Stroke$Type): void
@@ -967,30 +955,42 @@ public "getStroke"(): $Stroke
 public "drawRenderableImage"(arg0: $RenderableImage$Type, arg1: $AffineTransform$Type): void
 public "draw3DRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): void
 public "fill3DRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: boolean): void
+public "rotate"(arg0: double, arg1: double, arg2: double): void
+public "rotate"(arg0: double): void
+public "scale"(arg0: double, arg1: double): void
+public "fill"(arg0: $Shape$Type): void
+public "transform"(arg0: $AffineTransform$Type): void
+public "getTransform"(): $AffineTransform
+public "setRenderingHint"(arg0: $RenderingHints$Key$Type, arg1: any): void
+public "getFontRenderContext"(): $FontRenderContext
+public "setComposite"(arg0: $Composite$Type): void
+public "getRenderingHints"(): $RenderingHints
+public "getDeviceConfiguration"(): $GraphicsConfiguration
+public "drawGlyphVector"(arg0: $GlyphVector$Type, arg1: float, arg2: float): void
 public "setBackground"(arg0: $Color$Type): void
-public "getBackground"(): $Color
 public "setTransform"(arg0: $AffineTransform$Type): void
+public "getBackground"(): $Color
 public "draw"(arg0: $Shape$Type): void
-public "translate"(arg0: integer, arg1: integer): void
 public "translate"(arg0: double, arg1: double): void
+public "translate"(arg0: integer, arg1: integer): void
+public "shear"(arg0: double, arg1: double): void
 public "drawString"(arg0: $AttributedCharacterIterator$Type, arg1: integer, arg2: integer): void
 public "drawString"(arg0: string, arg1: integer, arg2: integer): void
 public "drawString"(arg0: string, arg1: float, arg2: float): void
 public "drawString"(arg0: $AttributedCharacterIterator$Type, arg1: float, arg2: float): void
-public "shear"(arg0: double, arg1: double): void
 public "clip"(arg0: $Shape$Type): void
 public "drawImage"(arg0: $Image$Type, arg1: $AffineTransform$Type, arg2: $ImageObserver$Type): boolean
 public "drawImage"(arg0: $BufferedImage$Type, arg1: $BufferedImageOp$Type, arg2: integer, arg3: integer): void
-get "renderingHints"(): $RenderingHints
-get "fontRenderContext"(): $FontRenderContext
-set "composite"(value: $Composite$Type)
-get "deviceConfiguration"(): $GraphicsConfiguration
 set "paint"(value: $Paint$Type)
 set "stroke"(value: $Stroke$Type)
 set "renderingHints"(value: $Map$Type<(any), (any)>)
 get "paint"(): $Paint
 get "composite"(): $Composite
 get "stroke"(): $Stroke
+get "fontRenderContext"(): $FontRenderContext
+set "composite"(value: $Composite$Type)
+get "renderingHints"(): $RenderingHints
+get "deviceConfiguration"(): $GraphicsConfiguration
 set "background"(value: $Color$Type)
 get "background"(): $Color
 }
@@ -1019,20 +1019,20 @@ export class $DropTargetDragEvent extends $DropTargetEvent {
 constructor(arg0: $DropTargetContext$Type, arg1: $Point$Type, arg2: integer, arg3: integer)
 
 public "getLocation"(): $Point
-public "getSourceActions"(): integer
-public "getDropAction"(): integer
 public "isDataFlavorSupported"(arg0: $DataFlavor$Type): boolean
 public "getTransferable"(): $Transferable
 public "acceptDrag"(arg0: integer): void
 public "rejectDrag"(): void
 public "getCurrentDataFlavors"(): ($DataFlavor)[]
 public "getCurrentDataFlavorsAsList"(): $List<($DataFlavor)>
+public "getSourceActions"(): integer
+public "getDropAction"(): integer
 get "location"(): $Point
-get "sourceActions"(): integer
-get "dropAction"(): integer
 get "transferable"(): $Transferable
 get "currentDataFlavors"(): ($DataFlavor)[]
 get "currentDataFlavorsAsList"(): $List<($DataFlavor)>
+get "sourceActions"(): integer
+get "dropAction"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1113,12 +1113,12 @@ public "getHelpMenu"(): $Menu
 public "setHelpMenu"(arg0: $Menu$Type): void
 public "shortcuts"(): $Enumeration<($MenuShortcut)>
 public "getMenu"(arg0: integer): $Menu
-public "getFont"(): $Font
 /**
  * 
  * @deprecated
  */
 public "postEvent"(arg0: $Event$Type): boolean
+public "getFont"(): $Font
 get "accessibleContext"(): $AccessibleContext
 get "menuCount"(): integer
 get "helpMenu"(): $Menu
@@ -1166,8 +1166,8 @@ export class $BufferStrategy {
 
 
 public "getCapabilities"(): $BufferCapabilities
-public "dispose"(): void
 public "contentsLost"(): boolean
+public "dispose"(): void
 public "getDrawGraphics"(): $Graphics
 public "contentsRestored"(): boolean
 public "show"(): void
@@ -1195,8 +1195,8 @@ export interface $ImageConsumer {
  "imageComplete"(arg0: integer): void
  "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $ColorModel$Type, arg5: (byte)[], arg6: integer, arg7: integer): void
  "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $ColorModel$Type, arg5: (integer)[], arg6: integer, arg7: integer): void
- "setProperties"(arg0: $Hashtable$Type<(any), (any)>): void
  "setDimensions"(arg0: integer, arg1: integer): void
+ "setProperties"(arg0: $Hashtable$Type<(any), (any)>): void
  "setColorModel"(arg0: $ColorModel$Type): void
  "setHints"(arg0: integer): void
 }
@@ -1269,31 +1269,31 @@ static readonly "TYPE_PRINTER": integer
 static readonly "TYPE_IMAGE_BUFFER": integer
 
 
-public "getDefaultConfiguration"(): $GraphicsConfiguration
-public "isWindowTranslucencySupported"(arg0: $GraphicsDevice$WindowTranslucency$Type): boolean
-public "getType"(): integer
 public "getConfigurations"(): ($GraphicsConfiguration)[]
+public "setDisplayMode"(arg0: $DisplayMode$Type): void
+public "getDisplayModes"(): ($DisplayMode)[]
+public "getAvailableAcceleratedMemory"(): integer
 public "getIDstring"(): string
 public "getBestConfiguration"(arg0: $GraphicsConfigTemplate$Type): $GraphicsConfiguration
 public "getFullScreenWindow"(): $Window
 public "setFullScreenWindow"(arg0: $Window$Type): void
 public "isFullScreenSupported"(): boolean
 public "isDisplayChangeSupported"(): boolean
-public "setDisplayMode"(arg0: $DisplayMode$Type): void
-public "getDisplayModes"(): ($DisplayMode)[]
-public "getAvailableAcceleratedMemory"(): integer
+public "getType"(): integer
+public "getDefaultConfiguration"(): $GraphicsConfiguration
+public "isWindowTranslucencySupported"(arg0: $GraphicsDevice$WindowTranslucency$Type): boolean
 public "getDisplayMode"(): $DisplayMode
-get "defaultConfiguration"(): $GraphicsConfiguration
-get "type"(): integer
 get "configurations"(): ($GraphicsConfiguration)[]
+set "displayMode"(value: $DisplayMode$Type)
+get "displayModes"(): ($DisplayMode)[]
+get "availableAcceleratedMemory"(): integer
 get "iDstring"(): string
 get "fullScreenWindow"(): $Window
 set "fullScreenWindow"(value: $Window$Type)
 get "fullScreenSupported"(): boolean
 get "displayChangeSupported"(): boolean
-set "displayMode"(value: $DisplayMode$Type)
-get "displayModes"(): ($DisplayMode)[]
-get "availableAcceleratedMemory"(): integer
+get "type"(): integer
+get "defaultConfiguration"(): $GraphicsConfiguration
 get "displayMode"(): $DisplayMode
 }
 /**
@@ -1341,22 +1341,22 @@ import {$KeyEvent, $KeyEvent$Type} from "packages/java/awt/event/$KeyEvent"
 export class $AWTKeyStroke implements $Serializable {
 
 
+public "getKeyChar"(): character
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getModifiers"(): integer
-public "getKeyChar"(): character
-public static "getAWTKeyStroke"(arg0: character, arg1: integer): $AWTKeyStroke
 public static "getAWTKeyStroke"(arg0: integer, arg1: integer, arg2: boolean): $AWTKeyStroke
+public static "getAWTKeyStroke"(arg0: character, arg1: integer): $AWTKeyStroke
 public static "getAWTKeyStroke"(arg0: character): $AWTKeyStroke
-public static "getAWTKeyStroke"(arg0: string): $AWTKeyStroke
 public static "getAWTKeyStroke"(arg0: integer, arg1: integer): $AWTKeyStroke
+public static "getAWTKeyStroke"(arg0: string): $AWTKeyStroke
 public static "getAWTKeyStrokeForEvent"(arg0: $KeyEvent$Type): $AWTKeyStroke
 public "isOnKeyRelease"(): boolean
 public "getKeyEventType"(): integer
 public "getKeyCode"(): integer
-get "modifiers"(): integer
 get "keyChar"(): character
+get "modifiers"(): integer
 get "onKeyRelease"(): boolean
 get "keyEventType"(): integer
 get "keyCode"(): integer
@@ -1377,8 +1377,8 @@ declare module "packages/java/awt/$Polygon" {
 import {$Point2D, $Point2D$Type} from "packages/java/awt/geom/$Point2D"
 import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
 import {$Rectangle, $Rectangle$Type} from "packages/java/awt/$Rectangle"
-import {$Point, $Point$Type} from "packages/java/awt/$Point"
 import {$PathIterator, $PathIterator$Type} from "packages/java/awt/geom/$PathIterator"
+import {$Point, $Point$Type} from "packages/java/awt/$Point"
 import {$Rectangle2D, $Rectangle2D$Type} from "packages/java/awt/geom/$Rectangle2D"
 import {$Shape, $Shape$Type} from "packages/java/awt/$Shape"
 import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$AffineTransform"
@@ -1391,20 +1391,20 @@ export class $Polygon implements $Shape, $Serializable {
 constructor()
 constructor(arg0: (integer)[], arg1: (integer)[], arg2: integer)
 
-public "invalidate"(): void
-public "intersects"(arg0: $Rectangle2D$Type): boolean
-public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "contains"(arg0: double, arg1: double): boolean
-public "contains"(arg0: $Point$Type): boolean
-public "contains"(arg0: integer, arg1: integer): boolean
-public "contains"(arg0: $Point2D$Type): boolean
-public "contains"(arg0: $Rectangle2D$Type): boolean
-public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "getBounds"(): $Rectangle
-public "reset"(): void
 public "getBounds2D"(): $Rectangle2D
 public "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
 public "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
+public "invalidate"(): void
+public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "intersects"(arg0: $Rectangle2D$Type): boolean
+public "contains"(arg0: $Rectangle2D$Type): boolean
+public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "contains"(arg0: $Point2D$Type): boolean
+public "contains"(arg0: double, arg1: double): boolean
+public "contains"(arg0: integer, arg1: integer): boolean
+public "contains"(arg0: $Point$Type): boolean
+public "getBounds"(): $Rectangle
+public "reset"(): void
 /**
  * 
  * @deprecated
@@ -1417,8 +1417,8 @@ public "translate"(arg0: integer, arg1: integer): void
  */
 public "inside"(arg0: integer, arg1: integer): boolean
 public "addPoint"(arg0: integer, arg1: integer): void
-get "bounds"(): $Rectangle
 get "bounds2D"(): $Rectangle2D
+get "bounds"(): $Rectangle
 get "boundingBox"(): $Rectangle
 }
 /**
@@ -1435,9 +1435,9 @@ export type $Polygon_ = $Polygon$Type;
 }}
 declare module "packages/java/awt/$Component" {
 import {$Graphics, $Graphics$Type} from "packages/java/awt/$Graphics"
+import {$InputMethodListener, $InputMethodListener$Type} from "packages/java/awt/event/$InputMethodListener"
 import {$ImageProducer, $ImageProducer$Type} from "packages/java/awt/image/$ImageProducer"
 import {$PopupMenu, $PopupMenu$Type} from "packages/java/awt/$PopupMenu"
-import {$InputMethodListener, $InputMethodListener$Type} from "packages/java/awt/event/$InputMethodListener"
 import {$ComponentListener, $ComponentListener$Type} from "packages/java/awt/event/$ComponentListener"
 import {$Color, $Color$Type} from "packages/java/awt/$Color"
 import {$Event, $Event$Type} from "packages/java/awt/$Event"
@@ -1457,11 +1457,11 @@ import {$ImageObserver, $ImageObserver$Type} from "packages/java/awt/image/$Imag
 import {$Locale, $Locale$Type} from "packages/java/util/$Locale"
 import {$Toolkit, $Toolkit$Type} from "packages/java/awt/$Toolkit"
 import {$EventListener, $EventListener$Type} from "packages/java/util/$EventListener"
-import {$ColorModel, $ColorModel$Type} from "packages/java/awt/image/$ColorModel"
 import {$InputMethodRequests, $InputMethodRequests$Type} from "packages/java/awt/im/$InputMethodRequests"
+import {$ColorModel, $ColorModel$Type} from "packages/java/awt/image/$ColorModel"
 import {$KeyListener, $KeyListener$Type} from "packages/java/awt/event/$KeyListener"
-import {$AWTEvent, $AWTEvent$Type} from "packages/java/awt/$AWTEvent"
 import {$MouseMotionListener, $MouseMotionListener$Type} from "packages/java/awt/event/$MouseMotionListener"
+import {$AWTEvent, $AWTEvent$Type} from "packages/java/awt/$AWTEvent"
 import {$AWTKeyStroke, $AWTKeyStroke$Type} from "packages/java/awt/$AWTKeyStroke"
 import {$Component$BaselineResizeBehavior, $Component$BaselineResizeBehavior$Type} from "packages/java/awt/$Component$BaselineResizeBehavior"
 import {$MouseWheelListener, $MouseWheelListener$Type} from "packages/java/awt/event/$MouseWheelListener"
@@ -1491,22 +1491,12 @@ static readonly "LEFT_ALIGNMENT": float
 static readonly "RIGHT_ALIGNMENT": float
 
 
+public "imageUpdate"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): boolean
 /**
  * 
  * @deprecated
  */
-public "move"(arg0: integer, arg1: integer): void
-public "setLocale"(arg0: $Locale$Type): void
-public "isValid"(): boolean
-public "setSize"(arg0: $Dimension$Type): void
-public "setSize"(arg0: integer, arg1: integer): void
-public "isEnabled"(): boolean
-public "invalidate"(): void
-public "getLocationOnScreen"(): $Point
-public "repaint"(arg0: long, arg1: integer, arg2: integer, arg3: integer, arg4: integer): void
-public "repaint"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "repaint"(arg0: long): void
-public "repaint"(): void
+public "reshape"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "getTreeLock"(): any
 public "removeNotify"(): void
 public "isDisplayable"(): boolean
@@ -1528,8 +1518,8 @@ public "getMaximumSize"(): $Dimension
 public "getAlignmentX"(): float
 public "getAlignmentY"(): float
 public "isShowing"(): boolean
-public "getComponentAt"(arg0: $Point$Type): $Component
 public "getComponentAt"(arg0: integer, arg1: integer): $Component
+public "getComponentAt"(arg0: $Point$Type): $Component
 /**
  * 
  * @deprecated
@@ -1547,96 +1537,6 @@ public "getMousePosition"(): $Point
 public "setFocusTraversalKeys"(arg0: integer, arg1: $Set$Type<(any)>): void
 public "getFocusTraversalKeys"(arg0: integer): $Set<($AWTKeyStroke)>
 public "areFocusTraversalKeysSet"(arg0: integer): boolean
-public "firePropertyChange"(arg0: string, arg1: short, arg2: short): void
-public "firePropertyChange"(arg0: string, arg1: long, arg2: long): void
-public "firePropertyChange"(arg0: string, arg1: double, arg2: double): void
-public "firePropertyChange"(arg0: string, arg1: float, arg2: float): void
-public "firePropertyChange"(arg0: string, arg1: byte, arg2: byte): void
-public "firePropertyChange"(arg0: string, arg1: character, arg2: character): void
-public "getPropertyChangeListeners"(): ($PropertyChangeListener)[]
-public "getPropertyChangeListeners"(arg0: string): ($PropertyChangeListener)[]
-public "getLocale"(): $Locale
-public "getY"(): integer
-public "createImage"(arg0: $ImageProducer$Type): $Image
-public "createImage"(arg0: integer, arg1: integer): $Image
-public "getWidth"(): integer
-public "getHeight"(): integer
-public "getGraphics"(): $Graphics
-public "getColorModel"(): $ColorModel
-public "imageUpdate"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): boolean
-public "isLightweight"(): boolean
-/**
- * 
- * @deprecated
- */
-public "handleEvent"(arg0: $Event$Type): boolean
-public "dispatchEvent"(arg0: $AWTEvent$Type): void
-public "getX"(): integer
-/**
- * 
- * @deprecated
- */
-public "enable"(): void
-/**
- * 
- * @deprecated
- */
-public "enable"(arg0: boolean): void
-public "getName"(): string
-public "add"(arg0: $PopupMenu$Type): void
-public "remove"(arg0: $MenuComponent$Type): void
-public "toString"(): string
-public "update"(arg0: $Graphics$Type): void
-/**
- * 
- * @deprecated
- */
-public "size"(): $Dimension
-public "contains"(arg0: $Point$Type): boolean
-public "contains"(arg0: integer, arg1: integer): boolean
-public "list"(arg0: $PrintWriter$Type, arg1: integer): void
-public "list"(arg0: $PrintWriter$Type): void
-public "list"(arg0: $PrintStream$Type, arg1: integer): void
-public "list"(): void
-public "list"(arg0: $PrintStream$Type): void
-public "getBounds"(): $Rectangle
-public "getBounds"(arg0: $Rectangle$Type): $Rectangle
-public "validate"(): void
-/**
- * 
- * @deprecated
- */
-public "bounds"(): $Rectangle
-public "getLocation"(arg0: $Point$Type): $Point
-public "getLocation"(): $Point
-public "getParent"(): $Container
-/**
- * 
- * @deprecated
- */
-public "action"(arg0: $Event$Type, arg1: any): boolean
-public "setName"(arg0: string): void
-public "print"(arg0: $Graphics$Type): void
-/**
- * 
- * @deprecated
- */
-public "location"(): $Point
-public "getSize"(): $Dimension
-public "getSize"(arg0: $Dimension$Type): $Dimension
-public "isOpaque"(): boolean
-/**
- * 
- * @deprecated
- */
-public "resize"(arg0: integer, arg1: integer): void
-/**
- * 
- * @deprecated
- */
-public "resize"(arg0: $Dimension$Type): void
-public "getForeground"(): $Color
-public "setForeground"(arg0: $Color$Type): void
 public "getToolkit"(): $Toolkit
 public "getInputContext"(): $InputContext
 public "createVolatileImage"(arg0: integer, arg1: integer): $VolatileImage
@@ -1686,8 +1586,9 @@ public "isFocusTraversable"(): boolean
  * @deprecated
  */
 public "nextFocus"(): void
-public "requestFocusInWindow"(): boolean
 public "requestFocusInWindow"(arg0: $FocusEvent$Cause$Type): boolean
+public "requestFocusInWindow"(): boolean
+public "hasFocus"(): boolean
 public "addComponentListener"(arg0: $ComponentListener$Type): void
 public "addFocusListener"(arg0: $FocusListener$Type): void
 public "addKeyListener"(arg0: $KeyListener$Type): void
@@ -1734,35 +1635,140 @@ public "getInputMethodListeners"(): ($InputMethodListener)[]
 public "getInputMethodRequests"(): $InputMethodRequests
 public "setFocusTraversalKeysEnabled"(arg0: boolean): void
 public "getFocusTraversalKeysEnabled"(): boolean
-public "transferFocusUpCycle"(): void
-public "getComponentOrientation"(): $ComponentOrientation
-public "setMixingCutoutShape"(arg0: $Shape$Type): void
-public "getGraphicsConfiguration"(): $GraphicsConfiguration
+/**
+ * 
+ * @deprecated
+ */
+public "handleEvent"(arg0: $Event$Type): boolean
+public "dispatchEvent"(arg0: $AWTEvent$Type): void
+public "setSize"(arg0: $Dimension$Type): void
+public "setSize"(arg0: integer, arg1: integer): void
+public "getX"(): integer
+/**
+ * 
+ * @deprecated
+ */
+public "move"(arg0: integer, arg1: integer): void
+public "isEnabled"(): boolean
+public "invalidate"(): void
+public "createImage"(arg0: integer, arg1: integer): $Image
+public "createImage"(arg0: $ImageProducer$Type): $Image
+public "getWidth"(): integer
+public "getHeight"(): integer
+public "getGraphics"(): $Graphics
+public "getColorModel"(): $ColorModel
+public "setLocale"(arg0: $Locale$Type): void
+public "getForeground"(): $Color
+public "setForeground"(arg0: $Color$Type): void
+public "firePropertyChange"(arg0: string, arg1: double, arg2: double): void
+public "firePropertyChange"(arg0: string, arg1: float, arg2: float): void
+public "firePropertyChange"(arg0: string, arg1: byte, arg2: byte): void
+public "firePropertyChange"(arg0: string, arg1: long, arg2: long): void
+public "firePropertyChange"(arg0: string, arg1: character, arg2: character): void
+public "firePropertyChange"(arg0: string, arg1: short, arg2: short): void
+public "getPropertyChangeListeners"(arg0: string): ($PropertyChangeListener)[]
+public "getPropertyChangeListeners"(): ($PropertyChangeListener)[]
 public "getFontMetrics"(arg0: $Font$Type): $FontMetrics
 public "checkImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: $ImageObserver$Type): integer
 public "checkImage"(arg0: $Image$Type, arg1: $ImageObserver$Type): integer
+public "getGraphicsConfiguration"(): $GraphicsConfiguration
+public "isValid"(): boolean
+public "getY"(): integer
+public "getLocale"(): $Locale
 /**
  * 
  * @deprecated
  */
-public "reshape"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "prepareImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: $ImageObserver$Type): boolean
-public "prepareImage"(arg0: $Image$Type, arg1: $ImageObserver$Type): boolean
+public "enable"(arg0: boolean): void
+/**
+ * 
+ * @deprecated
+ */
+public "enable"(): void
+public "getName"(): string
+public "add"(arg0: $PopupMenu$Type): void
+public "remove"(arg0: $MenuComponent$Type): void
+public "toString"(): string
+public "update"(arg0: $Graphics$Type): void
+/**
+ * 
+ * @deprecated
+ */
+public "size"(): $Dimension
+public "contains"(arg0: integer, arg1: integer): boolean
+public "contains"(arg0: $Point$Type): boolean
+public "list"(arg0: $PrintWriter$Type): void
+public "list"(arg0: $PrintStream$Type, arg1: integer): void
+public "list"(arg0: $PrintStream$Type): void
+public "list"(): void
+public "list"(arg0: $PrintWriter$Type, arg1: integer): void
+public "getBounds"(arg0: $Rectangle$Type): $Rectangle
+public "getBounds"(): $Rectangle
+public "validate"(): void
+/**
+ * 
+ * @deprecated
+ */
+public "bounds"(): $Rectangle
+public "getLocation"(): $Point
+public "getLocation"(arg0: $Point$Type): $Point
+public "getParent"(): $Container
+/**
+ * 
+ * @deprecated
+ */
+public "action"(arg0: $Event$Type, arg1: any): boolean
+public "setName"(arg0: string): void
+public "print"(arg0: $Graphics$Type): void
+/**
+ * 
+ * @deprecated
+ */
+public "location"(): $Point
+public "getSize"(arg0: $Dimension$Type): $Dimension
+public "getSize"(): $Dimension
+public "isOpaque"(): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "resize"(arg0: integer, arg1: integer): void
+/**
+ * 
+ * @deprecated
+ */
+public "resize"(arg0: $Dimension$Type): void
+public "getLocationOnScreen"(): $Point
+public "repaint"(arg0: long, arg1: integer, arg2: integer, arg3: integer, arg4: integer): void
+public "repaint"(): void
+public "repaint"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "repaint"(arg0: long): void
+public "isLightweight"(): boolean
+public "transferFocusUpCycle"(): void
+public "getComponentOrientation"(): $ComponentOrientation
+public "setMixingCutoutShape"(arg0: $Shape$Type): void
+public "removePropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
+public "removePropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
+public "setMaximumSize"(arg0: $Dimension$Type): void
 public "setBackground"(arg0: $Color$Type): void
-public "getBackground"(): $Color
+public "prepareImage"(arg0: $Image$Type, arg1: $ImageObserver$Type): boolean
+public "prepareImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: $ImageObserver$Type): boolean
 public "setFocusable"(arg0: boolean): void
-/**
- * 
- * @deprecated
- */
-public "disable"(): void
+public "getBackground"(): $Color
+public "getCursor"(): $Cursor
 /**
  * 
  * @deprecated
  */
 public "layout"(): void
-public "getCursor"(): $Cursor
+/**
+ * 
+ * @deprecated
+ */
+public "disable"(): void
 public "getListeners"<T extends $EventListener>(arg0: $Class$Type<(T)>): (T)[]
+public "setLocation"(arg0: $Point$Type): void
+public "setLocation"(arg0: integer, arg1: integer): void
 /**
  * 
  * @deprecated
@@ -1770,32 +1776,33 @@ public "getListeners"<T extends $EventListener>(arg0: $Class$Type<(T)>): (T)[]
 public "minimumSize"(): $Dimension
 public "addPropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
 public "addPropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
-public "setLocation"(arg0: integer, arg1: integer): void
-public "setLocation"(arg0: $Point$Type): void
-public "removePropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
-public "removePropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
-public "setMaximumSize"(arg0: $Dimension$Type): void
-public "setBounds"(arg0: $Rectangle$Type): void
-public "setBounds"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "setEnabled"(arg0: boolean): void
-public "setVisible"(arg0: boolean): void
+/**
+ * 
+ * @deprecated
+ */
+public "hide"(): void
 /**
  * 
  * @deprecated
  */
 public "locate"(arg0: integer, arg1: integer): $Component
-public "getFont"(): $Font
 /**
  * 
  * @deprecated
  */
 public "postEvent"(arg0: $Event$Type): boolean
 public "setCursor"(arg0: $Cursor$Type): void
+public "getFont"(): $Font
+public "setEnabled"(arg0: boolean): void
+public "setVisible"(arg0: boolean): void
+public "setBounds"(arg0: $Rectangle$Type): void
+public "setBounds"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "isVisible"(): boolean
 /**
  * 
  * @deprecated
  */
-public "hide"(): void
+public "inside"(arg0: integer, arg1: integer): boolean
 public "paint"(arg0: $Graphics$Type): void
 /**
  * 
@@ -1807,14 +1814,13 @@ public "show"(): void
  * @deprecated
  */
 public "show"(arg0: boolean): void
+public "setFont"(arg0: $Font$Type): void
+public "printAll"(arg0: $Graphics$Type): void
 /**
  * 
  * @deprecated
  */
-public "inside"(arg0: integer, arg1: integer): boolean
-public "isVisible"(): boolean
-public "printAll"(arg0: $Graphics$Type): void
-public "setFont"(arg0: $Font$Type): void
+public "mouseDown"(arg0: $Event$Type, arg1: integer, arg2: integer): boolean
 /**
  * 
  * @deprecated
@@ -1825,17 +1831,7 @@ public "keyDown"(arg0: $Event$Type, arg1: integer): boolean
  * @deprecated
  */
 public "keyUp"(arg0: $Event$Type, arg1: integer): boolean
-/**
- * 
- * @deprecated
- */
-public "mouseDown"(arg0: $Event$Type, arg1: integer, arg2: integer): boolean
 public "revalidate"(): void
-public "hasFocus"(): boolean
-set "locale"(value: $Locale$Type)
-get "valid"(): boolean
-get "enabled"(): boolean
-get "locationOnScreen"(): $Point
 get "treeLock"(): any
 get "displayable"(): boolean
 get "focusable"(): boolean
@@ -1850,21 +1846,6 @@ get "showing"(): boolean
 get "focusCycleRootAncestor"(): $Container
 get "accessibleContext"(): $AccessibleContext
 get "mousePosition"(): $Point
-get "propertyChangeListeners"(): ($PropertyChangeListener)[]
-get "locale"(): $Locale
-get "y"(): integer
-get "width"(): integer
-get "height"(): integer
-get "graphics"(): $Graphics
-get "colorModel"(): $ColorModel
-get "lightweight"(): boolean
-get "x"(): integer
-get "name"(): string
-get "parent"(): $Container
-set "name"(value: string)
-get "opaque"(): boolean
-get "foreground"(): $Color
-set "foreground"(value: $Color$Type)
 get "toolkit"(): $Toolkit
 get "inputContext"(): $InputContext
 get "focusTraversable"(): boolean
@@ -1891,18 +1872,37 @@ get "inputMethodListeners"(): ($InputMethodListener)[]
 get "inputMethodRequests"(): $InputMethodRequests
 set "focusTraversalKeysEnabled"(value: boolean)
 get "focusTraversalKeysEnabled"(): boolean
+get "x"(): integer
+get "enabled"(): boolean
+get "width"(): integer
+get "height"(): integer
+get "graphics"(): $Graphics
+get "colorModel"(): $ColorModel
+set "locale"(value: $Locale$Type)
+get "foreground"(): $Color
+set "foreground"(value: $Color$Type)
+get "propertyChangeListeners"(): ($PropertyChangeListener)[]
+get "graphicsConfiguration"(): $GraphicsConfiguration
+get "valid"(): boolean
+get "y"(): integer
+get "locale"(): $Locale
+get "name"(): string
+get "parent"(): $Container
+set "name"(value: string)
+get "opaque"(): boolean
+get "locationOnScreen"(): $Point
+get "lightweight"(): boolean
 get "componentOrientation"(): $ComponentOrientation
 set "mixingCutoutShape"(value: $Shape$Type)
-get "graphicsConfiguration"(): $GraphicsConfiguration
-set "background"(value: $Color$Type)
-get "background"(): $Color
-set "focusable"(value: boolean)
-get "cursor"(): $Cursor
 set "maximumSize"(value: $Dimension$Type)
+set "background"(value: $Color$Type)
+set "focusable"(value: boolean)
+get "background"(): $Color
+get "cursor"(): $Cursor
+set "cursor"(value: $Cursor$Type)
+get "font"(): $Font
 set "enabled"(value: boolean)
 set "visible"(value: boolean)
-get "font"(): $Font
-set "cursor"(value: $Cursor$Type)
 get "visible"(): boolean
 set "font"(value: $Font$Type)
 }
@@ -1963,29 +1963,29 @@ import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$A
 export class $GraphicsConfiguration {
 
 
-public "getDefaultTransform"(): $AffineTransform
 public "getColorModel"(arg0: integer): $ColorModel
 public "getColorModel"(): $ColorModel
-public "isTranslucencyCapable"(): boolean
 public "getDevice"(): $GraphicsDevice
-public "getBounds"(): $Rectangle
-public "createCompatibleImage"(arg0: integer, arg1: integer): $BufferedImage
 public "createCompatibleImage"(arg0: integer, arg1: integer, arg2: integer): $BufferedImage
+public "createCompatibleImage"(arg0: integer, arg1: integer): $BufferedImage
 public "getNormalizingTransform"(): $AffineTransform
-public "createCompatibleVolatileImage"(arg0: integer, arg1: integer, arg2: $ImageCapabilities$Type, arg3: integer): $VolatileImage
 public "createCompatibleVolatileImage"(arg0: integer, arg1: integer, arg2: $ImageCapabilities$Type): $VolatileImage
 public "createCompatibleVolatileImage"(arg0: integer, arg1: integer): $VolatileImage
 public "createCompatibleVolatileImage"(arg0: integer, arg1: integer, arg2: integer): $VolatileImage
+public "createCompatibleVolatileImage"(arg0: integer, arg1: integer, arg2: $ImageCapabilities$Type, arg3: integer): $VolatileImage
 public "getImageCapabilities"(): $ImageCapabilities
 public "getBufferCapabilities"(): $BufferCapabilities
-get "defaultTransform"(): $AffineTransform
+public "getBounds"(): $Rectangle
+public "getDefaultTransform"(): $AffineTransform
+public "isTranslucencyCapable"(): boolean
 get "colorModel"(): $ColorModel
-get "translucencyCapable"(): boolean
 get "device"(): $GraphicsDevice
-get "bounds"(): $Rectangle
 get "normalizingTransform"(): $AffineTransform
 get "imageCapabilities"(): $ImageCapabilities
 get "bufferCapabilities"(): $BufferCapabilities
+get "bounds"(): $Rectangle
+get "defaultTransform"(): $AffineTransform
+get "translucencyCapable"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2095,15 +2095,15 @@ static readonly "WINDOW_STATE_EVENT_MASK": long
 static readonly "WINDOW_FOCUS_EVENT_MASK": long
 static readonly "RESERVED_ID_MAX": integer
 
+constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: integer, arg9: integer, arg10: integer)
 constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: boolean, arg10: integer, arg11: integer, arg12: integer, arg13: double)
 constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: boolean, arg10: integer, arg11: integer, arg12: integer)
-constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: integer, arg9: integer, arg10: integer)
 
-public "paramString"(): string
 public "getScrollType"(): integer
 public "getScrollAmount"(): integer
 public "getWheelRotation"(): integer
 public "getPreciseWheelRotation"(): double
+public "paramString"(): string
 public "getUnitsToScroll"(): integer
 get "scrollType"(): integer
 get "scrollAmount"(): integer
@@ -2175,28 +2175,28 @@ import {$Raster, $Raster$Type} from "packages/java/awt/image/$Raster"
 export class $WritableRaster extends $Raster {
 
 
-public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: float): void
-public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: double): void
-public "getWritableParent"(): $WritableRaster
-public "createWritableTranslatedChild"(arg0: integer, arg1: integer): $WritableRaster
+public "setRect"(arg0: $Raster$Type): void
+public "setRect"(arg0: integer, arg1: integer, arg2: $Raster$Type): void
 public "setDataElements"(arg0: integer, arg1: integer, arg2: $Raster$Type): void
 public "setDataElements"(arg0: integer, arg1: integer, arg2: any): void
 public "setDataElements"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: any): void
 public "createWritableChild"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: (integer)[]): $WritableRaster
-public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[]): void
-public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (float)[]): void
 public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (double)[]): void
-public "setRect"(arg0: $Raster$Type): void
-public "setRect"(arg0: integer, arg1: integer, arg2: $Raster$Type): void
+public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (float)[]): void
+public "setPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[]): void
+public "getWritableParent"(): $WritableRaster
+public "createWritableTranslatedChild"(arg0: integer, arg1: integer): $WritableRaster
 public "setPixel"(arg0: integer, arg1: integer, arg2: (integer)[]): void
 public "setPixel"(arg0: integer, arg1: integer, arg2: (float)[]): void
 public "setPixel"(arg0: integer, arg1: integer, arg2: (double)[]): void
-public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (double)[]): void
 public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (float)[]): void
 public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (integer)[]): void
-get "writableParent"(): $WritableRaster
+public "setSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (double)[]): void
+public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: float): void
+public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "setSample"(arg0: integer, arg1: integer, arg2: integer, arg3: double): void
 set "rect"(value: $Raster$Type)
+get "writableParent"(): $WritableRaster
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2298,22 +2298,22 @@ export {} // Mark the file as a module, do not remove unless there are other imp
 export class $TextHitInfo {
 
 
+public "getInsertionIndex"(): integer
+public static "beforeOffset"(arg0: integer): $TextHitInfo
+public static "afterOffset"(arg0: integer): $TextHitInfo
+public "getOtherHit"(): $TextHitInfo
+public "getOffsetHit"(arg0: integer): $TextHitInfo
 public static "trailing"(arg0: integer): $TextHitInfo
 public "equals"(arg0: $TextHitInfo$Type): boolean
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "isLeadingEdge"(): boolean
-public "getInsertionIndex"(): integer
-public static "beforeOffset"(arg0: integer): $TextHitInfo
-public static "afterOffset"(arg0: integer): $TextHitInfo
-public "getOtherHit"(): $TextHitInfo
-public "getOffsetHit"(arg0: integer): $TextHitInfo
 public "getCharIndex"(): integer
 public static "leading"(arg0: integer): $TextHitInfo
-get "leadingEdge"(): boolean
 get "insertionIndex"(): integer
 get "otherHit"(): $TextHitInfo
+get "leadingEdge"(): boolean
 get "charIndex"(): integer
 }
 /**
@@ -2337,12 +2337,12 @@ export class $Point extends $Point2D implements $Serializable {
  "y": integer
 
 constructor()
-constructor(arg0: $Point$Type)
 constructor(arg0: integer, arg1: integer)
+constructor(arg0: $Point$Type)
 
+public "getX"(): double
 public "move"(arg0: integer, arg1: integer): void
 public "getY"(): double
-public "getX"(): double
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "getLocation"(): $Point
@@ -2350,8 +2350,8 @@ public "translate"(arg0: integer, arg1: integer): void
 public "setLocation"(arg0: $Point$Type): void
 public "setLocation"(arg0: integer, arg1: integer): void
 public "setLocation"(arg0: double, arg1: double): void
-get "y"(): double
 get "x"(): double
+get "y"(): double
 get "location"(): $Point
 set "location"(value: $Point$Type)
 }
@@ -2413,10 +2413,6 @@ constructor(arg0: (float)[])
 constructor(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double)
 constructor(arg0: (double)[])
 
-public "rotate"(arg0: double, arg1: double, arg2: double, arg3: double): void
-public "rotate"(arg0: double, arg1: double, arg2: double): void
-public "rotate"(arg0: double): void
-public "rotate"(arg0: double, arg1: double): void
 public static "getTranslateInstance"(arg0: double, arg1: double): $AffineTransform
 public "preConcatenate"(arg0: $AffineTransform$Type): void
 public "getTranslateY"(): double
@@ -2424,17 +2420,17 @@ public "deltaTransform"(arg0: $Point2D$Type, arg1: $Point2D$Type): $Point2D
 public "deltaTransform"(arg0: (double)[], arg1: integer, arg2: (double)[], arg3: integer, arg4: integer): void
 public "setToTranslation"(arg0: double, arg1: double): void
 public "setToRotation"(arg0: double): void
+public "setToRotation"(arg0: double, arg1: double): void
 public "setToRotation"(arg0: double, arg1: double, arg2: double): void
 public "setToRotation"(arg0: double, arg1: double, arg2: double, arg3: double): void
-public "setToRotation"(arg0: double, arg1: double): void
 public "setToQuadrantRotation"(arg0: integer): void
 public "setToQuadrantRotation"(arg0: integer, arg1: double, arg2: double): void
 public "setToScale"(arg0: double, arg1: double): void
 public "setToShear"(arg0: double, arg1: double): void
-public static "getRotateInstance"(arg0: double, arg1: double, arg2: double): $AffineTransform
 public static "getRotateInstance"(arg0: double, arg1: double, arg2: double, arg3: double): $AffineTransform
 public static "getRotateInstance"(arg0: double, arg1: double): $AffineTransform
 public static "getRotateInstance"(arg0: double): $AffineTransform
+public static "getRotateInstance"(arg0: double, arg1: double, arg2: double): $AffineTransform
 public static "getQuadrantRotateInstance"(arg0: integer): $AffineTransform
 public static "getQuadrantRotateInstance"(arg0: integer, arg1: double, arg2: double): $AffineTransform
 public static "getScaleInstance"(arg0: double, arg1: double): $AffineTransform
@@ -2447,25 +2443,29 @@ public "quadrantRotate"(arg0: integer, arg1: double, arg2: double): void
 public "quadrantRotate"(arg0: integer): void
 public "setToIdentity"(): void
 public "createInverse"(): $AffineTransform
+public "inverseTransform"(arg0: $Point2D$Type, arg1: $Point2D$Type): $Point2D
+public "inverseTransform"(arg0: (double)[], arg1: integer, arg2: (double)[], arg3: integer, arg4: integer): void
+public "createTransformedShape"(arg0: $Shape$Type): $Shape
+public "rotate"(arg0: double, arg1: double, arg2: double, arg3: double): void
+public "rotate"(arg0: double): void
+public "rotate"(arg0: double, arg1: double, arg2: double): void
+public "rotate"(arg0: double, arg1: double): void
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "clone"(): any
 public "scale"(arg0: double, arg1: double): void
-public "transform"(arg0: ($Point2D$Type)[], arg1: integer, arg2: ($Point2D$Type)[], arg3: integer, arg4: integer): void
-public "transform"(arg0: (float)[], arg1: integer, arg2: (float)[], arg3: integer, arg4: integer): void
 public "transform"(arg0: (double)[], arg1: integer, arg2: (double)[], arg3: integer, arg4: integer): void
 public "transform"(arg0: (float)[], arg1: integer, arg2: (double)[], arg3: integer, arg4: integer): void
 public "transform"(arg0: (double)[], arg1: integer, arg2: (float)[], arg3: integer, arg4: integer): void
 public "transform"(arg0: $Point2D$Type, arg1: $Point2D$Type): $Point2D
+public "transform"(arg0: ($Point2D$Type)[], arg1: integer, arg2: ($Point2D$Type)[], arg3: integer, arg4: integer): void
+public "transform"(arg0: (float)[], arg1: integer, arg2: (float)[], arg3: integer, arg4: integer): void
 public "getType"(): integer
 public "isIdentity"(): boolean
-public "inverseTransform"(arg0: $Point2D$Type, arg1: $Point2D$Type): $Point2D
-public "inverseTransform"(arg0: (double)[], arg1: integer, arg2: (double)[], arg3: integer, arg4: integer): void
-public "createTransformedShape"(arg0: $Shape$Type): $Shape
 public "concatenate"(arg0: $AffineTransform$Type): void
-public "setTransform"(arg0: $AffineTransform$Type): void
 public "setTransform"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): void
+public "setTransform"(arg0: $AffineTransform$Type): void
 public "invert"(): void
 public "translate"(arg0: double, arg1: double): void
 public "shear"(arg0: double, arg1: double): void
@@ -2525,7 +2525,6 @@ static readonly "RIGHT_ALIGNMENT": float
 
 constructor()
 
-public "invalidate"(): void
 /**
  * 
  * @deprecated
@@ -2577,32 +2576,34 @@ public "isFocusTraversalPolicySet"(): boolean
 public "setFocusCycleRoot"(arg0: boolean): void
 public "setFocusTraversalPolicyProvider"(arg0: boolean): void
 public "transferFocusDownCycle"(): void
+public "invalidate"(): void
+public "add"(arg0: $Component$Type, arg1: integer): $Component
+public "add"(arg0: string, arg1: $Component$Type): $Component
+public "add"(arg0: $Component$Type, arg1: any): void
+public "add"(arg0: $Component$Type, arg1: any, arg2: integer): void
+public "add"(arg0: $Component$Type): $Component
+public "remove"(arg0: integer): void
+public "remove"(arg0: $Component$Type): void
+public "update"(arg0: $Graphics$Type): void
+public "list"(arg0: $PrintStream$Type, arg1: integer): void
+public "list"(arg0: $PrintWriter$Type, arg1: integer): void
+public "validate"(): void
+public "print"(arg0: $Graphics$Type): void
+public "removeAll"(): void
 /**
  * 
  * @deprecated
  */
 public "insets"(): $Insets
 public "setFocusTraversalPolicy"(arg0: $FocusTraversalPolicy$Type): void
-public "add"(arg0: $Component$Type, arg1: integer): $Component
-public "add"(arg0: $Component$Type, arg1: any, arg2: integer): void
-public "add"(arg0: $Component$Type): $Component
-public "add"(arg0: string, arg1: $Component$Type): $Component
-public "add"(arg0: $Component$Type, arg1: any): void
-public "remove"(arg0: integer): void
-public "remove"(arg0: $Component$Type): void
-public "update"(arg0: $Graphics$Type): void
-public "list"(arg0: $PrintWriter$Type, arg1: integer): void
-public "list"(arg0: $PrintStream$Type, arg1: integer): void
-public "validate"(): void
-public "print"(arg0: $Graphics$Type): void
-public "removeAll"(): void
-public "setLayout"(arg0: $LayoutManager$Type): void
 /**
  * 
  * @deprecated
  */
 public "layout"(): void
+public "setLayout"(arg0: $LayoutManager$Type): void
 public "getLayout"(): $LayoutManager
+public "getComponents"(): ($Component)[]
 public "getListeners"<T extends $EventListener>(arg0: $Class$Type<(T)>): (T)[]
 public "getComponent"(arg0: integer): $Component
 /**
@@ -2610,9 +2611,8 @@ public "getComponent"(arg0: integer): $Component
  * @deprecated
  */
 public "minimumSize"(): $Dimension
-public "addPropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
 public "addPropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
-public "getComponents"(): ($Component)[]
+public "addPropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
 /**
  * 
  * @deprecated
@@ -2657,16 +2657,16 @@ import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$A
 
 export interface $Shape {
 
- "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+ "getBounds2D"(): $Rectangle2D
+ "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
+ "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
  "intersects"(arg0: $Rectangle2D$Type): boolean
- "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
- "contains"(arg0: $Point2D$Type): boolean
+ "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
  "contains"(arg0: double, arg1: double): boolean
  "contains"(arg0: $Rectangle2D$Type): boolean
+ "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+ "contains"(arg0: $Point2D$Type): boolean
  "getBounds"(): $Rectangle
- "getBounds2D"(): $Rectangle2D
- "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
- "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
 }
 
 export namespace $Shape {
@@ -2723,28 +2723,28 @@ static readonly "OUT_RIGHT": integer
 static readonly "OUT_BOTTOM": integer
 
 
-public static "intersect"(arg0: $Rectangle2D$Type, arg1: $Rectangle2D$Type, arg2: $Rectangle2D$Type): void
-public static "union"(arg0: $Rectangle2D$Type, arg1: $Rectangle2D$Type, arg2: $Rectangle2D$Type): void
-public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "add"(arg0: double, arg1: double): void
-public "add"(arg0: $Rectangle2D$Type): void
-public "add"(arg0: $Point2D$Type): void
-public "equals"(arg0: any): boolean
-public "hashCode"(): integer
-public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "contains"(arg0: double, arg1: double): boolean
 public "getBounds2D"(): $Rectangle2D
-public "setRect"(arg0: double, arg1: double, arg2: double, arg3: double): void
 public "setRect"(arg0: $Rectangle2D$Type): void
+public "setRect"(arg0: double, arg1: double, arg2: double, arg3: double): void
 public "outcode"(arg0: $Point2D$Type): integer
 public "outcode"(arg0: double, arg1: double): integer
 public "createIntersection"(arg0: $Rectangle2D$Type): $Rectangle2D
 public "createUnion"(arg0: $Rectangle2D$Type): $Rectangle2D
 public "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
 public "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
-public "intersectsLine"(arg0: $Line2D$Type): boolean
 public "intersectsLine"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "intersectsLine"(arg0: $Line2D$Type): boolean
 public "setFrame"(arg0: double, arg1: double, arg2: double, arg3: double): void
+public static "union"(arg0: $Rectangle2D$Type, arg1: $Rectangle2D$Type, arg2: $Rectangle2D$Type): void
+public static "intersect"(arg0: $Rectangle2D$Type, arg1: $Rectangle2D$Type, arg2: $Rectangle2D$Type): void
+public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "add"(arg0: $Rectangle2D$Type): void
+public "add"(arg0: $Point2D$Type): void
+public "add"(arg0: double, arg1: double): void
+public "equals"(arg0: any): boolean
+public "hashCode"(): integer
+public "contains"(arg0: double, arg1: double): boolean
+public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
 get "bounds2D"(): $Rectangle2D
 set "rect"(value: $Rectangle2D$Type)
 }
@@ -2796,9 +2796,8 @@ export class $DropTargetDropEvent extends $DropTargetEvent {
 constructor(arg0: $DropTargetContext$Type, arg1: $Point$Type, arg2: integer, arg3: integer)
 constructor(arg0: $DropTargetContext$Type, arg1: $Point$Type, arg2: integer, arg3: integer, arg4: boolean)
 
+public "isLocalTransfer"(): boolean
 public "getLocation"(): $Point
-public "getSourceActions"(): integer
-public "getDropAction"(): integer
 public "isDataFlavorSupported"(arg0: $DataFlavor$Type): boolean
 public "getTransferable"(): $Transferable
 public "dropComplete"(arg0: boolean): void
@@ -2806,14 +2805,15 @@ public "acceptDrop"(arg0: integer): void
 public "rejectDrop"(): void
 public "getCurrentDataFlavors"(): ($DataFlavor)[]
 public "getCurrentDataFlavorsAsList"(): $List<($DataFlavor)>
-public "isLocalTransfer"(): boolean
+public "getSourceActions"(): integer
+public "getDropAction"(): integer
+get "localTransfer"(): boolean
 get "location"(): $Point
-get "sourceActions"(): integer
-get "dropAction"(): integer
 get "transferable"(): $Transferable
 get "currentDataFlavors"(): ($DataFlavor)[]
 get "currentDataFlavorsAsList"(): $List<($DataFlavor)>
-get "localTransfer"(): boolean
+get "sourceActions"(): integer
+get "dropAction"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2869,12 +2869,12 @@ public "addNotify"(): void
 public "getAccessibleContext"(): $AccessibleContext
 public "getParent"(): $MenuContainer
 public "show"(arg0: $Component$Type, arg1: integer, arg2: integer): void
-public "getFont"(): $Font
 /**
  * 
  * @deprecated
  */
 public "postEvent"(arg0: $Event$Type): boolean
+public "getFont"(): $Font
 get "accessibleContext"(): $AccessibleContext
 get "parent"(): $MenuContainer
 get "font"(): $Font
@@ -3195,26 +3195,26 @@ static readonly "RESERVED_ID_MAX": integer
 
 
 public "consume"(): void
+/**
+ * 
+ * @deprecated
+ */
+public "getModifiers"(): integer
 public static "getMaskForButton"(arg0: integer): integer
 public "getModifiersEx"(): integer
 public static "getModifiersExText"(arg0: integer): string
 public "isMetaDown"(): boolean
 public "isAltGraphDown"(): boolean
 public "getWhen"(): long
-/**
- * 
- * @deprecated
- */
-public "getModifiers"(): integer
 public "isShiftDown"(): boolean
 public "isControlDown"(): boolean
 public "isAltDown"(): boolean
 public "isConsumed"(): boolean
+get "modifiers"(): integer
 get "modifiersEx"(): integer
 get "metaDown"(): boolean
 get "altGraphDown"(): boolean
 get "when"(): long
-get "modifiers"(): integer
 get "shiftDown"(): boolean
 get "controlDown"(): boolean
 get "altDown"(): boolean
@@ -3242,27 +3242,19 @@ import {$DataBuffer, $DataBuffer$Type} from "packages/java/awt/image/$DataBuffer
 export class $Raster {
 
 
-public "getTransferType"(): integer
-public "getSampleFloat"(arg0: integer, arg1: integer, arg2: integer): float
-public "getSampleDouble"(arg0: integer, arg1: integer, arg2: integer): double
-public static "createBandedRaster"(arg0: $DataBuffer$Type, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: (integer)[], arg6: $Point$Type): $WritableRaster
-public static "createBandedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: (integer)[], arg6: $Point$Type): $WritableRaster
-public static "createBandedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $Point$Type): $WritableRaster
-public static "createRaster"(arg0: $SampleModel$Type, arg1: $DataBuffer$Type, arg2: $Point$Type): $Raster
-public "createTranslatedChild"(arg0: integer, arg1: integer): $Raster
 public "getWidth"(): integer
 public "getHeight"(): integer
-public "createCompatibleWritableRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $WritableRaster
 public "createCompatibleWritableRaster"(arg0: $Rectangle$Type): $WritableRaster
 public "createCompatibleWritableRaster"(arg0: integer, arg1: integer): $WritableRaster
+public "createCompatibleWritableRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $WritableRaster
 public "createCompatibleWritableRaster"(): $WritableRaster
-public static "createInterleavedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $Point$Type): $WritableRaster
 public static "createInterleavedRaster"(arg0: $DataBuffer$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (integer)[], arg6: $Point$Type): $WritableRaster
+public static "createInterleavedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $Point$Type): $WritableRaster
 public static "createInterleavedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (integer)[], arg6: $Point$Type): $WritableRaster
 public static "createPackedRaster"(arg0: $DataBuffer$Type, arg1: integer, arg2: integer, arg3: integer, arg4: $Point$Type): $WritableRaster
+public static "createPackedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: $Point$Type): $WritableRaster
 public static "createPackedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: (integer)[], arg4: $Point$Type): $WritableRaster
 public static "createPackedRaster"(arg0: $DataBuffer$Type, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: $Point$Type): $WritableRaster
-public static "createPackedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: $Point$Type): $WritableRaster
 public "getNumBands"(): integer
 public "getSampleModel"(): $SampleModel
 public "getDataElements"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: any): any
@@ -3274,21 +3266,28 @@ public "getSampleModelTranslateX"(): integer
 public "getSampleModelTranslateY"(): integer
 public static "createWritableRaster"(arg0: $SampleModel$Type, arg1: $DataBuffer$Type, arg2: $Point$Type): $WritableRaster
 public static "createWritableRaster"(arg0: $SampleModel$Type, arg1: $Point$Type): $WritableRaster
+public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (double)[]): (double)[]
 public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[]): (integer)[]
 public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (float)[]): (float)[]
-public "getPixels"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (double)[]): (double)[]
 public "getBounds"(): $Rectangle
 public "getParent"(): $Raster
+public static "createBandedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: (integer)[], arg6: $Point$Type): $WritableRaster
+public static "createBandedRaster"(arg0: $DataBuffer$Type, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: (integer)[], arg6: $Point$Type): $WritableRaster
+public static "createBandedRaster"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: $Point$Type): $WritableRaster
+public "getSampleFloat"(arg0: integer, arg1: integer, arg2: integer): float
+public "getSampleDouble"(arg0: integer, arg1: integer, arg2: integer): double
+public static "createRaster"(arg0: $SampleModel$Type, arg1: $DataBuffer$Type, arg2: $Point$Type): $Raster
+public "createTranslatedChild"(arg0: integer, arg1: integer): $Raster
 public "createChild"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: (integer)[]): $Raster
+public "getPixel"(arg0: integer, arg1: integer, arg2: (float)[]): (float)[]
 public "getPixel"(arg0: integer, arg1: integer, arg2: (double)[]): (double)[]
 public "getPixel"(arg0: integer, arg1: integer, arg2: (integer)[]): (integer)[]
-public "getPixel"(arg0: integer, arg1: integer, arg2: (float)[]): (float)[]
+public "getTransferType"(): integer
 public "getNumDataElements"(): integer
 public "getSample"(arg0: integer, arg1: integer, arg2: integer): integer
 public "getSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (integer)[]): (integer)[]
 public "getSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (double)[]): (double)[]
 public "getSamples"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: (float)[]): (float)[]
-get "transferType"(): integer
 get "width"(): integer
 get "height"(): integer
 get "numBands"(): integer
@@ -3300,6 +3299,7 @@ get "sampleModelTranslateX"(): integer
 get "sampleModelTranslateY"(): integer
 get "bounds"(): $Rectangle
 get "parent"(): $Raster
+get "transferType"(): integer
 get "numDataElements"(): integer
 }
 /**
@@ -3400,8 +3400,6 @@ export {} // Mark the file as a module, do not remove unless there are other imp
 export class $LineMetrics {
 
 
-public "getHeight"(): float
-public "getLeading"(): float
 public "getNumChars"(): integer
 public "getBaselineIndex"(): integer
 public "getBaselineOffsets"(): (float)[]
@@ -3409,10 +3407,10 @@ public "getStrikethroughOffset"(): float
 public "getStrikethroughThickness"(): float
 public "getUnderlineOffset"(): float
 public "getUnderlineThickness"(): float
+public "getHeight"(): float
+public "getLeading"(): float
 public "getAscent"(): float
 public "getDescent"(): float
-get "height"(): float
-get "leading"(): float
 get "numChars"(): integer
 get "baselineIndex"(): integer
 get "baselineOffsets"(): (float)[]
@@ -3420,6 +3418,8 @@ get "strikethroughOffset"(): float
 get "strikethroughThickness"(): float
 get "underlineOffset"(): float
 get "underlineThickness"(): float
+get "height"(): float
+get "leading"(): float
 get "ascent"(): float
 get "descent"(): float
 }
@@ -3445,17 +3445,17 @@ import {$JobAttributes$MultipleDocumentHandlingType, $JobAttributes$MultipleDocu
 
 export class $JobAttributes implements $Cloneable {
 
+constructor()
 constructor(arg0: integer, arg1: $JobAttributes$DefaultSelectionType$Type, arg2: $JobAttributes$DestinationType$Type, arg3: $JobAttributes$DialogType$Type, arg4: string, arg5: integer, arg6: integer, arg7: $JobAttributes$MultipleDocumentHandlingType$Type, arg8: ((integer)[])[], arg9: string, arg10: $JobAttributes$SidesType$Type)
 constructor(arg0: $JobAttributes$Type)
-constructor()
 
+public "getDestination"(): $JobAttributes$DestinationType
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "clone"(): any
 public "set"(arg0: $JobAttributes$Type): void
 public "getFileName"(): string
-public "getDestination"(): $JobAttributes$DestinationType
 public "setCopiesToDefault"(): void
 public "setDefaultSelection"(arg0: $JobAttributes$DefaultSelectionType$Type): void
 public "setDialog"(arg0: $JobAttributes$DialogType$Type): void
@@ -3483,8 +3483,8 @@ public "setToPage"(arg0: integer): void
 public "setFileName"(arg0: string): void
 public "setDestination"(arg0: $JobAttributes$DestinationType$Type): void
 public "getSides"(): $JobAttributes$SidesType
-get "fileName"(): string
 get "destination"(): $JobAttributes$DestinationType
+get "fileName"(): string
 set "defaultSelection"(value: $JobAttributes$DefaultSelectionType$Type)
 set "dialog"(value: $JobAttributes$DialogType$Type)
 set "maxPage"(value: integer)
@@ -3527,9 +3527,9 @@ import {$WritableRaster, $WritableRaster$Type} from "packages/java/awt/image/$Wr
 import {$Point, $Point$Type} from "packages/java/awt/$Point"
 import {$Hashtable, $Hashtable$Type} from "packages/java/util/$Hashtable"
 import {$Graphics, $Graphics$Type} from "packages/java/awt/$Graphics"
-import {$ImageProducer, $ImageProducer$Type} from "packages/java/awt/image/$ImageProducer"
 import {$ImageObserver, $ImageObserver$Type} from "packages/java/awt/image/$ImageObserver"
 import {$RenderedImage, $RenderedImage$Type} from "packages/java/awt/image/$RenderedImage"
+import {$ImageProducer, $ImageProducer$Type} from "packages/java/awt/image/$ImageProducer"
 import {$Vector, $Vector$Type} from "packages/java/util/$Vector"
 import {$WritableRenderedImage, $WritableRenderedImage$Type} from "packages/java/awt/image/$WritableRenderedImage"
 import {$IndexColorModel, $IndexColorModel$Type} from "packages/java/awt/image/$IndexColorModel"
@@ -3564,9 +3564,9 @@ static readonly "SCALE_SMOOTH": integer
 static readonly "SCALE_REPLICATE": integer
 static readonly "SCALE_AREA_AVERAGING": integer
 
-constructor(arg0: integer, arg1: integer, arg2: integer)
-constructor(arg0: integer, arg1: integer, arg2: integer, arg3: $IndexColorModel$Type)
 constructor(arg0: $ColorModel$Type, arg1: $WritableRaster$Type, arg2: boolean, arg3: $Hashtable$Type<(any), (any)>)
+constructor(arg0: integer, arg1: integer, arg2: integer, arg3: $IndexColorModel$Type)
+constructor(arg0: integer, arg1: integer, arg2: integer)
 
 public "getData"(): $Raster
 public "getData"(arg0: $Rectangle$Type): $Raster
@@ -3579,26 +3579,25 @@ public "getWritableTileIndices"(): ($Point)[]
 public "hasTileWriters"(): boolean
 public "getWritableTile"(arg0: integer, arg1: integer): $WritableRaster
 public "releaseWritableTile"(arg0: integer, arg1: integer): void
-public "getSource"(): $ImageProducer
 public "getWidth"(arg0: $ImageObserver$Type): integer
 public "getWidth"(): integer
-public "getHeight"(arg0: $ImageObserver$Type): integer
 public "getHeight"(): integer
+public "getHeight"(arg0: $ImageObserver$Type): integer
 public "getGraphics"(): $Graphics
 public "isAlphaPremultiplied"(): boolean
 public "coerceData"(arg0: boolean): void
 public "getSampleModel"(): $SampleModel
 public "getAlphaRaster"(): $WritableRaster
-public "getRGB"(arg0: integer, arg1: integer): integer
 public "getRGB"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: integer, arg6: integer): (integer)[]
+public "getRGB"(arg0: integer, arg1: integer): integer
 public "createGraphics"(): $Graphics2D
 public "getMinX"(): integer
 public "getMinY"(): integer
 public "getTransparency"(): integer
 public "getColorModel"(): $ColorModel
 public "getRaster"(): $WritableRaster
-public "setRGB"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: integer, arg6: integer): void
 public "setRGB"(arg0: integer, arg1: integer, arg2: integer): void
+public "setRGB"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: (integer)[], arg5: integer, arg6: integer): void
 public "getSubimage"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $BufferedImage
 public "getSources"(): $Vector<($RenderedImage)>
 public "getPropertyNames"(): (string)[]
@@ -3611,14 +3610,14 @@ public "getTileHeight"(): integer
 public "getTileGridXOffset"(): integer
 public "getTileGridYOffset"(): integer
 public "getTile"(arg0: integer, arg1: integer): $Raster
-public "getProperty"(arg0: string): any
+public "getSource"(): $ImageProducer
 public "getProperty"(arg0: string, arg1: $ImageObserver$Type): any
+public "getProperty"(arg0: string): any
 public "toString"(): string
 public "getType"(): integer
 get "data"(): $Raster
 set "data"(value: $Raster$Type)
 get "writableTileIndices"(): ($Point)[]
-get "source"(): $ImageProducer
 get "width"(): integer
 get "height"(): integer
 get "graphics"(): $Graphics
@@ -3640,6 +3639,7 @@ get "tileWidth"(): integer
 get "tileHeight"(): integer
 get "tileGridXOffset"(): integer
 get "tileGridYOffset"(): integer
+get "source"(): $ImageProducer
 get "type"(): integer
 }
 /**
@@ -3707,28 +3707,6 @@ export class $Graphics {
 
 
 public "setColor"(arg0: $Color$Type): void
-public "dispose"(): void
-/**
- * 
- * @deprecated
- */
-public "finalize"(): void
-public "toString"(): string
-public "create"(): $Graphics
-public "create"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $Graphics
-public "copyArea"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
-public "fillRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "drawRoundRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
-public "fillRoundRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
-public "drawOval"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "fillOval"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "fillArc"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
-public "drawPolyline"(arg0: (integer)[], arg1: (integer)[], arg2: integer): void
-public "drawPolygon"(arg0: (integer)[], arg1: (integer)[], arg2: integer): void
-public "drawPolygon"(arg0: $Polygon$Type): void
-public "fillPolygon"(arg0: $Polygon$Type): void
-public "fillPolygon"(arg0: (integer)[], arg1: (integer)[], arg2: integer): void
-public "drawChars"(arg0: (character)[], arg1: integer, arg2: integer, arg3: integer, arg4: integer): void
 public "getFontMetrics"(arg0: $Font$Type): $FontMetrics
 public "getFontMetrics"(): $FontMetrics
 public "getClipBounds"(arg0: $Rectangle$Type): $Rectangle
@@ -3748,20 +3726,42 @@ public "fill3DRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, 
  * @deprecated
  */
 public "getClipRect"(): $Rectangle
+public "dispose"(): void
+/**
+ * 
+ * @deprecated
+ */
+public "finalize"(): void
+public "toString"(): string
+public "create"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $Graphics
+public "create"(): $Graphics
+public "copyArea"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
+public "fillRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "drawRoundRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
+public "fillRoundRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
+public "drawOval"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "fillOval"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "fillArc"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
+public "drawPolyline"(arg0: (integer)[], arg1: (integer)[], arg2: integer): void
+public "drawPolygon"(arg0: $Polygon$Type): void
+public "drawPolygon"(arg0: (integer)[], arg1: (integer)[], arg2: integer): void
+public "fillPolygon"(arg0: (integer)[], arg1: (integer)[], arg2: integer): void
+public "fillPolygon"(arg0: $Polygon$Type): void
+public "drawChars"(arg0: (character)[], arg1: integer, arg2: integer, arg3: integer, arg4: integer): void
 public "translate"(arg0: integer, arg1: integer): void
-public "getColor"(): $Color
 public "drawString"(arg0: string, arg1: integer, arg2: integer): void
 public "drawString"(arg0: $AttributedCharacterIterator$Type, arg1: integer, arg2: integer): void
 public "getFont"(): $Font
-public "drawLine"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "getColor"(): $Color
 public "clipRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "drawLine"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "drawRect"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: $Color$Type, arg4: $ImageObserver$Type): boolean
-public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: $ImageObserver$Type): boolean
+public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: $Color$Type, arg10: $ImageObserver$Type): boolean
 public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: $ImageObserver$Type): boolean
+public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: $ImageObserver$Type): boolean
+public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: $Color$Type, arg4: $ImageObserver$Type): boolean
 public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: $Color$Type, arg6: $ImageObserver$Type): boolean
 public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: $ImageObserver$Type): boolean
-public "drawImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: $Color$Type, arg10: $ImageObserver$Type): boolean
 public "setFont"(arg0: $Font$Type): void
 public "drawArc"(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
 set "color"(value: $Color$Type)
@@ -3770,8 +3770,8 @@ get "clipBounds"(): $Rectangle
 get "clip"(): $Shape
 set "clip"(value: $Shape$Type)
 set "xORMode"(value: $Color$Type)
-get "color"(): $Color
 get "font"(): $Font
+get "color"(): $Color
 set "font"(value: $Font$Type)
 }
 /**
@@ -3818,17 +3818,17 @@ static readonly "WINDOW_STATE_EVENT_MASK": long
 static readonly "WINDOW_FOCUS_EVENT_MASK": long
 static readonly "RESERVED_ID_MAX": integer
 
-constructor(arg0: any, arg1: integer, arg2: string)
 constructor(arg0: any, arg1: integer, arg2: string, arg3: long, arg4: integer)
 constructor(arg0: any, arg1: integer, arg2: string, arg3: integer)
+constructor(arg0: any, arg1: integer, arg2: string)
 
-public "getActionCommand"(): string
-public "getWhen"(): long
 public "getModifiers"(): integer
 public "paramString"(): string
+public "getActionCommand"(): string
+public "getWhen"(): long
+get "modifiers"(): integer
 get "actionCommand"(): string
 get "when"(): long
-get "modifiers"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3857,29 +3857,29 @@ constructor(arg0: string)
 constructor(arg0: string, arg1: $MenuShortcut$Type)
 constructor()
 
-public "isEnabled"(): boolean
-public "getLabel"(): string
-public "getActionCommand"(): string
 public "addNotify"(): void
 public "getAccessibleContext"(): $AccessibleContext
-/**
- * 
- * @deprecated
- */
-public "enable"(): void
+public "getLabel"(): string
+public "isEnabled"(): boolean
 /**
  * 
  * @deprecated
  */
 public "enable"(arg0: boolean): void
+/**
+ * 
+ * @deprecated
+ */
+public "enable"(): void
 public "paramString"(): string
-public "deleteShortcut"(): void
-public "getShortcut"(): $MenuShortcut
+public "getActionCommand"(): string
 public "addActionListener"(arg0: $ActionListener$Type): void
 public "setShortcut"(arg0: $MenuShortcut$Type): void
 public "setActionCommand"(arg0: string): void
 public "removeActionListener"(arg0: $ActionListener$Type): void
 public "getActionListeners"(): ($ActionListener)[]
+public "deleteShortcut"(): void
+public "getShortcut"(): $MenuShortcut
 /**
  * 
  * @deprecated
@@ -3888,14 +3888,14 @@ public "disable"(): void
 public "getListeners"<T extends $EventListener>(arg0: $Class$Type<(T)>): (T)[]
 public "setEnabled"(arg0: boolean): void
 public "setLabel"(arg0: string): void
-get "enabled"(): boolean
-get "label"(): string
-get "actionCommand"(): string
 get "accessibleContext"(): $AccessibleContext
-get "shortcut"(): $MenuShortcut
+get "label"(): string
+get "enabled"(): boolean
+get "actionCommand"(): string
 set "shortcut"(value: $MenuShortcut$Type)
 set "actionCommand"(value: string)
 get "actionListeners"(): ($ActionListener)[]
+get "shortcut"(): $MenuShortcut
 set "enabled"(value: boolean)
 set "label"(value: string)
 }
@@ -3975,11 +3975,11 @@ static readonly "RESERVED_ID_MAX": integer
 
 constructor(arg0: $Component$Type, arg1: integer, arg2: $Component$Type)
 
-public "getChild"(): $Component
 public "getContainer"(): $Container
+public "getChild"(): $Component
 public "paramString"(): string
-get "child"(): $Component
 get "container"(): $Container
+get "child"(): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4005,29 +4005,29 @@ static readonly "TYPE_DOUBLE": integer
 static readonly "TYPE_UNDEFINED": integer
 
 
+public "getDataType"(): integer
 public "getOffsets"(): (integer)[]
-public static "getDataTypeSize"(arg0: integer): integer
-public "getElemFloat"(arg0: integer, arg1: integer): float
+public "getSize"(): integer
+public "getOffset"(): integer
 public "getElemFloat"(arg0: integer): float
+public "getElemFloat"(arg0: integer, arg1: integer): float
 public "getElemDouble"(arg0: integer): double
 public "getElemDouble"(arg0: integer, arg1: integer): double
 public "setElemFloat"(arg0: integer, arg1: float): void
 public "setElemFloat"(arg0: integer, arg1: integer, arg2: float): void
 public "setElemDouble"(arg0: integer, arg1: double): void
 public "setElemDouble"(arg0: integer, arg1: integer, arg2: double): void
+public static "getDataTypeSize"(arg0: integer): integer
 public "getNumBanks"(): integer
-public "getDataType"(): integer
-public "getSize"(): integer
-public "getOffset"(): integer
 public "getElem"(arg0: integer): integer
 public "getElem"(arg0: integer, arg1: integer): integer
 public "setElem"(arg0: integer, arg1: integer): void
 public "setElem"(arg0: integer, arg1: integer, arg2: integer): void
-get "offsets"(): (integer)[]
-get "numBanks"(): integer
 get "dataType"(): integer
+get "offsets"(): (integer)[]
 get "size"(): integer
 get "offset"(): integer
+get "numBanks"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4188,23 +4188,23 @@ import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$A
 
 export class $FontRenderContext {
 
-constructor(arg0: $AffineTransform$Type, arg1: any, arg2: any)
 constructor(arg0: $AffineTransform$Type, arg1: boolean, arg2: boolean)
+constructor(arg0: $AffineTransform$Type, arg1: any, arg2: any)
 
-public "isAntiAliased"(): boolean
 public "getAntiAliasingHint"(): any
 public "getFractionalMetricsHint"(): any
 public "equals"(arg0: any): boolean
 public "equals"(arg0: $FontRenderContext$Type): boolean
 public "hashCode"(): integer
 public "getTransform"(): $AffineTransform
+public "isAntiAliased"(): boolean
 public "usesFractionalMetrics"(): boolean
 public "getTransformType"(): integer
 public "isTransformed"(): boolean
-get "antiAliased"(): boolean
 get "antiAliasingHint"(): any
 get "fractionalMetricsHint"(): any
 get "transform"(): $AffineTransform
+get "antiAliased"(): boolean
 get "transformType"(): integer
 get "transformed"(): boolean
 }
@@ -4232,49 +4232,49 @@ import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$A
 export class $Line2D implements $Shape, $Cloneable {
 
 
-public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "intersects"(arg0: $Rectangle2D$Type): boolean
-public "clone"(): any
-public "contains"(arg0: $Point2D$Type): boolean
-public "contains"(arg0: double, arg1: double): boolean
-public "contains"(arg0: $Rectangle2D$Type): boolean
-public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "getBounds"(): $Rectangle
 public "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
 public "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
 public "getX2"(): double
 public "getY2"(): double
-public "intersectsLine"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
 public "intersectsLine"(arg0: $Line2D$Type): boolean
-public "relativeCCW"(arg0: double, arg1: double): integer
+public "intersectsLine"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
 public "relativeCCW"(arg0: $Point2D$Type): integer
+public "relativeCCW"(arg0: double, arg1: double): integer
 public static "relativeCCW"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): integer
 public static "linesIntersect"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double, arg6: double, arg7: double): boolean
-public "ptSegDistSq"(arg0: $Point2D$Type): double
-public "ptSegDistSq"(arg0: double, arg1: double): double
 public static "ptSegDistSq"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): double
+public "ptSegDistSq"(arg0: double, arg1: double): double
+public "ptSegDistSq"(arg0: $Point2D$Type): double
 public "ptSegDist"(arg0: $Point2D$Type): double
-public static "ptSegDist"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): double
 public "ptSegDist"(arg0: double, arg1: double): double
-public "ptLineDistSq"(arg0: double, arg1: double): double
-public static "ptLineDistSq"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): double
+public static "ptSegDist"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): double
 public "ptLineDistSq"(arg0: $Point2D$Type): double
+public static "ptLineDistSq"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): double
+public "ptLineDistSq"(arg0: double, arg1: double): double
+public static "ptLineDist"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): double
 public "ptLineDist"(arg0: $Point2D$Type): double
 public "ptLineDist"(arg0: double, arg1: double): double
-public static "ptLineDist"(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): double
 public "getP1"(): $Point2D
 public "getP2"(): $Point2D
-public "setLine"(arg0: double, arg1: double, arg2: double, arg3: double): void
+public "intersects"(arg0: $Rectangle2D$Type): boolean
+public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "clone"(): any
+public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "contains"(arg0: $Rectangle2D$Type): boolean
+public "contains"(arg0: double, arg1: double): boolean
+public "contains"(arg0: $Point2D$Type): boolean
+public "getBounds"(): $Rectangle
 public "setLine"(arg0: $Point2D$Type, arg1: $Point2D$Type): void
+public "setLine"(arg0: double, arg1: double, arg2: double, arg3: double): void
 public "setLine"(arg0: $Line2D$Type): void
 public "getX1"(): double
 public "getY1"(): double
 public "getBounds2D"(): $Rectangle2D
-get "bounds"(): $Rectangle
 get "x2"(): double
 get "y2"(): double
 get "p1"(): $Point2D
 get "p2"(): $Point2D
+get "bounds"(): $Rectangle
 set "line"(value: $Line2D$Type)
 get "x1"(): double
 get "y1"(): double
@@ -4325,13 +4325,13 @@ static readonly "WINDOW_FOCUS_EVENT_MASK": long
 static readonly "RESERVED_ID_MAX": integer
 
 constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: $AttributedCharacterIterator$Type, arg4: integer, arg5: $TextHitInfo$Type, arg6: $TextHitInfo$Type)
-constructor(arg0: $Component$Type, arg1: integer, arg2: $AttributedCharacterIterator$Type, arg3: integer, arg4: $TextHitInfo$Type, arg5: $TextHitInfo$Type)
 constructor(arg0: $Component$Type, arg1: integer, arg2: $TextHitInfo$Type, arg3: $TextHitInfo$Type)
+constructor(arg0: $Component$Type, arg1: integer, arg2: $AttributedCharacterIterator$Type, arg3: integer, arg4: $TextHitInfo$Type, arg5: $TextHitInfo$Type)
 
 public "consume"(): void
+public "paramString"(): string
 public "getCaret"(): $TextHitInfo
 public "getWhen"(): long
-public "paramString"(): string
 public "getCommittedCharacterCount"(): integer
 public "getVisiblePosition"(): $TextHitInfo
 public "getText"(): $AttributedCharacterIterator
@@ -4389,12 +4389,12 @@ import {$Font, $Font$Type} from "packages/java/awt/$Font"
 export interface $MenuContainer {
 
  "remove"(arg0: $MenuComponent$Type): void
- "getFont"(): $Font
 /**
  * 
  * @deprecated
  */
  "postEvent"(arg0: $Event$Type): boolean
+ "getFont"(): $Font
 }
 
 export namespace $MenuContainer {
@@ -4487,12 +4487,12 @@ static readonly "WINDOW_STATE_EVENT_MASK": long
 static readonly "WINDOW_FOCUS_EVENT_MASK": long
 static readonly "RESERVED_ID_MAX": integer
 
+constructor(arg0: any, arg1: integer)
 /**
  * 
  * @deprecated
  */
 constructor(arg0: $Event$Type)
-constructor(arg0: any, arg1: integer)
 
 public "getID"(): integer
 public "toString"(): string
@@ -4532,12 +4532,6 @@ export class $DragSourceContext implements $DragSourceListener, $DragSourceMotio
 
 constructor(arg0: $DragGestureEvent$Type, arg1: $Cursor$Type, arg2: $Image$Type, arg3: $Point$Type, arg4: $Transferable$Type, arg5: $DragSourceListener$Type)
 
-public "dragEnter"(arg0: $DragSourceDragEvent$Type): void
-public "dragOver"(arg0: $DragSourceDragEvent$Type): void
-public "dropActionChanged"(arg0: $DragSourceDragEvent$Type): void
-public "dragExit"(arg0: $DragSourceEvent$Type): void
-public "dragDropEnd"(arg0: $DragSourceDropEvent$Type): void
-public "getSourceActions"(): integer
 public "dragMouseMoved"(arg0: $DragSourceDragEvent$Type): void
 public "addDragSourceListener"(arg0: $DragSourceListener$Type): void
 public "removeDragSourceListener"(arg0: $DragSourceListener$Type): void
@@ -4545,13 +4539,19 @@ public "getDragSource"(): $DragSource
 public "transferablesFlavorsChanged"(): void
 public "getTrigger"(): $DragGestureEvent
 public "getTransferable"(): $Transferable
+public "dragEnter"(arg0: $DragSourceDragEvent$Type): void
+public "dragOver"(arg0: $DragSourceDragEvent$Type): void
+public "dropActionChanged"(arg0: $DragSourceDragEvent$Type): void
+public "dragExit"(arg0: $DragSourceEvent$Type): void
+public "dragDropEnd"(arg0: $DragSourceDropEvent$Type): void
+public "getSourceActions"(): integer
 public "getCursor"(): $Cursor
 public "getComponent"(): $Component
 public "setCursor"(arg0: $Cursor$Type): void
-get "sourceActions"(): integer
 get "dragSource"(): $DragSource
 get "trigger"(): $DragGestureEvent
 get "transferable"(): $Transferable
+get "sourceActions"(): integer
 get "cursor"(): $Cursor
 get "component"(): $Component
 set "cursor"(value: $Cursor$Type)
@@ -4688,40 +4688,40 @@ static readonly "CYAN": $Color
 static readonly "blue": $Color
 static readonly "BLUE": $Color
 
-constructor(arg0: float, arg1: float, arg2: float)
-constructor(arg0: integer, arg1: boolean)
 constructor(arg0: integer)
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer)
-constructor(arg0: float, arg1: float, arg2: float, arg3: float)
-constructor(arg0: $ColorSpace$Type, arg1: (float)[], arg2: float)
 constructor(arg0: integer, arg1: integer, arg2: integer)
+constructor(arg0: integer, arg1: boolean)
+constructor(arg0: $ColorSpace$Type, arg1: (float)[], arg2: float)
+constructor(arg0: float, arg1: float, arg2: float)
+constructor(arg0: float, arg1: float, arg2: float, arg3: float)
 
-public "getColorSpace"(): $ColorSpace
-public "getRGB"(): integer
-public "getTransparency"(): integer
 public "getRGBComponents"(arg0: (float)[]): (float)[]
 public "getRGBColorComponents"(arg0: (float)[]): (float)[]
 public "brighter"(): $Color
 public "darker"(): $Color
 public static "getHSBColor"(arg0: float, arg1: float, arg2: float): $Color
-public "getColorComponents"(arg0: (float)[]): (float)[]
 public "getColorComponents"(arg0: $ColorSpace$Type, arg1: (float)[]): (float)[]
+public "getColorComponents"(arg0: (float)[]): (float)[]
+public "getColorSpace"(): $ColorSpace
+public "getRGB"(): integer
+public "getTransparency"(): integer
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "decode"(arg0: string): $Color
-public "createContext"(arg0: $ColorModel$Type, arg1: $Rectangle$Type, arg2: $Rectangle2D$Type, arg3: $AffineTransform$Type, arg4: $RenderingHints$Type): $PaintContext
-public "getComponents"(arg0: $ColorSpace$Type, arg1: (float)[]): (float)[]
 public "getComponents"(arg0: (float)[]): (float)[]
-public static "getColor"(arg0: string): $Color
-public static "getColor"(arg0: string, arg1: integer): $Color
+public "getComponents"(arg0: $ColorSpace$Type, arg1: (float)[]): (float)[]
+public "createContext"(arg0: $ColorModel$Type, arg1: $Rectangle$Type, arg2: $Rectangle2D$Type, arg3: $AffineTransform$Type, arg4: $RenderingHints$Type): $PaintContext
 public static "getColor"(arg0: string, arg1: $Color$Type): $Color
+public static "getColor"(arg0: string, arg1: integer): $Color
+public static "getColor"(arg0: string): $Color
 public "getAlpha"(): integer
+public static "HSBtoRGB"(arg0: float, arg1: float, arg2: float): integer
+public static "RGBtoHSB"(arg0: integer, arg1: integer, arg2: integer, arg3: (float)[]): (float)[]
 public "getRed"(): integer
 public "getGreen"(): integer
 public "getBlue"(): integer
-public static "HSBtoRGB"(arg0: float, arg1: float, arg2: float): integer
-public static "RGBtoHSB"(arg0: integer, arg1: integer, arg2: integer, arg3: (float)[]): (float)[]
 get "colorSpace"(): $ColorSpace
 get "rGB"(): integer
 get "transparency"(): integer
@@ -4754,20 +4754,20 @@ import {$FontRenderContext, $FontRenderContext$Type} from "packages/java/awt/fon
 export class $FontMetrics implements $Serializable {
 
 
-public "getFontRenderContext"(): $FontRenderContext
 public "getHeight"(): integer
 public "getStringBounds"(arg0: $CharacterIterator$Type, arg1: integer, arg2: integer, arg3: $Graphics$Type): $Rectangle2D
 public "getStringBounds"(arg0: (character)[], arg1: integer, arg2: integer, arg3: $Graphics$Type): $Rectangle2D
-public "getStringBounds"(arg0: string, arg1: $Graphics$Type): $Rectangle2D
 public "getStringBounds"(arg0: string, arg1: integer, arg2: integer, arg3: $Graphics$Type): $Rectangle2D
+public "getStringBounds"(arg0: string, arg1: $Graphics$Type): $Rectangle2D
 public "getLeading"(): integer
 public "hasUniformLineMetrics"(): boolean
-public "getLineMetrics"(arg0: (character)[], arg1: integer, arg2: integer, arg3: $Graphics$Type): $LineMetrics
-public "getLineMetrics"(arg0: string, arg1: integer, arg2: integer, arg3: $Graphics$Type): $LineMetrics
 public "getLineMetrics"(arg0: string, arg1: $Graphics$Type): $LineMetrics
+public "getLineMetrics"(arg0: string, arg1: integer, arg2: integer, arg3: $Graphics$Type): $LineMetrics
+public "getLineMetrics"(arg0: (character)[], arg1: integer, arg2: integer, arg3: $Graphics$Type): $LineMetrics
 public "getLineMetrics"(arg0: $CharacterIterator$Type, arg1: integer, arg2: integer, arg3: $Graphics$Type): $LineMetrics
 public "getMaxCharBounds"(arg0: $Graphics$Type): $Rectangle2D
 public "toString"(): string
+public "getFontRenderContext"(): $FontRenderContext
 public "getMaxDescent"(): integer
 public "charsWidth"(arg0: (character)[], arg1: integer, arg2: integer): integer
 public "getMaxAscent"(): integer
@@ -4785,9 +4785,9 @@ public "getAscent"(): integer
 public "getDescent"(): integer
 public "charWidth"(arg0: integer): integer
 public "charWidth"(arg0: character): integer
-get "fontRenderContext"(): $FontRenderContext
 get "height"(): integer
 get "leading"(): integer
+get "fontRenderContext"(): $FontRenderContext
 get "maxDescent"(): integer
 get "maxAscent"(): integer
 get "maxDecent"(): integer
@@ -4871,21 +4871,21 @@ import {$Component, $Component$Type} from "packages/java/awt/$Component"
 export class $DragGestureRecognizer implements $Serializable {
 
 
-public "getSourceActions"(): integer
 public "addDragGestureListener"(arg0: $DragGestureListener$Type): void
 public "getDragSource"(): $DragSource
 public "setSourceActions"(arg0: integer): void
 public "getTriggerEvent"(): $InputEvent
 public "resetRecognizer"(): void
 public "removeDragGestureListener"(arg0: $DragGestureListener$Type): void
-public "getComponent"(): $Component
+public "getSourceActions"(): integer
 public "setComponent"(arg0: $Component$Type): void
-get "sourceActions"(): integer
+public "getComponent"(): $Component
 get "dragSource"(): $DragSource
 set "sourceActions"(value: integer)
 get "triggerEvent"(): $InputEvent
-get "component"(): $Component
+get "sourceActions"(): integer
 set "component"(value: $Component$Type)
+get "component"(): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4918,12 +4918,12 @@ public "getName"(): string
 public "toString"(): string
 public "getParent"(): $MenuContainer
 public "setName"(arg0: string): void
-public "getFont"(): $Font
 /**
  * 
  * @deprecated
  */
 public "postEvent"(arg0: $Event$Type): boolean
+public "getFont"(): $Font
 public "setFont"(arg0: $Font$Type): void
 get "accessibleContext"(): $AccessibleContext
 get "name"(): string
@@ -5064,9 +5064,9 @@ export class $ImageCapabilities implements $Cloneable {
 
 constructor(arg0: boolean)
 
+public "clone"(): any
 public "isAccelerated"(): boolean
 public "isTrueVolatile"(): boolean
-public "clone"(): any
 get "accelerated"(): boolean
 get "trueVolatile"(): boolean
 }
@@ -5117,9 +5117,9 @@ export interface $RenderableImage {
  "getMinY"(): float
  "getSources"(): $Vector<($RenderableImage)>
  "getPropertyNames"(): (string)[]
+ "createRendering"(arg0: $RenderContext$Type): $RenderedImage
  "isDynamic"(): boolean
  "getProperty"(arg0: string): any
- "createRendering"(arg0: $RenderContext$Type): $RenderedImage
  "createScaledRendering"(arg0: integer, arg1: integer, arg2: $RenderingHints$Type): $RenderedImage
  "createDefaultRendering"(): $RenderedImage
 }
@@ -5168,8 +5168,8 @@ export type $HierarchyListener_ = $HierarchyListener$Type;
 declare module "packages/java/awt/$Image" {
 import {$GraphicsConfiguration, $GraphicsConfiguration$Type} from "packages/java/awt/$GraphicsConfiguration"
 import {$Graphics, $Graphics$Type} from "packages/java/awt/$Graphics"
-import {$ImageProducer, $ImageProducer$Type} from "packages/java/awt/image/$ImageProducer"
 import {$ImageObserver, $ImageObserver$Type} from "packages/java/awt/image/$ImageObserver"
+import {$ImageProducer, $ImageProducer$Type} from "packages/java/awt/image/$ImageProducer"
 import {$ImageCapabilities, $ImageCapabilities$Type} from "packages/java/awt/$ImageCapabilities"
 
 export class $Image {
@@ -5181,7 +5181,6 @@ static readonly "SCALE_REPLICATE": integer
 static readonly "SCALE_AREA_AVERAGING": integer
 
 
-public "getSource"(): $ImageProducer
 public "getCapabilities"(arg0: $GraphicsConfiguration$Type): $ImageCapabilities
 public "setAccelerationPriority"(arg0: float): void
 public "getWidth"(arg0: $ImageObserver$Type): integer
@@ -5189,12 +5188,13 @@ public "getHeight"(arg0: $ImageObserver$Type): integer
 public "getGraphics"(): $Graphics
 public "getScaledInstance"(arg0: integer, arg1: integer, arg2: integer): $Image
 public "getAccelerationPriority"(): float
+public "getSource"(): $ImageProducer
 public "getProperty"(arg0: string, arg1: $ImageObserver$Type): any
 public "flush"(): void
-get "source"(): $ImageProducer
 set "accelerationPriority"(value: float)
 get "graphics"(): $Graphics
 get "accelerationPriority"(): float
+get "source"(): $ImageProducer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5304,17 +5304,14 @@ static readonly "BOTTOM_ALIGNMENT": float
 static readonly "LEFT_ALIGNMENT": float
 static readonly "RIGHT_ALIGNMENT": float
 
+constructor(arg0: string, arg1: $GraphicsConfiguration$Type)
+constructor(arg0: string)
 constructor(arg0: $GraphicsConfiguration$Type)
 constructor()
-constructor(arg0: string)
-constructor(arg0: string, arg1: $GraphicsConfiguration$Type)
 
 public "removeNotify"(): void
 public "addNotify"(): void
 public "getAccessibleContext"(): $AccessibleContext
-public "setState"(arg0: integer): void
-public "remove"(arg0: $MenuComponent$Type): void
-public "getState"(): integer
 public "setResizable"(arg0: boolean): void
 public "isUndecorated"(): boolean
 public "setUndecorated"(arg0: boolean): void
@@ -5331,27 +5328,28 @@ public "getMaximizedBounds"(): $Rectangle
  */
 public "getCursorType"(): integer
 public "setOpacity"(arg0: float): void
+public "setState"(arg0: integer): void
+public "remove"(arg0: $MenuComponent$Type): void
+public "getState"(): integer
 public "setIconImage"(arg0: $Image$Type): void
-public "setBackground"(arg0: $Color$Type): void
 public "isResizable"(): boolean
+public "setBackground"(arg0: $Color$Type): void
 public "getTitle"(): string
-public static "getFrames"(): ($Frame)[]
 /**
  * 
  * @deprecated
  */
 public "setCursor"(arg0: integer): void
+public static "getFrames"(): ($Frame)[]
 public "setShape"(arg0: $Shape$Type): void
 public "setTitle"(arg0: string): void
-public "getFont"(): $Font
 /**
  * 
  * @deprecated
  */
 public "postEvent"(arg0: $Event$Type): boolean
+public "getFont"(): $Font
 get "accessibleContext"(): $AccessibleContext
-set "state"(value: integer)
-get "state"(): integer
 set "resizable"(value: boolean)
 get "undecorated"(): boolean
 set "undecorated"(value: boolean)
@@ -5364,12 +5362,14 @@ get "menuBar"(): $MenuBar
 get "maximizedBounds"(): $Rectangle
 get "cursorType"(): integer
 set "opacity"(value: float)
+set "state"(value: integer)
+get "state"(): integer
 set "iconImage"(value: $Image$Type)
-set "background"(value: $Color$Type)
 get "resizable"(): boolean
+set "background"(value: $Color$Type)
 get "title"(): string
-get "frames"(): ($Frame)[]
 set "cursor"(value: integer)
+get "frames"(): ($Frame)[]
 set "shape"(value: $Shape$Type)
 set "title"(value: string)
 get "font"(): $Font
@@ -5454,13 +5454,11 @@ import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$A
 
 export class $RenderContext implements $Cloneable {
 
-constructor(arg0: $AffineTransform$Type, arg1: $Shape$Type)
+constructor(arg0: $AffineTransform$Type, arg1: $Shape$Type, arg2: $RenderingHints$Type)
 constructor(arg0: $AffineTransform$Type, arg1: $RenderingHints$Type)
 constructor(arg0: $AffineTransform$Type)
-constructor(arg0: $AffineTransform$Type, arg1: $Shape$Type, arg2: $RenderingHints$Type)
+constructor(arg0: $AffineTransform$Type, arg1: $Shape$Type)
 
-public "getRenderingHints"(): $RenderingHints
-public "clone"(): any
 /**
  * 
  * @deprecated
@@ -5475,14 +5473,16 @@ public "preConcatenateTransform"(arg0: $AffineTransform$Type): void
 public "concatenateTransform"(arg0: $AffineTransform$Type): void
 public "setAreaOfInterest"(arg0: $Shape$Type): void
 public "getAreaOfInterest"(): $Shape
-public "getTransform"(): $AffineTransform
 public "setRenderingHints"(arg0: $RenderingHints$Type): void
+public "clone"(): any
+public "getTransform"(): $AffineTransform
+public "getRenderingHints"(): $RenderingHints
 public "setTransform"(arg0: $AffineTransform$Type): void
-get "renderingHints"(): $RenderingHints
 set "areaOfInterest"(value: $Shape$Type)
 get "areaOfInterest"(): $Shape
-get "transform"(): $AffineTransform
 set "renderingHints"(value: $RenderingHints$Type)
+get "transform"(): $AffineTransform
+get "renderingHints"(): $RenderingHints
 set "transform"(value: $AffineTransform$Type)
 }
 /**
@@ -5718,13 +5718,14 @@ static readonly "LEFT_ALIGNMENT": float
 static readonly "RIGHT_ALIGNMENT": float
 
 constructor(arg0: $Window$Type)
-constructor(arg0: $Window$Type, arg1: $GraphicsConfiguration$Type)
 constructor(arg0: $Frame$Type)
+constructor(arg0: $Window$Type, arg1: $GraphicsConfiguration$Type)
 
-public "pack"(): void
-public "setType"(arg0: $Window$Type$Type): void
-public "setSize"(arg0: $Dimension$Type): void
-public "setSize"(arg0: integer, arg1: integer): void
+/**
+ * 
+ * @deprecated
+ */
+public "reshape"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "removeNotify"(): void
 public "isFocusCycleRoot"(): boolean
 public "addNotify"(): void
@@ -5736,16 +5737,6 @@ public "getFocusCycleRootAncestor"(): $Container
 public "getAccessibleContext"(): $AccessibleContext
 public "getFocusTraversalKeys"(arg0: integer): $Set<($AWTKeyStroke)>
 public "setFocusCycleRoot"(arg0: boolean): void
-public "getOwner"(): $Window
-public "getLocale"(): $Locale
-public "getShape"(): $Shape
-public "setModalExclusionType"(arg0: $Dialog$ModalExclusionType$Type): void
-public "getModalExclusionType"(): $Dialog$ModalExclusionType
-public "getOpacity"(): float
-public "dispose"(): void
-public "getType"(): $Window$Type
-public "isOpaque"(): boolean
-public "isActive"(): boolean
 public "getToolkit"(): $Toolkit
 public "getInputContext"(): $InputContext
 public "createBufferStrategy"(arg0: integer, arg1: $BufferCapabilities$Type): void
@@ -5753,14 +5744,23 @@ public "createBufferStrategy"(arg0: integer): void
 public "isFocusableWindow"(): boolean
 public "setMinimumSize"(arg0: $Dimension$Type): void
 public "getBufferStrategy"(): $BufferStrategy
+public "getOwner"(): $Window
+public "setSize"(arg0: integer, arg1: integer): void
+public "setSize"(arg0: $Dimension$Type): void
+public "setType"(arg0: $Window$Type$Type): void
+public "pack"(): void
+public "isAlwaysOnTopSupported"(): boolean
 public "setOpacity"(arg0: float): void
 public "toFront"(): void
-public "isAlwaysOnTopSupported"(): boolean
-/**
- * 
- * @deprecated
- */
-public "reshape"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "dispose"(): void
+public "getLocale"(): $Locale
+public "getShape"(): $Shape
+public "getType"(): $Window$Type
+public "isOpaque"(): boolean
+public "isActive"(): boolean
+public "setModalExclusionType"(arg0: $Dialog$ModalExclusionType$Type): void
+public "getModalExclusionType"(): $Dialog$ModalExclusionType
+public "getOpacity"(): float
 public "setLocationByPlatform"(arg0: boolean): void
 public "isAlwaysOnTop"(): boolean
 public "setAlwaysOnTop"(arg0: boolean): void
@@ -5773,12 +5773,12 @@ public "getFocusableWindowState"(): boolean
  * 
  * @deprecated
  */
-public "applyResourceBundle"(arg0: string): void
+public "applyResourceBundle"(arg0: $ResourceBundle$Type): void
 /**
  * 
  * @deprecated
  */
-public "applyResourceBundle"(arg0: $ResourceBundle$Type): void
+public "applyResourceBundle"(arg0: string): void
 public "addWindowListener"(arg0: $WindowListener$Type): void
 public "addWindowFocusListener"(arg0: $WindowFocusListener$Type): void
 public "addWindowStateListener"(arg0: $WindowStateListener$Type): void
@@ -5800,25 +5800,25 @@ public "isLocationByPlatform"(): boolean
 public "setBackground"(arg0: $Color$Type): void
 public "getBackground"(): $Color
 public "getListeners"<T extends $EventListener>(arg0: $Class$Type<(T)>): (T)[]
-public "addPropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
-public "addPropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
 public "setLocation"(arg0: $Point$Type): void
 public "setLocation"(arg0: integer, arg1: integer): void
-public "setBounds"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
-public "setBounds"(arg0: $Rectangle$Type): void
-public "setVisible"(arg0: boolean): void
+public "addPropertyChangeListener"(arg0: $PropertyChangeListener$Type): void
+public "addPropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
+/**
+ * 
+ * @deprecated
+ */
+public "hide"(): void
 /**
  * 
  * @deprecated
  */
 public "postEvent"(arg0: $Event$Type): boolean
 public "setCursor"(arg0: $Cursor$Type): void
+public "setVisible"(arg0: boolean): void
+public "setBounds"(arg0: $Rectangle$Type): void
+public "setBounds"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "setShape"(arg0: $Shape$Type): void
-/**
- * 
- * @deprecated
- */
-public "hide"(): void
 public "paint"(arg0: $Graphics$Type): void
 /**
  * 
@@ -5826,8 +5826,6 @@ public "paint"(arg0: $Graphics$Type): void
  */
 public "show"(): void
 public "isFocused"(): boolean
-set "type"(value: $Window$Type$Type)
-set "size"(value: $Dimension$Type)
 get "focusCycleRoot"(): boolean
 get "focusOwner"(): $Component
 get "validateRoot"(): boolean
@@ -5836,22 +5834,24 @@ get "mostRecentFocusOwner"(): $Component
 get "focusCycleRootAncestor"(): $Container
 get "accessibleContext"(): $AccessibleContext
 set "focusCycleRoot"(value: boolean)
-get "owner"(): $Window
-get "locale"(): $Locale
-get "shape"(): $Shape
-set "modalExclusionType"(value: $Dialog$ModalExclusionType$Type)
-get "modalExclusionType"(): $Dialog$ModalExclusionType
-get "opacity"(): float
-get "type"(): $Window$Type
-get "opaque"(): boolean
-get "active"(): boolean
 get "toolkit"(): $Toolkit
 get "inputContext"(): $InputContext
 get "focusableWindow"(): boolean
 set "minimumSize"(value: $Dimension$Type)
 get "bufferStrategy"(): $BufferStrategy
-set "opacity"(value: float)
+get "owner"(): $Window
+set "size"(value: $Dimension$Type)
+set "type"(value: $Window$Type$Type)
 get "alwaysOnTopSupported"(): boolean
+set "opacity"(value: float)
+get "locale"(): $Locale
+get "shape"(): $Shape
+get "type"(): $Window$Type
+get "opaque"(): boolean
+get "active"(): boolean
+set "modalExclusionType"(value: $Dialog$ModalExclusionType$Type)
+get "modalExclusionType"(): $Dialog$ModalExclusionType
+get "opacity"(): float
 set "locationByPlatform"(value: boolean)
 get "alwaysOnTop"(): boolean
 set "alwaysOnTop"(value: boolean)
@@ -5874,9 +5874,9 @@ get "locationByPlatform"(): boolean
 set "background"(value: $Color$Type)
 get "background"(): $Color
 set "location"(value: $Point$Type)
-set "bounds"(value: $Rectangle$Type)
-set "visible"(value: boolean)
 set "cursor"(value: $Cursor$Type)
+set "visible"(value: boolean)
+set "bounds"(value: $Rectangle$Type)
 set "shape"(value: $Shape$Type)
 get "focused"(): boolean
 }
@@ -5959,8 +5959,8 @@ export class $FocusTraversalPolicy {
 public "getDefaultComponent"(arg0: $Container$Type): $Component
 public "getComponentAfter"(arg0: $Container$Type, arg1: $Component$Type): $Component
 public "getComponentBefore"(arg0: $Container$Type, arg1: $Component$Type): $Component
-public "getInitialComponent"(arg0: $Window$Type): $Component
 public "getFirstComponent"(arg0: $Container$Type): $Component
+public "getInitialComponent"(arg0: $Window$Type): $Component
 public "getLastComponent"(arg0: $Container$Type): $Component
 }
 /**
@@ -5986,14 +5986,6 @@ export class $ColorModel implements $Transparency {
 
 constructor(arg0: integer)
 
-public "getTransferType"(): integer
-public "getNumColorComponents"(): integer
-public "getNormalizedComponents"(arg0: (integer)[], arg1: integer, arg2: (float)[], arg3: integer): (float)[]
-public "getNormalizedComponents"(arg0: any, arg1: (float)[], arg2: integer): (float)[]
-public "isCompatibleSampleModel"(arg0: $SampleModel$Type): boolean
-public "getDataElement"(arg0: (float)[], arg1: integer): integer
-public "getDataElement"(arg0: (integer)[], arg1: integer): integer
-public "getUnnormalizedComponents"(arg0: (float)[], arg1: integer, arg2: (integer)[], arg3: integer): (integer)[]
 public "createCompatibleWritableRaster"(arg0: integer, arg1: integer): $WritableRaster
 public static "getRGBdefault"(): $ColorModel
 public "hasAlpha"(): boolean
@@ -6001,16 +5993,16 @@ public "isAlphaPremultiplied"(): boolean
 public "isCompatibleRaster"(arg0: $Raster$Type): boolean
 public "coerceData"(arg0: $WritableRaster$Type, arg1: boolean): $ColorModel
 public "getColorSpace"(): $ColorSpace
-public "getComponentSize"(arg0: integer): integer
 public "getComponentSize"(): (integer)[]
+public "getComponentSize"(arg0: integer): integer
 public "getPixelSize"(): integer
 public "getNumComponents"(): integer
 public "getAlphaRaster"(arg0: $WritableRaster$Type): $WritableRaster
 public "getDataElements"(arg0: integer, arg1: any): any
-public "getDataElements"(arg0: (integer)[], arg1: integer, arg2: any): any
 public "getDataElements"(arg0: (float)[], arg1: integer, arg2: any): any
-public "getRGB"(arg0: any): integer
+public "getDataElements"(arg0: (integer)[], arg1: integer, arg2: any): any
 public "getRGB"(arg0: integer): integer
+public "getRGB"(arg0: any): integer
 public "createCompatibleSampleModel"(arg0: integer, arg1: integer): $SampleModel
 public "getTransparency"(): integer
 /**
@@ -6021,18 +6013,24 @@ public "finalize"(): void
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "getUnnormalizedComponents"(arg0: (float)[], arg1: integer, arg2: (integer)[], arg3: integer): (integer)[]
+public "getDataElement"(arg0: (float)[], arg1: integer): integer
+public "getDataElement"(arg0: (integer)[], arg1: integer): integer
+public "getNumColorComponents"(): integer
+public "getNormalizedComponents"(arg0: (integer)[], arg1: integer, arg2: (float)[], arg3: integer): (float)[]
+public "getNormalizedComponents"(arg0: any, arg1: (float)[], arg2: integer): (float)[]
+public "isCompatibleSampleModel"(arg0: $SampleModel$Type): boolean
 public "getComponents"(arg0: any, arg1: (integer)[], arg2: integer): (integer)[]
 public "getComponents"(arg0: integer, arg1: (integer)[], arg2: integer): (integer)[]
-public "getAlpha"(arg0: integer): integer
+public "getTransferType"(): integer
 public "getAlpha"(arg0: any): integer
-public "getRed"(arg0: any): integer
+public "getAlpha"(arg0: integer): integer
 public "getRed"(arg0: integer): integer
+public "getRed"(arg0: any): integer
 public "getGreen"(arg0: integer): integer
 public "getGreen"(arg0: any): integer
-public "getBlue"(arg0: integer): integer
 public "getBlue"(arg0: any): integer
-get "transferType"(): integer
-get "numColorComponents"(): integer
+public "getBlue"(arg0: integer): integer
 get "rGBdefault"(): $ColorModel
 get "alphaPremultiplied"(): boolean
 get "colorSpace"(): $ColorSpace
@@ -6040,6 +6038,8 @@ get "componentSize"(): (integer)[]
 get "pixelSize"(): integer
 get "numComponents"(): integer
 get "transparency"(): integer
+get "numColorComponents"(): integer
+get "transferType"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6063,12 +6063,12 @@ export class $DragSourceEvent extends $EventObject {
 constructor(arg0: $DragSourceContext$Type)
 constructor(arg0: $DragSourceContext$Type, arg1: integer, arg2: integer)
 
-public "getY"(): integer
 public "getX"(): integer
+public "getY"(): integer
 public "getLocation"(): $Point
 public "getDragSourceContext"(): $DragSourceContext
-get "y"(): integer
 get "x"(): integer
+get "y"(): integer
 get "location"(): $Point
 get "dragSourceContext"(): $DragSourceContext
 }
@@ -6119,11 +6119,11 @@ import {$Rectangle2D, $Rectangle2D$Type} from "packages/java/awt/geom/$Rectangle
 
 export interface $BufferedImageOp {
 
+ "getBounds2D"(arg0: $BufferedImage$Type): $Rectangle2D
+ "filter"(arg0: $BufferedImage$Type, arg1: $BufferedImage$Type): $BufferedImage
  "createCompatibleDestImage"(arg0: $BufferedImage$Type, arg1: $ColorModel$Type): $BufferedImage
  "getPoint2D"(arg0: $Point2D$Type, arg1: $Point2D$Type): $Point2D
  "getRenderingHints"(): $RenderingHints
- "filter"(arg0: $BufferedImage$Type, arg1: $BufferedImage$Type): $BufferedImage
- "getBounds2D"(arg0: $BufferedImage$Type): $Rectangle2D
 }
 
 export namespace $BufferedImageOp {
@@ -6154,46 +6154,46 @@ import {$AffineTransform, $AffineTransform$Type} from "packages/java/awt/geom/$A
 export class $RectangularShape implements $Shape, $Cloneable {
 
 
-public "getY"(): double
+public "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
+public "setFrame"(arg0: $Rectangle2D$Type): void
+public "setFrame"(arg0: $Point2D$Type, arg1: $Dimension2D$Type): void
+public "setFrame"(arg0: double, arg1: double, arg2: double, arg3: double): void
+public "setFrameFromDiagonal"(arg0: double, arg1: double, arg2: double, arg3: double): void
+public "setFrameFromDiagonal"(arg0: $Point2D$Type, arg1: $Point2D$Type): void
+public "setFrameFromCenter"(arg0: double, arg1: double, arg2: double, arg3: double): void
+public "setFrameFromCenter"(arg0: $Point2D$Type, arg1: $Point2D$Type): void
+public "getFrame"(): $Rectangle2D
+public "getX"(): double
 public "getWidth"(): double
 public "getHeight"(): double
 public "getMinX"(): double
 public "getMinY"(): double
 public "intersects"(arg0: $Rectangle2D$Type): boolean
-public "getX"(): double
+public "getY"(): double
 public "clone"(): any
 public "isEmpty"(): boolean
 public "contains"(arg0: $Point2D$Type): boolean
 public "contains"(arg0: $Rectangle2D$Type): boolean
 public "getBounds"(): $Rectangle
-public "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
-public "setFrame"(arg0: $Rectangle2D$Type): void
-public "setFrame"(arg0: $Point2D$Type, arg1: $Dimension2D$Type): void
-public "setFrame"(arg0: double, arg1: double, arg2: double, arg3: double): void
-public "setFrameFromDiagonal"(arg0: $Point2D$Type, arg1: $Point2D$Type): void
-public "setFrameFromDiagonal"(arg0: double, arg1: double, arg2: double, arg3: double): void
-public "setFrameFromCenter"(arg0: double, arg1: double, arg2: double, arg3: double): void
-public "setFrameFromCenter"(arg0: $Point2D$Type, arg1: $Point2D$Type): void
-public "getFrame"(): $Rectangle2D
 public "getCenterX"(): double
 public "getCenterY"(): double
 public "getMaxY"(): double
 public "getMaxX"(): double
-public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "contains"(arg0: double, arg1: double): boolean
 public "getBounds2D"(): $Rectangle2D
 public "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
-get "y"(): double
+public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "contains"(arg0: double, arg1: double): boolean
+public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+set "frame"(value: $Rectangle2D$Type)
+get "frame"(): $Rectangle2D
+get "x"(): double
 get "width"(): double
 get "height"(): double
 get "minX"(): double
 get "minY"(): double
-get "x"(): double
+get "y"(): double
 get "empty"(): boolean
 get "bounds"(): $Rectangle
-set "frame"(value: $Rectangle2D$Type)
-get "frame"(): $Rectangle2D
 get "centerX"(): double
 get "centerY"(): double
 get "maxY"(): double
@@ -6247,31 +6247,31 @@ static readonly "COMBINING": byte
 static readonly "COMPONENT": byte
 static readonly "WHITESPACE": byte
 
-constructor(arg0: float, arg1: $Rectangle2D$Type, arg2: byte)
 constructor(arg0: boolean, arg1: float, arg2: float, arg3: $Rectangle2D$Type, arg4: byte)
+constructor(arg0: float, arg1: $Rectangle2D$Type, arg2: byte)
 
-public "isStandard"(): boolean
-public "isWhitespace"(): boolean
-public "getType"(): integer
+public "getBounds2D"(): $Rectangle2D
 public "getAdvanceY"(): float
 public "getLSB"(): float
 public "getRSB"(): float
 public "isLigature"(): boolean
 public "isCombining"(): boolean
 public "isComponent"(): boolean
-public "getBounds2D"(): $Rectangle2D
+public "isStandard"(): boolean
+public "isWhitespace"(): boolean
+public "getType"(): integer
 public "getAdvanceX"(): float
 public "getAdvance"(): float
-get "standard"(): boolean
-get "whitespace"(): boolean
-get "type"(): integer
+get "bounds2D"(): $Rectangle2D
 get "advanceY"(): float
 get "lSB"(): float
 get "rSB"(): float
 get "ligature"(): boolean
 get "combining"(): boolean
 get "component"(): boolean
-get "bounds2D"(): $Rectangle2D
+get "standard"(): boolean
+get "whitespace"(): boolean
+get "type"(): integer
 get "advanceX"(): float
 get "advance"(): float
 }
@@ -6328,17 +6328,17 @@ constructor()
 constructor(arg0: string)
 constructor(arg0: string, arg1: boolean)
 
-public "getItem"(arg0: integer): $MenuItem
-public "getItemCount"(): integer
 public "removeNotify"(): void
 public "addNotify"(): void
 public "getAccessibleContext"(): $AccessibleContext
+public "getItem"(arg0: integer): $MenuItem
+public "getItemCount"(): integer
 public "add"(arg0: $MenuItem$Type): $MenuItem
 public "add"(arg0: string): void
 public "remove"(arg0: integer): void
 public "remove"(arg0: $MenuComponent$Type): void
-public "insert"(arg0: string, arg1: integer): void
 public "insert"(arg0: $MenuItem$Type, arg1: integer): void
+public "insert"(arg0: string, arg1: integer): void
 public "paramString"(): string
 public "removeAll"(): void
 /**
@@ -6349,14 +6349,14 @@ public "countItems"(): integer
 public "addSeparator"(): void
 public "isTearOff"(): boolean
 public "insertSeparator"(arg0: integer): void
-public "getFont"(): $Font
 /**
  * 
  * @deprecated
  */
 public "postEvent"(arg0: $Event$Type): boolean
-get "itemCount"(): integer
+public "getFont"(): $Font
 get "accessibleContext"(): $AccessibleContext
+get "itemCount"(): integer
 get "tearOff"(): boolean
 get "font"(): $Font
 }
@@ -6420,29 +6420,29 @@ public "removeNotify"(): void
 public "addNotify"(): void
 public "drop"(arg0: $DropTargetDropEvent$Type): void
 public "isActive"(): boolean
-public "dragEnter"(arg0: $DropTargetDragEvent$Type): void
-public "dragOver"(arg0: $DropTargetDragEvent$Type): void
-public "dropActionChanged"(arg0: $DropTargetDragEvent$Type): void
-public "dragExit"(arg0: $DropTargetEvent$Type): void
-public "getFlavorMap"(): $FlavorMap
-public "getDropTargetContext"(): $DropTargetContext
-public "getDefaultActions"(): integer
 public "setDefaultActions"(arg0: integer): void
 public "addDropTargetListener"(arg0: $DropTargetListener$Type): void
 public "removeDropTargetListener"(arg0: $DropTargetListener$Type): void
 public "setFlavorMap"(arg0: $FlavorMap$Type): void
+public "getFlavorMap"(): $FlavorMap
+public "getDropTargetContext"(): $DropTargetContext
+public "getDefaultActions"(): integer
+public "dragEnter"(arg0: $DropTargetDragEvent$Type): void
+public "dragOver"(arg0: $DropTargetDragEvent$Type): void
+public "dropActionChanged"(arg0: $DropTargetDragEvent$Type): void
+public "dragExit"(arg0: $DropTargetEvent$Type): void
+public "setComponent"(arg0: $Component$Type): void
 public "setActive"(arg0: boolean): void
 public "getComponent"(): $Component
-public "setComponent"(arg0: $Component$Type): void
 get "active"(): boolean
+set "defaultActions"(value: integer)
+set "flavorMap"(value: $FlavorMap$Type)
 get "flavorMap"(): $FlavorMap
 get "dropTargetContext"(): $DropTargetContext
 get "defaultActions"(): integer
-set "defaultActions"(value: integer)
-set "flavorMap"(value: $FlavorMap$Type)
+set "component"(value: $Component$Type)
 set "active"(value: boolean)
 get "component"(): $Component
-set "component"(value: $Component$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6461,11 +6461,11 @@ import {$ImageConsumer, $ImageConsumer$Type} from "packages/java/awt/image/$Imag
 
 export interface $ImageProducer {
 
+ "startProduction"(arg0: $ImageConsumer$Type): void
  "addConsumer"(arg0: $ImageConsumer$Type): void
  "isConsumer"(arg0: $ImageConsumer$Type): boolean
  "removeConsumer"(arg0: $ImageConsumer$Type): void
  "requestTopDownLeftRightResend"(arg0: $ImageConsumer$Type): void
- "startProduction"(arg0: $ImageConsumer$Type): void
 }
 
 export namespace $ImageProducer {
@@ -6627,8 +6627,8 @@ import {$DragGestureRecognizer, $DragGestureRecognizer$Type} from "packages/java
 import {$Clipboard, $Clipboard$Type} from "packages/java/awt/datatransfer/$Clipboard"
 import {$Component, $Component$Type} from "packages/java/awt/$Component"
 import {$AWTEventListener, $AWTEventListener$Type} from "packages/java/awt/event/$AWTEventListener"
-import {$GraphicsConfiguration, $GraphicsConfiguration$Type} from "packages/java/awt/$GraphicsConfiguration"
 import {$URL, $URL$Type} from "packages/java/net/$URL"
+import {$GraphicsConfiguration, $GraphicsConfiguration$Type} from "packages/java/awt/$GraphicsConfiguration"
 import {$Image, $Image$Type} from "packages/java/awt/$Image"
 import {$EventQueue, $EventQueue$Type} from "packages/java/awt/$EventQueue"
 import {$Cursor, $Cursor$Type} from "packages/java/awt/$Cursor"
@@ -6648,13 +6648,24 @@ import {$InputMethodHighlight, $InputMethodHighlight$Type} from "packages/java/a
 import {$Frame, $Frame$Type} from "packages/java/awt/$Frame"
 import {$JobAttributes, $JobAttributes$Type} from "packages/java/awt/$JobAttributes"
 import {$TextAttribute, $TextAttribute$Type} from "packages/java/awt/font/$TextAttribute"
-import {$Dimension, $Dimension$Type} from "packages/java/awt/$Dimension"
 import {$ColorModel, $ColorModel$Type} from "packages/java/awt/image/$ColorModel"
+import {$Dimension, $Dimension$Type} from "packages/java/awt/$Dimension"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export class $Toolkit {
 
 
+public "getAWTEventListeners"(): ($AWTEventListener)[]
+public "getAWTEventListeners"(arg0: long): ($AWTEventListener)[]
+public "mapInputMethodHighlight"(arg0: $InputMethodHighlight$Type): $Map<($TextAttribute), (any)>
+public "sync"(): void
+public static "getDefaultToolkit"(): $Toolkit
+public "createImage"(arg0: $URL$Type): $Image
+public "createImage"(arg0: string): $Image
+public "createImage"(arg0: (byte)[]): $Image
+public "createImage"(arg0: $ImageProducer$Type): $Image
+public "createImage"(arg0: (byte)[], arg1: integer, arg2: integer): $Image
+public "getColorModel"(): $ColorModel
 public "setDynamicLayout"(arg0: boolean): void
 public "isDynamicLayoutActive"(): boolean
 public "getScreenInsets"(arg0: $GraphicsConfiguration$Type): $Insets
@@ -6668,15 +6679,6 @@ public "isFrameStateSupported"(arg0: integer): boolean
 public "getDesktopProperty"(arg0: string): any
 public "getPropertyChangeListeners"(arg0: string): ($PropertyChangeListener)[]
 public "getPropertyChangeListeners"(): ($PropertyChangeListener)[]
-public "sync"(): void
-public static "getDefaultToolkit"(): $Toolkit
-public "createImage"(arg0: $ImageProducer$Type): $Image
-public "createImage"(arg0: $URL$Type): $Image
-public "createImage"(arg0: (byte)[]): $Image
-public "createImage"(arg0: (byte)[], arg1: integer, arg2: integer): $Image
-public "createImage"(arg0: string): $Image
-public "getColorModel"(): $ColorModel
-public static "getProperty"(arg0: string, arg1: string): string
 public "areExtraMouseButtonsEnabled"(): boolean
 public "getScreenSize"(): $Dimension
 public "getScreenResolution"(): integer
@@ -6707,22 +6709,21 @@ public "isModalityTypeSupported"(arg0: $Dialog$ModalityType$Type): boolean
 public "isModalExclusionTypeSupported"(arg0: $Dialog$ModalExclusionType$Type): boolean
 public "addAWTEventListener"(arg0: $AWTEventListener$Type, arg1: long): void
 public "removeAWTEventListener"(arg0: $AWTEventListener$Type): void
-public "getAWTEventListeners"(): ($AWTEventListener)[]
-public "getAWTEventListeners"(arg0: long): ($AWTEventListener)[]
-public "mapInputMethodHighlight"(arg0: $InputMethodHighlight$Type): $Map<($TextAttribute), (any)>
+public static "getProperty"(arg0: string, arg1: string): string
+public "removePropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
 public "prepareImage"(arg0: $Image$Type, arg1: integer, arg2: integer, arg3: $ImageObserver$Type): boolean
+public "beep"(): void
 public "getImage"(arg0: string): $Image
 public "getImage"(arg0: $URL$Type): $Image
-public "beep"(): void
 public "addPropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
-public "removePropertyChangeListener"(arg0: string, arg1: $PropertyChangeListener$Type): void
+get "aWTEventListeners"(): ($AWTEventListener)[]
+get "defaultToolkit"(): $Toolkit
+get "colorModel"(): $ColorModel
 set "dynamicLayout"(value: boolean)
 get "dynamicLayoutActive"(): boolean
 get "systemSelection"(): $Clipboard
 get "maximumCursorColors"(): integer
 get "propertyChangeListeners"(): ($PropertyChangeListener)[]
-get "defaultToolkit"(): $Toolkit
-get "colorModel"(): $ColorModel
 get "screenSize"(): $Dimension
 get "screenResolution"(): integer
 get "fontList"(): (string)[]
@@ -6731,7 +6732,6 @@ get "menuShortcutKeyMask"(): integer
 get "menuShortcutKeyMaskEx"(): integer
 get "systemEventQueue"(): $EventQueue
 get "alwaysOnTopSupported"(): boolean
-get "aWTEventListeners"(): ($AWTEventListener)[]
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6779,8 +6779,8 @@ static readonly "LAYOUT_RIGHT_TO_LEFT": integer
 static readonly "LAYOUT_NO_START_CONTEXT": integer
 static readonly "LAYOUT_NO_LIMIT_CONTEXT": integer
 
-constructor(arg0: $Map$Type<(any), (any)>)
 constructor(arg0: string, arg1: integer, arg2: integer)
+constructor(arg0: $Map$Type<(any), (any)>)
 
 public "getFamily"(): string
 public "getFamily"(arg0: $Locale$Type): string
@@ -6795,28 +6795,28 @@ public "getBaselineFor"(arg0: character): byte
 public "canDisplay"(arg0: integer): boolean
 public "canDisplay"(arg0: character): boolean
 public "getItalicAngle"(): float
-public "getStringBounds"(arg0: $CharacterIterator$Type, arg1: integer, arg2: integer, arg3: $FontRenderContext$Type): $Rectangle2D
-public "getStringBounds"(arg0: string, arg1: $FontRenderContext$Type): $Rectangle2D
-public "getStringBounds"(arg0: (character)[], arg1: integer, arg2: integer, arg3: $FontRenderContext$Type): $Rectangle2D
 public "getStringBounds"(arg0: string, arg1: integer, arg2: integer, arg3: $FontRenderContext$Type): $Rectangle2D
+public "getStringBounds"(arg0: string, arg1: $FontRenderContext$Type): $Rectangle2D
+public "getStringBounds"(arg0: $CharacterIterator$Type, arg1: integer, arg2: integer, arg3: $FontRenderContext$Type): $Rectangle2D
+public "getStringBounds"(arg0: (character)[], arg1: integer, arg2: integer, arg3: $FontRenderContext$Type): $Rectangle2D
 public static "textRequiresLayout"(arg0: (character)[], arg1: integer, arg2: integer): boolean
-public static "createFonts"(arg0: $InputStream$Type): ($Font)[]
 public static "createFonts"(arg0: $File$Type): ($Font)[]
+public static "createFonts"(arg0: $InputStream$Type): ($Font)[]
 public static "createFont"(arg0: integer, arg1: $File$Type): $Font
 public static "createFont"(arg0: integer, arg1: $InputStream$Type): $Font
 public "getPSName"(): string
 public "getSize2D"(): float
 public "isPlain"(): boolean
 public "getAvailableAttributes"(): ($AttributedCharacterIterator$Attribute)[]
-public "deriveFont"(arg0: integer, arg1: float): $Font
-public "deriveFont"(arg0: integer, arg1: $AffineTransform$Type): $Font
+public "deriveFont"(arg0: $AffineTransform$Type): $Font
 public "deriveFont"(arg0: $Map$Type<(any), (any)>): $Font
 public "deriveFont"(arg0: integer): $Font
+public "deriveFont"(arg0: integer, arg1: float): $Font
 public "deriveFont"(arg0: float): $Font
-public "deriveFont"(arg0: $AffineTransform$Type): $Font
+public "deriveFont"(arg0: integer, arg1: $AffineTransform$Type): $Font
 public "canDisplayUpTo"(arg0: (character)[], arg1: integer, arg2: integer): integer
-public "canDisplayUpTo"(arg0: $CharacterIterator$Type, arg1: integer, arg2: integer): integer
 public "canDisplayUpTo"(arg0: string): integer
+public "canDisplayUpTo"(arg0: $CharacterIterator$Type, arg1: integer, arg2: integer): integer
 public "hasUniformLineMetrics"(): boolean
 public "getLineMetrics"(arg0: string, arg1: integer, arg2: integer, arg3: $FontRenderContext$Type): $LineMetrics
 public "getLineMetrics"(arg0: string, arg1: $FontRenderContext$Type): $LineMetrics
@@ -6837,9 +6837,9 @@ public "getSize"(): integer
 public "getAttributes"(): $Map<($TextAttribute), (any)>
 public "getTransform"(): $AffineTransform
 public "isTransformed"(): boolean
+public static "getFont"(arg0: $Map$Type<(any), (any)>): $Font
 public static "getFont"(arg0: string): $Font
 public static "getFont"(arg0: string, arg1: $Font$Type): $Font
-public static "getFont"(arg0: $Map$Type<(any), (any)>): $Font
 public "getStyle"(): integer
 get "family"(): string
 get "fontName"(): string
@@ -7038,9 +7038,9 @@ static readonly "FLAG_COMPLEX_GLYPHS": integer
 static readonly "FLAG_MASK": integer
 
 
-public "getFontRenderContext"(): $FontRenderContext
 public "getNumGlyphs"(): integer
 public "equals"(arg0: $GlyphVector$Type): boolean
+public "getFontRenderContext"(): $FontRenderContext
 public "getGlyphCharIndex"(arg0: integer): integer
 public "getVisualBounds"(): $Rectangle2D
 public "getGlyphOutline"(arg0: integer): $Shape
@@ -7063,10 +7063,10 @@ public "getGlyphPixelBounds"(arg0: integer, arg1: $FontRenderContext$Type, arg2:
 public "getGlyphMetrics"(arg0: integer): $GlyphMetrics
 public "getGlyphJustificationInfo"(arg0: integer): $GlyphJustificationInfo
 public "getFont"(): $Font
-public "getOutline"(): $Shape
 public "getOutline"(arg0: float, arg1: float): $Shape
-get "fontRenderContext"(): $FontRenderContext
+public "getOutline"(): $Shape
 get "numGlyphs"(): integer
+get "fontRenderContext"(): $FontRenderContext
 get "visualBounds"(): $Rectangle2D
 get "logicalBounds"(): $Rectangle2D
 get "layoutFlags"(): integer
@@ -7121,20 +7121,20 @@ static readonly "CS_PYCC": integer
 static readonly "CS_GRAY": integer
 
 
+public "toCIEXYZ"(arg0: (float)[]): (float)[]
+public "fromCIEXYZ"(arg0: (float)[]): (float)[]
 public "getMinValue"(arg0: integer): float
 public "getMaxValue"(arg0: integer): float
 public "getNumComponents"(): integer
-public "isCS_sRGB"(): boolean
-public "toCIEXYZ"(arg0: (float)[]): (float)[]
-public "fromCIEXYZ"(arg0: (float)[]): (float)[]
 public "getName"(arg0: integer): string
 public static "getInstance"(arg0: integer): $ColorSpace
 public "getType"(): integer
 public "toRGB"(arg0: (float)[]): (float)[]
+public "isCS_sRGB"(): boolean
 public "fromRGB"(arg0: (float)[]): (float)[]
 get "numComponents"(): integer
-get "cS_sRGB"(): boolean
 get "type"(): integer
+get "cS_sRGB"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7196,10 +7196,10 @@ static readonly "CUSTOM_CURSOR": integer
 
 constructor(arg0: integer)
 
+public static "getPredefinedCursor"(arg0: integer): $Cursor
 public "getName"(): string
 public "toString"(): string
 public "getType"(): integer
-public static "getPredefinedCursor"(arg0: integer): $Cursor
 public static "getSystemCustomCursor"(arg0: string): $Cursor
 public static "getDefaultCursor"(): $Cursor
 get "name"(): string
@@ -7227,8 +7227,8 @@ export class $BufferCapabilities implements $Cloneable {
 
 constructor(arg0: $ImageCapabilities$Type, arg1: $ImageCapabilities$Type, arg2: $BufferCapabilities$FlipContents$Type)
 
-public "clone"(): any
 public "isPageFlipping"(): boolean
+public "clone"(): any
 public "getFlipContents"(): $BufferCapabilities$FlipContents
 public "getFrontBufferCapabilities"(): $ImageCapabilities
 public "getBackBufferCapabilities"(): $ImageCapabilities
@@ -7332,47 +7332,14 @@ static readonly "OUT_TOP": integer
 static readonly "OUT_RIGHT": integer
 static readonly "OUT_BOTTOM": integer
 
-constructor(arg0: $Rectangle$Type)
-constructor(arg0: $Point$Type, arg1: $Dimension$Type)
-constructor()
-constructor(arg0: $Point$Type)
 constructor(arg0: $Dimension$Type)
-constructor(arg0: integer, arg1: integer)
+constructor()
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer)
+constructor(arg0: integer, arg1: integer)
+constructor(arg0: $Point$Type, arg1: $Dimension$Type)
+constructor(arg0: $Point$Type)
+constructor(arg0: $Rectangle$Type)
 
-/**
- * 
- * @deprecated
- */
-public "move"(arg0: integer, arg1: integer): void
-public "setSize"(arg0: integer, arg1: integer): void
-public "setSize"(arg0: $Dimension$Type): void
-public "union"(arg0: $Rectangle$Type): $Rectangle
-public "getY"(): double
-public "getWidth"(): double
-public "getHeight"(): double
-public "intersection"(arg0: $Rectangle$Type): $Rectangle
-public "intersects"(arg0: $Rectangle$Type): boolean
-public "getX"(): double
-public "add"(arg0: $Point$Type): void
-public "add"(arg0: $Rectangle$Type): void
-public "add"(arg0: integer, arg1: integer): void
-public "equals"(arg0: any): boolean
-public "toString"(): string
-public "isEmpty"(): boolean
-public "contains"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): boolean
-public "contains"(arg0: $Point$Type): boolean
-public "contains"(arg0: $Rectangle$Type): boolean
-public "contains"(arg0: integer, arg1: integer): boolean
-public "getBounds"(): $Rectangle
-public "getLocation"(): $Point
-public "getSize"(): $Dimension
-public "grow"(arg0: integer, arg1: integer): void
-/**
- * 
- * @deprecated
- */
-public "resize"(arg0: integer, arg1: integer): void
 /**
  * 
  * @deprecated
@@ -7383,34 +7350,67 @@ public "setRect"(arg0: double, arg1: double, arg2: double, arg3: double): void
 public "outcode"(arg0: double, arg1: double): integer
 public "createIntersection"(arg0: $Rectangle2D$Type): $Rectangle2D
 public "createUnion"(arg0: $Rectangle2D$Type): $Rectangle2D
+public "setSize"(arg0: integer, arg1: integer): void
+public "setSize"(arg0: $Dimension$Type): void
+public "union"(arg0: $Rectangle$Type): $Rectangle
+public "getX"(): double
+/**
+ * 
+ * @deprecated
+ */
+public "move"(arg0: integer, arg1: integer): void
+public "getWidth"(): double
+public "getHeight"(): double
+public "intersection"(arg0: $Rectangle$Type): $Rectangle
+public "intersects"(arg0: $Rectangle$Type): boolean
+public "getY"(): double
+public "add"(arg0: $Rectangle$Type): void
+public "add"(arg0: $Point$Type): void
+public "add"(arg0: integer, arg1: integer): void
+public "equals"(arg0: any): boolean
+public "toString"(): string
+public "isEmpty"(): boolean
+public "contains"(arg0: $Rectangle$Type): boolean
+public "contains"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): boolean
+public "contains"(arg0: $Point$Type): boolean
+public "contains"(arg0: integer, arg1: integer): boolean
+public "getBounds"(): $Rectangle
+public "getLocation"(): $Point
+public "getSize"(): $Dimension
+public "grow"(arg0: integer, arg1: integer): void
+/**
+ * 
+ * @deprecated
+ */
+public "resize"(arg0: integer, arg1: integer): void
 public "translate"(arg0: integer, arg1: integer): void
 public "setLocation"(arg0: integer, arg1: integer): void
 public "setLocation"(arg0: $Point$Type): void
-public "setBounds"(arg0: $Rectangle$Type): void
 public "setBounds"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
+public "setBounds"(arg0: $Rectangle$Type): void
 /**
  * 
  * @deprecated
  */
 public "inside"(arg0: integer, arg1: integer): boolean
-public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
+public "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
 public "intersects"(arg0: $Rectangle2D$Type): boolean
-public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "contains"(arg0: $Point2D$Type): boolean
+public "intersects"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
 public "contains"(arg0: double, arg1: double): boolean
 public "contains"(arg0: $Rectangle2D$Type): boolean
-public "getPathIterator"(arg0: $AffineTransform$Type, arg1: double): $PathIterator
-public "getPathIterator"(arg0: $AffineTransform$Type): $PathIterator
+public "contains"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
+public "contains"(arg0: $Point2D$Type): boolean
+get "bounds2D"(): $Rectangle2D
 set "size"(value: $Dimension$Type)
-get "y"(): double
+get "x"(): double
 get "width"(): double
 get "height"(): double
-get "x"(): double
+get "y"(): double
 get "empty"(): boolean
 get "bounds"(): $Rectangle
 get "location"(): $Point
 get "size"(): $Dimension
-get "bounds2D"(): $Rectangle2D
 set "location"(value: $Point$Type)
 set "bounds"(value: $Rectangle$Type)
 }
@@ -7522,9 +7522,12 @@ static readonly "WINDOW_FOCUS_EVENT_MASK": long
 static readonly "RESERVED_ID_MAX": integer
 
 constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: boolean, arg10: integer)
-constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: integer)
 constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean)
+constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: boolean, arg8: integer)
 
+public "getX"(): integer
+public "getY"(): integer
+public "paramString"(): string
 public "getLocationOnScreen"(): $Point
 public "getModifiersEx"(): integer
 public static "getMouseModifiersText"(arg0: integer): string
@@ -7533,19 +7536,16 @@ public "getYOnScreen"(): integer
 public "translatePoint"(arg0: integer, arg1: integer): void
 public "getClickCount"(): integer
 public "isPopupTrigger"(): boolean
-public "getY"(): integer
-public "getX"(): integer
-public "paramString"(): string
 public "getPoint"(): $Point
 public "getButton"(): integer
+get "x"(): integer
+get "y"(): integer
 get "locationOnScreen"(): $Point
 get "modifiersEx"(): integer
 get "xOnScreen"(): integer
 get "yOnScreen"(): integer
 get "clickCount"(): integer
 get "popupTrigger"(): boolean
-get "y"(): integer
-get "x"(): integer
 get "point"(): $Point
 get "button"(): integer
 }
@@ -7849,10 +7849,10 @@ constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg
 constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: character, arg6: integer)
 constructor(arg0: $Component$Type, arg1: integer, arg2: long, arg3: integer, arg4: integer, arg5: character)
 
-public "isActionKey"(): boolean
-public "paramString"(): string
 public "setKeyChar"(arg0: character): void
 public "getKeyChar"(): character
+public "paramString"(): string
+public "isActionKey"(): boolean
 public static "getKeyText"(arg0: integer): string
 /**
  * 
@@ -7869,9 +7869,9 @@ public "getExtendedKeyCode"(): integer
  */
 public "setModifiers"(arg0: integer): void
 public "getKeyCode"(): integer
-get "actionKey"(): boolean
 set "keyChar"(value: character)
 get "keyChar"(): character
+get "actionKey"(): boolean
 set "keyCode"(value: integer)
 get "keyLocation"(): integer
 get "extendedKeyCode"(): integer
@@ -7933,13 +7933,13 @@ static readonly "RIGHT_TO_LEFT": $ComponentOrientation
 static readonly "UNKNOWN": $ComponentOrientation
 
 
+public "isHorizontal"(): boolean
+public static "getOrientation"(arg0: $Locale$Type): $ComponentOrientation
 /**
  * 
  * @deprecated
  */
 public static "getOrientation"(arg0: $ResourceBundle$Type): $ComponentOrientation
-public static "getOrientation"(arg0: $Locale$Type): $ComponentOrientation
-public "isHorizontal"(): boolean
 public "isLeftToRight"(): boolean
 get "horizontal"(): boolean
 get "leftToRight"(): boolean

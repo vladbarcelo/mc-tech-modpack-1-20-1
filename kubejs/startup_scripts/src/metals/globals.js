@@ -2,6 +2,7 @@
 global.tConstructMetals = {
   'lead': 'tconstruct:lead',
   'brass': 'tcintegrations:brass',
+  'bronze': 'tconstruct:bronze',
   'electrum': 'tconstruct:electrum',
   'silver': 'tconstruct:silver',
   'copper': 'tconstruct:copper',
@@ -12,10 +13,12 @@ global.tConstructMetals = {
 
 
 global.allMetals = [
+  'tin',
   'lead',
   'zinc',
   'aluminum',
   'brass',
+  'bronze',
   'electrum',
   'silver',
   'gold',
@@ -35,10 +38,12 @@ global.allMetals = [
 ]
 
 global.smithableMetals = [
+  'tin',
   'lead',
   'zinc',
   'aluminum',
   'brass',
+  'bronze',
   'electrum',
   'silver',
   'gold',
@@ -78,10 +83,12 @@ global.castableMetals = [
 ]
 
 global.metalColors = {
+  'tin': '#7f8a87',
   'lead': '#3f384f',
   'zinc': '#d3fcd9',
   'aluminum': '#c6ced1',
   'brass': '#fce892',
+  'bronze': '#fce892',
   'electrum': '#fcce50',
   'silver': '#e4f1fc',
   'gold': '#faf25e',
@@ -101,6 +108,7 @@ global.metalColors = {
 }
 
 global.darkMetalColors = {
+  "tin": "#6e7976",
   "lead": "#1f182f",
   "zinc": "#b3dcb9",
   "aluminum": "#a6aeb1",

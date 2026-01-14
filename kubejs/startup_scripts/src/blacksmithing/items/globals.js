@@ -8,6 +8,12 @@ global.toolParts = [
 ]
 
 global.armorItems = {
+  'tin': {
+    'helmet': '',
+    'chestplate': '',
+    'leggings': '',
+    'boots': '',
+  },
   'lead': {
     'helmet': '',
     'chestplate': '',
@@ -31,6 +37,12 @@ global.armorItems = {
     'chestplate': 'create_sa:brass_chestplate',
     'leggings': 'create_sa:brass_leggings',
     'boots': 'create_sa:brass_boots',
+  },
+  'bronze': {
+    'helmet': '',
+    'chestplate': '',
+    'leggings': '',
+    'boots': '',
   },
   'electrum': {
     'helmet': '',
@@ -131,6 +143,13 @@ global.armorItems = {
 }
 
 global.toolItems = {
+  'tin': {
+    'pickaxe_head': '',
+    'axe_head': '',
+    'shovel_blade': '',
+    'sword_blade': '',
+    'hoe_blade': '',
+  },
   'lead': {
     'pickaxe_head': 'tfmg:lead_pickaxe',
     'axe_head': 'tfmg:lead_axe',
@@ -158,6 +177,13 @@ global.toolItems = {
     'shovel_blade': 'create_sa:brass_shovel',
     'sword_blade': 'create_sa:brass_sword',
     'hoe_blade': 'create_sa:brass_hoe',
+  },
+  'bronze': {
+    'pickaxe_head': '',
+    'axe_head': '',
+    'shovel_blade': '',
+    'sword_blade': '',
+    'hoe_blade': '',
   },
   'electrum': {
     'pickaxe_head': '',
@@ -282,10 +308,12 @@ global.tConstructToolParts = {
 }
 
 global.metalHasTConstructItems = {
+  'tin': false,
   'lead': true,
   'zinc': false,
   'aluminum': false,
   'brass': true,
+  'bronze': true,
   'electrum': true,
   'silver': true,
   'gold': false,

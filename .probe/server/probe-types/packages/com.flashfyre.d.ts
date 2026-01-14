@@ -531,6 +531,12 @@ export class $FastNoiseLite {
 constructor()
 constructor(arg0: integer)
 
+public "SetCellularDistanceFunction"(arg0: $FastNoiseLite$CellularDistanceFunction$Type): void
+public "SetRotationType3D"(arg0: $FastNoiseLite$RotationType3D$Type): void
+public "SetFractalPingPongStrength"(arg0: float): void
+public "SetCellularReturnType"(arg0: $FastNoiseLite$CellularReturnType$Type): void
+public "SetCellularJitter"(arg0: float): void
+public "SetDomainWarpType"(arg0: $FastNoiseLite$DomainWarpType$Type): void
 public "SetNoiseType"(arg0: $FastNoiseLite$NoiseType$Type): void
 public "SetFractalType"(arg0: $FastNoiseLite$FractalType$Type): void
 public "SetFractalGain"(arg0: float): void
@@ -539,12 +545,6 @@ public "SetFractalOctaves"(arg0: integer): void
 public "SetFractalLacunarity"(arg0: float): void
 public "SetDomainWarpAmp"(arg0: float): void
 public "SetFrequency"(arg0: float): void
-public "SetCellularDistanceFunction"(arg0: $FastNoiseLite$CellularDistanceFunction$Type): void
-public "SetRotationType3D"(arg0: $FastNoiseLite$RotationType3D$Type): void
-public "SetFractalPingPongStrength"(arg0: float): void
-public "SetCellularReturnType"(arg0: $FastNoiseLite$CellularReturnType$Type): void
-public "SetCellularJitter"(arg0: float): void
-public "SetDomainWarpType"(arg0: $FastNoiseLite$DomainWarpType$Type): void
 public "SetSeed"(arg0: integer): void
 public "GetNoise"(arg0: float, arg1: float, arg2: float): float
 public "GetNoise"(arg0: float, arg1: float): float

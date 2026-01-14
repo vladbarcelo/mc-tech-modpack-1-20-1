@@ -1095,7 +1095,6 @@ net.minecraft.world.level.block.EndPortalBlock
 org.violetmoon.zeta.block.ext.CustomWeatheringCopper
 com.electronwill.nightconfig.core.io.ConfigWriter
 net.mcreator.cavestuff.world.features.CavespongegenerationFeature
-toni.immersivelanterns.foundation.IPlayerLanternDataAccessor
 dev.latvian.mods.kubejs.recipe.InputReplacementTransformer
 com.railwayteam.railways.content.custom_bogeys.special.invisible.InvisibleBogeyBlock
 net.fabricmc.fabric.api.item.v1.FabricItem
@@ -3794,6 +3793,7 @@ com.minecolonies.api.blocks.AbstractBlockHut
 forge.net.mca.entity.ai.brain.VillagerBrain
 com.ldtteam.domumornamentum.block.vanilla.FenceBlock
 com.copycatsplus.copycats.content.copycat.stairs.CopycatStairsBlock
+com.Gabou.sereneseasonsplus.util.MinecraftServerAccess
 net.minecraft.world.entity.animal.Panda$PandaLookAtPlayerGoal
 traben.entity_model_features.models.animation.math.variables.EMFModelOrRenderVariable
 java.io.DataOutput
@@ -5123,7 +5123,6 @@ com.ordana.immersive_weathering.blocks.FulguriteBlock
 com.yungnickyoung.minecraft.yungscavebiomes.world.feature.CeilingReplaceFeature
 com.simibubi.create.content.redstone.nixieTube.DoubleFaceAttachedBlock
 cech12.bucketlib.item.crafting.BucketDyeingRecipe
-toni.immersivelanterns.foundation.mixin.ModelPartAccessor
 net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 net.minecraftforge.client.model.geometry.IGeometryBakingContext
 com.ldtteam.domumornamentum.item.decoration.FancyTrapdoorBlockItem
@@ -6086,6 +6085,7 @@ blusunrize.immersiveengineering.api.tool.conveyor.ConveyorHandler$IConveyorAttac
 net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup$BlockApiProvider
 com.simibubi.create.content.logistics.tunnel.BrassTunnelBlock
 com.drmangotea.tfmg.blocks.electricity.polarizer.PolarizerBlock
+com.Gabou.sereneseasonsplus.util.ISnowTrackedChunk
 io.netty.channel.ChannelProgressiveFuture
 xaero.common.effect.MinimapStatusEffect
 java.util.LinkedList
@@ -6285,7 +6285,6 @@ com.minecolonies.api.colony.requestsystem.data.IDataStoreManager
 net.mcreator.butchersdelight.block.RoasterGoatBlock
 com.flansmod.common.actions.contexts.GunContext
 com.prunoideae.powerfuljs.capabilities.forge.mods.curios.RendererCurios$RenderContext
-com.xiaohunao.createheatjs.event.registerHeatEvent
 com.teammoeg.steampowered.oldcreatestuff.OldFlywheelBlock$ConnectionState
 java.nio.charset.Charset
 net.minecraft.client.player.Input
@@ -7529,7 +7528,6 @@ java.util.function.Supplier
 com.minecolonies.api.colony.buildings.IBuilding
 com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType
 net.minecraft.util.random.WeightedEntry$Wrapper
-com.xiaohunao.createheatjs.HeatData$HeatSourceData
 net.mehvahdjukaar.supplementaries.common.items.WrenchItem
 mezz.jei.api.recipe.IFocus
 net.minecraftforge.network.PacketDistributor$TargetPoint
@@ -9870,7 +9868,6 @@ com.mojang.realmsclient.dto.RealmsServerAddress
 net.minecraft.world.entity.ai.goal.WrappedGoal
 dev.latvian.mods.itemfilters.item.CustomFilterItem
 xaero.map.graphics.TextureUpload$BranchDownload
-com.xiaohunao.createheatjs.HeatData
 net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType
 net.mcreator.cavestuff.block.CoprolitewallBlock
 mrtjp.projectred.api.IScrewdriver

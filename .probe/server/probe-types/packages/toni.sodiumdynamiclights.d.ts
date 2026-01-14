@@ -5,17 +5,17 @@ import {$LevelRenderer, $LevelRenderer$Type} from "packages/net/minecraft/client
 export interface $DynamicLightSource {
 
  "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
- "sdl$setDynamicLightEnabled"(enabled: boolean): void
- "sdl$dynamicLightTick"(): void
- "sdl$getDynamicLightY"(): double
- "sdl$resetDynamicLight"(): void
- "sdl$getDynamicLightLevel"(): $Level
- "sdl$getDynamicLightZ"(): double
- "sdl$getDynamicLightX"(): double
- "sdl$getLuminance"(): integer
- "sdl$isDynamicLightEnabled"(): boolean
  "sdl$shouldUpdateDynamicLight"(): boolean
  "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
+ "sdl$isDynamicLightEnabled"(): boolean
+ "sdl$setDynamicLightEnabled"(enabled: boolean): void
+ "sdl$getDynamicLightX"(): double
+ "sdl$getDynamicLightY"(): double
+ "sdl$getDynamicLightZ"(): double
+ "sdl$getDynamicLightLevel"(): $Level
+ "sdl$resetDynamicLight"(): void
+ "sdl$getLuminance"(): integer
+ "sdl$dynamicLightTick"(): void
 }
 
 export namespace $DynamicLightSource {
@@ -43,10 +43,10 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $DynamicLightHandlerHolder<T> {
 
- "sodiumdynamiclights$getDynamicLightHandler"(): $DynamicLightHandler<(T)>
- "sodiumdynamiclights$setDynamicLightHandler"(arg0: $DynamicLightHandler$Type<(T)>): void
  "sodiumdynamiclights$getSetting"(): boolean
  "sodiumdynamiclights$getName"(): $Component
+ "sodiumdynamiclights$setDynamicLightHandler"(arg0: $DynamicLightHandler$Type<(T)>): void
+ "sodiumdynamiclights$getDynamicLightHandler"(): $DynamicLightHandler<(T)>
 }
 
 export namespace $DynamicLightHandlerHolder {

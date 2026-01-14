@@ -1,0 +1,13 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_tin_ingot_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:tin_ingot_in_tongs",
+		"count": 1,
+		"nbt": "{\"ItemHeld\":\"tinore:tin_ingot\"}"
+	}
+}

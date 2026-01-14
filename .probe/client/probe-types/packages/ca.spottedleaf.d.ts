@@ -12,13 +12,15 @@ constructor(arg0: (byte)[], arg1: integer)
 
 public "isDirty"(): boolean
 public "toString"(): string
-public "set"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public "set"(arg0: integer, arg1: integer): void
+public "set"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): void
 public static "fromVanilla"(arg0: $DataLayer$Type): $SWMRNibbleArray
-public "isInitialisedUpdating"(): boolean
+public "isNullNibbleVisible"(): boolean
+public "toVanillaNibble"(): $DataLayer
+public "updateVisible"(): boolean
 public "getUpdating"(arg0: integer, arg1: integer, arg2: integer): integer
 public "getUpdating"(arg0: integer): integer
-public "updateVisible"(): boolean
+public "isInitialisedUpdating"(): boolean
 public "getSaveState"(): $SWMRNibbleArray$SaveState
 public "extrudeLower"(arg0: $SWMRNibbleArray$Type): void
 public "setUninitialised"(): void
@@ -28,16 +30,15 @@ public "isUninitialisedVisible"(): boolean
 public "isInitialisedVisible"(): boolean
 public "isHiddenUpdating"(): boolean
 public "isHiddenVisible"(): boolean
-public "toVanillaNibble"(): $DataLayer
-public "isNullNibbleVisible"(): boolean
-public "setNull"(): void
+public "setZero"(): void
 public "getVisible"(arg0: integer): integer
 public "getVisible"(arg0: integer, arg1: integer, arg2: integer): integer
-public "setZero"(): void
+public "setNull"(): void
 public "setHidden"(): void
 public "setFull"(): void
 public "setNonNull"(): void
 get "dirty"(): boolean
+get "nullNibbleVisible"(): boolean
 get "initialisedUpdating"(): boolean
 get "saveState"(): $SWMRNibbleArray$SaveState
 get "nullNibbleUpdating"(): boolean
@@ -46,7 +47,6 @@ get "uninitialisedVisible"(): boolean
 get "initialisedVisible"(): boolean
 get "hiddenUpdating"(): boolean
 get "hiddenVisible"(): boolean
-get "nullNibbleVisible"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -71,8 +71,8 @@ import {$LightLayer, $LightLayer$Type} from "packages/net/minecraft/world/level/
 export interface $StarLightLightingProvider {
 
  "clientRemoveLightData"(arg0: $ChunkPos$Type): void
- "clientChunkLoad"(arg0: $ChunkPos$Type, arg1: $LevelChunk$Type): void
  "clientUpdateLight"(arg0: $LightLayer$Type, arg1: $SectionPos$Type, arg2: $DataLayer$Type, arg3: boolean): void
+ "clientChunkLoad"(arg0: $ChunkPos$Type, arg1: $LevelChunk$Type): void
  "getLightEngine"(): $StarLightInterface
 }
 
@@ -96,14 +96,14 @@ import {$SWMRNibbleArray, $SWMRNibbleArray$Type} from "packages/ca/spottedleaf/s
 
 export interface $ExtendedChunk {
 
- "getBlockNibbles"(): ($SWMRNibbleArray)[]
- "setBlockNibbles"(arg0: ($SWMRNibbleArray$Type)[]): void
- "getSkyNibbles"(): ($SWMRNibbleArray)[]
- "setSkyNibbles"(arg0: ($SWMRNibbleArray$Type)[]): void
- "getSkyEmptinessMap"(): (boolean)[]
  "setSkyEmptinessMap"(arg0: (boolean)[]): void
- "getBlockEmptinessMap"(): (boolean)[]
+ "getSkyEmptinessMap"(): (boolean)[]
  "setBlockEmptinessMap"(arg0: (boolean)[]): void
+ "getBlockEmptinessMap"(): (boolean)[]
+ "setSkyNibbles"(arg0: ($SWMRNibbleArray$Type)[]): void
+ "getSkyNibbles"(): ($SWMRNibbleArray)[]
+ "setBlockNibbles"(arg0: ($SWMRNibbleArray$Type)[]): void
+ "getBlockNibbles"(): ($SWMRNibbleArray)[]
 }
 
 export namespace $ExtendedChunk {
@@ -165,33 +165,33 @@ readonly "lightEngine": $LevelLightEngine
 
 constructor(arg0: $LightChunkGetter$Type, arg1: boolean, arg2: boolean, arg3: $LevelLightEngine$Type)
 
-public "relightChunks"(arg0: $Set$Type<($ChunkPos$Type)>, arg1: $Consumer$Type<($ChunkPos$Type)>, arg2: $IntConsumer$Type): void
-public "forceLoadInChunk"(arg0: $ChunkAccess$Type, arg1: (boolean)[]): void
-public "checkChunkEdges"(arg0: integer, arg1: integer): void
-public "scheduleChunkLight"(arg0: $ChunkPos$Type, arg1: $Runnable$Type): void
 public "getLightAccess"(): $LightChunkGetter
-public "getAnyChunkNow"(arg0: integer, arg1: integer): $ChunkAccess
-public "getRawBrightness"(arg0: $BlockPos$Type, arg1: integer): integer
-public "getSkyReader"(): $LayerLightEventListener
-public "hasBlockLight"(): boolean
-public "hasSkyLight"(): boolean
 public "blockChange"(arg0: $BlockPos$Type): $CompletableFuture<(void)>
 public "propagateChanges"(): void
 public "sectionChange"(arg0: $SectionPos$Type, arg1: boolean): $CompletableFuture<(void)>
 public "getBlockReader"(): $LayerLightEventListener
+public "getSkyReader"(): $LayerLightEventListener
+public "getRawBrightness"(arg0: $BlockPos$Type, arg1: integer): integer
+public "getAnyChunkNow"(arg0: integer, arg1: integer): $ChunkAccess
+public "scheduleChunkLight"(arg0: $ChunkPos$Type, arg1: $Runnable$Type): void
+public "forceLoadInChunk"(arg0: $ChunkAccess$Type, arg1: (boolean)[]): void
+public "checkChunkEdges"(arg0: integer, arg1: integer): void
+public "relightChunks"(arg0: $Set$Type<($ChunkPos$Type)>, arg1: $Consumer$Type<($ChunkPos$Type)>, arg2: $IntConsumer$Type): void
 public "isClientSide"(): boolean
+public "hasBlockLight"(): boolean
+public "hasSkyLight"(): boolean
 public "loadInChunk"(arg0: integer, arg1: integer, arg2: (boolean)[]): void
 public "checkSkyEdges"(arg0: integer, arg1: integer, arg2: $ShortCollection$Type): void
 public "checkSkyEdges"(arg0: integer, arg1: integer): void
-public "checkBlockEdges"(arg0: integer, arg1: integer, arg2: $ShortCollection$Type): void
 public "checkBlockEdges"(arg0: integer, arg1: integer): void
+public "checkBlockEdges"(arg0: integer, arg1: integer, arg2: $ShortCollection$Type): void
 public "removeChunkTasks"(arg0: $ChunkPos$Type): void
 public "hasUpdates"(): boolean
 public "getWorld"(): $Level
 public "lightChunk"(arg0: $ChunkAccess$Type, arg1: (boolean)[]): void
 get "lightAccess"(): $LightChunkGetter
-get "skyReader"(): $LayerLightEventListener
 get "blockReader"(): $LayerLightEventListener
+get "skyReader"(): $LayerLightEventListener
 get "clientSide"(): boolean
 get "world"(): $Level
 }

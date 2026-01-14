@@ -7,9 +7,9 @@ export class $FluidsKu {
 constructor()
 
 public "isEmpty"(arg0: $Fluid$Type): boolean
-public "notEmpty"(arg0: $Fluid$Type): boolean
 public "getFluidsByNamespace"(arg0: string): $List<($Fluid)>
 public "getFluidsByNamespaces"(arg0: $List$Type<(string)>): $List<($Fluid)>
+public "notEmpty"(arg0: $Fluid$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -172,13 +172,13 @@ constructor(arg0: $ServerLevel$Type)
 
 public "findSingleBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $BlockPos
 public "getRandomLocation"(arg0: $BlockPos$Type, arg1: integer, arg2: integer): $BlockPos
-public "getStructureIdsAtLocation"(arg0: $BlockPos$Type): $List<($ResourceLocation)>
-public "getStructuresAtLocation"(arg0: $BlockPos$Type): $Set<($Structure)>
-public "isStructureAtLocation"(arg0: $BlockPos$Type, arg1: $ResourceLocation$Type): boolean
 public "spawnStructure"(arg0: string, arg1: $BlockPos$Type): void
 public "findEntitiesWithinRadius"(arg0: $ResourceLocation$Type, arg1: $BlockPos$Type, arg2: integer): $List<($LivingEntity)>
-public "seekCollectionOfBlocks"(arg0: $BlockPos$Type, arg1: integer, arg2: $Predicate$Type<($BlockPos$Type)>, arg3: $Predicate$Type<($BlockPos$Type)>): $List<($BlockPos)>
 public "findBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $List<($BlockPos)>
+public "seekCollectionOfBlocks"(arg0: $BlockPos$Type, arg1: integer, arg2: $Predicate$Type<($BlockPos$Type)>, arg3: $Predicate$Type<($BlockPos$Type)>): $List<($BlockPos)>
+public "isStructureAtLocation"(arg0: $BlockPos$Type, arg1: $ResourceLocation$Type): boolean
+public "getStructuresAtLocation"(arg0: $BlockPos$Type): $Set<($Structure)>
+public "getStructureIdsAtLocation"(arg0: $BlockPos$Type): $List<($ResourceLocation)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -202,12 +202,12 @@ export class $PlayerKu {
 constructor(arg0: $Player$Type)
 
 public "isClientSide"(): boolean
-public "clearStarterItemsFlag"(): boolean
-public "showActionBar"(arg0: string, arg1: $Color$Type): void
+public "showActionBarComponent"(arg0: $Component$Type): void
 public "showActionBar"(arg0: string, arg1: $Color$Type, arg2: boolean): void
+public "showActionBar"(arg0: string, arg1: $Color$Type): void
 public "showActionBar"(arg0: string, arg1: $Color$Type, arg2: boolean, arg3: boolean): void
 public "showActionBar"(arg0: string): void
-public "showActionBarComponent"(arg0: $Component$Type): void
+public "clearStarterItemsFlag"(): boolean
 get "clientSide"(): boolean
 }
 /**

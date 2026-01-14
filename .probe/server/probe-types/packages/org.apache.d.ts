@@ -43,14 +43,14 @@ export interface $ArtifactMetadata extends $ArtifactMetadata$0 {
  "merge"(arg0: $ArtifactMetadata$0$Type): void
  "getKey"(): any
  "storedInArtifactVersionDirectory"(): boolean
- "getGroupId"(): string
  "getArtifactId"(): string
- "getRemoteFilename"(): string
- "extendedToString"(): string
  "storedInGroupDirectory"(): boolean
  "getBaseVersion"(): string
- "storeInLocalRepository"(arg0: $ArtifactRepository$Type, arg1: $ArtifactRepository$Type): void
  "getLocalFilename"(arg0: $ArtifactRepository$Type): string
+ "getRemoteFilename"(): string
+ "storeInLocalRepository"(arg0: $ArtifactRepository$Type, arg1: $ArtifactRepository$Type): void
+ "extendedToString"(): string
+ "getGroupId"(): string
 }
 
 export namespace $ArtifactMetadata {
@@ -199,16 +199,16 @@ export class $Authentication {
 constructor(arg0: string, arg1: string)
 
 public "getPrivateKey"(): string
-public "getUsername"(): string
 public "setUsername"(arg0: string): void
+public "getUsername"(): string
 public "getPassword"(): string
 public "setPassword"(arg0: string): void
 public "getPassphrase"(): string
 public "setPassphrase"(arg0: string): void
 public "setPrivateKey"(arg0: string): void
 get "privateKey"(): string
-get "username"(): string
 set "username"(value: string)
+get "username"(): string
 get "password"(): string
 set "password"(value: string)
 get "passphrase"(): string
@@ -239,13 +239,8 @@ export class $VersionRange {
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-/**
- * 
- * @deprecated
- */
-public "cloneOf"(): $VersionRange
-public "restrict"(arg0: $VersionRange$Type): $VersionRange
 public "containsVersion"(arg0: $ArtifactVersion$Type): boolean
+public static "createFromVersionSpec"(arg0: string): $VersionRange
 public "getRecommendedVersion"(): $ArtifactVersion
 public "getRestrictions"(): $List<($Restriction)>
 public static "createFromVersion"(arg0: string): $VersionRange
@@ -253,7 +248,12 @@ public "getSelectedVersion"(arg0: $Artifact$Type): $ArtifactVersion
 public "isSelectedVersionKnown"(arg0: $Artifact$Type): boolean
 public "matchVersion"(arg0: $List$Type<($ArtifactVersion$Type)>): $ArtifactVersion
 public "hasRestrictions"(): boolean
-public static "createFromVersionSpec"(arg0: string): $VersionRange
+/**
+ * 
+ * @deprecated
+ */
+public "cloneOf"(): $VersionRange
+public "restrict"(arg0: $VersionRange$Type): $VersionRange
 get "recommendedVersion"(): $ArtifactVersion
 get "restrictions"(): $List<($Restriction)>
 }
@@ -339,38 +339,38 @@ export interface $ArtifactRepository {
  "find"(arg0: $Artifact$Type): $Artifact
  "getId"(): string
  "getProtocol"(): string
- "pathOfLocalRepositoryMetadata"(arg0: $ArtifactMetadata$Type, arg1: $ArtifactRepository$Type): string
  "pathOfRemoteRepositoryMetadata"(arg0: $ArtifactMetadata$Type): string
+ "pathOfLocalRepositoryMetadata"(arg0: $ArtifactMetadata$Type, arg1: $ArtifactRepository$Type): string
 /**
  * 
  * @deprecated
  */
  "isBlacklisted"(): boolean
- "getUrl"(): string
  "setLayout"(arg0: $ArtifactRepositoryLayout$Type): void
- "setId"(arg0: string): void
  "getLayout"(): $ArtifactRepositoryLayout
+ "setId"(arg0: string): void
+ "getUrl"(): string
  "getReleases"(): $ArtifactRepositoryPolicy
  "getSnapshots"(): $ArtifactRepositoryPolicy
- "getProxy"(): $Proxy
- "getAuthentication"(): $Authentication
  "setSnapshotUpdatePolicy"(arg0: $ArtifactRepositoryPolicy$Type): void
- "isProjectAware"(): boolean
  "setReleaseUpdatePolicy"(arg0: $ArtifactRepositoryPolicy$Type): void
 /**
  * 
  * @deprecated
  */
  "isUniqueVersion"(): boolean
- "setAuthentication"(arg0: $Authentication$Type): void
 /**
  * 
  * @deprecated
  */
  "setBlacklisted"(arg0: boolean): void
  "findVersions"(arg0: $Artifact$Type): $List<(string)>
+ "isProjectAware"(): boolean
+ "setAuthentication"(arg0: $Authentication$Type): void
+ "getAuthentication"(): $Authentication
  "getMirroredRepositories"(): $List<($ArtifactRepository)>
  "setMirroredRepositories"(arg0: $List$Type<($ArtifactRepository$Type)>): void
+ "getProxy"(): $Proxy
  "isBlocked"(): boolean
  "setProxy"(arg0: $Proxy$Type): void
  "setBlocked"(arg0: boolean): void
@@ -498,15 +498,16 @@ public "equals"(other: any): boolean
 public "toString"(): string
 public static "values"(): ($Level)[]
 public "hashCode"(): integer
+public "clone"(): $Level
 public "compareTo"(other: $Level$Type): integer
 public static "valueOf"(name: string): $Level
 public static "valueOf"<T extends $Enum<(T)>>(enumType: $Class$Type<(T)>, name: string): T
 public "getDeclaringClass"(): $Class<($Level)>
-public static "getLevel"(name: string): $Level
 public "isInRange"(minLevel: $Level$Type, maxLevel: $Level$Type): boolean
-public "intLevel"(): integer
+public static "getLevel"(name: string): $Level
 public static "toLevel"(name: string, defaultLevel: $Level$Type): $Level
 public static "toLevel"(level: string): $Level
+public "intLevel"(): integer
 public "isMoreSpecificThan"(level: $Level$Type): boolean
 public "getStandardLevel"(): $StandardLevel
 public "isLessSpecificThan"(level: $Level$Type): boolean
@@ -533,14 +534,14 @@ export interface $ArtifactMetadata {
  "merge"(arg0: $ArtifactMetadata$Type): void
  "getKey"(): any
  "storedInArtifactVersionDirectory"(): boolean
- "getGroupId"(): string
  "getArtifactId"(): string
- "getRemoteFilename"(): string
- "extendedToString"(): string
  "storedInGroupDirectory"(): boolean
  "getBaseVersion"(): string
- "storeInLocalRepository"(arg0: $ArtifactRepository$Type, arg1: $ArtifactRepository$Type): void
  "getLocalFilename"(arg0: $ArtifactRepository$Type): string
+ "getRemoteFilename"(): string
+ "storeInLocalRepository"(arg0: $ArtifactRepository$Type, arg1: $ArtifactRepository$Type): void
+ "extendedToString"(): string
+ "getGroupId"(): string
 }
 
 export namespace $ArtifactMetadata {
@@ -562,13 +563,13 @@ declare module "packages/org/apache/maven/artifact/handler/$ArtifactHandler" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ArtifactHandler {
 
- "getExtension"(): string
  "getLanguage"(): string
+ "getExtension"(): string
  "getClassifier"(): string
- "getDirectory"(): string
- "getPackaging"(): string
- "isIncludesDependencies"(): boolean
  "isAddedToClasspath"(): boolean
+ "isIncludesDependencies"(): boolean
+ "getPackaging"(): string
+ "getDirectory"(): string
 }
 
 export namespace $ArtifactHandler {
@@ -602,13 +603,13 @@ public "setHost"(arg0: string): void
 public "setPort"(arg0: integer): void
 public "getPassword"(): string
 public "getUserName"(): string
-public "setPassword"(arg0: string): void
 public "setProtocol"(arg0: string): void
-public "setUserName"(arg0: string): void
+public "setPassword"(arg0: string): void
 public "getNonProxyHosts"(): string
+public "setUserName"(arg0: string): void
 public "setNonProxyHosts"(arg0: string): void
-public "getNtlmHost"(): string
 public "setNtlmHost"(arg0: string): void
+public "getNtlmHost"(): string
 public "setNtlmDomain"(arg0: string): void
 public "getNtlmDomain"(): string
 get "host"(): string
@@ -618,13 +619,13 @@ set "host"(value: string)
 set "port"(value: integer)
 get "password"(): string
 get "userName"(): string
-set "password"(value: string)
 set "protocol"(value: string)
-set "userName"(value: string)
+set "password"(value: string)
 get "nonProxyHosts"(): string
+set "userName"(value: string)
 set "nonProxyHosts"(value: string)
-get "ntlmHost"(): string
 set "ntlmHost"(value: string)
+get "ntlmHost"(): string
 set "ntlmDomain"(value: string)
 get "ntlmDomain"(): string
 }
@@ -683,14 +684,12 @@ public "toString"(): string
 public "hashCode"(): integer
 public "compareTo"(arg0: $MutableBoolean$Type): integer
 public "booleanValue"(): boolean
-public "getValue"(): boolean
 public "setValue"(arg0: boolean): void
 public "setValue"(arg0: boolean): void
-public "isTrue"(): boolean
 public "setTrue"(): void
 public "setFalse"(): void
+public "isTrue"(): boolean
 public "isFalse"(): boolean
-get "value"(): boolean
 set "value"(value: boolean)
 set "value"(value: boolean)
 get "true"(): boolean
@@ -723,49 +722,49 @@ import {$ArtifactFilter, $ArtifactFilter$Type} from "packages/org/apache/maven/a
 
 export interface $Artifact extends $Comparable<($Artifact)> {
 
- "setVersion"(arg0: string): void
- "getVersion"(): string
  "getRepository"(): $ArtifactRepository
  "getScope"(): string
+ "setVersion"(arg0: string): void
+ "getVersion"(): string
  "getId"(): string
  "getType"(): string
  "isResolved"(): boolean
  "setRelease"(arg0: boolean): void
  "getFile"(): $File
- "getGroupId"(): string
  "setFile"(arg0: $File$Type): void
- "getClassifier"(): string
- "getVersionRange"(): $VersionRange
  "getSelectedVersion"(): $ArtifactVersion
  "isSelectedVersionKnown"(): boolean
  "getArtifactId"(): string
  "getDependencyTrail"(): $List<(string)>
- "isOptional"(): boolean
- "getMetadataList"(): $Collection<($ArtifactMetadata)>
- "setAvailableVersions"(arg0: $List$Type<($ArtifactVersion$Type)>): void
- "setOptional"(arg0: boolean): void
- "setArtifactHandler"(arg0: $ArtifactHandler$Type): void
- "setDependencyFilter"(arg0: $ArtifactFilter$Type): void
- "getAvailableVersions"(): $List<($ArtifactVersion)>
- "setVersionRange"(arg0: $VersionRange$Type): void
- "setResolvedVersion"(arg0: string): void
- "setDownloadUrl"(arg0: string): void
+ "getVersionRange"(): $VersionRange
+ "getClassifier"(): string
+ "getBaseVersion"(): string
+ "hasClassifier"(): boolean
  "setBaseVersion"(arg0: string): void
+ "getDependencyConflictId"(): string
  "addMetadata"(arg0: $ArtifactMetadata$Type): void
- "setDependencyTrail"(arg0: $List$Type<(string)>): void
- "selectVersion"(arg0: string): void
- "getDownloadUrl"(): string
+ "getMetadataList"(): $Collection<($ArtifactMetadata)>
  "setRepository"(arg0: $ArtifactRepository$Type): void
  "updateVersion"(arg0: string, arg1: $ArtifactRepository$Type): void
- "setArtifactId"(arg0: string): void
- "getDependencyConflictId"(): string
- "setResolved"(arg0: boolean): void
- "getArtifactHandler"(): $ArtifactHandler
+ "getDownloadUrl"(): string
+ "setDownloadUrl"(arg0: string): void
  "getDependencyFilter"(): $ArtifactFilter
- "hasClassifier"(): boolean
- "getBaseVersion"(): string
- "isSnapshot"(): boolean
+ "setDependencyFilter"(arg0: $ArtifactFilter$Type): void
+ "getArtifactHandler"(): $ArtifactHandler
+ "setDependencyTrail"(arg0: $List$Type<(string)>): void
+ "setVersionRange"(arg0: $VersionRange$Type): void
+ "selectVersion"(arg0: string): void
+ "setArtifactId"(arg0: string): void
+ "setResolved"(arg0: boolean): void
+ "setResolvedVersion"(arg0: string): void
+ "setArtifactHandler"(arg0: $ArtifactHandler$Type): void
+ "getAvailableVersions"(): $List<($ArtifactVersion)>
+ "setAvailableVersions"(arg0: $List$Type<($ArtifactVersion$Type)>): void
+ "setOptional"(arg0: boolean): void
+ "isOptional"(): boolean
+ "getGroupId"(): string
  "setScope"(arg0: string): void
+ "isSnapshot"(): boolean
  "isRelease"(): boolean
  "setGroupId"(arg0: string): void
  "compareTo"(arg0: $Artifact$Type): integer
@@ -805,8 +804,8 @@ import {$Artifact, $Artifact$Type} from "packages/org/apache/maven/artifact/$Art
 export interface $ArtifactRepositoryLayout {
 
  "getId"(): string
- "pathOfLocalRepositoryMetadata"(arg0: $ArtifactMetadata$Type, arg1: $ArtifactRepository$Type): string
  "pathOfRemoteRepositoryMetadata"(arg0: $ArtifactMetadata$Type): string
+ "pathOfLocalRepositoryMetadata"(arg0: $ArtifactMetadata$Type, arg1: $ArtifactRepository$Type): string
  "pathOf"(arg0: $Artifact$Type): string
 }
 
@@ -884,104 +883,104 @@ import {$Level, $Level$Type} from "packages/org/apache/logging/log4j/$Level"
 
 export interface $Logger {
 
- "error"(message: any): void
- "error"(message: any, throwable: $Throwable$Type): void
- "error"(message: string): void
- "error"(message: string, ...params: (any)[]): void
- "error"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "error"(messageSupplier: $MessageSupplier$Type): void
- "error"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "error"(message: charseq): void
- "error"(message: charseq, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "error"(message: string, throwable: $Throwable$Type): void
- "error"(messageSupplier: $Supplier$Type<(any)>): void
- "error"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, message: string, p0: any): void
- "error"(marker: $Marker$Type, message: string, ...params: (any)[]): void
- "error"(marker: $Marker$Type, message: string): void
- "error"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, message: any): void
- "error"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
- "error"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "error"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, message: $Message$Type): void
- "error"(message: $Message$Type): void
- "error"(message: $Message$Type, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, message: charseq): void
- "error"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "error"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
- "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "error"(message: string, p0: any, p1: any, p2: any, p3: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "error"(message: string, p0: any, p1: any, p2: any): void
- "error"(message: string, p0: any, p1: any): void
- "error"(message: string, p0: any): void
  "isEnabled"(level: $Level$Type): boolean
  "isEnabled"(level: $Level$Type, marker: $Marker$Type): boolean
- "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "warn"(message: string, p0: any, p1: any, p2: any, p3: any): void
+ "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
+ "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
  "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "warn"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "warn"(message: string, throwable: $Throwable$Type): void
+ "warn"(messageSupplier: $Supplier$Type<(any)>): void
+ "warn"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "warn"(marker: $Marker$Type, message: string, p0: any): void
+ "warn"(marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "warn"(message: string, p0: any, p1: any, p2: any, p3: any): void
+ "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
  "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
  "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
  "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
  "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "warn"(message: charseq): void
- "warn"(message: string, p0: any, p1: any, p2: any): void
- "warn"(message: string, p0: any, p1: any): void
- "warn"(message: string, p0: any): void
  "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "warn"(marker: $Marker$Type, message: string, p0: any): void
- "warn"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "warn"(messageSupplier: $Supplier$Type<(any)>): void
- "warn"(message: string, throwable: $Throwable$Type): void
- "warn"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "warn"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
- "warn"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
- "warn"(marker: $Marker$Type, message: string, p0: any, p1: any): void
- "warn"(message: charseq, throwable: $Throwable$Type): void
- "warn"(marker: $Marker$Type, message: $Message$Type): void
- "warn"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
- "warn"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
- "warn"(message: string, ...params: (any)[]): void
- "warn"(message: string): void
- "warn"(message: any, throwable: $Throwable$Type): void
- "warn"(message: any): void
- "warn"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "warn"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
- "warn"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
- "warn"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "warn"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "warn"(message: $Message$Type, throwable: $Throwable$Type): void
- "warn"(message: $Message$Type): void
- "warn"(marker: $Marker$Type, message: any): void
- "warn"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
- "warn"(marker: $Marker$Type, message: charseq): void
- "warn"(messageSupplier: $MessageSupplier$Type): void
- "warn"(marker: $Marker$Type, message: string, ...params: (any)[]): void
+ "warn"(message: string, p0: any): void
+ "warn"(message: string, p0: any, p1: any): void
+ "warn"(message: string, p0: any, p1: any, p2: any): void
  "warn"(marker: $Marker$Type, message: string): void
  "warn"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
+ "warn"(marker: $Marker$Type, message: any): void
+ "warn"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
+ "warn"(marker: $Marker$Type, message: string, ...params: (any)[]): void
+ "warn"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "warn"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
+ "warn"(marker: $Marker$Type, message: $Message$Type): void
+ "warn"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "warn"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
+ "warn"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
+ "warn"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "warn"(marker: $Marker$Type, message: charseq): void
+ "warn"(message: charseq): void
+ "warn"(message: charseq, throwable: $Throwable$Type): void
+ "warn"(message: any): void
+ "warn"(message: any, throwable: $Throwable$Type): void
+ "warn"(message: string): void
+ "warn"(message: string, ...params: (any)[]): void
+ "warn"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
+ "warn"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "warn"(message: $Message$Type): void
+ "warn"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "warn"(messageSupplier: $MessageSupplier$Type): void
+ "warn"(message: $Message$Type, throwable: $Throwable$Type): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "error"(message: string, ...params: (any)[]): void
+ "error"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "error"(message: string, throwable: $Throwable$Type): void
+ "error"(messageSupplier: $Supplier$Type<(any)>): void
+ "error"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "error"(marker: $Marker$Type, message: string, p0: any): void
+ "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "error"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "error"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "error"(message: string, p0: any): void
+ "error"(message: string, p0: any, p1: any): void
+ "error"(message: string, p0: any, p1: any, p2: any): void
+ "error"(message: string, p0: any, p1: any, p2: any, p3: any): void
+ "error"(marker: $Marker$Type, message: any): void
+ "error"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
+ "error"(marker: $Marker$Type, message: string): void
+ "error"(marker: $Marker$Type, message: string, ...params: (any)[]): void
+ "error"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "error"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
+ "error"(marker: $Marker$Type, message: $Message$Type): void
+ "error"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
+ "error"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
+ "error"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "error"(marker: $Marker$Type, message: charseq): void
+ "error"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
+ "error"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "error"(message: charseq): void
+ "error"(message: charseq, throwable: $Throwable$Type): void
+ "error"(message: any): void
+ "error"(message: any, throwable: $Throwable$Type): void
+ "error"(message: string): void
+ "error"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
+ "error"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "error"(message: $Message$Type): void
+ "error"(message: $Message$Type, throwable: $Throwable$Type): void
+ "error"(messageSupplier: $MessageSupplier$Type): void
  "getName"(): string
 /**
  * 
@@ -993,104 +992,104 @@ export interface $Logger {
  * @deprecated
  */
  "exit"(): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, ...params: (any)[]): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string): void
- "log"(level: $Level$Type, message: $Message$Type, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, message: $Message$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
- "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: $Message$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: charseq): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any): void
- "log"(level: $Level$Type, message: string, p0: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
  "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
  "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "log"(level: $Level$Type, message: any): void
- "log"(level: $Level$Type, message: any, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, message: string): void
- "log"(level: $Level$Type, message: string, ...params: (any)[]): void
- "log"(level: $Level$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, message: charseq): void
- "log"(level: $Level$Type, messageSupplier: $MessageSupplier$Type): void
- "log"(level: $Level$Type, message: charseq, throwable: $Throwable$Type): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
  "log"(level: $Level$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
  "log"(level: $Level$Type, message: string, throwable: $Throwable$Type): void
  "log"(level: $Level$Type, messageSupplier: $Supplier$Type<(any)>): void
  "log"(level: $Level$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "log"(level: $Level$Type, message: string, p0: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any): void
+ "log"(level: $Level$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: any): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, ...params: (any)[]): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: $Message$Type): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
+ "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: charseq): void
+ "log"(level: $Level$Type, marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, message: charseq): void
+ "log"(level: $Level$Type, message: charseq, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, message: any): void
+ "log"(level: $Level$Type, message: any, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, message: string): void
+ "log"(level: $Level$Type, message: string, ...params: (any)[]): void
+ "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
+ "log"(level: $Level$Type, marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, message: $Message$Type): void
+ "log"(level: $Level$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "log"(level: $Level$Type, messageSupplier: $MessageSupplier$Type): void
+ "log"(level: $Level$Type, message: $Message$Type, throwable: $Throwable$Type): void
+ "info"(marker: $Marker$Type, message: string, p0: any): void
+ "info"(marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "info"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
  "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
  "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
- "info"(marker: $Marker$Type, message: string, p0: any, p1: any): void
- "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "info"(message: string, throwable: $Throwable$Type): void
- "info"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "info"(message: string, ...params: (any)[]): void
+ "info"(message: any, throwable: $Throwable$Type): void
  "info"(message: string): void
+ "info"(message: string, ...params: (any)[]): void
+ "info"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "info"(message: string, throwable: $Throwable$Type): void
  "info"(messageSupplier: $Supplier$Type<(any)>): void
- "info"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "info"(marker: $Marker$Type, message: string, p0: any): void
  "info"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "info"(message: string, p0: any): void
  "info"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
  "info"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "info"(message: string, p0: any, p1: any, p2: any, p3: any): void
  "info"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
  "info"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
  "info"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
  "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
  "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
  "info"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
  "info"(message: string, p0: any, p1: any): void
  "info"(message: string, p0: any, p1: any, p2: any): void
- "info"(message: string, p0: any, p1: any, p2: any, p3: any): void
+ "info"(marker: $Marker$Type, message: charseq): void
  "info"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
  "info"(marker: $Marker$Type, message: any): void
  "info"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
  "info"(marker: $Marker$Type, message: string): void
  "info"(marker: $Marker$Type, message: string, ...params: (any)[]): void
- "info"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "info"(message: string, p0: any): void
  "info"(marker: $Marker$Type, message: $Message$Type): void
  "info"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
  "info"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
  "info"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "info"(marker: $Marker$Type, message: charseq): void
+ "info"(message: $Message$Type, throwable: $Throwable$Type): void
  "info"(messageSupplier: $MessageSupplier$Type): void
  "info"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
  "info"(message: charseq): void
  "info"(message: charseq, throwable: $Throwable$Type): void
  "info"(message: any): void
- "info"(message: any, throwable: $Throwable$Type): void
- "info"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
+ "info"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
  "info"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
  "info"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
  "info"(message: $Message$Type): void
- "info"(message: $Message$Type, throwable: $Throwable$Type): void
- "printf"(level: $Level$Type, format: string, ...params: (any)[]): void
+ "info"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
  "printf"(level: $Level$Type, marker: $Marker$Type, format: string, ...params: (any)[]): void
+ "printf"(level: $Level$Type, format: string, ...params: (any)[]): void
 /**
  * 
  * @deprecated
@@ -1101,166 +1100,118 @@ export interface $Logger {
  * @deprecated
  */
  "entry"(): void
- "trace"(messageSupplier: $Supplier$Type<(any)>): void
- "trace"(message: string, throwable: $Throwable$Type): void
- "trace"(message: charseq, throwable: $Throwable$Type): void
- "trace"(message: any): void
- "trace"(message: any, throwable: $Throwable$Type): void
- "trace"(message: string): void
- "trace"(message: string, ...params: (any)[]): void
- "trace"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "trace"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "trace"(marker: $Marker$Type, message: string, p0: any): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
- "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
  "trace"(marker: $Marker$Type, message: any): void
  "trace"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
  "trace"(marker: $Marker$Type, message: charseq): void
  "trace"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "trace"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
- "trace"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
  "trace"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
  "trace"(marker: $Marker$Type, message: string, ...params: (any)[]): void
  "trace"(marker: $Marker$Type, message: string): void
  "trace"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
- "trace"(message: $Message$Type): void
- "trace"(message: $Message$Type, throwable: $Throwable$Type): void
- "trace"(messageSupplier: $MessageSupplier$Type): void
- "trace"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "trace"(message: charseq): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
+ "trace"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "trace"(marker: $Marker$Type, message: string, p0: any): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "trace"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
  "trace"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
  "trace"(marker: $Marker$Type, message: $Message$Type): void
- "trace"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
+ "trace"(message: string): void
+ "trace"(message: any, throwable: $Throwable$Type): void
+ "trace"(message: any): void
+ "trace"(message: charseq, throwable: $Throwable$Type): void
+ "trace"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "trace"(message: string, ...params: (any)[]): void
+ "trace"(message: string, throwable: $Throwable$Type): void
+ "trace"(messageSupplier: $Supplier$Type<(any)>): void
+ "trace"(message: $Message$Type): void
  "trace"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "trace"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
+ "trace"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
+ "trace"(message: charseq): void
+ "trace"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "trace"(messageSupplier: $MessageSupplier$Type): void
+ "trace"(message: $Message$Type, throwable: $Throwable$Type): void
  "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
  "trace"(message: string, p0: any): void
  "trace"(message: string, p0: any, p1: any): void
  "trace"(message: string, p0: any, p1: any, p2: any): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "trace"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
  "trace"(message: string, p0: any, p1: any, p2: any, p3: any): void
- "debug"(marker: $Marker$Type, message: string, ...params: (any)[]): void
- "debug"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "debug"(marker: $Marker$Type, message: string): void
- "debug"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
- "debug"(message: $Message$Type): void
- "debug"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "debug"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
- "debug"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
- "debug"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "debug"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
- "debug"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
- "debug"(marker: $Marker$Type, message: $Message$Type): void
- "debug"(marker: $Marker$Type, message: charseq): void
- "debug"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
- "debug"(marker: $Marker$Type, message: any): void
- "debug"(message: string, throwable: $Throwable$Type): void
- "debug"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "debug"(message: string, ...params: (any)[]): void
- "debug"(message: string): void
- "debug"(marker: $Marker$Type, message: string, p0: any, p1: any): void
- "debug"(marker: $Marker$Type, message: string, p0: any): void
- "debug"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "trace"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "debug"(message: string, p0: any): void
+ "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "debug"(message: string, p0: any, p1: any): void
+ "debug"(message: string, p0: any, p1: any, p2: any): void
+ "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
  "debug"(messageSupplier: $Supplier$Type<(any)>): void
+ "debug"(message: string, p0: any, p1: any, p2: any, p3: any): void
+ "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
  "debug"(message: charseq): void
- "debug"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "debug"(messageSupplier: $MessageSupplier$Type): void
- "debug"(message: $Message$Type, throwable: $Throwable$Type): void
  "debug"(message: charseq, throwable: $Throwable$Type): void
  "debug"(message: any): void
  "debug"(message: any, throwable: $Throwable$Type): void
- "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "debug"(message: string, p0: any, p1: any, p2: any, p3: any): void
- "debug"(message: string, p0: any, p1: any, p2: any): void
- "debug"(message: string, p0: any, p1: any): void
- "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "debug"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "debug"(message: $Message$Type): void
+ "debug"(message: $Message$Type, throwable: $Throwable$Type): void
+ "debug"(messageSupplier: $MessageSupplier$Type): void
+ "debug"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
+ "debug"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, message: string, p0: any): void
+ "debug"(marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "debug"(message: string): void
+ "debug"(message: string, ...params: (any)[]): void
+ "debug"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "debug"(message: string, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
+ "debug"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, message: charseq): void
+ "debug"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
  "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
  "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
- "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
- "debug"(message: string, p0: any): void
- "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "debug"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "fatal"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "fatal"(message: string, throwable: $Throwable$Type): void
- "fatal"(messageSupplier: $Supplier$Type<(any)>): void
- "fatal"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "fatal"(marker: $Marker$Type, message: string, p0: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
- "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
- "fatal"(message: string, p0: any): void
- "fatal"(message: string, p0: any, p1: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any): void
- "fatal"(message: string, p0: any, p1: any, p2: any, p3: any): void
- "fatal"(marker: $Marker$Type, message: any): void
- "fatal"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
- "fatal"(marker: $Marker$Type, message: string): void
- "fatal"(marker: $Marker$Type, message: string, ...params: (any)[]): void
- "fatal"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
- "fatal"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
- "fatal"(marker: $Marker$Type, message: $Message$Type): void
- "fatal"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
- "fatal"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
- "fatal"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
- "fatal"(marker: $Marker$Type, message: charseq): void
- "fatal"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
- "fatal"(message: charseq): void
- "fatal"(message: charseq, throwable: $Throwable$Type): void
- "fatal"(message: any): void
- "fatal"(message: any, throwable: $Throwable$Type): void
- "fatal"(message: string): void
- "fatal"(message: string, ...params: (any)[]): void
- "fatal"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
- "fatal"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
- "fatal"(message: $Message$Type): void
- "fatal"(message: $Message$Type, throwable: $Throwable$Type): void
- "fatal"(messageSupplier: $MessageSupplier$Type): void
- "fatal"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, message: $Message$Type): void
+ "debug"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "debug"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
+ "debug"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, message: any): void
+ "debug"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
+ "debug"(marker: $Marker$Type, message: string): void
+ "debug"(marker: $Marker$Type, message: string, ...params: (any)[]): void
  "catching"(throwable: $Throwable$Type): void
  "catching"(level: $Level$Type, throwable: $Throwable$Type): void
  "getLevel"(): $Level
  "throwing"<T extends $Throwable>(throwable: T): T
  "throwing"<T extends $Throwable>(level: $Level$Type, throwable: T): T
+ "traceEntry"(format: string, ...params: (any)[]): $EntryMessage
  "traceEntry"(): $EntryMessage
+ "traceEntry"(message: $Message$Type): $EntryMessage
  "traceEntry"(...paramSuppliers: ($Supplier$Type<(any)>)[]): $EntryMessage
  "traceEntry"(format: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): $EntryMessage
- "traceEntry"(format: string, ...params: (any)[]): $EntryMessage
- "traceEntry"(message: $Message$Type): $EntryMessage
- "traceExit"<R>(message: $Message$Type, result: R): R
  "traceExit"(message: $EntryMessage$Type): void
- "traceExit"<R>(message: $EntryMessage$Type, result: R): R
- "traceExit"(): void
  "traceExit"<R>(format: string, result: R): R
  "traceExit"<R>(result: R): R
+ "traceExit"(): void
+ "traceExit"<R>(message: $EntryMessage$Type, result: R): R
+ "traceExit"<R>(message: $Message$Type, result: R): R
  "logMessage"(level: $Level$Type, marker: $Marker$Type, fqcn: string, location: $StackTraceElement$Type, message: $Message$Type, throwable: $Throwable$Type): void
  "atTrace"(): $LogBuilder
  "atDebug"(): $LogBuilder
@@ -1270,15 +1221,63 @@ export interface $Logger {
  "atFatal"(): $LogBuilder
  "always"(): $LogBuilder
  "atLevel"(level: $Level$Type): $LogBuilder
+ "fatal"(message: $Message$Type, throwable: $Throwable$Type): void
+ "fatal"(messageSupplier: $MessageSupplier$Type): void
+ "fatal"(messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "fatal"(message: charseq): void
+ "fatal"(message: $Message$Type): void
+ "fatal"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, messageSupplier: $Supplier$Type<(any)>): void
+ "fatal"(message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "fatal"(message: string, ...params: (any)[]): void
+ "fatal"(message: string): void
+ "fatal"(message: any, throwable: $Throwable$Type): void
+ "fatal"(message: any): void
+ "fatal"(message: charseq, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type): void
+ "fatal"(marker: $Marker$Type, messageSupplier: $MessageSupplier$Type, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, message: charseq): void
+ "fatal"(marker: $Marker$Type, message: charseq, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, message: $Message$Type, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, message: $Message$Type): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "fatal"(marker: $Marker$Type, message: string, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, message: string, ...paramSuppliers: ($Supplier$Type<(any)>)[]): void
+ "fatal"(marker: $Marker$Type, message: string, ...params: (any)[]): void
+ "fatal"(marker: $Marker$Type, message: string): void
+ "fatal"(marker: $Marker$Type, message: any, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, message: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any, p3: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any): void
+ "fatal"(message: string, p0: any, p1: any): void
+ "fatal"(message: string, p0: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any, p9: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any, p8: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "fatal"(message: string, p0: any, p1: any, p2: any, p3: any, p4: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any): void
+ "fatal"(messageSupplier: $Supplier$Type<(any)>, throwable: $Throwable$Type): void
+ "fatal"(messageSupplier: $Supplier$Type<(any)>): void
+ "fatal"(message: string, throwable: $Throwable$Type): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any, p7: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any, p6: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any, p4: any, p5: any): void
+ "fatal"(marker: $Marker$Type, message: string, p0: any, p1: any, p2: any, p3: any): void
  "getMessageFactory"<MF extends $MessageFactory>(): MF
  "isDebugEnabled"(): boolean
  "isDebugEnabled"(marker: $Marker$Type): boolean
  "isErrorEnabled"(): boolean
  "isErrorEnabled"(marker: $Marker$Type): boolean
- "isFatalEnabled"(marker: $Marker$Type): boolean
  "isFatalEnabled"(): boolean
- "isInfoEnabled"(): boolean
+ "isFatalEnabled"(marker: $Marker$Type): boolean
  "isInfoEnabled"(marker: $Marker$Type): boolean
+ "isInfoEnabled"(): boolean
  "isTraceEnabled"(marker: $Marker$Type): boolean
  "isTraceEnabled"(): boolean
  "isWarnEnabled"(marker: $Marker$Type): boolean
@@ -1408,9 +1407,9 @@ export interface $ArtifactVersion extends $Comparable<($ArtifactVersion)> {
 
  "getMinorVersion"(): integer
  "getMajorVersion"(): integer
+ "getIncrementalVersion"(): integer
  "getBuildNumber"(): integer
  "getQualifier"(): string
- "getIncrementalVersion"(): integer
  "parseVersion"(arg0: string): void
  "compareTo"(arg0: $ArtifactVersion$Type): integer
 }
@@ -1482,18 +1481,18 @@ constructor()
 public "isEnabled"(): boolean
 public "toString"(): string
 public "merge"(arg0: $ArtifactRepositoryPolicy$Type): void
-public "setEnabled"(arg0: boolean): void
-public "checkOutOfDate"(arg0: $Date$Type): boolean
-public "getChecksumPolicy"(): string
-public "getUpdatePolicy"(): string
-public "setChecksumPolicy"(arg0: string): void
 public "setUpdatePolicy"(arg0: string): void
+public "setChecksumPolicy"(arg0: string): void
+public "getUpdatePolicy"(): string
+public "getChecksumPolicy"(): string
+public "checkOutOfDate"(arg0: $Date$Type): boolean
+public "setEnabled"(arg0: boolean): void
 get "enabled"(): boolean
-set "enabled"(value: boolean)
-get "checksumPolicy"(): string
-get "updatePolicy"(): string
-set "checksumPolicy"(value: string)
 set "updatePolicy"(value: string)
+set "checksumPolicy"(value: string)
+get "updatePolicy"(): string
+get "checksumPolicy"(): string
+set "enabled"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

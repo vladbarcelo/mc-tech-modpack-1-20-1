@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:polishing",
+	"ingredients": [
+		{
+			"item": "kubejs:bronze_shovel_blade_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:polished_bronze_shovel_blade_in_tongs",
+		"count": 1
+	}
+}

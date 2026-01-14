@@ -69,7 +69,7 @@ ServerEvents.recipes((event) => {
       "tag": "forge:ingots/tin"
     },
     "input1": {
-      "item": "forge:ingots/copper"
+      "tag": "forge:ingots/copper"
     },
     "result": {
       "base_ingredient": {

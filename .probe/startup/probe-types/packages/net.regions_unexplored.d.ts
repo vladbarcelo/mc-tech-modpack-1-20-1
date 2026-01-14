@@ -114,26 +114,26 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLimbsCheck"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: integer): boolean
-public "placeBeehive"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeLeavesBlobLeft"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLeavesBlobRight"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLeavesTopLeft"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLeavesMiddle"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLeavesTopRight"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "placeLimbsCheck"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: integer): boolean
+public "placeBeehive"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLimbs"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: integer, arg3: $RandomSource$Type, arg4: $RuTreeConfiguration$Type): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeBase"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLogX"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLogZ"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "placeBase"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -284,9 +284,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -419,16 +419,6 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "checkReplaceableBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeBlobTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -438,6 +428,16 @@ public "placeBlobMed"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Ra
 public "placeBlobBig"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBlobXBig"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeRandomLogDecoration"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type, arg5: boolean, arg6: boolean): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -641,12 +641,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -791,9 +791,9 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getPlantType"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $PlantType
-public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "isSignalSource"(arg0: $BlockState$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1158,11 +1158,11 @@ public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $Block
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public "updateEntityAfterFallOn"(arg0: $BlockGetter$Type, arg1: $Entity$Type): void
 public "getPlant"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $BlockState
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "getPlantType"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $PlantType
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -1409,9 +1409,9 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getDustColor"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "isFree"(arg0: $BlockState$Type): boolean
@@ -1706,13 +1706,11 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeBranchesXXLong"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "placeBranchesXXLong"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchesShort"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchesLong"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -1721,11 +1719,13 @@ public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2:
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2051,10 +2051,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type, arg2: $Food$Type)
 
-public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2468,25 +2468,25 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "placeLogWithVines"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
+public "placeLeavesBlockWithVines"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
-public "placeLogWithVines"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeLeavesBlockWithVines"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
+public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeLimb"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Type): void
-public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2708,13 +2708,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public "placeCactusBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $SaguaroCactusShape$Type): boolean
-public "placeChanceFlowerBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeCactusBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $SaguaroCactusShape$Type): boolean
+public "placeChanceFlowerBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLimbs"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -2928,12 +2928,10 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchesShort"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchesLong"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -2941,11 +2939,13 @@ public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2:
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3090,13 +3090,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "getBlockSupportShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): $VoxelShape
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShadeBrightness"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): float
+public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3786,10 +3786,10 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
-public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public static "isAirBlock"(arg0: $BlockState$Type): boolean
 public "placeBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: boolean, arg3: integer, arg4: integer, arg5: integer): boolean
 public "placeCoral"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): void
@@ -4368,13 +4368,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLogBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $Direction$Axis$Type): void
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "placeShrub"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
@@ -4653,14 +4653,14 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($GiantBioshroomConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeCapBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeStemBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeGlowingBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "placeCapVine"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($GiantBioshroomConfiguration$Type)>): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeBase"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
@@ -5146,16 +5146,6 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "checkReplaceableBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeBlobTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -5165,6 +5155,16 @@ public "placeBlobMed"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Ra
 public "placeBlobBig"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBlobXBig"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeRandomLogDecoration"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type, arg5: boolean, arg6: boolean): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -5391,16 +5391,16 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5432,8 +5432,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
 import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
@@ -5492,9 +5492,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
-public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
@@ -5502,9 +5499,12 @@ public "getMaxHorizontalOffset"(): float
 public "getOcclusionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): $VoxelShape
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
 public static "canDrip"(arg0: $BlockState$Type): boolean
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -5679,16 +5679,16 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeBranches"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeLeavesBlobLayer"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBeehiveOrLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeBranches"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -6034,13 +6034,13 @@ readonly "properties": $BlockBehaviour$Properties
  "drops": $ResourceLocation
 
 
+public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
+public "isSignalSource"(arg0: $BlockState$Type): boolean
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
-public "isSignalSource"(arg0: $BlockState$Type): boolean
-public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "isPossibleToRespawnInThis"(arg0: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -7145,13 +7145,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLogBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $Direction$Axis$Type): void
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "placeShrub"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
@@ -7283,13 +7283,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -7592,23 +7592,23 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Type): void
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7912,9 +7912,9 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "mayPlaceOn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -8274,13 +8274,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "placeBottom"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
 public "placeStoneBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
 public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 }
 /**
@@ -8411,12 +8411,10 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchesShort"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchesLong"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -8425,11 +8423,13 @@ public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2:
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8584,9 +8584,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "mayPlaceOn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "isShearable"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $BlockPos$Type): boolean
 public "onSheared"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $Level$Type, arg3: $BlockPos$Type, arg4: integer): $List<($ItemStack)>
@@ -8822,15 +8822,15 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public static "turnToDirt"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -9160,24 +9160,24 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeLeavesBlobMed"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLeavesBlobLarge"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLeavesBlobSmall"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9303,10 +9303,10 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
-public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public static "isAirBlock"(arg0: $BlockState$Type): boolean
 }
 /**
@@ -9436,13 +9436,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeBranches"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeBranches"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -9654,8 +9654,7 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($FallenTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeMossAbove"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesLayerX"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesLayerZ"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
@@ -9663,12 +9662,13 @@ public "placeLeavesBlobNorth"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, a
 public "placeLeavesBlobSouth"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesBlobEast"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesBlobWest"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($FallenTreeConfiguration$Type)>): boolean
-public "placeStump"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
+public "placeMoss"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLogX"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLogZ"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
-public "placeMoss"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
+public "placeStump"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9865,8 +9865,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public static "isSmouldering"(arg0: $BlockState$Type): boolean
+public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
@@ -9999,13 +9999,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($GiantBioshroomConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeCapBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeStemBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeGlowingBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($GiantBioshroomConfiguration$Type)>): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeBase"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
@@ -10935,10 +10935,6 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public static "growStalactiteOrStalagmiteIfPossible"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getHurtsEntitySelector"(): $Predicate<($Entity)>
-public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
-public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
@@ -10946,9 +10942,13 @@ public "getMaxHorizontalOffset"(): float
 public "getOcclusionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): $VoxelShape
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
 public "getFallDamageSource"(arg0: $Entity$Type): $DamageSource
 public static "canDrip"(arg0: $BlockState$Type): boolean
@@ -11090,14 +11090,14 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($GiantBioshroomConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeGlowingCaps"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type, arg4: integer): void
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeCapBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeStemBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeGlowingBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "placeGlowingCaps"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type, arg4: integer): void
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($GiantBioshroomConfiguration$Type)>): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeBase"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
@@ -11227,10 +11227,10 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
-public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public static "isAirBlock"(arg0: $BlockState$Type): boolean
 }
 /**
@@ -11437,11 +11437,9 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeLeavesBlobTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchesShort"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -11455,11 +11453,13 @@ public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2:
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11541,8 +11541,8 @@ public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "mayPlaceOn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "mayPlaceOn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -11569,8 +11569,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
@@ -11627,12 +11627,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -11829,8 +11829,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $MobEffect$Type, arg1: integer, arg2: $BlockBehaviour$Properties$Type)
 
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
 public static "tryGet"(arg0: $ItemLike$Type): $SuspiciousEffectHolder
+public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "allEffectHolders"(): $List<($SuspiciousEffectHolder)>
 }
@@ -12104,22 +12104,22 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "placeLeafDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
-public "placeLeafDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12494,18 +12494,18 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -13176,12 +13176,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -13313,14 +13313,14 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeBranches"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -13454,22 +13454,22 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13495,8 +13495,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
@@ -13553,12 +13553,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -13915,25 +13915,25 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeLimbsUpper"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeLimbs"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeMoss"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLimbs"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14011,9 +14011,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $AbstractTreeGrower$Type)
 
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "mayPlaceOn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -14097,8 +14097,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public static "isSmouldering"(arg0: $BlockState$Type): boolean
+public "getToolModifiedState"(arg0: $BlockState$Type, arg1: $UseOnContext$Type, arg2: $ToolAction$Type, arg3: boolean): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
@@ -14183,9 +14183,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $AbstractTreeGrower$Type, arg1: $MobEffect$Type, arg2: integer, arg3: $BlockBehaviour$Properties$Type)
 
-public "getPlantType"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $PlantType
 public "getSuspiciousStewEffect"(): $MobEffect
 public "getEffectDuration"(): integer
+public "getPlantType"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $PlantType
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
@@ -14320,13 +14320,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLogBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $Direction$Axis$Type): void
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "placeShrub"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
@@ -14485,23 +14485,23 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Type): void
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14585,15 +14585,15 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
 public static "turnToDirt"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -14724,15 +14724,15 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeRandomChanceLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeLeavesTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranches"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: integer, arg5: integer): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "placeRandomChanceLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -15542,9 +15542,9 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public "placeBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeBranch2"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 }
 /**
@@ -15754,13 +15754,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($GiantBioshroomConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeCapBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeStemBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeGlowingBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($GiantBioshroomConfiguration$Type)>): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
 public "placeBase"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $GiantBioshroomConfiguration$Type): void
@@ -15889,9 +15889,9 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public "placeBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeBranch2"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 }
 /**
@@ -16135,14 +16135,14 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "generateSmallSpire"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "generateSmallSpire"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -16275,11 +16275,9 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeLeavesBlobTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchesShort"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -16293,11 +16291,13 @@ public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2:
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16369,9 +16369,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $MobEffect$Type, arg1: integer, arg2: $BlockBehaviour$Properties$Type)
 
-public "getPlantType"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $PlantType
 public "getSuspiciousStewEffect"(): $MobEffect
 public "getEffectDuration"(): integer
+public "getPlantType"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $PlantType
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "suspiciousStewEffect"(): $MobEffect
@@ -16400,8 +16400,8 @@ import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/worl
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
@@ -16459,8 +16459,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
@@ -17224,18 +17224,18 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
@@ -17513,10 +17513,10 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($HyacinthStockConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($HyacinthStockConfiguration$Type)>): boolean
 public "placePlant"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $HyacinthStockConfiguration$Type): boolean
 }
@@ -17648,11 +17648,9 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeLeavesBlobTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
 public "placeBranchesShort"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
@@ -17665,11 +17663,13 @@ public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2:
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17872,12 +17872,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $MobEffect$Type, arg1: integer, arg2: $BlockBehaviour$Properties$Type)
 
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public static "tryGet"(arg0: $ItemLike$Type): $SuspiciousEffectHolder
+public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "allEffectHolders"(): $List<($SuspiciousEffectHolder)>
 }
@@ -18009,23 +18009,23 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeBranches"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
 public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "placeBranchDecorator"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeNorthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeSouthBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeEastBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeWestBranch"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: $Direction$Axis$Type): boolean
-public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public "placeTop"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type, arg4: boolean): void
+public "placeRoot"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -18102,8 +18102,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $MobEffect$Type, arg1: integer, arg2: $BlockBehaviour$Properties$Type)
 
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
 public static "tryGet"(arg0: $ItemLike$Type): $SuspiciousEffectHolder
+public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "allEffectHolders"(): $List<($SuspiciousEffectHolder)>
 }
@@ -18263,13 +18263,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "placeBottom"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
 public "placeRandomBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
 public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
-public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "placeMoss"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
 }
@@ -18429,15 +18429,15 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeBottom"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
-public "placeRandomBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeBottom"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
+public "placeRandomBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
 public "placeTopBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): void
 public "placeNetherrack"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 }
 /**
@@ -18567,13 +18567,13 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($RuTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 public static "isReplaceableDirtBlock"(arg0: $BlockState$Type): boolean
 public static "isReplaceableDirt"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "checkReplaceable"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public "placeLeavesBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): boolean
-public "placeLeavesBlob"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($RuTreeConfiguration$Type)>): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $RuTreeConfiguration$Type): void
 }
@@ -18817,8 +18817,8 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "mayPlaceOn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "mayPlaceOn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -18954,21 +18954,21 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($FallenTreeConfiguration$Type)>)
 
-public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
-public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
+public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
 public "placeLeavesLayerX"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesLayerZ"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesBlobNorth"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
+public "placeSnowAbove"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesBlobSouth"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesBlobEast"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLeavesBlobWest"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
-public static "isReplaceableBlock"(arg0: $BlockState$Type): boolean
-public "placeSnowAbove"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
+public static "isReplaceable"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
+public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($FallenTreeConfiguration$Type)>): boolean
 public "placeSnow"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
-public "placeStump"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLogX"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 public "placeLogZ"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
+public "placeStump"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $RandomSource$Type, arg3: $FallenTreeConfiguration$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

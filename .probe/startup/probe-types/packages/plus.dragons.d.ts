@@ -42,40 +42,40 @@ public "tick"(): void
 public "initialize"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "destroy"(): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
-public "getRequiredItems"(arg0: $BlockState$Type): $ItemRequirement
-public "getInventory"(): $ItemStackHandler
-public "getNextEmptySlot"(): integer
-public "tryUpdateFuel"(arg0: $ItemStack$Type, arg1: boolean, arg2: boolean): boolean
-public "isValidBlockAbove"(): boolean
+public "getHeadAnimation"(): $LerpedFloat
 public "applyCreativeFuel"(): void
-public "tryAddIngredient"(arg0: $ItemStack$Type, arg1: boolean, arg2: boolean): boolean
-public "getHeadAngle"(): $LerpedFloat
+public "isValidBlockAbove"(): boolean
 public "getBlazeStatusCode"(): integer
+public "getHeadAngle"(): $LerpedFloat
 public "addSmokeAtItem"(arg0: integer, arg1: integer): void
 public "isBlockedAbove"(): boolean
-public "getHeadAnimation"(): $LerpedFloat
-public "getDisplayName"(): $Component
+public "tryAddIngredient"(arg0: $ItemStack$Type, arg1: boolean, arg2: boolean): boolean
+public "getNextEmptySlot"(): integer
+public "tryUpdateFuel"(arg0: $ItemStack$Type, arg1: boolean, arg2: boolean): boolean
+public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "getRequiredItems"(arg0: $BlockState$Type): $ItemRequirement
+public "getInventory"(): $ItemStackHandler
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "stillValid"(arg0: $Player$Type): boolean
+public "getDisplayName"(): $Component
 public "writeSafe"(arg0: $CompoundTag$Type): void
+public "dropAll"(): void
 public "findRecipe"(arg0: $Container$Type, arg1: integer): $Optional<($CampfireCookingRecipe)>
 public "getGuide"(): $ItemStack
 public "setGuide"(arg0: $ItemStack$Type): void
-public "dropAll"(): void
-public "containedFluidTooltip"(arg0: $List$Type<(any)>, arg1: boolean, arg2: $LazyOptional$Type<(any)>): boolean
 public "getPurityColor"(arg0: integer): $ChatFormatting
+public "containedFluidTooltip"(arg0: $List$Type<(any)>, arg1: boolean, arg2: $LazyOptional$Type<(any)>): boolean
 public "getIcon"(arg0: boolean): $ItemStack
 public "shouldCloseCurrentScreen"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "inventory"(): $ItemStackHandler
-get "nextEmptySlot"(): integer
-get "validBlockAbove"(): boolean
-get "headAngle"(): $LerpedFloat
-get "blazeStatusCode"(): integer
-get "blockedAbove"(): boolean
 get "headAnimation"(): $LerpedFloat
+get "validBlockAbove"(): boolean
+get "blazeStatusCode"(): integer
+get "headAngle"(): $LerpedFloat
+get "blockedAbove"(): boolean
+get "nextEmptySlot"(): integer
+get "inventory"(): $ItemStackHandler
 get "displayName"(): $Component
 get "guide"(): $ItemStack
 set "guide"(value: $ItemStack$Type)
@@ -127,10 +127,10 @@ export class $AbstractTrigger<T extends $AbstractTrigger$Instance> implements $C
 
 constructor(arg0: $ResourceLocation$Type)
 
+public "removePlayerListeners"(arg0: $PlayerAdvancements$Type): void
 public "getId"(): $ResourceLocation
 public "addPlayerListener"(arg0: $PlayerAdvancements$Type, arg1: $CriterionTrigger$Listener$Type<(T)>): void
 public "removePlayerListener"(arg0: $PlayerAdvancements$Type, arg1: $CriterionTrigger$Listener$Type<(T)>): void
-public "removePlayerListeners"(arg0: $PlayerAdvancements$Type): void
 public "createInstance"(arg0: $JsonObject$Type, arg1: $DeserializationContext$Type): T
 get "id"(): $ResourceLocation
 }
@@ -375,15 +375,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
-public "getBlockEntityClass"(): $Class<($BlazeStoveBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<(any)>
-public "onSneakWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "startSignal"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): void
+public "onSneakWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getBlockEntityClass"(): $Class<($BlazeStoveBlockEntity)>
 public "asItem"(): $Item
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
@@ -392,27 +389,30 @@ public "isSignalSource"(arg0: $BlockState$Type): boolean
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public static "tryInsert"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $ItemStack$Type, arg3: boolean, arg4: boolean, arg5: boolean): $InteractionResultHolder<($ItemStack)>
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $BlazeStoveBlockEntity
-public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($BlazeStoveBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($BlazeStoveBlockEntity)>
+public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($BlazeStoveBlockEntity$Type)>): void
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($BlazeStoveBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "onWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityClass"(): $Class<($BlazeStoveBlockEntity)>
 get "blockEntityType"(): $BlockEntityType<(any)>
+get "blockEntityClass"(): $Class<($BlazeStoveBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -502,8 +502,8 @@ export class $SimpleTrigger extends $AbstractTrigger<($SimpleTrigger$Instance)> 
 
 constructor(arg0: $ResourceLocation$Type)
 
-public "createInstance"(arg0: $JsonObject$Type, arg1: $DeserializationContext$Type): $SimpleTrigger$Instance
 public "instance"(): $SimpleTrigger$Instance
+public "createInstance"(arg0: $JsonObject$Type, arg1: $DeserializationContext$Type): $SimpleTrigger$Instance
 public "trigger"(arg0: $ServerPlayer$Type): void
 }
 /**
@@ -531,18 +531,18 @@ export class $BlazeStoveGuide implements $ICapabilitySerializable<($CompoundTag)
 
 constructor(arg0: $ItemStack$Type, arg1: integer)
 
-public "getResult"(): $ItemStack
 public "getOwner"(): $ItemStack
-public "deserializeNBT"(arg0: $CompoundTag$Type): void
-public "isContainer"(arg0: $ItemStack$Type): boolean
-public "updateRecipe"(arg0: $Level$Type): void
-public "isIngredient"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "getResult"(): $ItemStack
 public "needIngredient"(arg0: integer): boolean
 public "getIngredientSize"(): integer
+public "isIngredient"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "deserializeNBT"(arg0: $CompoundTag$Type): void
+public "updateRecipe"(arg0: $Level$Type): void
+public "isContainer"(arg0: $ItemStack$Type): boolean
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
-get "result"(): $ItemStack
 get "owner"(): $ItemStack
+get "result"(): $ItemStack
 get "ingredientSize"(): integer
 }
 /**
@@ -629,14 +629,14 @@ public "description"(): string
 public "id"(): $ResourceLocation
 public "save"(arg0: $Consumer$Type<($Advancement$Type)>): void
 public "getTrigger"(): $SimpleTrigger
-public "title"(): string
-public "isAlreadyAwardedTo"(arg0: $Player$Type): boolean
 public static "provideLangEntries"(arg0: string): $JsonObject
 public "descriptionKey"(): string
-public "appendToLang"(arg0: $JsonObject$Type): void
+public "isAlreadyAwardedTo"(arg0: $Player$Type): boolean
+public "title"(): string
 public "asCreateAdvancement"(): $CreateAdvancement
-public "titleKey"(): string
+public "appendToLang"(arg0: $JsonObject$Type): void
 public "awardTo"(arg0: $Player$Type): void
+public "titleKey"(): string
 get "trigger"(): $SimpleTrigger
 }
 /**
@@ -690,9 +690,9 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
-import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -719,11 +719,11 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "appendGuideTooltip"(arg0: $ItemStack$Type, arg1: $List$Type<($Component$Type)>, arg2: boolean): void
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getDisplayName"(): $Component
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "getDisplayName"(): $Component
 public "shouldCloseCurrentScreen"(): boolean
 get "displayName"(): $Component
 }

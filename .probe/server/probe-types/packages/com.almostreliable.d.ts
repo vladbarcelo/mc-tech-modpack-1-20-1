@@ -56,26 +56,26 @@ static readonly "SERIALIZER": $RecipeSerializer<($ClientRecipeTracker)>
 static readonly "TYPE": $RecipeType<($ClientRecipeTracker)>
 
 
-public "getLink"(recipeId: $ResourceLocation$Type): $ClientRecipeTracker$ClientRecipeLink
 public "getResultItem"(registryAccess: $RegistryAccess$Type): $ItemStack
+public "getLink"(recipeId: $ResourceLocation$Type): $ClientRecipeTracker$ClientRecipeLink
 public "assemble"(container: $Container$Type, registryAccess: $RegistryAccess$Type): $ItemStack
 public "matches"(container: $Container$Type, level: $Level$Type): boolean
 public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(width: integer, height: integer): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
 public "isSpecial"(): boolean
-public "getRemainingItems"(arg0: $Container$Type): $NonNullList<($ItemStack)>
-public "getIngredients"(): $NonNullList<($Ingredient)>
 public "showNotification"(): boolean
+public "getIngredients"(): $NonNullList<($Ingredient)>
+public "getRemainingItems"(arg0: $Container$Type): $NonNullList<($ItemStack)>
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "getType"(): $ResourceLocation
-public "getGroup"(): string
-public "setGroup"(group: string): void
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "setGroup"(group: string): void
+public "getGroup"(): string
+public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -85,11 +85,11 @@ get "special"(): boolean
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "type"(): $ResourceLocation
-get "group"(): string
-set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
+set "group"(value: string)
+get "group"(): string
+get "type"(): $ResourceLocation
 get "mod"(): string
 }
 /**
@@ -136,10 +136,10 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 export class $AlmostKube {
 
 
-public static "getUnifyConfig"(): $UnifyConfig
-public static "getPreferredTagForItem"(stack: $ItemStack$Type): string
 public static "getReplacementForItem"(stack: $ItemStack$Type): $ItemStack
 public static "getPreferredItemForTag"(tag: $ResourceLocation$Type): $ItemStack
+public static "getPreferredTagForItem"(stack: $ItemStack$Type): string
+public static "getUnifyConfig"(): $UnifyConfig
 public static "getTags"(): $Set<(string)>
 public static "getItemIds"(tag: $ResourceLocation$Type): $Set<(string)>
 get "unifyConfig"(): $UnifyConfig
@@ -201,10 +201,6 @@ static readonly "NAME": string
 constructor(modPriorities: $List$Type<(string)>, stoneStrata: $List$Type<(string)>, unbakedTags: $List$Type<(string)>, materials: $List$Type<(string)>, priorityOverrides: $Map$Type<($ResourceLocation$Type), (string)>, customTags: $Map$Type<($ResourceLocation$Type), ($Set$Type<($ResourceLocation$Type)>)>, tagOwnerships: $Map$Type<($ResourceLocation$Type), ($Set$Type<($ResourceLocation$Type)>)>, itemTagInheritanceMode: $Enum$Type<($UnifyConfig$TagInheritanceMode$Type)>, itemTagInheritance: $Map$Type<($ResourceLocation$Type), ($Set$Type<($Pattern$Type)>)>, blockTagInheritanceMode: $Enum$Type<($UnifyConfig$TagInheritanceMode$Type)>, blockTagInheritance: $Map$Type<($ResourceLocation$Type), ($Set$Type<($Pattern$Type)>)>, ignoredTags: $Set$Type<($UnifyTag$Type<($Item$Type)>)>, ignoredItems: $Set$Type<($Pattern$Type)>, ignoredRecipeTypes: $Set$Type<($Pattern$Type)>, ignoredRecipes: $Set$Type<($Pattern$Type)>, hideJeiRei: boolean)
 
 public "clearCache"(): void
-public "reiOrJeiDisabled"(): boolean
-public "bakeAndValidateTags"(tags: $Map$Type<($ResourceLocation$Type), ($Collection$Type<($Holder$Type<($Item$Type)>)>)>): $Set<($UnifyTag<($Item)>)>
-public "getTagOwnerships"(): $Map<($ResourceLocation), ($Set<($ResourceLocation)>)>
-public "getMaterials"(): $List<(string)>
 public "getModPriorities"(): $List<(string)>
 public "getStoneStrata"(): $List<(string)>
 public "getPriorityOverrides"(): $Map<($ResourceLocation), (string)>
@@ -214,13 +210,17 @@ public "shouldInheritBlockTag"(itemTag: $UnifyTag$Type<($Block$Type)>, dominantT
 public "includeItem"(item: $ResourceLocation$Type): boolean
 public "includeRecipe"(recipe: $ResourceLocation$Type): boolean
 public "includeRecipeType"(type: $ResourceLocation$Type): boolean
+public "getMaterials"(): $List<(string)>
+public "reiOrJeiDisabled"(): boolean
+public "bakeAndValidateTags"(tags: $Map$Type<($ResourceLocation$Type), ($Collection$Type<($Holder$Type<($Item$Type)>)>)>): $Set<($UnifyTag<($Item)>)>
+public "getTagOwnerships"(): $Map<($ResourceLocation), ($Set<($ResourceLocation)>)>
 public "bakeTags"(): $Set<($UnifyTag<($Item)>)>
-get "tagOwnerships"(): $Map<($ResourceLocation), ($Set<($ResourceLocation)>)>
-get "materials"(): $List<(string)>
 get "modPriorities"(): $List<(string)>
 get "stoneStrata"(): $List<(string)>
 get "priorityOverrides"(): $Map<($ResourceLocation), (string)>
 get "customTags"(): $Map<($ResourceLocation), ($Set<($ResourceLocation)>)>
+get "materials"(): $List<(string)>
+get "tagOwnerships"(): $Map<($ResourceLocation), ($Set<($ResourceLocation)>)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -245,8 +245,8 @@ constructor()
 
 public "isInvalid"(): boolean
 public "serialize"(arg0: T): $JsonObject
-public "safeGet"<V>(supplier: $Supplier$Type<(V)>, defaultValue: V): V
 public "deserialize"(arg0: $JsonObject$Type): T
+public "safeGet"<V>(supplier: $Supplier$Type<(V)>, defaultValue: V): V
 get "invalid"(): boolean
 }
 /**
@@ -269,11 +269,11 @@ export class $ClientRecipeTracker$ClientRecipeLink extends $Record {
 
 constructor(id: $ResourceLocation$Type, isUnified: boolean, isDuplicate: boolean)
 
+public "isDuplicate"(): boolean
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "id"(): $ResourceLocation
-public "isDuplicate"(): boolean
 public "isUnified"(): boolean
 get "duplicate"(): boolean
 get "unified"(): boolean

@@ -127,6 +127,7 @@ import {WorldgenFoliagePlacerType, WorldgenFoliagePlacerType$Type} from "package
 import {Colonyeventtypes, Colonyeventtypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Colonyeventtypes"
 import {TeamType, TeamType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/TeamType"
 import {WorldgenRootPlacerType, WorldgenRootPlacerType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenRootPlacerType"
+import {TimeEffect, TimeEffect$Type} from "packages/moe/wolfgirl/probejs/generated/registry/betterdays/TimeEffect"
 import {BlockPredicateType, BlockPredicateType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/BlockPredicateType"
 import {PlacementConditionType, PlacementConditionType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/lithostitched/PlacementConditionType"
 import {ProcessorConditionType, ProcessorConditionType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/lithostitched/ProcessorConditionType"
@@ -229,9 +230,10 @@ function registry(extra: "damage_type", handler: (event: DamageType) => void): v
 function registry(extra: "rule_block_entity_modifier", handler: (event: RuleBlockEntityModifier) => void): void
 function registry(extra: "decorated_pot_patterns", handler: (event: DecoratedPotPatterns) => void): void
 function registry(extra: "worldgen/multi_noise_biome_source_parameter_list", handler: (event: WorldgenMultiNoiseBiomeSourceParameterList) => void): void
-function registry(extra: "corgilib:condition", handler: (event: Condition) => void): void
-function registry(extra: "corgilib:blending_function", handler: (event: BlendingFunction) => void): void
 function registry(extra: "corgilib:villager_trades_item_listing", handler: (event: VillagerTradesItemListing) => void): void
+function registry(extra: "corgilib:blending_function", handler: (event: BlendingFunction) => void): void
+function registry(extra: "corgilib:condition", handler: (event: Condition) => void): void
+function registry(extra: "betterdays:time_effect", handler: (event: TimeEffect) => void): void
 function registry(extra: "cb_microblock:micro_material", handler: (event: MicroMaterial) => void): void
 function registry(extra: "cb_multipart:multipart_types", handler: (event: MultipartTypes) => void): void
 function registry(extra: "cb_multipart:part_converters", handler: (event: PartConverters) => void): void
@@ -280,10 +282,10 @@ function registry(extra: "petrolpark:shop", handler: (event: Shop) => void): voi
 function registry(extra: "petrolpark:shop_offer_generator", handler: (event: ShopOfferGenerator) => void): void
 function registry(extra: "petrolpark:team_data_type", handler: (event: TeamDataType) => void): void
 function registry(extra: "petrolpark:team_type", handler: (event: TeamType) => void): void
+function registry(extra: "lithostitched:worldgen_modifier", handler: (event: WorldgenModifier) => void): void
 function registry(extra: "forge:structure_modifier", handler: (event: StructureModifier) => void): void
+function registry(extra: "forge:biome_modifier", handler: (event: BiomeModifier) => void): void
 function registry(extra: "moonlight:soft_fluids", handler: (event: SoftFluids) => void): void
 function registry(extra: "moonlight:map_markers", handler: (event: MapMarkers) => void): void
-function registry(extra: "forge:biome_modifier", handler: (event: BiomeModifier) => void): void
-function registry(extra: "lithostitched:worldgen_modifier", handler: (event: WorldgenModifier) => void): void
 }
 }

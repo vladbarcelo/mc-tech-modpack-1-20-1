@@ -86,36 +86,36 @@ constructor(groupPlayers: $Set$Type<($UUID$Type)>, chunks: $Table$Type<($Resourc
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "groupPlayers"(): $Set<($UUID)>
 public "addStructure"(dimension: $ResourceKey$Type<($Level$Type)>, structureKey: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): void
 public "sharedPlayers"(): $Set<($UUID)>
 public "mergeRegion"(dimension: $ResourceKey$Type<($Level$Type)>, regionPos: $RegionPos$Type, chunks: $BitSet$Type): void
-public "groupPlayers"(): $Set<($UUID)>
-public "starts"(): $Table<($ResourceKey<($Level)>), ($ResourceKey<($Structure)>), ($LongSet)>
 public "chunks"(): $Table<($ResourceKey<($Level)>), ($RegionPos), ($BitSet)>
+public "starts"(): $Table<($ResourceKey<($Level)>), ($ResourceKey<($Structure)>), ($LongSet)>
 public "personal"(): boolean
 public "addChunk"(dimension: $ResourceKey$Type<($Level$Type)>, pos: $ChunkPos$Type): void
-public "copyFrom"(oldExploration: $SurveyorExploration$Type): void
 public "chunkCount"(): integer
+public "copyFrom"(oldExploration: $SurveyorExploration$Type): void
 public static "of"(player: $ServerPlayer$Type): $SurveyorExploration
 public static "of"(player: $UUID$Type, server: $MinecraftServer$Type): $SurveyorExploration
+public "limit"(dimension: $ResourceKey$Type<($Level$Type)>, regionPos: $RegionPos$Type, chunks: $BitSet$Type): $BitSet
 public "limit"(dimension: $ResourceKey$Type<($Level$Type)>, landmarks: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>): $Table<($UUID), ($ResourceLocation), ($Landmark)>
 public "limit"(dimension: $ResourceKey$Type<($Level$Type)>, starts: $Multimap$Type<($ResourceKey$Type<($Structure$Type)>), ($ChunkPos$Type)>): $Multimap<($ResourceKey<($Structure)>), ($ChunkPos)>
 public "limit"(dimension: $ResourceKey$Type<($Level$Type)>, chunks: $Map$Type<($RegionPos$Type), ($BitSet$Type)>): $Map<($RegionPos), ($BitSet)>
-public "limit"(dimension: $ResourceKey$Type<($Level$Type)>, regionPos: $RegionPos$Type, chunks: $BitSet$Type): $BitSet
 public "limit"(dimension: $ResourceKey$Type<($Level$Type)>, landmarks: $WorldLandmarks$Type, keys: $Multimap$Type<($UUID$Type), ($ResourceLocation$Type)>): $Multimap<($UUID), ($ResourceLocation)>
 public "write"(nbt: $CompoundTag$Type): $CompoundTag
 public "read"(nbt: $CompoundTag$Type): void
-public "updateClientForMergeRegion"(summary: $WorldSummary$Type, regionPos: $RegionPos$Type, chunks: $BitSet$Type): void
+public "updateClientForAddStructure"(summary: $WorldSummary$Type, structureKey: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): void
 public "exploredStructure"(dimension: $ResourceKey$Type<($Level$Type)>, structure: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): boolean
 public "exploredChunk"(dimension: $ResourceKey$Type<($Level$Type)>, pos: $ChunkPos$Type): boolean
 public "exploredLandmark"(dimension: $ResourceKey$Type<($Level$Type)>, landmark: $Landmark$Type): boolean
 public "structureCount"(): integer
+public "updateClientForMergeRegion"(summary: $WorldSummary$Type, regionPos: $RegionPos$Type, chunks: $BitSet$Type): void
 public "updateClientForLandmarks"(summary: $WorldSummary$Type): void
 public "replaceTerrain"(chunks: $Table$Type<($ResourceKey$Type<($Level$Type)>), ($RegionPos$Type), ($BitSet$Type)>): void
 public "updateClientForAddChunk"(summary: $WorldSummary$Type, chunkPos: $ChunkPos$Type): void
 public "mergeStructures"(dimension: $ResourceKey$Type<($Level$Type)>, structureKey: $ResourceKey$Type<($Structure$Type)>, starts: $LongSet$Type): void
 public "replaceStructures"(starts: $Table$Type<($ResourceKey$Type<($Level$Type)>), ($ResourceKey$Type<($Structure$Type)>), ($LongSet$Type)>): void
-public "updateClientForAddStructure"(summary: $WorldSummary$Type, structureKey: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): void
 public static "ofShared"(player: $ServerPlayer$Type): $SurveyorExploration
 public static "ofShared"(player: $UUID$Type, server: $MinecraftServer$Type): $SurveyorExploration
 }
@@ -145,8 +145,8 @@ export interface $PlayerSummary {
  "copyFrom"(oldSummary: $PlayerSummary$Type): void
  "dimension"(): $ResourceKey<($Level)>
  "pos"(): $Vec3
- "viewDistance"(): integer
  "exploration"(): $SurveyorExploration
+ "viewDistance"(): integer
  "username"(): string
  "yaw"(): float
  "online"(): boolean
@@ -254,8 +254,8 @@ declare global {
 export type $RegionSummary_ = $RegionSummary$Type;
 }}
 declare module "packages/folk/sisby/surveyor/$ServerSummary" {
-import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$ServerGamePacketListenerImpl, $ServerGamePacketListenerImpl$Type} from "packages/net/minecraft/server/network/$ServerGamePacketListenerImpl"
+import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$ServerPlayer, $ServerPlayer$Type} from "packages/net/minecraft/server/level/$ServerPlayer"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$WorldSummary, $WorldSummary$Type} from "packages/folk/sisby/surveyor/$WorldSummary"
@@ -280,26 +280,26 @@ public "groupSize"(player: $UUID$Type): integer
 public static "load"(server: $MinecraftServer$Type): $ServerSummary
 public static "of"(server: $MinecraftServer$Type): $ServerSummary
 public "save"(force: boolean, suppressLogs: boolean): void
-public "updatePlayer"(uuid: $UUID$Type, nbt: $CompoundTag$Type, online: boolean): void
-public static "onPlayerJoin"(handler: $ServerGamePacketListenerImpl$Type, sender: $PacketSender$Type, server: $MinecraftServer$Type): void
-public "getExploration"(player: $UUID$Type): $SurveyorExploration
-public "getSharingExploration"(player: $UUID$Type, mode: $NetworkMode$Type, withSelf: boolean): $SurveyorExploration
 public "getSharingPlayers"(player: $UUID$Type, mode: $NetworkMode$Type, withSelf: boolean): $Set<($ServerPlayer)>
-public "groupPlayers"(player: $UUID$Type): $Set<($PlayerSummary)>
 public static "loadShareGroups"(server: $MinecraftServer$Type): $Map<($UUID), ($Set<($UUID)>)>
 public "createPlayer"(player: $ServerPlayer$Type): void
 public "getGroupSummaries"(player: $UUID$Type): $Map<($UUID), ($PlayerSummary)>
 public "getPositionGroups"(): $Set<($Set<($UUID)>)>
 public "getAllSummaries"(): $Map<($UUID), ($PlayerSummary)>
+public "groupPlayers"(player: $UUID$Type): $Set<($PlayerSummary)>
+public static "onPlayerJoin"(handler: $ServerGamePacketListenerImpl$Type, sender: $PacketSender$Type, server: $MinecraftServer$Type): void
+public "getExploration"(player: $UUID$Type): $SurveyorExploration
+public "getSharingExploration"(player: $UUID$Type, mode: $NetworkMode$Type, withSelf: boolean): $SurveyorExploration
+public "updatePlayer"(uuid: $UUID$Type, nbt: $CompoundTag$Type, online: boolean): void
+public "getPlayer"(uuid: $UUID$Type): $PlayerSummary
 public "getGroup"(player: $UUID$Type): $Set<($UUID)>
 public "getGroups"(): $Set<($Set<($UUID)>)>
-public "getPlayer"(uuid: $UUID$Type): $PlayerSummary
-public static "onTick"(server: $MinecraftServer$Type): void
 public "getWorld"(dimension: $ResourceKey$Type<($Level$Type)>): $WorldSummary
+public static "onTick"(server: $MinecraftServer$Type): void
+public "getSharing"(player: $UUID$Type, mode: $NetworkMode$Type, withSelf: boolean): $Set<($UUID)>
 public "loadWorlds"(): void
 public "joinGroup"(player1: $UUID$Type, player2: $UUID$Type): void
 public "leaveGroup"(player: $UUID$Type): void
-public "getSharing"(player: $UUID$Type, mode: $NetworkMode$Type, withSelf: boolean): $Set<($UUID)>
 get "dirty"(): boolean
 get "positionGroups"(): $Set<($Set<($UUID)>)>
 get "allSummaries"(): $Map<($UUID), ($PlayerSummary)>
@@ -344,8 +344,8 @@ static readonly "ID": $ResourceLocation
 
 constructor(dimension: $ResourceKey$Type<($Level$Type)>, shared: boolean, starts: $Table$Type<($ResourceKey$Type<($Structure$Type)>), ($ChunkPos$Type), ($StructureStartSummary$Type)>, types: $Map$Type<($ResourceKey$Type<($Structure$Type)>), ($ResourceKey$Type<($StructureType$Type<(any)>)>)>, tags: $Multimap$Type<($ResourceKey$Type<($Structure$Type)>), ($TagKey$Type<($Structure$Type)>)>)
 
-public "tags"(): $Multimap<($ResourceKey<($Structure)>), ($TagKey<($Structure)>)>
 public "dimension"(): $ResourceKey<($Level)>
+public "tags"(): $Multimap<($ResourceKey<($Structure)>), ($TagKey<($Structure)>)>
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -419,21 +419,21 @@ public "keySet"(exploration: $SurveyorExploration$Type): $Multimap<($UUID), ($Re
 public "save"(folder: $File$Type): integer
 public "removed"(): $Multimap<($UUID), ($ResourceLocation)>
 public "removeAll"(predicate: $Predicate$Type<($Landmark$Type)>): void
-public "readUpdatePacket"(packet: $SyncLandmarksRemovedPacket$Type, sender: $ServerPlayer$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
 public "readUpdatePacket"(packet: $SyncLandmarksAddedPacket$Type, sender: $ServerPlayer$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public "readUpdatePacket"(packet: $SyncLandmarksRemovedPacket$Type, sender: $ServerPlayer$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
 public "createUpdatePacket"(keySet: $Multimap$Type<($UUID$Type), ($ResourceLocation$Type)>): $SyncLandmarksAddedPacket
-public "asMap"(exploration: $SurveyorExploration$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public static "fromNbt"(summary: $WorldSummary$Type, nbt: $CompoundTag$Type, landmarksFile: $File$Type): $WorldLandmarks
 public "asMap"(uuid: $UUID$Type, exploration: $SurveyorExploration$Type): $Map<($ResourceLocation), ($Landmark)>
-public "clientInitialized"(): void
-public "removeLocal"(uuid: $UUID$Type, id: $ResourceLocation$Type): void
-public "removeForBatch"(uuid: $UUID$Type, id: $ResourceLocation$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
-public "removeForBatch"(changed: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>, uuid: $UUID$Type, id: $ResourceLocation$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
-public "putForBatch"(landmark: $Landmark$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public "asMap"(exploration: $SurveyorExploration$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public "handleChanged"(changed: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>, local: boolean, sender: $UUID$Type): void
 public "putForBatch"(changed: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>, landmark: $Landmark$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public "putForBatch"(landmark: $Landmark$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public "removeForBatch"(changed: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>, uuid: $UUID$Type, id: $ResourceLocation$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public "removeForBatch"(uuid: $UUID$Type, id: $ResourceLocation$Type): $Table<($UUID), ($ResourceLocation), ($Landmark)>
+public "removeLocal"(uuid: $UUID$Type, id: $ResourceLocation$Type): void
 public "removeAllForBatch"(changed: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>, predicate: $Predicate$Type<($Landmark$Type)>): $Table<($UUID), ($ResourceLocation), ($Landmark)>
 public "removeAllForBatch"(predicate: $Predicate$Type<($Landmark$Type)>): $Table<($UUID), ($ResourceLocation), ($Landmark)>
-public "handleChanged"(changed: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>, local: boolean, sender: $UUID$Type): void
-public static "fromNbt"(summary: $WorldSummary$Type, nbt: $CompoundTag$Type, landmarksFile: $File$Type): $WorldLandmarks
+public "clientInitialized"(): void
 public "writeNbt"(nbt: $CompoundTag$Type): $CompoundTag
 public "putLocal"(landmark: $Landmark$Type): void
 get "dirty"(): boolean
@@ -501,13 +501,12 @@ public "toLong"(): long
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public static "of"(pos: string): $RegionPos
-public static "of"(pos: long): $RegionPos
 public static "of"(pos: $BlockPos$Type): $RegionPos
 public static "of"(pos: $ChunkPos$Type): $RegionPos
+public static "of"(pos: long): $RegionPos
+public static "of"(pos: string): $RegionPos
 public "x"(): integer
 public "z"(): integer
-public static "regionsToChunks"(chunks: $Map$Type<($RegionPos$Type), ($BitSet$Type)>): $Set<($ChunkPos)>
 public static "regionRelative"(xz: integer): integer
 public static "regionToChunk"(xz: integer): integer
 public static "chunkToRegion"(xz: integer): integer
@@ -515,20 +514,21 @@ public static "regionToBlock"(xz: integer): integer
 public static "blockToRegion"(xz: integer): integer
 public static "chunkToBitSet"(pos: $ChunkPos$Type): $BitSet
 public static "chunksToRegions"(chunks: $Iterable$Type<($ChunkPos$Type)>): $Map<($RegionPos), ($BitSet)>
+public static "regionsToChunks"(chunks: $Map$Type<($RegionPos$Type), ($BitSet$Type)>): $Set<($ChunkPos)>
 public "chunkX"(): integer
 public "chunkZ"(): integer
 public static "chunkToBit"(relativeChunkX: integer, relativeChunkZ: integer): integer
 public static "chunkToBit"(pos: $ChunkPos$Type): integer
-public "toChunk"(bit: integer): $ChunkPos
 public "toChunk"(): $ChunkPos
 public "toChunk"(relativeChunkX: integer, relativeChunkZ: integer): $ChunkPos
+public "toChunk"(bit: integer): $ChunkPos
 public static "bitToX"(bit: integer): integer
 public static "bitToZ"(bit: integer): integer
 public "blockX"(): integer
 public "blockZ"(): integer
 public "toBlock"(y: integer): $BlockPos
-public "toChunks"(bits: $BitSet$Type): $Set<($ChunkPos)>
 public "toChunks"(): $Set<($ChunkPos)>
+public "toChunks"(bits: $BitSet$Type): $Set<($ChunkPos)>
 public "forXZ"(action: $BiConsumer$Type<(integer), (integer)>): void
 }
 /**
@@ -570,8 +570,8 @@ public "forEach"(arg0: $IntConsumer$0$Type): void
  */
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 public "forEach"(arg0: $IntConsumer$Type): void
-public "intIterator"(): $IntIterator
 public "intSpliterator"(): $IntSpliterator
+public "intIterator"(): $IntIterator
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -680,8 +680,8 @@ constructor(player: $Player$Type)
 
 public "dimension"(): $ResourceKey<($Level)>
 public "pos"(): $Vec3
-public "viewDistance"(): integer
 public "exploration"(): $SurveyorExploration
+public "viewDistance"(): integer
 public "username"(): string
 public "yaw"(): float
 public "online"(): boolean
@@ -723,25 +723,25 @@ export class $WorldTerrain {
 
 constructor(summary: $WorldSummary$Type, regions: $Map$Type<($RegionPos$Type), ($RegionSummary$Type)>, folder: $File$Type)
 
-public "isDirty"(): boolean
 public "getRegion"(regionPos: $RegionPos$Type): $RegionSummary
+public "isDirty"(): boolean
 public "get"(pos: $ChunkPos$Type): $ChunkSummary
 public "put"(world: $Level$Type, chunk: $LevelChunk$Type): void
 public static "load"(summary: $WorldSummary$Type, folder: $File$Type): $WorldTerrain
 public static "of"(world: $Level$Type): $WorldTerrain
 public "contains"(pos: $ChunkPos$Type): boolean
 public "save"(world: $Level$Type): integer
-public static "onChunkLoad"(world: $Level$Type, chunk: $LevelChunk$Type): void
-public static "onChunkUnload"(world: $Level$Type, chunk: $LevelChunk$Type): void
 public "queueUpdate"(regionPos: $RegionPos$Type, set: $BitSet$Type, player: $ServerPlayer$Type): void
 public "getBiomePalette"(pos: $ChunkPos$Type): $RegistryPalette$ValueView<>
 public "getBlockPalette"(pos: $ChunkPos$Type): $RegistryPalette$ValueView<>
 public "sendUpdateForRegion"(regionPos: $RegionPos$Type, player: $ServerPlayer$Type, set: $BitSet$Type): void
+public static "onChunkLoad"(world: $Level$Type, chunk: $LevelChunk$Type): void
+public static "onChunkUnload"(world: $Level$Type, chunk: $LevelChunk$Type): void
 public "bitSet"(exploration: $SurveyorExploration$Type): $Map<($RegionPos), ($BitSet)>
 public static "onTick"(world: $ServerLevel$Type): void
+public static "toKeys"(bitSets: $Map$Type<($RegionPos$Type), ($BitSet$Type)>, originChunk: $ChunkPos$Type): $Set<($ChunkPos)>
 public static "toKeys"(bitSets: $Map$Type<($RegionPos$Type), ($BitSet$Type)>, regionComparator: $Comparator$Type<($RegionPos$Type)>): $Set<($ChunkPos)>
 public static "toKeys"(bitSets: $Map$Type<($RegionPos$Type), ($BitSet$Type)>): $Set<($ChunkPos)>
-public static "toKeys"(bitSets: $Map$Type<($RegionPos$Type), ($BitSet$Type)>, originChunk: $ChunkPos$Type): $Set<($ChunkPos)>
 public "serverTick"(world: $ServerLevel$Type): void
 get "dirty"(): boolean
 }
@@ -1065,8 +1065,8 @@ static readonly "SERVER": $NetworkMode
 
 public static "values"(): ($NetworkMode)[]
 public static "valueOf"(name: string): $NetworkMode
-public "atMost"(other: $NetworkMode$Type): boolean
 public "atLeast"(other: $NetworkMode$Type): boolean
+public "atMost"(other: $NetworkMode$Type): boolean
 public "compareTo"(arg0: $NetworkMode$Type): integer
 }
 /**
@@ -1217,8 +1217,8 @@ export type $SurveyorPacket_ = $SurveyorPacket$Type;
 }}
 declare module "packages/folk/sisby/surveyor/structure/$StructurePieceSummary" {
 import {$BoundingBox, $BoundingBox$Type} from "packages/net/minecraft/world/level/levelgen/structure/$BoundingBox"
-import {$ChunkPos, $ChunkPos$Type} from "packages/net/minecraft/world/level/$ChunkPos"
 import {$StructurePieceSerializationContext, $StructurePieceSerializationContext$Type} from "packages/net/minecraft/world/level/levelgen/structure/pieces/$StructurePieceSerializationContext"
+import {$ChunkPos, $ChunkPos$Type} from "packages/net/minecraft/world/level/$ChunkPos"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$ChunkGenerator, $ChunkGenerator$Type} from "packages/net/minecraft/world/level/chunk/$ChunkGenerator"
 import {$StructurePieceType, $StructurePieceType$Type} from "packages/net/minecraft/world/level/levelgen/structure/pieces/$StructurePieceType"
@@ -1243,8 +1243,8 @@ constructor(nbt: $CompoundTag$Type)
 
 public "getPieceNbt"(): $CompoundTag
 public "toNbt"(): $CompoundTag
-public "postProcess"(world: $WorldGenLevel$Type, structureAccessor: $StructureManager$Type, chunkGenerator: $ChunkGenerator$Type, random: $RandomSource$Type, chunkBox: $BoundingBox$Type, chunkPos: $ChunkPos$Type, pivot: $BlockPos$Type): void
 public static "fromPiece"(context: $StructurePieceSerializationContext$Type, piece: $StructurePiece$Type, withNbt: boolean): $StructurePieceSummary
+public "postProcess"(world: $WorldGenLevel$Type, structureAccessor: $StructureManager$Type, chunkGenerator: $ChunkGenerator$Type, random: $RandomSource$Type, chunkBox: $BoundingBox$Type, chunkPos: $ChunkPos$Type, pivot: $BlockPos$Type): void
 get "pieceNbt"(): $CompoundTag
 }
 /**
@@ -1284,8 +1284,8 @@ public "connect"(): void
 public "matchSummaries"(summaries: $Map$Type<($UUID$Type), ($PlayerSummary$Type)>): void
 public "mergeSummaries"(summaries: $Map$Type<($UUID$Type), ($PlayerSummary$Type)>): void
 public "disconnect"(): void
-public "players"(group: $Set$Type<($UUID$Type)>): $Map<($UUID), ($PlayerSummary)>
 public "getWorld"(dimension: $ResourceKey$Type<($Level$Type)>): $WorldSummary
+public "players"(group: $Set$Type<($UUID$Type)>): $Map<($UUID), ($PlayerSummary)>
 public "leaveWorld"(dimension: $ResourceKey$Type<($Level$Type)>): void
 }
 /**
@@ -1416,10 +1416,10 @@ public "contains"(world: $Level$Type, start: $StructureStart$Type): boolean
 public "keySet"(exploration: $SurveyorExploration$Type): $Multimap<($ResourceKey<($Structure)>), ($ChunkPos)>
 public "save"(folder: $File$Type): integer
 public "getType"(key: $ResourceKey$Type<($Structure$Type)>): $ResourceKey<($StructureType<(any)>)>
-public static "onChunkLoad"(world: $ServerLevel$Type, chunk: $LevelChunk$Type): void
 public "readUpdatePacket"(packet: $S2CStructuresAddedPacket$Type): $Multimap<($ResourceKey<($Structure)>), ($ChunkPos)>
 public "createUpdatePacket"(shared: boolean, keySet: $Multimap$Type<($ResourceKey$Type<($Structure$Type)>), ($ChunkPos$Type)>): $S2CStructuresAddedPacket
 public static "readStructurePieceNbt"(nbt: $CompoundTag$Type): $StructurePieceSummary
+public static "onChunkLoad"(world: $ServerLevel$Type, chunk: $LevelChunk$Type): void
 public static "onStructurePlace"(world: $ServerLevel$Type, start: $StructureStart$Type): void
 public "asMap"(exploration: $SurveyorExploration$Type): $Map<($ResourceKey<($Structure)>), ($Map<($ChunkPos), ($StructureStartSummary)>)>
 public "getTags"(key: $ResourceKey$Type<($Structure$Type)>): $Collection<($TagKey<($Structure)>)>
@@ -1455,9 +1455,9 @@ constructor(player: $ServerPlayer$Type)
 
 public "copyFrom"(oldSummary: $PlayerSummary$Type): void
 public "read"(nbt: $CompoundTag$Type): void
-public "viewDistance"(): integer
-public "setViewDistance"(viewDistance: integer): void
 public "exploration"(): $SurveyorExploration
+public "setViewDistance"(viewDistance: integer): void
+public "viewDistance"(): integer
 public "writeNbt"(nbt: $CompoundTag$Type): void
 public "dimension"(): $ResourceKey<($Level)>
 public static "of"(player: $ServerPlayer$Type): $PlayerSummary
@@ -1485,8 +1485,8 @@ import {$WorldLandmarks, $WorldLandmarks$Type} from "packages/folk/sisby/surveyo
 import {$File, $File$Type} from "packages/java/io/$File"
 import {$MinecraftServer, $MinecraftServer$Type} from "packages/net/minecraft/server/$MinecraftServer"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$WorldStructures, $WorldStructures$Type} from "packages/folk/sisby/surveyor/structure/$WorldStructures"
 import {$WorldTerrain, $WorldTerrain$Type} from "packages/folk/sisby/surveyor/terrain/$WorldTerrain"
+import {$WorldStructures, $WorldStructures$Type} from "packages/folk/sisby/surveyor/structure/$WorldStructures"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 
 export class $WorldSummary {
@@ -1505,8 +1505,8 @@ public "isClient"(): boolean
 public "server"(): $MinecraftServer
 public "world"(): $Level
 public "landmarks"(): $WorldLandmarks
-public "structures"(): $WorldStructures
 public "terrain"(): $WorldTerrain
+public "structures"(): $WorldStructures
 get "dirty"(): boolean
 get "client"(): boolean
 }
@@ -1573,8 +1573,8 @@ import {$Table, $Table$Type} from "packages/com/google/common/collect/$Table"
 import {$WorldSummary, $WorldSummary$Type} from "packages/folk/sisby/surveyor/$WorldSummary"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$LongSet, $LongSet$Type} from "packages/it/unimi/dsi/fastutil/longs/$LongSet"
-import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$BitSet, $BitSet$Type} from "packages/java/util/$BitSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RegionPos, $RegionPos$Type} from "packages/folk/sisby/surveyor/util/$RegionPos"
 import {$Structure, $Structure$Type} from "packages/net/minecraft/world/level/levelgen/structure/$Structure"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
@@ -1585,31 +1585,31 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $SurveyorExploration {
 
- "copyFrom"(oldExploration: $SurveyorExploration$Type): void
  "chunkCount"(): integer
+ "copyFrom"(oldExploration: $SurveyorExploration$Type): void
+ "limit"(dimension: $ResourceKey$Type<($Level$Type)>, regionPos: $RegionPos$Type, chunks: $BitSet$Type): $BitSet
  "limit"(dimension: $ResourceKey$Type<($Level$Type)>, landmarks: $Table$Type<($UUID$Type), ($ResourceLocation$Type), ($Landmark$Type)>): $Table<($UUID), ($ResourceLocation), ($Landmark)>
  "limit"(dimension: $ResourceKey$Type<($Level$Type)>, starts: $Multimap$Type<($ResourceKey$Type<($Structure$Type)>), ($ChunkPos$Type)>): $Multimap<($ResourceKey<($Structure)>), ($ChunkPos)>
  "limit"(dimension: $ResourceKey$Type<($Level$Type)>, chunks: $Map$Type<($RegionPos$Type), ($BitSet$Type)>): $Map<($RegionPos), ($BitSet)>
- "limit"(dimension: $ResourceKey$Type<($Level$Type)>, regionPos: $RegionPos$Type, chunks: $BitSet$Type): $BitSet
  "limit"(dimension: $ResourceKey$Type<($Level$Type)>, landmarks: $WorldLandmarks$Type, keys: $Multimap$Type<($UUID$Type), ($ResourceLocation$Type)>): $Multimap<($UUID), ($ResourceLocation)>
  "write"(nbt: $CompoundTag$Type): $CompoundTag
  "read"(nbt: $CompoundTag$Type): void
- "updateClientForMergeRegion"(summary: $WorldSummary$Type, regionPos: $RegionPos$Type, chunks: $BitSet$Type): void
+ "updateClientForAddStructure"(summary: $WorldSummary$Type, structureKey: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): void
  "exploredStructure"(dimension: $ResourceKey$Type<($Level$Type)>, structure: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): boolean
  "addStructure"(dimension: $ResourceKey$Type<($Level$Type)>, structureKey: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): void
  "sharedPlayers"(): $Set<($UUID)>
  "exploredChunk"(dimension: $ResourceKey$Type<($Level$Type)>, pos: $ChunkPos$Type): boolean
  "exploredLandmark"(dimension: $ResourceKey$Type<($Level$Type)>, landmark: $Landmark$Type): boolean
  "structureCount"(): integer
+ "updateClientForMergeRegion"(summary: $WorldSummary$Type, regionPos: $RegionPos$Type, chunks: $BitSet$Type): void
  "updateClientForLandmarks"(summary: $WorldSummary$Type): void
  "mergeRegion"(dimension: $ResourceKey$Type<($Level$Type)>, regionPos: $RegionPos$Type, chunks: $BitSet$Type): void
  "replaceTerrain"(chunks: $Table$Type<($ResourceKey$Type<($Level$Type)>), ($RegionPos$Type), ($BitSet$Type)>): void
  "updateClientForAddChunk"(summary: $WorldSummary$Type, chunkPos: $ChunkPos$Type): void
  "mergeStructures"(dimension: $ResourceKey$Type<($Level$Type)>, structureKey: $ResourceKey$Type<($Structure$Type)>, starts: $LongSet$Type): void
  "replaceStructures"(starts: $Table$Type<($ResourceKey$Type<($Level$Type)>), ($ResourceKey$Type<($Structure$Type)>), ($LongSet$Type)>): void
- "updateClientForAddStructure"(summary: $WorldSummary$Type, structureKey: $ResourceKey$Type<($Structure$Type)>, pos: $ChunkPos$Type): void
- "starts"(): $Table<($ResourceKey<($Level)>), ($ResourceKey<($Structure)>), ($LongSet)>
  "chunks"(): $Table<($ResourceKey<($Level)>), ($RegionPos), ($BitSet)>
+ "starts"(): $Table<($ResourceKey<($Level)>), ($ResourceKey<($Structure)>), ($LongSet)>
  "personal"(): boolean
  "addChunk"(dimension: $ResourceKey$Type<($Level$Type)>, pos: $ChunkPos$Type): void
 }

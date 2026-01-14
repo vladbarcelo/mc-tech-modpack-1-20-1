@@ -148,7 +148,10 @@ ServerEvents.recipes((event) => {
 
     for (let part of global.toolParts) {
       // 1. casting results in hot part
+      event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMaterialFluids[metal], 90), `kubejs:graphite_${part}_mold`], 120, false)
       if (global.tConstructToolParts[part]) {
+        event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMaterialFluids[metal], 90), `tconstruct:${global.tConstructToolParts[part]}_sand_cast`], 120, true)
+        event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMaterialFluids[metal], 90), `tconstruct:${global.tConstructToolParts[part]}_red_sand_cast`], 120, true)
         event.custom({
           type: "tconstruct:casting_table",
           cast: {
@@ -164,6 +167,8 @@ ServerEvents.recipes((event) => {
           switch_slots: true
         })
       } else {
+        event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMaterialFluids[metal], 90), `kubejs:${part}_sand_cast`], 120, true)
+        event.recipes.createmetallurgy.casting_in_table(`kubejs:hot_${metal}_${part}`, [Fluid.of(global.moltenMaterialFluids[metal], 90), `kubejs:${part}_red_sand_cast`], 120, true)
         event.custom({
           type: "tconstruct:casting_table",
           cast: {

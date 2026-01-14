@@ -1,0 +1,36 @@
+{
+	"type": "hot_iron:forging",
+	"ingredients": [
+		{
+			"item": "hot_iron:jei_empty_tag"
+		},
+		{
+			"item": "tcintegrations:bronze_ingot"
+		},
+		{
+			"item": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		},
+		{
+			"tag": "hot_iron:jei_empty_tag"
+		}
+	],
+	"output": {
+		"item": "vintageimprovements:bronze_sheet",
+		"count": 1
+	}
+}

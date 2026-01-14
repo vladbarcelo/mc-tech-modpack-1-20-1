@@ -3,6 +3,7 @@
 ServerEvents.recipes((event) => {
   for (let metal of global.allMetals) {
     event.remove({ id: `createaddition:rolling/${metal}_ingot` })
+    event.remove({ id: `vintageimprovements:rolling/${metal}_ingot` })
   }
 
   for (let metal of [].concat(global.smithableMetals, global.baseCastableMetals)) {

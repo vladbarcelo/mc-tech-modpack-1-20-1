@@ -551,16 +551,16 @@ export interface $IDragonFight {
 
  "betterendisland$clearVanillaPillars"(): void
  "betterendisland$setDragonRespawnStage"(arg0: $DragonRespawnStage$Type): void
- "betterendisland$reset"(arg0: boolean): void
+ "betterendisland$getDragonRespawnStage"(): $DragonRespawnStage
  "betterendisland$hasDragonEverSpawned"(): boolean
- "betterendisland$firstExitPortalSpawn"(): boolean
  "betterendisland$setHasDragonEverSpawned"(arg0: boolean): void
+ "betterendisland$tickBellSound"(): void
+ "betterendisland$numTimesDragonKilled"(): integer
+ "betterendisland$initialRespawn"(): void
+ "betterendisland$firstExitPortalSpawn"(): boolean
  "betterendisland$setNumTimesDragonKilled"(arg0: integer): void
  "betterendisland$setFirstExitPortalSpawn"(arg0: boolean): void
- "betterendisland$numTimesDragonKilled"(): integer
- "betterendisland$tickBellSound"(): void
- "betterendisland$getDragonRespawnStage"(): $DragonRespawnStage
- "betterendisland$initialRespawn"(): void
+ "betterendisland$reset"(arg0: boolean): void
 }
 
 export namespace $IDragonFight {
@@ -1117,8 +1117,8 @@ import {$WorldOptions, $WorldOptions$Type} from "packages/net/minecraft/world/le
 
 export interface $StructureManagerAccessor {
 
- "getLevel"(): $LevelAccessor
  "getWorldOptions"(): $WorldOptions
+ "getLevel"(): $LevelAccessor
 }
 
 export namespace $StructureManagerAccessor {
@@ -1216,8 +1216,8 @@ import {$Target, $Target$Type} from "packages/net/minecraft/world/level/pathfind
 
 export interface $PathAccessor {
 
- "getTargetNodes"(): $Set<($Target)>
  "setTargetNodes"(arg0: $Set$Type<($Target$Type)>): void
+ "getTargetNodes"(): $Set<($Target)>
 }
 
 export namespace $PathAccessor {
@@ -1310,18 +1310,18 @@ export type $ITempleStateCacheProvider_ = $ITempleStateCacheProvider$Type;
 }}
 declare module "packages/com/yungnickyoung/minecraft/yungscavebiomes/world/$NoiseSamplerBiomeHolder" {
 import {$BiomeSource, $BiomeSource$Type} from "packages/net/minecraft/world/level/biome/$BiomeSource"
-import {$Climate$Sampler, $Climate$Sampler$Type} from "packages/net/minecraft/world/level/biome/$Climate$Sampler"
 import {$Biome, $Biome$Type} from "packages/net/minecraft/world/level/biome/$Biome"
+import {$Climate$Sampler, $Climate$Sampler$Type} from "packages/net/minecraft/world/level/biome/$Climate$Sampler"
 import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
 
 export interface $NoiseSamplerBiomeHolder {
 
+ "getBiomeRegistry"(): $Registry<($Biome)>
+ "getWorldSeed"(): long
+ "setBiomeSource"(arg0: $BiomeSource$Type): void
  "setWorldSeed"(arg0: long): void
  "setClimateSampler"(arg0: $Climate$Sampler$Type): void
  "setBiomeRegistry"(arg0: $Registry$Type<($Biome$Type)>): void
- "setBiomeSource"(arg0: $BiomeSource$Type): void
- "getWorldSeed"(): long
- "getBiomeRegistry"(): $Registry<($Biome)>
  "getBiomeSource"(): $BiomeSource
  "getClimateSampler"(): $Climate$Sampler
 }
@@ -1730,14 +1730,14 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "spreadFromRandomFaceWithinBlock"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
 public "spreadFromRandomFaceTowardRandomDirection"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
-public "spreadFromFaceTowardRandomDirection"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $RandomSource$Type, arg5: boolean): boolean
 public "spreadFromFaceTowardDirection"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $Direction$Type, arg5: boolean): boolean
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "spreadFromFaceTowardRandomDirection"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $RandomSource$Type, arg5: boolean): boolean
+public "spreadFromRandomFaceWithinBlock"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getSpreader"(): $MultifaceSpreader
 public "getStateForPlacement"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): $BlockState
@@ -1850,8 +1850,8 @@ export class $TempleStateCache {
 
 constructor(arg0: $Path$Type)
 
-public "setTempleCleared"(arg0: $BlockPos$Type, arg1: boolean): void
 public "isTempleCleared"(arg0: $BlockPos$Type): boolean
+public "setTempleCleared"(arg0: $BlockPos$Type, arg1: boolean): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2412,8 +2412,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
@@ -2469,16 +2469,16 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "spawnAfterBreak"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type, arg4: boolean): void
-public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "spawnAfterBreak"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type, arg4: boolean): void
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -2839,8 +2839,8 @@ export class $TempleStateRegion {
 constructor(arg0: $Path$Type, arg1: string)
 
 public "reset"(): void
-public "setTempleCleared"(arg0: $BlockPos$Type, arg1: boolean): void
 public "isTempleCleared"(arg0: $BlockPos$Type): boolean
+public "setTempleCleared"(arg0: $BlockPos$Type, arg1: boolean): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3462,8 +3462,8 @@ readonly "radiusMax": integer
 
 constructor(arg0: $List$Type<($Block$Type)>, arg1: $BlockState$Type, arg2: integer, arg3: integer)
 
-public "ceiling"(arg0: $BlockState$Type): $ThreeLayerNoisySphereReplaceConfig$Builder
 public "build"(): $ThreeLayerNoisySphereReplaceConfig
+public "ceiling"(arg0: $BlockState$Type): $ThreeLayerNoisySphereReplaceConfig$Builder
 public "floor"(arg0: $BlockState$Type): $ThreeLayerNoisySphereReplaceConfig$Builder
 public "ceilingWidth"(arg0: integer): $ThreeLayerNoisySphereReplaceConfig$Builder
 public "floorWidth"(arg0: integer): $ThreeLayerNoisySphereReplaceConfig$Builder
@@ -3654,8 +3654,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
@@ -3714,17 +3714,17 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public static "findIcicleTipAboveCauldron"(arg0: $Level$Type, arg1: $BlockPos$Type): $BlockPos
 public static "getCauldronFillFluidType"(arg0: $Level$Type, arg1: $BlockPos$Type): $Fluid
-public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
-public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getMaxHorizontalOffset"(): float
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
 public "getFallDamageSource"(arg0: $Entity$Type): $DamageSource
 public "onLand"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockState$Type, arg4: $FallingBlockEntity$Type): void
@@ -3803,15 +3803,15 @@ public "getSeed"(): long
 public "tick"(): void
 public "start"(): void
 public "stop"(): void
-public "isSandstormActive"(): boolean
-public "getServerLevel"(): $ServerLevel
 public "getTotalSandstormDurationTicks"(): integer
+public "getServerLevel"(): $ServerLevel
+public "isSandstormActive"(): boolean
 public "getCurrSandstormTicks"(): integer
 public "save"(arg0: $CompoundTag$Type): $CompoundTag
 get "seed"(): long
-get "sandstormActive"(): boolean
-get "serverLevel"(): $ServerLevel
 get "totalSandstormDurationTicks"(): integer
+get "serverLevel"(): $ServerLevel
+get "sandstormActive"(): boolean
 get "currSandstormTicks"(): integer
 }
 /**
@@ -4797,19 +4797,19 @@ export class $SandstormClientData {
 constructor()
 
 public "tick"(): void
+public "getSandstormParticleSpeedVector"(arg0: double, arg1: double, arg2: double, arg3: $Vector3f$Type): $Vector3f
 public "addSandstormParticles"(arg0: $ClientLevel$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: $RandomSource$Type, arg6: $BlockPos$MutableBlockPos$Type): void
 public "addExtraSandstormParticles"(arg0: $ClientLevel$Type, arg1: integer, arg2: integer, arg3: integer): void
 public "isSandstormActive"(): boolean
-public "getSandstormParticleSpeedVector"(arg0: double, arg1: double, arg2: double, arg3: $Vector3f$Type): $Vector3f
-public "setTotalSandstormDuration"(arg0: integer): void
-public "setSandstormSeed"(arg0: long): void
-public "setSandstormTime"(arg0: integer): void
 public "setSandstormActive"(arg0: boolean): void
+public "setSandstormTime"(arg0: integer): void
+public "setSandstormSeed"(arg0: long): void
+public "setTotalSandstormDuration"(arg0: integer): void
 get "sandstormActive"(): boolean
-set "totalSandstormDuration"(value: integer)
-set "sandstormSeed"(value: long)
-set "sandstormTime"(value: integer)
 set "sandstormActive"(value: boolean)
+set "sandstormTime"(value: integer)
+set "sandstormSeed"(value: long)
+set "totalSandstormDuration"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5654,11 +5654,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "spawnAfterBreak"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type, arg4: boolean): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**

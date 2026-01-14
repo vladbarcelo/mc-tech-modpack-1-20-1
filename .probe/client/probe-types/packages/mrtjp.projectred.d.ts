@@ -3,15 +3,15 @@ import {$Transformation, $Transformation$Type} from "packages/codechicken/lib/ve
 
 export interface $IOrientableFacePart {
 
- "getRotation"(): integer
- "setRotation"(arg0: integer): void
- "getSide"(): integer
- "setSide"(arg0: integer): void
  "absoluteDir"(arg0: integer): integer
  "absoluteRot"(arg0: integer): integer
  "onOrientationChange"(): void
  "toInternalMask"(arg0: integer): integer
  "toAbsoluteMask"(arg0: integer): integer
+ "setRotation"(arg0: integer): void
+ "getRotation"(): integer
+ "getSide"(): integer
+ "setSide"(arg0: integer): void
  "toInternal"(arg0: integer): integer
  "rotationT"(): $Transformation
  "toAbsolute"(arg0: integer): integer
@@ -39,8 +39,8 @@ import {$GatePart, $GatePart$Type} from "packages/mrtjp/projectred/integration/p
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$RegistryObject, $RegistryObject$Type} from "packages/net/minecraftforge/registries/$RegistryObject"
 import {$DeferredRegister, $DeferredRegister$Type} from "packages/net/minecraftforge/registries/$DeferredRegister"
+import {$RegistryObject, $RegistryObject$Type} from "packages/net/minecraftforge/registries/$RegistryObject"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 
 export class $GateType extends $Enum<($GateType)> {
@@ -84,19 +84,19 @@ static readonly "FABRICATED_GATE": $GateType
 public "getItem"(): $Item
 public static "values"(): ($GateType)[]
 public static "valueOf"(arg0: string): $GateType
-public "getUnlocalizedName"(): string
-public "inject"(arg0: string, arg1: $Function$Type<($GateType$Type), ($GatePart$Type)>, arg2: $RegistryObject$Type<(any)>, arg3: $RegistryObject$Type<($MultipartType$Type<($GatePart$Type)>)>): void
-public "getItemRegistryObject"(): $RegistryObject<(any)>
-public "getPartType"(): $MultipartType<($GatePart)>
 public "isExternalGate"(): boolean
 public "registerParts"(arg0: $DeferredRegister$Type<($MultipartType$Type<(any)>)>, arg1: $DeferredRegister$Type<($Item$Type)>): void
+public "getItemRegistryObject"(): $RegistryObject<(any)>
+public "getPartType"(): $MultipartType<($GatePart)>
+public "getUnlocalizedName"(): string
+public "inject"(arg0: string, arg1: $Function$Type<($GateType$Type), ($GatePart$Type)>, arg2: $RegistryObject$Type<(any)>, arg3: $RegistryObject$Type<($MultipartType$Type<($GatePart$Type)>)>): void
 public "newPart"(): $GatePart
 public "makeStack"(): $ItemStack
 get "item"(): $Item
-get "unlocalizedName"(): string
+get "externalGate"(): boolean
 get "itemRegistryObject"(): $RegistryObject<(any)>
 get "partType"(): $MultipartType<($GatePart)>
-get "externalGate"(): boolean
+get "unlocalizedName"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -132,27 +132,27 @@ constructor(arg0: $WireType$Type)
 
 public "getBounds"(): $Cuboid6
 public "getType"(): $MultipartType<(any)>
-public "getWireType"(): $WireType
-public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
-public "getIcon"(): $TextureAtlasSprite
 public "preparePlacement"(arg0: $Direction$Type): void
 public "getBreakingIcon"(arg0: $PartRayTraceResult$Type): $TextureAtlasSprite
 public "getBrokenIcon"(arg0: integer): $TextureAtlasSprite
 public "getRenderHue"(): integer
 public "useStaticRenderer"(): boolean
+public "getWireType"(): $WireType
+public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
+public "getIcon"(): $TextureAtlasSprite
 public "getDrops"(): $Iterable<($ItemStack)>
 public "readUpdate"(arg0: $MCDataInput$Type): void
 public "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
-public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public static "addHitEffects"(arg0: $IconHitEffectsPart$Type, arg1: $PartRayTraceResult$Type, arg2: $ParticleEngine$Type): void
+public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type, arg2: boolean): void
 public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type): void
 public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 get "bounds"(): $Cuboid6
 get "type"(): $MultipartType<(any)>
+get "renderHue"(): integer
 get "wireType"(): $WireType
 get "icon"(): $TextureAtlasSprite
-get "renderHue"(): integer
 get "drops"(): $Iterable<($ItemStack)>
 }
 /**
@@ -196,8 +196,8 @@ readonly "canRepair": boolean
 constructor()
 
 public "canUse"(arg0: $Player$Type, arg1: $ItemStack$Type): boolean
-public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "damageScrewdriver"(arg0: $Player$Type, arg1: $ItemStack$Type): void
+public "doesSneakBypassUse"(arg0: $ItemStack$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -411,11 +411,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -550,8 +550,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
 public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
+public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -612,24 +612,6 @@ public "load"(arg0: $CompoundTag$Type): void
 public "getBounds"(): $Cuboid6
 public "save"(arg0: $CompoundTag$Type): void
 public "getType"(): $MultipartType<(any)>
-public "getRotation"(): integer
-public "getLightEmission"(): integer
-public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
-public "getOrientation"(): integer
-public "onChunkLoad"(arg0: $LevelChunk$Type): void
-public "setRotation"(arg0: integer): void
-public "scheduleTick"(arg0: integer): void
-public "scheduledTick"(): void
-public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
-public "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
-public "getOcclusionShape"(): $VoxelShape
-public "onPartChanged"(arg0: $MultiPart$Type): void
-public "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
-public "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
-public "getSide"(): integer
-public "setSide"(arg0: integer): void
-public "getBlockSupportShape"(): $VoxelShape
-public "getSlotMask"(): integer
 public "preparePlacement"(arg0: $MultipartPlaceContext$Type): boolean
 public "getGateType"(): $GateType
 public "getRenderIndex"(): integer
@@ -641,12 +623,30 @@ public "getBreakingIcon"(arg0: $PartRayTraceResult$Type): $TextureAtlasSprite
 public "getBrokenIcon"(arg0: integer): $TextureAtlasSprite
 public "canConnectPart"(arg0: $IConnectable$Type, arg1: integer): boolean
 public "canConnectCorner"(arg0: integer): boolean
+public "setRotation"(arg0: integer): void
+public "scheduleTick"(arg0: integer): void
+public "scheduledTick"(): void
+public "onChunkLoad"(arg0: $LevelChunk$Type): void
+public "getRotation"(): integer
+public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+public "getOrientation"(): integer
+public "getOcclusionShape"(): $VoxelShape
+public "onPartChanged"(arg0: $MultiPart$Type): void
+public "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
+public "getSlotMask"(): integer
+public "getBlockSupportShape"(): $VoxelShape
+public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
+public "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
+public "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
+public "getSide"(): integer
+public "setSide"(arg0: integer): void
+public "getLightEmission"(): integer
+public "getDrops"(): $Iterable<($ItemStack)>
 public "onAdded"(): void
 public "setShape"(arg0: integer): void
-public "getDrops"(): $Iterable<($ItemStack)>
+public "writeDesc"(arg0: $MCDataOutput$Type): void
 public "readUpdate"(arg0: $MCDataInput$Type): void
 public "onRemoved"(): void
-public "writeDesc"(arg0: $MCDataOutput$Type): void
 public "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
 public "getConnMap"(): integer
 public "setConnMap"(arg0: integer): void
@@ -699,19 +699,19 @@ public static "shiftMask"(arg0: integer, arg1: integer): integer
 public static "flipMaskZ"(arg0: integer): integer
 public "redstoneConductionMap"(): integer
 public "occlusionTest"(arg0: $MultiPart$Type): boolean
-public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public static "addHitEffects"(arg0: $IconHitEffectsPart$Type, arg1: $PartRayTraceResult$Type, arg2: $ParticleEngine$Type): void
+public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type, arg2: boolean): void
 public static "addDestroyEffects"(arg0: $IconHitEffectsPart$Type, arg1: $ParticleEngine$Type): void
 public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public "state"(): integer
-public "isPointerStarted"(): boolean
 public "pointerValue"(): integer
 public "segmentColour"(): byte
 public "bottomSignal"(): byte
 public "topSignalConnMask"(): integer
 public "getGateName"(): string
 public "hasRuntimeError"(): boolean
+public "isPointerStarted"(): boolean
 public "state2"(): integer
 public "worldPos"(): $BlockPos
 public "pointerMax"(): integer
@@ -731,25 +731,25 @@ public "updateOutside"(): void
 public "updateInsideAndOutside"(): void
 get "bounds"(): $Cuboid6
 get "type"(): $MultipartType<(any)>
-get "rotation"(): integer
-get "lightEmission"(): integer
-get "orientation"(): integer
-set "rotation"(value: integer)
-get "occlusionShape"(): $VoxelShape
-get "side"(): integer
-set "side"(value: integer)
-get "blockSupportShape"(): $VoxelShape
-get "slotMask"(): integer
 get "gateType"(): $GateType
 get "renderIndex"(): integer
 get "tickScheduled"(): boolean
 set "renderFlag"(value: $IConnectable$Type)
+set "rotation"(value: integer)
+get "rotation"(): integer
+get "orientation"(): integer
+get "occlusionShape"(): $VoxelShape
+get "slotMask"(): integer
+get "blockSupportShape"(): $VoxelShape
+get "side"(): integer
+set "side"(value: integer)
+get "lightEmission"(): integer
 get "drops"(): $Iterable<($ItemStack)>
 get "connMap"(): integer
 set "connMap"(value: integer)
 get "center"(): $IConnectable
-get "pointerStarted"(): boolean
 get "gateName"(): string
+get "pointerStarted"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -810,15 +810,15 @@ export interface $IGateRenderData {
 
  "shape"(): integer
  "state"(): integer
- "getOrientation"(): integer
  "getRenderIndex"(): integer
- "isPointerStarted"(): boolean
  "pointerValue"(): integer
  "segmentColour"(): byte
  "bottomSignal"(): byte
  "topSignalConnMask"(): integer
  "getGateName"(): string
  "hasRuntimeError"(): boolean
+ "isPointerStarted"(): boolean
+ "getOrientation"(): integer
  "state2"(): integer
  "worldPos"(): $BlockPos
  "pointerMax"(): integer
@@ -924,7 +924,6 @@ import {$MCDataOutput, $MCDataOutput$Type} from "packages/codechicken/lib/data/$
 export interface $IConnectableFacePart extends $MultiPart, $IConnectablePart {
 
  "getInternal"(arg0: integer): $IConnectable
- "getSide"(): integer
  "notifyAllExternals"(): void
  "setRenderFlag"(arg0: $IConnectable$Type): boolean
  "discoverOpen"(arg0: integer): boolean
@@ -959,6 +958,7 @@ export interface $IConnectableFacePart extends $MultiPart, $IConnectablePart {
  "discoverCorner"(arg0: integer): integer
  "connectCorner"(arg0: $IConnectable$Type, arg1: integer, arg2: integer): boolean
  "connectInternal"(arg0: $IConnectable$Type, arg1: integer): boolean
+ "getSide"(): integer
  "getCenter"(): $IConnectable
  "maskOpen"(arg0: integer): boolean
  "getCorner"(arg0: integer): $IConnectable
@@ -969,39 +969,40 @@ export interface $IConnectableFacePart extends $MultiPart, $IConnectablePart {
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "onWorldJoin"(): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
- "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onChunkUnload"(): void
  "scheduleTick"(arg0: integer): void
  "scheduledTick"(): void
- "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
- "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "onChunkUnload"(): void
+ "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "onWorldJoin"(): void
  "getRenderBounds"(): $Cuboid6
- "invalidateConvertedTile"(): void
  "onPartChanged"(arg0: $MultiPart$Type): void
- "onConverted"(): void
  "onEntityStanding"(arg0: $Entity$Type): void
- "occlusionTest"(arg0: $MultiPart$Type): boolean
- "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
+ "invalidateConvertedTile"(): void
+ "onConverted"(): void
  "onWorldSeparate"(): void
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
+ "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
+ "occlusionTest"(arg0: $MultiPart$Type): boolean
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
- "getBlockSupportShape"(): $VoxelShape
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
+ "getBlockSupportShape"(): $VoxelShape
+ "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
+ "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "getLightEmission"(): integer
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
  "tile"(): $TileMultipart
- "onAdded"(): void
- "onMoved"(): void
  "getDrops"(): $Iterable<($ItemStack)>
+ "onMoved"(): void
+ "onAdded"(): void
+ "writeDesc"(arg0: $MCDataOutput$Type): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
  "capCache"(): $CapabilityCache
@@ -1010,7 +1011,6 @@ export interface $IConnectableFacePart extends $MultiPart, $IConnectablePart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
- "writeDesc"(arg0: $MCDataOutput$Type): void
  "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "updateOutward"(): void
  "updateOutside"(): void
@@ -1160,11 +1160,11 @@ import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$BaseWirePart, $BaseWirePart$Type} from "packages/mrtjp/projectred/transmission/part/$BaseWirePart"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$RegistryObject, $RegistryObject$Type} from "packages/net/minecraftforge/registries/$RegistryObject"
 import {$DeferredRegister, $DeferredRegister$Type} from "packages/net/minecraftforge/registries/$DeferredRegister"
+import {$RegistryObject, $RegistryObject$Type} from "packages/net/minecraftforge/registries/$RegistryObject"
 import {$EnumColour, $EnumColour$Type} from "packages/codechicken/lib/colour/$EnumColour"
-import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlasSprite"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
+import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlasSprite"
 
 export class $WireType extends $Enum<($WireType)> {
 static readonly "RED_ALLOY": $WireType
@@ -1246,28 +1246,28 @@ static readonly "FRAMED_COLOURED_BUNDLED_WIRES": ($WireType)[]
 public "getItem"(): $Item
 public static "values"(): ($WireType)[]
 public static "valueOf"(arg0: string): $WireType
-public "getTextures"(): $List<($TextureAtlasSprite)>
-public "getUnlocalizedName"(): string
-public "getItemRegistryObject"(): $RegistryObject<($Item)>
-public "getPartType"(): $MultipartType<($BaseWirePart)>
 public "registerParts"(arg0: $DeferredRegister$Type<($MultipartType$Type<(any)>)>, arg1: $DeferredRegister$Type<($Item$Type)>): void
 public "isCenterPart"(): boolean
 public "getColourIdx"(): integer
 public "getThickness"(): integer
 public "getItemColour"(): integer
 public "onTextureStitchEvent"(arg0: $TextureStitchEvent$Post$Type): void
+public "getItemRegistryObject"(): $RegistryObject<($Item)>
+public "getPartType"(): $MultipartType<($BaseWirePart)>
+public "getTextures"(): $List<($TextureAtlasSprite)>
+public "getUnlocalizedName"(): string
 public "getColour"(): $EnumColour
 public "newPart"(): $BaseWirePart
 public "makeStack"(): $ItemStack
 get "item"(): $Item
-get "textures"(): $List<($TextureAtlasSprite)>
-get "unlocalizedName"(): string
-get "itemRegistryObject"(): $RegistryObject<($Item)>
-get "partType"(): $MultipartType<($BaseWirePart)>
 get "centerPart"(): boolean
 get "colourIdx"(): integer
 get "thickness"(): integer
 get "itemColour"(): integer
+get "itemRegistryObject"(): $RegistryObject<($Item)>
+get "partType"(): $MultipartType<($BaseWirePart)>
+get "textures"(): $List<($TextureAtlasSprite)>
+get "unlocalizedName"(): string
 get "colour"(): $EnumColour
 }
 /**

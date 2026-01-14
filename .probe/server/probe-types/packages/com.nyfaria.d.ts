@@ -84,21 +84,21 @@ import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/leve
 import {$Mob, $Mob$Type} from "packages/net/minecraft/world/entity/$Mob"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
-import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockPathTypes, $BlockPathTypes$Type} from "packages/net/minecraft/world/level/pathfinder/$BlockPathTypes"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Node, $Node$Type} from "packages/net/minecraft/world/level/pathfinder/$Node"
 
 export interface $IAdvancedPathFindingEntity {
 
- "getBridgePathingMalus"(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
- "onPathingObstructed"(arg0: $Direction$Type): void
- "getGroundSide"(): $Direction
- "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
- "getMaxStuckCheckTicks"(): integer
  "pathFinderCleanup"(): void
+ "getMaxStuckCheckTicks"(): integer
+ "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
+ "getGroundSide"(): $Direction
+ "onPathingObstructed"(arg0: $Direction$Type): void
+ "getBridgePathingMalus"(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
 
-(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
+(): void
 }
 
 export namespace $IAdvancedPathFindingEntity {
@@ -123,8 +123,8 @@ import {$MoverType, $MoverType$Type} from "packages/net/minecraft/world/entity/$
 
 export interface $IEntityMovementHook {
 
- "getAdjustedOnPosition"(arg0: $BlockPos$Type): $BlockPos
  "getAdjustedCanTriggerWalking"(arg0: boolean): boolean
+ "getAdjustedOnPosition"(arg0: $BlockPos$Type): $BlockPos
  "onMove"(arg0: $MoverType$Type, arg1: $Vec3$Type, arg2: boolean): boolean
 }
 
@@ -298,8 +298,8 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$BlockPathTypes, $BlockPathTypes$Type} from "packages/net/minecraft/world/level/pathfinder/$BlockPathTypes"
 import {$Orientation, $Orientation$Type} from "packages/com/nyfaria/nyfsspiders/common/entity/mob/$Orientation"
-import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Node, $Node$Type} from "packages/net/minecraft/world/level/pathfinder/$Node"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$IAdvancedPathFindingEntity, $IAdvancedPathFindingEntity$Type} from "packages/com/nyfaria/nyfsspiders/common/entity/movement/$IAdvancedPathFindingEntity"
@@ -311,35 +311,35 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IClimberEntity extends $IAdvancedPathFindingEntity {
 
- "setCanClimbInLava"(arg0: boolean): void
- "setCanClimbInWater"(arg0: boolean): void
- "getMovementSpeed"(): float
- "getGroundDirection"(): $Pair<($Direction), ($Vec3)>
- "calculateOrientation"(arg0: float): $Orientation
- "shouldTrackPathingTargets"(): boolean
+ "getCollisionsSmoothingRange"(): float
+ "setCollisionsInclusionRange"(arg0: float): void
+ "getCollisionsInclusionRange"(): float
+ "setCollisionsSmoothingRange"(arg0: float): void
+ "canClimbInWater"(): boolean
+ "canClimbInLava"(): boolean
+ "canClimbOnBlock"(arg0: $BlockState$Type, arg1: $BlockPos$Type): boolean
+ "canClimberTriggerWalking"(): boolean
+ "getBlockSlipperiness"(arg0: $BlockPos$Type): float
+ "setJumpDirection"(arg0: $Vec3$Type): void
  "getOrientation"(): $Orientation
  "setRenderOrientation"(arg0: $Orientation$Type): void
- "getRenderOrientation"(): $Orientation
+ "getVerticalOffset"(arg0: float): float
  "getAttachmentOffset"(arg0: $Direction$Axis$Type, arg1: float): float
- "canClimbInLava"(): boolean
- "canClimbInWater"(): boolean
+ "getRenderOrientation"(): $Orientation
  "getTrackedMovementTarget"(): $Vec3
  "getTrackedPathingTargets"(): $List<($PathingTarget)>
- "getVerticalOffset"(arg0: float): float
- "setJumpDirection"(arg0: $Vec3$Type): void
- "getBlockSlipperiness"(arg0: $BlockPos$Type): float
- "canClimberTriggerWalking"(): boolean
- "canClimbOnBlock"(arg0: $BlockState$Type, arg1: $BlockPos$Type): boolean
- "getCollisionsInclusionRange"(): float
- "setCollisionsInclusionRange"(arg0: float): void
- "getCollisionsSmoothingRange"(): float
- "setCollisionsSmoothingRange"(arg0: float): void
- "getBridgePathingMalus"(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
- "onPathingObstructed"(arg0: $Direction$Type): void
- "getGroundSide"(): $Direction
- "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
- "getMaxStuckCheckTicks"(): integer
+ "getGroundDirection"(): $Pair<($Direction), ($Vec3)>
+ "calculateOrientation"(arg0: float): $Orientation
+ "getMovementSpeed"(): float
+ "shouldTrackPathingTargets"(): boolean
+ "setCanClimbInLava"(arg0: boolean): void
+ "setCanClimbInWater"(arg0: boolean): void
  "pathFinderCleanup"(): void
+ "getMaxStuckCheckTicks"(): integer
+ "getPathingMalus"(arg0: $BlockGetter$Type, arg1: $Mob$Type, arg2: $BlockPathTypes$Type, arg3: $BlockPos$Type, arg4: $Vec3i$Type, arg5: $Predicate$Type<($Direction$Type)>): float
+ "getGroundSide"(): $Direction
+ "onPathingObstructed"(arg0: $Direction$Type): void
+ "getBridgePathingMalus"(arg0: $Mob$Type, arg1: $BlockPos$Type, arg2: $Node$Type): float
 }
 
 export namespace $IClimberEntity {

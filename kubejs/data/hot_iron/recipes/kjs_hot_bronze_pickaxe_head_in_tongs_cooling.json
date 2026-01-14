@@ -1,0 +1,12 @@
+{
+	"type": "hot_iron:cooling",
+	"ingredients": [
+		{
+			"item": "kubejs:hot_bronze_pickaxe_head_in_tongs"
+		}
+	],
+	"output": {
+		"item": "kubejs:bronze_pickaxe_head_in_tongs",
+		"count": 1
+	}
+}

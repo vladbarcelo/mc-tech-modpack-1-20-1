@@ -9,17 +9,20 @@ ServerEvents.tags('item', event => {
       event.add('materials/hot', `kubejs:hot_${metal}_${part}`)
     }
 
-    if (!global.ingotDictionary[metal] || global.ingotDictionary[metal].startsWith('kubejs')) {
-      event.add(`forge:ingots/${metal}`, `kubejs:${metal}_ingot`)
-    }
+    let ingotItem = global.ingotDictionary[metal] || `kubejs:${metal}_ingot`
+    event.add(`forge:ingots`, ingotItem)
+    event.add(`forge:ingots/${metal}`, ingotItem)
 
-    if (!global.metalBlocks[metal] || global.metalBlocks[metal].startsWith('kubejs')) {
-      event.add(`forge:storage_blocks/${metal}`, `kubejs:${metal}_block`)
-    }
+    let blockItem = global.metalBlocks[metal] || `kubejs:${metal}_block`
+    event.add(`forge:storage_blocks/${metal}`, blockItem)
 
-    if (!global.metalPlates[metal] || global.metalPlates[metal].startsWith('kubejs')) {
-      event.add(`forge:plates/${metal}`, `kubejs:${metal}_sheet`)
-    }
+    let sheetItem = global.metalPlates[metal] || `kubejs:${metal}_sheet`
+    event.add(`forge:plates`, sheetItem)
+    event.add(`forge:plates/${metal}`, sheetItem)
+
+    let rodItem = global.metalRods[metal] || `kubejs:${metal}_rod`
+    event.add(`forge:rods`, rodItem)
+    event.add(`forge:rods/${metal}`, rodItem)
   }
 
   event.add('tools/smithing_tongs', 'hot_iron:smithing_tongs')

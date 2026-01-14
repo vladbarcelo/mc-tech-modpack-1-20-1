@@ -635,8 +635,8 @@ import {$ClassDesc, $ClassDesc$Type} from "packages/java/lang/constant/$ClassDes
 export class $VarHandle$VarHandleDesc extends $DynamicConstantDesc<($VarHandle)> {
 
 
-public static "ofArray"(arg0: $ClassDesc$Type): $VarHandle$VarHandleDesc
 public static "ofStaticField"(arg0: $ClassDesc$Type, arg1: string, arg2: $ClassDesc$Type): $VarHandle$VarHandleDesc
+public static "ofArray"(arg0: $ClassDesc$Type): $VarHandle$VarHandleDesc
 public "toString"(): string
 public "resolveConstantDesc"(arg0: $MethodHandles$Lookup$Type): $VarHandle
 public static "ofField"(arg0: $ClassDesc$Type, arg1: string, arg2: $ClassDesc$Type): $VarHandle$VarHandleDesc
@@ -704,10 +704,10 @@ import {$TypeDescriptor$OfField, $TypeDescriptor$OfField$Type} from "packages/ja
  */
 export interface $ClassDesc extends $ConstantDesc, $TypeDescriptor$OfField<($ClassDesc)> {
 
- "displayName"(): string
  "nested"(arg0: string): $ClassDesc
  "nested"(arg0: string, ...arg1: (string)[]): $ClassDesc
  "isClassOrInterface"(): boolean
+ "displayName"(): string
  "equals"(arg0: any): boolean
  "isArray"(): boolean
  "isPrimitive"(): boolean
@@ -3073,8 +3073,8 @@ import {$ModuleDescriptor$Requires$Modifier, $ModuleDescriptor$Requires$Modifier
 export class $ModuleDescriptor$Requires implements $Comparable<($ModuleDescriptor$Requires)> {
 
 
-public "compiledVersion"(): $Optional<($ModuleDescriptor$Version)>
 public "rawCompiledVersion"(): $Optional<(string)>
+public "compiledVersion"(): $Optional<($ModuleDescriptor$Version)>
 public "modifiers"(): $Set<($ModuleDescriptor$Requires$Modifier)>
 public "name"(): string
 public "equals"(arg0: any): boolean

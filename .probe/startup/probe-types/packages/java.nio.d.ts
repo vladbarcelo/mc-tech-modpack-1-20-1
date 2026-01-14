@@ -367,11 +367,11 @@ export interface $MulticastChannel extends $NetworkChannel {
  "join"(arg0: $InetAddress$Type, arg1: $NetworkInterface$Type): $MembershipKey
  "join"(arg0: $InetAddress$Type, arg1: $NetworkInterface$Type, arg2: $InetAddress$Type): $MembershipKey
  "close"(): void
- "setOption"<T>(arg0: $SocketOption$Type<(T)>, arg1: T): $NetworkChannel
- "bind"(arg0: $SocketAddress$Type): $NetworkChannel
- "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
  "getLocalAddress"(): $SocketAddress
  "supportedOptions"(): $Set<($SocketOption<(any)>)>
+ "bind"(arg0: $SocketAddress$Type): $NetworkChannel
+ "setOption"<T>(arg0: $SocketOption$Type<(T)>, arg1: T): $NetworkChannel
+ "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
  "isOpen"(): boolean
 }
 
@@ -414,10 +414,10 @@ import {$FileAttribute, $FileAttribute$Type} from "packages/java/nio/file/attrib
 export class $FileChannel extends $AbstractInterruptibleChannel implements $SeekableByteChannel, $GatheringByteChannel, $ScatteringByteChannel {
 
 
-public "truncate"(arg0: long): $FileChannel
-public "force"(arg0: boolean): void
 public "tryLock"(arg0: long, arg1: long, arg2: boolean): $FileLock
 public "tryLock"(): $FileLock
+public "truncate"(arg0: long): $FileChannel
+public "force"(arg0: boolean): void
 public "transferFrom"(arg0: $ReadableByteChannel$Type, arg1: long, arg2: long): long
 public "lock"(arg0: long, arg1: long, arg2: boolean): $FileLock
 public "lock"(): $FileLock
@@ -537,17 +537,16 @@ import {$AbstractSelectableChannel, $AbstractSelectableChannel$Type} from "packa
 export class $ServerSocketChannel extends $AbstractSelectableChannel implements $NetworkChannel {
 
 
-public "setOption"<T>(arg0: $SocketOption$Type<(T)>, arg1: T): $ServerSocketChannel
+public "getLocalAddress"(): $SocketAddress
 public "bind"(arg0: $SocketAddress$Type, arg1: integer): $ServerSocketChannel
 public "bind"(arg0: $SocketAddress$Type): $ServerSocketChannel
 public "validOps"(): integer
 public "accept"(): $SocketChannel
 public static "open"(arg0: $ProtocolFamily$Type): $ServerSocketChannel
 public static "open"(): $ServerSocketChannel
-public "getLocalAddress"(): $SocketAddress
 public "socket"(): $ServerSocket
-public "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
 public "supportedOptions"(): $Set<($SocketOption<(any)>)>
+public "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
 public "isOpen"(): boolean
 public "close"(): void
 get "localAddress"(): $SocketAddress
@@ -647,32 +646,34 @@ import {$AbstractSelectableChannel, $AbstractSelectableChannel$Type} from "packa
 export class $SocketChannel extends $AbstractSelectableChannel implements $ByteChannel, $ScatteringByteChannel, $GatheringByteChannel, $NetworkChannel {
 
 
+public "getLocalAddress"(): $SocketAddress
+public "shutdownOutput"(): $SocketChannel
+public "shutdownInput"(): $SocketChannel
+public "bind"(arg0: $SocketAddress$Type): $SocketChannel
+public "setOption"<T>(arg0: $SocketOption$Type<(T)>, arg1: T): $SocketChannel
 public "isConnectionPending"(): boolean
 public "getRemoteAddress"(): $SocketAddress
 public "validOps"(): integer
 public "write"(arg0: ($ByteBuffer$Type)[], arg1: integer, arg2: integer): long
 public "write"(arg0: ($ByteBuffer$Type)[]): long
 public "write"(arg0: $ByteBuffer$Type): integer
-public "read"(arg0: $ByteBuffer$Type): integer
-public "read"(arg0: ($ByteBuffer$Type)[], arg1: integer, arg2: integer): long
 public "read"(arg0: ($ByteBuffer$Type)[]): long
+public "read"(arg0: ($ByteBuffer$Type)[], arg1: integer, arg2: integer): long
+public "read"(arg0: $ByteBuffer$Type): integer
 public "connect"(arg0: $SocketAddress$Type): boolean
 public static "open"(): $SocketChannel
-public static "open"(arg0: $ProtocolFamily$Type): $SocketChannel
 public static "open"(arg0: $SocketAddress$Type): $SocketChannel
-public "getLocalAddress"(): $SocketAddress
-public "shutdownOutput"(): $SocketChannel
-public "shutdownInput"(): $SocketChannel
+public static "open"(arg0: $ProtocolFamily$Type): $SocketChannel
 public "finishConnect"(): boolean
 public "socket"(): $Socket
 public "isConnected"(): boolean
-public "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
 public "supportedOptions"(): $Set<($SocketOption<(any)>)>
+public "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
 public "isOpen"(): boolean
 public "close"(): void
+get "localAddress"(): $SocketAddress
 get "connectionPending"(): boolean
 get "remoteAddress"(): $SocketAddress
-get "localAddress"(): $SocketAddress
 get "connected"(): boolean
 }
 /**
@@ -740,10 +741,10 @@ import {$FileAttribute, $FileAttribute$Type} from "packages/java/nio/file/attrib
 export class $AsynchronousFileChannel implements $AsynchronousChannel {
 
 
+public "tryLock"(arg0: long, arg1: long, arg2: boolean): $FileLock
+public "tryLock"(): $FileLock
 public "truncate"(arg0: long): $AsynchronousFileChannel
 public "force"(arg0: boolean): void
-public "tryLock"(): $FileLock
-public "tryLock"(arg0: long, arg1: long, arg2: boolean): $FileLock
 public "lock"(arg0: long, arg1: long, arg2: boolean): $Future<($FileLock)>
 public "lock"(): $Future<($FileLock)>
 public "lock"<A>(arg0: long, arg1: long, arg2: boolean, arg3: A, arg4: $CompletionHandler$Type<($FileLock$Type), (any)>): void
@@ -783,9 +784,9 @@ import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$DirectoryStream, $DirectoryStream$Type} from "packages/java/nio/file/$DirectoryStream"
 import {$FileAttributeView, $FileAttributeView$Type} from "packages/java/nio/file/attribute/$FileAttributeView"
 import {$BasicFileAttributes, $BasicFileAttributes$Type} from "packages/java/nio/file/attribute/$BasicFileAttributes"
+import {$DirectoryStream$Filter, $DirectoryStream$Filter$Type} from "packages/java/nio/file/$DirectoryStream$Filter"
 import {$FileStore, $FileStore$Type} from "packages/java/nio/file/$FileStore"
 import {$CopyOption, $CopyOption$Type} from "packages/java/nio/file/$CopyOption"
-import {$DirectoryStream$Filter, $DirectoryStream$Filter$Type} from "packages/java/nio/file/$DirectoryStream$Filter"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$FileChannel, $FileChannel$Type} from "packages/java/nio/channels/$FileChannel"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -803,9 +804,12 @@ import {$LinkOption, $LinkOption$Type} from "packages/java/nio/file/$LinkOption"
 export class $FileSystemProvider {
 
 
+public "newDirectoryStream"(arg0: $Path$Type, arg1: $DirectoryStream$Filter$Type<(any)>): $DirectoryStream<($Path)>
+public "createDirectory"(arg0: $Path$Type, ...arg1: ($FileAttribute$Type<(any)>)[]): void
+public "getFileSystem"(arg0: $URI$Type): $FileSystem
 public static "installedProviders"(): $List<($FileSystemProvider)>
-public "newFileSystem"(arg0: $URI$Type, arg1: $Map$Type<(string), (any)>): $FileSystem
 public "newFileSystem"(arg0: $Path$Type, arg1: $Map$Type<(string), (any)>): $FileSystem
+public "newFileSystem"(arg0: $URI$Type, arg1: $Map$Type<(string), (any)>): $FileSystem
 public "getFileAttributeView"<V extends $FileAttributeView>(arg0: $Path$Type, arg1: $Class$Type<(V)>, ...arg2: ($LinkOption$Type)[]): V
 public "getFileStore"(arg0: $Path$Type): $FileStore
 public "newFileChannel"(arg0: $Path$Type, arg1: $Set$Type<(any)>, ...arg2: ($FileAttribute$Type<(any)>)[]): $FileChannel
@@ -820,11 +824,8 @@ public "setAttribute"(arg0: $Path$Type, arg1: string, arg2: any, ...arg3: ($Link
 public "deleteIfExists"(arg0: $Path$Type): boolean
 public "newInputStream"(arg0: $Path$Type, ...arg1: ($OpenOption$Type)[]): $InputStream
 public "newOutputStream"(arg0: $Path$Type, ...arg1: ($OpenOption$Type)[]): $OutputStream
-public "newDirectoryStream"(arg0: $Path$Type, arg1: $DirectoryStream$Filter$Type<(any)>): $DirectoryStream<($Path)>
-public "readAttributes"(arg0: $Path$Type, arg1: string, ...arg2: ($LinkOption$Type)[]): $Map<(string), (any)>
 public "readAttributes"<A extends $BasicFileAttributes>(arg0: $Path$Type, arg1: $Class$Type<(A)>, ...arg2: ($LinkOption$Type)[]): A
-public "createDirectory"(arg0: $Path$Type, ...arg1: ($FileAttribute$Type<(any)>)[]): void
-public "getFileSystem"(arg0: $URI$Type): $FileSystem
+public "readAttributes"(arg0: $Path$Type, arg1: string, ...arg2: ($LinkOption$Type)[]): $Map<(string), (any)>
 public "isHidden"(arg0: $Path$Type): boolean
 public "delete"(arg0: $Path$Type): void
 public "checkAccess"(arg0: $Path$Type, ...arg1: ($AccessMode$Type)[]): void
@@ -983,33 +984,33 @@ import {$AbstractSelectableChannel, $AbstractSelectableChannel$Type} from "packa
 export class $DatagramChannel extends $AbstractSelectableChannel implements $ByteChannel, $ScatteringByteChannel, $GatheringByteChannel, $MulticastChannel {
 
 
+public "getLocalAddress"(): $SocketAddress
+public "bind"(arg0: $SocketAddress$Type): $DatagramChannel
 public "setOption"<T>(arg0: $SocketOption$Type<(T)>, arg1: T): $DatagramChannel
 public "getRemoteAddress"(): $SocketAddress
-public "bind"(arg0: $SocketAddress$Type): $DatagramChannel
 public "validOps"(): integer
-public "write"(arg0: $ByteBuffer$Type): integer
 public "write"(arg0: ($ByteBuffer$Type)[], arg1: integer, arg2: integer): long
 public "write"(arg0: ($ByteBuffer$Type)[]): long
-public "read"(arg0: ($ByteBuffer$Type)[]): long
-public "read"(arg0: $ByteBuffer$Type): integer
+public "write"(arg0: $ByteBuffer$Type): integer
 public "read"(arg0: ($ByteBuffer$Type)[], arg1: integer, arg2: integer): long
+public "read"(arg0: $ByteBuffer$Type): integer
+public "read"(arg0: ($ByteBuffer$Type)[]): long
 public "connect"(arg0: $SocketAddress$Type): $DatagramChannel
-public static "open"(): $DatagramChannel
 public static "open"(arg0: $ProtocolFamily$Type): $DatagramChannel
-public "getLocalAddress"(): $SocketAddress
-public "disconnect"(): $DatagramChannel
-public "socket"(): $DatagramSocket
+public static "open"(): $DatagramChannel
 public "send"(arg0: $ByteBuffer$Type, arg1: $SocketAddress$Type): integer
+public "socket"(): $DatagramSocket
+public "disconnect"(): $DatagramChannel
 public "isConnected"(): boolean
 public "receive"(arg0: $ByteBuffer$Type): $SocketAddress
 public "join"(arg0: $InetAddress$Type, arg1: $NetworkInterface$Type): $MembershipKey
 public "join"(arg0: $InetAddress$Type, arg1: $NetworkInterface$Type, arg2: $InetAddress$Type): $MembershipKey
 public "close"(): void
-public "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
 public "supportedOptions"(): $Set<($SocketOption<(any)>)>
+public "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
 public "isOpen"(): boolean
-get "remoteAddress"(): $SocketAddress
 get "localAddress"(): $SocketAddress
+get "remoteAddress"(): $SocketAddress
 get "connected"(): boolean
 }
 /**
@@ -1210,11 +1211,11 @@ import {$SocketOption, $SocketOption$Type} from "packages/java/net/$SocketOption
  */
 export interface $NetworkChannel extends $Channel {
 
- "setOption"<T>(arg0: $SocketOption$Type<(T)>, arg1: T): $NetworkChannel
- "bind"(arg0: $SocketAddress$Type): $NetworkChannel
- "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
  "getLocalAddress"(): $SocketAddress
  "supportedOptions"(): $Set<($SocketOption<(any)>)>
+ "bind"(arg0: $SocketAddress$Type): $NetworkChannel
+ "setOption"<T>(arg0: $SocketOption$Type<(T)>, arg1: T): $NetworkChannel
+ "getOption"<T>(arg0: $SocketOption$Type<(T)>): T
  "isOpen"(): boolean
  "close"(): void
 }
@@ -1707,7 +1708,6 @@ static readonly "OP_CONNECT": integer
 static readonly "OP_ACCEPT": integer
 
 
-public "isValid"(): boolean
 public "isReadable"(): boolean
 public "isWritable"(): boolean
 public "interestOpsOr"(arg0: integer): integer
@@ -1716,17 +1716,18 @@ public "isConnectable"(): boolean
 public "isAcceptable"(): boolean
 public "attach"(arg0: any): any
 public "channel"(): $SelectableChannel
+public "isValid"(): boolean
 public "attachment"(): any
 public "interestOps"(): integer
 public "interestOps"(arg0: integer): $SelectionKey
 public "cancel"(): void
 public "selector"(): $Selector
 public "readyOps"(): integer
-get "valid"(): boolean
 get "readable"(): boolean
 get "writable"(): boolean
 get "connectable"(): boolean
 get "acceptable"(): boolean
+get "valid"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2046,8 +2047,8 @@ import {$Watchable, $Watchable$Type} from "packages/java/nio/file/$Watchable"
  */
 export interface $WatchKey {
 
- "isValid"(): boolean
  "watchable"(): $Watchable
+ "isValid"(): boolean
  "reset"(): boolean
  "cancel"(): void
  "pollEvents"(): $List<($WatchEvent<(any)>)>
@@ -2152,14 +2153,14 @@ import {$LinkOption, $LinkOption$Type} from "packages/java/nio/file/$LinkOption"
  */
 export interface $Path extends $Comparable<($Path)>, $Iterable<($Path)>, $Watchable {
 
+ "getFileSystem"(): $FileSystem
+ "relativize"(arg0: $Path$Type): $Path
  "getNameCount"(): integer
  "subpath"(arg0: integer, arg1: integer): $Path
  "toAbsolutePath"(): $Path
  "toUri"(): $URI
  "resolveSibling"(arg0: $Path$Type): $Path
  "resolveSibling"(arg0: string): $Path
- "getFileSystem"(): $FileSystem
- "relativize"(arg0: $Path$Type): $Path
  "getName"(arg0: integer): $Path
  "equals"(arg0: any): boolean
  "toString"(): string
@@ -2211,14 +2212,14 @@ import {$FileTime, $FileTime$Type} from "packages/java/nio/file/attribute/$FileT
  */
 export interface $BasicFileAttributes {
 
+ "isDirectory"(): boolean
+ "isRegularFile"(): boolean
  "lastModifiedTime"(): $FileTime
  "fileKey"(): any
  "isSymbolicLink"(): boolean
  "lastAccessTime"(): $FileTime
  "creationTime"(): $FileTime
  "isOther"(): boolean
- "isDirectory"(): boolean
- "isRegularFile"(): boolean
  "size"(): long
 }
 
@@ -2249,9 +2250,9 @@ import {$FileStoreAttributeView, $FileStoreAttributeView$Type} from "packages/ja
 export class $FileStore {
 
 
-public "getAttribute"(arg0: string): any
 public "getTotalSpace"(): long
 public "getUsableSpace"(): long
+public "getAttribute"(arg0: string): any
 public "getUnallocatedSpace"(): long
 public "getBlockSize"(): long
 public "supportsFileAttributeView"(arg0: string): boolean
@@ -2322,18 +2323,18 @@ import {$AutoCloseable, $AutoCloseable$Type} from "packages/java/lang/$AutoClose
 export class $FileLock implements $AutoCloseable {
 
 
-public "isValid"(): boolean
-public "channel"(): $FileChannel
 public "acquiredBy"(): $Channel
 public "isShared"(): boolean
 public "overlaps"(arg0: long, arg1: long): boolean
+public "channel"(): $FileChannel
+public "isValid"(): boolean
 public "toString"(): string
 public "position"(): long
 public "size"(): long
 public "close"(): void
 public "release"(): void
-get "valid"(): boolean
 get "shared"(): boolean
+get "valid"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2360,8 +2361,8 @@ import {$InetAddress, $InetAddress$Type} from "packages/java/net/$InetAddress"
 export class $MembershipKey {
 
 
-public "isValid"(): boolean
 public "channel"(): $MulticastChannel
+public "isValid"(): boolean
 public "drop"(): void
 public "group"(): $InetAddress
 public "block"(arg0: $InetAddress$Type): $MembershipKey
@@ -2463,22 +2464,22 @@ import {$UserPrincipalLookupService, $UserPrincipalLookupService$Type} from "pac
 export class $FileSystem implements $Closeable {
 
 
+public "getSeparator"(): string
 public "supportedFileAttributeViews"(): $Set<(string)>
 public "newWatchService"(): $WatchService
 public "getRootDirectories"(): $Iterable<($Path)>
 public "getFileStores"(): $Iterable<($FileStore)>
 public "getPathMatcher"(arg0: string): $PathMatcher
 public "getUserPrincipalLookupService"(): $UserPrincipalLookupService
-public "getSeparator"(): string
 public "isOpen"(): boolean
 public "provider"(): $FileSystemProvider
 public "close"(): void
 public "getPath"(arg0: string, ...arg1: (string)[]): $Path
 public "isReadOnly"(): boolean
+get "separator"(): string
 get "rootDirectories"(): $Iterable<($Path)>
 get "fileStores"(): $Iterable<($FileStore)>
 get "userPrincipalLookupService"(): $UserPrincipalLookupService
-get "separator"(): string
 get "open"(): boolean
 get "readOnly"(): boolean
 }
@@ -2578,13 +2579,13 @@ import {$CoderResult, $CoderResult$Type} from "packages/java/nio/charset/$CoderR
 export class $CharsetDecoder {
 
 
-public "malformedInputAction"(): $CodingErrorAction
-public "unmappableCharacterAction"(): $CodingErrorAction
-public "replaceWith"(arg0: string): $CharsetDecoder
 public "averageCharsPerByte"(): float
 public "isAutoDetecting"(): boolean
 public "isCharsetDetected"(): boolean
 public "detectedCharset"(): $Charset
+public "malformedInputAction"(): $CodingErrorAction
+public "unmappableCharacterAction"(): $CodingErrorAction
+public "replaceWith"(arg0: string): $CharsetDecoder
 public "maxCharsPerByte"(): float
 public "onMalformedInput"(arg0: $CodingErrorAction$Type): $CharsetDecoder
 public "onUnmappableCharacter"(arg0: $CodingErrorAction$Type): $CharsetDecoder
@@ -2750,12 +2751,12 @@ static readonly "UNDERFLOW": $CoderResult
 static readonly "OVERFLOW": $CoderResult
 
 
+public static "unmappableForLength"(arg0: integer): $CoderResult
 public "isOverflow"(): boolean
 public "isError"(): boolean
 public static "malformedForLength"(arg0: integer): $CoderResult
 public "isMalformed"(): boolean
 public "isUnmappable"(): boolean
-public static "unmappableForLength"(arg0: integer): $CoderResult
 public "length"(): integer
 public "toString"(): string
 public "isUnderflow"(): boolean

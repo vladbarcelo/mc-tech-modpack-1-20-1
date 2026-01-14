@@ -21,11 +21,11 @@ static "itemErrors": boolean
 
 constructor()
 
-public "inputItemHasPriority"(arg0: any): boolean
 public "writeInputFluid"(arg0: $InputFluid$Type): $JsonElement
 public "readInputFluid"(arg0: any): $InputFluid
 public "inputFluidHasPriority"(arg0: any): boolean
 public "superheated"(): $RecipeJS
+public "inputItemHasPriority"(arg0: any): boolean
 public "readOutputItem"(arg0: any): $OutputItem
 public "heated"(): $RecipeJS
 }

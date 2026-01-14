@@ -9,11 +9,11 @@ export class $Padding {
 constructor(top: integer, left: integer, bottom: integer, right: integer)
 
 public "setAll"(padding: integer): void
-public "setVertical"(padding: integer): void
 public "setHorizontal"(padding: integer): void
+public "setVertical"(padding: integer): void
 set "all"(value: integer)
-set "vertical"(value: integer)
 set "horizontal"(value: integer)
+set "vertical"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -53,8 +53,8 @@ declare global {
 export type $MixinPlayerSkinProvider_ = $MixinPlayerSkinProvider$Type;
 }}
 declare module "packages/com/minelittlepony/common/client/gui/$IViewRoot" {
-import {$GuiEventListener, $GuiEventListener$Type} from "packages/net/minecraft/client/gui/components/events/$GuiEventListener"
 import {$Padding, $Padding$Type} from "packages/com/minelittlepony/common/client/gui/dimension/$Padding"
+import {$GuiEventListener, $GuiEventListener$Type} from "packages/net/minecraft/client/gui/components/events/$GuiEventListener"
 import {$IBounded, $IBounded$Type} from "packages/com/minelittlepony/common/client/gui/dimension/$IBounded"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$Renderable, $Renderable$Type} from "packages/net/minecraft/client/gui/components/$Renderable"
@@ -65,8 +65,8 @@ import {$ScreenInitCallback$ButtonList, $ScreenInitCallback$ButtonList$Type} fro
 
 export interface $IViewRoot extends $IBounded, $ScreenInitCallback$ButtonList {
 
- "getChildElements"(): $List<($GuiEventListener)>
  "getContentPadding"(): $Padding
+ "getChildElements"(): $List<($GuiEventListener)>
  "getContentBounds"(): $Bounds
  "getAllBounds"(): $Set<($Bounds)>
  "buttons"<T extends ($GuiEventListener) & ($Renderable) & ($NarratableEntry)>(): $List<($NarratableEntry)>
@@ -202,8 +202,8 @@ export interface $ITextContext {
 
  "drawCenteredLabel"(context: $GuiGraphics$Type, text: $Component$Type, x: integer, y: integer, color: integer, zIndex: double): void
  "drawTextBlock"(context: $GuiGraphics$Type, text: $FormattedText$Type, x: integer, y: integer, maxWidth: integer, color: integer): void
- "getFont"(): $Font
  "drawLabel"(context: $GuiGraphics$Type, text: $Component$Type, x: integer, y: integer, color: integer, zIndex: double): void
+ "getFont"(): $Font
 }
 
 export namespace $ITextContext {
@@ -261,8 +261,8 @@ export class $Bounds {
 
 constructor(top: integer, left: integer, width: integer, height: integer)
 
-public "bottom"(): integer
 public "right"(): integer
+public "bottom"(): integer
 public "add"(other: $Padding$Type): $Bounds
 public "add"(other: $Bounds$Type): $Bounds
 public "equals"(o: any): boolean
