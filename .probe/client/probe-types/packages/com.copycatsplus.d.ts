@@ -9,7 +9,6 @@ export class $CopycatByteBlock$Byte extends $Record {
 
 constructor(x: boolean, y: boolean, z: boolean)
 
-public "relative"(direction: $Direction$Type): $CopycatByteBlock$Byte
 public "get"(axis: $Direction$Axis$Type): boolean
 public "equals"(obj: any): boolean
 public "toString"(): string
@@ -19,6 +18,7 @@ public "set"(axis: $Direction$Axis$Type, value: boolean): $CopycatByteBlock$Byte
 public "copy"(): $CopycatByteBlock$Byte
 public "z"(): boolean
 public "y"(): boolean
+public "relative"(direction: $Direction$Type): $CopycatByteBlock$Byte
 public "mirror"(mirror: $Mirror$Type): $CopycatByteBlock$Byte
 public "rotateX"(rotation: $Rotation$Type): $CopycatByteBlock$Byte
 public "rotateY"(rotation: $Rotation$Type): $CopycatByteBlock$Byte
@@ -125,23 +125,23 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public "toRegularPipe"(world: $LevelAccessor$Type, pos: $BlockPos$Type, state: $BlockState$Type): $BlockState
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
-public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
@@ -151,18 +151,18 @@ public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state:
 public "playerWillDestroy"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -291,19 +291,19 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "useShapeForLightOcclusion"(state: $BlockState$Type): boolean
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShadeBrightness"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): float
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -419,44 +419,44 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(sensitivity: $PressurePlateBlock$Sensitivity$Type, properties: $BlockBehaviour$Properties$Type, type: $BlockSetType$Type)
 
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -464,20 +464,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -596,23 +596,24 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(pProperties: $BlockBehaviour$Properties$Type)
 
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(blockAndTintGetter: $BlockAndTintGetter$Type, blockPos: $BlockPos$Type, blockPos1: $BlockPos$Type, blockState: $BlockState$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getOcclusionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): $VoxelShape
@@ -623,21 +624,20 @@ public "getStateForPlacement"(pContext: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -645,20 +645,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -803,27 +803,27 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public static "propertyForDirection"(direction: $Direction$Type): $BooleanProperty
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, fromState: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
-public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
+public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
+public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
@@ -832,18 +832,18 @@ public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockSt
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -851,21 +851,21 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -978,44 +978,44 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(maxWeight: integer, pProperties: $BlockBehaviour$Properties$Type, type: $BlockSetType$Type)
 
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -1023,20 +1023,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1080,10 +1080,10 @@ constructor(builder: $Item$Properties$Type)
 
 public "getDescriptionId"(): string
 public "registerBlocks"(map: $Map$Type<($Block$Type), ($Item$Type)>, self: $Item$Type): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "descriptionId"(): string
 }
 /**
@@ -1194,15 +1194,15 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(pProperties: $BlockBehaviour$Properties$Type)
 
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
+public "canConnectTexturesToward"(blockAndTintGetter: $BlockAndTintGetter$Type, blockPos: $BlockPos$Type, blockPos1: $BlockPos$Type, blockState: $BlockState$Type): boolean
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "canConnectTexturesToward"(blockAndTintGetter: $BlockAndTintGetter$Type, blockPos: $BlockPos$Type, blockPos1: $BlockPos$Type, blockState: $BlockState$Type): boolean
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1294,17 +1294,17 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1387,12 +1387,12 @@ constructor(properties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1437,43 +1437,43 @@ export class $MultiStateCopycatBlockEntity extends $SmartBlockEntity implements 
 
 constructor(type: $BlockEntityType$Type<(any)>, pos: $BlockPos$Type, state: $BlockState$Type)
 
-public "invalidate"(): void
 public "write"(tag: $CompoundTag$Type, clientPacket: boolean): void
 public "read"(tag: $CompoundTag$Type, clientPacket: boolean): void
+public "invalidate"(): void
 public "setMaterialItemStorageInternal"(storage: $MaterialItemStorage$Type): void
 public "migrateData"(copycatBlockEntity: $ICopycatBlockEntity$Type): void
 public "getModelData"(): $ModelData
 public "addBehaviours"(behaviours: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
 public "getMaterialItemStorage"(): $MaterialItemStorage
+public "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
 public "writeSafe"(tag: $CompoundTag$Type): void
 public "getBlock"(): $IMultiStateCopycatBlock
 public "transform"(transform: $StructureTransform$Type): void
 public "init"(): void
 public static "write"(self: $IMultiStateCopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 public static "read"(self: $IMultiStateCopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
+public "setEnableCT"(property: string, value: boolean): void
 public "setMaterialInternal"(material: $BlockState$Type): void
 public "setConsumedItemInternal"(consumedItem: $ItemStack$Type): void
 public "setCTEnabledInternal"(value: boolean): void
-public "setEnableCT"(property: string, value: boolean): void
-public "getMaterial"(): $BlockState
 public "setConsumedItem"(property: string, itemStack: $ItemStack$Type): void
 public "getConsumedItem"(): $ItemStack
 public "hasCustomMaterial"(): boolean
 public "setMaterial"(property: string, blockState: $BlockState$Type): void
 public "cycleMaterial"(property: string): boolean
 public "isCTEnabled"(): boolean
+public "getMaterial"(): $BlockState
 public static "writeSafe"(self: $IMultiStateCopycatBlockEntity$Type, tag: $CompoundTag$Type): void
-public static "write"(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 public static "write"(tag: $CompoundTag$Type, stack: $ItemStack$Type, material: $BlockState$Type, enableCT: boolean): void
+public static "write"(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 public static "read"(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 public "accept"(other: $BlockEntity$Type): void
 public "setConsumedItem"(stack: $ItemStack$Type): void
 public "setMaterial"(blockState: $BlockState$Type): void
 public "cycleMaterial"(): boolean
 public "setCTEnabled"(value: boolean): void
-public "blockHolderGetter"(): $HolderGetter<($Block)>
 public "notifyUpdate"(): void
+public "blockHolderGetter"(): $HolderGetter<($Block)>
 public "getBlockPos"(): $BlockPos
 public "getLevel"(): $Level
 public "setLevel"(arg0: $Level$Type): void
@@ -1488,9 +1488,9 @@ get "block"(): $IMultiStateCopycatBlock
 set "materialInternal"(value: $BlockState$Type)
 set "consumedItemInternal"(value: $ItemStack$Type)
 set "cTEnabledInternal"(value: boolean)
-get "material"(): $BlockState
 get "consumedItem"(): $ItemStack
 get "cTEnabled"(): boolean
+get "material"(): $BlockState
 set "consumedItem"(value: $ItemStack$Type)
 set "material"(value: $BlockState$Type)
 set "cTEnabled"(value: boolean)
@@ -1542,10 +1542,10 @@ constructor(builder: $Item$Properties$Type)
 
 public "getDescriptionId"(): string
 public "registerBlocks"(map: $Map$Type<($Block$Type), ($Item$Type)>, self: $Item$Type): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "descriptionId"(): string
 }
 /**
@@ -1640,15 +1640,15 @@ public static "getOffsetFacing"(facing: $Direction$Type, offset: $Direction$Type
 public static "getOffsetAxis"(facing: $Direction$Type, offset: $Direction$Type): $Direction$Axis
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1745,16 +1745,16 @@ public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type)
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1863,9 +1863,9 @@ public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $Blo
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "setWrapped"(wrapped: $ICopycatBlock$Type): void
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -1991,16 +1991,16 @@ public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(pState: $BlockState$Type): boolean
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public static "isStairs"(state: $BlockState$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2134,22 +2134,23 @@ public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type)
 public static "getFaceShape"(state: $BlockState$Type, face: $Direction$Type): $CopycatStairsBlock$FaceShape
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
+public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
+public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "rotate"(state: $BlockState$Type, rotation: $Rotation$Type): $BlockState
@@ -2158,41 +2159,40 @@ public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLe
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, fromState: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
 public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean, handler: $ICopycatBlock$OnRemoveHandler$Type): void
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2297,20 +2297,21 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 
 public "transform"(arg0: $BlockState$Type, arg1: $StructureTransform$Type): $BlockState
 public static "getMaterial"(level: $BlockGetter$Type, pos: $BlockPos$Type): $BlockState
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "rotate"(state: $BlockState$Type, rot: $Rotation$Type): $BlockState
@@ -2319,41 +2320,40 @@ public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLe
 public "setPlacedBy"(worldIn: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, fromState: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
 public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean, handler: $ICopycatBlock$OnRemoveHandler$Type): void
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "stateType"(): $StateType
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2438,9 +2438,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(pState: $BlockState$Type, pDirection: $Direction$Type, pNeighborState: $BlockState$Type, pLevel: $LevelAccessor$Type, pCurrentPos: $BlockPos$Type, pNeighborPos: $BlockPos$Type): $BlockState
 public "getFluidState"(pState: $BlockState$Type): $FluidState
 public "getStateForPlacement"(pContext: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(pState: $BlockState$Type, pDirection: $Direction$Type, pNeighborState: $BlockState$Type, pLevel: $LevelAccessor$Type, pCurrentPos: $BlockPos$Type, pNeighborPos: $BlockPos$Type): $BlockState
 public "updateWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): void
 public "fluidState"(arg0: $BlockState$Type): $FluidState
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
@@ -2450,14 +2450,14 @@ public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Blo
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "getPickupSound"(): $Optional<($SoundEvent)>
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
 get "pickupSound"(): $Optional<($SoundEvent)>
@@ -2554,17 +2554,17 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2632,20 +2632,20 @@ export class $CCCopycatBlockEntity extends $SmartBlockEntity implements $ICopyca
 
 constructor(type: $BlockEntityType$Type<(any)>, pos: $BlockPos$Type, state: $BlockState$Type)
 
-public "invalidate"(): void
 public "write"(tag: $CompoundTag$Type, clientPacket: boolean): void
 public "read"(tag: $CompoundTag$Type, clientPacket: boolean): void
+public "invalidate"(): void
 public "setMaterialInternal"(material: $BlockState$Type): void
 public "setConsumedItemInternal"(consumedItem: $ItemStack$Type): void
 public "setCTEnabledInternal"(value: boolean): void
-public "getModelData"(): $ModelData
-public "getMaterial"(): $BlockState
 public "getConsumedItem"(): $ItemStack
 public "isCTEnabled"(): boolean
+public "getMaterial"(): $BlockState
+public "getModelData"(): $ModelData
 public "addBehaviours"(behaviours: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
-public "blockHolderGetter"(): $HolderGetter<($Block)>
 public "notifyUpdate"(): void
+public "blockHolderGetter"(): $HolderGetter<($Block)>
+public "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
 public "getBlockPos"(): $BlockPos
 public "getLevel"(): $Level
 public "setLevel"(level: $Level$Type): void
@@ -2655,8 +2655,8 @@ public "writeSafe"(tag: $CompoundTag$Type): void
 public "getBlock"(): $ICopycatBlock
 public "transform"(transform: $StructureTransform$Type): void
 public "init"(): void
-public static "write"(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 public static "write"(tag: $CompoundTag$Type, stack: $ItemStack$Type, material: $BlockState$Type, enableCT: boolean): void
+public static "write"(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 public static "read"(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 public "accept"(other: $BlockEntity$Type): void
 public "setConsumedItem"(stack: $ItemStack$Type): void
@@ -2669,10 +2669,10 @@ public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTa
 set "materialInternal"(value: $BlockState$Type)
 set "consumedItemInternal"(value: $ItemStack$Type)
 set "cTEnabledInternal"(value: boolean)
-get "modelData"(): $ModelData
-get "material"(): $BlockState
 get "consumedItem"(): $ItemStack
 get "cTEnabled"(): boolean
+get "material"(): $BlockState
+get "modelData"(): $ModelData
 get "blockPos"(): $BlockPos
 get "level"(): $Level
 set "level"(value: $Level$Type)
@@ -2802,15 +2802,15 @@ public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2859,31 +2859,30 @@ import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecr
 
 export interface $IMultiStateCopycatBlock extends $ICopycatBlock, $IStateType {
 
- "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $IMultiStateCopycatBlockEntity
  "defaultProperty"(): string
  "vectorScale"(arg0: $BlockState$Type): $Vec3i
+ "transformStorage"(arg0: $BlockState$Type, arg1: $IMultiStateCopycatBlockEntity$Type, arg2: $StructureTransform$Type): void
+ "getPartialFaceShape"(arg0: $BlockGetter$Type, arg1: $BlockState$Type, arg2: string, arg3: $Direction$Type): $VoxelShape
  "storageProperties"(): $Set<(string)>
  "getVectorFromProperty"(arg0: $BlockState$Type, arg1: string): $Vec3i
  "getPropertyFromRender"(renderingProperty: string, state: $BlockState$Type, level: $BlockGetter$Type, vector: $Vec3i$Type, blockPos: $BlockPos$Type): string
  "fillEmptyParts"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, material: $BlockState$Type): void
- "getPartialFaceShape"(arg0: $BlockGetter$Type, arg1: $BlockState$Type, arg2: string, arg3: $Direction$Type): $VoxelShape
- "transformStorage"(arg0: $BlockState$Type, arg1: $IMultiStateCopycatBlockEntity$Type, arg2: $StructureTransform$Type): void
- "getColorIndex"(arg0: string): integer
- "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
  "getAcceptedBlockState"(property: string, pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
  "canConnectTexturesToward"(property: string, reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
+ "getColorIndex"(arg0: string): integer
+ "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
  "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, hit: $BlockHitResult$Type, targetingSolid: boolean): string
  "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, hitVec: $Vec3$Type, face: $Direction$Type, targetingSolid: boolean): string
  "getPropertyFromInteraction"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $Vec3i$Type, arg3: $BlockPos$Type, arg4: $Direction$Type, arg5: $Vec3$Type): string
  "m_6227_"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
  "m_6402_"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
  "m_5707_"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
- "canOcclude"(property: string, level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
  "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
+ "canOcclude"(property: string, level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
  "onRemove"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean, handler: $ICopycatBlock$OnRemoveHandler$Type): void
  "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
- "stateType"(): $StateType
  "toggleCT"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
+ "stateType"(): $StateType
  "partExists"(arg0: $BlockState$Type, arg1: string): boolean
  "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
  "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
@@ -2897,21 +2896,21 @@ export interface $IMultiStateCopycatBlock extends $ICopycatBlock, $IStateType {
  "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
  "m_6843_"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
  "m_6943_"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
- "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+ "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
  "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
  "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
- "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+ "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 }
 
 export namespace $IMultiStateCopycatBlock {
 function getRequiredItemsForParts(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+function wrappedColor(): $BlockColor
 function getMaterial(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 function getAppearance(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-function wrappedColor(): $BlockColor
+function getRequiredItemsForLayer(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 function getMaterial(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 function hidesNeighborFace(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 function getAppearance(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-function getRequiredItemsForLayer(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3001,15 +3000,15 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3161,45 +3160,45 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type, type: $BlockSetType$Type)
 
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -3207,20 +3206,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3331,28 +3330,28 @@ readonly "properties": $BlockBehaviour$Properties
 public static "small"(properties: $BlockBehaviour$Properties$Type): $CopycatCogWheelBlock
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
-public "getColorIndex"(property: string): integer
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, renderView: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, sourceState: $BlockState$Type, sourcePos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(property: string, pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(property: string, reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
-public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getColorIndex"(property: string): integer
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
+public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getAppearance"(state: $BlockState$Type, renderView: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, sourceState: $BlockState$Type, sourcePos: $BlockPos$Type): $BlockState
 public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
@@ -3362,26 +3361,23 @@ public "playerWillDestroy"(level: $Level$Type, pos: $BlockPos$Type, state: $Bloc
 public static "large"(properties: $BlockBehaviour$Properties$Type): $CopycatCogWheelBlock
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "partExists"(state: $BlockState$Type, property: string): boolean
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $IMultiStateCopycatBlockEntity
+public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
 public "getPropertyFromRender"(renderingProperty: string, state: $BlockState$Type, level: $BlockGetter$Type, vector: $Vec3i$Type, blockPos: $BlockPos$Type): string
 public "fillEmptyParts"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, material: $BlockState$Type): void
-public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, hit: $BlockHitResult$Type, targetingSolid: boolean): string
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, hitVec: $Vec3$Type, face: $Direction$Type, targetingSolid: boolean): string
-public "canOcclude"(property: string, level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
+public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
+public "canOcclude"(property: string, level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
 public "onRemove"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean, handler: $ICopycatBlock$OnRemoveHandler$Type): void
-public "stateType"(): $StateType
 public "toggleCT"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
+public "stateType"(): $StateType
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
@@ -3389,6 +3385,8 @@ public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $Bl
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public static "isDedicatedCogWheel"(arg0: $Block$Type): boolean
@@ -3500,31 +3498,31 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
 public "getColorIndex"(property: string): integer
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(state: $BlockState$Type, context: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "partExists"(state: $BlockState$Type, property: string): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3551,11 +3549,11 @@ export class $CopycatStairsBlock$FaceShape {
 
 constructor()
 
-public "isFull"(): boolean
-public "rotate"(angle: integer): $CopycatStairsBlock$FaceShape
-public "rotate"(angle: float): $CopycatStairsBlock$FaceShape
 public "equals"(obj: any): boolean
 public "set"(bottomNegative: boolean, bottomPositive: boolean, topNegative: boolean, topPositive: boolean): $CopycatStairsBlock$FaceShape
+public "rotate"(angle: integer): $CopycatStairsBlock$FaceShape
+public "rotate"(angle: float): $CopycatStairsBlock$FaceShape
+public "isFull"(): boolean
 public "fillPositive"(): $CopycatStairsBlock$FaceShape
 public "fillNegative"(): $CopycatStairsBlock$FaceShape
 public "countBlocks"(): integer
@@ -3629,8 +3627,8 @@ import {$Direction$Axis, $Direction$Axis$Type} from "packages/net/minecraft/core
 import {$IPlantable, $IPlantable$Type} from "packages/net/minecraftforge/common/$IPlantable"
 import {$MaterialItemStorage$MaterialItem, $MaterialItemStorage$MaterialItem$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/multistate/$MaterialItemStorage$MaterialItem"
 import {$ISpecialBlockItemRequirement, $ISpecialBlockItemRequirement$Type} from "packages/com/simibubi/create/content/schematics/requirement/$ISpecialBlockItemRequirement"
-import {$CopycatTransformableState, $CopycatTransformableState$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/$CopycatTransformableState"
 import {$IMultiStateCopycatBlockEntity, $IMultiStateCopycatBlockEntity$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/multistate/$IMultiStateCopycatBlockEntity"
+import {$CopycatTransformableState, $CopycatTransformableState$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/$CopycatTransformableState"
 import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecraft/world/level/$BlockAndTintGetter"
 
 export class $CopycatSlabBlock extends $WaterloggedMultiStateCopycatBlock implements $ISpecialBlockItemRequirement {
@@ -3673,41 +3671,41 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(pProperties: $BlockBehaviour$Properties$Type)
 
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public static "getFaceShape"(state: $BlockState$Type, face: $Direction$Type): $CopycatSlabBlock$FaceShape
-public static "getApparentDirection"(state: $BlockState$Type): $Direction
-public static "setApparentDirection"(state: $BlockState$Type, direction: $Direction$Type): $BlockState
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
 public static "toTransformableState"(state: $BlockState$Type): $CopycatTransformableState<(void)>
 public static "toTransformableStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type): $CopycatTransformableState<($MaterialItemStorage$MaterialItem)>
 public static "fromTransformableState"(state: $BlockState$Type, transformableState: $CopycatTransformableState$Type<(void)>): $BlockState
 public static "fromTransformableStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transformableState: $CopycatTransformableState$Type<($MaterialItemStorage$MaterialItem$Type)>): void
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public static "getFaceShape"(state: $BlockState$Type, face: $Direction$Type): $CopycatSlabBlock$FaceShape
+public static "getApparentDirection"(state: $BlockState$Type): $Direction
+public static "setApparentDirection"(state: $BlockState$Type, direction: $Direction$Type): $BlockState
 public "getColorIndex"(property: string): integer
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "partExists"(state: $BlockState$Type, property: string): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3810,27 +3808,27 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
-public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
+public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
+public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
@@ -3839,16 +3837,16 @@ public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$T
 public "playerWillDestroy"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -3966,34 +3964,34 @@ public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type)
 public static "getByteFromVec"(vec: $Vec3$Type, pos: $BlockPos$Type): $CopycatByteBlock$Byte
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
 public "getColorIndex"(property: string): integer
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "partExists"(state: $BlockState$Type, property: string): boolean
-public static "byByte"(x: boolean, y: boolean, z: boolean): $BooleanProperty
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "byByte"(bite: $CopycatByteBlock$Byte$Type): $BooleanProperty
+public static "byByte"(x: boolean, y: boolean, z: boolean): $BooleanProperty
 public static "bite"(x: boolean, y: boolean, z: boolean): $CopycatByteBlock$Byte
+public "partExists"(state: $BlockState$Type, property: string): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4088,19 +4086,19 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "useShapeForLightOcclusion"(state: $BlockState$Type): boolean
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShadeBrightness"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): float
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4204,12 +4202,12 @@ export class $MaterialItemStorage {
 public static "create"(properties: $Set$Type<(string)>): $MaterialItemStorage
 public "getMaterialMap"(): $Map<(string), ($BlockState)>
 public "serializeSafe"(): $CompoundTag
-public "remapStorage"(keyMapper: $Function$Type<(string), (string)>): void
 public "getAllMaterialItems"(): $Set<($MaterialItemStorage$MaterialItem)>
 public "getAllProperties"(): $Set<(string)>
 public "getMaterialItem"(property: string): $MaterialItemStorage$MaterialItem
-public "storeMaterialItem"(property: string, materialItem: $MaterialItemStorage$MaterialItem$Type): void
+public "remapStorage"(keyMapper: $Function$Type<(string), (string)>): void
 public "getAllConsumedItems"(): $List<($ItemStack)>
+public "storeMaterialItem"(property: string, materialItem: $MaterialItemStorage$MaterialItem$Type): void
 public "hasCustomMaterial"(property: string): boolean
 public "getAllMaterials"(): $Set<($BlockState)>
 public "serialize"(): $CompoundTag
@@ -4342,66 +4340,66 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type, type: $BlockSetType$Type)
 
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(p_153212_: $Level$Type, p_153213_: $BlockState$Type, p_153214_: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(p_153212_: $Level$Type, p_153213_: $BlockState$Type, p_153214_: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
 public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean, handler: $ICopycatBlock$OnRemoveHandler$Type): void
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4456,8 +4454,8 @@ import {$Direction$Axis, $Direction$Axis$Type} from "packages/net/minecraft/core
 import {$IPlantable, $IPlantable$Type} from "packages/net/minecraftforge/common/$IPlantable"
 import {$MaterialItemStorage$MaterialItem, $MaterialItemStorage$MaterialItem$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/multistate/$MaterialItemStorage$MaterialItem"
 import {$ISpecialBlockItemRequirement, $ISpecialBlockItemRequirement$Type} from "packages/com/simibubi/create/content/schematics/requirement/$ISpecialBlockItemRequirement"
-import {$CopycatTransformableState, $CopycatTransformableState$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/$CopycatTransformableState"
 import {$IMultiStateCopycatBlockEntity, $IMultiStateCopycatBlockEntity$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/multistate/$IMultiStateCopycatBlockEntity"
+import {$CopycatTransformableState, $CopycatTransformableState$Type} from "packages/com/copycatsplus/copycats/foundation/copycat/$CopycatTransformableState"
 import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecraft/world/level/$BlockAndTintGetter"
 
 export class $CopycatHalfLayerBlock extends $WaterloggedMultiStateCopycatBlock implements $ISpecialBlockItemRequirement {
@@ -4504,35 +4502,35 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
 public static "toTransformableState"(state: $BlockState$Type): $CopycatTransformableState<(integer)>
 public static "toTransformableStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type): $CopycatTransformableState<($MaterialItemStorage$MaterialItem)>
 public static "fromTransformableState"(state: $BlockState$Type, transformableState: $CopycatTransformableState$Type<(integer)>): $BlockState
 public static "fromTransformableStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transformableState: $CopycatTransformableState$Type<($MaterialItemStorage$MaterialItem$Type)>): void
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
 public "getColorIndex"(property: string): integer
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "partExists"(state: $BlockState$Type, property: string): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4624,15 +4622,15 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4745,18 +4743,19 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public "transform"(arg0: $BlockState$Type, arg1: $StructureTransform$Type): $BlockState
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, renderView: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, sourceState: $BlockState$Type, sourcePos: $BlockPos$Type): $BlockState
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($MultiStateCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, renderView: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, sourceState: $BlockState$Type, sourcePos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(p_153212_: $Level$Type, p_153213_: $BlockState$Type, p_153214_: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "rotate"(state: $BlockState$Type, rot: $Rotation$Type): $BlockState
@@ -4765,43 +4764,39 @@ public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLe
 public "setPlacedBy"(worldIn: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, state: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(p_153212_: $Level$Type, p_153213_: $BlockState$Type, p_153214_: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $IMultiStateCopycatBlockEntity
 public "defaultProperty"(): string
 public "vectorScale"(arg0: $BlockState$Type): $Vec3i
+public "transformStorage"(arg0: $BlockState$Type, arg1: $IMultiStateCopycatBlockEntity$Type, arg2: $StructureTransform$Type): void
+public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public "getPartialFaceShape"(arg0: $BlockGetter$Type, arg1: $BlockState$Type, arg2: string, arg3: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(arg0: $BlockState$Type, arg1: string): $Vec3i
 public "getPropertyFromRender"(renderingProperty: string, state: $BlockState$Type, level: $BlockGetter$Type, vector: $Vec3i$Type, blockPos: $BlockPos$Type): string
 public "fillEmptyParts"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, material: $BlockState$Type): void
-public "getPartialFaceShape"(arg0: $BlockGetter$Type, arg1: $BlockState$Type, arg2: string, arg3: $Direction$Type): $VoxelShape
-public "transformStorage"(arg0: $BlockState$Type, arg1: $IMultiStateCopycatBlockEntity$Type, arg2: $StructureTransform$Type): void
-public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
-public "getColorIndex"(arg0: string): integer
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(property: string, pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "canConnectTexturesToward"(property: string, reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
 public static "wrappedColor"(): $BlockColor
+public "getColorIndex"(arg0: string): integer
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, hit: $BlockHitResult$Type, targetingSolid: boolean): string
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, hitVec: $Vec3$Type, face: $Direction$Type, targetingSolid: boolean): string
 public "getPropertyFromInteraction"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $Vec3i$Type, arg3: $BlockPos$Type, arg4: $Direction$Type, arg5: $Vec3$Type): string
-public "canOcclude"(property: string, level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
+public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
+public "canOcclude"(property: string, level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
 public "onRemove"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean, handler: $ICopycatBlock$OnRemoveHandler$Type): void
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "stateType"(): $StateType
 public "toggleCT"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
+public "stateType"(): $StateType
 public "partExists"(arg0: $BlockState$Type, arg1: string): boolean
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $MultiStateCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($MultiStateCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($MultiStateCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($MultiStateCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($MultiStateCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
@@ -4811,15 +4806,17 @@ public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, p
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 get "blockEntityClass"(): $Class<($MultiStateCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5020,31 +5017,31 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
 public "getColorIndex"(property: string): integer
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(state: $BlockState$Type, context: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "partExists"(state: $BlockState$Type, property: string): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -5161,47 +5158,47 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
-public static "byDirection"(direction: $Direction$Type): $BooleanProperty
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "collisionExtendsVertically"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, collidingEntity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
+public static "byDirection"(direction: $Direction$Type): $BooleanProperty
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -5209,20 +5206,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5316,17 +5313,17 @@ constructor(pProperties: $BlockBehaviour$Properties$Type)
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -5418,21 +5415,21 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(pProperties: $BlockBehaviour$Properties$Type)
 
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, fromState: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -5568,44 +5565,44 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type, type: $BlockSetType$Type, ticksToStayPressed: integer, arrowsCanPress: boolean)
 
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -5613,20 +5610,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5671,16 +5668,16 @@ import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecr
 export interface $ICopycatBlock extends $IWrenchable, $IStateType, $ITransformableBlock {
 
  "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
- "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
- "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
  "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
  "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
  "isAcceptedRegardless"(material: $BlockState$Type): boolean
  "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, fromState: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
  "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+ "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
  "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
  "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
  "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+ "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
  "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
  "m_6227_"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
  "m_6843_"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
@@ -5691,19 +5688,19 @@ export interface $ICopycatBlock extends $IWrenchable, $IStateType, $ITransformab
  "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean, handler: $ICopycatBlock$OnRemoveHandler$Type): void
  "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
  "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
- "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+ "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
  "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
  "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
- "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+ "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
  "stateType"(): $StateType
 }
 
 export namespace $ICopycatBlock {
+function wrappedColor(): $BlockColor
+function getRequiredItemsForLayer(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 function getMaterial(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 function hidesNeighborFace(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 function getAppearance(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-function wrappedColor(): $BlockColor
-function getRequiredItemsForLayer(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5817,47 +5814,47 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
-public static "byDirection"(direction: $Direction$Type): $EnumProperty<($WallSide)>
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "collisionExtendsVertically"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, collidingEntity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
+public static "byDirection"(direction: $Direction$Type): $EnumProperty<($WallSide)>
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -5865,20 +5862,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5998,25 +5995,25 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type, type: $BlockSetType$Type, folds: boolean)
 
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
-public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
@@ -6028,17 +6025,17 @@ public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $Inte
 public static "metal"(properties: $BlockBehaviour$Properties$Type, folds: boolean): $CopycatSlidingDoorBlock
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -6081,27 +6078,27 @@ export interface $IMultiStateCopycatBlockEntity extends $ICopycatBlockEntity {
  "transform"(transform: $StructureTransform$Type): void
  "init"(): void
  "setMaterialItemStorageInternal"(arg0: $MaterialItemStorage$Type): void
+ "setEnableCT"(property: string, value: boolean): void
  "setMaterialInternal"(material: $BlockState$Type): void
  "setConsumedItemInternal"(consumedItem: $ItemStack$Type): void
  "setCTEnabledInternal"(value: boolean): void
- "setEnableCT"(property: string, value: boolean): void
- "getMaterial"(): $BlockState
  "setConsumedItem"(property: string, itemStack: $ItemStack$Type): void
  "getConsumedItem"(): $ItemStack
  "hasCustomMaterial"(): boolean
  "setMaterial"(property: string, blockState: $BlockState$Type): void
  "cycleMaterial"(property: string): boolean
  "isCTEnabled"(): boolean
- "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
+ "getMaterial"(): $BlockState
  "getMaterialItemStorage"(): $MaterialItemStorage
- "invalidate"(): void
+ "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
  "accept"(other: $BlockEntity$Type): void
+ "invalidate"(): void
  "setConsumedItem"(stack: $ItemStack$Type): void
  "setMaterial"(blockState: $BlockState$Type): void
  "cycleMaterial"(): boolean
  "setCTEnabled"(value: boolean): void
- "blockHolderGetter"(): $HolderGetter<($Block)>
  "notifyUpdate"(): void
+ "blockHolderGetter"(): $HolderGetter<($Block)>
  "m_58899_"(): $BlockPos
  "m_58904_"(): $Level
  "m_142339_"(arg0: $Level$Type): void
@@ -6114,8 +6111,8 @@ export namespace $IMultiStateCopycatBlockEntity {
 function write(self: $IMultiStateCopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function read(self: $IMultiStateCopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function writeSafe(self: $IMultiStateCopycatBlockEntity$Type, tag: $CompoundTag$Type): void
-function write(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function write(tag: $CompoundTag$Type, stack: $ItemStack$Type, material: $BlockState$Type, enableCT: boolean): void
+function write(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function read(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function writeSafe(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type): void
 }
@@ -6244,37 +6241,37 @@ constructor(properties: $BlockBehaviour$Properties$Type)
 
 public static "getProperty"(horizontal: integer, vertical: integer): string
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public static "getVertical"(facing: $Direction$Type): $Direction
 public static "getHorizontal"(facing: $Direction$Type): $Direction
+public static "fromProperty"(property: string): $BooleanProperty
+public static "getVertical"(facing: $Direction$Type): $Direction
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
-public static "fromProperty"(property: string): $BooleanProperty
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
 public "getColorIndex"(property: string): integer
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(state: $BlockState$Type, context: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public static "getVector"(property: string): $Vector2i
 public "partExists"(state: $BlockState$Type, property: string): boolean
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -6428,46 +6425,46 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
+public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "collisionExtendsVertically"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, collidingEntity: $Entity$Type): boolean
-public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
+public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
 public "setPlacedBy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlacer: $LivingEntity$Type, pStack: $ItemStack$Type): void
 public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$Type, pEntity: $Entity$Type, p_152430_: float): void
 public "playerWillDestroy"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type): void
-public "getTicker"<S extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean
@@ -6475,20 +6472,20 @@ public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Ty
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "toggleCT"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $CCCopycatBlockEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($CCCopycatBlockEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($CCCopycatBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($CCCopycatBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "stateType"(): $StateType
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($CCCopycatBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6570,9 +6567,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(pProperties: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(pState: $BlockState$Type, pDirection: $Direction$Type, pNeighborState: $BlockState$Type, pLevel: $LevelAccessor$Type, pCurrentPos: $BlockPos$Type, pNeighborPos: $BlockPos$Type): $BlockState
 public "getFluidState"(pState: $BlockState$Type): $FluidState
 public "getStateForPlacement"(pContext: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(pState: $BlockState$Type, pDirection: $Direction$Type, pNeighborState: $BlockState$Type, pLevel: $LevelAccessor$Type, pCurrentPos: $BlockPos$Type, pNeighborPos: $BlockPos$Type): $BlockState
 public "updateWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): void
 public "fluidState"(arg0: $BlockState$Type): $FluidState
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
@@ -6582,10 +6579,10 @@ public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Blo
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "getPickupSound"(): $Optional<($SoundEvent)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "wrappedColor"(): $BlockColor
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
 get "pickupSound"(): $Optional<($SoundEvent)>
@@ -6690,40 +6687,40 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public static "directionToProperty"(direction: $Direction$Type): string
 public "defaultProperty"(): string
 public "vectorScale"(state: $BlockState$Type): $Vec3i
+public static "directionToProperty"(direction: $Direction$Type): string
+public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
 public "storageProperties"(): $Set<(string)>
 public "getVectorFromProperty"(state: $BlockState$Type, property: string): $Vec3i
 public "getPropertyFromRender"(renderingProperty: string, state: $BlockState$Type, level: $BlockGetter$Type, vector: $Vec3i$Type, blockPos: $BlockPos$Type): string
-public "getPartialFaceShape"(level: $BlockGetter$Type, state: $BlockState$Type, property: string, face: $Direction$Type): $VoxelShape
-public "transformStorage"(state: $BlockState$Type, be: $IMultiStateCopycatBlockEntity$Type, transform: $StructureTransform$Type): void
+public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
+public "canConnectTexturesToward"(property: string, reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "getColorIndex"(property: string): integer
 public "supportsExternalFaceHiding"(state: $BlockState$Type): boolean
 public "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
-public "canConnectTexturesToward"(property: string, reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
 public static "byDirection"(direction: $Direction$Type): $BooleanProperty
 public "getPropertyFromInteraction"(state: $BlockState$Type, level: $BlockGetter$Type, hitLocation: $Vec3i$Type, blockPos: $BlockPos$Type, facing: $Direction$Type, unscaledHit: $Vec3$Type): string
-public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "blockCTTowards"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, ctPos: $BlockPos$Type, connectingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
-public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
+public "getRequiredItems"(state: $BlockState$Type, blockEntity: $BlockEntity$Type): $ItemRequirement
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
 public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type, pType: $PathComputationType$Type): boolean
 public "partExists"(state: $BlockState$Type, property: string): boolean
 public "isCTBlocked"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type, connectingPos: $BlockPos$Type, blockingPos: $BlockPos$Type, face: $Direction$Type): $Optional<(boolean)>
 public static "withWater"(arg0: $LevelAccessor$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): $BlockState
 public static "getRequiredItemsForParts"(state: $BlockState$Type, ...property: ($BooleanProperty$Type)[]): $ItemRequirement
+public static "wrappedColor"(): $BlockColor
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type, property: string): $BlockState
 public static "getAppearance"(block: $IMultiStateCopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "wrappedColor"(): $BlockColor
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
 public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
-public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -6757,15 +6754,14 @@ import {$HolderGetter, $HolderGetter$Type} from "packages/net/minecraft/core/$Ho
 
 export interface $ICopycatBlockEntity extends $ISpecialBlockEntityItemRequirement, $ITransformableBlockEntity, $IPartialSafeNBT, $IMergeableBE {
 
- "invalidate"(): void
  "getBlock"(): $ICopycatBlock
  "transform"(transform: $StructureTransform$Type): void
  "init"(): void
  "accept"(other: $BlockEntity$Type): void
+ "invalidate"(): void
  "setMaterialInternal"(arg0: $BlockState$Type): void
  "setConsumedItemInternal"(arg0: $ItemStack$Type): void
  "setCTEnabledInternal"(arg0: boolean): void
- "getMaterial"(): $BlockState
  "setConsumedItem"(stack: $ItemStack$Type): void
  "getConsumedItem"(): $ItemStack
  "hasCustomMaterial"(): boolean
@@ -6773,9 +6769,10 @@ export interface $ICopycatBlockEntity extends $ISpecialBlockEntityItemRequiremen
  "cycleMaterial"(): boolean
  "isCTEnabled"(): boolean
  "setCTEnabled"(value: boolean): void
- "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
- "blockHolderGetter"(): $HolderGetter<($Block)>
+ "getMaterial"(): $BlockState
  "notifyUpdate"(): void
+ "blockHolderGetter"(): $HolderGetter<($Block)>
+ "getRequiredItems"(state: $BlockState$Type): $ItemRequirement
  "m_58899_"(): $BlockPos
  "m_58904_"(): $Level
  "m_142339_"(arg0: $Level$Type): void
@@ -6785,8 +6782,8 @@ export interface $ICopycatBlockEntity extends $ISpecialBlockEntityItemRequiremen
 }
 
 export namespace $ICopycatBlockEntity {
-function write(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function write(tag: $CompoundTag$Type, stack: $ItemStack$Type, material: $BlockState$Type, enableCT: boolean): void
+function write(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function read(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type, clientPacket: boolean): void
 function writeSafe(self: $ICopycatBlockEntity$Type, tag: $CompoundTag$Type): void
 }
@@ -6813,9 +6810,9 @@ export class $CopycatTransformableState$Part<T> {
 
 constructor(x: integer, y: integer, z: integer)
 
-public "getData"(): T
-public "setData"(data: T): $CopycatTransformableState$Part<(T)>
 public "transform"(transform: $StructureTransform$Type): $CopycatTransformableState$Part<(T)>
+public "setData"(data: T): $CopycatTransformableState$Part<(T)>
+public "getData"(): T
 public "untransform"(transform: $StructureTransform$Type): $CopycatTransformableState$Part<(T)>
 public "getHorizontalFacing"(): $Direction
 public "rotateY"(facing: $Direction$Type, origin: $Direction$Type): $CopycatTransformableState$Part<(T)>
@@ -6823,8 +6820,8 @@ public "rotateY"(facing: $Direction$Type): $CopycatTransformableState$Part<(T)>
 public "isTop"(): boolean
 public "getFacing"(): $Direction
 public "isRight"(facing: $Direction$Type): boolean
-get "data"(): T
 set "data"(value: T)
+get "data"(): T
 get "horizontalFacing"(): $Direction
 get "top"(): boolean
 get "facing"(): $Direction
@@ -6934,23 +6931,23 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "getAcceptedBlockState"(pLevel: $Level$Type, pPos: $BlockPos$Type, item: $ItemStack$Type, face: $Direction$Type): $BlockState
 public "isIgnoredConnectivitySide"(reader: $BlockAndTintGetter$Type, state: $BlockState$Type, face: $Direction$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, toState: $BlockState$Type): boolean
 public "canConnectTexturesToward"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, state: $BlockState$Type): boolean
-public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
+public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
+public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
+public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
+public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
+public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
+public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
 public "getEnchantPowerBonus"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): float
 public "getSoundType"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): $SoundType
-public "getFriction"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $Entity$Type): float
-public "addRunningEffects"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
-public "getExplosionResistance"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, explosion: $Explosion$Type): float
-public "isValidSpawn"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $SpawnPlacements$Type$Type, entityType: $EntityType$Type<(any)>): boolean
-public "canHarvestBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): boolean
-public "getLightEmission"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "addLandingEffects"(state1: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, state2: $BlockState$Type, entity: $LivingEntity$Type, numberOfParticles: integer): boolean
 public "canEntityDestroy"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, entity: $Entity$Type): boolean
+public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
 public "getBlockEntityType"(): $BlockEntityType<(any)>
+public "onSneakWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
+public "getAppearance"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "onRemove"(pState: $BlockState$Type, pLevel: $Level$Type, pPos: $BlockPos$Type, pNewState: $BlockState$Type, pIsMoving: boolean): void
 public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, ray: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(pState: $BlockState$Type, pPlayer: $Player$Type, pLevel: $BlockGetter$Type, pPos: $BlockPos$Type): float
@@ -6959,18 +6956,18 @@ public "fallOn"(pLevel: $Level$Type, pState: $BlockState$Type, pPos: $BlockPos$T
 public "playerWillDestroy"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
 public "onWrenched"(state: $BlockState$Type, context: $UseOnContext$Type): $InteractionResult
 public "transform"(state: $BlockState$Type, transform: $StructureTransform$Type): $BlockState
-public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
-public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
-public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
-public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
-public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "prepareMaterial"(pLevel: $Level$Type, pPos: $BlockPos$Type, pState: $BlockState$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type, pHit: $BlockHitResult$Type, material: $BlockState$Type): $BlockState
 public "isAcceptedRegardless"(material: $BlockState$Type): boolean
 public static "wrappedColor"(): $BlockColor
+public "getCopycatBlockEntity"(worldIn: $BlockGetter$Type, pos: $BlockPos$Type): $ICopycatBlockEntity
 public "canToggleCT"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public "isCTEnabled"(state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type): boolean
 public static "getRequiredItemsForLayer"(state: $BlockState$Type, property: $IntegerProperty$Type): $ItemRequirement
 public "checkConnection"(reader: $BlockAndTintGetter$Type, fromPos: $BlockPos$Type, toPos: $BlockPos$Type, fromState: $BlockState$Type): boolean
+public static "getMaterial"(reader: $BlockGetter$Type, targetPos: $BlockPos$Type): $BlockState
+public static "hidesNeighborFace"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborState: $BlockState$Type, dir: $Direction$Type): boolean
+public "shapeCanOccludeNeighbor"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type, neighborPos: $BlockPos$Type, dir: $Direction$Type): $Optional<(boolean)>
+public static "getAppearance"(block: $ICopycatBlock$Type, state: $BlockState$Type, level: $BlockAndTintGetter$Type, pos: $BlockPos$Type, side: $Direction$Type, queryState: $BlockState$Type, queryPos: $BlockPos$Type): $BlockState
 public "rotate"(pState: $BlockState$Type, pRot: $Rotation$Type): $BlockState
 public "mirror"(pState: $BlockState$Type, pMirror: $Mirror$Type): $BlockState
 public "canOcclude"(level: $BlockGetter$Type, state: $BlockState$Type, pos: $BlockPos$Type): boolean

@@ -13,9 +13,9 @@ export class $CapabilityFluid$CustomTankBuilderItemStack extends $CapabilityBuil
 constructor()
 
 public "getCapacity"(getCapacity: $ToIntFunction$Type<($ItemStack$Type)>): $CapabilityFluid$CustomTankBuilderItemStack
-public "isFluidGood"(isFluidGood: $BiPredicate$Type<($ItemStack$Type), ($FluidStackJS$Type)>): $CapabilityFluid$CustomTankBuilderItemStack
-public "withCapacity"(capacity: integer): $CapabilityFluid$CustomTankBuilderItemStack
 public "acceptFluid"(fluid: $Fluid$Type): $CapabilityFluid$CustomTankBuilderItemStack
+public "withCapacity"(capacity: integer): $CapabilityFluid$CustomTankBuilderItemStack
+public "isFluidGood"(isFluidGood: $BiPredicate$Type<($ItemStack$Type), ($FluidStackJS$Type)>): $CapabilityFluid$CustomTankBuilderItemStack
 public "onFill"(onFill: $CapabilityFluid$FluidIOItemStack$Type): $CapabilityFluid$CustomTankBuilderItemStack
 public "onDrain"(onDrain: $CapabilityFluid$FluidIOItemStack$Type): $CapabilityFluid$CustomTankBuilderItemStack
 }
@@ -823,11 +823,11 @@ export class $CapabilityItem$BlockEntityBuilder extends $CapabilityBuilderForge<
 
 constructor()
 
+public "getCapability"(instance: $BlockEntity$Type): $IItemHandler
+public "getStackInSlot"(getStackInSlot: $BiFunction$Type<($BlockEntity$Type), (integer), ($ItemStack$Type)>): $CapabilityItem$BlockEntityBuilder
 public "isItemValid"(isItemValid: $CapabilityItem$IsItemValid$Type): $CapabilityItem$BlockEntityBuilder
 public "getSlotLimit"(getSlotLimit: $ToIntBiFunction$Type<($BlockEntity$Type), (integer)>): $CapabilityItem$BlockEntityBuilder
 public "extractItem"(extractItem: $CapabilityItem$ExtractItem$Type): $CapabilityItem$BlockEntityBuilder
-public "getStackInSlot"(getStackInSlot: $BiFunction$Type<($BlockEntity$Type), (integer), ($ItemStack$Type)>): $CapabilityItem$BlockEntityBuilder
-public "getCapability"(instance: $BlockEntity$Type): $IItemHandler
 public "getSlots"(getSlots: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityItem$BlockEntityBuilder
 public "insertItem"(insertItem: $CapabilityItem$InsertItem$Type): $CapabilityItem$BlockEntityBuilder
 }

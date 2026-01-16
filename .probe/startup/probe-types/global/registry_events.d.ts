@@ -32,6 +32,7 @@ import {EntityDataSerializers, EntityDataSerializers$Type} from "packages/moe/wo
 import {RewardGeneratorType, RewardGeneratorType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/RewardGeneratorType"
 import {Equipmenttypes, Equipmenttypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Equipmenttypes"
 import {IngredientModifierType, IngredientModifierType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/IngredientModifierType"
+import {ConditionSerializer, ConditionSerializer$Type} from "packages/moe/wolfgirl/probejs/generated/registry/crafttweaker/ConditionSerializer"
 import {WorldgenNoiseSettings, WorldgenNoiseSettings$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenNoiseSettings"
 import {RecipeType, RecipeType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/RecipeType"
 import {PartConverters, PartConverters$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cb_multipart/PartConverters"
@@ -123,6 +124,7 @@ import {Contaminant, Contaminant$Type} from "packages/moe/wolfgirl/probejs/gener
 import {IntProviderType, IntProviderType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/IntProviderType"
 import {WorldgenDensityFunction, WorldgenDensityFunction$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenDensityFunction"
 import {WorldgenMaterialCondition, WorldgenMaterialCondition$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenMaterialCondition"
+import {TransformerSerializer, TransformerSerializer$Type} from "packages/moe/wolfgirl/probejs/generated/registry/crafttweaker/TransformerSerializer"
 import {WorldgenFoliagePlacerType, WorldgenFoliagePlacerType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenFoliagePlacerType"
 import {Colonyeventtypes, Colonyeventtypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Colonyeventtypes"
 import {TeamType, TeamType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/TeamType"
@@ -231,8 +233,8 @@ function registry(extra: "rule_block_entity_modifier", handler: (event: RuleBloc
 function registry(extra: "decorated_pot_patterns", handler: (event: DecoratedPotPatterns) => void): void
 function registry(extra: "worldgen/multi_noise_biome_source_parameter_list", handler: (event: WorldgenMultiNoiseBiomeSourceParameterList) => void): void
 function registry(extra: "corgilib:villager_trades_item_listing", handler: (event: VillagerTradesItemListing) => void): void
-function registry(extra: "corgilib:blending_function", handler: (event: BlendingFunction) => void): void
 function registry(extra: "corgilib:condition", handler: (event: Condition) => void): void
+function registry(extra: "corgilib:blending_function", handler: (event: BlendingFunction) => void): void
 function registry(extra: "betterdays:time_effect", handler: (event: TimeEffect) => void): void
 function registry(extra: "cb_microblock:micro_material", handler: (event: MicroMaterial) => void): void
 function registry(extra: "cb_multipart:multipart_types", handler: (event: MultipartTypes) => void): void
@@ -282,10 +284,12 @@ function registry(extra: "petrolpark:shop", handler: (event: Shop) => void): voi
 function registry(extra: "petrolpark:shop_offer_generator", handler: (event: ShopOfferGenerator) => void): void
 function registry(extra: "petrolpark:team_data_type", handler: (event: TeamDataType) => void): void
 function registry(extra: "petrolpark:team_type", handler: (event: TeamType) => void): void
-function registry(extra: "lithostitched:worldgen_modifier", handler: (event: WorldgenModifier) => void): void
+function registry(extra: "crafttweaker:condition_serializer", handler: (event: ConditionSerializer) => void): void
+function registry(extra: "crafttweaker:transformer_serializer", handler: (event: TransformerSerializer) => void): void
 function registry(extra: "forge:structure_modifier", handler: (event: StructureModifier) => void): void
-function registry(extra: "forge:biome_modifier", handler: (event: BiomeModifier) => void): void
+function registry(extra: "lithostitched:worldgen_modifier", handler: (event: WorldgenModifier) => void): void
 function registry(extra: "moonlight:soft_fluids", handler: (event: SoftFluids) => void): void
 function registry(extra: "moonlight:map_markers", handler: (event: MapMarkers) => void): void
+function registry(extra: "forge:biome_modifier", handler: (event: BiomeModifier) => void): void
 }
 }

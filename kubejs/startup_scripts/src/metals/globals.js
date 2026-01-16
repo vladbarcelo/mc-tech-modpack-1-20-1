@@ -131,6 +131,56 @@ global.darkMetalColors = {
   "tungsten": "#2e301b"
 }
 
+global.metalTiers = {
+  'tin': 'iron',
+  'lead': 'iron',
+  'zinc': 'iron',
+  'aluminum': 'iron',
+  'brass': 'iron',
+  'bronze': 'iron',
+  'electrum': 'gold',
+  'silver': 'gold',
+  'gold': 'gold',
+  'copper': 'gold',
+  'cast_iron': 'gold',
+  'uranium': 'gold',
+  'constantan': 'gold',
+  'nickel': 'gold',
+  'iron': 'gold',
+  'steel': 'diamond',
+  'palladium': 'diamond',
+  'platinum': 'diamond',
+  'chromium': 'diamond',
+  'vanadium': 'diamond',
+  'rhodium': 'diamond',
+  'tungsten': 'netherite',
+}
+
+global.baseMetalDurability = {
+  "tin": 31,
+  "lead": 16,
+  "zinc": 61,
+  "aluminum": 140,
+  "brass": 271,
+  "bronze": 420,
+  "electrum": 121,
+  "silver": 214,
+  "gold": 83,
+  "copper": 196,
+  "cast_iron": 252,
+  "uranium": 813,
+  "constantan": 308,
+  "nickel": 364,
+  "iron": 205,
+  "steel": 533,
+  "palladium": 813,
+  "platinum": 1094,
+  "chromium": 579,
+  "vanadium": 721,
+  "rhodium": 1281,
+  "tungsten": 2031
+}
+
 function isSmithable(metal) { return global.smithableMetals.indexOf(metal) !== -1 }
 function isCastable(metal) { return global.castableMetals.indexOf(metal) !== -1 }
 function isBaseCastable(metal) { return global.baseCastableMetals.indexOf(metal) !== -1 }

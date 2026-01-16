@@ -110,8 +110,8 @@ public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockP
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -160,10 +160,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Component$Type, arg2: $Item$Properties$Type)
 
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -278,8 +278,8 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
@@ -307,9 +307,9 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type, arg1: string, arg2: string, arg3: $SimpleMapContentRegistry$Type<(T)>)
 
+public "provideCreativeOutput"(arg0: $CreativeModeTab$Output$Type): void
 public "setComponent"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type): void
 public "createStack"(arg0: T): $ItemStack
-public "provideCreativeOutput"(arg0: $CreativeModeTab$Output$Type): void
 public "getComponent"(arg0: $ItemStack$Type): T
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isVisible"(arg0: T): boolean
@@ -503,11 +503,11 @@ export class $AutomobilePrefab extends $Record {
 
 constructor(id: $ResourceLocation$Type, frame: $AutomobileFrame$Type, wheel: $AutomobileWheel$Type, engine: $AutomobileEngine$Type)
 
-public "frame"(): $AutomobileFrame
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "id"(): $ResourceLocation
+public "frame"(): $AutomobileFrame
 public "engine"(): $AutomobileEngine
 public "toStack"(): $ItemStack
 public "wheel"(): $AutomobileWheel
@@ -541,8 +541,8 @@ readonly "type": T
 constructor(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type)
 
 public "tick"(): void
-public "searchHeight"(): double
 public "setExtended"(arg0: boolean): void
+public "searchHeight"(): double
 public "plow"(arg0: $Vec3$Type, arg1: $ServerLevel$Type): void
 public "plowResult"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockState
 public "plowSound"(): $SoundEvent
@@ -694,23 +694,23 @@ export class $RearAttachment extends $BaseAttachment<($RearAttachmentType<(any)>
 readonly "type": T
 
 
+public "pos"(): $Vec3
 public "origin"(): $Vec3
 public "tick"(): void
 public "pull"(arg0: $Vec3$Type): void
-public "pos"(): $Vec3
-public static "fromNbt"(arg0: $CompoundTag$Type): $RearAttachmentType<(any)>
-public "onTrackedYawUpdated"(arg0: float): void
-public "scaledYawVec"(): $Vec3
 public "getPassengerHeightOffset"(): double
+public "scaledYawVec"(): $Vec3
+public "onTrackedYawUpdated"(arg0: float): void
+public "writeNbt"(arg0: $CompoundTag$Type): void
+public static "fromNbt"(arg0: $CompoundTag$Type): $RearAttachmentType<(any)>
+public "setYaw"(arg0: float): void
 public "yaw"(): float
 public "yaw"(arg0: float): float
-public "writeNbt"(arg0: $CompoundTag$Type): void
-public "setYaw"(arg0: float): void
 public "readNbt"(arg0: $CompoundTag$Type): void
 public "createMenu"(arg0: $ContainerLevelAccess$Type): $MenuProvider
+public "yawVec"(): $Vec3
 public "isRideable"(): boolean
 public "hasMenu"(): boolean
-public "yawVec"(): $Vec3
 get "passengerHeightOffset"(): double
 get "rideable"(): boolean
 }
@@ -783,21 +783,21 @@ static readonly "STAT_SPEED": $DisplayStat<($AutomobileEngine)>
 
 constructor(id: $ResourceLocation$Type, torque: float, speed: float, sound: $Supplier$Type<($SoundEvent$Type)>, model: $AutomobileEngine$EngineModel$Type)
 
-public "model"(): $AutomobileEngine$EngineModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "isEmpty"(): boolean
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileEngine$Type)>)>): void
+public "model"(): $AutomobileEngine$EngineModel
 public "containerId"(): $ResourceLocation
+public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileEngine$Type)>)>): void
 public "getTranslationKey"(): string
 public "speed"(): float
 public "sound"(): $Supplier<($SoundEvent)>
 public "torque"(): float
-public "getContainerTextKey"(): string
 public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileEngine$Type): void
+public "getContainerTextKey"(): string
 get "empty"(): boolean
 get "translationKey"(): string
 get "containerTextKey"(): string
@@ -891,10 +891,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "updatePlacementContext"(arg0: $BlockPlaceContext$Type): $BlockPlaceContext
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1047,10 +1047,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1119,43 +1119,43 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ResourceLocation$Type, arg2: $S
 
 public "compareTo"(arg0: $AutoMechanicTableRecipe$Type): integer
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
+public "forMissingIngredients"(arg0: $Container$Type, arg1: $Consumer$Type<($Ingredient$Type)>): void
 public "getResultItem"(): $ItemStack
 public "getCategory"(): $ResourceLocation
-public "forMissingIngredients"(arg0: $Container$Type, arg1: $Consumer$Type<($Ingredient$Type)>): void
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
-public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "assemble"(arg0: $SimpleContainer$Type): $ItemStack
-public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "isSpecial"(): boolean
-public "showNotification"(): boolean
-public "getIngredients"(): $NonNullList<($Ingredient)>
+public "getId"(): $ResourceLocation
+public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "assemble"(arg0: $SimpleContainer$Type): $ItemStack
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
+public "getIngredients"(): $NonNullList<($Ingredient)>
+public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "isSpecial"(): boolean
+public "getGroup"(): string
+public "setGroup"(group: string): void
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "setGroup"(group: string): void
-public "getGroup"(): string
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
 get "resultItem"(): $ItemStack
 get "category"(): $ResourceLocation
-get "id"(): $ResourceLocation
 get "serializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
+get "special"(): boolean
+get "group"(): string
+set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
 get "mod"(): string
 }
@@ -1375,7 +1375,6 @@ static readonly "GRASS_CUTTER": $FrontAttachmentType<($GrassCutterFrontAttachmen
 
 constructor(id: $ResourceLocation$Type, arg1: $BiFunction$Type<($FrontAttachmentType$Type<(T)>), ($AutomobileEntity$Type), (T)>, model: $FrontAttachmentType$FrontAttachmentModel$Type)
 
-public "model"(): $FrontAttachmentType$FrontAttachmentModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -1383,10 +1382,11 @@ public "isEmpty"(): boolean
 public "constructor"(): $BiFunction<($FrontAttachmentType<(T)>), ($AutomobileEntity), (T)>
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($FrontAttachmentType$Type<(any)>)>)>): void
+public "model"(): $FrontAttachmentType$FrontAttachmentModel
 public "containerId"(): $ResourceLocation
-public "getContainerTextKey"(): string
+public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($FrontAttachmentType$Type<(any)>)>)>): void
 public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $FrontAttachmentType$Type<(any)>): void
+public "getContainerTextKey"(): string
 get "empty"(): boolean
 get "containerTextKey"(): string
 }
@@ -1415,10 +1415,10 @@ export interface $AutomobileComponent<T extends $AutomobileComponent<(T)>> exten
 
  "isEmpty"(): boolean
  "getId"(): $ResourceLocation
- "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(T)>)>): void
  "containerId"(): $ResourceLocation
- "getContainerTextKey"(): string
  "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: T): void
+ "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(T)>)>): void
+ "getContainerTextKey"(): string
 }
 
 export namespace $AutomobileComponent {
@@ -1463,15 +1463,15 @@ declare module "packages/io/github/foundationgames/automobility/automobile/$Stat
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$DisplayStat, $DisplayStat$Type} from "packages/io/github/foundationgames/automobility/automobile/$DisplayStat"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$DisplayStat, $DisplayStat$Type} from "packages/io/github/foundationgames/automobility/automobile/$DisplayStat"
 
 export interface $StatContainer<C extends $StatContainer<(C)>> {
 
- "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(C)>)>): void
  "containerId"(): $ResourceLocation
- "getContainerTextKey"(): string
  "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: C): void
+ "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(C)>)>): void
+ "getContainerTextKey"(): string
 }
 
 export namespace $StatContainer {
@@ -1705,9 +1705,9 @@ static readonly "INSTANCE": $AutoMechanicTableRecipeSerializer
 
 constructor()
 
+public static "autoComponentStackFromJson"(arg0: $JsonObject$Type): $ItemStack
 public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $AutoMechanicTableRecipe
 public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $AutoMechanicTableRecipe
-public static "autoComponentStackFromJson"(arg0: $JsonObject$Type): $ItemStack
 public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $AutoMechanicTableRecipe$Type): void
 public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
 public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $AutoMechanicTableRecipe
@@ -1834,7 +1834,6 @@ static readonly "PAVER": $RearAttachmentType<($PaverRearAttachment)>
 
 constructor(id: $ResourceLocation$Type, arg1: $BiFunction$Type<($RearAttachmentType$Type<(T)>), ($AutomobileEntity$Type), (T)>, model: $RearAttachmentType$RearAttachmentModel$Type)
 
-public "model"(): $RearAttachmentType$RearAttachmentModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -1842,10 +1841,11 @@ public "isEmpty"(): boolean
 public "constructor"(): $BiFunction<($RearAttachmentType<(T)>), ($AutomobileEntity), (T)>
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($RearAttachmentType$Type<(any)>)>)>): void
+public "model"(): $RearAttachmentType$RearAttachmentModel
 public "containerId"(): $ResourceLocation
-public "getContainerTextKey"(): string
+public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($RearAttachmentType$Type<(any)>)>)>): void
 public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $RearAttachmentType$Type<(any)>): void
+public "getContainerTextKey"(): string
 get "empty"(): boolean
 get "containerTextKey"(): string
 }
@@ -1997,7 +1997,6 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
 constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
 constructor(arg0: $Level$Type)
 
-public "getFrame"(): $AutomobileFrame
 public "getTime"(): long
 public "getTrackedRearAttachmentYaw"(): float
 public "getTrackedRearAttachmentAnimation"(): float
@@ -2005,56 +2004,52 @@ public "getTrackedFrontAttachmentAnimation"(): float
 public "setTrackedRearAttachmentYaw"(arg0: float): void
 public "setTrackedRearAttachmentAnimation"(arg0: float): void
 public "setTrackedFrontAttachmentAnimation"(arg0: float): void
-public "automobileOnGround"(): boolean
-public "getFrontAttachment"(): $FrontAttachment
-public "setFrontAttachment"<T extends $FrontAttachment>(arg0: $FrontAttachmentType$Type<(T)>): void
-public "provideClientInput"(arg0: boolean, arg1: boolean, arg2: boolean, arg3: boolean, arg4: boolean): void
-public "openInventory"(arg0: $Player$Type): void
-public "hasInventory"(): boolean
 public "getRearAttachment"(): $RearAttachment
 public "setRearAttachment"<T extends $RearAttachment>(arg0: $RearAttachmentType$Type<(T)>): void
-public "setComponents"(arg0: $AutomobileFrame$Type, arg1: $AutomobileWheel$Type, arg2: $AutomobileEngine$Type): void
-public "playHitSound"(arg0: $Vec3$Type): void
+public "readSyncToClientData"(arg0: $FriendlyByteBuf$Type): void
+public "readCompactedInputData"(arg0: byte): void
+public "getSteering"(arg0: float): float
+public "getWheelAngle"(arg0: float): float
+public "getBoostSpeed"(arg0: float): float
+public "getSuspensionBounce"(arg0: float): float
+public "engineRunning"(): boolean
+public "getTurboCharge"(): integer
+public "getBoostTimer"(): integer
+public "getEffectiveSpeed"(): double
+public "forNearbyPlayers"(arg0: integer, arg1: boolean, arg2: $Consumer$Type<($ServerPlayer$Type)>): void
+public "hasSpaceForPassengers"(): boolean
+public "positionTrackingTick"(): void
+public "collisionStateTick"(): void
+public "movementTick"(): void
+public "postMovementTick"(): void
+public "provideMobDriverInputs"(arg0: $Mob$Type): void
+public "destroyAutomobile"(arg0: boolean, arg1: $Entity$RemovalReason$Type): void
+public "displacementTick"(arg0: boolean): void
 public "asPrefabItem"(): $ItemStack
 public "runOverEntities"(arg0: $Vec3$Type): void
 public "accumulateCollisionAreas"(arg0: $Collection$Type<($CollisionArea$Type)>): void
-public "getEffectiveSpeed"(): double
-public "getBoostTimer"(): integer
-public "getTurboCharge"(): integer
-public "engineRunning"(): boolean
-public "getSuspensionBounce"(arg0: float): float
-public "getBoostSpeed"(arg0: float): float
-public "getWheelAngle"(arg0: float): float
-public "getSteering"(arg0: float): float
-public "readCompactedInputData"(arg0: byte): void
-public "readSyncToClientData"(arg0: $FriendlyByteBuf$Type): void
-public "compactInputData"(): byte
-public "writeSyncToClientData"(arg0: $FriendlyByteBuf$Type): void
-public "debrisColor"(): $Vector3f
-public "destroyAutomobile"(arg0: boolean, arg1: $Entity$RemovalReason$Type): void
-public "provideMobDriverInputs"(arg0: $Mob$Type): void
-public "displacementTick"(arg0: boolean): void
-public "postMovementTick"(): void
-public "movementTick"(): void
-public "collisionStateTick"(): void
-public "positionTrackingTick"(): void
-public "hasSpaceForPassengers"(): boolean
-public "forNearbyPlayers"(arg0: integer, arg1: boolean, arg2: $Consumer$Type<($ServerPlayer$Type)>): void
-public "destroyFrontAttachment"(arg0: boolean): void
-public "destroyRearAttachment"(arg0: boolean): void
-public "getStandStillTime"(): float
-public "getRearAttachmentYaw"(arg0: float): float
-public "getAutomobileYaw"(arg0: float): float
-public "createDriftParticles"(): void
 public "getDisplacement"(): $AutomobileEntity$Displacement
-public "causeFallDamage"(arg0: float, arg1: float, arg2: $DamageSource$Type): boolean
-public "canCollideWith"(arg0: $Entity$Type): boolean
-public "move"(arg0: $MoverType$Type, arg1: $Vec3$Type): void
-public "tick"(): void
-public "getEngine"(): $AutomobileEngine
-public "boost"(arg0: float, arg1: integer): void
+public "createDriftParticles"(): void
+public "getAutomobileYaw"(arg0: float): float
+public "getRearAttachmentYaw"(arg0: float): float
+public "getStandStillTime"(): float
+public "destroyRearAttachment"(arg0: boolean): void
+public "destroyFrontAttachment"(arg0: boolean): void
+public "getFrontAttachment"(): $FrontAttachment
+public "setFrontAttachment"<T extends $FrontAttachment>(arg0: $FrontAttachmentType$Type<(T)>): void
+public "debrisColor"(): $Vector3f
+public "writeSyncToClientData"(arg0: $FriendlyByteBuf$Type): void
+public "compactInputData"(): byte
+public "automobileOnGround"(): boolean
+public "provideClientInput"(arg0: boolean, arg1: boolean, arg2: boolean, arg3: boolean, arg4: boolean): void
+public "hasInventory"(): boolean
+public "openInventory"(arg0: $Player$Type): void
+public "setComponents"(arg0: $AutomobileFrame$Type, arg1: $AutomobileWheel$Type, arg2: $AutomobileEngine$Type): void
+public "playHitSound"(arg0: $Vec3$Type): void
 public "getControllingPassenger"(): $LivingEntity
 public "isPushable"(): boolean
+public "lerpTo"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): void
+public "canCollideWith"(arg0: $Entity$Type): boolean
 public "isPickable"(): boolean
 public "addAdditionalSaveData"(arg0: $CompoundTag$Type): void
 public "readAdditionalSaveData"(arg0: $CompoundTag$Type): void
@@ -2062,28 +2057,32 @@ public "interact"(arg0: $Player$Type, arg1: $InteractionHand$Type): $Interaction
 public "canBeCollidedWith"(): boolean
 public "positionRider"(arg0: $Entity$Type, arg1: $Entity$MoveFunction$Type): void
 public "getPassengersRidingOffset"(): double
-public "lerpTo"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): void
-public "onSyncedDataUpdated"(arg0: $EntityDataAccessor$Type<(any)>): void
+public "causeFallDamage"(arg0: float, arg1: float, arg2: $DamageSource$Type): boolean
+public "move"(arg0: $MoverType$Type, arg1: $Vec3$Type): void
+public "tick"(): void
+public "getEngine"(): $AutomobileEngine
+public "boost"(arg0: float, arg1: integer): void
 public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
 public "recreateFromPacket"(arg0: $ClientboundAddEntityPacket$Type): void
 public "getPickResult"(): $ItemStack
+public "onSyncedDataUpdated"(arg0: $EntityDataAccessor$Type<(any)>): void
 public "markDirty"(): void
 public "setSpeed"(arg0: float, arg1: float): void
-public "debris"(): boolean
-public "isDrifting"(): boolean
+public "bounce"(): void
+public "getFrame"(): $AutomobileFrame
 public "getWheels"(): $AutomobileWheel
 public "getHSpeed"(): float
 public "getVSpeed"(): float
+public "debris"(): boolean
+public "isDrifting"(): boolean
 public "setInputs"(arg0: boolean, arg1: boolean, arg2: boolean, arg3: boolean, arg4: boolean): void
-public "bounce"(): void
 public "getHeadPos"(): $Vec3
-public "getTailPos"(): $Vec3
 public "burningOut"(): boolean
-public "getWheelCount"(): integer
-public "getFrontAttachmentType"(): $FrontAttachmentType<(any)>
+public "getTailPos"(): $Vec3
 public "getRearAttachmentType"(): $RearAttachmentType<(any)>
+public "getFrontAttachmentType"(): $FrontAttachmentType<(any)>
+public "getWheelCount"(): integer
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "frame"(): $AutomobileFrame
 get "time"(): long
 get "trackedRearAttachmentYaw"(): float
 get "trackedRearAttachmentAnimation"(): float
@@ -2091,31 +2090,32 @@ get "trackedFrontAttachmentAnimation"(): float
 set "trackedRearAttachmentYaw"(value: float)
 set "trackedRearAttachmentAnimation"(value: float)
 set "trackedFrontAttachmentAnimation"(value: float)
-get "frontAttachment"(): $FrontAttachment
-set "frontAttachment"(value: $FrontAttachmentType$Type<(T)>)
 get "rearAttachment"(): $RearAttachment
 set "rearAttachment"(value: $RearAttachmentType$Type<(T)>)
-get "effectiveSpeed"(): double
-get "boostTimer"(): integer
 get "turboCharge"(): integer
-get "standStillTime"(): float
+get "boostTimer"(): integer
+get "effectiveSpeed"(): double
 get "displacement"(): $AutomobileEntity$Displacement
-get "engine"(): $AutomobileEngine
+get "standStillTime"(): float
+get "frontAttachment"(): $FrontAttachment
+set "frontAttachment"(value: $FrontAttachmentType$Type<(T)>)
 get "controllingPassenger"(): $LivingEntity
 get "pushable"(): boolean
 get "pickable"(): boolean
 get "passengersRidingOffset"(): double
+get "engine"(): $AutomobileEngine
 get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
 get "pickResult"(): $ItemStack
-get "drifting"(): boolean
+get "frame"(): $AutomobileFrame
 get "wheels"(): $AutomobileWheel
 get "hSpeed"(): float
 get "vSpeed"(): float
+get "drifting"(): boolean
 get "headPos"(): $Vec3
 get "tailPos"(): $Vec3
-get "wheelCount"(): integer
-get "frontAttachmentType"(): $FrontAttachmentType<(any)>
 get "rearAttachmentType"(): $RearAttachmentType<(any)>
+get "frontAttachmentType"(): $FrontAttachmentType<(any)>
+get "wheelCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2142,8 +2142,8 @@ readonly "type": T
 public "tick"(): void
 public "extendAnimation"(arg0: float): float
 public "setExtended"(arg0: boolean): void
-public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
 public "onTrackedAnimationUpdated"(arg0: float): void
+public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
 public "extended"(): boolean
 public "writeNbt"(arg0: $CompoundTag$Type): void
 public "readNbt"(arg0: $CompoundTag$Type): void
@@ -2287,8 +2287,8 @@ export interface $CollisionArea {
 }
 
 export namespace $CollisionArea {
-function entity(arg0: $Entity$Type): $CollisionArea
 function box(arg0: double, arg1: double, arg2: double, arg3: double, arg4: double, arg5: double): $CollisionArea
+function entity(arg0: $Entity$Type): $CollisionArea
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2600,19 +2600,19 @@ static readonly "STAT_WEIGHT": $DisplayStat<($AutomobileFrame)>
 
 constructor(id: $ResourceLocation$Type, weight: float, model: $AutomobileFrame$FrameModel$Type)
 
-public "model"(): $AutomobileFrame$FrameModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "isEmpty"(): boolean
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileFrame$Type)>)>): void
+public "model"(): $AutomobileFrame$FrameModel
 public "containerId"(): $ResourceLocation
+public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileFrame$Type)>)>): void
 public "getTranslationKey"(): string
 public "weight"(): float
-public "getContainerTextKey"(): string
 public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileFrame$Type): void
+public "getContainerTextKey"(): string
 get "empty"(): boolean
 get "translationKey"(): string
 get "containerTextKey"(): string
@@ -2653,20 +2653,20 @@ readonly "type": T
 constructor(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type)
 
 public "erase"(): void
-public "getPatterns"(): $List<($Pair<($Holder<($BannerPattern)>), ($DyeColor)>)>
 public "getBaseColor"(): $DyeColor
 public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
+public "getPatterns"(): $List<($Pair<($Holder<($BannerPattern)>), ($DyeColor)>)>
 public "setFromItem"(arg0: $ItemStack$Type): void
 public "sendPacket"(): void
 public "writeNbt"(arg0: $CompoundTag$Type): void
 public "readNbt"(arg0: $CompoundTag$Type): void
-public "onRemoved"(): void
 public "createMenu"(arg0: $ContainerLevelAccess$Type): $MenuProvider
-public "hasMenu"(): boolean
+public "onRemoved"(): void
 public "putToNbt"(arg0: $CompoundTag$Type): void
 public "setFromNbt"(arg0: $CompoundTag$Type): void
-get "patterns"(): $List<($Pair<($Holder<($BannerPattern)>), ($DyeColor)>)>
+public "hasMenu"(): boolean
 get "baseColor"(): $DyeColor
+get "patterns"(): $List<($Pair<($Holder<($BannerPattern)>), ($DyeColor)>)>
 set "fromItem"(value: $ItemStack$Type)
 set "fromNbt"(value: $CompoundTag$Type)
 }
@@ -2699,8 +2699,8 @@ constructor(arg0: $FrontAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type
 
 public "pos"(): $Vec3
 public "dropOrTransfer"(arg0: $ItemStack$Type, arg1: $Vec3$Type): void
-public static "fromNbt"(arg0: $CompoundTag$Type): $FrontAttachmentType<(any)>
 public "writeNbt"(arg0: $CompoundTag$Type): void
+public static "fromNbt"(arg0: $CompoundTag$Type): $FrontAttachmentType<(any)>
 public "readNbt"(arg0: $CompoundTag$Type): void
 public "canDrive"(arg0: $Entity$Type): boolean
 }
@@ -2795,10 +2795,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "updatePlacementContext"(arg0: $BlockPlaceContext$Type): $BlockPlaceContext
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2817,8 +2817,8 @@ import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/
 
 export interface $EntityWithInventory {
 
- "openInventory"(arg0: $Player$Type): void
  "hasInventory"(): boolean
+ "openInventory"(arg0: $Player$Type): void
 }
 
 export namespace $EntityWithInventory {
@@ -2845,15 +2845,15 @@ export class $WheelBase$WheelPos extends $Record {
 
 constructor(forward: float, right: float, scale: float, yaw: float, end: $WheelBase$WheelEnd$Type, side: $WheelBase$WheelSide$Type)
 
-public "right"(): float
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "scale"(): float
 public "end"(): $WheelBase$WheelEnd
+public "right"(): float
 public "side"(): $WheelBase$WheelSide
-public "yaw"(): float
 public "forward"(): float
+public "yaw"(): float
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2997,13 +2997,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public static "onCollideWithDashPanel"(arg0: $BlockState$Type, arg1: $Entity$Type): void
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -3053,9 +3053,9 @@ readonly "type": T
 
 constructor(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type, arg2: $BlockState$Type, arg3: $BiFunction$Type<($ContainerLevelAccess$Type), ($BlockRearAttachment$Type), ($MenuProvider$Type)>)
 
-public "tick"(): void
 public "close"(arg0: $Player$Type): void
 public "open"(arg0: $Player$Type): void
+public "tick"(): void
 public static "saddledBarrel"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BaseChestRearAttachment
 public "onTrackedAnimationUpdated"(arg0: float): void
 public static "chest"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BaseChestRearAttachment
@@ -3150,26 +3150,26 @@ import {$FrontAttachment, $FrontAttachment$Type} from "packages/io/github/founda
 
 export interface $RenderableAutomobile {
 
- "getFrame"(): $AutomobileFrame
  "getTime"(): long
- "automobileOnGround"(): boolean
+ "getRearAttachment"(): $RearAttachment
+ "getSteering"(arg0: float): float
+ "getWheelAngle"(arg0: float): float
+ "getSuspensionBounce"(arg0: float): float
+ "engineRunning"(): boolean
+ "getTurboCharge"(): integer
+ "getBoostTimer"(): integer
+ "getAutomobileYaw"(arg0: float): float
+ "getRearAttachmentYaw"(arg0: float): float
+ "getRearAttachmentType"(): $RearAttachmentType<(any)>
+ "getFrontAttachmentType"(): $FrontAttachmentType<(any)>
  "getWheelCount"(): integer
  "getFrontAttachment"(): $FrontAttachment
- "getRearAttachment"(): $RearAttachment
- "getBoostTimer"(): integer
- "getTurboCharge"(): integer
- "engineRunning"(): boolean
- "getSuspensionBounce"(arg0: float): float
- "getWheelAngle"(arg0: float): float
- "getSteering"(arg0: float): float
  "debrisColor"(): $Vector3f
- "getFrontAttachmentType"(): $FrontAttachmentType<(any)>
- "getRearAttachmentType"(): $RearAttachmentType<(any)>
- "getRearAttachmentYaw"(arg0: float): float
- "getAutomobileYaw"(arg0: float): float
+ "automobileOnGround"(): boolean
  "getEngine"(): $AutomobileEngine
- "debris"(): boolean
+ "getFrame"(): $AutomobileFrame
  "getWheels"(): $AutomobileWheel
+ "debris"(): boolean
 }
 
 export namespace $RenderableAutomobile {
@@ -3244,8 +3244,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$AutomobilePrefab, $AutomobilePrefab$Type} from "packages/io/github/foundationgames/automobility/automobile/$AutomobilePrefab"
 import {$CustomCreativeOutput, $CustomCreativeOutput$Type} from "packages/io/github/foundationgames/automobility/item/$CustomCreativeOutput"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -3269,8 +3269,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "provideCreativeOutput"(arg0: $CreativeModeTab$Output$Type): void
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public static "addPrefabs"(...arg0: ($AutomobilePrefab$Type)[]): void
 }
 /**
@@ -3468,7 +3468,6 @@ static readonly "STAT_GRIP": $DisplayStat<($AutomobileWheel)>
 
 constructor(id: $ResourceLocation$Type, size: float, grip: float, model: $AutomobileWheel$WheelModel$Type, ...abilities: ($AutomobileWheel$Ability$Type)[])
 
-public "model"(): $AutomobileWheel$WheelModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -3476,13 +3475,14 @@ public "isEmpty"(): boolean
 public "size"(): float
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileWheel$Type)>)>): void
+public "model"(): $AutomobileWheel$WheelModel
 public "containerId"(): $ResourceLocation
+public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileWheel$Type)>)>): void
 public "getTranslationKey"(): string
 public "abilities"(): ($AutomobileWheel$Ability)[]
 public "grip"(): float
-public "getContainerTextKey"(): string
 public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileWheel$Type): void
+public "getContainerTextKey"(): string
 get "empty"(): boolean
 get "translationKey"(): string
 get "containerTextKey"(): string
@@ -3515,8 +3515,8 @@ public "name"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "appendTooltip"(arg0: $List$Type<($Component$Type)>, arg1: C): void
 public "statProvider"(): $ToDoubleFunction<(C)>
+public "appendTooltip"(arg0: $List$Type<($Component$Type)>, arg1: C): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3542,11 +3542,11 @@ readonly "type": T
 
 constructor(arg0: T, arg1: $AutomobileEntity$Type)
 
-public "tick"(): void
 public "pos"(): $Vec3
+public "tick"(): void
+public "onTrackedAnimationUpdated"(arg0: float): void
 public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
 public "setAnimation"(arg0: float): void
-public "onTrackedAnimationUpdated"(arg0: float): void
 public "animation"(): float
 public "automobile"(): $AutomobileEntity
 public "writeNbt"(arg0: $CompoundTag$Type): void

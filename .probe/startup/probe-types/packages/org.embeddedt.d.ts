@@ -48,14 +48,14 @@ declare global {
 export type $IChunkGenerator_ = $IChunkGenerator$Type;
 }}
 declare module "packages/org/embeddedt/modernfix/forge/registry/$DelegateHolder" {
-import {$Holder$Reference, $Holder$Reference$Type} from "packages/net/minecraft/core/$Holder$Reference"
 import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
+import {$Holder$Reference, $Holder$Reference$Type} from "packages/net/minecraft/core/$Holder$Reference"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 
 export interface $DelegateHolder<T> {
 
- "mfix$getDelegate"(arg0: $ResourceKey$Type<($Registry$Type<(T)>)>): $Holder$Reference<(T)>
  "mfix$setDelegate"(arg0: $ResourceKey$Type<($Registry$Type<(T)>)>, arg1: $Holder$Reference$Type<(T)>): void
+ "mfix$getDelegate"(arg0: $ResourceKey$Type<($Registry$Type<(T)>)>): $Holder$Reference<(T)>
 }
 
 export namespace $DelegateHolder {
@@ -180,14 +180,14 @@ export class $SafeBlockGetter implements $BlockGetter {
 
 constructor(wrapped: $ServerLevel$Type)
 
+public "getHeight"(): integer
+public "getMaxBuildHeight"(): integer
+public "shouldUse"(): boolean
 public "getMaxLightLevel"(): integer
 public "getFluidState"(pos: $BlockPos$Type): $FluidState
 public "getMinBuildHeight"(): integer
-public "getHeight"(): integer
-public "getMaxBuildHeight"(): integer
 public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
 public "getBlockState"(pos: $BlockPos$Type): $BlockState
-public "shouldUse"(): boolean
 public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
 public "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
 public "getLightEmission"(arg0: $BlockPos$Type): integer
@@ -211,10 +211,10 @@ public "getModelDataManager"(): $ModelDataManager
 public "getBlockEntityRenderData"(pos: $BlockPos$Type): any
 public "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
 public "hasBiomes"(): boolean
-get "maxLightLevel"(): integer
-get "minBuildHeight"(): integer
 get "height"(): integer
 get "maxBuildHeight"(): integer
+get "maxLightLevel"(): integer
+get "minBuildHeight"(): integer
 get "sectionsCount"(): integer
 get "maxSection"(): integer
 get "minSection"(): integer

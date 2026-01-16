@@ -27,10 +27,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -144,16 +144,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LightBlueVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightBlueVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightBlueVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightBlueVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightBlueVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightBlueVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -196,10 +196,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -279,16 +279,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($RedVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($RedVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($RedVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($RedVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($RedVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($RedVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -402,16 +402,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($PinkVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PinkVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PinkVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PinkVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PinkVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PinkVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -454,10 +454,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -537,16 +537,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LightBlueVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightBlueVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightBlueVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightBlueVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightBlueVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightBlueVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -626,16 +626,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($GreenVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GreenVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GreenVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GreenVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($GreenVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GreenVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -712,19 +712,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($PurpleBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PurpleBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PurpleBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PurpleBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PurpleBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PurpleBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -838,16 +838,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BrownVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BrownVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BrownVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BrownVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($BrownVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BrownVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -890,10 +890,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1007,16 +1007,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($PinkVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PinkVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PinkVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PinkVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PinkVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PinkVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1059,10 +1059,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1139,19 +1139,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LimeItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LimeItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LimeItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LimeItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($LimeItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LimeItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1231,16 +1231,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($OrangeVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($OrangeVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($OrangeVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($OrangeVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($OrangeVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($OrangeVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1354,16 +1354,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($PinkVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PinkVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PinkVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PinkVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($PinkVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PinkVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1406,10 +1406,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1523,16 +1523,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LightGrayVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightGrayVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightGrayVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightGrayVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($LightGrayVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightGrayVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1643,19 +1643,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LightGrayBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightGrayBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightGrayBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightGrayBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightGrayBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightGrayBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1732,19 +1732,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($WhiteBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($WhiteBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($WhiteBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($WhiteBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($WhiteBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($WhiteBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1787,10 +1787,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1833,10 +1833,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1879,10 +1879,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1959,19 +1959,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($PinkBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PinkBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PinkBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PinkBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PinkBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PinkBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2014,10 +2014,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2060,10 +2060,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2140,10 +2140,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2223,16 +2223,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LimeVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LimeVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LimeVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LimeVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LimeVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LimeVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2411,19 +2411,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LightBlueShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightBlueShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightBlueShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightBlueShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightBlueShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightBlueShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2568,19 +2568,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LightGrayShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightGrayShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightGrayShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightGrayShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightGrayShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightGrayShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2623,10 +2623,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2703,19 +2703,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BlackBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlackBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlackBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlackBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlackBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlackBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2829,16 +2829,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LimeVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LimeVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LimeVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LimeVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LimeVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LimeVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2881,10 +2881,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2961,10 +2961,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3041,19 +3041,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($GrayShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GrayShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GrayShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GrayShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GrayShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GrayShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3096,10 +3096,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3210,19 +3210,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BlueShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlueShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlueShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlueShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlueShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlueShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3299,19 +3299,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($CyanItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($CyanItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($CyanItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($CyanItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($CyanItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($CyanItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3354,10 +3354,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3471,16 +3471,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($GrayVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GrayVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GrayVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GrayVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GrayVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GrayVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3523,10 +3523,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3569,10 +3569,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3615,10 +3615,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3695,10 +3695,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3741,10 +3741,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3787,10 +3787,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3833,10 +3833,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3879,10 +3879,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3925,10 +3925,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4008,16 +4008,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BrownVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BrownVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BrownVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BrownVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BrownVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BrownVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4128,19 +4128,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($PurpleItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PurpleItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PurpleItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PurpleItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($PurpleItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PurpleItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4217,10 +4217,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4297,10 +4297,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4377,19 +4377,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($MagentaShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($MagentaShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($MagentaShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($MagentaShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($MagentaShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($MagentaShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4432,10 +4432,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4512,19 +4512,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($GrayItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GrayItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GrayItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GrayItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($GrayItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GrayItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4635,10 +4635,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4681,10 +4681,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4761,10 +4761,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4841,19 +4841,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BrownShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BrownShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BrownShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BrownShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BrownShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BrownShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4930,10 +4930,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5013,16 +5013,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($CyanVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($CyanVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($CyanVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($CyanVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($CyanVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($CyanVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5153,10 +5153,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5233,10 +5233,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5347,19 +5347,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($GrayBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GrayBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GrayBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GrayBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GrayBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GrayBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5439,16 +5439,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($WhiteVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($WhiteVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($WhiteVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($WhiteVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($WhiteVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($WhiteVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5491,10 +5491,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5605,19 +5605,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($GreenBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GreenBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GreenBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GreenBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GreenBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GreenBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5660,10 +5660,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5740,19 +5740,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LightBlueBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightBlueBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightBlueBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightBlueBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightBlueBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightBlueBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5866,16 +5866,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($OrangeVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($OrangeVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($OrangeVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($OrangeVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($OrangeVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($OrangeVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5955,16 +5955,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($VerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($VerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($VerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($VerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($VerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($VerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($VerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6041,19 +6041,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LightGrayItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightGrayItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightGrayItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightGrayItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($LightGrayItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightGrayItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6130,10 +6130,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6213,16 +6213,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($PurpleVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PurpleVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PurpleVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PurpleVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PurpleVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PurpleVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6265,10 +6265,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6311,10 +6311,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6462,10 +6462,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "place"(arg0: $BlockPlaceContext$Type): $InteractionResult
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6508,10 +6508,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6554,10 +6554,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6600,10 +6600,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6646,10 +6646,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6726,19 +6726,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LimeShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LimeShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LimeShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LimeShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LimeShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LimeShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6781,10 +6781,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6898,16 +6898,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BlackVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlackVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlackVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlackVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlackVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlackVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7021,16 +7021,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($WhiteVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($WhiteVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($WhiteVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($WhiteVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($WhiteVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($WhiteVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7107,10 +7107,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7153,10 +7153,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7236,16 +7236,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($MagentaVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($MagentaVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($MagentaVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($MagentaVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($MagentaVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($MagentaVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7325,16 +7325,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($OrangeVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($OrangeVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($OrangeVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($OrangeVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($OrangeVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($OrangeVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7479,19 +7479,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($GreenShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GreenShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GreenShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GreenShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GreenShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GreenShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7568,10 +7568,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7614,10 +7614,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7731,16 +7731,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($GreenVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GreenVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GreenVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GreenVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GreenVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GreenVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7817,19 +7817,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($RedItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($RedItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($RedItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($RedItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($RedItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($RedItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7909,16 +7909,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($GrayVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GrayVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GrayVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GrayVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($GrayVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GrayVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7961,10 +7961,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8044,16 +8044,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LightBlueVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightBlueVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightBlueVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightBlueVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($LightBlueVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightBlueVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8164,10 +8164,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8210,10 +8210,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8294,10 +8294,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8340,10 +8340,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8420,19 +8420,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BlackShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlackShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlackShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlackShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlackShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlackShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8475,10 +8475,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8589,19 +8589,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($CyanShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($CyanShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($CyanShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($CyanShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($CyanShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($CyanShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8681,16 +8681,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BlueVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlueVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlueVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlueVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($BlueVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlueVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8733,10 +8733,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8779,10 +8779,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8825,10 +8825,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8871,10 +8871,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8954,16 +8954,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LimeVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LimeVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LimeVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LimeVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($LimeVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LimeVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9006,10 +9006,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9086,10 +9086,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9234,19 +9234,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LimeBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LimeBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LimeBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LimeBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LimeBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LimeBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LimeBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9289,10 +9289,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9440,16 +9440,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($RedVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($RedVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($RedVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($RedVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($RedVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($RedVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9529,16 +9529,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LightGrayVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightGrayVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightGrayVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightGrayVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightGrayVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightGrayVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9615,19 +9615,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($RedShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($RedShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($RedShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($RedShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($RedShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($RedShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9806,19 +9806,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($OrangeShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($OrangeShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($OrangeShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($OrangeShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($OrangeShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($OrangeShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9895,10 +9895,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9975,19 +9975,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($RedBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($RedBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($RedBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($RedBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($RedBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($RedBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10064,19 +10064,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BlackItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlackItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlackItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlackItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($BlackItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlackItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10156,16 +10156,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BlackVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlackVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlackVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlackVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlackVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlackVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10245,16 +10245,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($PurpleVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PurpleVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PurpleVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PurpleVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PurpleVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PurpleVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10297,10 +10297,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10380,16 +10380,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($YellowVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($YellowVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($YellowVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($YellowVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($YellowVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($YellowVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10469,16 +10469,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($VerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($VerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($VerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($VerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($VerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($VerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($VerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10555,19 +10555,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($MagentaBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($MagentaBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($MagentaBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($MagentaBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($MagentaBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($MagentaBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10678,10 +10678,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10758,19 +10758,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($GreenItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GreenItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GreenItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GreenItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($GreenItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GreenItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10918,16 +10918,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($MagentaVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($MagentaVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($MagentaVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($MagentaVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($MagentaVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($MagentaVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10969,44 +10969,44 @@ export class $AbstractItemVaultBlockEntity<BE extends $AbstractItemVaultBlockEnt
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "tick"(): void
 public "getWidth"(): integer
 public "getHeight"(): integer
+public "tick"(): void
+public "updateConnectivity"(): void
+public "getControllerBE"(): BE
 public "hasInventory"(): boolean
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
 public "getController"(): $BlockPos
 public "getInventoryOfBlock"(): $ItemStackHandler
 public "applyInventoryToBlock"(arg0: $ItemStackHandler$Type): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "isController"(): boolean
 public "getLastKnownPos"(): $BlockPos
 public "removeController"(arg0: boolean): void
 public "setController"(arg0: $BlockPos$Type): void
 public "preventConnectivityUpdate"(): void
 public "notifyMultiUpdated"(): void
 public "getMainConnectionAxis"(): $Direction$Axis
-public "isController"(): boolean
-public "updateConnectivity"(): void
 public "getMaxWidth"(): integer
-public "getMaxLength"(arg0: $Direction$Axis$Type, arg1: integer): integer
 public static "getMaxLength"(arg0: integer): integer
-public "getControllerBE"(): BE
+public "getMaxLength"(arg0: $Direction$Axis$Type, arg1: integer): integer
 public "setHeight"(arg0: integer): void
 public "setWidth"(arg0: integer): void
-public "getMainAxisOf"(arg0: $BlockEntity$Type): $Direction$Axis
 public "setExtraData"(arg0: any): void
 public "modifyExtraData"(arg0: any): any
+public "getMainAxisOf"(arg0: $BlockEntity$Type): $Direction$Axis
 public "getExtraData"(): any
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "width"(): integer
 get "height"(): integer
+get "controllerBE"(): BE
 get "controller"(): $BlockPos
 get "inventoryOfBlock"(): $ItemStackHandler
+get "controller"(): boolean
 get "lastKnownPos"(): $BlockPos
 set "controller"(value: $BlockPos$Type)
 get "mainConnectionAxis"(): $Direction$Axis
-get "controller"(): boolean
 get "maxWidth"(): integer
-get "controllerBE"(): BE
 set "height"(value: integer)
 set "width"(value: integer)
 set "extraData"(value: any)
@@ -11087,10 +11087,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11269,19 +11269,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($WhiteItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($WhiteItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($WhiteItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($WhiteItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($WhiteItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($WhiteItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11358,19 +11358,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BlueBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlueBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlueBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlueBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlueBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlueBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11447,10 +11447,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11493,10 +11493,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11539,10 +11539,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11585,10 +11585,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11665,19 +11665,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($CyanBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($CyanBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($CyanBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($CyanBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($CyanBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($CyanBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11788,10 +11788,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11871,16 +11871,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($CyanVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($CyanVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($CyanVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($CyanVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($CyanVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($CyanVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -11960,16 +11960,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BlueVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlueVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlueVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlueVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlueVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlueVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12046,10 +12046,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12160,10 +12160,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12243,16 +12243,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlackVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BlackVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlackVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlackVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlackVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($BlackVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlackVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12329,10 +12329,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12375,10 +12375,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12489,10 +12489,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12535,10 +12535,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12717,10 +12717,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12797,19 +12797,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($PurpleShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PurpleShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PurpleShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PurpleShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PurpleShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PurpleShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12852,10 +12852,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12966,19 +12966,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($OrangeBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($OrangeBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($OrangeBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($OrangeBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($OrangeBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($OrangeBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13123,19 +13123,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($ShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($ShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($ShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($ShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($ShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($ShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($ShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13249,16 +13249,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightGrayVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($LightGrayVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightGrayVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightGrayVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightGrayVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($LightGrayVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightGrayVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13335,10 +13335,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13415,19 +13415,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($YellowShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($YellowShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($YellowShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($YellowShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($YellowShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($YellowShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13521,11 +13521,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getVerticalVaultBlock"(): $Block
-public "getVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getBlockEntityType"(): $BlockEntityType<(BE)>
+public "getVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getBlockEntityClass"(): $Class<(BE)>
+public "getBlockEntityType"(): $BlockEntityType<(BE)>
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
@@ -13536,22 +13536,22 @@ public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "isLarge"(arg0: $BlockState$Type): boolean
 public "onWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "isVault"(arg0: $BlockState$Type): boolean
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "onSneakWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): BE
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<(BE)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<(BE)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<(BE)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<(BE), ($InteractionResult$Type)>): $InteractionResult
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<(BE)>
 get "blockEntityClass"(): $Class<(BE)>
+get "blockEntityType"(): $BlockEntityType<(BE)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13662,19 +13662,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13751,19 +13751,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($PinkItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PinkItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PinkItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PinkItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($PinkItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PinkItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13806,10 +13806,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13852,10 +13852,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13935,16 +13935,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($VerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($VerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($VerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($VerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($VerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($VerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($VerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14055,19 +14055,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($LightBlueItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($LightBlueItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($LightBlueItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($LightBlueItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($LightBlueItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($LightBlueItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($LightBlueItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14144,10 +14144,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14224,19 +14224,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PinkShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($PinkShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PinkShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PinkShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PinkShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($PinkShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PinkShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14279,10 +14279,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14362,16 +14362,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($YellowVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($YellowVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($YellowVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($YellowVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($YellowVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($YellowVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14414,10 +14414,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14494,10 +14494,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14540,10 +14540,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14620,10 +14620,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14700,10 +14700,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14817,16 +14817,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GreenVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($GreenVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GreenVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GreenVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GreenVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GreenVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GreenVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14903,19 +14903,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($OrangeItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($OrangeItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($OrangeItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($OrangeItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($OrangeItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($OrangeItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($OrangeItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15060,19 +15060,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BrownItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BrownItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BrownItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BrownItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($BrownItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BrownItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15152,16 +15152,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($RedVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($RedVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($RedVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($RedVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($RedVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($RedVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($RedVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15238,19 +15238,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($YellowBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($YellowBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($YellowBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($YellowBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($YellowBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($YellowBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15293,10 +15293,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15373,19 +15373,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BlueItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlueItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlueItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlueItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($BlueItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlueItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15496,19 +15496,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownBasicShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($BrownBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BrownBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BrownBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BrownBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BrownBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BrownBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15588,16 +15588,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BlueVerticalShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BlueVerticalShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BlueVerticalShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BlueVerticalShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BlueVerticalShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BlueVerticalShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BlueVerticalShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15677,16 +15677,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($YellowVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($YellowVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($YellowVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($YellowVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($YellowVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($YellowVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15797,19 +15797,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteShippingContainerBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($WhiteShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($WhiteShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($WhiteShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($WhiteShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($WhiteShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($WhiteShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -15957,16 +15957,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($MagentaVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($MagentaVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($MagentaVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($MagentaVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($MagentaVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($MagentaVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16009,10 +16009,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16055,10 +16055,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16101,10 +16101,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16218,16 +16218,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($GrayVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($GrayVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($GrayVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($GrayVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($GrayVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($GrayVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($GrayVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16270,10 +16270,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16316,10 +16316,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16362,10 +16362,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16476,10 +16476,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16556,10 +16556,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16602,10 +16602,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16685,16 +16685,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($CyanVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($CyanVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($CyanVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($CyanVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($CyanVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($CyanVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($CyanVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16771,10 +16771,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16817,10 +16817,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17002,16 +17002,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($WhiteVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($WhiteVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($WhiteVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($WhiteVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($WhiteVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($WhiteVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($WhiteVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17091,16 +17091,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($BrownVerticalBasicShippingContainerBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($BrownVerticalBasicShippingContainerBlockEntity)>
 public "getBlockEntityClass"(): $Class<($BrownVerticalBasicShippingContainerBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($BrownVerticalBasicShippingContainerBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($BrownVerticalBasicShippingContainerBlockEntity)>
 get "blockEntityClass"(): $Class<($BrownVerticalBasicShippingContainerBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($BrownVerticalBasicShippingContainerBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17177,19 +17177,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($YellowItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($YellowItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($YellowItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($YellowItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($YellowItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($YellowItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($YellowItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17300,19 +17300,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getVerticalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($MagentaItemVaultBlockEntity)>
-public "getVerticalVaultBlock"(): $Block
-public "getBlockEntityType"(): $BlockEntityType<($MagentaItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($MagentaItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($MagentaItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "verticalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($MagentaItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($MagentaItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($MagentaItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17355,10 +17355,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17438,16 +17438,16 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public "getHorizontalVaultBlock"(): $Block
 public static "sGetVaultBlockAxis"(arg0: $BlockState$Type): $Direction$Axis
 public static "sGetBlockEntityType"(): $BlockEntityType<($PurpleVerticalItemVaultBlockEntity)>
-public "getBlockEntityType"(): $BlockEntityType<($PurpleVerticalItemVaultBlockEntity)>
 public "getBlockEntityClass"(): $Class<($PurpleVerticalItemVaultBlockEntity)>
+public "getBlockEntityType"(): $BlockEntityType<($PurpleVerticalItemVaultBlockEntity)>
 public "isVault"(arg0: $BlockState$Type): boolean
 public static "sIsVault"(arg0: $BlockState$Type): boolean
 public static "sIsLarge"(arg0: $BlockState$Type): boolean
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "horizontalVaultBlock"(): $Block
-get "blockEntityType"(): $BlockEntityType<($PurpleVerticalItemVaultBlockEntity)>
 get "blockEntityClass"(): $Class<($PurpleVerticalItemVaultBlockEntity)>
+get "blockEntityType"(): $BlockEntityType<($PurpleVerticalItemVaultBlockEntity)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

@@ -70,27 +70,27 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getBlockEntityType"(): $BlockEntityType<(any)>
 public "getBlockEntityClass"(): $Class<($SandFilterTileEntity)>
+public "getBlockEntityType"(): $BlockEntityType<(any)>
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
 public "playRotateSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "onSneakWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
+public "playRemoveSound"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "onWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
 public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $SandFilterTileEntity
-public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($SandFilterTileEntity)>
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($SandFilterTileEntity$Type)>): void
+public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($SandFilterTileEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($SandFilterTileEntity$Type), ($InteractionResult$Type)>): $InteractionResult
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "blockEntityType"(): $BlockEntityType<(any)>
 get "blockEntityClass"(): $Class<($SandFilterTileEntity)>
+get "blockEntityType"(): $BlockEntityType<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -136,14 +136,14 @@ readonly "canRepair": boolean
 constructor()
 constructor(arg0: $Item$Properties$Type)
 
-public "setDrinkDuration"(arg0: integer): $DrinkableItem
 public "setContainer"(arg0: $Item$Type): $DrinkableItem
-public "getUseDuration"(arg0: $ItemStack$Type): integer
+public "setDrinkDuration"(arg0: integer): $DrinkableItem
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "finishUsingItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type): $ItemStack
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-set "drinkDuration"(value: integer)
+public "getUseDuration"(arg0: $ItemStack$Type): integer
 set "container"(value: $Item$Type)
+set "drinkDuration"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -185,8 +185,8 @@ constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $Blo
 
 public "tick"(): void
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
 public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
 public "getPurityColor"(arg0: integer): $ChatFormatting
 public "containedFluidTooltip"(arg0: $List$Type<(any)>, arg1: boolean, arg2: $LazyOptional$Type<(any)>): boolean
 public "getIcon"(arg0: boolean): $ItemStack

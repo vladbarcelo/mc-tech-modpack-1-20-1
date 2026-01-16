@@ -287,9 +287,17 @@ readonly "Def": $ActionGroupDefinition
 
 constructor(arg0: $ActionGroupContext$Type)
 
+public "GetDurationPerTriggerSeconds"(): float
 public "AddExtraPositionsForNetSync"(arg0: integer, arg1: $List$Type<($Vec3$Type)>): void
 public "ShouldAddPlayerPosForNetSync"(): boolean
-public "GetDurationPerTriggerSeconds"(): float
+public "GetProgressTicks"(): integer
+public "GetProgressSeconds"(): float
+public "GetDurationPerTriggerTicks"(): integer
+public "ShouldFallBackToReload"(): boolean
+public "RepeatDelaySeconds"(): float
+public "RepeatCount"(): integer
+public "SpinUpDuration"(): float
+public "OnStartClientFromNetwork"(arg0: long): void
 public "SetFinished"(): void
 public "OnStartClient"(): void
 public "OnStartServer"(arg0: boolean): void
@@ -309,14 +317,6 @@ public "ProxyTriggerServer"(arg0: integer): void
 public "RepeatDelayTicks"(): integer
 public "GetTriggerCount"(): integer
 public "GetPropogationRadius"(): double
-public "RepeatDelaySeconds"(): float
-public "RepeatCount"(): integer
-public "SpinUpDuration"(): float
-public "OnStartClientFromNetwork"(arg0: long): void
-public "GetProgressTicks"(): integer
-public "GetProgressSeconds"(): float
-public "GetDurationPerTriggerTicks"(): integer
-public "ShouldFallBackToReload"(): boolean
 public "GetTicksSinceStart"(): long
 public "HasReceivedNetSync"(): boolean
 public "GetLastNetSyncTick"(): long
@@ -325,13 +325,13 @@ public "GetShootAction"(): $ShootAction
 public "SetTriggerAuthored"(arg0: integer): void
 public "SetTriggerProcessed"(arg0: integer): void
 public "OnStartServerFromNetwork"(arg0: long): void
-public "HasStarted"(): boolean
-public "Finished"(): boolean
 public "RepeatMode"(): $ERepeatMode
 public "CanStart"(): $EActionResult
 public "GetActions"(): $List<($ActionInstance)>
 public "SkipTicks"(arg0: integer): void
 public "AddAction"(arg0: $ActionInstance$Type): void
+public "HasStarted"(): boolean
+public "Finished"(): boolean
 public "SetStarted"(): void
 }
 /**
@@ -498,24 +498,24 @@ public "GetNumValidContexts"(): integer
 public "CreateContext"(arg0: $UUID$Type): $GunContext
 public "GetAttachedInventory"(): $Container
 public "GetShootOrigin"(arg0: float): $Transform
-public "GetGunIDForSlot"(arg0: integer): $UUID
-public "ModifyFloat"(arg0: string): $FloatAccumulation
-public "GetGunContextForSlot"(arg0: integer, arg1: boolean): $GunContext
 public "ModifyString"(arg0: string, arg1: string): string
+public "GetGunIDForSlot"(arg0: integer): $UUID
+public "GetGunContextForSlot"(arg0: integer, arg1: boolean): $GunContext
+public "ModifyFloat"(arg0: string): $FloatAccumulation
 public "GetAllGunContexts"(): ($GunContext)[]
-public static "client"(arg0: $Entity$Type, arg1: $Entity$Type): $ShooterContext
-public static "client"(arg0: $UUID$Type, arg1: $UUID$Type): $ShooterContext
-public static "client"(arg0: $Entity$Type): $ShooterContext
-public static "client"(arg0: $ShooterBlockEntity$Type): $ShooterContext
-public static "server"(arg0: $ShooterBlockEntity$Type): $ShooterContext
-public static "server"(arg0: $Entity$Type): $ShooterContext
+public "Dimension"(): $ResourceKey<($Level)>
 public static "server"(arg0: $UUID$Type, arg1: $UUID$Type): $ShooterContext
 public static "server"(arg0: $Entity$Type, arg1: $Entity$Type): $ShooterContext
-public "Entity"(): $Entity
+public static "server"(arg0: $ShooterBlockEntity$Type): $ShooterContext
+public static "server"(arg0: $Entity$Type): $ShooterContext
+public static "client"(arg0: $Entity$Type, arg1: $Entity$Type): $ShooterContext
+public static "client"(arg0: $UUID$Type, arg1: $UUID$Type): $ShooterContext
+public static "client"(arg0: $ShooterBlockEntity$Type): $ShooterContext
+public static "client"(arg0: $Entity$Type): $ShooterContext
 public "Save"(arg0: $CompoundTag$Type): void
+public "Entity"(): $Entity
 public "Owner"(): $Entity
 public static "Load"(arg0: $CompoundTag$Type, arg1: boolean): $ShooterContext
-public "Dimension"(): $ResourceKey<($Level)>
 public "OwnerUUID"(): $UUID
 public "IsValid"(): boolean
 public "GetSide"(): $EContextSide
@@ -560,10 +560,10 @@ public "FromActionGroup"(arg0: string): $GunshotCollection
 public "FromActionGroup"(arg0: integer): $GunshotCollection
 public "FiredOnTick"(arg0: integer): $GunshotCollection
 public "Count"(): integer
-public "Get"(arg0: integer): $Gunshot
 public "Gun"(): $GunDefinition
 public static "Encode"(arg0: $GunshotCollection$Type, arg1: $FriendlyByteBuf$Type): void
 public static "Decode"(arg0: $GunshotCollection$Type, arg1: $FriendlyByteBuf$Type): void
+public "Get"(arg0: integer): $Gunshot
 public "WithGun"(arg0: $GunDefinition$Type): $GunshotCollection
 public "WithGun"(arg0: integer): $GunshotCollection
 public "AddShot"(arg0: $Gunshot$Type): $GunshotCollection
@@ -609,10 +609,8 @@ static readonly "ALL_SPECIAL_FIRE_INDEX": integer
 
 public "toString"(): string
 public "CanPerformReloadFromAttachedInventory"(arg0: integer): boolean
-public "RepeatDelayTicks"(): integer
-public "BakeModifiers"(arg0: $IModifierBaker$Type): void
-public static "GetActionGroupKey"(arg0: string): string
 public "GetActionGroupKey"(): string
+public static "GetActionGroupKey"(arg0: string): string
 public "SetMagazineType"(arg0: integer, arg1: $MagazineDefinition$Type): void
 public "GetMagFullnessRatio"(arg0: integer): float
 public "ConsumeBulletAtIndex"(arg0: integer, arg1: integer): $ItemStack
@@ -636,28 +634,34 @@ public "RepeatCount"(): integer
 public "SpinUpDuration"(): float
 public "HorizontalRecoil"(): float
 public "SpreadPattern"(): $ESpreadPattern
+public "RepeatDelayTicks"(): integer
 public static "CreateGroupPath"(arg0: $EAttachmentType$Type, arg1: integer, arg2: string): string
 public static "CreateGroupPath"(arg0: string): string
 public static "CreateGroupPath"(arg0: $EAttachmentType$Type, arg1: string): string
 public "IsAttachment"(): boolean
-public "GetAttachmentType"(): $EAttachmentType
 public static "GetAttachmentType"(arg0: string): $EAttachmentType
-public "GetAttachmentIndex"(): integer
+public "GetAttachmentType"(): $EAttachmentType
 public static "GetAttachmentIndex"(arg0: string): integer
+public "GetAttachmentIndex"(): integer
+public "BakeModifiers"(arg0: $IModifierBaker$Type): void
+public "ModifyString"(arg0: string, arg1: string): string
+public "ModifyBoolean"(arg0: string, arg1: boolean): boolean
+public "GetCombinedBulletStacks"(arg0: integer): ($ItemStack)[]
+public "GetNumBulletsInMag"(arg0: integer): integer
+public "ModifyFloat"(arg0: string): $FloatAccumulation
 public "RoundsPerMinute"(): integer
 public "VerticalRecoil"(): float
 public "GetMagazineType"(arg0: integer): $MagazineDefinition
 public "GetMagazineSize"(arg0: integer): integer
 public "GetBulletAtIndex"(arg0: integer, arg1: integer): $ItemStack
-public "GetCombinedBulletStacks"(arg0: integer): ($ItemStack)[]
-public "GetNumBulletsInMag"(arg0: integer): integer
-public "ModifyFloat"(arg0: string): $FloatAccumulation
-public "ModifyString"(arg0: string, arg1: string): string
-public "ModifyBoolean"(arg0: string, arg1: boolean): boolean
 public "Save"(arg0: $CompoundTag$Type): void
 public static "Load"(arg0: $CompoundTag$Type, arg1: boolean): $ActionGroupContext
-public "Pitch"(): float
 public "IsValid"(): boolean
+public "LoadOne"(arg0: integer, arg1: $Container$Type, arg2: boolean): void
+public static "CreateFrom"(arg0: $GunContext$Type, arg1: string): $ActionGroupContext
+public "RepeatMode"(): $ERepeatMode
+public "Spread"(): float
+public "Pitch"(): float
 public "GetSibling"(arg0: string): string
 public static "GetSibling"(arg0: string, arg1: string): string
 public "CanShoot"(arg0: integer): boolean
@@ -666,10 +670,6 @@ public "GetBoolean"(arg0: string): boolean
 public "Loudness"(): float
 public "Volume"(): float
 public "GetSpread"(arg0: $ActionDefinition$Type): float
-public static "CreateFrom"(arg0: $GunContext$Type, arg1: string): $ActionGroupContext
-public "RepeatMode"(): $ERepeatMode
-public "Spread"(): float
-public "LoadOne"(arg0: integer, arg1: $Container$Type, arg2: boolean): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -841,33 +841,29 @@ readonly "Orientation": $Quaternionf
 readonly "Scale": $Vector3f
 
 
-public "left"(): $Vec3
-public "right"(): $Vec3
-public "up"(): $Vec3
-public "roll"(): float
-public static "flatten"(arg0: $Consumer$Type<($TransformStack$Type)>): $Transform
+public "equals"(arg0: any): boolean
+public "toString"(): string
+public static "identity"(): $Transform
+public static "copy"(arg0: $Transform$Type): $Transform
+public "isIdentity"(): boolean
+public "down"(): $Vec3
 public static "rotate"(arg0: $Vector3f$Type, arg1: $Quaternionf$Type): $Vector3f
 public static "compose"(arg0: $Quaternionf$Type, arg1: $Quaternionf$Type): $Quaternionf
 public static "compose"(...arg0: ($Transform$Type)[]): $Transform
 public static "compose"(arg0: $Quaternionf$Type, arg1: $Quaternionf$Type, arg2: $Quaternionf$Type): $Quaternionf
 public static "error"(arg0: string): $Transform
 public "back"(): $Vec3
-public static "fromPos"(arg0: double, arg1: double, arg2: double): $Transform
-public static "fromPos"(arg0: $Vec3$Type): $Transform
+public "up"(): $Vec3
+public static "flatten"(arg0: $Consumer$Type<($TransformStack$Type)>): $Transform
+public "left"(): $Vec3
+public "right"(): $Vec3
+public "roll"(): float
 public static "fromPos"(arg0: $Vector3d$Type): $Transform
-public "down"(): $Vec3
-public "equals"(arg0: any): boolean
-public "toString"(): string
-public static "identity"(): $Transform
-public static "copy"(arg0: $Transform$Type): $Transform
-public "isIdentity"(): boolean
+public static "fromPos"(arg0: $Vec3$Type): $Transform
+public static "fromPos"(arg0: double, arg1: double, arg2: double): $Transform
 public static "fromPositionAndLookDirection"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $Vec3$Type): $Transform
-public static "quatFromEuler"(arg0: $Vector3f$Type): $Quaternionf
-public static "quatFromEuler"(arg0: float, arg1: float, arg2: float): $Quaternionf
-public static "fromLookDirection"(arg0: $Vec3$Type, arg1: $Vec3$Type): $Transform
-public static "fromPosAndEuler"(arg0: $Vec3$Type, arg1: $Vector3f$Type): $Transform
-public static "fromPosAndEuler"(arg0: $Vector3f$Type, arg1: $Vector3f$Type): $Transform
-public static "fromPosAndEuler"(arg0: $Vec3$Type, arg1: float, arg2: float, arg3: float): $Transform
+public static "fromEulerRadians"(arg0: float, arg1: float, arg2: float): $Transform
+public static "quatFromEulerRadians"(arg0: float, arg1: float, arg2: float): $Quaternionf
 public static "extractOrientation"(arg0: $Transform$Type, arg1: boolean): $Transform
 public static "extractPosition"(arg0: $Transform$Type, arg1: double): $Transform
 public "toPosAndOriTag"(): $CompoundTag
@@ -877,12 +873,23 @@ public "localToGlobalTransform"(arg0: $Transform$Type): $Transform
 public "applyToPoseStack"(arg0: $PoseStack$Type): void
 public "toNewPoseStack"(): $PoseStack
 public "withEulerAngles"(arg0: float, arg1: float, arg2: float): $Transform
-public "withPosition"(arg0: $Vec3$Type): $Transform
-public "withPosition"(arg0: double, arg1: double, arg2: double): $Transform
 public "positionVec3"(): $Vec3
 public "localToGlobalDirection"(arg0: $Vec3$Type): $Vec3
 public "directionVec"(arg0: $Direction$Type): $Vec3
+public "globalToLocalTransform"(arg0: $Transform$Type): $Transform
+public "localToGlobalBounds"(arg0: $AABB$Type): $AABB
 public "localToGlobalPosition"(arg0: $Vec3$Type): $Vec3
+public static "fromPosAndQuat"(arg0: $Vec3$Type, arg1: $Quaternionf$Type): $Transform
+public static "fromPosAndQuat"(arg0: $Vector3d$Type, arg1: $Quaternionf$Type): $Transform
+public static "fromPosAndQuat"(arg0: double, arg1: double, arg2: double, arg3: $Quaternionf$Type): $Transform
+public "withPosition"(arg0: $Vec3$Type): $Transform
+public "withPosition"(arg0: double, arg1: double, arg2: double): $Transform
+public static "quatFromEuler"(arg0: float, arg1: float, arg2: float): $Quaternionf
+public static "quatFromEuler"(arg0: $Vector3f$Type): $Quaternionf
+public static "fromLookDirection"(arg0: $Vec3$Type, arg1: $Vec3$Type): $Transform
+public static "fromPosAndEuler"(arg0: $Vec3$Type, arg1: float, arg2: float, arg3: float): $Transform
+public static "fromPosAndEuler"(arg0: $Vec3$Type, arg1: $Vector3f$Type): $Transform
+public static "fromPosAndEuler"(arg0: $Vector3f$Type, arg1: $Vector3f$Type): $Transform
 public "globalToLocalPosition"(arg0: $Vec3$Type): $Vec3
 public "localToGlobalVelocity"(arg0: $Vec3$Type): $Vec3
 public "globalToLocalVelocity"(arg0: $Vec3$Type): $Vec3
@@ -891,26 +898,19 @@ public "localToGlobalOrientation"(arg0: $Quaternionf$Type): $Quaternionf
 public "globalToLocalOrientation"(arg0: $Quaternionf$Type): $Quaternionf
 public "localToGlobalScale"(arg0: $Vector3f$Type): $Vector3f
 public "globalToLocalScale"(arg0: $Vector3f$Type): $Vector3f
-public "globalToLocalTransform"(arg0: $Transform$Type): $Transform
-public "localToGlobalBounds"(arg0: $AABB$Type): $AABB
-public static "fromPosAndQuat"(arg0: double, arg1: double, arg2: double, arg3: $Quaternionf$Type): $Transform
-public static "fromPosAndQuat"(arg0: $Vec3$Type, arg1: $Quaternionf$Type): $Transform
-public static "fromPosAndQuat"(arg0: $Vector3d$Type, arg1: $Quaternionf$Type): $Transform
-public static "fromEulerRadians"(arg0: float, arg1: float, arg2: float): $Transform
-public static "quatFromEulerRadians"(arg0: float, arg1: float, arg2: float): $Quaternionf
-public "rotatePitch"(arg0: float): $Transform
 public static "fromBlockPos"(arg0: $BlockPos$Type): $Transform
-public static "interpolate"(arg0: $List$Type<($Transform$Type)>, arg1: (float)[]): $Transform
+public "rotatePitch"(arg0: float): $Transform
+public "inverse"(): $Transform
 public static "interpolate"(arg0: $List$Type<($Transform$Type)>): $Transform
+public static "interpolate"(arg0: $List$Type<($Transform$Type)>, arg1: (float)[]): $Transform
 public static "interpolate"(arg0: $Transform$Type, arg1: $Transform$Type, arg2: float): $Transform
+public static "lookAlong"(arg0: $Vec3$Type, arg1: $Vec3$Type): $Quaternionf
 public static "getScale"(arg0: $Matrix4f$Type): $Vector3f
+public "reflect"(arg0: boolean, arg1: boolean, arg2: boolean): $Transform
+public "blockPos"(): $BlockPos
+public "forward"(): $Vec3
 public "yaw"(): float
 public "pitch"(): float
-public "blockPos"(): $BlockPos
-public "reflect"(arg0: boolean, arg1: boolean, arg2: boolean): $Transform
-public static "lookAlong"(arg0: $Vec3$Type, arg1: $Vec3$Type): $Quaternionf
-public "inverse"(): $Transform
-public "forward"(): $Vec3
 public "euler"(): $Vector3f
 public "translated"(arg0: $Vec3$Type): $Transform
 public "toTag"(arg0: boolean, arg1: boolean, arg2: boolean): $CompoundTag
@@ -918,20 +918,20 @@ public static "fromTag"(arg0: $CompoundTag$Type): $Transform
 public static "fromTag"(arg0: $CompoundTag$Type, arg1: $Vec3$Type, arg2: $Quaternionf$Type, arg3: $Vector3f$Type): $Transform
 public static "fromEntity"(arg0: $Entity$Type): $Transform
 public "rotateYaw"(arg0: float): $Transform
-public static "toEuler"(arg0: $Quaternionf$Type): $Vector3f
-public static "fromEuler"(arg0: float, arg1: float, arg2: float): $Transform
-public static "fromEuler"(arg0: $Vector3f$Type): $Transform
-public "toPosTag"(): $CompoundTag
 public "withYaw"(arg0: float): $Transform
 public "withPitch"(arg0: float): $Transform
 public "withRoll"(arg0: float): $Transform
 public "rotateRoll"(arg0: float): $Transform
 public "oriMatrix"(): $Matrix3f
-public "isApprox"(arg0: $Transform$Type, arg1: double): boolean
 public "isApprox"(arg0: $Transform$Type, arg1: double, arg2: float, arg3: float): boolean
+public "isApprox"(arg0: $Transform$Type, arg1: double): boolean
 public "hasNaN"(): boolean
-public static "fromScale"(arg0: float): $Transform
+public static "toEuler"(arg0: $Quaternionf$Type): $Vector3f
+public static "fromEuler"(arg0: $Vector3f$Type): $Transform
+public static "fromEuler"(arg0: float, arg1: float, arg2: float): $Transform
 public static "fromScale"(arg0: $Vector3f$Type): $Transform
+public static "fromScale"(arg0: float): $Transform
+public "toPosTag"(): $CompoundTag
 public static "fromItem"(arg0: $ItemTransform$Type): $Transform
 }
 /**
@@ -1033,10 +1033,10 @@ readonly "MaxStackSize": integer
 readonly "AllowFunction": $Function<($ItemStack), (boolean)>
 readonly "Slots": ($ItemStack)[]
 
-constructor()
 constructor(arg0: integer, arg1: integer, arg2: $Function$Type<($ItemStack$Type), (boolean)>)
-constructor(arg0: $BlockEntity$Type)
 constructor(arg0: integer, arg1: integer, arg2: $Function$Type<($ItemStack$Type), (boolean)>, arg3: $Function$Type<($Player$Type), (boolean)>)
+constructor(arg0: $BlockEntity$Type)
+constructor()
 
 public "load"(arg0: $CompoundTag$Type): void
 public "save"(arg0: $CompoundTag$Type): $CompoundTag
@@ -1181,10 +1181,10 @@ static readonly "Invalid": $WorkbenchBlockEntity$ItemCapabilityMultiContainer
 
 constructor(arg0: ($Container$Type)[], arg1: boolean, arg2: boolean)
 
+public "getStackInSlot"(arg0: integer): $ItemStack
 public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "getSlotLimit"(arg0: integer): integer
 public "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
-public "getStackInSlot"(arg0: integer): $ItemStack
 public "getSlots"(): integer
 public "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
 public "isMutable"(): boolean
@@ -1268,11 +1268,11 @@ export class $AbilityTargetDefinition {
 
 constructor()
 
-public "GetTooltip"(arg0: boolean): $Component
 public static "Matches"(arg0: ($AbilityTargetDefinition$Type)[], arg1: $EAbilityTarget$Type, arg2: $TriggerContext$Type): boolean
-public "Matches"(arg0: $EAbilityTarget$Type): boolean
 public "Matches"(arg0: $EAbilityTarget$Type, arg1: $TriggerContext$Type): boolean
+public "Matches"(arg0: $EAbilityTarget$Type): boolean
 public "ApplyTo"(arg0: $TriggerContext$Type, arg1: $TargetsContext$Type): void
+public "GetTooltip"(arg0: boolean): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1342,17 +1342,17 @@ public "Server_TryUpdateGroupInstanceHeld"(arg0: $ActionGroupContext$Type): $EAc
 public "Server_TryUpdateGroupInstanceNotHeld"(arg0: $ActionGroupContext$Type): $EActionResult
 public "TryShootMultiple"(arg0: float): integer
 public "GetShotCooldown"(): float
+public "GetActiveActionGroups"(): $List<($ActionGroupInstance)>
 public "RequestCancel"(): void
 public "IsActionGroupActive"(arg0: $ActionGroupContext$Type): boolean
+public "EvaluateTrigger"(arg0: $EAbilityTrigger$Type, arg1: $GunContext$Type, arg2: $TriggerContext$Type): void
+public "EvaluateTrigger"(arg0: $EAbilityTrigger$Type, arg1: $GunContext$Type, arg2: $ActionGroupContext$Type, arg3: $TriggerContext$Type): void
+public "EvaluateTrigger"(arg0: $EAbilityTrigger$Type, arg1: $ActionGroupContext$Type, arg2: $TriggerContext$Type): void
 public "OnStartReload"(arg0: $ActionGroupContext$Type, arg1: integer): void
 public "CanReloadOne"(arg0: $ActionGroupContext$Type, arg1: integer): boolean
+public "IsReloading"(): boolean
 public "ForEachNonZeroStack"(arg0: $Consumer$Type<($AbilityStack$Type)>): void
 public "GetOrCreateStacks"(arg0: $AbilityStackingDefinition$Type, arg1: integer): $AbilityStack
-public "IsReloading"(): boolean
-public "GetActiveActionGroups"(): $List<($ActionGroupInstance)>
-public "EvaluateTrigger"(arg0: $EAbilityTrigger$Type, arg1: $GunContext$Type, arg2: $TriggerContext$Type): void
-public "EvaluateTrigger"(arg0: $EAbilityTrigger$Type, arg1: $ActionGroupContext$Type, arg2: $TriggerContext$Type): void
-public "EvaluateTrigger"(arg0: $EAbilityTrigger$Type, arg1: $GunContext$Type, arg2: $ActionGroupContext$Type, arg3: $TriggerContext$Type): void
 public "GetOrCreateGroupInstance"(arg0: $ActionGroupContext$Type): $ActionGroupInstance
 public "CancelGroupInstance"(arg0: $ActionGroupContext$Type): void
 public "TryGetGroupInstance"(arg0: $ActionGroupContext$Type): $ActionGroupInstance
@@ -1429,17 +1429,17 @@ public "ConsumeGunCraftingInputs"(): void
 public "QueueCrafting"(arg0: integer): void
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "invalidateCaps"(): void
+public "getDisplayName"(): $Component
 public "getSlotsForFace"(arg0: $Direction$Type): (integer)[]
 public "canPlaceItemThroughFace"(arg0: integer, arg1: $ItemStack$Type, arg2: $Direction$Type): boolean
 public "canTakeItemThroughFace"(arg0: integer, arg1: $ItemStack$Type, arg2: $Direction$Type): boolean
+public "load"(arg0: $CompoundTag$Type): void
 public "stillValid"(arg0: $Player$Type): boolean
-public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "setItem"(arg0: integer, arg1: $ItemStack$Type): void
+public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "removeItem"(arg0: integer, arg1: integer): $ItemStack
 public "isEmpty"(): boolean
 public "clearContent"(): void
-public "load"(arg0: $CompoundTag$Type): void
-public "getDisplayName"(): $Component
 public "getContainerSize"(): integer
 public "getItem"(arg0: integer): $ItemStack
 public "removeItemNoUpdate"(arg0: integer): $ItemStack
@@ -1482,8 +1482,8 @@ public "find"(ingredient: $Ingredient$Type): integer
 public "find"(): integer
 public "count"(ingredient: $Ingredient$Type): integer
 public "count"(): integer
-get "empty"(): boolean
 get "displayName"(): $Component
+get "empty"(): boolean
 get "containerSize"(): integer
 get "mutable"(): boolean
 get "slots"(): integer
@@ -1517,8 +1517,8 @@ export interface $IAbilityEffect {
 
  "TriggerClient"(arg0: $ActionGroupContext$Type, arg1: $TriggerContext$Type, arg2: $TargetsContext$Type, arg3: $AbilityStack$Type): void
  "TriggerServer"(arg0: $ActionGroupContext$Type, arg1: $TriggerContext$Type, arg2: $TargetsContext$Type, arg3: $AbilityStack$Type): void
- "CanBeContinuous"(): boolean
  "GetActiveModifiers"(): ($ModifierDefinition)[]
+ "CanBeContinuous"(): boolean
  "EndServer"(arg0: $GunContext$Type, arg1: $AbilityStack$Type): void
  "EndClient"(arg0: $GunContext$Type, arg1: $AbilityStack$Type): void
 }
@@ -1667,8 +1667,8 @@ constructor(arg0: $ResourceLocation$Type, arg1: $Item$Properties$Type)
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "ShouldRenderAsIcon"(arg0: $ItemDisplayContext$Type): boolean
 public "CanBeCraftedFromParts"(): boolean
-public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "isRepairable"(arg0: $ItemStack$Type): boolean
 }
 /**
@@ -1818,6 +1818,7 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $ResourceLocation$Type, arg1: $BlockBehaviour$Properties$Type)
 
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
@@ -1825,7 +1826,6 @@ public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $Block
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "Def"(): $WorkbenchDefinition
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -1856,9 +1856,9 @@ static readonly "Electronic": $EMaterialType
 static readonly "Fabric": $EMaterialType
 
 
-public static "parse"(arg0: string): $EMaterialType
 public static "values"(): ($EMaterialType)[]
 public static "valueOf"(arg0: string): $EMaterialType
+public static "parse"(arg0: string): $EMaterialType
 public "ToComponent"(): $Component
 public static "Resolve"(arg0: string): $EMaterialType$MaterialAndTier
 public static "GetType"(arg0: string): $EMaterialType
@@ -1881,8 +1881,8 @@ import {$ShooterContext, $ShooterContext$Type} from "packages/com/flansmod/commo
 import {$GunContext, $GunContext$Type} from "packages/com/flansmod/common/actions/contexts/$GunContext"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$AbilityTargetDefinition, $AbilityTargetDefinition$Type} from "packages/com/flansmod/common/types/abilities/elements/$AbilityTargetDefinition"
-import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$ActionGroupContext, $ActionGroupContext$Type} from "packages/com/flansmod/common/actions/contexts/$ActionGroupContext"
 import {$BiConsumer, $BiConsumer$Type} from "packages/java/util/function/$BiConsumer"
 import {$HitResult, $HitResult$Type} from "packages/net/minecraft/world/phys/$HitResult"
@@ -1899,20 +1899,20 @@ readonly "ActionGroupPath": string
 readonly "SplashedEntities": $Collection<($Entity)>
 
 
-public static "hit"(arg0: $ShooterContext$Type, arg1: $HitResult$Type): $TriggerContext
-public static "self"(arg0: $GunContext$Type): $TriggerContext
-public static "self"(arg0: $ActionGroupContext$Type): $TriggerContext
+public static "empty"(): $TriggerContext
 public static "self"(arg0: $Entity$Type): $TriggerContext
 public static "self"(arg0: $ShooterContext$Type): $TriggerContext
-public static "empty"(): $TriggerContext
-public "CanTriggerFor"(arg0: $EAbilityTarget$Type): boolean
-public "CanTriggerFor"(arg0: ($AbilityTargetDefinition$Type)[]): boolean
+public static "self"(arg0: $GunContext$Type): $TriggerContext
+public static "self"(arg0: $ActionGroupContext$Type): $TriggerContext
+public static "hit"(arg0: $ShooterContext$Type, arg1: $HitResult$Type): $TriggerContext
 public static "hitWithSplash"(arg0: $ShooterContext$Type, arg1: $HitResult$Type, arg2: $Collection$Type<($Entity$Type)>): $TriggerContext
 public static "hitWithSplash"(arg0: $GunContext$Type, arg1: $HitResult$Type, arg2: $Collection$Type<($Entity$Type)>): $TriggerContext
 public static "hitWithSplash"(arg0: $ActionGroupContext$Type, arg1: $HitResult$Type, arg2: $Collection$Type<($Entity$Type)>): $TriggerContext
+public "CanTriggerFor"(arg0: ($AbilityTargetDefinition$Type)[]): boolean
+public "CanTriggerFor"(arg0: $EAbilityTarget$Type): boolean
 public "TriggerOnEntities"(arg0: ($AbilityTargetDefinition$Type)[], arg1: $Consumer$Type<($Entity$Type)>): void
-public "TriggerOnPositions"(arg0: ($AbilityTargetDefinition$Type)[], arg1: $Consumer$Type<($Vec3$Type)>): void
 public "TriggerOnBlocks"(arg0: ($AbilityTargetDefinition$Type)[], arg1: $BiConsumer$Type<($BlockPos$Type), ($BlockState$Type)>): void
+public "TriggerOnPositions"(arg0: ($AbilityTargetDefinition$Type)[], arg1: $Consumer$Type<($Vec3$Type)>): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1980,9 +1980,9 @@ readonly "Location": $ResourceLocation
 
 constructor(arg0: $ResourceLocation$Type)
 
+public "GetTypeName"(): string
 public "GetItemDurability"(): integer
 public "GetMaxStackSize"(): integer
-public "GetTypeName"(): string
 public "HasTag"(arg0: $ResourceLocation$Type): boolean
 }
 /**
@@ -2091,15 +2091,15 @@ constructor(arg0: $ActionGroupContext$Type, arg1: $EPressType$Type, arg2: long)
 constructor()
 
 public "toString"(): string
+public "GetStartTick"(): long
 public "AddTriggers"(arg0: $ActionGroupInstance$Type, arg1: integer, arg2: integer): void
 public "GetTriggers"(): $Set<($Map$Entry<(integer), ($ActionUpdateMessage$ActionTriggerInfo)>)>
 public "GetLastTriggerTick"(): long
-public "GetStartTick"(): long
 public "GetActionGroupContext"(arg0: boolean): $ActionGroupContext
 public "GetPressType"(): $EPressType
 public "GetFirstTriggerIndex"(): integer
-public "GetLastTriggerIndex"(): integer
 public "GetFirstTriggerTick"(): long
+public "GetLastTriggerIndex"(): integer
 public "Encode"(arg0: $FriendlyByteBuf$Type): void
 public "Decode"(arg0: $FriendlyByteBuf$Type): void
 public "GetNetData"(arg0: integer, arg1: integer): $ActionInstance$NetData
@@ -2151,10 +2151,10 @@ readonly "Location": $ResourceLocation
 
 constructor(arg0: $ResourceLocation$Type)
 
+public "GetTypeName"(): string
 public "GetActionGroup"(arg0: string): $ActionGroupDefinition
 public "GetInputHandler"(arg0: $GunInputContext$Type): $HandlerDefinition
 public "GetInputHandler"(arg0: $EPlayerInput$Type): $HandlerDefinition
-public "GetTypeName"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2210,15 +2210,6 @@ readonly "canRepair": boolean
 constructor(arg0: $ResourceLocation$Type, arg1: $Item$Properties$Type)
 
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
-public static "GetAllItems"(): $Iterable<($FlanItem)>
-public "getDefinitionLocation"(): $ResourceLocation
-public "GetPaintDef"(): $PaintableDefinition
-public "ShouldRenderAsIcon"(arg0: $ItemDisplayContext$Type): boolean
-public "CanBeCraftedFromParts"(): boolean
-public static "GetCraftingInputs"(arg0: $ItemStack$Type): ($PartDefinition)[]
-public static "CreateTraitComponent"(arg0: $CraftingTraitDefinition$Type, arg1: integer, arg2: boolean): $Component
-public static "GetAttachmentStacks"(arg0: $ItemStack$Type): $List<($ItemStack)>
-public static "Server_GetOrSetNewGunID"(arg0: $ItemStack$Type): $UUID
 public "HasAttachmentSlot"(arg0: $EAttachmentType$Type, arg1: integer): boolean
 public "CanAcceptAttachment"(arg0: $ItemStack$Type, arg1: $EAttachmentType$Type, arg2: integer): boolean
 public static "GetAttachmentInSlot"(arg0: $ItemStack$Type, arg1: $EAttachmentType$Type, arg2: integer): $ItemStack
@@ -2231,13 +2222,22 @@ public static "SetCraftingInputs"(arg0: $ItemStack$Type, arg1: ($ItemStack$Type)
 public static "SetCraftingInputs"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStack$Type)>): void
 public static "GetModeValue"(arg0: $ItemStack$Type, arg1: string, arg2: string): string
 public static "SetModeValue"(arg0: $ItemStack$Type, arg1: string, arg2: string): void
+public static "GetAllItems"(): $Iterable<($FlanItem)>
+public "getDefinitionLocation"(): $ResourceLocation
+public "GetPaintDef"(): $PaintableDefinition
+public "ShouldRenderAsIcon"(arg0: $ItemDisplayContext$Type): boolean
+public "CanBeCraftedFromParts"(): boolean
+public static "GetCraftingInputs"(arg0: $ItemStack$Type): ($PartDefinition)[]
+public static "CreateTraitComponent"(arg0: $CraftingTraitDefinition$Type, arg1: integer, arg2: boolean): $Component
+public static "GetAttachmentStacks"(arg0: $ItemStack$Type): $List<($ItemStack)>
+public static "Server_GetOrSetNewGunID"(arg0: $ItemStack$Type): $UUID
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "Def"(): $JsonDefinition
+public static "TryAttach"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public static "ListOf"(arg0: ($Component$Type)[]): $Component
+public static "ListOf"(arg0: string, arg1: (string)[]): $Component
 public static "GetGunID"(arg0: $ItemStack$Type): $UUID
 public static "GetTraits"(arg0: $ItemStack$Type): $Map<($CraftingTraitDefinition), (integer)>
-public static "TryAttach"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public static "ListOf"(arg0: string, arg1: (string)[]): $Component
-public static "ListOf"(arg0: ($Component$Type)[]): $Component
 public "isRepairable"(arg0: $ItemStack$Type): boolean
 get "definitionLocation"(): $ResourceLocation
 }
@@ -2395,16 +2395,15 @@ constructor(arg0: $WorkbenchDefinition$Type, arg1: $Function$Type<($Player$Type)
 
 public "load"(arg0: $CompoundTag$Type): void
 public "save"(arg0: $CompoundTag$Type): void
-public "GetQuantityOfEachIngredientForRecipe"(arg0: $Level$Type, arg1: integer): (integer)[]
-public "GetRequiredOfEachIngredientForRecipe"(arg0: $Level$Type, arg1: integer): (integer)[]
-public "GetMaxPartsCraftableFromInput"(arg0: $Level$Type, arg1: integer): integer
-public "AutoFillGunCraftingInputSlot"(arg0: $Player$Type, arg1: integer): void
 public "UpdateGunCraftingOutputSlot"(arg0: $Level$Type): void
+public "AutoFillGunCraftingInputSlot"(arg0: $Player$Type, arg1: integer): void
 public "PartRecipeCanBeCraftedInThisWorkbench"(arg0: $ItemStack$Type): boolean
 public "GunRecipeCanBeCraftedInThisWorkbench"(arg0: $ItemStack$Type): boolean
 public "SelectGunCraftingRecipe"(arg0: $Level$Type, arg1: integer): void
 public static "SelectMagazine"(arg0: $Player$Type, arg1: $Container$Type, arg2: $Container$Type, arg3: integer): void
 public "SelectMagazine"(arg0: $Player$Type, arg1: integer): void
+public "SelectPartCraftingRecipe"(arg0: $Level$Type, arg1: integer): void
+public "CancelQueue"(arg0: integer): void
 public "GetDataAccess"(): $ContainerData
 public "GetLazyOptionalEnergy"(): $LazyOptional<($IEnergyStorage)>
 public "GetSubContainer"(arg0: integer): $Pair<($Container), (integer)>
@@ -2413,30 +2412,31 @@ public "GetSelectedGunRecipe"(arg0: $Level$Type): $GunFabricationRecipe
 public "IsGunCraftingFullyValid"(arg0: $Level$Type): boolean
 public "ConsumeGunCraftingInputs"(arg0: $Level$Type): void
 public "QueueCrafting"(arg0: $Level$Type, arg1: integer): void
-public "SelectPartCraftingRecipe"(arg0: $Level$Type, arg1: integer): void
-public "CancelQueue"(arg0: integer): void
 public "CountInputMatching"(arg0: $Ingredient$Type): integer
-public "CraftOnePart"(arg0: $Level$Type, arg1: $Vec3$Type): boolean
-public "GetOutputSlotToCraftPart"(arg0: $Level$Type): integer
+public "GetQuantityOfEachIngredientForRecipe"(arg0: $Level$Type, arg1: integer): (integer)[]
+public "GetRequiredOfEachIngredientForRecipe"(arg0: $Level$Type, arg1: integer): (integer)[]
+public "GetMaxPartsCraftableFromInput"(arg0: $Level$Type, arg1: integer): integer
 public "GetSelectedGunRecipeIndex"(): integer
 public "MatchesGunRecipe"(arg0: $Level$Type, arg1: integer): boolean
 public "MatchesGunRecipe"(arg0: $Level$Type, arg1: $GunFabricationRecipe$Type): boolean
 public "IsGunCraftingSlotValid"(arg0: $Level$Type, arg1: integer): boolean
 public static "CanPaintGun"(arg0: $Player$Type, arg1: $Container$Type, arg2: $Container$Type, arg3: integer): boolean
 public static "CanSelectMagazine"(arg0: $Player$Type, arg1: $Container$Type, arg2: $Container$Type, arg3: integer): boolean
+public "GetOutputSlotToCraftPart"(arg0: $Level$Type): integer
+public "CraftOnePart"(arg0: $Level$Type, arg1: $Vec3$Type): boolean
+public "getDisplayName"(): $Component
 public "setChanged"(): void
-public "GetAllPartRecipes"(arg0: $Level$Type): $List<($PartFabricationRecipe)>
-public static "GetMagUpgradeCost"(arg0: $Container$Type, arg1: integer): integer
 public static "GetPaintUpgradeCost"(arg0: $Container$Type, arg1: integer): integer
-public "GetMatchingGunRecipes"(arg0: $Level$Type): $List<($GunFabricationRecipe)>
 public "GetAllGunRecipes"(arg0: $Level$Type): $List<($GunFabricationRecipe)>
+public "GetMatchingGunRecipes"(arg0: $Level$Type): $List<($GunFabricationRecipe)>
+public static "GetMagUpgradeCost"(arg0: $Container$Type, arg1: integer): integer
+public "GetAllPartRecipes"(arg0: $Level$Type): $List<($PartFabricationRecipe)>
 public "stillValid"(arg0: $Player$Type): boolean
-public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "setItem"(arg0: integer, arg1: $ItemStack$Type): void
+public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "removeItem"(arg0: integer, arg1: integer): $ItemStack
 public "isEmpty"(): boolean
 public "clearContent"(): void
-public "getDisplayName"(): $Component
 public "getContainerSize"(): integer
 public "getItem"(arg0: integer): $ItemStack
 public "removeItemNoUpdate"(arg0: integer): $ItemStack
@@ -2480,8 +2480,8 @@ public "find"(): integer
 public "count"(ingredient: $Ingredient$Type): integer
 public "count"(): integer
 public "shouldCloseCurrentScreen"(): boolean
-get "empty"(): boolean
 get "displayName"(): $Component
+get "empty"(): boolean
 get "containerSize"(): integer
 get "mutable"(): boolean
 get "slots"(): integer
@@ -2548,11 +2548,11 @@ readonly "Location": $ResourceLocation
 
 constructor(arg0: $ResourceLocation$Type)
 
+public "GetTypeName"(): string
 public "GetAttachmentSettings"(arg0: $EAttachmentType$Type): $AttachmentSettingsDefinition
 public "GetMagazineSettings"(arg0: string): $MagazineSlotSettingsDefinition
 public "GetActionGroup"(arg0: string): $ActionGroupDefinition
 public "GetInputHandler"(arg0: $GunInputContext$Type): $HandlerDefinition
-public "GetTypeName"(): string
 public "LoadExtra"(arg0: $JsonElement$Type): void
 }
 /**
@@ -2612,9 +2612,9 @@ import {$TagKey, $TagKey$Type} from "packages/net/minecraft/tags/$TagKey"
 
 export interface $IAmmoItem {
 
+ "matchesTags"(arg0: $ItemStack$Type, arg1: $List$Type<($TagKey$Type<($Item$Type)>)>): boolean
  "provideForTags"(arg0: $ItemStack$Type, arg1: $List$Type<($TagKey$Type<($Item$Type)>)>): $ItemStack
  "provideForIDs"(arg0: $ItemStack$Type, arg1: $List$Type<($ResourceLocation$Type)>): $ItemStack
- "matchesTags"(arg0: $ItemStack$Type, arg1: $List$Type<($TagKey$Type<($Item$Type)>)>): boolean
  "provideAny"(arg0: $ItemStack$Type): $ItemStack
  "matchesIDs"(arg0: $ItemStack$Type, arg1: $List$Type<($ResourceLocation$Type)>): boolean
 }
@@ -2719,12 +2719,12 @@ export class $AbilityDefinition {
 
 constructor()
 
-public "IsStackable"(): boolean
-public "MatchTrigger"(arg0: $EAbilityTrigger$Type, arg1: $TriggerContext$Type): boolean
 public "MatchTargets"(arg0: $TriggerContext$Type): $TargetsContext
 public "GetTriggerTooltip"(arg0: boolean): $Component
 public "GetTargetTooltip"(arg0: boolean): $Component
 public "GetEffectTooltip"(arg0: boolean): $Component
+public "IsStackable"(): boolean
+public "MatchTrigger"(arg0: $EAbilityTrigger$Type, arg1: $TriggerContext$Type): boolean
 public "IsValid"(): boolean
 public "GetTooltip"(arg0: boolean): $Component
 }
@@ -2767,12 +2767,12 @@ public "ProjectileIndex"(): integer
 public "HitscanIndex"(): integer
 public static "Encode"(arg0: $Gunshot$Type, arg1: $FriendlyByteBuf$Type): void
 public static "Decode"(arg0: $FriendlyByteBuf$Type): $Gunshot
-public "WithHits"(arg0: ($HitResult$Type)[]): $Gunshot
 public "Endpoint"(): $Vec3
 public "FromShot"(arg0: integer): $Gunshot
 public "WithOrigin"(arg0: double, arg1: double, arg2: double): $Gunshot
 public "WithOrigin"(arg0: $Vec3$Type): $Gunshot
 public "WithBullet"(arg0: $BulletDefinition$Type): $Gunshot
+public "WithHits"(arg0: ($HitResult$Type)[]): $Gunshot
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2933,10 +2933,10 @@ readonly "Location": $ResourceLocation
 
 constructor(arg0: $ResourceLocation$Type)
 
+public "GetSortedByValue"(): $List<($MaterialSourceDefinition)>
 public "ResolveAmount"(arg0: integer): $List<($Pair<($MaterialSourceDefinition), (integer)>)>
 public "GenerateString"(arg0: integer): string
 public "GetTypeName"(): string
-public "GetSortedByValue"(): $List<($MaterialSourceDefinition)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2956,8 +2956,8 @@ import {$ShooterContext, $ShooterContext$Type} from "packages/com/flansmod/commo
 import {$GunContext$EItemStackLinkage, $GunContext$EItemStackLinkage$Type} from "packages/com/flansmod/common/actions/contexts/$GunContext$EItemStackLinkage"
 import {$DamageSource, $DamageSource$Type} from "packages/net/minecraft/world/damagesource/$DamageSource"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$GunInputContext, $GunInputContext$Type} from "packages/com/flansmod/common/actions/contexts/$GunInputContext"
 import {$ActionGroupContext, $ActionGroupContext$Type} from "packages/com/flansmod/common/actions/contexts/$ActionGroupContext"
+import {$GunInputContext, $GunInputContext$Type} from "packages/com/flansmod/common/actions/contexts/$GunInputContext"
 import {$GunContext$EItemStackValidity, $GunContext$EItemStackValidity$Type} from "packages/com/flansmod/common/actions/contexts/$GunContext$EItemStackValidity"
 import {$ReloadDefinition, $ReloadDefinition$Type} from "packages/com/flansmod/common/types/guns/elements/$ReloadDefinition"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
@@ -3006,24 +3006,20 @@ public static "of"(arg0: $ItemEntity$Type): $GunContext
 public static "of"(arg0: $Container$Type, arg1: integer, arg2: boolean): $GunContext
 public static "of"(arg0: $BlockEntity$Type, arg1: $Container$Type, arg2: integer): $GunContext
 public static "of"(arg0: $ItemStack$Type): $GunContext
-public static "of"(arg0: $ShooterContext$Type, arg1: integer): $GunContext
-public static "of"(arg0: $ItemStack$Type, arg1: $EContextSide$Type): $GunContext
 public static "of"(arg0: $ShooterContext$Type, arg1: $UUID$Type): $GunContext
+public static "of"(arg0: $ItemStack$Type, arg1: $EContextSide$Type): $GunContext
+public static "of"(arg0: $ShooterContext$Type, arg1: integer): $GunContext
 public static "of"(arg0: $ShooterContext$Type, arg1: $InteractionHand$Type): $GunContext
 public static "of"(arg0: $UUID$Type): $GunContext
-public "ForEachActiveModifierAbility"(arg0: $BiConsumer$Type<($AbilityInstanceApplyModifier$Type), ($AbilityStack$Type)>): void
+public "GetActionGroupContextSibling"(arg0: $ActionGroupContext$Type, arg1: string): $ActionGroupContext
+public "GetActionGroupContextByHash"(arg0: integer): $ActionGroupContext
 public "EvaluateAttachmentInputHandler"(arg0: $GunInputContext$Type, arg1: string, arg2: $AttachmentDefinition$Type, arg3: $List$Type<($Pair$Type<($ActionGroupContext$Type), (boolean)>)>): void
+public "ForEachActiveModifierAbility"(arg0: $BiConsumer$Type<($AbilityInstanceApplyModifier$Type), ($AbilityStack$Type)>): void
 public "GetReloadDefinitionContaining"(arg0: $ActionGroupContext$Type): $ReloadDefinition
 public "GetPotentialSecondaryActions"(): $List<($ActionDefinition)>
-public "GetActionGroupContextByHash"(arg0: integer): $ActionGroupContext
-public "GetActionGroupContextSibling"(arg0: $ActionGroupContext$Type, arg1: string): $ActionGroupContext
-public "BakeModifiers"(arg0: $IModifierBaker$Type): void
-public "GetModifierFormula"(arg0: string): $StatAccumulator
-public "GetStringOverride"(arg0: string): $Optional<(string)>
-public "UpdateFromItemStack"(): void
-public "GetAttachedInventory"(): $Container
-public "GetShootOrigin"(arg0: float): $Transform
-public "GetShootOrigin"(): $Transform
+public "GetItemStack"(): $ItemStack
+public "SetItemStack"(arg0: $ItemStack$Type): void
+public "ForEachAbility"(arg0: $BiConsumer$Type<($AbilityDefinition$Type), (integer)>): void
 public "GetInputContext"(arg0: $EPlayerInput$Type): $GunInputContext
 public "GetAttachmentDefinition"(arg0: $EAttachmentType$Type, arg1: integer): $AttachmentDefinition
 public "OnItemStackChanged"(arg0: $ItemStack$Type): void
@@ -3034,8 +3030,6 @@ public "CanPerformTwoHandedAction"(): boolean
 public "GetInventorySlotIndex"(): integer
 public "CanPerformActions"(): boolean
 public "GetPosition"(): $Transform
-public "GetItemStack"(): $ItemStack
-public "SetItemStack"(arg0: $ItemStack$Type): void
 public "IsLinkedToItemStack"(): boolean
 public static "CompareGunStacks"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $GunContext$EItemStackValidity
 public "ValidateLinkedItemStack"(): $GunContext$EItemStackValidity
@@ -3046,12 +3040,19 @@ public "GetPotentialActions"(arg0: $EPlayerInput$Type): $List<($ActionDefinition
 public "GetOrCreateActionGroup"(arg0: $ActionGroupContext$Type): $ActionGroupInstance
 public "CreateActionGroup"(arg0: $ActionGroupContext$Type): $ActionGroupInstance
 public "GetNumAttachments"(): integer
-public "ForEachAbility"(arg0: $BiConsumer$Type<($AbilityDefinition$Type), (integer)>): void
 public "GetAbilities"(): $Map<($AbilityDefinition), (integer)>
 public "GetAllModeDefs"(): ($ModeDefinition)[]
 public "GetDefaultModeValue"(arg0: string): string
-public "GetCraftingInputs"(): ($PartDefinition)[]
-public "GetAttachmentStacks"(): $List<($ItemStack)>
+public "BakeModifiers"(arg0: $IModifierBaker$Type): void
+public "GetModifierFormula"(arg0: string): $StatAccumulator
+public "GetStringOverride"(arg0: string): $Optional<(string)>
+public "UpdateFromItemStack"(): void
+public "GetAttachedInventory"(): $Container
+public "GetShootOrigin"(): $Transform
+public "GetShootOrigin"(arg0: float): $Transform
+public "ModifyString"(arg0: string, arg1: string): string
+public "EvaluateInputHandler"(arg0: $GunInputContext$Type): $List<($Pair<($ActionGroupContext), (boolean)>)>
+public "GetActionGroupContext"(arg0: string): $ActionGroupContext
 public "GetAttachmentDefinitions"(): $List<($AttachmentDefinition)>
 public "RemoveAttachmentFromSlot"(arg0: $EAttachmentType$Type, arg1: integer): $ItemStack
 public "GetPaintjobName"(): string
@@ -3059,15 +3060,14 @@ public "SetPaintjobName"(arg0: string): void
 public "SetCraftingInputs"(arg0: ($ItemStack$Type)[]): void
 public "GetModeValue"(arg0: string): string
 public "SetModeValue"(arg0: string, arg1: string): void
-public "GetActionGroupContext"(arg0: string): $ActionGroupContext
 public "GetPotentialPrimaryActions"(): $List<($ActionDefinition)>
 public "ModifyFloat"(arg0: string): $FloatAccumulation
 public "SetLockTarget"(arg0: $Entity$Type): void
 public "GetLockTarget"(): $Entity
 public "GetActiveModifierAbilities"(): $Map<($AbilityInstanceApplyModifier), ($AbilityStack)>
+public "GetCraftingInputs"(): ($PartDefinition)[]
 public "GetActionStack"(): $ActionStack
-public "EvaluateInputHandler"(arg0: $GunInputContext$Type): $List<($Pair<($ActionGroupContext), (boolean)>)>
-public "ModifyString"(arg0: string, arg1: string): string
+public "GetAttachmentStacks"(): $List<($ItemStack)>
 public "GetNumAttachmentStacks"(arg0: $EAttachmentType$Type): integer
 public "GetAttachmentStack"(arg0: $EAttachmentType$Type, arg1: integer): $ItemStack
 public "SetAttachmentStack"(arg0: $EAttachmentType$Type, arg1: integer, arg2: $ItemStack$Type): void
@@ -3112,8 +3112,22 @@ readonly "Def": $ActionDefinition
 
 constructor(arg0: $ActionGroupInstance$Type, arg1: $ActionDefinition$Type)
 
-public "AddExtraPositionsForNetSync"(arg0: integer, arg1: $List$Type<($Vec3$Type)>): void
 public "GetDurationPerTriggerSeconds"(): float
+public "AddExtraPositionsForNetSync"(arg0: integer, arg1: $List$Type<($Vec3$Type)>): void
+public "ShouldNetSyncAroundPlayer"(): boolean
+public "GetNetDataForTrigger"(arg0: integer): $ActionInstance$NetData
+public "HarvestSpeed"(): float
+public "OnTriggerClient"(arg0: integer): void
+public "OnTriggerServer"(arg0: integer): void
+public "CanRetrigger"(): boolean
+public "GetProgressTicks"(): integer
+public "GetProgressSeconds"(): float
+public "GetDurationPerTriggerTicks"(): integer
+public "GetDurationTotalTicks"(): integer
+public "GetDurationTotalSeconds"(): float
+public "GetNumBurstsRemaining"(): integer
+public "ShouldRender"(arg0: $GunContext$Type): boolean
+public "ShouldFallBackToReload"(): boolean
 public "OnStartClient"(): void
 public "OnStartServer"(): void
 public "OnTickClient"(): void
@@ -3125,24 +3139,9 @@ public "VerifyServer"(arg0: $GunshotCollection$Type): boolean
 public "UpdateFromNetData"(arg0: $ActionInstance$NetData$Type, arg1: integer): void
 public "GetTriggerCount"(): integer
 public "GetPropogationRadius"(): double
-public "GetProgressTicks"(): integer
-public "GetProgressSeconds"(): float
-public "GetDurationPerTriggerTicks"(): integer
-public "GetDurationTotalTicks"(): integer
-public "GetDurationTotalSeconds"(): float
-public "GetNumBurstsRemaining"(): integer
-public "ShouldRender"(arg0: $GunContext$Type): boolean
-public "ShouldFallBackToReload"(): boolean
-public "CanRetrigger"(): boolean
-public "OnTriggerClient"(arg0: integer): void
-public "OnTriggerServer"(arg0: integer): void
-public "ShouldNetSyncAroundPlayer"(): boolean
-public "GetNetDataForTrigger"(arg0: integer): $ActionInstance$NetData
-public "HarvestSpeed"(): float
-public "ModifyFloat"(arg0: string, arg1: float): float
 public "ModifyString"(arg0: string, arg1: string): string
+public "ModifyFloat"(arg0: string, arg1: float): float
 public "Duration"(): float
-public "Finished"(): boolean
 public "CanStart"(): $EActionResult
 public "GetCharge"(): float
 public "IsCharging"(): boolean
@@ -3150,6 +3149,7 @@ public "SkipTicks"(arg0: integer): void
 public "GetFloat"(arg0: string): float
 public "ToolLevel"(): float
 public "Reach"(): float
+public "Finished"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3178,8 +3178,8 @@ readonly "Def": $AbilityEffectDefinition
 
 constructor(arg0: $AbilityEffectDefinition$Type)
 
-public "CanBeContinuous"(): boolean
 public "GetActiveModifiers"(): ($ModifierDefinition)[]
+public "CanBeContinuous"(): boolean
 public "TriggerClient"(arg0: $ActionGroupContext$Type, arg1: $TriggerContext$Type, arg2: $TargetsContext$Type, arg3: $AbilityStack$Type): void
 public "TriggerServer"(arg0: $ActionGroupContext$Type, arg1: $TriggerContext$Type, arg2: $TargetsContext$Type, arg3: $AbilityStack$Type): void
 public "EndServer"(arg0: $GunContext$Type, arg1: $AbilityStack$Type): void
@@ -3514,10 +3514,10 @@ export class $AbilityEffectDefinition {
 
 constructor()
 
-public "GetEffectProcessor"(): $IAbilityEffect
 public "MatchModifiers"(arg0: string): ($ModifierDefinition)[]
 public "ModifyString"(arg0: string, arg1: string): string
 public "ModifyBoolean"(arg0: string, arg1: boolean): boolean
+public "GetEffectProcessor"(): $IAbilityEffect
 public "GetTooltip"(arg0: boolean): $Component
 }
 /**
@@ -3611,9 +3611,9 @@ export class $AbilityStackingDefinition {
 
 constructor()
 
-public "IsStackable"(): boolean
 public "GetDecayTimeTicks"(arg0: $StatCalculationContext$Type): integer
 public "GetDecayTimeSeconds"(arg0: $StatCalculationContext$Type): float
+public "IsStackable"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3739,9 +3739,9 @@ export class $AbilityTriggerDefinition {
 
 constructor()
 
-public "GetTooltip"(arg0: boolean): $Component
-public "Matches"(arg0: $EAbilityTrigger$Type): boolean
 public "Matches"(arg0: $EAbilityTrigger$Type, arg1: $TriggerContext$Type): boolean
+public "Matches"(arg0: $EAbilityTrigger$Type): boolean
+public "GetTooltip"(arg0: boolean): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3791,36 +3791,36 @@ public "GetRequiredOfEachIngredient"(): (integer)[]
 public static "CountInputMatching"(arg0: $Ingredient$Type, arg1: $Container$Type): integer
 public "GenerateTooltip"(arg0: integer, arg1: integer, arg2: integer): $List<($Component)>
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
-public "assemble"(arg0: $WorkbenchBlockEntity$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "getId"(): $ResourceLocation
-public "getIngredients"(): $NonNullList<($Ingredient)>
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
+public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "showNotification"(): boolean
+public "getId"(): $ResourceLocation
+public "assemble"(arg0: $WorkbenchBlockEntity$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "getRemainingItems"(arg0: $WorkbenchBlockEntity$Type): $NonNullList<($ItemStack)>
+public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "isSpecial"(): boolean
+public "getGroup"(): string
+public "setGroup"(group: string): void
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "setGroup"(group: string): void
-public "getGroup"(): string
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
-get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
 get "incomplete"(): boolean
-get "special"(): boolean
+get "id"(): $ResourceLocation
 get "toastSymbol"(): $ItemStack
+get "special"(): boolean
+get "group"(): string
+set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
 get "mod"(): string
 }
@@ -3882,16 +3882,16 @@ readonly "Def": $ActionDefinition
 constructor(arg0: $ActionGroupInstance$Type, arg1: $ActionDefinition$Type)
 
 public "AddExtraPositionsForNetSync"(arg0: integer, arg1: $List$Type<($Vec3$Type)>): void
+public "GetNetDataForTrigger"(arg0: integer): $ActionInstance$NetData
+public "OnTriggerClient"(arg0: integer): void
+public "OnTriggerServer"(arg0: integer): void
+public "CanRetrigger"(): boolean
+public "ShouldFallBackToReload"(): boolean
 public "OnTickClient"(): void
 public "PropogateToServer"(): boolean
 public "VerifyServer"(arg0: $GunshotCollection$Type, arg1: integer): boolean
 public "UpdateFromNetData"(arg0: $ActionInstance$NetData$Type, arg1: integer): void
 public "GetPropogationRadius"(): double
-public "ShouldFallBackToReload"(): boolean
-public "CanRetrigger"(): boolean
-public "OnTriggerClient"(arg0: integer): void
-public "OnTriggerServer"(arg0: integer): void
-public "GetNetDataForTrigger"(arg0: integer): $ActionInstance$NetData
 public "ValidateAndSetResults"(arg0: $GunContext$Type, arg1: $GunshotCollection$Type, arg2: integer): boolean
 public "GetPlayerMuzzlePosition"(arg0: integer): $Vec3
 public "CanStart"(): $EActionResult
@@ -4129,9 +4129,9 @@ export class $ProjectileDefinition {
 constructor()
 
 public "GetGuidanceMode"(): $BulletGuidance$GuidanceType
+public "HasSplash"(): boolean
 public "HasLockOn"(): boolean
 public "Targets"(): $ArrayList<($Class)>
-public "HasSplash"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4193,8 +4193,8 @@ constructor()
 public "GetSoundLocation"(): $ResourceLocation
 public "PickRandomVolume"(arg0: $RandomSource$Type): float
 public "PickRangedVolume"(arg0: float): float
-public "PickRandomPitch"(arg0: $RandomSource$Type): float
 public "PlayUnLODedOnEntity"(arg0: $Entity$Type): void
+public "PickRandomPitch"(arg0: $RandomSource$Type): float
 public "PlayUnLODed"(arg0: $Level$Type, arg1: $Vec3$Type): void
 }
 /**
@@ -4294,18 +4294,18 @@ readonly "canRepair": boolean
 
 constructor(arg0: $ResourceLocation$Type, arg1: $Item$Properties$Type)
 
+public "getMaxDamage"(arg0: $ItemStack$Type): integer
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "isDamageable"(arg0: $ItemStack$Type): boolean
 public "getMaxStackSize"(arg0: $ItemStack$Type): integer
-public "ShouldRenderAsIcon"(arg0: $ItemDisplayContext$Type): boolean
-public "CanBeCraftedFromParts"(): boolean
+public "matchesTags"(arg0: $ItemStack$Type, arg1: $List$Type<($TagKey$Type<($Item$Type)>)>): boolean
 public "provideForTags"(arg0: $ItemStack$Type, arg1: $List$Type<($TagKey$Type<($Item$Type)>)>): $ItemStack
 public "provideForIDs"(arg0: $ItemStack$Type, arg1: $List$Type<($ResourceLocation$Type)>): $ItemStack
-public "matchesTags"(arg0: $ItemStack$Type, arg1: $List$Type<($TagKey$Type<($Item$Type)>)>): boolean
-public "getMaxDamage"(arg0: $ItemStack$Type): integer
-public "isEnchantable"(arg0: $ItemStack$Type): boolean
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "ShouldRenderAsIcon"(arg0: $ItemDisplayContext$Type): boolean
+public "CanBeCraftedFromParts"(): boolean
 public "canBeDepleted"(): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "isEnchantable"(arg0: $ItemStack$Type): boolean
 public "Def"(): $BulletDefinition
 public "provideAny"(arg0: $ItemStack$Type): $ItemStack
 public "matchesIDs"(arg0: $ItemStack$Type, arg1: $List$Type<($ResourceLocation$Type)>): boolean
@@ -4425,10 +4425,10 @@ readonly "IndependentMultiplier": float
 readonly "FinalAdd": float
 
 
-public static "compose"(...arg0: ($FloatAccumulation$Type)[]): $FloatAccumulation
 public "get"(): float
 public "apply"(arg0: float): float
 public static "of"(arg0: float, arg1: float, arg2: float, arg3: float): $FloatAccumulation
+public static "compose"(...arg0: ($FloatAccumulation$Type)[]): $FloatAccumulation
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4445,40 +4445,40 @@ export type $FloatAccumulation_ = $FloatAccumulation$Type;
 declare module "packages/com/flansmod/physics/common/util/$TransformStack" {
 import {$Transform, $Transform$Type} from "packages/com/flansmod/physics/common/util/$Transform"
 import {$PoseStack, $PoseStack$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack"
-import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Matrix4f, $Matrix4f$Type} from "packages/org/joml/$Matrix4f"
+import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Quaternionf, $Quaternionf$Type} from "packages/org/joml/$Quaternionf"
 
 export class $TransformStack {
 
 
-public "right"(): $Vec3
-public "up"(): $Vec3
-public "and"(arg0: $Transform$Type): $TransformStack
-public "and"(...arg0: ($Transform$Type)[]): $TransformStack
-public "push"(): void
-public "push"(arg0: string): void
-public "pop"(): void
 public "add"(arg0: $Transform$Type): void
 public "scale"(arg0: float, arg1: float, arg2: float): void
-public static "of"(arg0: $PoseStack$Type): $TransformStack
-public static "of"(): $TransformStack
 public static "of"(arg0: $Transform$Type): $TransformStack
 public static "of"(...arg0: ($Transform$Type)[]): $TransformStack
 public static "of"(arg0: $Matrix4f$Type): $TransformStack
+public static "of"(arg0: $PoseStack$Type): $TransformStack
+public static "of"(): $TransformStack
 public "addAll"(...arg0: ($Transform$Type)[]): void
 public static "empty"(): $TransformStack
 public "top"(): $Transform
-public "debugRender"(arg0: integer): void
+public "push"(): void
+public "push"(arg0: string): void
+public "pop"(): void
+public "up"(): $Vec3
+public "and"(...arg0: ($Transform$Type)[]): $TransformStack
+public "and"(arg0: $Transform$Type): $TransformStack
+public "right"(): $Vec3
 public "localToGlobalTransform"(arg0: $Transform$Type): $Transform
 public "applyToPoseStack"(arg0: $PoseStack$Type): void
 public "localToGlobalDirection"(arg0: $Vec3$Type): $Vec3
+public "globalToLocalTransform"(arg0: $Transform$Type): $Transform
 public "localToGlobalPosition"(arg0: $Vec3$Type): $Vec3
 public "globalToLocalPosition"(arg0: $Vec3$Type): $Vec3
+public "debugRender"(arg0: integer): void
 public "globalToLocalDirection"(arg0: $Vec3$Type): $Vec3
 public "localToGlobalOrientation"(arg0: $Quaternionf$Type): $Quaternionf
 public "globalToLocalOrientation"(arg0: $Quaternionf$Type): $Quaternionf
-public "globalToLocalTransform"(arg0: $Transform$Type): $Transform
 public "translate"(arg0: double, arg1: double, arg2: double): void
 public "forward"(): $Vec3
 public "mulPose"(arg0: $Quaternionf$Type): void
@@ -4566,14 +4566,14 @@ import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$IClientItemExtensions, $IClientItemExtensions$Type} from "packages/net/minecraftforge/client/extensions/common/$IClientItemExtensions"
 import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$FlanItem, $FlanItem$Type} from "packages/com/flansmod/common/item/$FlanItem"
 import {$MagazineDefinition, $MagazineDefinition$Type} from "packages/com/flansmod/common/types/magazines/$MagazineDefinition"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$LivingEntityUseItemEvent$Tick, $LivingEntityUseItemEvent$Tick$Type} from "packages/net/minecraftforge/event/entity/living/$LivingEntityUseItemEvent$Tick"
 import {$Enchantment, $Enchantment$Type} from "packages/net/minecraft/world/item/enchantment/$Enchantment"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -4603,29 +4603,29 @@ readonly "canRepair": boolean
 
 constructor(arg0: $ResourceLocation$Type, arg1: $Item$Properties$Type)
 
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "getEnchantmentLevel"(arg0: $ItemStack$Type, arg1: $Enchantment$Type): integer
-public "isCorrectToolForDrops"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
-public "getAttributeModifiers"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): $Multimap<($Attribute), ($AttributeModifier)>
-public "GetMagazineType"(arg0: $ItemStack$Type, arg1: string, arg2: integer): $MagazineDefinition
-public "GetBulletAtIndex"(arg0: $ItemStack$Type, arg1: string, arg2: integer, arg3: integer): $ItemStack
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
 public "GetCombinedBulletStacks"(arg0: $ItemStack$Type, arg1: string, arg2: integer): ($ItemStack)[]
 public "GetNumBulletsInMag"(arg0: $ItemStack$Type, arg1: string, arg2: integer): integer
 public "ExtractCompactStacks"(arg0: $ItemStack$Type, arg1: string, arg2: integer): ($Item)[]
 public "ClientHandleMouse"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $InputEvent$InteractionKeyMappingTriggered$Type): void
 public "ClientUpdateUsing"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $LivingEntityUseItemEvent$Tick$Type): void
 public "GetChamberProjectile"(arg0: $ItemStack$Type, arg1: $GunContext$Type): $ProjectileDefinition
-public "canPerformAction"(arg0: $ItemStack$Type, arg1: $ToolAction$Type): boolean
-public "isEnchantable"(arg0: $ItemStack$Type): boolean
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public "getUseDuration"(arg0: $ItemStack$Type): integer
+public "GetMagazineType"(arg0: $ItemStack$Type, arg1: string, arg2: integer): $MagazineDefinition
+public "GetBulletAtIndex"(arg0: $ItemStack$Type, arg1: string, arg2: integer, arg3: integer): $ItemStack
+public "getAttributeModifiers"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): $Multimap<($Attribute), ($AttributeModifier)>
+public "isCorrectToolForDrops"(arg0: $ItemStack$Type, arg1: $BlockState$Type): boolean
 public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "hurtEnemy"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: $LivingEntity$Type): boolean
 public "mineBlock"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: $LivingEntity$Type): boolean
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "isEnchantable"(arg0: $ItemStack$Type): boolean
+public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "GetRootTag"(arg0: $ItemStack$Type, arg1: string): $CompoundTag
 public "GetMagTag"(arg0: $ItemStack$Type, arg1: string, arg2: integer): $CompoundTag
 public "HandleLock"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
@@ -4702,10 +4702,10 @@ constructor(arg0: $ResourceLocation$Type)
 
 public "toString"(): string
 public "hashCode"(): integer
-public "GetLocation"(): $ResourceLocation
 public static "IsValidLocation"(arg0: $ResourceLocation$Type): boolean
 public "GetLocationString"(): string
 public "GetTypeName"(): string
+public "GetLocation"(): $ResourceLocation
 public "IsValid"(): boolean
 public "LoadExtra"(arg0: $JsonElement$Type): void
 }
@@ -4797,8 +4797,8 @@ constructor(arg0: $ResourceLocation$Type)
 public static "GetMaterialOfPart"(arg0: $ItemStack$Type): $MaterialDefinition
 public static "GetPartTier"(arg0: $ItemStack$Type): integer
 public static "GetPartMaterial"(arg0: $ItemStack$Type): $EMaterialType
-public "GetTypeName"(): string
 public "GetMaterial"(): $MaterialDefinition
+public "GetTypeName"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4858,10 +4858,10 @@ readonly "PositionTargets": $List<($Vec3)>
 
 constructor()
 
+public static "of"(arg0: $TriggerContext$Type, arg1: $EAbilityTarget$Type): $TargetsContext
+public "Add"(arg0: $Vec3$Type): $TargetsContext
 public "Add"(arg0: $Entity$Type): $TargetsContext
 public "Add"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $TargetsContext
-public "Add"(arg0: $Vec3$Type): $TargetsContext
-public static "of"(arg0: $TriggerContext$Type, arg1: $EAbilityTarget$Type): $TargetsContext
 public "ForEachPosition"(arg0: $Consumer$Type<($Vec3$Type)>): void
 public "ForOnePosition"(arg0: $Consumer$Type<($Vec3$Type)>): void
 public "ForEachBlock"(arg0: $BiConsumer$Type<($BlockPos$Type), ($BlockState$Type)>): void
@@ -4918,37 +4918,37 @@ constructor(arg0: $RecipeType$Type<(any)>, arg1: $ResourceLocation$Type, arg2: s
 public "matches"(arg0: $AbstractWorkbench$Type, arg1: $Level$Type): boolean
 public "GenerateTooltip"(arg0: integer): $List<($Component)>
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
-public "assemble"(arg0: $AbstractWorkbench$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "getId"(): $ResourceLocation
-public "getIngredients"(): $NonNullList<($Ingredient)>
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
+public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
 public "isIncomplete"(): boolean
+public "getId"(): $ResourceLocation
+public "assemble"(arg0: $AbstractWorkbench$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "GetResult"(arg0: $List$Type<($ItemStack$Type)>): $ItemStack
-public "isSpecial"(): boolean
-public "showNotification"(): boolean
 public "getRemainingItems"(arg0: $AbstractWorkbench$Type): $NonNullList<($ItemStack)>
+public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "isSpecial"(): boolean
+public "getGroup"(): string
+public "setGroup"(group: string): void
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "setGroup"(group: string): void
-public "getGroup"(): string
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
-get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
 get "incomplete"(): boolean
-get "special"(): boolean
+get "id"(): $ResourceLocation
 get "toastSymbol"(): $ItemStack
+get "special"(): boolean
+get "group"(): string
+set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
 get "mod"(): string
 }
@@ -5009,8 +5009,8 @@ export class $ModifierDefinition {
 
 constructor()
 
-public "GetModifierStrings"(): $List<($Component)>
 public "GetStatWithId"(): string
+public "GetModifierStrings"(): $List<($Component)>
 public "AppliesTo"(arg0: string): boolean
 public "AppliesTo"(arg0: string, arg1: string): boolean
 }
@@ -5073,8 +5073,8 @@ export type $EAbilityTrigger_ = $EAbilityTrigger$Type;
 }}
 declare module "packages/com/flansmod/util/formulae/$FloatFormula" {
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
-import {$FloatFormula$Term, $FloatFormula$Term$Type} from "packages/com/flansmod/util/formulae/$FloatFormula$Term"
 import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
+import {$FloatFormula$Term, $FloatFormula$Term$Type} from "packages/com/flansmod/util/formulae/$FloatFormula$Term"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 
@@ -5084,12 +5084,12 @@ constructor()
 
 public "Calculate"(...arg0: (float)[]): float
 public "Calculate"(...arg0: ($Supplier$Type<(float)>)[]): float
-public "AddTerms"(arg0: $Collection$Type<($FloatFormula$Term$Type)>): void
-public "AddTerm"(arg0: float, ...arg1: (TInputEnum)[]): $FloatFormula<(TInputEnum)>
+public "Evaluate"(arg0: $Function$Type<(integer), (float)>): float
+public "Evaluate"(): float
 public "BakeInput"(arg0: TInputEnum, arg1: float): $FloatFormula<(TInputEnum)>
 public "BakeInput"(arg0: integer, arg1: float): $FloatFormula<(TInputEnum)>
-public "Evaluate"(): float
-public "Evaluate"(arg0: $Function$Type<(integer), (float)>): float
+public "AddTerm"(arg0: float, ...arg1: (TInputEnum)[]): $FloatFormula<(TInputEnum)>
+public "AddTerms"(arg0: $Collection$Type<($FloatFormula$Term$Type)>): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

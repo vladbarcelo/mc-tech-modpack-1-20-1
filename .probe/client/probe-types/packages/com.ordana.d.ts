@@ -62,22 +62,22 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(crackLevel: $Crackable$CrackLevel$Type, brickItem: $Supplier$Type<($Item$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
-public "getCrackSpreader"(): $CrackSpreader
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -189,16 +189,16 @@ import {$Weatherable, $Weatherable$Type} from "packages/com/ordana/immersive_wea
 
 export interface $Mossable extends $Weatherable {
 
- "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
- "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
  "getMossSpreader"(): $MossSpreader
+ "isWeathering"(arg0: $BlockState$Type): boolean
  "getMossLevel"(): $Mossable$MossLevel
  "getNextMossy"(state: $BlockState$Type): $Optional<($BlockState)>
  "getPreviousMossy"(state: $BlockState$Type): $Optional<($BlockState)>
- "isWeathering"(arg0: $BlockState$Type): boolean
+ "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+ "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
  "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
- "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
  "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+ "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
  "getWeatherChanceSpeed"(): float
 }
 
@@ -304,9 +304,9 @@ public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $Blo
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResult
 public "getUnfrosty"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUnfrosty"(block: $Block$Type): $Optional<($Block)>
-public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
-public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
 public "getFrosty"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
+public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -575,10 +575,10 @@ public static "getUnaffectedRustState"(state: $BlockState$Type): $BlockState
 public "getInfluenceRadius"(): integer
 public "getToolModifiedState"(state: $BlockState$Type, context: $UseOnContext$Type, toolAction: $ToolAction$Type, simulate: boolean): $BlockState
 public "getPrevious"(state: $BlockState$Type): $Optional<($BlockState)>
+public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getNext"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getChanceModifier"(): float
 public "applyChangeOverTime"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -669,13 +669,13 @@ constructor(properties: $BlockBehaviour$Properties$Type)
 
 public static "isNearWater"(level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "getDustColor"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onPlace"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, movedByPiston: boolean): void
 public "randomTick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, blockPos: $BlockPos$Type, randomSource: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, f: float): void
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public static "turnToDirt"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
 public static "isFree"(state: $BlockState$Type): boolean
 public "onLand"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockState$Type, arg4: $FallingBlockEntity$Type): void
@@ -791,9 +791,9 @@ public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, p
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "entityInside"(state: $BlockState$Type, levelIn: $Level$Type, pos: $BlockPos$Type, entityIn: $Entity$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, pHit: $BlockHitResult$Type, projectile: $Projectile$Type): void
 public "updateOverhang"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
 public "getOverhang"(level: $Level$Type, pos: $BlockPos$Type): integer
@@ -812,8 +812,8 @@ public "playExtinguishSound"(world: $LevelAccessor$Type, pos: $BlockPos$Type): v
 public "spawnSmokeParticles"(state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): void
 public "canBeExtinguishedBy"(item: $ItemStack$Type): boolean
 public "interactWithEntity"(level: $Level$Type, state: $BlockState$Type, projectile: $Entity$Type, pos: $BlockPos$Type): boolean
-public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "extinguish"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): boolean
+public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "isLitUp"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
 public "setLitUp"(state: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, lit: boolean): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
@@ -859,8 +859,8 @@ readonly "canRepair": boolean
 
 constructor(settings: $Item$Properties$Type)
 
-public "isFoil"(stack: $ItemStack$Type): boolean
 public "useOn"(context: $UseOnContext$Type): $InteractionResult
+public "isFoil"(stack: $ItemStack$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1074,8 +1074,8 @@ export interface $Frosty {
 
  "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResult
  "getUnfrosty"(state: $BlockState$Type): $Optional<($BlockState)>
- "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
  "getFrosty"(state: $BlockState$Type): $Optional<($BlockState)>
+ "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
 }
 
 export namespace $Frosty {
@@ -1232,8 +1232,8 @@ constructor(textureLocation: string, itemModelIndex: float, particle: $Supplier$
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "textureLocation"(): string
 public "itemModelIndex"(): float
+public "textureLocation"(): string
 public "particle"(): $Supplier<($SimpleParticleType)>
 }
 /**
@@ -1279,10 +1279,10 @@ readonly "canRepair": boolean
 constructor(block: $Block$Type, properties: $Item$Properties$Type)
 
 public "useOn"(context: $UseOnContext$Type): $InteractionResult
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1370,22 +1370,22 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(crackLevel: $Crackable$CrackLevel$Type, brickItem: $Supplier$Type<($Item$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
-public "getCrackSpreader"(): $CrackSpreader
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -1574,10 +1574,10 @@ public static "getUnaffectedRustState"(state: $BlockState$Type): $BlockState
 public "getInfluenceRadius"(): integer
 public "getToolModifiedState"(state: $BlockState$Type, context: $UseOnContext$Type, toolAction: $ToolAction$Type, simulate: boolean): $BlockState
 public "getPrevious"(state: $BlockState$Type): $Optional<($BlockState)>
+public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getNext"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getChanceModifier"(): float
 public "applyChangeOverTime"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -1668,9 +1668,9 @@ public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $Blo
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResult
 public "getUnfrosty"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUnfrosty"(block: $Block$Type): $Optional<($Block)>
-public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
-public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
 public "getFrosty"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
+public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1754,11 +1754,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(settings: $BlockBehaviour$Properties$Type, leafType: $LeavesType$Type)
 
+public "getFireSpreadSpeed"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
 public "getLeafType"(): $LeavesType
 public "layerProperty"(): $IntegerProperty
 public "getDefaultShape"(state: $BlockState$Type): $VoxelShape
-public "getFireSpreadSpeed"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, direction: $Direction$Type): integer
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "canBeReplaced"(state: $BlockState$Type, context: $BlockPlaceContext$Type): boolean
 public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getLightBlock"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
@@ -1767,6 +1766,7 @@ public "getVisualShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: 
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, r: $RandomSource$Type): void
 public "entityInside"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
@@ -1874,12 +1874,12 @@ public "isWeathering"(state: $BlockState$Type): boolean
 public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, block: $Block$Type, neighbor: $BlockPos$Type, isMoving: boolean): void
 public "randomTick"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "getStateForPlacement"(placeContext: $BlockPlaceContext$Type): $BlockState
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 set "stable"(value: $BlockState$Type)
@@ -1983,22 +1983,22 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(crackLevel: $Crackable$CrackLevel$Type, baseBlock: $Supplier$Type<($Block$Type)>, brickItem: $Supplier$Type<($Item$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
-public "getCrackSpreader"(): $CrackSpreader
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -2177,23 +2177,23 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(mossLevel: $Mossable$MossLevel$Type, settings: $BlockBehaviour$Properties$Type)
 
 public "getMossSpreader"(): $MossSpreader
-public "getMossLevel"(): $Mossable$MossLevel
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getMossLevel"(): $Mossable$MossLevel
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public "getNextMossy"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousMossy"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -2234,27 +2234,27 @@ import {$Weatherable, $Weatherable$Type} from "packages/com/ordana/immersive_wea
 
 export interface $Crackable extends $Weatherable {
 
- "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
- "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
- "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
  "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
- "getRepairItem"(arg0: $BlockState$Type): $Item
+ "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
  "getCrackSpreader"(): $CrackSpreader
  "getCrackLevel"(): $Crackable$CrackLevel
+ "getRepairItem"(arg0: $BlockState$Type): $Item
+ "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
+ "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
  "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
- "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
  "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
- "getWeatherChanceSpeed"(): float
+ "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
  "isWeathering"(arg0: $BlockState$Type): boolean
+ "getWeatherChanceSpeed"(): float
 }
 
 export namespace $Crackable {
 const CRACK_LEVEL_INCREASES: $Supplier<($BiMap<($Block), ($Block)>)>
 const CRACK_LEVEL_DECREASES: $Supplier<($BiMap<($Block), ($Block)>)>
-function getIncreasedCrackBlock(block: $Block$Type): $Optional<($Block)>
 function getUncrackedCrackBlock(state: $BlockState$Type): $BlockState
 function getCrackedBlock(state: $BlockState$Type): $BlockState
 function getDecreasedCrackBlock(block: $Block$Type): $Optional<($Block)>
+function getIncreasedCrackBlock(block: $Block$Type): $Optional<($Block)>
 function setStable(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2303,9 +2303,9 @@ readonly "canRepair": boolean
 
 constructor(tier: $Tier$Type, i: integer, v: float, properties: $Item$Properties$Type)
 
+public "finishUsingItem"(stack: $ItemStack$Type, level: $Level$Type, entity: $LivingEntity$Type): $ItemStack
 public "getFoodProperties"(): $FoodProperties
 public "isEdible"(): boolean
-public "finishUsingItem"(stack: $ItemStack$Type, level: $Level$Type, entity: $LivingEntity$Type): $ItemStack
 get "foodProperties"(): $FoodProperties
 get "edible"(): boolean
 }
@@ -2384,10 +2384,10 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public static "canPropagate"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
@@ -2412,8 +2412,8 @@ import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$Random, $Random$Type} from "packages/java/util/$Random"
-import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Pair, $Pair$Type} from "packages/com/mojang/datafixers/util/$Pair"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$PatchSpreader$WeatheringAgent, $PatchSpreader$WeatheringAgent$Type} from "packages/com/ordana/immersive_weathering/util/$PatchSpreader$WeatheringAgent"
@@ -2422,6 +2422,8 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export interface $PatchSpreader<T extends $Enum<(any)>> {
 
  "getType"(): $Class<(T)>
+ "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type): boolean
+ "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type, maxRecursion: integer): boolean
  "getHighInfluenceWeatheringEffect"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): $PatchSpreader$WeatheringAgent
 /**
  * 
@@ -2429,8 +2431,6 @@ export interface $PatchSpreader<T extends $Enum<(any)>> {
  */
  "getInfluenceForDirectionsOld"(pos: $BlockPos$Type, level: $Level$Type): $Map<($Direction), ($PatchSpreader$Susceptibility)>
  "getLowInfluenceWeatheringEffect"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, maxRecursion: integer): $PatchSpreader$WeatheringAgent
- "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type): boolean
- "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type, maxRecursion: integer): boolean
  "getInterestForDirection"(arg0: $Level$Type, arg1: $BlockPos$Type): double
  "getDisjointGrowthChance"(arg0: $Level$Type, arg1: $BlockPos$Type): double
  "getUnWeatherableChance"(arg0: $Level$Type, arg1: $BlockPos$Type): double
@@ -2530,12 +2530,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public static "isNearWater"(level: $LevelReader$Type, pos: $BlockPos$Type): boolean
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): $InteractionResult
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "randomTick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -2631,23 +2631,23 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(mossLevel: $Mossable$MossLevel$Type, settings: $BlockBehaviour$Properties$Type)
 
 public "getMossSpreader"(): $MossSpreader
-public "getMossLevel"(): $Mossable$MossLevel
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getMossLevel"(): $Mossable$MossLevel
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public "getNextMossy"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousMossy"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -2841,15 +2841,15 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(settings: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, fallDistance: float): void
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2930,15 +2930,15 @@ public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $Bloc
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): boolean
+public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "getAgeProperty"(): $IntegerProperty
 public "spawnParticles"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getAge"(state: $BlockState$Type): integer
+public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(state: $BlockState$Type): $Optional<($BlockState)>
-public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
-public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "ageProperty"(): $IntegerProperty
 }
@@ -3019,12 +3019,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onPlace"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, movedByPiston: boolean): void
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): $InteractionResult
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "getDustColor"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): integer
 public static "isFree"(state: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -3140,22 +3140,22 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(crackLevel: $Crackable$CrackLevel$Type, brickItem: $Supplier$Type<($Item$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
-public "getCrackSpreader"(): $CrackSpreader
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -3206,10 +3206,10 @@ constructor(ceilingBlock: $Block$Type, wallBlock: $Block$Type, properties: $Item
 
 public "removeFromBlockToItemMap"(blockToItemMap: $Map$Type<($Block$Type), ($Item$Type)>, itemIn: $Item$Type): void
 public "registerBlocks"(map: $Map$Type<($Block$Type), ($Item$Type)>, item: $Item$Type): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3291,13 +3291,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(settings: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, fallDistance: float): void
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -3522,10 +3522,10 @@ readonly "canRepair": boolean
 
 constructor(block: $Block$Type, properties: $Item$Properties$Type)
 
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3608,10 +3608,10 @@ const SAND_AGE: $IntegerProperty
 const NORMAL_TO_SANDY: $Supplier<($BiMap<($Block), ($Block)>)>
 const SANDY_TO_NORMAL: $Supplier<($BiMap<($Block), ($Block)>)>
 function isRandomSandyPos(pos: $BlockPos$Type): boolean
+function getUnSandy(state: $BlockState$Type): $Optional<($BlockState)>
+function getUnSandy(block: $Block$Type): $Optional<($Block)>
 function getSandy(block: $Block$Type): $Optional<($Block)>
 function getSandy(state: $BlockState$Type): $Optional<($BlockState)>
-function getUnSandy(block: $Block$Type): $Optional<($Block)>
-function getUnSandy(state: $BlockState$Type): $Optional<($BlockState)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3697,9 +3697,9 @@ public "getSpreader"(): $MultifaceSpreader
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResult
 public "getUnfrosty"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUnfrosty"(block: $Block$Type): $Optional<($Block)>
-public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
-public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
 public "getFrosty"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
+public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "spreader"(): $MultifaceSpreader
 }
@@ -3814,9 +3814,9 @@ public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, p
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "entityInside"(state: $BlockState$Type, levelIn: $Level$Type, pos: $BlockPos$Type, entityIn: $Entity$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, pHit: $BlockHitResult$Type, projectile: $Projectile$Type): void
 public "updateOverhang"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
 public "getOverhang"(level: $Level$Type, pos: $BlockPos$Type): integer
@@ -3835,8 +3835,8 @@ public "playExtinguishSound"(world: $LevelAccessor$Type, pos: $BlockPos$Type): v
 public "spawnSmokeParticles"(state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): void
 public "canBeExtinguishedBy"(item: $ItemStack$Type): boolean
 public "interactWithEntity"(level: $Level$Type, state: $BlockState$Type, projectile: $Entity$Type, pos: $BlockPos$Type): boolean
-public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "extinguish"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): boolean
+public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "isLitUp"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
 public "setLitUp"(state: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, lit: boolean): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
@@ -3930,15 +3930,15 @@ public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $Bloc
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): boolean
+public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "getAgeProperty"(): $IntegerProperty
 public "spawnParticles"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getAge"(state: $BlockState$Type): integer
+public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(state: $BlockState$Type): $Optional<($BlockState)>
-public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
-public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "ageProperty"(): $IntegerProperty
 }
@@ -4110,13 +4110,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public static "isNearWater"(level: $LevelReader$Type, pos: $BlockPos$Type): boolean
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): $InteractionResult
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "randomTick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -4320,10 +4320,10 @@ public static "getUnaffectedRustState"(state: $BlockState$Type): $BlockState
 public "getInfluenceRadius"(): integer
 public "getToolModifiedState"(state: $BlockState$Type, context: $UseOnContext$Type, toolAction: $ToolAction$Type, simulate: boolean): $BlockState
 public "getPrevious"(state: $BlockState$Type): $Optional<($BlockState)>
+public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getNext"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getChanceModifier"(): float
 public "applyChangeOverTime"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -4373,13 +4373,13 @@ readonly "canRepair": boolean
 
 constructor(block: $Block$Type, properties: $Item$Properties$Type)
 
+public "finishUsingItem"(stack: $ItemStack$Type, level: $Level$Type, entity: $LivingEntity$Type): $ItemStack
 public "getFoodProperties"(): $FoodProperties
 public "isEdible"(): boolean
-public "finishUsingItem"(stack: $ItemStack$Type, level: $Level$Type, entity: $LivingEntity$Type): $ItemStack
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "foodProperties"(): $FoodProperties
 get "edible"(): boolean
 }
@@ -4440,8 +4440,8 @@ export interface $Charred extends $ILightable, $Fallable {
  "spawnSmokeParticles"(state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): void
  "canBeExtinguishedBy"(item: $ItemStack$Type): boolean
  "interactWithEntity"(level: $Level$Type, state: $BlockState$Type, projectile: $Entity$Type, pos: $BlockPos$Type): boolean
- "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
  "extinguish"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): boolean
+ "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
  "isLitUp"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
  "setLitUp"(state: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, lit: boolean): void
  "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
@@ -4543,9 +4543,9 @@ public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, p
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "entityInside"(state: $BlockState$Type, levelIn: $Level$Type, pos: $BlockPos$Type, entityIn: $Entity$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, pHit: $BlockHitResult$Type, projectile: $Projectile$Type): void
 public "updateOverhang"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
 public "getOverhang"(level: $Level$Type, pos: $BlockPos$Type): integer
@@ -4564,8 +4564,8 @@ public "playExtinguishSound"(world: $LevelAccessor$Type, pos: $BlockPos$Type): v
 public "spawnSmokeParticles"(state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): void
 public "canBeExtinguishedBy"(item: $ItemStack$Type): boolean
 public "interactWithEntity"(level: $Level$Type, state: $BlockState$Type, projectile: $Entity$Type, pos: $BlockPos$Type): boolean
-public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "extinguish"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): boolean
+public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "isLitUp"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
 public "setLitUp"(state: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, lit: boolean): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
@@ -4673,11 +4673,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(mossLevel: $Mossable$MossLevel$Type, crackLevel: $Crackable$CrackLevel$Type, brickItem: $Supplier$Type<($Item$Type)>, baseBlockState: $Supplier$Type<($Block$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
 public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getMossSpreader"(): $MossSpreader
 public "getMossLevel"(): $Mossable$MossLevel
@@ -4685,11 +4685,11 @@ public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -4788,9 +4788,9 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(rustLevel: $Rustable$RustLevel$Type, properties: $BlockBehaviour$Properties$Type)
 
 public "getAge"(): $Rustable$RustLevel
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, block: $Block$Type, fromPos: $BlockPos$Type, notify: boolean): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "playSound"(level: $Level$Type, pos: $BlockPos$Type, open: boolean): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "age"(): $Rustable$RustLevel
@@ -4896,23 +4896,23 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(mossLevel: $Mossable$MossLevel$Type, state: $Supplier$Type<($Block$Type)>, properties: $BlockBehaviour$Properties$Type)
 
 public "getMossSpreader"(): $MossSpreader
-public "getMossLevel"(): $Mossable$MossLevel
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getMossLevel"(): $Mossable$MossLevel
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public "getNextMossy"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousMossy"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -5014,15 +5014,15 @@ public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, po
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): boolean
+public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "getAgeProperty"(): $IntegerProperty
 public "spawnParticles"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getAge"(state: $BlockState$Type): integer
+public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(state: $BlockState$Type): $Optional<($BlockState)>
-public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
-public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "ageProperty"(): $IntegerProperty
 }
@@ -5104,10 +5104,10 @@ public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $Bloc
 public "randomTick"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(placeContext: $BlockPlaceContext$Type): $BlockState
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 set "stable"(value: $BlockState$Type)
@@ -5198,23 +5198,23 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(mossLevel: $Mossable$MossLevel$Type, settings: $BlockBehaviour$Properties$Type)
 
 public "getMossSpreader"(): $MossSpreader
-public "getMossLevel"(): $Mossable$MossLevel
 public "isWeathering"(state: $BlockState$Type): boolean
+public "getMossLevel"(): $Mossable$MossLevel
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
-public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
 public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public "getNextMossy"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousMossy"(state: $BlockState$Type): $Optional<($BlockState)>
+public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+public "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
 public "getWeatherChanceSpeed"(): float
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -5326,11 +5326,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(mossLevel: $Mossable$MossLevel$Type, crackLevel: $Crackable$CrackLevel$Type, brickItem: $Supplier$Type<($Item$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
 public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getMossSpreader"(): $MossSpreader
 public "getMossLevel"(): $Mossable$MossLevel
@@ -5338,11 +5338,11 @@ public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -5435,7 +5435,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, state1: $BlockState$Type, levelAccessor: $LevelAccessor$Type, pos: $BlockPos$Type, pos1: $BlockPos$Type): $BlockState
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "getMaxHorizontalOffset"(): float
 public "getMaxVerticalOffset"(): float
@@ -5445,6 +5444,7 @@ public "canSurvive"(state: $BlockState$Type, levelReader: $LevelReader$Type, pos
 public "getShape"(state: $BlockState$Type, p_49220_: $BlockGetter$Type, p_49221_: $BlockPos$Type, p_49222_: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "isLadder"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type, entity: $LivingEntity$Type): boolean
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, state1: $BlockState$Type, levelAccessor: $LevelAccessor$Type, pos: $BlockPos$Type, pos1: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -5482,12 +5482,12 @@ import {$Weatherable$WeatheringState, $Weatherable$WeatheringState$Type} from "p
 
 export interface $Weatherable {
 
- "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
  "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
- "getWeatherChanceSpeed"(): float
- "shouldWeather"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): boolean
- "getPatchSpreader"<T extends $Enum<(any)>>(arg0: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+ "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
  "isWeathering"(arg0: $BlockState$Type): boolean
+ "getPatchSpreader"<T extends $Enum<(any)>>(arg0: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+ "shouldWeather"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): boolean
+ "getWeatherChanceSpeed"(): float
  "tryWeather"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 }
 
@@ -5612,10 +5612,10 @@ public static "getUnaffectedRustState"(state: $BlockState$Type): $BlockState
 public "getInfluenceRadius"(): integer
 public "getToolModifiedState"(state: $BlockState$Type, context: $UseOnContext$Type, toolAction: $ToolAction$Type, simulate: boolean): $BlockState
 public "getPrevious"(state: $BlockState$Type): $Optional<($BlockState)>
+public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getNext"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getChanceModifier"(): float
 public "applyChangeOverTime"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -5712,8 +5712,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$BlockItem, $BlockItem$Type} from "packages/net/minecraft/world/item/$BlockItem"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -5738,12 +5738,12 @@ readonly "canRepair": boolean
 
 constructor(block: $Block$Type, properties: $Item$Properties$Type)
 
-public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "use"(level: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
+public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5907,9 +5907,9 @@ public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, p
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "entityInside"(state: $BlockState$Type, levelIn: $Level$Type, pos: $BlockPos$Type, entityIn: $Entity$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, pHit: $BlockHitResult$Type, projectile: $Projectile$Type): void
 public "updateOverhang"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
 public "getOverhang"(level: $Level$Type, pos: $BlockPos$Type): integer
@@ -5928,8 +5928,8 @@ public "playExtinguishSound"(world: $LevelAccessor$Type, pos: $BlockPos$Type): v
 public "spawnSmokeParticles"(state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): void
 public "canBeExtinguishedBy"(item: $ItemStack$Type): boolean
 public "interactWithEntity"(level: $Level$Type, state: $BlockState$Type, projectile: $Entity$Type, pos: $BlockPos$Type): boolean
-public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "extinguish"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): boolean
+public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "isLitUp"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
 public "setLitUp"(state: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, lit: boolean): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
@@ -6027,8 +6027,8 @@ public "canGrowAdjacent"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockS
 public "canGrowExternal"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): $InteractionResult
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, r: $RandomSource$Type): void
-public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "getSpreader"(): $MultifaceSpreader
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
@@ -6206,10 +6206,10 @@ public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $Bloc
 public "randomTick"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(placeContext: $BlockPlaceContext$Type): $BlockState
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 set "stable"(value: $BlockState$Type)
@@ -6316,15 +6316,15 @@ public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $Bloc
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): boolean
+public static "isRandomSandyPos"(pos: $BlockPos$Type): boolean
 public "getAgeProperty"(): $IntegerProperty
 public "spawnParticles"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getAge"(state: $BlockState$Type): integer
+public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(block: $Block$Type): $Optional<($Block)>
 public static "getSandy"(state: $BlockState$Type): $Optional<($BlockState)>
-public static "getUnSandy"(block: $Block$Type): $Optional<($Block)>
-public static "getUnSandy"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "ageProperty"(): $IntegerProperty
 }
@@ -6420,10 +6420,10 @@ public "getShape"(state: $BlockState$Type, getter: $BlockGetter$Type, pos: $Bloc
 public "randomTick"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(placeContext: $BlockPlaceContext$Type): $BlockState
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 set "stable"(value: $BlockState$Type)
@@ -6772,14 +6772,14 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onPlace"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, movedByPiston: boolean): void
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "canMelt"(level: $Level$Type, pos: $BlockPos$Type): boolean
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onLand"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, replaceableState: $BlockState$Type, fallingBlock: $FallingBlockEntity$Type): void
+public "canMelt"(level: $Level$Type, pos: $BlockPos$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -6858,12 +6858,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getMaxLayers"(): integer
 public "layerProperty"(): $IntegerProperty
+public "getMaxLayers"(): integer
 public "getMinLayers"(): integer
 public "getDefaultShape"(state: $BlockState$Type): $VoxelShape
-public "isPathfindable"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $PathComputationType$Type): boolean
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, facingState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, otherPos: $BlockPos$Type): $BlockState
 public "onPlace"(state: $BlockState$Type, levelIn: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, isMoving: boolean): void
 public "useShapeForLightOcclusion"(state: $BlockState$Type): boolean
 public "canBeReplaced"(pState: $BlockState$Type, pUseContext: $BlockPlaceContext$Type): boolean
@@ -6872,6 +6870,8 @@ public "getShape"(pState: $BlockState$Type, pLevel: $BlockGetter$Type, pPos: $Bl
 public "getVisualShape"(pState: $BlockState$Type, pReader: $BlockGetter$Type, pPos: $BlockPos$Type, pContext: $CollisionContext$Type): $VoxelShape
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, pRand: $RandomSource$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $PathComputationType$Type): boolean
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, facingState: $BlockState$Type, level: $LevelAccessor$Type, currentPos: $BlockPos$Type, otherPos: $BlockPos$Type): $BlockState
 public "getLayers"(state: $BlockState$Type): integer
 public "shouldFall"(state: $BlockState$Type, belowState: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -6977,9 +6977,9 @@ public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, p
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "entityInside"(state: $BlockState$Type, levelIn: $Level$Type, pos: $BlockPos$Type, entityIn: $Entity$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, pHit: $BlockHitResult$Type, projectile: $Projectile$Type): void
 public "updateOverhang"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
 public "getOverhang"(level: $Level$Type, pos: $BlockPos$Type): integer
@@ -6998,8 +6998,8 @@ public "playExtinguishSound"(world: $LevelAccessor$Type, pos: $BlockPos$Type): v
 public "spawnSmokeParticles"(state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): void
 public "canBeExtinguishedBy"(item: $ItemStack$Type): boolean
 public "interactWithEntity"(level: $Level$Type, state: $BlockState$Type, projectile: $Entity$Type, pos: $BlockPos$Type): boolean
-public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "extinguish"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): boolean
+public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "isLitUp"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
 public "setLitUp"(state: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, lit: boolean): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
@@ -7125,14 +7125,14 @@ public "getDisjointGrowthChance"(level: $Level$Type, pos: $BlockPos$Type): doubl
 public "getUnWeatherableChance"(level: $Level$Type, pos: $BlockPos$Type): double
 public "needsAirToSpread"(level: $Level$Type, pos: $BlockPos$Type): boolean
 public "getWeatheringEffect"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): $PatchSpreader$WeatheringAgent
+public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type): boolean
+public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type, maxRecursion: integer): boolean
 /**
  * 
  * @deprecated
  */
 public "getInfluenceForDirectionsOld"(pos: $BlockPos$Type, level: $Level$Type): $Map<($Direction), ($PatchSpreader$Susceptibility)>
 public "getLowInfluenceWeatheringEffect"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, maxRecursion: integer): $PatchSpreader$WeatheringAgent
-public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type): boolean
-public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type, maxRecursion: integer): boolean
 public "getInfluenceForDirections"(posRandom: $Random$Type, pos: $BlockPos$Type, level: $Level$Type): $Map<($Direction), ($PatchSpreader$Susceptibility)>
 public "getBlockWeatheringEffect"(sus: $PatchSpreader$Susceptibility$Type, state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, maxRecursion: integer): $Pair<($PatchSpreader$WeatheringAgent), (boolean)>
 public "getDirectionCount"(random: $Random$Type, a: float): integer
@@ -7176,14 +7176,14 @@ public "getDisjointGrowthChance"(level: $Level$Type, pos: $BlockPos$Type): doubl
 public "getUnWeatherableChance"(level: $Level$Type, pos: $BlockPos$Type): double
 public "needsAirToSpread"(level: $Level$Type, pos: $BlockPos$Type): boolean
 public "getWeatheringEffect"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): $PatchSpreader$WeatheringAgent
+public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type): boolean
+public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type, maxRecursion: integer): boolean
 /**
  * 
  * @deprecated
  */
 public "getInfluenceForDirectionsOld"(pos: $BlockPos$Type, level: $Level$Type): $Map<($Direction), ($PatchSpreader$Susceptibility)>
 public "getLowInfluenceWeatheringEffect"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, maxRecursion: integer): $PatchSpreader$WeatheringAgent
-public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type): boolean
-public "getWantedWeatheringState"(hasTicked: boolean, pos: $BlockPos$Type, level: $Level$Type, maxRecursion: integer): boolean
 public "getInfluenceForDirections"(posRandom: $Random$Type, pos: $BlockPos$Type, level: $Level$Type): $Map<($Direction), ($PatchSpreader$Susceptibility)>
 public "getBlockWeatheringEffect"(sus: $PatchSpreader$Susceptibility$Type, state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, maxRecursion: integer): $Pair<($PatchSpreader$WeatheringAgent), (boolean)>
 public "getDirectionCount"(random: $Random$Type, a: float): integer
@@ -7300,9 +7300,9 @@ public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, p
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "entityInside"(state: $BlockState$Type, levelIn: $Level$Type, pos: $BlockPos$Type, entityIn: $Entity$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, pHit: $BlockHitResult$Type, projectile: $Projectile$Type): void
 public "updateOverhang"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
 public "getOverhang"(level: $Level$Type, pos: $BlockPos$Type): integer
@@ -7321,8 +7321,8 @@ public "playExtinguishSound"(world: $LevelAccessor$Type, pos: $BlockPos$Type): v
 public "spawnSmokeParticles"(state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): void
 public "canBeExtinguishedBy"(item: $ItemStack$Type): boolean
 public "interactWithEntity"(level: $Level$Type, state: $BlockState$Type, projectile: $Entity$Type, pos: $BlockPos$Type): boolean
-public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "extinguish"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type): boolean
+public "lightUp"(player: $Entity$Type, state: $BlockState$Type, pos: $BlockPos$Type, world: $LevelAccessor$Type, fireSourceType: $ILightable$FireSourceType$Type): boolean
 public "isLitUp"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): boolean
 public "setLitUp"(state: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, lit: boolean): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
@@ -7401,13 +7401,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onPlace"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, movedByPiston: boolean): void
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "canMelt"(level: $Level$Type, pos: $BlockPos$Type): boolean
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onLand"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, replaceableState: $BlockState$Type, fallingBlock: $FallingBlockEntity$Type): void
+public "canMelt"(level: $Level$Type, pos: $BlockPos$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -7499,10 +7499,10 @@ constructor(properties: $BlockBehaviour$Properties$Type)
 public "color"(state: $BlockState$Type, level: $BlockView$Type, pos: $BlockPos$Type): integer
 public static "canFallThrough"(state: $BlockState$Type): boolean
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $Random$Type): void
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onPlace"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, oldState: $BlockState$Type, notify: boolean): void
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onLand"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, replaceableState: $BlockState$Type, fallingBlock: $FallingBlockEntity$Type): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
 public "getFallDamageSource"(arg0: $Entity$Type): $DamageSource
@@ -7548,8 +7548,8 @@ import {$BiMap, $BiMap$Type} from "packages/com/google/common/collect/$BiMap"
 import {$SignalGetter, $SignalGetter$Type} from "packages/net/minecraft/world/level/$SignalGetter"
 import {$BlockPathTypes, $BlockPathTypes$Type} from "packages/net/minecraft/world/level/pathfinder/$BlockPathTypes"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
-import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$BiConsumer, $BiConsumer$Type} from "packages/java/util/function/$BiConsumer"
 import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
@@ -7567,59 +7567,59 @@ export interface $Rustable extends $ChangeOverTimeBlock<($Rustable$RustLevel)>, 
  "getInfluenceRadius"(): integer
  "getToolModifiedState"(state: $BlockState$Type, context: $UseOnContext$Type, toolAction: $ToolAction$Type, simulate: boolean): $BlockState
  "getPrevious"(state: $BlockState$Type): $Optional<($BlockState)>
+ "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
  "getNext"(state: $BlockState$Type): $Optional<($BlockState)>
  "getChanceModifier"(): float
  "applyChangeOverTime"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
- "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
  "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
  "getAge"(): $Rustable$RustLevel
  "rotate"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Rotation$Type): $BlockState
  "makesOpenTrapdoorAboveClimbable"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
- "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
  "supportsExternalFaceHiding"(arg0: $BlockState$Type): boolean
  "hidesNeighborFace"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockState$Type, arg4: $Direction$Type): boolean
- "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
- "getAppearance"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $BlockState$Type, arg5: $BlockPos$Type): $BlockState
- "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
- "onBlockStateChange"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockState$Type): void
- "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
- "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
- "canBeHydrated"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type, arg4: $BlockPos$Type): boolean
- "getMapColor"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $MapColor$Type): $MapColor
- "getFlammability"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
- "isFlammable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+ "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
+ "getFriction"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): float
+ "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
+ "canHarvestBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
+ "onDestroyedByPlayer"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: boolean, arg5: $FluidState$Type): boolean
+ "getRespawnPosition"(arg0: $BlockState$Type, arg1: $EntityType$Type<(any)>, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: float, arg5: $LivingEntity$Type): $Optional<($Vec3)>
+ "isValidSpawn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $SpawnPlacements$Type$Type, arg4: $EntityType$Type<(any)>): boolean
+ "setBedOccupied"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type, arg4: boolean): void
+ "getBedDirection"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): $Direction
+ "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+ "addLandingEffects"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $LivingEntity$Type, arg5: integer): boolean
+ "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
+ "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
+ "isPortalFrame"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+ "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
+ "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
+ "shouldCheckWeakPower"(arg0: $BlockState$Type, arg1: $SignalGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+ "getWeakChanges"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+ "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
+ "getBeaconColorMultiplier"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
+ "getStateAtViewpoint"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Vec3$Type): $BlockState
+ "getBlockPathType"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Mob$Type): $BlockPathTypes
+ "getAdjacentBlockPathType"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Mob$Type, arg4: $BlockPathTypes$Type): $BlockPathTypes
  "isSlimeBlock"(arg0: $BlockState$Type): boolean
  "isStickyBlock"(arg0: $BlockState$Type): boolean
- "getAdjacentBlockPathType"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Mob$Type, arg4: $BlockPathTypes$Type): $BlockPathTypes
- "getEnchantPowerBonus"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): float
- "getStateAtViewpoint"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Vec3$Type): $BlockState
- "getWeakChanges"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
- "getBlockPathType"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Mob$Type): $BlockPathTypes
- "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
- "getBeaconColorMultiplier"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): (float)[]
- "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
- "shouldCheckWeakPower"(arg0: $BlockState$Type, arg1: $SignalGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
- "isPortalFrame"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
- "getBedDirection"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): $Direction
- "getFriction"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): float
- "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
- "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
- "getRespawnPosition"(arg0: $BlockState$Type, arg1: $EntityType$Type<(any)>, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: float, arg5: $LivingEntity$Type): $Optional<($Vec3)>
- "setBedOccupied"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type, arg4: boolean): void
- "onDestroyedByPlayer"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: boolean, arg5: $FluidState$Type): boolean
- "isValidSpawn"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $SpawnPlacements$Type$Type, arg4: $EntityType$Type<(any)>): boolean
- "isConduitFrame"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): boolean
- "canHarvestBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
- "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
- "addLandingEffects"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $LivingEntity$Type, arg5: integer): boolean
- "canDropFromExplosion"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): boolean
- "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
+ "getFlammability"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+ "isFlammable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+ "onCaughtFire"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $LivingEntity$Type): void
+ "getFireSpreadSpeed"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+ "isFireSource"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
  "canEntityDestroy"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
+ "canDropFromExplosion"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): boolean
  "onBlockExploded"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): void
  "collisionExtendsVertically"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
- "isFireSource"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
- "getFireSpreadSpeed"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
- "onCaughtFire"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $LivingEntity$Type): void
+ "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
+ "isScaffolding"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
+ "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
+ "onBlockStateChange"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockState$Type): void
+ "canBeHydrated"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type, arg4: $BlockPos$Type): boolean
+ "getMapColor"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $MapColor$Type): $MapColor
+ "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
+ "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
+ "getAppearance"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $BlockState$Type, arg5: $BlockPos$Type): $BlockState
  "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
  "isBurning"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
  "isBed"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
@@ -7843,9 +7843,9 @@ public static "isUnderCrops"(level: $BlockGetter$Type, pos: $BlockPos$Type): boo
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "randomTick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, blockPos: $BlockPos$Type, randomSource: $RandomSource$Type): void
 public "tick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, blockPos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, f: float): void
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -7963,10 +7963,10 @@ readonly "canRepair": boolean
 constructor(block: $Block$Type, properties: $Item$Properties$Type)
 
 public "useOn"(context: $UseOnContext$Type): $InteractionResult
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8342,7 +8342,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(settings: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(state: $BlockState$Type): boolean
 public "getFluidState"(blockState: $BlockState$Type): $FluidState
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
@@ -8351,6 +8350,7 @@ public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $Blo
 public "stepOn"(level: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, entity: $Entity$Type): void
 public "getStateForPlacement"(blockPlaceContext: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, fallDistance: float): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, fluid: $Fluid$Type): boolean
 public "placeLiquid"(levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, fluidState: $FluidState$Type): boolean
 public "canExpand"(level: $Level$Type, pos: $BlockPos$Type): boolean
@@ -8460,10 +8460,10 @@ public static "getUnaffectedRustState"(state: $BlockState$Type): $BlockState
 public "getInfluenceRadius"(): integer
 public "getToolModifiedState"(state: $BlockState$Type, context: $UseOnContext$Type, toolAction: $ToolAction$Type, simulate: boolean): $BlockState
 public "getPrevious"(state: $BlockState$Type): $Optional<($BlockState)>
+public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getNext"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getChanceModifier"(): float
 public "applyChangeOverTime"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "canSustainPlant"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $IPlantable$Type): boolean
 public "isLadder"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $LivingEntity$Type): boolean
@@ -8553,9 +8553,9 @@ public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $Blo
 public "interactWithPlayer"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResult
 public "getUnfrosty"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUnfrosty"(block: $Block$Type): $Optional<($Block)>
-public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
-public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
 public "getFrosty"(state: $BlockState$Type): $Optional<($BlockState)>
+public static "getFrosty"(block: $Block$Type): $Optional<($Block)>
+public "tryUnFrost"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -8737,11 +8737,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(mossLevel: $Mossable$MossLevel$Type, crackLevel: $Crackable$CrackLevel$Type, brickItem: $Supplier$Type<($Item$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
 public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getMossSpreader"(): $MossSpreader
 public "getMossLevel"(): $Mossable$MossLevel
@@ -8749,11 +8749,11 @@ public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -8851,11 +8851,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(mossLevel: $Mossable$MossLevel$Type, crackLevel: $Crackable$CrackLevel$Type, brickItem: $Supplier$Type<($Item$Type)>, settings: $BlockBehaviour$Properties$Type)
 
-public "getRepairItem"(state: $BlockState$Type): $Item
 public "getCrackSpreader"(): $CrackSpreader
 public "getCrackLevel"(): $Crackable$CrackLevel
-public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
+public "getRepairItem"(state: $BlockState$Type): $Item
 public "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+public "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
 public "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getMossSpreader"(): $MossSpreader
 public "getMossLevel"(): $Mossable$MossLevel
@@ -8863,11 +8863,11 @@ public static "getUnaffectedMossBlock"(state: $BlockState$Type): $BlockState
 public static "getMossyBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
 public static "getIncreasedMossBlock"(block: $Block$Type): $Optional<($Block)>
-public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
-public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "getUncrackedCrackBlock"(state: $BlockState$Type): $BlockState
 public static "getCrackedBlock"(state: $BlockState$Type): $BlockState
 public static "getDecreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public static "getIncreasedCrackBlock"(block: $Block$Type): $Optional<($Block)>
+public "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
 public static "setStable"(state: $BlockState$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -8968,16 +8968,16 @@ constructor(settings: $BlockBehaviour$Properties$Type)
 public static "growStalactiteOrStalagmiteIfPossible"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public static "getCauldronFillFluidType"(level: $Level$Type, pos: $BlockPos$Type): $Fluid
 public "maybeFillCauldron"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, dripChance: float): void
-public "updateShape"(state: $BlockState$Type, dir: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, fallDistance: float): void
+public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "updateShape"(state: $BlockState$Type, dir: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, hitResult: $BlockHitResult$Type, projectile: $Projectile$Type): void
-public "newBlockEntity"(pos: $BlockPos$Type, state: $BlockState$Type): $BlockEntity
 public "onBrokenAfterFall"(level: $Level$Type, pos: $BlockPos$Type, fallingBlockEntity: $FallingBlockEntity$Type): void
+public "newBlockEntity"(pos: $BlockPos$Type, state: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(serverLevel: $ServerLevel$Type, blockEntity: T): $GameEventListener
 public static "canDrip"(state: $BlockState$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
@@ -9000,8 +9000,8 @@ import {$Multimap, $Multimap$Type} from "packages/com/google/common/collect/$Mul
 import {$FlowerCrownItem$SpecialType, $FlowerCrownItem$SpecialType$Type} from "packages/com/ordana/immersive_weathering/items/$FlowerCrownItem$SpecialType"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
-import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Equipable, $Equipable$Type} from "packages/net/minecraft/world/item/$Equipable"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
@@ -9041,12 +9041,12 @@ readonly "canRepair": boolean
 
 constructor(material: $ArmorMaterial$Type, type: $ArmorItem$Type$Type, properties: $Item$Properties$Type)
 
-public "getArmorTexture"(stack: $ItemStack$Type, entity: $Entity$Type, slot: $EquipmentSlot$Type, type: string): string
 public "onArmorTick"(stack: $ItemStack$Type, level: $Level$Type, player: $Player$Type): void
-public static "getParticle"(stack: $ItemStack$Type): $SimpleParticleType
-public static "getModelTexture"(stack: $ItemStack$Type): string
-public static "getSpecialType"(stack: $ItemStack$Type): $FlowerCrownItem$SpecialType
+public "getArmorTexture"(stack: $ItemStack$Type, entity: $Entity$Type, slot: $EquipmentSlot$Type, type: string): string
 public static "getItemTextureIndex"(stack: $ItemStack$Type): float
+public static "getModelTexture"(stack: $ItemStack$Type): string
+public static "getParticle"(stack: $ItemStack$Type): $SimpleParticleType
+public static "getSpecialType"(stack: $ItemStack$Type): $FlowerCrownItem$SpecialType
 public static "get"(arg0: $ItemStack$Type): $Equipable
 }
 /**
@@ -9309,10 +9309,10 @@ public static "getUnaffectedRustState"(state: $BlockState$Type): $BlockState
 public "getInfluenceRadius"(): integer
 public "getToolModifiedState"(state: $BlockState$Type, context: $UseOnContext$Type, toolAction: $ToolAction$Type, simulate: boolean): $BlockState
 public "getPrevious"(state: $BlockState$Type): $Optional<($BlockState)>
+public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getNext"(state: $BlockState$Type): $Optional<($BlockState)>
 public "getChanceModifier"(): float
 public "applyChangeOverTime"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
-public "tryWeather"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "onRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "age"(): $Rustable$RustLevel
@@ -9352,21 +9352,21 @@ import {$CrackSpreader, $CrackSpreader$Type} from "packages/com/ordana/immersive
 
 export interface $CrackableMossable extends $Mossable, $Crackable {
 
- "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
  "getPatchSpreader"<T extends $Enum<(any)>>(weatheringClass: $Class$Type<(T)>): $Optional<($PatchSpreader<(T)>)>
+ "shouldWeather"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): boolean
  "tryWeather"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
  "getMossSpreader"(): $MossSpreader
+ "isWeathering"(arg0: $BlockState$Type): boolean
  "getMossLevel"(): $Mossable$MossLevel
  "getNextMossy"(state: $BlockState$Type): $Optional<($BlockState)>
  "getPreviousMossy"(state: $BlockState$Type): $Optional<($BlockState)>
- "isWeathering"(arg0: $BlockState$Type): boolean
- "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
- "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
- "getRepairItem"(arg0: $BlockState$Type): $Item
  "getCrackSpreader"(): $CrackSpreader
  "getCrackLevel"(): $Crackable$CrackLevel
- "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
+ "getRepairItem"(arg0: $BlockState$Type): $Item
+ "getNextCracked"(state: $BlockState$Type): $Optional<($BlockState)>
+ "getPreviousCracked"(state: $BlockState$Type): $Optional<($BlockState)>
  "updateWeatheredStateOnNeighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type): void
+ "getWeatheredStateForPlacement"(state: $BlockState$Type, pos: $BlockPos$Type, level: $Level$Type): $BlockState
  "getWeatherChanceSpeed"(): float
 }
 
@@ -9375,10 +9375,10 @@ function getUnaffectedMossBlock(state: $BlockState$Type): $BlockState
 function getMossyBlock(state: $BlockState$Type): $BlockState
 function getDecreasedMossBlock(block: $Block$Type): $Optional<($Block)>
 function getIncreasedMossBlock(block: $Block$Type): $Optional<($Block)>
-function getIncreasedCrackBlock(block: $Block$Type): $Optional<($Block)>
 function getUncrackedCrackBlock(state: $BlockState$Type): $BlockState
 function getCrackedBlock(state: $BlockState$Type): $BlockState
 function getDecreasedCrackBlock(block: $Block$Type): $Optional<($Block)>
+function getIncreasedCrackBlock(block: $Block$Type): $Optional<($Block)>
 function setStable(state: $BlockState$Type): $BlockState
 }
 /**

@@ -62,11 +62,11 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 
 export interface $ETFPlayerEntity extends $ETFEntity {
 
+ "etf$getName"(): $Component
  "etf$getEntity"(): $Entity
  "etf$isTeammate"(arg0: $Player$Type): boolean
  "etf$getInventory"(): $Inventory
  "etf$isPartVisible"(arg0: $PlayerModelPart$Type): boolean
- "etf$getName"(): $Component
  "etf$getUuidAsString"(): string
  "etf$getType"(): $EntityType<(any)>
  "etf$getUuid"(): $UUID
@@ -403,23 +403,23 @@ constructor(variantIdentifier: $ResourceLocation$Type)
 
 public "toString"(): string
 public "exists"(): boolean
-public static "patchTextureToRemoveZFightingWithOtherTexture"(baseImage: $NativeImage$Type, otherImage: $NativeImage$Type): void
 public "getEmissiveIdentifierOfCurrentState"(): $ResourceLocation
 public "getEnchantIdentifierOfCurrentState"(): $ResourceLocation
-public "isEnchanted"(): boolean
 public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, modelPart: $ModelPart$Type): void
+public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, modelPart: $ModelPart$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): void
 public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type): void
 public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): void
-public "renderEmissive"(matrixStack: $PoseStack$Type, vertexConsumerProvider: $MultiBufferSource$Type, modelPart: $ModelPart$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): void
 public static "ofUnmodifiable"(identifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type): $ETFTexture
 public "getPaintingSprite"(originalSprite: $TextureAtlasSprite$Type, originalID: $ResourceLocation$Type): $ETFSprite
 public "setGUIBlink"(): void
-public "assertPatchedTextures"(): void
 public "getTextureIdentifier"(entity: $ETFEntity$Type): $ResourceLocation
+public "isEnchanted"(): boolean
+public "assertPatchedTextures"(): void
+public static "patchTextureToRemoveZFightingWithOtherTexture"(baseImage: $NativeImage$Type, otherImage: $NativeImage$Type): void
 public "getEmissiveVertexConsumer"(vertexConsumerProvider: $MultiBufferSource$Type, model: $Model$Type, modeToUsePossiblyManuallyChosen: $ETFConfig$EmissiveRenderModes$Type): $VertexConsumer
+public "isEmissive"(): boolean
 public static "manual"(modifiedSkinIdentifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type, enchantIdentifier: $ResourceLocation$Type): $ETFTexture
 public static "manual"(modifiedSkinIdentifier: $ResourceLocation$Type, blinkIdentifier: $ResourceLocation$Type, blink2Identifier: $ResourceLocation$Type, emissiveIdentifier: $ResourceLocation$Type, blinkEmissiveIdentifier: $ResourceLocation$Type, blink2EmissiveIdentifier: $ResourceLocation$Type, enchantIdentifier: $ResourceLocation$Type, blinkenchantIdentifier: $ResourceLocation$Type, blink2enchantIdentifier: $ResourceLocation$Type, patchIdentifier: $ResourceLocation$Type, blinkpatchIdentifier: $ResourceLocation$Type, blink2patchIdentifier: $ResourceLocation$Type): $ETFTexture
-public "isEmissive"(): boolean
 public "canPatch"(): boolean
 public "doesBlink"(): boolean
 public "doesBlink2"(): boolean
@@ -441,16 +441,16 @@ declare global {
 export type $ETFTexture_ = $ETFTexture$Type;
 }}
 declare module "packages/traben/entity_texture_features/utils/$ETFVertexConsumer" {
-import {$ETFTexture, $ETFTexture$Type} from "packages/traben/entity_texture_features/features/texture_handlers/$ETFTexture"
 import {$MultiBufferSource, $MultiBufferSource$Type} from "packages/net/minecraft/client/renderer/$MultiBufferSource"
+import {$ETFTexture, $ETFTexture$Type} from "packages/traben/entity_texture_features/features/texture_handlers/$ETFTexture"
 import {$RenderType, $RenderType$Type} from "packages/net/minecraft/client/renderer/$RenderType"
 
 export interface $ETFVertexConsumer {
 
- "etf$getETFTexture"(): $ETFTexture
+ "etf$initETFVertexConsumer"(arg0: $MultiBufferSource$Type, arg1: $RenderType$Type): void
  "etf$getProvider"(): $MultiBufferSource
  "etf$getRenderLayer"(): $RenderType
- "etf$initETFVertexConsumer"(arg0: $MultiBufferSource$Type, arg1: $RenderType$Type): void
+ "etf$getETFTexture"(): $ETFTexture
 }
 
 export namespace $ETFVertexConsumer {
@@ -527,16 +527,16 @@ static "remappingETFSkin": boolean
 constructor()
 constructor(player: $ETFPlayerEntity$Type, rendererGivenSkin: $ResourceLocation$Type)
 
+public "getBaseTextureIdentifierOrNullForVanilla"(player: $ETFPlayerEntity$Type): $ResourceLocation
+public "getBaseTextureIdentifierOrNullForVanilla"(player: $Player$Type): $ResourceLocation
+public "changeSkinToThisForTool"(image: $NativeImage$Type): void
 public "getBaseTextureEmissiveIdentifierOrNullForNone"(): $ResourceLocation
 public "getBaseHeadTextureIdentifierOrNullForVanilla"(): $ResourceLocation
 public "canUseFeaturesForThisPlayer"(): boolean
-public "getBaseTextureIdentifierOrNullForVanilla"(player: $Player$Type): $ResourceLocation
-public "getBaseTextureIdentifierOrNullForVanilla"(player: $ETFPlayerEntity$Type): $ResourceLocation
-public "changeSkinToThisForTool"(image: $NativeImage$Type): void
-public static "getSkinPixelColourToNumber"(color: integer): integer
-public static "getSkinNumberToPixelColour"(color: integer): integer
-public "checkTexture"(skipSkinLoad: boolean): void
 public "isCorrectObjectForThisSkin"(check: $ResourceLocation$Type): boolean
+public "checkTexture"(skipSkinLoad: boolean): void
+public static "getSkinNumberToPixelColour"(color: integer): integer
+public static "getSkinPixelColourToNumber"(color: integer): integer
 get "baseTextureEmissiveIdentifierOrNullForNone"(): $ResourceLocation
 get "baseHeadTextureIdentifierOrNullForVanilla"(): $ResourceLocation
 }

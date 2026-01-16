@@ -33,15 +33,15 @@ export class $EntityRandomTeleportEventJS extends $EventJS {
 
 constructor(arg0: $Entity$Type)
 
-public "getEntity"(): $Entity
-public "getX"(): double
 public "getY"(): double
+public "getX"(): double
+public "getEntity"(): $Entity
 public "getBlockPosition"(): $BlockPos
 public "getEntityType"(): string
 public "getZ"(): double
-get "entity"(): $Entity
-get "x"(): double
 get "y"(): double
+get "x"(): double
+get "entity"(): $Entity
 get "blockPosition"(): $BlockPos
 get "entityType"(): string
 get "z"(): double
@@ -97,11 +97,11 @@ export class $ItemEntityTickEventJS extends $EventJS {
 constructor(arg0: $ItemEntity$Type, arg1: $ServerLevel$Type, arg2: integer)
 
 public "getItemEntity"(): $ItemEntity
-public "getLevel"(): $ServerLevel
 public "getAge"(): integer
+public "getLevel"(): $ServerLevel
 get "itemEntity"(): $ItemEntity
-get "level"(): $ServerLevel
 get "age"(): integer
+get "level"(): $ServerLevel
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -158,18 +158,18 @@ constructor(arg0: $Player$Type, arg1: $Component$Type)
 public "hasCustomMessage"(): boolean
 public "getFinalMessage"(): $Component
 public "getOriginalMessage"(): $Component
-public "getCustomMessage"(): $Component
-public "setCustomMessage"(arg0: string): void
 public "getOriginalMessageText"(): string
-public "getPlayer"(): $Player
+public "setCustomMessage"(arg0: string): void
+public "getCustomMessage"(): $Component
 public "getPlayerName"(): string
+public "getPlayer"(): $Player
 get "finalMessage"(): $Component
 get "originalMessage"(): $Component
-get "customMessage"(): $Component
-set "customMessage"(value: string)
 get "originalMessageText"(): string
-get "player"(): $Player
+set "customMessage"(value: string)
+get "customMessage"(): $Component
 get "playerName"(): string
+get "player"(): $Player
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -298,19 +298,19 @@ export class $BlockCollisionEventJS extends $EventJS {
 
 constructor(arg0: $Entity$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getEntity"(): $Entity
-public "getX"(): double
 public "getY"(): double
-public "getBoundingBox"(): $AABB
+public "getX"(): double
+public "getEntity"(): $Entity
 public "getBlockPosition"(): $BlockPos
+public "getBoundingBox"(): $AABB
 public "getEntityType"(): string
 public "getBlockState"(): $BlockState
 public "getZ"(): double
-get "entity"(): $Entity
-get "x"(): double
 get "y"(): double
-get "boundingBox"(): $AABB
+get "x"(): double
+get "entity"(): $Entity
 get "blockPosition"(): $BlockPos
+get "boundingBox"(): $AABB
 get "entityType"(): string
 get "blockState"(): $BlockState
 get "z"(): double
@@ -416,20 +416,20 @@ export class $EntityCollisionEventJS extends $EventJS {
 
 constructor(arg0: $Entity$Type, arg1: $Entity$Type)
 
-public "getEntity"(): $Entity
-public "getX"(): double
 public "getY"(): double
-public "getCollidedEntity"(): $Entity
-public "getBoundingBox"(): $AABB
+public "getX"(): double
+public "getEntity"(): $Entity
 public "getBlockPosition"(): $BlockPos
+public "getBoundingBox"(): $AABB
+public "getCollidedEntity"(): $Entity
 public "getEntityType"(): string
 public "getZ"(): double
-get "entity"(): $Entity
-get "x"(): double
 get "y"(): double
-get "collidedEntity"(): $Entity
-get "boundingBox"(): $AABB
+get "x"(): double
+get "entity"(): $Entity
 get "blockPosition"(): $BlockPos
+get "boundingBox"(): $AABB
+get "collidedEntity"(): $Entity
 get "entityType"(): string
 get "z"(): double
 }
@@ -454,15 +454,15 @@ export class $EntityMoveEventJS extends $EventJS {
 
 constructor(arg0: $Entity$Type)
 
-public "getEntity"(): $Entity
-public "getX"(): double
 public "getY"(): double
+public "getX"(): double
+public "getEntity"(): $Entity
 public "getBlockPosition"(): $BlockPos
 public "getEntityType"(): string
 public "getZ"(): double
-get "entity"(): $Entity
-get "x"(): double
 get "y"(): double
+get "x"(): double
+get "entity"(): $Entity
 get "blockPosition"(): $BlockPos
 get "entityType"(): string
 get "z"(): double

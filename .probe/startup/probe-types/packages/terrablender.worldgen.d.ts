@@ -58,10 +58,10 @@ import {$RegionType, $RegionType$Type} from "packages/terrablender/api/$RegionTy
 export interface $IExtendedParameterList<T> {
 
  "getTree"(arg0: integer): $Climate$RTree<(any)>
+ "findValuePositional"(arg0: $Climate$TargetPoint$Type, arg1: integer, arg2: integer, arg3: integer): T
  "initializeForTerraBlender"(arg0: $RegistryAccess$Type, arg1: $RegionType$Type, arg2: long): void
  "getUniqueness"(arg0: integer, arg1: integer, arg2: integer): integer
  "getTreeCount"(): integer
- "findValuePositional"(arg0: $Climate$TargetPoint$Type, arg1: integer, arg2: integer, arg3: integer): T
  "isInitialized"(): boolean
 }
 

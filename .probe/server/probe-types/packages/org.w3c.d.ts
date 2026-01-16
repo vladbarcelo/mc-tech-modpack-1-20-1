@@ -4,9 +4,9 @@ import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
 
 export interface $DOMImplementation {
 
- "hasFeature"(arg0: string, arg1: string): boolean
  "getFeature"(arg0: string, arg1: string): any
  "createDocumentType"(arg0: string, arg1: string, arg2: string): $DocumentType
+ "hasFeature"(arg0: string, arg1: string): boolean
  "createDocument"(arg0: string, arg1: string, arg2: $DocumentType$Type): $Document
 }
 
@@ -29,8 +29,8 @@ declare module "packages/org/w3c/dom/$CDATASection" {
 import {$Text, $Text$Type} from "packages/org/w3c/dom/$Text"
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $CDATASection extends $Text {
@@ -39,34 +39,20 @@ export interface $CDATASection extends $Text {
  "getWholeText"(): string
  "replaceWholeText"(arg0: string): $Text
  "splitText"(arg0: integer): $Text
- "getData"(): string
- "setData"(arg0: string): void
+ "getLength"(): integer
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
+ "setData"(arg0: string): void
+ "getData"(): string
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getLength"(): integer
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -81,8 +67,22 @@ export interface $CDATASection extends $Text {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -105,12 +105,12 @@ declare module "packages/org/w3c/dom/$Document" {
 import {$CDATASection, $CDATASection$Type} from "packages/org/w3c/dom/$CDATASection"
 import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
-import {$DocumentFragment, $DocumentFragment$Type} from "packages/org/w3c/dom/$DocumentFragment"
 import {$Attr, $Attr$Type} from "packages/org/w3c/dom/$Attr"
+import {$DocumentFragment, $DocumentFragment$Type} from "packages/org/w3c/dom/$DocumentFragment"
 import {$ProcessingInstruction, $ProcessingInstruction$Type} from "packages/org/w3c/dom/$ProcessingInstruction"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
-import {$DocumentType, $DocumentType$Type} from "packages/org/w3c/dom/$DocumentType"
 import {$EntityReference, $EntityReference$Type} from "packages/org/w3c/dom/$EntityReference"
+import {$DocumentType, $DocumentType$Type} from "packages/org/w3c/dom/$DocumentType"
 import {$DOMImplementation, $DOMImplementation$Type} from "packages/org/w3c/dom/$DOMImplementation"
 import {$Element, $Element$Type} from "packages/org/w3c/dom/$Element"
 import {$Text, $Text$Type} from "packages/org/w3c/dom/$Text"
@@ -120,6 +120,20 @@ import {$DOMConfiguration, $DOMConfiguration$Type} from "packages/org/w3c/dom/$D
 
 export interface $Document extends $Node {
 
+ "createEntityReference"(arg0: string): $EntityReference
+ "setXmlVersion"(arg0: string): void
+ "createComment"(arg0: string): $Comment
+ "createProcessingInstruction"(arg0: string, arg1: string): $ProcessingInstruction
+ "setStrictErrorChecking"(arg0: boolean): void
+ "setDocumentURI"(arg0: string): void
+ "setXmlStandalone"(arg0: boolean): void
+ "createCDATASection"(arg0: string): $CDATASection
+ "createTextNode"(arg0: string): $Text
+ "getDocumentURI"(): string
+ "createAttributeNS"(arg0: string, arg1: string): $Attr
+ "createAttribute"(arg0: string): $Attr
+ "createElementNS"(arg0: string, arg1: string): $Element
+ "createElement"(arg0: string): $Element
  "getImplementation"(): $DOMImplementation
  "importNode"(arg0: $Node$Type, arg1: boolean): $Node
  "getXmlEncoding"(): string
@@ -136,41 +150,13 @@ export interface $Document extends $Node {
  "adoptNode"(arg0: $Node$Type): $Node
  "getElementById"(arg0: string): $Element
  "getElementsByTagNameNS"(arg0: string, arg1: string): $NodeList
- "createEntityReference"(arg0: string): $EntityReference
- "setXmlVersion"(arg0: string): void
- "createComment"(arg0: string): $Comment
- "createProcessingInstruction"(arg0: string, arg1: string): $ProcessingInstruction
- "setStrictErrorChecking"(arg0: boolean): void
- "setDocumentURI"(arg0: string): void
- "setXmlStandalone"(arg0: boolean): void
- "createCDATASection"(arg0: string): $CDATASection
- "createTextNode"(arg0: string): $Text
- "getDocumentURI"(): string
- "createAttributeNS"(arg0: string, arg1: string): $Attr
- "createAttribute"(arg0: string): $Attr
- "createElementNS"(arg0: string, arg1: string): $Element
- "createElement"(arg0: string): $Element
  "getDocumentElement"(): $Element
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -185,8 +171,22 @@ export interface $Document extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -208,38 +208,24 @@ export type $Document_ = $Document$Type;
 declare module "packages/org/w3c/dom/$DocumentType" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $DocumentType extends $Node {
 
+ "getName"(): string
+ "getInternalSubset"(): string
  "getSystemId"(): string
  "getPublicId"(): string
- "getInternalSubset"(): string
  "getEntities"(): $NamedNodeMap
  "getNotations"(): $NamedNodeMap
- "getName"(): string
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -254,8 +240,22 @@ export interface $DocumentType extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -277,32 +277,18 @@ export type $DocumentType_ = $DocumentType$Type;
 declare module "packages/org/w3c/dom/$EntityReference" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $EntityReference extends $Node {
 
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -317,8 +303,22 @@ export interface $EntityReference extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -345,26 +345,12 @@ import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $Node {
 
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -379,8 +365,22 @@ export interface $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -419,40 +419,26 @@ export type $Node_ = $Node$Type;
 declare module "packages/org/w3c/dom/$CharacterData" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $CharacterData extends $Node {
 
- "getData"(): string
- "setData"(arg0: string): void
+ "getLength"(): integer
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
+ "setData"(arg0: string): void
+ "getData"(): string
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getLength"(): integer
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -467,8 +453,22 @@ export interface $CharacterData extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -491,9 +491,9 @@ declare module "packages/org/w3c/dom/$TypeInfo" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $TypeInfo {
 
+ "getTypeName"(): string
  "getTypeNamespace"(): string
  "isDerivedFrom"(arg0: string, arg1: string, arg2: integer): boolean
- "getTypeName"(): string
 }
 
 export namespace $TypeInfo {
@@ -518,8 +518,8 @@ declare module "packages/org/w3c/dom/$Text" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$CharacterData, $CharacterData$Type} from "packages/org/w3c/dom/$CharacterData"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $Text extends $CharacterData {
@@ -528,34 +528,20 @@ export interface $Text extends $CharacterData {
  "getWholeText"(): string
  "replaceWholeText"(arg0: string): $Text
  "splitText"(arg0: integer): $Text
- "getData"(): string
- "setData"(arg0: string): void
+ "getLength"(): integer
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
+ "setData"(arg0: string): void
+ "getData"(): string
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getLength"(): integer
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -570,8 +556,22 @@ export interface $Text extends $CharacterData {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -595,13 +595,13 @@ import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 
 export interface $NamedNodeMap {
 
- "item"(arg0: integer): $Node
+ "getLength"(): integer
  "getNamedItemNS"(arg0: string, arg1: string): $Node
  "removeNamedItemNS"(arg0: string, arg1: string): $Node
+ "item"(arg0: integer): $Node
  "getNamedItem"(arg0: string): $Node
  "setNamedItem"(arg0: $Node$Type): $Node
  "setNamedItemNS"(arg0: $Node$Type): $Node
- "getLength"(): integer
  "removeNamedItem"(arg0: string): $Node
 }
 
@@ -625,39 +625,25 @@ import {$Element, $Element$Type} from "packages/org/w3c/dom/$Element"
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$TypeInfo, $TypeInfo$Type} from "packages/org/w3c/dom/$TypeInfo"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $Attr extends $Node {
 
- "getOwnerElement"(): $Element
- "getSpecified"(): boolean
- "getSchemaTypeInfo"(): $TypeInfo
- "isId"(): boolean
  "getName"(): string
  "getValue"(): string
  "setValue"(arg0: string): void
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "getSchemaTypeInfo"(): $TypeInfo
+ "isId"(): boolean
+ "getOwnerElement"(): $Element
+ "getSpecified"(): boolean
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -672,8 +658,22 @@ export interface $Attr extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -696,40 +696,26 @@ declare module "packages/org/w3c/dom/$Comment" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$CharacterData, $CharacterData$Type} from "packages/org/w3c/dom/$CharacterData"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $Comment extends $CharacterData {
 
- "getData"(): string
- "setData"(arg0: string): void
+ "getLength"(): integer
  "substringData"(arg0: integer, arg1: integer): string
  "insertData"(arg0: integer, arg1: string): void
  "deleteData"(arg0: integer, arg1: integer): void
+ "setData"(arg0: string): void
+ "getData"(): string
  "appendData"(arg0: string): void
  "replaceData"(arg0: integer, arg1: integer, arg2: string): void
- "getLength"(): integer
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -744,8 +730,22 @@ export interface $Comment extends $CharacterData {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -797,18 +797,13 @@ declare module "packages/org/w3c/dom/$Element" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$TypeInfo, $TypeInfo$Type} from "packages/org/w3c/dom/$TypeInfo"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$Attr, $Attr$Type} from "packages/org/w3c/dom/$Attr"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $Element extends $Node {
 
- "removeAttributeNode"(arg0: $Attr$Type): $Attr
- "getElementsByTagName"(arg0: string): $NodeList
- "getElementsByTagNameNS"(arg0: string, arg1: string): $NodeList
- "getAttribute"(arg0: string): string
- "setAttribute"(arg0: string, arg1: string): void
  "removeAttribute"(arg0: string): void
  "getAttributeNS"(arg0: string, arg1: string): string
  "removeAttributeNS"(arg0: string, arg1: string): void
@@ -816,6 +811,7 @@ export interface $Element extends $Node {
  "hasAttributeNS"(arg0: string, arg1: string): boolean
  "setIdAttributeNS"(arg0: string, arg1: string, arg2: boolean): void
  "getSchemaTypeInfo"(): $TypeInfo
+ "getAttribute"(arg0: string): string
  "setAttributeNodeNS"(arg0: $Attr$Type): $Attr
  "setAttributeNode"(arg0: $Attr$Type): $Attr
  "setIdAttributeNode"(arg0: $Attr$Type, arg1: boolean): void
@@ -823,27 +819,17 @@ export interface $Element extends $Node {
  "getAttributeNode"(arg0: string): $Attr
  "setAttributeNS"(arg0: string, arg1: string, arg2: string): void
  "setIdAttribute"(arg0: string, arg1: boolean): void
+ "setAttribute"(arg0: string, arg1: string): void
+ "removeAttributeNode"(arg0: $Attr$Type): $Attr
+ "getElementsByTagName"(arg0: string): $NodeList
+ "getElementsByTagNameNS"(arg0: string, arg1: string): $NodeList
  "getTagName"(): string
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -858,8 +844,22 @@ export interface $Element extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -907,32 +907,18 @@ export type $DOMConfiguration_ = $DOMConfiguration$Type;
 declare module "packages/org/w3c/dom/$DocumentFragment" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $DocumentFragment extends $Node {
 
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -947,8 +933,22 @@ export interface $DocumentFragment extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -972,8 +972,8 @@ import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 
 export interface $NodeList {
 
- "item"(arg0: integer): $Node
  "getLength"(): integer
+ "item"(arg0: integer): $Node
 }
 
 export namespace $NodeList {
@@ -994,35 +994,21 @@ export type $NodeList_ = $NodeList$Type;
 declare module "packages/org/w3c/dom/$ProcessingInstruction" {
 import {$NamedNodeMap, $NamedNodeMap$Type} from "packages/org/w3c/dom/$NamedNodeMap"
 import {$Document, $Document$Type} from "packages/org/w3c/dom/$Document"
-import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$UserDataHandler, $UserDataHandler$Type} from "packages/org/w3c/dom/$UserDataHandler"
+import {$Node, $Node$Type} from "packages/org/w3c/dom/$Node"
 import {$NodeList, $NodeList$Type} from "packages/org/w3c/dom/$NodeList"
 
 export interface $ProcessingInstruction extends $Node {
 
- "getData"(): string
- "setData"(arg0: string): void
  "getTarget"(): string
- "getOwnerDocument"(): $Document
- "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
- "hasChildNodes"(): boolean
- "getNamespaceURI"(): string
- "setPrefix"(arg0: string): void
- "compareDocumentPosition"(arg0: $Node$Type): short
- "getTextContent"(): string
- "setTextContent"(arg0: string): void
- "isSameNode"(arg0: $Node$Type): boolean
- "lookupPrefix"(arg0: string): string
- "isDefaultNamespace"(arg0: string): boolean
- "lookupNamespaceURI"(arg0: string): string
- "isEqualNode"(arg0: $Node$Type): boolean
- "getUserData"(arg0: string): any
- "getPrefix"(): string
+ "setData"(arg0: string): void
+ "getData"(): string
+ "normalize"(): void
+ "getAttributes"(): $NamedNodeMap
+ "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
  "getFeature"(arg0: string, arg1: string): any
  "hasAttributes"(): boolean
  "getLocalName"(): string
- "setUserData"(arg0: string, arg1: any, arg2: $UserDataHandler$Type): any
- "isSupported"(arg0: string, arg1: string): boolean
  "getNodeType"(): short
  "appendChild"(arg0: $Node$Type): $Node
  "getLastChild"(): $Node
@@ -1037,8 +1023,22 @@ export interface $ProcessingInstruction extends $Node {
  "getNodeValue"(): string
  "insertBefore"(arg0: $Node$Type, arg1: $Node$Type): $Node
  "getBaseURI"(): string
- "normalize"(): void
- "getAttributes"(): $NamedNodeMap
+ "getPrefix"(): string
+ "isSupported"(arg0: string, arg1: string): boolean
+ "getOwnerDocument"(): $Document
+ "replaceChild"(arg0: $Node$Type, arg1: $Node$Type): $Node
+ "hasChildNodes"(): boolean
+ "getNamespaceURI"(): string
+ "setPrefix"(arg0: string): void
+ "compareDocumentPosition"(arg0: $Node$Type): short
+ "getTextContent"(): string
+ "setTextContent"(arg0: string): void
+ "isSameNode"(arg0: $Node$Type): boolean
+ "lookupPrefix"(arg0: string): string
+ "isDefaultNamespace"(arg0: string): boolean
+ "lookupNamespaceURI"(arg0: string): string
+ "isEqualNode"(arg0: $Node$Type): boolean
+ "getUserData"(arg0: string): any
  "getChildNodes"(): $NodeList
 }
 
@@ -1061,9 +1061,9 @@ declare module "packages/org/w3c/dom/$DOMStringList" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $DOMStringList {
 
- "item"(arg0: integer): string
  "getLength"(): integer
  "contains"(arg0: string): boolean
+ "item"(arg0: integer): string
 }
 
 export namespace $DOMStringList {

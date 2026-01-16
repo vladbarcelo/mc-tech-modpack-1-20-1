@@ -116,6 +116,7 @@
 /// <reference path="snownee.jade.d.ts" />
 /// <reference path="net.raphimc.d.ts" />
 /// <reference path="systems.alexander.d.ts" />
+/// <reference path="com.blamejared.d.ts" />
 /// <reference path="corgitaco.corgilib.d.ts" />
 /// <reference path="org.apache.d.ts" />
 /// <reference path="com.chaosthedude.d.ts" />

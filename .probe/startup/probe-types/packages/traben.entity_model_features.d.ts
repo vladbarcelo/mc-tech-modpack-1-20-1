@@ -5,11 +5,11 @@ export class $EMFModelPart$Animator implements $Runnable {
 
 
 public "run"(): void
-public "getAnimation"(): $Runnable
 public "hasAnimation"(): boolean
 public "setAnimation"(animation: $Runnable$Type): void
-get "animation"(): $Runnable
+public "getAnimation"(): $Runnable
 set "animation"(value: $Runnable$Type)
+get "animation"(): $Runnable
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -125,15 +125,15 @@ readonly "isSubFolder": boolean
 
 
 public "toString"(): string
-public "getRelativeFilePossiblyEMFOverridden"(jpmOrVariantFileNameWithSuffixAndFileType: string): $ResourceLocation
 public "getRelativeDirectoryLocationNoValidation"(fileName: string): string
+public "getRelativeFilePossiblyEMFOverridden"(jpmOrVariantFileNameWithSuffixAndFileType: string): $ResourceLocation
+public "getFinalFileLocation"(): string
 public static "getDirectoryManagerOrNull"(printing: boolean, namespace: string, modelFileName: string, suffixAndFileType: string): $EMFDirectoryHandler
 public "validForThisBase"(propertiesOrSecond: $EMFDirectoryHandler$Type): boolean
 public "getFileNameWithType"(): string
-public "getFinalFileLocation"(): string
 public "packIndex"(): integer
-get "fileNameWithType"(): string
 get "finalFileLocation"(): string
+get "fileNameWithType"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -268,11 +268,11 @@ export class $EMFModelPartWithState$EMFModelState extends $Record {
 
 constructor(defaultTransform: $PartPose$Type, cuboids: $List$Type<($ModelPart$Cube$Type)>, variantChildren: $Map$Type<(string), ($ModelPart$Type)>, xScale: float, yScale: float, zScale: float, visible: boolean, hidden: boolean, texture: $ResourceLocation$Type, animation: $EMFModelPart$Animator$Type)
 
-public "visible"(): boolean
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "copy"(copyFrom: $EMFModelPartWithState$EMFModelState$Type): $EMFModelPartWithState$EMFModelState
+public "visible"(): boolean
 public "defaultTransform"(): $PartPose
 public "variantChildren"(): $Map<(string), ($ModelPart)>
 public "texture"(): $ResourceLocation
@@ -339,14 +339,14 @@ constructor(name: string, vanillaPart: $ModelPart$Type, optifinePartNames: $Coll
 
 public "toString"(): string
 public "receiveRootAnimationRunnable"(variant: integer, run: $Runnable$Type): void
-public "getAllEMFCustomChildren"(): ($ModelPart)[]
 public "setHideInTheseStates"(variant: integer): void
+public "getAllEMFCustomChildren"(): ($ModelPart)[]
 public "toStringShort"(): string
 public "render"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type, light: integer, overlay: integer, red: float, green: float, blue: float, alpha: float): void
 public static "of"(arg0: $ModelPart$Type): $ModelPartExtended
 public static "from"(arg0: $ModelPart$Type): $ModelPartData
-get "allEMFCustomChildren"(): ($ModelPart)[]
 set "hideInTheseStates"(value: integer)
+get "allEMFCustomChildren"(): ($ModelPart)[]
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -514,25 +514,25 @@ static readonly "DEFAULT_SCALE": float
 constructor(mobNameForFileAndMap: $EMFModel_ID$Type, directoryContext: $EMFDirectoryHandler$Type, vanillaRoot: $ModelPart$Type, optifinePartNames: $Collection$Type<(string)>, mapForCreatedParts: $Map$Type<(string), ($EMFModelPartVanilla$Type)>)
 
 public "toString"(): string
-public "tryRenderVanillaRootNormally"(matrixStack: $PoseStack$Type, vertexConsumer: $VertexConsumer$Type, light: integer, overlay: integer): void
 public "resetVanillaPartsToDefaults"(): void
+public "tryRenderVanillaRootNormally"(matrixStack: $PoseStack$Type, vertexConsumer: $VertexConsumer$Type, light: integer, overlay: integer): void
 public "addVariantOfJem"(jemData: $EMFJemData$Type, variant: integer): void
 public "discoverAndInitVariants"(fallbackPropertiesName: string): void
 public "setVariant1ToVanilla0"(): void
 public "receiveAnimations"(variant: integer, animationList: $Collection$Type<($EMFAnimation$Type)>): void
-public "getAllVanillaPartsEMF"(): $Collection<($EMFModelPartVanilla)>
-public "doVariantCheck"(): void
-public "checkIfShouldExpireEntity"(id: $UUID$Type): void
-public "getVanillaFormatRoot"(): $ModelPart
 public "tryRenderVanillaFormatRoot"(matrixStack: $PoseStack$Type, vertexConsumer: $VertexConsumer$Type, light: integer, overlay: integer): void
 public "getTopLevelJemTexture"(): $ResourceLocation
 public "hasAnimation"(): boolean
+public "getAllVanillaPartsEMF"(): $Collection<($EMFModelPartVanilla)>
+public "checkIfShouldExpireEntity"(id: $UUID$Type): void
+public "doVariantCheck"(): void
+public "getVanillaFormatRoot"(): $ModelPart
 public "toStringShort"(): string
 public static "of"(arg0: $ModelPart$Type): $ModelPartExtended
 public static "from"(arg0: $ModelPart$Type): $ModelPartData
+get "topLevelJemTexture"(): $ResourceLocation
 get "allVanillaPartsEMF"(): $Collection<($EMFModelPartVanilla)>
 get "vanillaFormatRoot"(): $ModelPart
-get "topLevelJemTexture"(): $ResourceLocation
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -586,11 +586,11 @@ readonly "modelName": string
 
 constructor(partToApplyTo: $EMFModelPart$Type, modelOrRenderVariableToChange: $EMFModelOrRenderVariable$Type, animKey: string, initialExpression: string, modelName: string)
 
-public "isValid"(): boolean
 public "toString"(): string
+public "isValid"(): boolean
 public "initExpression"(emfAnimationVariables: $Object2ObjectLinkedOpenHashMap$Type<(string), ($EMFAnimation$Type)>, allPartByName: $Object2ObjectOpenHashMap$Type<(string), ($EMFModelPart$Type)>): void
-public "calculateAndSetIfNotPaused"(paused: ($ModelPart$Type)[]): void
 public "calculateAndSet"(): void
+public "calculateAndSetIfNotPaused"(paused: ($ModelPart$Type)[]): void
 public "isVar"(): boolean
 public "getLastResultOnly"(): float
 public "getResultViaCalculate"(): float
@@ -618,37 +618,37 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 export class $EMFModel_ID implements $Comparable<($EMFModel_ID)> {
  "namespace": string
 
-constructor(both: string)
 constructor(both: string, mapId: string)
+constructor(both: string)
 
-public "getNamespace"(): string
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "compareTo"(o: $EMFModel_ID$Type): integer
+public "getNamespace"(): string
 public "setMapIdAndAddFallbackModel"(mapId: string, fileName: string): $EMFModel_ID
 public "setMapIdAndAddFallbackModel"(both: string): $EMFModel_ID
 public "finishAndPrepAutomatedFallbacks"(): void
-public "getDisplayFileName"(): string
-public "hasFallbackModels"(): boolean
-public "getNextFallbackModel"(): $EMFModel_ID
-public "forEachFallback"(action: $Consumer$Type<($EMFModel_ID$Type)>): void
 public "areBothSame"(): boolean
 public "getfileName"(): string
 public "addFallbackModel"(fileName: string): $EMFModel_ID
 public "addFallbackModel"(namespace: string, fileName: string): $EMFModel_ID
+public "hasFallbackModels"(): boolean
+public "getNextFallbackModel"(): $EMFModel_ID
+public "forEachFallback"(action: $Consumer$Type<($EMFModel_ID$Type)>): void
+public "getDisplayFileName"(): string
 public "setFileName"(fileName: string): $EMFModel_ID
-public "getMapId"(): string
-public "setBoth"(both: string): $EMFModel_ID
 public "setBoth"(fileName: string, mapId: string): $EMFModel_ID
+public "setBoth"(both: string): $EMFModel_ID
+public "getMapId"(): string
 get "namespace"(): string
 set "mapIdAndAddFallbackModel"(value: string)
-get "displayFileName"(): string
-get "nextFallbackModel"(): $EMFModel_ID
 get "fileName"(): string
+get "nextFallbackModel"(): $EMFModel_ID
+get "displayFileName"(): string
 set "fileName"(value: string)
-get "mapId"(): string
 set "both"(value: string)
+get "mapId"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -685,8 +685,8 @@ public "prepare"(directoryContext: $EMFDirectoryHandler$Type, mobModelIDInfo: $E
 public "getAllTopLevelAnimationsByVanillaPartName"(): $LinkedHashMap<(string), ($List<($LinkedHashMap<(string), (string)>)>)>
 public "getMobModelIDInfo"(): $EMFModel_ID
 public "getCustomTexture"(): $ResourceLocation
-public "validateJemTexture"(textureIn: string): $ResourceLocation
 public "validateJemTexture"(textureIn: string, canRemoveRedundancy: boolean): $ResourceLocation
+public "validateJemTexture"(textureIn: string): $ResourceLocation
 get "allTopLevelAnimationsByVanillaPartName"(): $LinkedHashMap<(string), ($List<($LinkedHashMap<(string), (string)>)>)>
 get "mobModelIDInfo"(): $EMFModel_ID
 get "customTexture"(): $ResourceLocation
@@ -852,11 +852,11 @@ static readonly "DEFAULT_SCALE": float
 constructor(cuboids: $List$Type<($ModelPart$Cube$Type)>, children: $Map$Type<(string), ($ModelPart$Type)>)
 
 public "toString"(): string
-public "getAllChildPartsAsAnimationMap"(prefixableParents: string, variantNum: integer, optifinePartNameMap: $Map$Type<(string), (string)>): $Object2ReferenceOpenHashMap<(string), ($EMFModelPart)>
 public "getVanillaModelPartsOfCurrentState"(): $ModelPart
+public "getAllChildPartsAsAnimationMap"(prefixableParents: string, variantNum: integer, optifinePartNameMap: $Map$Type<(string), (string)>): $Object2ReferenceOpenHashMap<(string), ($EMFModelPart)>
+public "renderBoxes"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type): void
 public "renderBoxesNoChildren"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type, alpha: float): void
 public "simplePrintChildren"(depth: integer): string
-public "renderBoxes"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type): void
 public "toStringShort"(): string
 public "compile"(pose: $PoseStack$Pose$Type, vertexConsumer: $VertexConsumer$Type, i: integer, j: integer, red: float, green: float, blue: float, alpha: float): void
 public "render"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type, light: integer, overlay: integer, red: float, green: float, blue: float, alpha: float): void

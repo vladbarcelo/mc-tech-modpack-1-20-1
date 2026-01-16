@@ -243,29 +243,29 @@ static readonly "TAG_DIMENSION_ID": string
 static readonly "TAG_COLONY_ID": string
 static readonly "TAG_BUILDING_ID": string
 
-constructor(arg0: $CompoundTag$Type)
-constructor(arg0: $IBuildingView$Type)
+constructor(arg0: $IColony$Type, arg1: $BlockPos$Type)
 constructor(arg0: $IBuilding$Type)
+constructor(arg0: $IBuildingView$Type)
+constructor(arg0: $CompoundTag$Type)
 constructor(arg0: $FriendlyByteBuf$Type)
 constructor(arg0: $ResourceKey$Type<($Level$Type)>, arg1: integer, arg2: $BlockPos$Type)
-constructor(arg0: $IColony$Type, arg1: $BlockPos$Type)
 
-public "getX"(): integer
 public "getY"(): integer
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
-public "getBuildingId"(): $BlockPos
+public "getX"(): integer
 public "getColonyId"(): integer
-public "serializeBuffer"(arg0: $FriendlyByteBuf$Type): void
+public "getBuildingId"(): $BlockPos
 public "getBuildingView"(): $IBuildingView
+public "serializeBuffer"(arg0: $FriendlyByteBuf$Type): void
 public "serializeNBT"(): $CompoundTag
 public "getDimensionId"(): $ResourceKey<($Level)>
 public "getBuilding"(): $IBuilding
 public "getZ"(): integer
-get "x"(): integer
 get "y"(): integer
-get "buildingId"(): $BlockPos
+get "x"(): integer
 get "colonyId"(): integer
+get "buildingId"(): $BlockPos
 get "buildingView"(): $IBuildingView
 get "dimensionId"(): $ResourceKey<($Level)>
 get "building"(): $IBuilding
@@ -301,8 +301,8 @@ readonly "ingredients": $NonNullList<($Ingredient)>
 
 constructor(arg0: $ShapelessRecipe$Type)
 
-public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 get "serializer"(): $RecipeSerializer<(any)>
 }
 /**
@@ -352,34 +352,34 @@ export class $ModulePos {
 static readonly "TAG_BUILDING_POS": string
 static readonly "TAG_MODULE_NAME": string
 
+constructor(arg0: $IBuildingModule$Type)
 constructor(arg0: $IBuildingModuleView$Type)
 constructor(arg0: $CompoundTag$Type)
 constructor(arg0: $FriendlyByteBuf$Type)
 constructor(arg0: $BuildingPos$Type, arg1: string)
-constructor(arg0: $IBuildingModule$Type)
 
-public "getX"(): integer
 public "getY"(): integer
 public "equals"(arg0: any): boolean
 public "getModule"(): $IBuildingModule
 public "hashCode"(): integer
 public "getModuleName"(): string
+public "getX"(): integer
+public "getModuleView"(): $IBuildingModuleView
+public "getColonyId"(): integer
 public "getBuildingId"(): $BlockPos
 public "getBuildingPos"(): $BuildingPos
-public "getColonyId"(): integer
-public "getModuleView"(): $IBuildingModuleView
 public "serializeBuffer"(arg0: $FriendlyByteBuf$Type): void
 public "serializeNBT"(): $CompoundTag
 public "getDimensionId"(): $ResourceKey<($Level)>
 public "getZ"(): integer
-get "x"(): integer
 get "y"(): integer
 get "module"(): $IBuildingModule
 get "moduleName"(): string
+get "x"(): integer
+get "moduleView"(): $IBuildingModuleView
+get "colonyId"(): integer
 get "buildingId"(): $BlockPos
 get "buildingPos"(): $BuildingPos
-get "colonyId"(): integer
-get "moduleView"(): $IBuildingModuleView
 get "dimensionId"(): $ResourceKey<($Level)>
 get "z"(): integer
 }
@@ -408,9 +408,9 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -436,11 +436,11 @@ constructor(arg0: $Item$Properties$Type, arg1: integer)
 public "getContainer"(arg0: $ItemStack$Type): $ItemResourceScrollBook$Container
 public "getHandSlot"(arg0: $Player$Type, arg1: $InteractionHand$Type): integer
 public "openInventory"(arg0: $ServerPlayer$Type, arg1: $ItemStack$Type, arg2: integer): void
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "getSlots"(): integer
-public "getItems"(arg0: $ItemStack$Type): $NonNullList<($ItemStack)>
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "getItems"(arg0: $ItemStack$Type): $NonNullList<($ItemStack)>
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "setItems"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStack$Type)>): void
 public "openWindow"(arg0: $ItemStack$Type): void
 get "slots"(): integer

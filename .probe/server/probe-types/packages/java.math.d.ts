@@ -8,15 +8,15 @@ static readonly "DECIMAL32": $MathContext
 static readonly "DECIMAL64": $MathContext
 static readonly "DECIMAL128": $MathContext
 
-constructor(arg0: integer)
 constructor(arg0: string)
 constructor(arg0: integer, arg1: $RoundingMode$Type)
+constructor(arg0: integer)
 
-public "getPrecision"(): integer
-public "getRoundingMode"(): $RoundingMode
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "getPrecision"(): integer
+public "getRoundingMode"(): $RoundingMode
 get "precision"(): integer
 get "roundingMode"(): $RoundingMode
 }
@@ -83,61 +83,83 @@ static readonly "ROUND_HALF_EVEN": integer
  */
 static readonly "ROUND_UNNECESSARY": integer
 
-constructor(arg0: (character)[], arg1: $MathContext$Type)
-constructor(arg0: string)
-constructor(arg0: long, arg1: $MathContext$Type)
-constructor(arg0: (character)[], arg1: integer, arg2: integer)
-constructor(arg0: (character)[], arg1: integer, arg2: integer, arg3: $MathContext$Type)
-constructor(arg0: (character)[])
-constructor(arg0: integer, arg1: $MathContext$Type)
 constructor(arg0: integer)
-constructor(arg0: $BigInteger$Type, arg1: $MathContext$Type)
-constructor(arg0: $BigInteger$Type, arg1: integer)
 constructor(arg0: $BigInteger$Type, arg1: integer, arg2: $MathContext$Type)
-constructor(arg0: string, arg1: $MathContext$Type)
-constructor(arg0: double)
-constructor(arg0: long)
-constructor(arg0: double, arg1: $MathContext$Type)
+constructor(arg0: $BigInteger$Type, arg1: integer)
 constructor(arg0: $BigInteger$Type)
+constructor(arg0: $BigInteger$Type, arg1: $MathContext$Type)
+constructor(arg0: long, arg1: $MathContext$Type)
+constructor(arg0: long)
+constructor(arg0: integer, arg1: $MathContext$Type)
+constructor(arg0: (character)[], arg1: integer, arg2: integer)
+constructor(arg0: (character)[], arg1: $MathContext$Type)
+constructor(arg0: (character)[])
+constructor(arg0: (character)[], arg1: integer, arg2: integer, arg3: $MathContext$Type)
+constructor(arg0: string)
+constructor(arg0: double, arg1: $MathContext$Type)
+constructor(arg0: double)
+constructor(arg0: string, arg1: $MathContext$Type)
 
-public "multiply"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
-public "multiply"(arg0: $BigDecimal$Type): $BigDecimal
-public "round"(arg0: $MathContext$Type): $BigDecimal
-public "ulp"(): $BigDecimal
-public "plus"(): $BigDecimal
-public "plus"(arg0: $MathContext$Type): $BigDecimal
-public "remainder"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
+public "add"(arg0: $BigDecimal$Type): $BigDecimal
+public "add"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
+public "equals"(arg0: any): boolean
+public "toString"(): string
+public "hashCode"(): integer
+public "abs"(): $BigDecimal
+public "abs"(arg0: $MathContext$Type): $BigDecimal
+public "sqrt"(arg0: $MathContext$Type): $BigDecimal
+public "pow"(arg0: integer, arg1: $MathContext$Type): $BigDecimal
+public "pow"(arg0: integer): $BigDecimal
+public "min"(arg0: $BigDecimal$Type): $BigDecimal
+public "max"(arg0: $BigDecimal$Type): $BigDecimal
+public "signum"(): integer
+public "compareTo"(arg0: $BigDecimal$Type): integer
+public "intValue"(): integer
+public "longValue"(): long
+public "floatValue"(): float
+public "doubleValue"(): double
+public static "valueOf"(arg0: long): $BigDecimal
+public static "valueOf"(arg0: double): $BigDecimal
+public static "valueOf"(arg0: long, arg1: integer): $BigDecimal
+public "scale"(): integer
 public "remainder"(arg0: $BigDecimal$Type): $BigDecimal
+public "remainder"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
 public "negate"(arg0: $MathContext$Type): $BigDecimal
 public "negate"(): $BigDecimal
 public "toBigInteger"(): $BigInteger
-public "divide"(arg0: $BigDecimal$Type, arg1: $RoundingMode$Type): $BigDecimal
-public "divide"(arg0: $BigDecimal$Type, arg1: integer, arg2: $RoundingMode$Type): $BigDecimal
-public "divide"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
-public "divide"(arg0: $BigDecimal$Type): $BigDecimal
-/**
- * 
- * @deprecated
- */
-public "divide"(arg0: $BigDecimal$Type, arg1: integer, arg2: integer): $BigDecimal
 /**
  * 
  * @deprecated
  */
 public "divide"(arg0: $BigDecimal$Type, arg1: integer): $BigDecimal
+public "divide"(arg0: $BigDecimal$Type, arg1: $RoundingMode$Type): $BigDecimal
+public "divide"(arg0: $BigDecimal$Type, arg1: integer, arg2: $RoundingMode$Type): $BigDecimal
+/**
+ * 
+ * @deprecated
+ */
+public "divide"(arg0: $BigDecimal$Type, arg1: integer, arg2: integer): $BigDecimal
+public "divide"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
+public "divide"(arg0: $BigDecimal$Type): $BigDecimal
 public "divideAndRemainder"(arg0: $BigDecimal$Type): ($BigDecimal)[]
 public "divideAndRemainder"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): ($BigDecimal)[]
 public "longValueExact"(): long
 public "intValueExact"(): integer
 public "shortValueExact"(): short
 public "byteValueExact"(): byte
-public "subtract"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
+public "multiply"(arg0: $BigDecimal$Type): $BigDecimal
+public "multiply"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
+public "round"(arg0: $MathContext$Type): $BigDecimal
+public "ulp"(): $BigDecimal
 public "subtract"(arg0: $BigDecimal$Type): $BigDecimal
+public "subtract"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
 public "precision"(): integer
-public "divideToIntegralValue"(arg0: $BigDecimal$Type): $BigDecimal
 public "divideToIntegralValue"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
+public "divideToIntegralValue"(arg0: $BigDecimal$Type): $BigDecimal
 public "movePointRight"(arg0: integer): $BigDecimal
 public "toBigIntegerExact"(): $BigInteger
+public "plus"(): $BigDecimal
+public "plus"(arg0: $MathContext$Type): $BigDecimal
 /**
  * 
  * @deprecated
@@ -151,28 +173,6 @@ public "unscaledValue"(): $BigInteger
 public "movePointLeft"(arg0: integer): $BigDecimal
 public "toEngineeringString"(): string
 public "toPlainString"(): string
-public "add"(arg0: $BigDecimal$Type): $BigDecimal
-public "add"(arg0: $BigDecimal$Type, arg1: $MathContext$Type): $BigDecimal
-public "equals"(arg0: any): boolean
-public "toString"(): string
-public "hashCode"(): integer
-public "abs"(arg0: $MathContext$Type): $BigDecimal
-public "abs"(): $BigDecimal
-public "sqrt"(arg0: $MathContext$Type): $BigDecimal
-public "pow"(arg0: integer, arg1: $MathContext$Type): $BigDecimal
-public "pow"(arg0: integer): $BigDecimal
-public "min"(arg0: $BigDecimal$Type): $BigDecimal
-public "max"(arg0: $BigDecimal$Type): $BigDecimal
-public "signum"(): integer
-public "compareTo"(arg0: $BigDecimal$Type): integer
-public "intValue"(): integer
-public "longValue"(): long
-public "floatValue"(): float
-public "doubleValue"(): double
-public static "valueOf"(arg0: long): $BigDecimal
-public static "valueOf"(arg0: long, arg1: integer): $BigDecimal
-public static "valueOf"(arg0: double): $BigDecimal
-public "scale"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -197,15 +197,37 @@ static readonly "TWO": $BigInteger
 static readonly "TEN": $BigInteger
 
 constructor(arg0: integer, arg1: $Random$Type)
-constructor(arg0: (byte)[], arg1: integer, arg2: integer)
 constructor(arg0: string)
 constructor(arg0: integer, arg1: integer, arg2: $Random$Type)
 constructor(arg0: integer, arg1: (byte)[], arg2: integer, arg3: integer)
 constructor(arg0: (byte)[])
-constructor(arg0: integer, arg1: (byte)[])
+constructor(arg0: (byte)[], arg1: integer, arg2: integer)
 constructor(arg0: string, arg1: integer)
+constructor(arg0: integer, arg1: (byte)[])
 
-public "multiply"(arg0: $BigInteger$Type): $BigInteger
+public "add"(arg0: $BigInteger$Type): $BigInteger
+public "bitCount"(): integer
+public "equals"(arg0: any): boolean
+public "toString"(): string
+public "toString"(arg0: integer): string
+public "hashCode"(): integer
+public "abs"(): $BigInteger
+public "sqrt"(): $BigInteger
+public "pow"(arg0: integer): $BigInteger
+public "min"(arg0: $BigInteger$Type): $BigInteger
+public "max"(arg0: $BigInteger$Type): $BigInteger
+public "signum"(): integer
+public "compareTo"(arg0: $BigInteger$Type): integer
+public "intValue"(): integer
+public "longValue"(): long
+public "floatValue"(): float
+public "doubleValue"(): double
+public static "valueOf"(arg0: long): $BigInteger
+public "toByteArray"(): (byte)[]
+public "mod"(arg0: $BigInteger$Type): $BigInteger
+public "setBit"(arg0: integer): $BigInteger
+public "shiftLeft"(arg0: integer): $BigInteger
+public "or"(arg0: $BigInteger$Type): $BigInteger
 public "remainder"(arg0: $BigInteger$Type): $BigInteger
 public "testBit"(arg0: integer): boolean
 public "shiftRight"(arg0: integer): $BigInteger
@@ -230,33 +252,11 @@ public "longValueExact"(): long
 public "intValueExact"(): integer
 public "shortValueExact"(): short
 public "byteValueExact"(): byte
-public "subtract"(arg0: $BigInteger$Type): $BigInteger
-public "or"(arg0: $BigInteger$Type): $BigInteger
 public "bitLength"(): integer
-public "add"(arg0: $BigInteger$Type): $BigInteger
-public "bitCount"(): integer
-public "equals"(arg0: any): boolean
-public "toString"(arg0: integer): string
-public "toString"(): string
-public "hashCode"(): integer
-public "abs"(): $BigInteger
-public "sqrt"(): $BigInteger
-public "pow"(arg0: integer): $BigInteger
-public "min"(arg0: $BigInteger$Type): $BigInteger
-public "max"(arg0: $BigInteger$Type): $BigInteger
-public "signum"(): integer
-public "compareTo"(arg0: $BigInteger$Type): integer
-public "intValue"(): integer
-public "longValue"(): long
-public "floatValue"(): float
-public "doubleValue"(): double
-public static "valueOf"(arg0: long): $BigInteger
-public "toByteArray"(): (byte)[]
-public "mod"(arg0: $BigInteger$Type): $BigInteger
-public "setBit"(arg0: integer): $BigInteger
-public "shiftLeft"(arg0: integer): $BigInteger
-get "lowestSetBit"(): integer
+public "multiply"(arg0: $BigInteger$Type): $BigInteger
+public "subtract"(arg0: $BigInteger$Type): $BigInteger
 set "bit"(value: integer)
+get "lowestSetBit"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

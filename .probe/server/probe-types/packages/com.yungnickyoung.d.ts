@@ -549,18 +549,18 @@ import {$DragonRespawnStage, $DragonRespawnStage$Type} from "packages/com/yungni
 
 export interface $IDragonFight {
 
+ "betterendisland$setFirstExitPortalSpawn"(arg0: boolean): void
+ "betterendisland$setHasDragonEverSpawned"(arg0: boolean): void
+ "betterendisland$setNumTimesDragonKilled"(arg0: integer): void
+ "betterendisland$firstExitPortalSpawn"(): boolean
+ "betterendisland$hasDragonEverSpawned"(): boolean
+ "betterendisland$numTimesDragonKilled"(): integer
+ "betterendisland$tickBellSound"(): void
+ "betterendisland$getDragonRespawnStage"(): $DragonRespawnStage
+ "betterendisland$initialRespawn"(): void
+ "betterendisland$reset"(arg0: boolean): void
  "betterendisland$clearVanillaPillars"(): void
  "betterendisland$setDragonRespawnStage"(arg0: $DragonRespawnStage$Type): void
- "betterendisland$getDragonRespawnStage"(): $DragonRespawnStage
- "betterendisland$hasDragonEverSpawned"(): boolean
- "betterendisland$setHasDragonEverSpawned"(arg0: boolean): void
- "betterendisland$tickBellSound"(): void
- "betterendisland$numTimesDragonKilled"(): integer
- "betterendisland$initialRespawn"(): void
- "betterendisland$firstExitPortalSpawn"(): boolean
- "betterendisland$setNumTimesDragonKilled"(arg0: integer): void
- "betterendisland$setFirstExitPortalSpawn"(arg0: boolean): void
- "betterendisland$reset"(arg0: boolean): void
 }
 
 export namespace $IDragonFight {
@@ -786,8 +786,8 @@ import {$StructureManager, $StructureManager$Type} from "packages/net/minecraft/
 
 export interface $WorldGenRegionAccessor {
 
- "getCache"(): $List<($ChunkAccess)>
  "getSize"(): integer
+ "getCache"(): $List<($ChunkAccess)>
  "getStructureManager"(): $StructureManager
  "getFirstPos"(): $ChunkPos
  "getLastPos"(): $ChunkPos
@@ -1140,8 +1140,8 @@ declare module "packages/com/yungnickyoung/minecraft/betterendisland/world/$IEnd
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $IEndSpike {
 
- "betterendisland$setCrystalYOffsetFromPillarHeight"(arg0: integer): void
  "betterendisland$getCrystalYOffset"(): integer
+ "betterendisland$setCrystalYOffsetFromPillarHeight"(arg0: integer): void
 }
 
 export namespace $IEndSpike {
@@ -1318,12 +1318,12 @@ export interface $NoiseSamplerBiomeHolder {
 
  "getBiomeRegistry"(): $Registry<($Biome)>
  "getWorldSeed"(): long
- "setBiomeSource"(arg0: $BiomeSource$Type): void
- "setWorldSeed"(arg0: long): void
  "setClimateSampler"(arg0: $Climate$Sampler$Type): void
+ "setWorldSeed"(arg0: long): void
+ "setBiomeSource"(arg0: $BiomeSource$Type): void
  "setBiomeRegistry"(arg0: $Registry$Type<($Biome$Type)>): void
- "getBiomeSource"(): $BiomeSource
  "getClimateSampler"(): $Climate$Sampler
+ "getBiomeSource"(): $BiomeSource
 }
 
 export namespace $NoiseSamplerBiomeHolder {
@@ -1730,15 +1730,15 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "spreadFromRandomFaceTowardRandomDirection"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
-public "spreadFromFaceTowardDirection"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $Direction$Type, arg5: boolean): boolean
-public "spreadFromFaceTowardRandomDirection"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $RandomSource$Type, arg5: boolean): boolean
 public "spreadFromRandomFaceWithinBlock"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "spreadFromRandomFaceTowardRandomDirection"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
+public "spreadFromFaceTowardRandomDirection"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $RandomSource$Type, arg5: boolean): boolean
+public "spreadFromFaceTowardDirection"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: $Direction$Type, arg5: boolean): boolean
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getSpreader"(): $MultifaceSpreader
 public "getStateForPlacement"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
@@ -2029,8 +2029,8 @@ import {$StructureManager, $StructureManager$Type} from "packages/net/minecraft/
 
 export interface $WorldGenRegionAccessor {
 
- "getCache"(): $List<($ChunkAccess)>
  "getSize"(): integer
+ "getCache"(): $List<($ChunkAccess)>
  "getStructureManager"(): $StructureManager
  "getFirstPos"(): $ChunkPos
  "getLastPos"(): $ChunkPos
@@ -2469,8 +2469,6 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
@@ -2479,6 +2477,8 @@ public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $Bloc
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "spawnAfterBreak"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type, arg4: boolean): void
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
@@ -3462,9 +3462,9 @@ readonly "radiusMax": integer
 
 constructor(arg0: $List$Type<($Block$Type)>, arg1: $BlockState$Type, arg2: integer, arg3: integer)
 
-public "build"(): $ThreeLayerNoisySphereReplaceConfig
-public "ceiling"(arg0: $BlockState$Type): $ThreeLayerNoisySphereReplaceConfig$Builder
 public "floor"(arg0: $BlockState$Type): $ThreeLayerNoisySphereReplaceConfig$Builder
+public "ceiling"(arg0: $BlockState$Type): $ThreeLayerNoisySphereReplaceConfig$Builder
+public "build"(): $ThreeLayerNoisySphereReplaceConfig
 public "ceilingWidth"(arg0: integer): $ThreeLayerNoisySphereReplaceConfig$Builder
 public "floorWidth"(arg0: integer): $ThreeLayerNoisySphereReplaceConfig$Builder
 }
@@ -3714,7 +3714,6 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public static "findIcicleTipAboveCauldron"(arg0: $Level$Type, arg1: $BlockPos$Type): $BlockPos
 public static "getCauldronFillFluidType"(arg0: $Level$Type, arg1: $BlockPos$Type): $Fluid
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getMaxHorizontalOffset"(): float
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
@@ -3722,8 +3721,9 @@ public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockP
 public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
 public "onBrokenAfterFall"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $FallingBlockEntity$Type): void
 public "getFallDamageSource"(arg0: $Entity$Type): $DamageSource
@@ -3799,19 +3799,19 @@ export class $SandstormServerData extends $SavedData {
 constructor(arg0: $ServerLevel$Type)
 constructor(arg0: $ServerLevel$Type, arg1: $CompoundTag$Type)
 
-public "getSeed"(): long
-public "tick"(): void
 public "start"(): void
 public "stop"(): void
-public "getTotalSandstormDurationTicks"(): integer
-public "getServerLevel"(): $ServerLevel
+public "getSeed"(): long
+public "tick"(): void
 public "isSandstormActive"(): boolean
+public "getServerLevel"(): $ServerLevel
+public "getTotalSandstormDurationTicks"(): integer
 public "getCurrSandstormTicks"(): integer
 public "save"(arg0: $CompoundTag$Type): $CompoundTag
 get "seed"(): long
-get "totalSandstormDurationTicks"(): integer
-get "serverLevel"(): $ServerLevel
 get "sandstormActive"(): boolean
+get "serverLevel"(): $ServerLevel
+get "totalSandstormDurationTicks"(): integer
 get "currSandstormTicks"(): integer
 }
 /**
@@ -4305,8 +4305,8 @@ import {$StructureManager, $StructureManager$Type} from "packages/net/minecraft/
 
 export interface $WorldGenRegionAccessor {
 
- "getCache"(): $List<($ChunkAccess)>
  "getSize"(): integer
+ "getCache"(): $List<($ChunkAccess)>
  "getStructureManager"(): $StructureManager
  "getFirstPos"(): $ChunkPos
  "getLastPos"(): $ChunkPos
@@ -4393,10 +4393,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -5143,9 +5143,9 @@ static readonly "END": $DragonRespawnStage
 static readonly "CODEC": $StringRepresentable$EnumCodec<($DragonRespawnStage)>
 
 
-public "tick"(arg0: $ServerLevel$Type, arg1: $EndDragonFight$Type, arg2: $List$Type<($EndCrystal$Type)>, arg3: integer, arg4: $BlockPos$Type): void
 public static "values"(): ($DragonRespawnStage)[]
 public static "valueOf"(arg0: string): $DragonRespawnStage
+public "tick"(arg0: $ServerLevel$Type, arg1: $EndDragonFight$Type, arg2: $List$Type<($EndCrystal$Type)>, arg3: integer, arg4: $BlockPos$Type): void
 public "getSerializedName"(): string
 public static "byName"(arg0: string): $DragonRespawnStage
 public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>): $StringRepresentable$EnumCodec<(E)>
@@ -5653,12 +5653,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "spawnAfterBreak"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type, arg4: boolean): void
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "playerDestroy"(arg0: $Level$Type, arg1: $Player$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $BlockEntity$Type, arg5: $ItemStack$Type): void
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**

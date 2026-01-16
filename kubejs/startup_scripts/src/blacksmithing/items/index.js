@@ -8,6 +8,11 @@ StartupEvents.registry('item', event => {
   }
 });
 
+/**
+ * Adds tool recipes for the given metal.
+ * @param {Item_} event
+ * @param {string} metal
+ */
 function addTools(event, metal) {
   // forging, available only for smithable and base castable metals
   if (global.isSmithable(metal) || global.isBaseCastable(metal)) {
@@ -231,13 +236,14 @@ function addTools(event, metal) {
       .displayName(toSentenceCase(`${metal} ${part}`))
 
     // add missing tools
-    if (!global.toolItems[metal][part]) {
+    if (!global.toolItems[metal][part] && (!global.tConstructToolParts[part] || !global.metalHasTConstructItems[metal])) {
       let type = part.split('_')[0]
       let toolItem = `${metal}_${type}`
 
       event
         .create(toolItem, type)
-        .tier('iron')
+        .maxDamage(global.baseMetalDurability[metal])
+        .tier(global.metalTiers[metal])
         .texture(`minecraft:item/stone_${type}`)
         .color(0, global.metalColors[metal])
         .displayName(toSentenceCase(toolItem))
@@ -440,29 +446,65 @@ function addArmors(event, metal) {
   if (!global.armorItems[metal].helmet)
     event
       .create(`${metal}_helmet`, 'helmet')
+      .maxDamage(Math.ceil(global.baseMetalDurability[metal] * 2.4))
       .texture(`minecraft:item/iron_helmet`)
       .color(0, global.metalColors[metal])
-      .tier(global.hardCastableMetals.includes(metal) ? 'netherite' : 'diamond')
+      .tier(global.metalTiers[metal])
       .displayName(toSentenceCase(`${metal} Helmet`))
   if (!global.armorItems[metal].chestplate)
     event
       .create(`${metal}_chestplate`, 'chestplate')
+      .maxDamage(Math.ceil(global.baseMetalDurability[metal] * 3.5))
       .texture(`minecraft:item/iron_chestplate`)
       .color(0, global.metalColors[metal])
-      .tier(global.hardCastableMetals.includes(metal) ? 'netherite' : 'diamond')
+      .tier(global.metalTiers[metal])
       .displayName(toSentenceCase(`${metal} Chestplate`))
   if (!global.armorItems[metal].leggings)  
     event
       .create(`${metal}_leggings`, 'leggings')
+      .maxDamage(Math.ceil(global.baseMetalDurability[metal] * 3.2))
       .texture(`minecraft:item/iron_leggings`)
       .color(0, global.metalColors[metal])
-      .tier(global.hardCastableMetals.includes(metal) ? 'netherite' : 'diamond')
+      .tier(global.metalTiers[metal])
       .displayName(toSentenceCase(`${metal} Leggings`))
   if (!global.armorItems[metal].boots)  
     event
       .create(`${metal}_boots`, 'boots')
+      .maxDamage(Math.ceil(global.baseMetalDurability[metal] * 2.8))
       .texture(`minecraft:item/iron_boots`)
       .color(0, global.metalColors[metal])
-      .tier(global.hardCastableMetals.includes(metal) ? 'netherite' : 'diamond')
+      .tier(global.metalTiers[metal])
       .displayName(toSentenceCase(`${metal} Boots`))
 }
+
+ItemEvents.modification(event => {
+  for (let metal of global.allMetals) {
+    for (let part of global.toolParts) {
+      if (global.toolItems[metal][part]) {
+        event.modify(global.toolItems[metal][part], item => {
+          item.maxDamage = global.baseMetalDurability[metal]
+        })
+      }
+      if (global.armorItems[metal].helmet) {
+        event.modify(global.armorItems[metal].helmet, item => {
+          item.maxDamage = Math.ceil(global.baseMetalDurability[metal] * 2.4)
+        })
+      }
+      if (global.armorItems[metal].chestplate) {
+        event.modify(global.armorItems[metal].chestplate, item => {
+          item.maxDamage = Math.ceil(global.baseMetalDurability[metal] * 3.5)
+        })
+      }
+      if (global.armorItems[metal].leggings) {
+        event.modify(global.armorItems[metal].leggings, item => {
+          item.maxDamage = Math.ceil(global.baseMetalDurability[metal] * 3.2)
+        })
+      }
+      if (global.armorItems[metal].boots) {
+        event.modify(global.armorItems[metal].boots, item => {
+          item.maxDamage = Math.ceil(global.baseMetalDurability[metal] * 2.8)
+        })
+      }
+    }
+  }
+})

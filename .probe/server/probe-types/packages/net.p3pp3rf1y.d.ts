@@ -21,13 +21,13 @@ constructor(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: $Consumer$
 
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "shouldCompactNonUncraftable"(): boolean
+public "onAfterInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer): void
+public "onSlotChange"(arg0: $IItemHandler$Type, arg1: integer): void
 public "getFilterLogic"(): $FilterLogic
+public "onBeforeInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer, arg2: $ItemStack$Type, arg3: boolean): $ItemStack
 public "setCompactNonUncraftable"(arg0: boolean): void
 public "setShouldWorkdInGUI"(arg0: boolean): void
 public "shouldWorkInGUI"(): boolean
-public "onBeforeInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer, arg2: $ItemStack$Type, arg3: boolean): $ItemStack
-public "onAfterInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer): void
-public "onSlotChange"(arg0: $IItemHandler$Type, arg1: integer): void
 get "filterLogic"(): $FilterLogic
 set "compactNonUncraftable"(value: boolean)
 set "shouldWorkdInGUI"(value: boolean)
@@ -93,8 +93,8 @@ export class $CraftingUpgradeWrapper extends $UpgradeWrapperBase<($CraftingUpgra
 constructor(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: $Consumer$Type<($ItemStack$Type)>)
 
 public "shouldShiftClickIntoStorage"(): boolean
-public "setShiftClickIntoStorage"(arg0: boolean): void
 public "canBeDisabled"(): boolean
+public "setShiftClickIntoStorage"(arg0: boolean): void
 public "getInventory"(): $ItemStackHandler
 set "shiftClickIntoStorage"(value: boolean)
 get "inventory"(): $ItemStackHandler
@@ -131,12 +131,12 @@ readonly "result": $ItemStack
 
 constructor(arg0: $SmithingTransformRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $Container$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
 public "getCompose"(): $SmithingTransformRecipe
-get "special"(): boolean
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
 get "compose"(): $SmithingTransformRecipe
 }
 /**
@@ -210,10 +210,10 @@ readonly "canRepair": boolean
 constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 
 public "addCreativeTabItems"(arg0: $Consumer$Type<($ItemStack$Type)>): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -354,18 +354,18 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: integer, arg1: $Supplier$Type<(integer)>, arg2: $Supplier$Type<(integer)>, arg3: float)
 
 public "rotate"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Rotation$Type): $BlockState
-public "trySneakItemInteraction"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $BlockState$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type, arg6: $ItemStack$Type): boolean
-public "tryToTakeItem"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
-public "isLookingAtFront"(arg0: $Player$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): boolean
-public "tryToDyeAll"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockHitResult$Type, arg4: $ItemStack$Type): boolean
-public static "getNorthBasedRotation"(arg0: $Direction$Type): $Quaternionf
 public "getVerticalFacing"(arg0: $BlockState$Type): $VerticalFacing
-public "getHorizontalDirection"(arg0: $BlockState$Type): $Direction
 public "getDisplayItemsCount"(arg0: $List$Type<($RenderInfo$DisplayItem$Type)>): integer
 public "hasFixedIndexDisplayItems"(): boolean
+public "tryToDyeAll"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockHitResult$Type, arg4: $ItemStack$Type): boolean
+public static "getNorthBasedRotation"(arg0: $Direction$Type): $Quaternionf
 public static "setupDefaultSettings"(arg0: $IStorageWrapper$Type): void
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
+public "isLookingAtFront"(arg0: $Player$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): boolean
+public "tryToTakeItem"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
+public "trySneakItemInteraction"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $BlockState$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type, arg6: $ItemStack$Type): boolean
+public "getHorizontalDirection"(arg0: $BlockState$Type): $Direction
 public "getBaseStackSizeMultiplier"(): integer
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "attack"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): void
@@ -421,11 +421,11 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($PickupUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($PickupUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -464,25 +464,25 @@ constructor(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: $Consumer$
 
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "setShouldVoidOverflowDefaultOrLoadFromNbt"(arg0: boolean): void
-public "getFilterLogic"(): $FilterLogic
-public "setShouldWorkdInGUI"(arg0: boolean): void
-public "shouldWorkInGUI"(): boolean
-public "onBeforeInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer, arg2: $ItemStack$Type, arg3: boolean): $ItemStack
 public "onAfterInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer): void
 public "onSlotChange"(arg0: $IItemHandler$Type, arg1: integer): void
-public "getSlotLimit"(): integer
+public "getFilterLogic"(): $FilterLogic
+public "onBeforeInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer, arg2: $ItemStack$Type, arg3: boolean): $ItemStack
 public "shouldVoidOverflow"(): boolean
 public "setShouldVoidOverflow"(arg0: boolean): void
 public "stackMatchesFilter"(arg0: $ItemStack$Type): boolean
 public "isVoidAnythingEnabled"(): boolean
+public "getSlotLimit"(): integer
+public "setShouldWorkdInGUI"(arg0: boolean): void
+public "shouldWorkInGUI"(): boolean
 public "worksInGui"(): boolean
 public "onOverflow"(arg0: $ItemStack$Type): $ItemStack
 public "stackMatchesFilterStack"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
 set "shouldVoidOverflowDefaultOrLoadFromNbt"(value: boolean)
 get "filterLogic"(): $FilterLogic
-set "shouldWorkdInGUI"(value: boolean)
-get "slotLimit"(): integer
 get "voidAnythingEnabled"(): boolean
+get "slotLimit"(): integer
+set "shouldWorkdInGUI"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -569,8 +569,8 @@ public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockP
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -647,17 +647,17 @@ readonly "canRepair": boolean
 constructor(arg0: $BatteryUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($BatteryUpgradeWrapper)>
-public "getBatteryUpgradeConfig"(): $BatteryUpgradeConfig
-public "getMaxEnergyBase"(arg0: $IStorageWrapper$Type): integer
 public "getAdjustedStackMultiplier"(arg0: $IStorageWrapper$Type): double
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
 public "getInventoryColumnsTaken"(): integer
+public "getMaxEnergyBase"(arg0: $IStorageWrapper$Type): integer
+public "getBatteryUpgradeConfig"(): $BatteryUpgradeConfig
 public "getMaxEnergyStored"(arg0: $IStorageWrapper$Type): integer
 get "type"(): $UpgradeType<($BatteryUpgradeWrapper)>
-get "batteryUpgradeConfig"(): $BatteryUpgradeConfig
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "inventoryColumnsTaken"(): integer
+get "batteryUpgradeConfig"(): $BatteryUpgradeConfig
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -695,8 +695,8 @@ readonly "showNotification": boolean
 
 constructor(arg0: $ShapedRecipe$Type)
 
-public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 get "serializer"(): $RecipeSerializer<(any)>
 }
 /**
@@ -741,8 +741,8 @@ readonly "canRepair": boolean
 constructor(arg0: boolean, arg1: boolean)
 
 public "getType"(): $UpgradeType<($ToolSwapperUpgradeWrapper)>
-public "hasSettingsTab"(): boolean
 public "shouldSwapToolOnKeyPress"(): boolean
+public "hasSettingsTab"(): boolean
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "type"(): $UpgradeType<($ToolSwapperUpgradeWrapper)>
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
@@ -805,17 +805,17 @@ public static "getDisplayName"(arg0: string, arg1: $WoodType$Type): $Component
 public "setMainColor"(arg0: $ItemStack$Type, arg1: integer): void
 public "setAccentColor"(arg0: $ItemStack$Type, arg1: integer): void
 public static "setWoodType"(arg0: $ItemStack$Type, arg1: $WoodType$Type): $ItemStack
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public static "getWoodType"(arg0: $ItemStack$Type): $Optional<($WoodType)>
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
 public "getName"(arg0: $ItemStack$Type): $Component
 public static "isPacked"(arg0: $ItemStack$Type): boolean
 public static "setPacked"(arg0: $ItemStack$Type, arg1: boolean): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -855,14 +855,14 @@ static readonly "SIDE_ALL": $BarrelMaterial
 static readonly "BOTTOM_ALL": $BarrelMaterial
 
 
-public "getChildren"(): ($BarrelMaterial)[]
 public static "values"(): ($BarrelMaterial)[]
 public static "valueOf"(arg0: string): $BarrelMaterial
+public "getChildren"(): ($BarrelMaterial)[]
 public static "getFillFromDefaults"(arg0: $BarrelMaterial$Type): $List<($BarrelMaterial)>
 public "getSerializedName"(): string
 public "getMaterialModelPart"(): $BarrelMaterial$MaterialModelPart
-public "isLeaf"(): boolean
 public static "fromName"(arg0: string): $BarrelMaterial
+public "isLeaf"(): boolean
 public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>): $StringRepresentable$EnumCodec<(E)>
 public static "fromEnumWithMapping"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>, arg1: $Function$Type<(string), (string)>): $StringRepresentable$EnumCodec<(E)>
 public static "keys"(arg0: ($StringRepresentable$Type)[]): $Keyable
@@ -898,16 +898,16 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 import {$RenderInfo$DisplayItem, $RenderInfo$DisplayItem$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/renderdata/$RenderInfo$DisplayItem"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
-import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$VerticalFacing, $VerticalFacing$Type} from "packages/net/p3pp3rf1y/sophisticatedstorage/block/$VerticalFacing"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$StorageBlockEntity, $StorageBlockEntity$Type} from "packages/net/p3pp3rf1y/sophisticatedstorage/block/$StorageBlockEntity"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
-import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$IStorageWrapper, $IStorageWrapper$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/api/$IStorageWrapper"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
 import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
@@ -959,27 +959,27 @@ readonly "properties": $BlockBehaviour$Properties
  "drops": $ResourceLocation
 
 
-public "getNumberOfInventorySlots"(): integer
-public "trySneakItemInteraction"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $BlockState$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type, arg6: $ItemStack$Type): boolean
-public "getNumberOfUpgradeSlots"(): integer
 public "getVerticalFacing"(arg0: $BlockState$Type): $VerticalFacing
-public "getHorizontalDirection"(arg0: $BlockState$Type): $Direction
 public "getDisplayItemsCount"(arg0: $List$Type<($RenderInfo$DisplayItem$Type)>): integer
 public "hasFixedIndexDisplayItems"(): boolean
 public "tryAddSingleUpgrade"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $StorageBlockEntity$Type, arg3: $ItemStack$Type): boolean
 public static "tryAddSingleUpgrade"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $ItemStack$Type, arg3: $IStorageWrapper$Type): boolean
 public "tryFillUpgrades"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $Level$Type, arg3: $BlockPos$Type, arg4: $ItemStack$Type): boolean
 public "getNeighborPos"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): $List<($BlockPos)>
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
+public "trySneakItemInteraction"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $BlockState$Type, arg3: $Level$Type, arg4: $BlockPos$Type, arg5: $BlockHitResult$Type, arg6: $ItemStack$Type): boolean
+public "getNumberOfInventorySlots"(): integer
+public "getHorizontalDirection"(arg0: $BlockState$Type): $Direction
+public "getNumberOfUpgradeSlots"(): integer
 public "addCreativeTabItems"(arg0: $Consumer$Type<($ItemStack$Type)>): void
 public "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getFacing"(arg0: $BlockState$Type): $Direction
 public "setTicking"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): void
 public "getBaseStackSizeMultiplier"(): integer
@@ -1005,8 +1005,8 @@ declare module "packages/net/p3pp3rf1y/sophisticatedcore/util/$ITintable" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ITintable {
 
- "getAccentColor"(): integer
  "getMainColor"(): integer
+ "getAccentColor"(): integer
  "setColors"(arg0: integer, arg1: integer): void
 }
 
@@ -1085,12 +1085,12 @@ constructor(arg0: $AutoCookingUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfi
 
 public "getType"(): $UpgradeType<($AutoCookingUpgradeWrapper$AutoSmokingUpgradeWrapper)>
 public "getAutoCookingUpgradeConfig"(): $AutoCookingUpgradeConfig
-public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "getUpgradeGroup"(): $UpgradeGroup
+public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "type"(): $UpgradeType<($AutoCookingUpgradeWrapper$AutoSmokingUpgradeWrapper)>
 get "autoCookingUpgradeConfig"(): $AutoCookingUpgradeConfig
-get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "upgradeGroup"(): $UpgradeGroup
+get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1126,9 +1126,9 @@ static readonly "ENERGY_STORED_TAG": string
 
 
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
-public "getMinimumMultiplierRequired"(): integer
 public "forceUpdateBatteryRenderInfo"(): void
 public "setBatteryRenderInfoUpdateCallback"(arg0: $Consumer$Type<($IRenderedBatteryUpgrade$BatteryRenderInfo$Type)>): void
+public "getMinimumMultiplierRequired"(): integer
 public "canBeDisabled"(): boolean
 public "receiveEnergy"(arg0: integer, arg1: boolean): integer
 public "extractEnergy"(arg0: integer, arg1: boolean): integer
@@ -1138,8 +1138,8 @@ public static "getEnergyStored"(arg0: $ItemStack$Type): integer
 public "getEnergyStored"(): integer
 public "canExtract"(): boolean
 public "canReceive"(): boolean
-get "minimumMultiplierRequired"(): integer
 set "batteryRenderInfoUpdateCallback"(value: $Consumer$Type<($IRenderedBatteryUpgrade$BatteryRenderInfo$Type)>)
+get "minimumMultiplierRequired"(): integer
 get "inventory"(): $IItemHandler
 get "maxEnergyStored"(): integer
 get "energyStored"(): integer
@@ -1251,8 +1251,8 @@ import {$Slot, $Slot$Type} from "packages/net/minecraft/world/inventory/$Slot"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$ItemBase, $ItemBase$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/util/$ItemBase"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$SlotAccess, $SlotAccess$Type} from "packages/net/minecraft/world/entity/$SlotAccess"
@@ -1281,25 +1281,25 @@ constructor(arg0: $IntSupplier$Type, arg1: $IntSupplier$Type, arg2: $Supplier$Ty
 public "createEntity"(arg0: $Level$Type, arg1: $Entity$Type, arg2: $ItemStack$Type): $Entity
 public "shouldCauseReequipAnimation"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): boolean
 public "getNumberOfUpgradeSlots"(): integer
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "hasCustomEntity"(arg0: $ItemStack$Type): boolean
-public "onArmorTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
-public "onDroppedByPlayer"(arg0: $ItemStack$Type, arg1: $Player$Type): boolean
-public "makesPiglinsNeutral"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
-public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
-public "getItemStashable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $IStashStorageItem$StashResult
-public "getInventoryTooltip"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
 public "getNumberOfSlots"(): integer
 public "addCreativeTabItems"(arg0: $Consumer$Type<($ItemStack$Type)>): void
-public "canFitInsideContainerItems"(): boolean
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "onDroppedByPlayer"(arg0: $ItemStack$Type, arg1: $Player$Type): boolean
+public "makesPiglinsNeutral"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type): boolean
+public "hasCustomEntity"(arg0: $ItemStack$Type): boolean
+public "onArmorTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Player$Type): void
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "getItemStashable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $IStashStorageItem$StashResult
+public "getInventoryTooltip"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
+public "getEquipmentSlot"(arg0: $ItemStack$Type): $EquipmentSlot
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "overrideStackedOnOther"(arg0: $ItemStack$Type, arg1: $Slot$Type, arg2: $ClickAction$Type, arg3: $Player$Type): boolean
 public "overrideOtherStackedOnMe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Slot$Type, arg3: $ClickAction$Type, arg4: $Player$Type, arg5: $SlotAccess$Type): boolean
 public "inventoryTick"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Entity$Type, arg3: integer, arg4: boolean): void
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
+public "canFitInsideContainerItems"(): boolean
 public "tryPlace"(arg0: $Player$Type, arg1: $Direction$Type, arg2: $BlockPlaceContext$Type): $InteractionResult
 public "stash"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
 get "numberOfUpgradeSlots"(): integer
@@ -1451,8 +1451,8 @@ public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, ar
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1491,17 +1491,17 @@ export interface $IInventoryPartHandler {
  "getFilterItem"(arg0: integer): $Item
  "onSlotLimitChange"(): void
  "onSlotFilterChanged"(arg0: integer): void
- "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type, arg2: $BiConsumer$Type<(integer), ($ItemStack$Type)>): void
+ "getStackInSlot"(arg0: integer, arg1: $IntFunction$Type<($ItemStack$Type)>): $ItemStack
  "isItemValid"(arg0: integer, arg1: $ItemStack$Type, arg2: $Player$Type, arg3: $BiPredicate$Type<(integer), ($ItemStack$Type)>): boolean
  "getSlotLimit"(arg0: integer): integer
  "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
- "getStackInSlot"(arg0: integer, arg1: $IntFunction$Type<($ItemStack$Type)>): $ItemStack
+ "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type, arg2: $BiConsumer$Type<(integer), ($ItemStack$Type)>): void
  "getStackLimit"(arg0: integer, arg1: $ItemStack$Type): integer
  "canBeReplaced"(): boolean
- "onContentsChanged"(arg0: integer, arg1: $BiConsumer$Type<(integer), ($ItemStack$Type)>): void
  "getFilterItems"(): $Map<($Item), ($Set<(integer)>)>
- "onInit"(): void
+ "onContentsChanged"(arg0: integer, arg1: $BiConsumer$Type<(integer), ($ItemStack$Type)>): void
  "getSlots"(): integer
+ "onInit"(): void
  "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean, arg3: $TriFunction$Type<(integer), ($ItemStack$Type), (boolean), ($ItemStack$Type)>): $ItemStack
 
 (): string
@@ -1556,13 +1556,13 @@ readonly "canRepair": boolean
 constructor(arg0: $CookingUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($CookingUpgradeWrapper$SmeltingUpgradeWrapper)>
+public "getUpgradeGroup"(): $UpgradeGroup
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "getCookingUpgradeConfig"(): $CookingUpgradeConfig
-public "getUpgradeGroup"(): $UpgradeGroup
 get "type"(): $UpgradeType<($CookingUpgradeWrapper$SmeltingUpgradeWrapper)>
+get "upgradeGroup"(): $UpgradeGroup
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "cookingUpgradeConfig"(): $CookingUpgradeConfig
-get "upgradeGroup"(): $UpgradeGroup
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1589,9 +1589,9 @@ static readonly "DESERIALIZER": $ParticleOptions$Deserializer<($JukeboxUpgradeNo
 constructor()
 
 public "getType"(): $JukeboxUpgradeNoteParticleData
-public "codec"(): $Codec<($JukeboxUpgradeNoteParticleData)>
 public "writeToNetwork"(arg0: $FriendlyByteBuf$Type): void
 public "writeToString"(): string
+public "codec"(): $Codec<($JukeboxUpgradeNoteParticleData)>
 get "type"(): $JukeboxUpgradeNoteParticleData
 }
 /**
@@ -1630,26 +1630,26 @@ static readonly "INPUT_RESULT_SLOT": integer
 static readonly "OUTPUT_RESULT_SLOT": integer
 
 
-public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "drain"(arg0: integer, arg1: $IFluidHandler$FluidAction$Type, arg2: boolean): $FluidStack
+public "fill"(arg0: $FluidStack$Type, arg1: $IFluidHandler$FluidAction$Type, arg2: boolean): integer
+public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "getContents"(): $FluidStack
 public static "getContents"(arg0: $ItemStack$Type): $FluidStack
-public "fill"(arg0: $FluidStack$Type, arg1: $IFluidHandler$FluidAction$Type, arg2: boolean): integer
 public "setTankRenderInfoUpdateCallback"(arg0: $Consumer$Type<($IRenderedTankUpgrade$TankRenderInfo$Type)>): void
 public "getMinimumMultiplierRequired"(): integer
 public "forceUpdateTankRenderInfo"(): void
 public "interactWithCursorStack"(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>): void
 public "fillHandler"(arg0: $IFluidHandlerItem$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: boolean, arg3: boolean): boolean
+public "canBeDisabled"(): boolean
 public "drainHandler"(arg0: $IFluidHandlerItem$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: boolean, arg3: boolean): boolean
 public "drainHandler"(arg0: $IFluidHandlerItem$Type, arg1: $Consumer$Type<($ItemStack$Type)>): void
-public "canBeDisabled"(): boolean
-public "getTankCapacity"(): integer
 public "getInventory"(): $IItemHandler
+public "getTankCapacity"(): integer
 get "contents"(): $FluidStack
 set "tankRenderInfoUpdateCallback"(value: $Consumer$Type<($IRenderedTankUpgrade$TankRenderInfo$Type)>)
 get "minimumMultiplierRequired"(): integer
-get "tankCapacity"(): integer
 get "inventory"(): $IItemHandler
+get "tankCapacity"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1735,7 +1735,6 @@ static readonly "SORT_BY_TAG": string
 public "load"(arg0: $CompoundTag$Type): void
 public "save"(arg0: $CompoundTag$Type): $CompoundTag
 public "sort"(): void
-public "registerOnInventoryInputOutputHandlerRefreshListener"(arg0: $Runnable$Type): void
 public "registerUpgradeDefaultsHandler"<T extends $IUpgradeWrapper>(arg0: $Class$Type<(T)>, arg1: $Consumer$Type<(T)>): void
 public "getDefaultNumberOfInventorySlots"(): integer
 public "getDefaultNumberOfUpgradeSlots"(): integer
@@ -1743,13 +1742,10 @@ public "getInventoryForUpgradeProcessing"(): $ITrackedContentsItemHandler
 public "setUpgradeCachesInvalidatedHandler"(arg0: $Runnable$Type): void
 public "refreshInventoryForUpgradeProcessing"(): void
 public "refreshInventoryForInputOutput"(): void
-public "getNumberOfInventorySlots"(): integer
 public "setContentsUuid"(arg0: $UUID$Type): void
+public "getNumberOfInventorySlots"(): integer
 public "hasMainColor"(): boolean
 public "hasAccentColor"(): boolean
-public "getAccentColor"(): integer
-public "getMainColor"(): integer
-public "getInventoryHandler"(): $InventoryHandler
 public "setContentsChangeHandler"(arg0: $Runnable$Type): void
 public "getInventoryForInputOutput"(): $ITrackedContentsItemHandler
 public "getSettingsHandler"(): $SettingsHandler
@@ -1762,31 +1758,32 @@ public "getRenderInfo"(): $RenderInfo
 public "setColumnsTaken"(arg0: integer, arg1: boolean): void
 public "getColumnsTaken"(): integer
 public "getNumberOfSlotRows"(): integer
+public "getInventoryHandler"(): $InventoryHandler
 public "getUpgradeHandler"(): $UpgradeHandler
 public "onContentsNbtUpdated"(): void
+public "getMainColor"(): integer
+public "getAccentColor"(): integer
+public "registerOnInventoryInputOutputHandlerRefreshListener"(arg0: $Runnable$Type): void
 public "setColors"(arg0: integer, arg1: integer): void
 public "setSortBy"(arg0: $SortBy$Type): void
 public "getSortBy"(): $SortBy
 public "changeSize"(arg0: integer, arg1: integer): void
 public "getDisplayName"(): $Component
 public "setInventorySlotChangeHandler"(arg0: $Runnable$Type): void
-public "getBaseStackSizeMultiplier"(): integer
-public "getStorageType"(): string
 public "getWrappedStorageStack"(): $ItemStack
 public "isUpgradeRunnable"(arg0: $ItemStack$Type): boolean
+public "getStorageType"(): string
+public "getBaseStackSizeMultiplier"(): integer
 public "getContentsUuid"(): $Optional<($UUID)>
+public "getFluidHandler"(): $Optional<($IStorageFluidHandler)>
 public "getEnergyStorage"(): $Optional<($IEnergyStorage)>
 public "onInit"(): void
-public "getFluidHandler"(): $Optional<($IStorageFluidHandler)>
 get "defaultNumberOfInventorySlots"(): integer
 get "defaultNumberOfUpgradeSlots"(): integer
 get "inventoryForUpgradeProcessing"(): $ITrackedContentsItemHandler
 set "upgradeCachesInvalidatedHandler"(value: $Runnable$Type)
-get "numberOfInventorySlots"(): integer
 set "contentsUuid"(value: $UUID$Type)
-get "accentColor"(): integer
-get "mainColor"(): integer
-get "inventoryHandler"(): $InventoryHandler
+get "numberOfInventorySlots"(): integer
 set "contentsChangeHandler"(value: $Runnable$Type)
 get "inventoryForInputOutput"(): $ITrackedContentsItemHandler
 get "settingsHandler"(): $SettingsHandler
@@ -1796,17 +1793,20 @@ set "persistent"(value: boolean)
 get "renderInfo"(): $RenderInfo
 get "columnsTaken"(): integer
 get "numberOfSlotRows"(): integer
+get "inventoryHandler"(): $InventoryHandler
 get "upgradeHandler"(): $UpgradeHandler
+get "mainColor"(): integer
+get "accentColor"(): integer
 set "sortBy"(value: $SortBy$Type)
 get "sortBy"(): $SortBy
 get "displayName"(): $Component
 set "inventorySlotChangeHandler"(value: $Runnable$Type)
-get "baseStackSizeMultiplier"(): integer
-get "storageType"(): string
 get "wrappedStorageStack"(): $ItemStack
+get "storageType"(): string
+get "baseStackSizeMultiplier"(): integer
 get "contentsUuid"(): $Optional<($UUID)>
-get "energyStorage"(): $Optional<($IEnergyStorage)>
 get "fluidHandler"(): $Optional<($IStorageFluidHandler)>
+get "energyStorage"(): $Optional<($IEnergyStorage)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1923,13 +1923,13 @@ export interface $IItemHandlerSimpleInserter extends $IItemHandlerModifiable {
  "extractItem"(i: integer, i1: integer, b: boolean): $ItemStack
  "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
  "isItemValid"(i: integer, itemStack: $ItemStack$Type): boolean
+ "getBlock"(level: $Level$Type): $BlockContainerJS
+ "getStackInSlot"(arg0: integer): $ItemStack
  "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
  "getSlotLimit"(arg0: integer): integer
  "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
- "getStackInSlot"(arg0: integer): $ItemStack
- "getBlock"(level: $Level$Type): $BlockContainerJS
- "kjs$self"(): $IItemHandler
  "getSlots"(): integer
+ "kjs$self"(): $IItemHandler
  "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
  "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
  "getWidth"(): integer
@@ -1981,11 +1981,11 @@ public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "getOutputFilterLogic"(): $ContentsFilterLogic
 public "setPullingFrom"(arg0: $Direction$Type, arg1: boolean): void
 public "setPushingTo"(arg0: $Direction$Type, arg1: boolean): void
+public "isPullingFrom"(arg0: $Direction$Type): boolean
+public "isPushingTo"(arg0: $Direction$Type): boolean
 public "initDirections"(arg0: $Direction$Type, arg1: $Direction$Type): void
 public "updateCacheOnSide"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): void
 public "getInputFilterLogic"(): $ContentsFilterLogic
-public "isPullingFrom"(arg0: $Direction$Type): boolean
-public "isPushingTo"(arg0: $Direction$Type): boolean
 public "onNeighborChange"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): void
 public "deserialize"(): void
 get "outputFilterLogic"(): $ContentsFilterLogic
@@ -2034,11 +2034,11 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($AlchemyUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($AlchemyUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2064,17 +2064,17 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export class $SettingsHandler {
 
 
-public "getGlobalSettingsCategoryName"(): string
-public "instantiateGlobalSettingsCategory"(arg0: $CompoundTag$Type, arg1: $Consumer$Type<($CompoundTag$Type)>): $ISettingsCategory<(any)>
-public "getCategoriesThatImplement"<T>(arg0: $Class$Type<(T)>): $List<(T)>
-public "getTypeCategory"<T extends $ISettingsCategory<(any)>>(arg0: $Class$Type<(T)>): T
-public "getGlobalSettingsCategory"(): $MainSettingsCategory<(any)>
 public "getSettingsCategories"(): $Map<(string), ($ISettingsCategory<(any)>)>
+public "getCategoriesThatImplement"<T>(arg0: $Class$Type<(T)>): $List<(T)>
+public "getGlobalSettingsCategory"(): $MainSettingsCategory<(any)>
+public "getTypeCategory"<T extends $ISettingsCategory<(any)>>(arg0: $Class$Type<(T)>): T
+public "instantiateGlobalSettingsCategory"(arg0: $CompoundTag$Type, arg1: $Consumer$Type<($CompoundTag$Type)>): $ISettingsCategory<(any)>
+public "getGlobalSettingsCategoryName"(): string
 public "getNbt"(): $CompoundTag
 public "reloadFrom"(arg0: $CompoundTag$Type): void
-get "globalSettingsCategoryName"(): string
-get "globalSettingsCategory"(): $MainSettingsCategory<(any)>
 get "settingsCategories"(): $Map<(string), ($ISettingsCategory<(any)>)>
+get "globalSettingsCategory"(): $MainSettingsCategory<(any)>
+get "globalSettingsCategoryName"(): string
 get "nbt"(): $CompoundTag
 }
 /**
@@ -2254,8 +2254,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
-import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$ItemBase, $ItemBase$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/util/$ItemBase"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -2287,8 +2287,8 @@ public static "getControllerLink"(arg0: $ItemStack$Type): $Optional<($BlockPos)>
 public static "getOverlayMessage"(arg0: $ItemStack$Type): $Component
 public static "useOffHandOnPlaced"(arg0: $ItemStack$Type, arg1: $StorageBlockEntity$Type): void
 public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public static "cycleMode"(arg0: $ItemStack$Type, arg1: boolean): void
 }
 /**
@@ -2362,10 +2362,10 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IBlockToolSwapUpgrade {
 
- "onBlockInteract"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): boolean
  "canProcessBlockInteract"(): boolean
+ "onBlockInteract"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): boolean
 
-(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): boolean
+(): boolean
 }
 
 export namespace $IBlockToolSwapUpgrade {
@@ -2526,8 +2526,8 @@ export class $CookingUpgradeWrapper<W extends $CookingUpgradeWrapper<(W), (U), (
 
 
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
-public "onBeforeRemoved"(): void
 public "getCookingLogic"(): $CookingLogic<(R)>
+public "onBeforeRemoved"(): void
 public "setEnabled"(arg0: boolean): void
 get "cookingLogic"(): $CookingLogic<(R)>
 set "enabled"(value: boolean)
@@ -2603,10 +2603,12 @@ public "addStorageStacksAndRegisterListeners"(arg0: $BlockPos$Type): void
 public "removeStorageWithEmptySlots"(arg0: $BlockPos$Type): void
 public "removeStorageMemorizedStack"(arg0: $BlockPos$Type, arg1: integer): void
 public "removeStorageStacks"(arg0: $BlockPos$Type): void
-public "removeNonConnectingBlock"(arg0: $BlockPos$Type): void
 public "getLinkedBlocks"(): $Set<($BlockPos)>
 public "searchAndAddBoundables"(): void
-public "addStorageMemorizedStack"(arg0: $BlockPos$Type, arg1: integer): void
+public "getStoragePositions"(): $List<($BlockPos)>
+public "removeLinkedBlock"(arg0: $BlockPos$Type): void
+public "addLinkedBlock"(arg0: $BlockPos$Type): boolean
+public "removeNonConnectingBlock"(arg0: $BlockPos$Type): void
 public "changeSlots"(arg0: $BlockPos$Type, arg1: integer, arg2: boolean): void
 public "updateEmptySlots"(arg0: $BlockPos$Type, arg1: boolean): void
 public "isStorageConnected"(arg0: $BlockPos$Type): boolean
@@ -2615,24 +2617,22 @@ public "removeStorageStack"(arg0: $BlockPos$Type, arg1: $ItemStackKey$Type): voi
 public "addStorageStack"(arg0: $BlockPos$Type, arg1: $ItemStackKey$Type): void
 public "clearCachedHandler"(arg0: $BlockPos$Type): void
 public "setStorageFilterItems"(arg0: $BlockPos$Type, arg1: $Set$Type<($Item$Type)>): void
+public "addStorageMemorizedStack"(arg0: $BlockPos$Type, arg1: integer): void
 public "removeStorageMemorizedItem"(arg0: $BlockPos$Type, arg1: $Item$Type): void
 public "addStorageMemorizedItem"(arg0: $BlockPos$Type, arg1: $Item$Type): void
 public "removeStorage"(arg0: $BlockPos$Type): void
-public "removeLinkedBlock"(arg0: $BlockPos$Type): void
-public "addLinkedBlock"(arg0: $BlockPos$Type): boolean
-public "getStoragePositions"(): $List<($BlockPos)>
 public "onChunkUnloaded"(): void
-public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "invalidateCaps"(): void
+public "getStackInSlot"(arg0: integer): $ItemStack
 public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "getSlotLimit"(arg0: integer): integer
 public "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
-public "getStackInSlot"(arg0: integer): $ItemStack
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "invalidateCaps"(): void
+public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
 public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
-public "onLoad"(): void
 public "getSlots"(): integer
 public "getSlots"(arg0: integer): integer
+public "onLoad"(): void
 public "insertItem"(arg0: $ItemStack$Type, arg1: boolean): $ItemStack
 public "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
 public "getUpdateTag"(): $CompoundTag
@@ -2723,14 +2723,14 @@ export class $StonecutterUpgradeWrapper extends $UpgradeWrapperBase<($Stonecutte
 
 
 public "shouldShiftClickIntoStorage"(): boolean
-public "setShiftClickIntoStorage"(arg0: boolean): void
-public "setRecipeId"(arg0: $ResourceLocation$Type): void
 public "canBeDisabled"(): boolean
+public "setShiftClickIntoStorage"(arg0: boolean): void
 public "getRecipeId"(): $Optional<($ResourceLocation)>
+public "setRecipeId"(arg0: $ResourceLocation$Type): void
 public "getInputInventory"(): $IItemHandlerModifiable
 set "shiftClickIntoStorage"(value: boolean)
-set "recipeId"(value: $ResourceLocation$Type)
 get "recipeId"(): $Optional<($ResourceLocation)>
+set "recipeId"(value: $ResourceLocation$Type)
 get "inputInventory"(): $IItemHandlerModifiable
 }
 /**
@@ -2782,17 +2782,17 @@ readonly "canRepair": boolean
 constructor(arg0: double, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($StackUpgradeItem$Wrapper)>
-public static "getInventorySlotLimit"(arg0: $IStorageWrapper$Type): integer
-public "getStackSizeMultiplier"(): double
+public "getUpgradeGroup"(): $UpgradeGroup
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: integer, arg4: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
 public "canRemoveUpgradeFrom"(arg0: $IStorageWrapper$Type, arg1: boolean): $UpgradeSlotChangeResult
 public "canSwapUpgradeFor"(arg0: $ItemStack$Type, arg1: integer, arg2: $IStorageWrapper$Type, arg3: boolean): $UpgradeSlotChangeResult
-public "getUpgradeGroup"(): $UpgradeGroup
+public static "getInventorySlotLimit"(arg0: $IStorageWrapper$Type): integer
+public "getStackSizeMultiplier"(): double
 get "type"(): $UpgradeType<($StackUpgradeItem$Wrapper)>
-get "stackSizeMultiplier"(): double
-get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "upgradeGroup"(): $UpgradeGroup
+get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "stackSizeMultiplier"(): double
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2816,17 +2816,17 @@ export class $UpgradeWrapperBase<W extends $IUpgradeWrapper, T extends $UpgradeI
 
 
 public "isEnabled"(): boolean
-public "getUpgradeStack"(): $ItemStack
 public "getCooldownTime"(): long
 public "isInCooldown"(arg0: $Level$Type): boolean
+public "getUpgradeStack"(): $ItemStack
 public "setEnabled"(arg0: boolean): void
 public "canBeDisabled"(): boolean
 public "hideSettingsTab"(): boolean
 public "onBeforeRemoved"(): void
 public "onAdded"(): void
 get "enabled"(): boolean
-get "upgradeStack"(): $ItemStack
 get "cooldownTime"(): long
+get "upgradeStack"(): $ItemStack
 set "enabled"(value: boolean)
 }
 /**
@@ -3005,18 +3005,17 @@ readonly "requiredFeatures": $FeatureFlagSet
 readonly "properties": $BlockBehaviour$Properties
  "drops": $ResourceLocation
 
-constructor(arg0: $Supplier$Type<(integer)>, arg1: $Supplier$Type<(integer)>, arg2: float, arg3: $Function$Type<($StateDefinition$Type<($Block$Type), ($BlockState$Type)>), ($BlockState$Type)>)
 constructor(arg0: $Supplier$Type<(integer)>, arg1: $Supplier$Type<(integer)>, arg2: float)
+constructor(arg0: $Supplier$Type<(integer)>, arg1: $Supplier$Type<(integer)>, arg2: float, arg3: $Function$Type<($StateDefinition$Type<($Block$Type), ($BlockState$Type)>), ($BlockState$Type)>)
 
 public "rotate"(arg0: $BlockState$Type, arg1: $LevelAccessor$Type, arg2: $BlockPos$Type, arg3: $Rotation$Type): $BlockState
 public "addDropData"(arg0: $ItemStack$Type, arg1: $StorageBlockEntity$Type): void
-public "initializeClient"(arg0: $Consumer$Type<($IClientBlockExtensions$Type)>): void
-public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
 public "addCreativeTabItems"(arg0: $Consumer$Type<($ItemStack$Type)>): void
-public "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
+public "initializeClient"(arg0: $Consumer$Type<($IClientBlockExtensions$Type)>): void
 public "addLandingEffects"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $LivingEntity$Type, arg5: integer): boolean
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
+public "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
+public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
@@ -3028,6 +3027,7 @@ public "isCollisionShapeFullBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Ty
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "getFacing"(arg0: $BlockState$Type): $Direction
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -3067,13 +3067,13 @@ static readonly "UPDATE_BLOCK_RENDER_TAG": string
  "blockState": $BlockState
 
 
-public "canConnectStorages"(): boolean
-public "canBeConnected"(): boolean
-public "loadSynchronizedData"(arg0: $CompoundTag$Type): void
-public "shouldDropContents"(): boolean
 public "canBeLinked"(): boolean
 public "getStorageContentsTag"(): $CompoundTag
 public "setWoodType"(arg0: $WoodType$Type): void
+public "canConnectStorages"(): boolean
+public "loadSynchronizedData"(arg0: $CompoundTag$Type): void
+public "shouldDropContents"(): boolean
+public "canBeConnected"(): boolean
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "getWoodType"(): $Optional<($WoodType)>
 public "getDisplayName"(): $Component
@@ -3178,8 +3178,8 @@ export class $AlchemyUpgradeWrapper$ObservableFilterItemStackHandler extends $Fi
 
 constructor(arg0: $AlchemyUpgradeWrapper$Type, arg1: integer)
 
-public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "initFilters"(arg0: $List$Type<($AlchemyFilterAttribute$Type)>): void
+public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3217,8 +3217,8 @@ constructor(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: $Consumer$
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "getFuelFilterLogic"(): $FilterLogic
 public "getInputFilterLogic"(): $FilterLogic
-public "onBeforeRemoved"(): void
 public "getCookingLogic"(): $CookingLogic<(R)>
+public "onBeforeRemoved"(): void
 public "setEnabled"(arg0: boolean): void
 get "fuelFilterLogic"(): $FilterLogic
 get "inputFilterLogic"(): $FilterLogic
@@ -3293,11 +3293,11 @@ public "wrapInventory"(arg0: $ITrackedContentsItemHandler$Type): $ITrackedConten
 public "wrapAccessor"(arg0: $IUpgradeWrapperAccessor$Type): $IUpgradeWrapperAccessor
 public "wrapHandler"(arg0: $IStorageFluidHandler$Type, arg1: $ItemStack$Type): $IStorageFluidHandler
 public "wrapStorage"(arg0: $IEnergyStorage$Type): $IEnergyStorage
-public "getInventoryOrder"(): $InventoryOrder
 public "setInventoryOrder"(arg0: $InventoryOrder$Type): void
+public "getInventoryOrder"(): $InventoryOrder
 public "hideSettingsTab"(): boolean
-get "inventoryOrder"(): $InventoryOrder
 set "inventoryOrder"(value: $InventoryOrder$Type)
+get "inventoryOrder"(): $InventoryOrder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3434,20 +3434,20 @@ constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 public "getNumberOfInventorySlotsOrDefault"(arg0: $ItemStack$Type): integer
 public "getNumberOfUpgradeSlotsOrDefault"(arg0: $ItemStack$Type): integer
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "getItemStashable"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $IStashStorageItem$StashResult
 public "getInventoryTooltip"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
-public "canFitInsideContainerItems"(): boolean
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
+public "initCapabilities"(arg0: $ItemStack$Type, arg1: $CompoundTag$Type): $ICapabilityProvider
 public "onDestroyed"(arg0: $ItemEntity$Type): void
 public "overrideStackedOnOther"(arg0: $ItemStack$Type, arg1: $Slot$Type, arg2: $ClickAction$Type, arg3: $Player$Type): boolean
 public "overrideOtherStackedOnMe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Slot$Type, arg3: $ClickAction$Type, arg4: $Player$Type, arg5: $SlotAccess$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
+public "canFitInsideContainerItems"(): boolean
 public "stash"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3489,12 +3489,14 @@ readonly "showNotification": boolean
 
 constructor(arg0: $ShapedRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
+public "getCompose"(): $ShapedRecipe
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
+get "compose"(): $ShapedRecipe
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3610,52 +3612,52 @@ export class $InventoryHandler extends $ItemStackHandler implements $ITrackedCon
 static readonly "INVENTORY_TAG": string
 
 
-public "setSize"(arg0: integer): void
 public "isInfinite"(arg0: integer): boolean
+public "setSize"(arg0: integer): void
 public "unregisterStackKeyListeners"(): void
 public "unregisterFilterItemsChangeListener"(): void
 public "registerFilterItemsChangeListener"(arg0: $Consumer$Type<($Set$Type<($Item$Type)>)>): void
+public "setSlotStack"(arg0: integer, arg1: $ItemStack$Type): void
 public "getTrackedStacks"(): $Set<($ItemStackKey)>
 public "isFilterItem"(arg0: $Item$Type): boolean
-public "setSlotStack"(arg0: integer, arg1: $ItemStack$Type): void
+public "changeSlots"(arg0: integer): void
 public "getInventoryPartitioner"(): $InventoryPartitioner
 public "getNoSortSlots"(): $Set<(integer)>
-public "changeSlots"(arg0: integer): void
-public "registerTrackingListeners"(arg0: $Consumer$Type<($ItemStackKey$Type)>, arg1: $Consumer$Type<($ItemStackKey$Type)>, arg2: $Runnable$Type, arg3: $Runnable$Type): void
-public "hasEmptySlots"(): boolean
 public "getNoItemIcon"(arg0: integer): $Pair<($ResourceLocation), ($ResourceLocation)>
 public "isSlotAccessible"(arg0: integer): boolean
 public "getBaseStackLimit"(arg0: $ItemStack$Type): integer
 public "getFilterItem"(arg0: integer): $Item
+public "registerTrackingListeners"(arg0: $Consumer$Type<($ItemStackKey$Type)>, arg1: $Consumer$Type<($ItemStackKey$Type)>, arg2: $Runnable$Type, arg3: $Runnable$Type): void
+public "hasEmptySlots"(): boolean
+public "setPersistent"(arg0: boolean): void
+public "getStackSizeMultiplier"(): double
+public "getSlotStack"(arg0: integer): $ItemStack
 public "getSlotTracker"(): $ISlotTracker
 public "getInternalSlotLimit"(arg0: integer): integer
+public "onSlotFilterChanged"(arg0: integer): void
 public "triggerOnChangeListeners"(arg0: integer): void
 public "getBaseSlotLimit"(): integer
 public "extractItemInternal"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
 public "copyStacksTo"(arg0: $InventoryHandler$Type): void
 public "initFilterItems"(): void
 public "onFilterItemsChanged"(): void
-public "onSlotFilterChanged"(arg0: integer): void
-public "insertItemOnlyToSlot"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
 public "setShouldInsertIntoEmpty"(arg0: $BooleanSupplier$Type): void
 public "setBaseSlotLimit"(arg0: integer): void
-public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
+public "insertItemOnlyToSlot"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
+public "serializeNBT"(): $CompoundTag
+public "deserializeNBT"(arg0: $CompoundTag$Type): void
+public "getStackInSlot"(arg0: integer): $ItemStack
 public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "isItemValid"(arg0: integer, arg1: $ItemStack$Type, arg2: $Player$Type): boolean
 public "getSlotLimit"(arg0: integer): integer
 public "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
-public "getStackInSlot"(arg0: integer): $ItemStack
-public "serializeNBT"(): $CompoundTag
-public "deserializeNBT"(arg0: $CompoundTag$Type): void
-public "getStackSizeMultiplier"(): double
-public "getSlotStack"(arg0: integer): $ItemStack
-public "setPersistent"(arg0: boolean): void
+public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
 public "validateSlotIndex"(arg0: integer): void
 public "getStackLimit"(arg0: integer, arg1: $ItemStack$Type): integer
+public "getFilterItems"(): $Set<($Item)>
 public "saveInventory"(): void
 public "onContentsChanged"(arg0: integer): void
 public "clearListeners"(): void
-public "getFilterItems"(): $Set<($Item)>
 public "onInit"(): void
 public "addListener"(arg0: $IntConsumer$Type): void
 public "insertItem"(arg0: $ItemStack$Type, arg1: boolean): $ItemStack
@@ -3664,12 +3666,12 @@ set "size"(value: integer)
 get "trackedStacks"(): $Set<($ItemStackKey)>
 get "inventoryPartitioner"(): $InventoryPartitioner
 get "noSortSlots"(): $Set<(integer)>
+set "persistent"(value: boolean)
+get "stackSizeMultiplier"(): double
 get "slotTracker"(): $ISlotTracker
 get "baseSlotLimit"(): integer
 set "shouldInsertIntoEmpty"(value: $BooleanSupplier$Type)
 set "baseSlotLimit"(value: integer)
-get "stackSizeMultiplier"(): double
-set "persistent"(value: boolean)
 get "filterItems"(): $Set<($Item)>
 }
 /**
@@ -3745,8 +3747,8 @@ export class $FluidFilterLogic {
 
 constructor(arg0: integer, arg1: $ItemStack$Type, arg2: $Consumer$Type<($ItemStack$Type)>)
 
-public "fluidMatches"(arg0: $FluidStack$Type): boolean
 public "getNumberOfFluidFilters"(): integer
+public "fluidMatches"(arg0: $FluidStack$Type): boolean
 public "getFluid"(arg0: integer): $FluidStack
 public "setFluid"(arg0: integer, arg1: $FluidStack$Type): void
 get "numberOfFluidFilters"(): integer
@@ -3807,21 +3809,21 @@ readonly "canRepair": boolean
 constructor()
 
 public static "getMaterialHolderPartsNeeded"(arg0: $Map$Type<($BarrelMaterial$Type), ($ResourceLocation$Type)>, arg1: $IMaterialHolder$Type): $Map<($ResourceLocation), (integer)>
+public static "setRemainingParts"(arg0: $ItemStack$Type, arg1: $Map$Type<($ResourceLocation$Type), (integer)>): void
 public static "setBarrelMaterials"(arg0: $ItemStack$Type, arg1: $Map$Type<($BarrelMaterial$Type), ($ResourceLocation$Type)>): void
 public static "resetMainColor"(arg0: $ItemStack$Type): void
 public static "resetAccentColor"(arg0: $ItemStack$Type): void
-public static "getItemRequirements"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $Level$Type, arg3: $BlockPos$Type): $Optional<($PaintbrushItem$ItemRequirements)>
 public static "getItemRequirements"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $Map$Type<($ResourceLocation$Type), (integer)>): $Optional<($PaintbrushItem$ItemRequirements)>
+public static "getItemRequirements"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $Level$Type, arg3: $BlockPos$Type): $Optional<($PaintbrushItem$ItemRequirements)>
 public static "getBarrelMaterials"(arg0: $ItemStack$Type): $Map<($BarrelMaterial), ($ResourceLocation)>
 public static "getDyeItemRequirements"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $Map$Type<($TagKey$Type<($Item$Type)>), (integer)>): $Optional<($PaintbrushItem$ItemRequirements)>
 public static "getRemainingParts"(arg0: $ItemStack$Type): $Map<($ResourceLocation), (integer)>
 public static "getStorageDyePartsNeeded"(arg0: integer, arg1: integer, arg2: $ITintable$Type): $Map<($TagKey<($Item)>), (integer)>
-public static "setRemainingParts"(arg0: $ItemStack$Type, arg1: $Map$Type<($ResourceLocation$Type), (integer)>): void
 public static "setMainColor"(arg0: $ItemStack$Type, arg1: integer): void
 public static "setAccentColor"(arg0: $ItemStack$Type, arg1: integer): void
 public "onItemUseFirst"(arg0: $ItemStack$Type, arg1: $UseOnContext$Type): $InteractionResult
-public static "getAccentColor"(arg0: $ItemStack$Type): integer
 public static "getMainColor"(arg0: $ItemStack$Type): integer
+public static "getAccentColor"(arg0: $ItemStack$Type): integer
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public static "setColors"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $ITintable$Type, arg3: $IMaterialHolder$Type): boolean
 public static "paint"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: float, arg3: $IMaterialHolder$Type, arg4: $ITintable$Type, arg5: $Vec3$Type, arg6: $Direction$Type, arg7: $SoundEvent$Type): boolean
@@ -3990,31 +3992,31 @@ export class $FilterLogicBase {
 
 constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: string)
 
-public "removeTagName"(arg0: $TagKey$Type<($Item$Type)>): void
-public "getParentTagKey"(): string
-public "isAllowList"(): boolean
-public "setAllowList"(arg0: boolean): void
-public "setMatchDurability"(arg0: boolean): void
-public "setMatchNbt"(arg0: boolean): void
-public "setPrimaryMatch"(arg0: $PrimaryMatch$Type): void
-public "shouldMatchAnyTag"(): boolean
-public "setMatchAnyTag"(arg0: boolean): void
 public "setAllowByDefault"(arg0: boolean): void
 public "shouldMatchNbt"(): boolean
 public "shouldMatchDurability"(): boolean
 public "getPrimaryMatch"(): $PrimaryMatch
 public "stackMatchesFilter"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
+public "getParentTagKey"(): string
+public "removeTagName"(arg0: $TagKey$Type<($Item$Type)>): void
+public "setAllowList"(arg0: boolean): void
+public "isAllowList"(): boolean
+public "setMatchDurability"(arg0: boolean): void
+public "setMatchNbt"(arg0: boolean): void
+public "setPrimaryMatch"(arg0: $PrimaryMatch$Type): void
+public "shouldMatchAnyTag"(): boolean
+public "setMatchAnyTag"(arg0: boolean): void
 public "getTagKeys"(): $Set<($TagKey<($Item)>)>
 public "addTag"(arg0: $TagKey$Type<($Item$Type)>): void
+set "allowByDefault"(value: boolean)
+get "primaryMatch"(): $PrimaryMatch
 get "parentTagKey"(): string
-get "allowList"(): boolean
 set "allowList"(value: boolean)
+get "allowList"(): boolean
 set "matchDurability"(value: boolean)
 set "matchNbt"(value: boolean)
 set "primaryMatch"(value: $PrimaryMatch$Type)
 set "matchAnyTag"(value: boolean)
-set "allowByDefault"(value: boolean)
-get "primaryMatch"(): $PrimaryMatch
 get "tagKeys"(): $Set<($TagKey<($Item)>)>
 }
 /**
@@ -4179,12 +4181,14 @@ readonly "showNotification": boolean
 
 constructor(arg0: $ShapedRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
+public "getCompose"(): $ShapedRecipe
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
+get "compose"(): $ShapedRecipe
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4274,10 +4278,10 @@ public "getName"(arg0: $ItemStack$Type): $Component
 public "isTintable"(arg0: $ItemStack$Type): boolean
 public static "isFlatTop"(arg0: $ItemStack$Type): boolean
 public static "setFlatTop"(arg0: $ItemStack$Type, arg1: boolean): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4326,12 +4330,12 @@ constructor(arg0: $AutoCookingUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfi
 
 public "getType"(): $UpgradeType<($AutoCookingUpgradeWrapper$AutoSmeltingUpgradeWrapper)>
 public "getAutoCookingUpgradeConfig"(): $AutoCookingUpgradeConfig
-public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "getUpgradeGroup"(): $UpgradeGroup
+public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "type"(): $UpgradeType<($AutoCookingUpgradeWrapper$AutoSmeltingUpgradeWrapper)>
 get "autoCookingUpgradeConfig"(): $AutoCookingUpgradeConfig
-get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "upgradeGroup"(): $UpgradeGroup
+get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4372,12 +4376,12 @@ readonly "showNotification": boolean
 
 constructor(arg0: $ShapedRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
 public "getCompose"(): $ShapedRecipe
-get "special"(): boolean
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
 get "compose"(): $ShapedRecipe
 }
 /**
@@ -4466,16 +4470,16 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $DecorationTableBlockEntity
 public "onDestroyedByPlayer"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: boolean, arg5: $FluidState$Type): boolean
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $DecorationTableBlockEntity
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4502,14 +4506,14 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $ILinkable extends $IControllerBoundable {
 
+ "canBeLinked"(): boolean
+ "unlinkFromController"(): void
  "setControllerPos"(arg0: $BlockPos$Type): void
  "getControllerPos"(): $Optional<($BlockPos)>
  "linkToController"(arg0: $BlockPos$Type): void
  "setNotLinked"(): void
  "getConnectablePositions"(): $Set<($BlockPos)>
  "connectLinkedSelf"(): boolean
- "canBeLinked"(): boolean
- "unlinkFromController"(): void
  "isLinked"(): boolean
  "loadControllerPos"(arg0: $CompoundTag$Type): void
  "removeControllerPos"(): void
@@ -4674,29 +4678,29 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export class $XpPumpUpgradeWrapper extends $UpgradeWrapperBase<($XpPumpUpgradeWrapper), ($XpPumpUpgradeItem)> implements $ITickableUpgrade {
 
 
-public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "setLevel"(arg0: integer): void
+public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "takeAllExperienceFromPlayer"(arg0: $Player$Type): void
-public "setLevelsToStore"(arg0: integer): void
+public "getDirection"(): $AutomationDirection
 public "setLevelsToTake"(arg0: integer): void
+public "setLevelsToStore"(arg0: integer): void
+public "setDirection"(arg0: $AutomationDirection$Type): void
 public "getLevelsToStore"(): integer
 public "getLevelsToTake"(): integer
-public "setMendItems"(arg0: boolean): void
 public "shouldMendItems"(): boolean
-public "giveLevelsToPlayer"(arg0: $Player$Type): void
+public "setMendItems"(arg0: boolean): void
 public "takeLevelsFromPlayer"(arg0: $Player$Type): void
+public "giveLevelsToPlayer"(arg0: $Player$Type): void
 public "giveAllExperienceToPlayer"(arg0: $Player$Type): void
-public "getDirection"(): $AutomationDirection
-public "setDirection"(arg0: $AutomationDirection$Type): void
 public "getLevel"(): integer
 set "level"(value: integer)
-set "levelsToStore"(value: integer)
+get "direction"(): $AutomationDirection
 set "levelsToTake"(value: integer)
+set "levelsToStore"(value: integer)
+set "direction"(value: $AutomationDirection$Type)
 get "levelsToStore"(): integer
 get "levelsToTake"(): integer
 set "mendItems"(value: boolean)
-get "direction"(): $AutomationDirection
-set "direction"(value: $AutomationDirection$Type)
 get "level"(): integer
 }
 /**
@@ -4729,18 +4733,18 @@ static readonly "NAME": string
 constructor(arg0: $Supplier$Type<($InventoryHandler$Type)>, arg1: $CompoundTag$Type, arg2: $Consumer$Type<($CompoundTag$Type)>)
 
 public "copyTo"(arg0: $MemorySettingsCategory$Type, arg1: integer, arg2: integer): void
+public "deleteSlotSettingsFrom"(arg0: integer): void
+public "setIgnoreNbt"(arg0: boolean): void
 public "getFilterItemSlots"(): $Map<($Item), ($Set<(integer)>)>
 public "getFilterStackSlots"(): $Map<(integer), ($Set<(integer)>)>
-public "deleteSlotSettingsFrom"(arg0: integer): void
-public "unregisterListeners"(): void
 public "isSlotSelected"(arg0: integer): boolean
-public "matchesFilter"(arg0: $ItemStack$Type): boolean
-public "matchesFilter"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "getSlotFilterStack"(arg0: integer, arg1: boolean): $Optional<($ItemStack)>
 public "getSlotIndexes"(): $Set<(integer)>
 public "selectSlots"(arg0: integer, arg1: integer): void
 public "unselectAllSlots"(): void
-public "setIgnoreNbt"(arg0: boolean): void
+public "unregisterListeners"(): void
+public "matchesFilter"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "matchesFilter"(arg0: $ItemStack$Type): boolean
 public "registerListeners"(arg0: $Consumer$Type<($Item$Type)>, arg1: $Consumer$Type<($Item$Type)>, arg2: $Consumer$Type<(integer)>, arg3: $Consumer$Type<(integer)>): void
 public "setFilter"(arg0: integer, arg1: $ItemStack$Type): void
 public "unselectSlot"(arg0: integer): void
@@ -4749,10 +4753,10 @@ public "isLargerThanNumberOfSlots"(arg0: integer): boolean
 public "reloadFrom"(arg0: $CompoundTag$Type): void
 public "selectSlot"(arg0: integer): void
 public "ignoresNbt"(): boolean
+set "ignoreNbt"(value: boolean)
 get "filterItemSlots"(): $Map<($Item), ($Set<(integer)>)>
 get "filterStackSlots"(): $Map<(integer), ($Set<(integer)>)>
 get "slotIndexes"(): $Set<(integer)>
-set "ignoreNbt"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4829,10 +4833,10 @@ readonly "canRepair": boolean
 constructor(arg0: $IUpgradeCountLimitConfig$Type, arg1: boolean)
 
 public "getType"(): $UpgradeType<($InfinityUpgradeItem$Wrapper)>
-public "createInventoryPartHandler"(arg0: $InventoryHandler$Type, arg1: $SlotRange$Type): $IInventoryPartHandler
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "canRemoveUpgradeFrom"(arg0: $IStorageWrapper$Type, arg1: boolean, arg2: $Player$Type): $UpgradeSlotChangeResult
 public "getPermissionLevel"(): integer
+public "createInventoryPartHandler"(arg0: $InventoryHandler$Type, arg1: $SlotRange$Type): $IInventoryPartHandler
 get "type"(): $UpgradeType<($InfinityUpgradeItem$Wrapper)>
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "permissionLevel"(): integer
@@ -4915,10 +4919,10 @@ constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2
 constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: $Predicate$Type<($ItemStack$Type)>, arg3: $Predicate$Type<($ItemStack$Type)>, arg4: $CookingUpgradeConfig$Type, arg5: $RecipeType$Type<(T)>, arg6: float)
 
 public "tick"(arg0: $Level$Type): boolean
+public "getCookOutput"(): $ItemStack
 public "getCookingInventory"(): $ItemStackHandler
 public "getCookInput"(): $ItemStack
 public "setCookInput"(arg0: $ItemStack$Type): void
-public "getCookOutput"(): $ItemStack
 public "getBurnTimeFinish"(): long
 public "getBurnTimeTotal"(): integer
 public "getCookTimeFinish"(): long
@@ -4926,19 +4930,19 @@ public "getCookTimeTotal"(): integer
 public "pause"(): void
 public "isBurning"(arg0: $Level$Type): boolean
 public "setFuel"(arg0: $ItemStack$Type): void
-public "isCooking"(): boolean
 public "getFuel"(): $ItemStack
+public "isCooking"(): boolean
+get "cookOutput"(): $ItemStack
 get "cookingInventory"(): $ItemStackHandler
 get "cookInput"(): $ItemStack
 set "cookInput"(value: $ItemStack$Type)
-get "cookOutput"(): $ItemStack
 get "burnTimeFinish"(): long
 get "burnTimeTotal"(): integer
 get "cookTimeFinish"(): long
 get "cookTimeTotal"(): integer
 set "fuel"(value: $ItemStack$Type)
-get "cooking"(): boolean
 get "fuel"(): $ItemStack
+get "cooking"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5060,8 +5064,8 @@ export class $SmithingUpgradeWrapper extends $UpgradeWrapperBase<($SmithingUpgra
 
 
 public "shouldShiftClickIntoStorage"(): boolean
-public "setShiftClickIntoStorage"(arg0: boolean): void
 public "canBeDisabled"(): boolean
+public "setShiftClickIntoStorage"(arg0: boolean): void
 public "getInventory"(): $ItemStackHandler
 set "shiftClickIntoStorage"(value: boolean)
 get "inventory"(): $ItemStackHandler
@@ -5101,12 +5105,14 @@ readonly "ingredients": $NonNullList<($Ingredient)>
 
 constructor(arg0: $ShapelessRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
+public "getCompose"(): $ShapelessRecipe
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
+get "compose"(): $ShapelessRecipe
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5165,10 +5171,12 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export class $AlchemyUpgradeWrapper extends $UpgradeWrapperBase<($AlchemyUpgradeWrapper), ($AlchemyUpgradeItem)> implements $ITickableUpgrade {
 
 
-public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "getValue"(arg0: integer): float
+public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public static "getDefaultConditionForPotion"(arg0: $ItemStack$Type): $AlchemyCondition
 public static "getDefaultConditionForPotionEffects"(arg0: $List$Type<($MobEffectInstance$Type)>): $AlchemyCondition
+public "setEntityMatch"(arg0: $EntityMatch$Type): void
+public "setConditionValue"(arg0: integer, arg1: $AlchemyCondition$Type, arg2: float): void
 public "shouldMatchAllEffects"(): boolean
 public "setMatchAllEffects"(arg0: boolean): void
 public "shouldMatchEffectDuration"(): boolean
@@ -5185,16 +5193,14 @@ public static "shouldApplyPotionEffectsTo"(arg0: $LivingEntity$Type, arg1: $Item
 public static "shouldApplyPotionEffectsTo"(arg0: $LivingEntity$Type, arg1: $List$Type<($MobEffectInstance$Type)>, arg2: boolean, arg3: boolean): boolean
 public "isValidAlchemyItem"(arg0: $ItemStack$Type): boolean
 public "getFilterHandler"(): $AlchemyUpgradeWrapper$ObservableFilterItemStackHandler
-public "setEntityMatch"(arg0: $EntityMatch$Type): void
-public "setConditionValue"(arg0: integer, arg1: $AlchemyCondition$Type, arg2: float): void
 public "getCondition"(arg0: integer): $AlchemyCondition
+set "entityMatch"(value: $EntityMatch$Type)
 set "matchAllEffects"(value: boolean)
 set "matchEffectDuration"(value: boolean)
 set "matchEffectAmplifier"(value: boolean)
 get "entityMatch"(): $EntityMatch
 get "filterAttributes"(): $List<($AlchemyFilterAttribute)>
 get "filterHandler"(): $AlchemyUpgradeWrapper$ObservableFilterItemStackHandler
-set "entityMatch"(value: $EntityMatch$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5292,10 +5298,11 @@ constructor(arg0: $Supplier$Type<(integer)>, arg1: $Supplier$Type<(integer)>, ar
 
 public "addDropData"(arg0: $ItemStack$Type, arg1: $StorageBlockEntity$Type): void
 public "getTintedStack"(arg0: $DyeColor$Type): $ItemStack
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
 public "addCreativeTabItems"(arg0: $Consumer$Type<($ItemStack$Type)>): void
-public "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
 public "addLandingEffects"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $LivingEntity$Type, arg5: integer): boolean
+public "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $StorageBlockEntity
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
@@ -5307,7 +5314,6 @@ public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getFacing"(arg0: $BlockState$Type): $Direction
 public "setTicking"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -5465,13 +5471,13 @@ export interface $ITrackedContentsItemHandler extends $IItemHandlerSimpleInserte
  "extractItem"(i: integer, i1: integer, b: boolean): $ItemStack
  "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
  "isItemValid"(i: integer, itemStack: $ItemStack$Type): boolean
+ "getBlock"(level: $Level$Type): $BlockContainerJS
+ "getStackInSlot"(arg0: integer): $ItemStack
  "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
  "getSlotLimit"(arg0: integer): integer
  "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
- "getStackInSlot"(arg0: integer): $ItemStack
- "getBlock"(level: $Level$Type): $BlockContainerJS
- "kjs$self"(): $IItemHandler
  "getSlots"(): integer
+ "kjs$self"(): $IItemHandler
  "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
  "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
  "getWidth"(): integer
@@ -5604,8 +5610,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 public "addNameWoodAndTintData"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): void
 public "addDropData"(arg0: $ItemStack$Type, arg1: $StorageBlockEntity$Type): void
-public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "addCreativeTabItems"(arg0: $Consumer$Type<($ItemStack$Type)>): void
+public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -5839,14 +5845,14 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 
 export class $FilterLogic extends $FilterLogicBase {
 
-constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: integer)
 constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: integer, arg3: $Predicate$Type<($ItemStack$Type)>, arg4: string)
-constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: integer, arg3: string)
 constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: integer, arg3: $Predicate$Type<($ItemStack$Type)>)
+constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: integer, arg3: string)
+constructor(arg0: $ItemStack$Type, arg1: $Consumer$Type<($ItemStack$Type)>, arg2: integer)
 
 public "setEmptyAllowListMatchesEverything"(): void
-public "matchesFilter"(arg0: $ItemStack$Type): boolean
 public "getFilterHandler"(): $FilterLogic$ObservableFilterItemStackHandler
+public "matchesFilter"(arg0: $ItemStack$Type): boolean
 get "filterHandler"(): $FilterLogic$ObservableFilterItemStackHandler
 }
 /**
@@ -6007,19 +6013,19 @@ public "removeMainColor"(arg0: $ItemStack$Type): void
 public "removeAccentColor"(arg0: $ItemStack$Type): void
 public static "setShowsTier"(arg0: $ItemStack$Type, arg1: boolean): void
 public static "getNumberOfInventorySlots"(arg0: $ItemStack$Type): integer
-public static "getNumberOfUpgradeSlots"(arg0: $ItemStack$Type): integer
 public static "getMainColorFromStack"(arg0: $ItemStack$Type): $Optional<(integer)>
 public static "getAccentColorFromStack"(arg0: $ItemStack$Type): $Optional<(integer)>
-public "getAccentColor"(arg0: $ItemStack$Type): $Optional<(integer)>
-public "getMainColor"(arg0: $ItemStack$Type): $Optional<(integer)>
+public static "getNumberOfUpgradeSlots"(arg0: $ItemStack$Type): integer
 public static "getContentsUuid"(arg0: $ItemStack$Type): $Optional<($UUID)>
+public "getMainColor"(arg0: $ItemStack$Type): $Optional<(integer)>
+public "getAccentColor"(arg0: $ItemStack$Type): $Optional<(integer)>
 public static "setLocked"(arg0: $ItemStack$Type, arg1: boolean): void
 public static "showsTier"(arg0: $ItemStack$Type): boolean
 public "isTintable"(arg0: $ItemStack$Type): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6184,9 +6190,9 @@ constructor(arg0: $BlockState$Type, arg1: $BlockPos$Type)
 public "getState"(): $BlockState
 public "getType"(): $CustomTintTerrainParticleData
 public "getPos"(): $BlockPos
-public "codec"(): $Codec<($CustomTintTerrainParticleData)>
 public "writeToNetwork"(arg0: $FriendlyByteBuf$Type): void
 public "writeToString"(): string
+public "codec"(): $Codec<($CustomTintTerrainParticleData)>
 get "state"(): $BlockState
 get "type"(): $CustomTintTerrainParticleData
 get "pos"(): $BlockPos
@@ -6261,10 +6267,10 @@ export class $SlotRange extends $Record {
 
 constructor(firstSlot: integer, numberOfSlots: integer)
 
-public "firstSlot"(): integer
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "firstSlot"(): integer
 public "numberOfSlots"(): integer
 public "isInRange"(arg0: integer): boolean
 }
@@ -6367,7 +6373,7 @@ constructor(arg0: float)
 public static "playerInteract"(arg0: $PlayerInteractEvent$RightClickBlock$Type): void
 public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
 public "canEntityDestroy"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
@@ -6375,10 +6381,10 @@ public "hasAnalogOutputSignal"(arg0: $BlockState$Type): boolean
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -6457,13 +6463,13 @@ readonly "canRepair": boolean
 constructor(arg0: $VoidUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($VoidUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "isVoidAnythingEnabled"(): boolean
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($VoidUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "voidAnythingEnabled"(): boolean
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6481,8 +6487,8 @@ declare module "packages/net/p3pp3rf1y/sophisticatedstorage/block/$IUpgradeDispl
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $IUpgradeDisplay {
 
- "shouldShowUpgrades"(): boolean
  "toggleUpgradesVisiblity"(): void
+ "shouldShowUpgrades"(): boolean
 }
 
 export namespace $IUpgradeDisplay {
@@ -6839,13 +6845,13 @@ readonly "canRepair": boolean
 constructor(arg0: $CookingUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($CookingUpgradeWrapper$BlastingUpgradeWrapper)>
+public "getUpgradeGroup"(): $UpgradeGroup
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "getCookingUpgradeConfig"(): $CookingUpgradeConfig
-public "getUpgradeGroup"(): $UpgradeGroup
 get "type"(): $UpgradeType<($CookingUpgradeWrapper$BlastingUpgradeWrapper)>
+get "upgradeGroup"(): $UpgradeGroup
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "cookingUpgradeConfig"(): $CookingUpgradeConfig
-get "upgradeGroup"(): $UpgradeGroup
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6893,15 +6899,15 @@ export class $AnvilUpgradeWrapper extends $UpgradeWrapperBase<($AnvilUpgradeWrap
 
 
 public "shouldShiftClickIntoStorage"(): boolean
-public "setShiftClickIntoStorage"(arg0: boolean): void
-public "setItemName"(arg0: string): void
 public "canBeDisabled"(): boolean
-public "getItemName"(): string
+public "setShiftClickIntoStorage"(arg0: boolean): void
 public "getInventory"(): $ItemStackHandler
+public "getItemName"(): string
+public "setItemName"(arg0: string): void
 set "shiftClickIntoStorage"(value: boolean)
-set "itemName"(value: string)
-get "itemName"(): string
 get "inventory"(): $ItemStackHandler
+get "itemName"(): string
+set "itemName"(value: string)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6935,16 +6941,16 @@ export class $MagnetUpgradeWrapper extends $UpgradeWrapperBase<($MagnetUpgradeWr
 constructor(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: $Consumer$Type<($ItemStack$Type)>)
 
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
+public "getFilterLogic"(): $ContentsFilterLogic
 public "setPickupItems"(arg0: boolean): void
 public "setPickupXp"(arg0: boolean): void
 public "shouldPickupItems"(): boolean
 public "shouldPickupXp"(): boolean
-public "getFilterLogic"(): $ContentsFilterLogic
 public static "addMagnetPreventionChecker"(arg0: $IMagnetPreventionChecker$Type): void
 public "pickup"(arg0: $Level$Type, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
+get "filterLogic"(): $ContentsFilterLogic
 set "pickupItems"(value: boolean)
 set "pickupXp"(value: boolean)
-get "filterLogic"(): $ContentsFilterLogic
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6981,13 +6987,13 @@ readonly "ingredients": $NonNullList<($Ingredient)>
 
 constructor(arg0: $ShapelessRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
 public "getCompose"(): $ShapelessRecipe
-get "special"(): boolean
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
 get "compose"(): $ShapelessRecipe
 }
 /**
@@ -7033,12 +7039,12 @@ readonly "canRepair": boolean
 constructor(arg0: boolean, arg1: $IntSupplier$Type, arg2: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($CompactingUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
-public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "shouldCompactThreeByThree"(): boolean
+public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($CompactingUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7058,8 +7064,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 
 export interface $IInsertResponseUpgrade {
 
- "onBeforeInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer, arg2: $ItemStack$Type, arg3: boolean): $ItemStack
  "onAfterInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer): void
+ "onBeforeInsert"(arg0: $IItemHandlerSimpleInserter$Type, arg1: integer, arg2: $ItemStack$Type, arg3: boolean): $ItemStack
 }
 
 export namespace $IInsertResponseUpgrade {
@@ -7138,17 +7144,18 @@ static readonly "UPDATE_BLOCK_RENDER_TAG": string
  "blockState": $BlockState
 
 
-public "isLocked"(): boolean
 public "isOpen"(): boolean
-public "allowsEmptySlotsMatchingItemInsertsWhenLocked"(): boolean
+public "isLocked"(): boolean
+public "setUpdateBlockRender"(): void
+public "toggleUpgradesVisiblity"(): void
+public "getSlotFillPercentage"(arg0: integer): float
+public "setShouldBeOpen"(arg0: boolean): void
 public "removeControllerPos"(): void
 public "setControllerPos"(arg0: $BlockPos$Type): void
 public "getControllerPos"(): $Optional<($BlockPos)>
 public "getStorageBlockPos"(): $BlockPos
 public "getStorageBlockLevel"(): $Level
 public "canConnectStorages"(): boolean
-public "canBeConnected"(): boolean
-public "setUpdateBlockRender"(): void
 public "isBeingUpgraded"(): boolean
 public "getOpenersCounter"(): $SophisticatedOpenersCounter
 public "loadSynchronizedData"(arg0: $CompoundTag$Type): void
@@ -7165,43 +7172,42 @@ public "toggleLockVisibility"(): void
 public "shouldShowTier"(): boolean
 public "toggleTierVisiblity"(): void
 public "shouldShowUpgrades"(): boolean
-public "toggleUpgradesVisiblity"(): void
-public "getSlotFillPercentage"(arg0: integer): float
-public "setShouldBeOpen"(arg0: boolean): void
+public "canBeConnected"(): boolean
 public "setCustomName"(arg0: $Component$Type): void
 public "onChunkUnloaded"(): void
 public "onDataPacket"(arg0: $Connection$Type, arg1: $ClientboundBlockEntityDataPacket$Type): void
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
 public "invalidateCaps"(): void
-public "recheckOpen"(): void
+public "onNeighborChange"(arg0: $BlockPos$Type): void
 public "getStorageWrapper"(): $StorageWrapper
+public "recheckOpen"(): void
 public "dropContents"(): void
 public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
 public "onLoad"(): void
-public "onNeighborChange"(arg0: $BlockPos$Type): void
-public "getUpdateTag"(): $CompoundTag
-public "setRemoved"(): void
-public "saveAdditional"(arg0: $CompoundTag$Type): void
-public "load"(arg0: $CompoundTag$Type): void
+public "allowsEmptySlotsMatchingItemInsertsWhenLocked"(): boolean
 public "getCustomName"(): $Component
 public "getDisplayName"(): $Component
 public "getName"(): $Component
+public "saveAdditional"(arg0: $CompoundTag$Type): void
+public "getUpdateTag"(): $CompoundTag
+public "setRemoved"(): void
+public "load"(arg0: $CompoundTag$Type): void
 public static "serverTick"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $StorageBlockEntity$Type): void
 public "startOpen"(arg0: $Player$Type): void
 public "stopOpen"(arg0: $Player$Type): void
 public "isLinked"(): boolean
 public "toggleLock"(): void
-public "registerWithControllerOnLoad"(): void
 public "registerInventoryStackListeners"(): void
 public "onInventoryInputOutputHandlerRefresh"(): void
+public "registerWithControllerOnLoad"(): void
 public "unregisterController"(): void
 public "registerController"(arg0: $ControllerBlockEntityBase$Type): void
 public "changeSlots"(arg0: integer): void
 public "hasStorageData"(): boolean
 public "addToController"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type): void
 public "updateEmptySlots"(): void
-public "tryToAddToController"(): void
 public "removeFromController"(): void
+public "tryToAddToController"(): void
 public "canBeLinked"(): boolean
 public "unlinkFromController"(): void
 public "hasCustomName"(): boolean
@@ -7210,8 +7216,9 @@ public "saveControllerPos"(arg0: $CompoundTag$Type): void
 public "addToAdjacentController"(): void
 public "runOnController"(arg0: $Level$Type, arg1: $Consumer$Type<($ControllerBlockEntityBase$Type)>): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "locked"(): boolean
 get "open"(): boolean
+get "locked"(): boolean
+set "shouldBeOpen"(value: boolean)
 set "controllerPos"(value: $BlockPos$Type)
 get "controllerPos"(): $Optional<($BlockPos)>
 get "storageBlockPos"(): $BlockPos
@@ -7220,14 +7227,13 @@ get "beingUpgraded"(): boolean
 get "openersCounter"(): $SophisticatedOpenersCounter
 get "connectablePositions"(): $Set<($BlockPos)>
 set "beingUpgraded"(value: boolean)
-set "shouldBeOpen"(value: boolean)
 set "customName"(value: $Component$Type)
 get "storageWrapper"(): $StorageWrapper
 get "updatePacket"(): $ClientboundBlockEntityDataPacket
-get "updateTag"(): $CompoundTag
 get "customName"(): $Component
 get "displayName"(): $Component
 get "name"(): $Component
+get "updateTag"(): $CompoundTag
 get "linked"(): boolean
 }
 /**
@@ -7258,19 +7264,19 @@ export interface $IUpgradeItem<T extends $IUpgradeWrapper> {
 
  "getName"(): $Component
  "getType"(): $UpgradeType<(T)>
- "checkThisForConflictsWithExistingUpgrades"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: integer): $UpgradeSlotChangeResult
  "getUpgradesInGroupPerStorage"(arg0: string): integer
+ "checkThisForConflictsWithExistingUpgrades"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: integer): $UpgradeSlotChangeResult
+ "getUpgradesPerStorage"(arg0: string): integer
+ "getUpgradeGroup"(): $UpgradeGroup
  "canAddUpgradeTo"(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: boolean, arg3: boolean): $UpgradeSlotChangeResult
  "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
- "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
  "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: integer, arg4: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
+ "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
  "canRemoveUpgradeFrom"(arg0: $IStorageWrapper$Type, arg1: boolean, arg2: $Player$Type): $UpgradeSlotChangeResult
  "canRemoveUpgradeFrom"(arg0: $IStorageWrapper$Type, arg1: boolean): $UpgradeSlotChangeResult
  "canSwapUpgradeFor"(arg0: $ItemStack$Type, arg1: integer, arg2: $IStorageWrapper$Type, arg3: boolean): $UpgradeSlotChangeResult
  "getInventoryColumnsTaken"(): integer
  "getCleanedUpgradeStack"(arg0: $ItemStack$Type): $ItemStack
- "getUpgradesPerStorage"(arg0: string): integer
- "getUpgradeGroup"(): $UpgradeGroup
 }
 
 export namespace $IUpgradeItem {
@@ -7304,8 +7310,8 @@ public "stack"(): $ItemStack
 public static "getHashCode"(arg0: $ItemStack$Type): integer
 public "getStack"(): $ItemStack
 public static "canItemStacksStack"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): boolean
-public static "clearCacheOnTickEnd"(arg0: $TickEvent$ServerTickEvent$Type): void
 public "hashCodeNotEquals"(arg0: $ItemStack$Type): boolean
+public static "clearCacheOnTickEnd"(arg0: $TickEvent$ServerTickEvent$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7329,8 +7335,8 @@ export interface $IUpgradeWrapper {
  "getUpgradeStack"(): $ItemStack
  "hideSettingsTab"(): boolean
  "onBeforeRemoved"(): void
- "setEnabled"(arg0: boolean): void
  "onAdded"(): void
+ "setEnabled"(arg0: boolean): void
 }
 
 export namespace $IUpgradeWrapper {
@@ -7367,14 +7373,14 @@ export class $InventoryPartitioner {
 constructor(arg0: $CompoundTag$Type, arg1: $InventoryHandler$Type, arg2: $Supplier$Type<($MemorySettingsCategory$Type)>)
 
 public "isInfinite"(arg0: integer): boolean
-public "isFilterItem"(arg0: $Item$Type): boolean
 public "getFirstSpace"(arg0: integer): $Optional<($SlotRange)>
+public "isFilterItem"(arg0: $Item$Type): boolean
 public "getNoSortSlots"(): $Set<(integer)>
 public "getNoItemIcon"(arg0: integer): $Pair<($ResourceLocation), ($ResourceLocation)>
-public "getPartBySlot"(arg0: integer): $IInventoryPartHandler
 public "onSlotLimitChange"(): void
 public "addInventoryPart"(arg0: integer, arg1: integer, arg2: $IInventoryPartHandler$Type): void
 public "removeInventoryPart"(arg0: integer): void
+public "getPartBySlot"(arg0: integer): $IInventoryPartHandler
 public "serializeNBT"(): $CompoundTag
 public "getFilterItems"(): $Map<($Item), ($Set<(integer)>)>
 public "onInit"(): void
@@ -7423,11 +7429,11 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type)
 
 public "getType"(): $UpgradeType<($RestockUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($RestockUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7560,11 +7566,11 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($FilterUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($FilterUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7596,22 +7602,22 @@ import {$IBlockToolSwapUpgrade, $IBlockToolSwapUpgrade$Type} from "packages/net/
 export class $ToolSwapperUpgradeWrapper extends $UpgradeWrapperBase<($ToolSwapperUpgradeWrapper), ($ToolSwapperUpgradeItem)> implements $IBlockClickResponseUpgrade, $IAttackEntityResponseUpgrade, $IBlockToolSwapUpgrade, $IEntityToolSwapUpgrade {
 
 
-public "onBlockInteract"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): boolean
 public "canProcessBlockInteract"(): boolean
 public "canProcessEntityInteract"(): boolean
-public "getToolSwapMode"(): $ToolSwapMode
 public "getFilterLogic"(): $FilterLogic
-public "shouldSwapWeapon"(): boolean
-public "setSwapWeapon"(arg0: boolean): void
-public "setToolSwapMode"(arg0: $ToolSwapMode$Type): void
 public "hideSettingsTab"(): boolean
 public "onBlockClick"(arg0: $Player$Type, arg1: $BlockPos$Type): boolean
 public "onAttackEntity"(arg0: $Player$Type): boolean
+public "onBlockInteract"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): boolean
+public "setToolSwapMode"(arg0: $ToolSwapMode$Type): void
+public "setSwapWeapon"(arg0: boolean): void
+public "shouldSwapWeapon"(): boolean
+public "getToolSwapMode"(): $ToolSwapMode
 public "onEntityInteract"(arg0: $Level$Type, arg1: $Entity$Type, arg2: $Player$Type): boolean
-get "toolSwapMode"(): $ToolSwapMode
 get "filterLogic"(): $FilterLogic
-set "swapWeapon"(value: boolean)
 set "toolSwapMode"(value: $ToolSwapMode$Type)
+set "swapWeapon"(value: boolean)
+get "toolSwapMode"(): $ToolSwapMode
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7730,8 +7736,8 @@ export interface $IStorageFluidHandler extends $IFluidHandlerItem {
  "drain"(arg0: integer, arg1: $IFluidHandler$FluidAction$Type): $FluidStack
  "drain"(arg0: $FluidStack$Type, arg1: $IFluidHandler$FluidAction$Type): $FluidStack
  "fill"(arg0: $FluidStack$Type, arg1: $IFluidHandler$FluidAction$Type): integer
- "getTankCapacity"(arg0: integer): integer
  "isFluidValid"(arg0: integer, arg1: $FluidStack$Type): boolean
+ "getTankCapacity"(arg0: integer): integer
  "getFluidInTank"(arg0: integer): $FluidStack
  "getTanks"(): integer
 }
@@ -7775,11 +7781,11 @@ static readonly "TOOLBAR_8": $RefillUpgradeWrapper$TargetSlot
 static readonly "TOOLBAR_9": $RefillUpgradeWrapper$TargetSlot
 
 
-public "getDescription"(): $Component
 public static "values"(): ($RefillUpgradeWrapper$TargetSlot)[]
 public static "valueOf"(arg0: string): $RefillUpgradeWrapper$TargetSlot
 public "next"(): $RefillUpgradeWrapper$TargetSlot
 public "previous"(): $RefillUpgradeWrapper$TargetSlot
+public "getDescription"(): $Component
 public "getSerializedName"(): string
 public static "fromName"(arg0: string): $RefillUpgradeWrapper$TargetSlot
 public "getAcronym"(): $Component
@@ -7870,21 +7876,21 @@ public "getUpgradesPerStorage"(arg0: string): integer
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getType"(): $UpgradeType<(T)>
 public "checkThisForConflictsWithExistingUpgrades"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: integer): $UpgradeSlotChangeResult
+public "getUpgradeGroup"(): $UpgradeGroup
 public "canAddUpgradeTo"(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: boolean, arg3: boolean): $UpgradeSlotChangeResult
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
-public "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
 public "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: integer, arg4: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
+public "checkExtraInsertConditions"(arg0: $ItemStack$Type, arg1: $IStorageWrapper$Type, arg2: boolean, arg3: $IUpgradeItem$Type<(any)>): $UpgradeSlotChangeResult
 public "canRemoveUpgradeFrom"(arg0: $IStorageWrapper$Type, arg1: boolean, arg2: $Player$Type): $UpgradeSlotChangeResult
 public "canRemoveUpgradeFrom"(arg0: $IStorageWrapper$Type, arg1: boolean): $UpgradeSlotChangeResult
 public "canSwapUpgradeFor"(arg0: $ItemStack$Type, arg1: integer, arg2: $IStorageWrapper$Type, arg3: boolean): $UpgradeSlotChangeResult
 public "getInventoryColumnsTaken"(): integer
 public "getCleanedUpgradeStack"(arg0: $ItemStack$Type): $ItemStack
-public "getUpgradeGroup"(): $UpgradeGroup
 get "name"(): $Component
 get "type"(): $UpgradeType<(T)>
+get "upgradeGroup"(): $UpgradeGroup
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "inventoryColumnsTaken"(): integer
-get "upgradeGroup"(): $UpgradeGroup
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7913,34 +7919,34 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export class $JukeboxUpgradeWrapper extends $UpgradeWrapperBase<($JukeboxUpgradeWrapper), ($JukeboxUpgradeItem)> implements $ITickableUpgrade {
 
 
-public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "next"(): void
 public "stop"(arg0: $LivingEntity$Type): void
 public "previous"(): void
-public "onBeforeRemoved"(): void
-public "isShuffleEnabled"(): boolean
-public "setShuffleEnabled"(arg0: boolean): void
-public "getRepeatMode"(): $RepeatMode
-public "setRepeatMode"(arg0: $RepeatMode$Type): void
-public "getDiscSlotActive"(): integer
-public "getDiscInventory"(): $IItemHandler
+public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "playPrevious"(): void
 public "getDiscFinishTime"(): long
 public "getDiscLength"(): integer
+public "getDiscSlotActive"(): integer
+public "getDiscInventory"(): $IItemHandler
+public "setRepeatMode"(arg0: $RepeatMode$Type): void
+public "isShuffleEnabled"(): boolean
+public "setShuffleEnabled"(arg0: boolean): void
+public "getRepeatMode"(): $RepeatMode
+public "onBeforeRemoved"(): void
 public "play"(arg0: $Entity$Type): void
 public "play"(arg0: $Level$Type, arg1: $BlockPos$Type): void
 public "isPlaying"(): boolean
 public "getDisc"(): $ItemStack
 public "playNext"(arg0: boolean): void
 public "playNext"(): void
+get "discFinishTime"(): long
+get "discLength"(): integer
+get "discSlotActive"(): integer
+get "discInventory"(): $IItemHandler
+set "repeatMode"(value: $RepeatMode$Type)
 get "shuffleEnabled"(): boolean
 set "shuffleEnabled"(value: boolean)
 get "repeatMode"(): $RepeatMode
-set "repeatMode"(value: $RepeatMode$Type)
-get "discSlotActive"(): integer
-get "discInventory"(): $IItemHandler
-get "discFinishTime"(): long
-get "discLength"(): integer
 get "playing"(): boolean
 get "disc"(): $ItemStack
 }
@@ -8074,8 +8080,8 @@ import {$TankPosition, $TankPosition$Type} from "packages/net/p3pp3rf1y/sophisti
 import {$UpgradeRenderDataType, $UpgradeRenderDataType$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/renderdata/$UpgradeRenderDataType"
 import {$IRenderedTankUpgrade$TankRenderInfo, $IRenderedTankUpgrade$TankRenderInfo$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/upgrades/$IRenderedTankUpgrade$TankRenderInfo"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$RenderInfo$DisplayItem, $RenderInfo$DisplayItem$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/renderdata/$RenderInfo$DisplayItem"
 import {$IUpgradeRenderData, $IUpgradeRenderData$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/renderdata/$IUpgradeRenderData"
+import {$RenderInfo$DisplayItem, $RenderInfo$DisplayItem$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/renderdata/$RenderInfo$DisplayItem"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$IRenderedBatteryUpgrade$BatteryRenderInfo, $IRenderedBatteryUpgrade$BatteryRenderInfo$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/upgrades/$IRenderedBatteryUpgrade$BatteryRenderInfo"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -8086,13 +8092,15 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export class $RenderInfo {
 
 
-public "refreshItemDisplayRenderInfo"(arg0: $List$Type<($RenderInfo$DisplayItem$Type)>, arg1: $List$Type<(integer)>, arg2: $List$Type<(integer)>, arg3: $List$Type<(integer)>, arg4: $List$Type<(float)>): void
-public "refreshDisplayItemsAndInaccessibleSlots"(arg0: $List$Type<($RenderInfo$DisplayItem$Type)>, arg1: $List$Type<(integer)>): void
 public "setDisplayItemsChangeListener"(arg0: $Consumer$Type<($RenderInfo$Type)>): void
+public "removeAllUpgradeRenderData"(): void
 public "getTankRenderInfos"(): $Map<($TankPosition), ($IRenderedTankUpgrade$TankRenderInfo)>
 public "getBatteryRenderInfo"(): $Optional<($IRenderedBatteryUpgrade$BatteryRenderInfo)>
-public "removeAllUpgradeRenderData"(): void
 public "getItemDisplayRenderInfo"(): $RenderInfo$ItemDisplayRenderInfo
+public "getUpgradeRenderData"(): $Map<($UpgradeRenderDataType<(any)>), ($IUpgradeRenderData)>
+public "getUpgradeRenderData"<T extends $IUpgradeRenderData>(arg0: $UpgradeRenderDataType$Type<(T)>): $Optional<(T)>
+public "removeUpgradeRenderData"(arg0: $UpgradeRenderDataType$Type<(any)>): void
+public "setUpgradeRenderData"<T extends $IUpgradeRenderData>(arg0: $UpgradeRenderDataType$Type<(T)>, arg1: T): void
 public "setUpgradeItems"(arg0: $List$Type<($ItemStack$Type)>): void
 public "resetUpgradeInfo"(arg0: boolean): void
 public "setTankRenderInfo"(arg0: $TankPosition$Type, arg1: $IRenderedTankUpgrade$TankRenderInfo$Type): void
@@ -8100,20 +8108,18 @@ public "setBatteryRenderInfo"(arg0: $IRenderedBatteryUpgrade$BatteryRenderInfo$T
 public "showsCountsAndFillRatios"(): boolean
 public "getUpgradeItems"(): $List<($ItemStack)>
 public "deserializeFrom"(arg0: $CompoundTag$Type): void
-public "getUpgradeRenderData"<T extends $IUpgradeRenderData>(arg0: $UpgradeRenderDataType$Type<(T)>): $Optional<(T)>
-public "getUpgradeRenderData"(): $Map<($UpgradeRenderDataType<(any)>), ($IUpgradeRenderData)>
-public "setUpgradeRenderData"<T extends $IUpgradeRenderData>(arg0: $UpgradeRenderDataType$Type<(T)>, arg1: T): void
-public "removeUpgradeRenderData"(arg0: $UpgradeRenderDataType$Type<(any)>): void
+public "refreshDisplayItemsAndInaccessibleSlots"(arg0: $List$Type<($RenderInfo$DisplayItem$Type)>, arg1: $List$Type<(integer)>): void
+public "refreshItemDisplayRenderInfo"(arg0: $List$Type<($RenderInfo$DisplayItem$Type)>, arg1: $List$Type<(integer)>, arg2: $List$Type<(integer)>, arg3: $List$Type<(integer)>, arg4: $List$Type<(float)>): void
 public "refreshSlotCountsFillRatiosAndInfiniteSlots"(arg0: $List$Type<(integer)>, arg1: $List$Type<(float)>, arg2: $List$Type<(integer)>): void
 public "getNbt"(): $CompoundTag
 set "displayItemsChangeListener"(value: $Consumer$Type<($RenderInfo$Type)>)
 get "tankRenderInfos"(): $Map<($TankPosition), ($IRenderedTankUpgrade$TankRenderInfo)>
 get "batteryRenderInfo"(): $Optional<($IRenderedBatteryUpgrade$BatteryRenderInfo)>
 get "itemDisplayRenderInfo"(): $RenderInfo$ItemDisplayRenderInfo
+get "upgradeRenderData"(): $Map<($UpgradeRenderDataType<(any)>), ($IUpgradeRenderData)>
 set "upgradeItems"(value: $List$Type<($ItemStack$Type)>)
 set "batteryRenderInfo"(value: $IRenderedBatteryUpgrade$BatteryRenderInfo$Type)
 get "upgradeItems"(): $List<($ItemStack)>
-get "upgradeRenderData"(): $Map<($UpgradeRenderDataType<(any)>), ($IUpgradeRenderData)>
 get "nbt"(): $CompoundTag
 }
 /**
@@ -8196,12 +8202,12 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type, arg1: $IntSupplier$Type, arg2: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($MagnetUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 public "getRadius"(): integer
 get "type"(): $UpgradeType<($MagnetUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 get "radius"(): integer
 }
 /**
@@ -8272,12 +8278,12 @@ readonly "showNotification": boolean
 
 constructor(arg0: $ShapedRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8325,13 +8331,13 @@ readonly "canRepair": boolean
 constructor(arg0: $CookingUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($CookingUpgradeWrapper$SmokingUpgradeWrapper)>
+public "getUpgradeGroup"(): $UpgradeGroup
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "getCookingUpgradeConfig"(): $CookingUpgradeConfig
-public "getUpgradeGroup"(): $UpgradeGroup
 get "type"(): $UpgradeType<($CookingUpgradeWrapper$SmokingUpgradeWrapper)>
+get "upgradeGroup"(): $UpgradeGroup
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "cookingUpgradeConfig"(): $CookingUpgradeConfig
-get "upgradeGroup"(): $UpgradeGroup
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8356,13 +8362,13 @@ export class $AlchemyFilterAttribute extends $Record {
 constructor(arg0: $ItemStack$Type, arg1: $AlchemyCondition$Type)
 constructor(filter: $ItemStack$Type, condition: $AlchemyCondition$Type, value: float)
 
-public "condition"(): $AlchemyCondition
 public "value"(): float
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "filter"(): $ItemStack
 public "setValue"(arg0: float): $AlchemyFilterAttribute
+public "condition"(): $AlchemyCondition
 public "setConditionAndValue"(arg0: $AlchemyCondition$Type, arg1: float): $AlchemyFilterAttribute
 public "serializeNBT"(): $CompoundTag
 public static "deserializeNBT"(arg0: $CompoundTag$Type): $AlchemyFilterAttribute
@@ -8390,8 +8396,8 @@ export interface $ITintableBlockItem {
  "setAccentColor"(arg0: $ItemStack$Type, arg1: integer): void
  "removeMainColor"(arg0: $ItemStack$Type): void
  "removeAccentColor"(arg0: $ItemStack$Type): void
- "getAccentColor"(arg0: $ItemStack$Type): $Optional<(integer)>
  "getMainColor"(arg0: $ItemStack$Type): $Optional<(integer)>
+ "getAccentColor"(arg0: $ItemStack$Type): $Optional<(integer)>
  "isTintable"(arg0: $ItemStack$Type): boolean
 }
 
@@ -8444,15 +8450,15 @@ readonly "canRepair": boolean
 constructor(arg0: $IUpgradeCountLimitConfig$Type, arg1: $IntSupplier$Type, arg2: $IntSupplier$Type)
 
 public "getType"(): $UpgradeType<($JukeboxUpgradeWrapper)>
-public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "getNumberOfSlots"(): integer
 public "getSlotsInRow"(): integer
 public "getUpgradeGroup"(): $UpgradeGroup
+public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "type"(): $UpgradeType<($JukeboxUpgradeWrapper)>
-get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "numberOfSlots"(): integer
 get "slotsInRow"(): integer
 get "upgradeGroup"(): $UpgradeGroup
+get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8520,11 +8526,11 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type)
 
 public "getType"(): $UpgradeType<($DepositUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($DepositUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8550,8 +8556,8 @@ export class $FilterLogic$ObservableFilterItemStackHandler extends $FilterItemSt
 constructor(arg0: $FilterLogic$Type)
 
 public "setOnSlotChange"(arg0: $IntConsumer$Type): void
-public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "deserializeNBT"(arg0: $CompoundTag$Type): void
+public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 set "onSlotChange"(value: $IntConsumer$Type)
 }
 /**
@@ -8593,9 +8599,11 @@ readonly "showNotification": boolean
 
 constructor(arg0: $ShapedRecipe$Type)
 
-public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
+public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
+public "getCompose"(): $ShapedRecipe
 get "serializer"(): $RecipeSerializer<(any)>
+get "compose"(): $ShapedRecipe
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8695,9 +8703,9 @@ import {$UpgradeWrapperBase, $UpgradeWrapperBase$Type} from "packages/net/p3pp3r
 export class $StackUpgradeItem$Wrapper extends $UpgradeWrapperBase<($StackUpgradeItem$Wrapper), ($StackUpgradeItem)> {
 
 
-public "getStackSizeMultiplier"(): double
 public "canBeDisabled"(): boolean
 public "hideSettingsTab"(): boolean
+public "getStackSizeMultiplier"(): double
 get "stackSizeMultiplier"(): double
 }
 /**
@@ -8724,9 +8732,9 @@ import {$IStorageWrapper, $IStorageWrapper$Type} from "packages/net/p3pp3rf1y/so
 
 export interface $IControllableStorage extends $IControllerBoundable {
 
- "registerWithControllerOnLoad"(): void
  "registerInventoryStackListeners"(): void
  "onInventoryInputOutputHandlerRefresh"(): void
+ "registerWithControllerOnLoad"(): void
  "canConnectStorages"(): boolean
  "unregisterController"(): void
  "registerController"(arg0: $ControllerBlockEntityBase$Type): void
@@ -8734,8 +8742,8 @@ export interface $IControllableStorage extends $IControllerBoundable {
  "hasStorageData"(): boolean
  "addToController"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type): void
  "updateEmptySlots"(): void
- "tryToAddToController"(): void
  "removeFromController"(): void
+ "tryToAddToController"(): void
  "getStorageWrapper"(): $IStorageWrapper
  "loadControllerPos"(arg0: $CompoundTag$Type): void
  "removeControllerPos"(): void
@@ -8794,40 +8802,40 @@ static readonly "UPDATE_BLOCK_RENDER_TAG": string
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
 public "getMainChestBlockEntity"(): $ChestBlockEntity
-public "getOpenNess"(arg0: float): float
-public "changeSlots"(arg0: integer): void
-public "hasStorageData"(): boolean
-public "isMainChest"(): boolean
-public "getMainStorageWrapper"(): $StorageWrapper
-public "getOpenersCounter"(): $SophisticatedOpenersCounter
-public "loadSynchronizedData"(arg0: $CompoundTag$Type): void
-public "toggleLockVisibility"(): void
-public "toggleTierVisiblity"(): void
-public "toggleUpgradesVisiblity"(): void
-public "setShouldBeOpen"(arg0: boolean): void
-public "canBeLinked"(): boolean
 public "getChestLidController"(): $ChestLidController
+public "getOpenNess"(arg0: float): float
 public "joinWithChest"(arg0: $ChestBlockEntity$Type): void
 public "setDestroyedByPlayer"(): void
 public "syncTogglesFrom"(arg0: $ChestBlockEntity$Type): void
 public static "lidAnimateTick"(arg0: $ChestBlockEntity$Type): void
 public "dropSecondPartContents"(arg0: $ChestBlock$Type, arg1: $BlockPos$Type): void
 public "removeDoubleMainPos"(): void
+public "isMainChest"(): boolean
+public "getMainStorageWrapper"(): $StorageWrapper
+public "toggleUpgradesVisiblity"(): void
+public "setShouldBeOpen"(arg0: boolean): void
+public "canBeLinked"(): boolean
 public "getStorageContentsTag"(): $CompoundTag
+public "changeSlots"(arg0: integer): void
+public "getOpenersCounter"(): $SophisticatedOpenersCounter
+public "loadSynchronizedData"(arg0: $CompoundTag$Type): void
+public "toggleLockVisibility"(): void
+public "toggleTierVisiblity"(): void
+public "hasStorageData"(): boolean
 public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "dropContents"(): void
 public "onNeighborChange"(arg0: $BlockPos$Type): void
+public "dropContents"(): void
 public "load"(arg0: $CompoundTag$Type): void
 public "setMainPos"(arg0: $BlockPos$Type): void
 public "toggleLock"(): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "mainChestBlockEntity"(): $ChestBlockEntity
+get "chestLidController"(): $ChestLidController
 get "mainChest"(): boolean
 get "mainStorageWrapper"(): $StorageWrapper
-get "openersCounter"(): $SophisticatedOpenersCounter
 set "shouldBeOpen"(value: boolean)
-get "chestLidController"(): $ChestLidController
 get "storageContentsTag"(): $CompoundTag
+get "openersCounter"(): $SophisticatedOpenersCounter
 set "mainPos"(value: $BlockPos$Type)
 }
 /**
@@ -8939,12 +8947,12 @@ constructor(arg0: $AutoCookingUpgradeConfig$Type, arg1: $IUpgradeCountLimitConfi
 
 public "getType"(): $UpgradeType<($AutoCookingUpgradeWrapper$AutoBlastingUpgradeWrapper)>
 public "getAutoCookingUpgradeConfig"(): $AutoCookingUpgradeConfig
-public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 public "getUpgradeGroup"(): $UpgradeGroup
+public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "type"(): $UpgradeType<($AutoCookingUpgradeWrapper$AutoBlastingUpgradeWrapper)>
 get "autoCookingUpgradeConfig"(): $AutoCookingUpgradeConfig
-get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 get "upgradeGroup"(): $UpgradeGroup
+get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9318,12 +9326,12 @@ readonly "showNotification": boolean
 
 constructor(arg0: $ShapedRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
 public "getCompose"(): $ShapedRecipe
-get "special"(): boolean
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
 get "compose"(): $ShapedRecipe
 }
 /**
@@ -9361,12 +9369,14 @@ readonly "ingredients": $NonNullList<($Ingredient)>
 
 constructor(arg0: $ShapelessRecipe$Type)
 
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
 public "isSpecial"(): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
+public "getCompose"(): $ShapelessRecipe
 get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
+get "compose"(): $ShapelessRecipe
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9529,8 +9539,8 @@ public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Typ
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -9559,14 +9569,14 @@ export class $PumpUpgradeWrapper extends $UpgradeWrapperBase<($PumpUpgradeWrappe
 
 
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
-public "getAdjustedStackMultiplier"(arg0: $IStorageWrapper$Type): integer
 public "getFluidFilterLogic"(): $FluidFilterLogic
 public "setInteractWithHand"(arg0: boolean): void
 public "setInteractWithWorld"(arg0: boolean): void
 public "shouldInteractWithHand"(): boolean
 public "shouldInteractWithWorld"(): boolean
-public "isInput"(): boolean
+public "getAdjustedStackMultiplier"(arg0: $IStorageWrapper$Type): integer
 public "setIsInput"(arg0: boolean): void
+public "isInput"(): boolean
 get "fluidFilterLogic"(): $FluidFilterLogic
 set "interactWithHand"(value: boolean)
 set "interactWithWorld"(value: boolean)
@@ -9665,7 +9675,6 @@ import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/leve
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$WoodStorageBlockBase, $WoodStorageBlockBase$Type} from "packages/net/p3pp3rf1y/sophisticatedstorage/block/$WoodStorageBlockBase"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
-import {$ChestBlockEntity, $ChestBlockEntity$Type} from "packages/net/p3pp3rf1y/sophisticatedstorage/block/$ChestBlockEntity"
 import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
@@ -9743,15 +9752,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $Supplier$Type<(integer)>, arg1: $Supplier$Type<(integer)>)
 constructor(arg0: $Supplier$Type<(integer)>, arg1: $Supplier$Type<(integer)>, arg2: float)
 
+public "getNeighborPos"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): $List<($BlockPos)>
 public "addDropData"(arg0: $ItemStack$Type, arg1: $StorageBlockEntity$Type): void
 public static "isChestBlockedAt"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type): boolean
 public static "getConnectedDirection"(arg0: $BlockState$Type): $Direction
-public "getNeighborPos"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): $List<($BlockPos)>
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $ChestBlockEntity
-public "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
 public "onDestroyedByPlayer"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: boolean, arg5: $FluidState$Type): boolean
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
@@ -9764,7 +9771,8 @@ public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$T
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFacing"(arg0: $BlockState$Type): $Direction
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -9805,17 +9813,13 @@ import {$ITrackedContentsItemHandler, $ITrackedContentsItemHandler$Type} from "p
 
 export interface $IStorageWrapper extends $ITintable {
 
- "getDisplayName"(): $Component
  "sort"(): void
- "registerOnInventoryInputOutputHandlerRefreshListener"(arg0: $Runnable$Type): void
+ "getDisplayName"(): $Component
  "setInventorySlotChangeHandler"(arg0: $Runnable$Type): void
  "getInventoryForUpgradeProcessing"(): $ITrackedContentsItemHandler
  "setUpgradeCachesInvalidatedHandler"(arg0: $Runnable$Type): void
  "refreshInventoryForUpgradeProcessing"(): void
  "refreshInventoryForInputOutput"(): void
- "getBaseStackSizeMultiplier"(): integer
- "getInventoryHandler"(): $InventoryHandler
- "getStorageType"(): string
  "setContentsChangeHandler"(arg0: $Runnable$Type): void
  "getInventoryForInputOutput"(): $ITrackedContentsItemHandler
  "getSettingsHandler"(): $SettingsHandler
@@ -9830,16 +9834,20 @@ export interface $IStorageWrapper extends $ITintable {
  "getNumberOfSlotRows"(): integer
  "getWrappedStorageStack"(): $ItemStack
  "isUpgradeRunnable"(arg0: $ItemStack$Type): boolean
+ "getStorageType"(): string
+ "getBaseStackSizeMultiplier"(): integer
+ "getInventoryHandler"(): $InventoryHandler
  "getContentsUuid"(): $Optional<($UUID)>
  "getUpgradeHandler"(): $UpgradeHandler
  "onContentsNbtUpdated"(): void
+ "getFluidHandler"(): $Optional<($IStorageFluidHandler)>
  "getEnergyStorage"(): $Optional<($IEnergyStorage)>
  "onInit"(): void
- "getFluidHandler"(): $Optional<($IStorageFluidHandler)>
+ "registerOnInventoryInputOutputHandlerRefreshListener"(arg0: $Runnable$Type): void
  "setSortBy"(arg0: $SortBy$Type): void
  "getSortBy"(): $SortBy
- "getAccentColor"(): integer
  "getMainColor"(): integer
+ "getAccentColor"(): integer
  "setColors"(arg0: integer, arg1: integer): void
 }
 
@@ -9862,8 +9870,8 @@ declare module "packages/net/p3pp3rf1y/sophisticatedcore/upgrades/$UpgradeHandle
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$UpgradeType, $UpgradeType$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/upgrades/$UpgradeType"
-import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$List, $List$Type} from "packages/java/util/$List"
+import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$ItemStackHandler, $ItemStackHandler$Type} from "packages/net/minecraftforge/items/$ItemStackHandler"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$IStorageWrapper, $IStorageWrapper$Type} from "packages/net/p3pp3rf1y/sophisticatedcore/api/$IStorageWrapper"
@@ -9878,30 +9886,30 @@ constructor(arg0: integer, arg1: $IStorageWrapper$Type, arg2: $CompoundTag$Type,
 
 public "setSize"(arg0: integer): void
 public "copyTo"(arg0: $UpgradeHandler$Type): void
-public "refreshWrappersThatImplementAndTypeWrappers"(): void
-public "registerUpgradeDefaultsHandler"<T extends $IUpgradeWrapper>(arg0: $Class$Type<(T)>, arg1: $Consumer$Type<(T)>): void
 public "getListOfWrappersThatImplement"<T>(arg0: $Class$Type<(T)>): $List<(T)>
+public "registerUpgradeDefaultsHandler"<T extends $IUpgradeWrapper>(arg0: $Class$Type<(T)>, arg1: $Consumer$Type<(T)>): void
 public "getWrappersThatImplementFromMainStorage"<T>(arg0: $Class$Type<(T)>): $List<(T)>
 public "refreshUpgradeWrappers"(): void
+public "setPersistent"(arg0: boolean): void
+public "getSlotWrappers"(): $Map<(integer), ($IUpgradeWrapper)>
 public "setRefreshCallBack"(arg0: $Runnable$Type): void
 public "removeRefreshCallback"(): void
 public "setRenderUpgradeItems"(): void
 public "increaseSize"(arg0: integer): void
-public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
 public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
 public "getSlotLimit"(arg0: integer): integer
 public "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
-public "getSlotWrappers"(): $Map<(integer), ($IUpgradeWrapper)>
-public "setPersistent"(arg0: boolean): void
+public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
 public "getTypeWrappers"<T extends $IUpgradeWrapper>(arg0: $UpgradeType$Type<(T)>): $List<(T)>
 public "getWrappersThatImplement"<T>(arg0: $Class$Type<(T)>): $List<(T)>
 public "saveInventory"(): void
+public "refreshWrappersThatImplementAndTypeWrappers"(): void
 public "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
 public "hasUpgrade"<T extends $IUpgradeWrapper>(arg0: $UpgradeType$Type<(T)>): boolean
 set "size"(value: integer)
-set "refreshCallBack"(value: $Runnable$Type)
-get "slotWrappers"(): $Map<(integer), ($IUpgradeWrapper)>
 set "persistent"(value: boolean)
+get "slotWrappers"(): $Map<(integer), ($IUpgradeWrapper)>
+set "refreshCallBack"(value: $Runnable$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9954,10 +9962,10 @@ constructor(arg0: $Block$Type, arg1: $Item$Properties$Type)
 public static "setDoubleChest"(arg0: $ItemStack$Type, arg1: boolean): void
 public static "isDoubleChest"(arg0: $ItemStack$Type): boolean
 public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10167,14 +10175,14 @@ constructor(arg0: boolean, arg1: boolean, arg2: $PumpUpgradeConfig$Type, arg3: $
 
 public "getType"(): $UpgradeType<($PumpUpgradeWrapper)>
 public "getInteractWithWorldDefault"(): boolean
-public "getInteractWithHandDefault"(): boolean
-public "getPumpUpgradeConfig"(): $PumpUpgradeConfig
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getPumpUpgradeConfig"(): $PumpUpgradeConfig
+public "getInteractWithHandDefault"(): boolean
 get "type"(): $UpgradeType<($PumpUpgradeWrapper)>
 get "interactWithWorldDefault"(): boolean
-get "interactWithHandDefault"(): boolean
-get "pumpUpgradeConfig"(): $PumpUpgradeConfig
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "pumpUpgradeConfig"(): $PumpUpgradeConfig
+get "interactWithHandDefault"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10273,11 +10281,11 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type, arg1: $IUpgradeCountLimitConfig$Type)
 
 public "getType"(): $UpgradeType<($FeedingUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($FeedingUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10371,26 +10379,26 @@ static readonly "STORAGE_DECORATOR": $DecorationTableBlockEntity$IItemDecorator
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
 public "getResult"(): $ItemStack
+public "setMainColor"(arg0: integer): void
+public "setAccentColor"(arg0: integer): void
 public static "allMaterialsMatch"(arg0: $Map$Type<($BarrelMaterial$Type), ($ResourceLocation$Type)>, arg1: $Map$Type<($BarrelMaterial$Type), ($ResourceLocation$Type)>): boolean
 public "extractResult"(arg0: integer): $ItemStack
 public "getSlotInheritedFrom"(arg0: integer): integer
 public "consumeIngredientsOnCraft"(): void
-public static "registerItemDecorator"(arg0: $Predicate$Type<($ItemStack$Type)>, arg1: $DecorationTableBlockEntity$IItemDecorator$Type): void
-public "setMainColor"(arg0: integer): void
-public "setAccentColor"(arg0: integer): void
+public "getDecoratedPreviewStacks"(): $List<($ItemStack)>
+public "getStorageBlock"(): $ItemStackHandler
+public "getDecorativeBlocks"(): $ItemStackHandler
+public "updateResultAndSetChanged"(): void
+public "setSlotMaterialInheritance"(arg0: integer, arg1: boolean): void
+public "isSlotMaterialInherited"(arg0: integer): boolean
+public "getInheritedItem"(arg0: integer): $ItemStack
+public "getPartsNeeded"(): $Map<($ResourceLocation), (integer)>
 public "getMissingDyes"(): $Set<($ResourceLocation)>
 public "getPartsStored"(): $Map<($ResourceLocation), (integer)>
 public "hasMaterials"(): boolean
-public "getInheritedItem"(arg0: integer): $ItemStack
-public "getPartsNeeded"(): $Map<($ResourceLocation), (integer)>
-public "isSlotMaterialInherited"(arg0: integer): boolean
-public "setSlotMaterialInheritance"(arg0: integer, arg1: boolean): void
-public "updateResultAndSetChanged"(): void
-public "getStorageBlock"(): $ItemStackHandler
-public "getDecorativeBlocks"(): $ItemStackHandler
-public "getDecoratedPreviewStacks"(): $List<($ItemStack)>
-public "getAccentColor"(): integer
+public static "registerItemDecorator"(arg0: $Predicate$Type<($ItemStack$Type)>, arg1: $DecorationTableBlockEntity$IItemDecorator$Type): void
 public "getMainColor"(): integer
+public "getAccentColor"(): integer
 public "dropContents"(): void
 public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
 public "getUpdateTag"(): $CompoundTag
@@ -10400,14 +10408,14 @@ public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTa
 get "result"(): $ItemStack
 set "mainColor"(value: integer)
 set "accentColor"(value: integer)
-get "missingDyes"(): $Set<($ResourceLocation)>
-get "partsStored"(): $Map<($ResourceLocation), (integer)>
-get "partsNeeded"(): $Map<($ResourceLocation), (integer)>
+get "decoratedPreviewStacks"(): $List<($ItemStack)>
 get "storageBlock"(): $ItemStackHandler
 get "decorativeBlocks"(): $ItemStackHandler
-get "decoratedPreviewStacks"(): $List<($ItemStack)>
-get "accentColor"(): integer
+get "partsNeeded"(): $Map<($ResourceLocation), (integer)>
+get "missingDyes"(): $Set<($ResourceLocation)>
+get "partsStored"(): $Map<($ResourceLocation), (integer)>
 get "mainColor"(): integer
+get "accentColor"(): integer
 get "updatePacket"(): $ClientboundBlockEntityDataPacket
 get "updateTag"(): $CompoundTag
 get "dyes"(): $ItemStackHandler
@@ -10454,13 +10462,13 @@ readonly "canRepair": boolean
 constructor(arg0: $IntSupplier$Type, arg1: boolean, arg2: boolean)
 
 public "getType"(): $UpgradeType<($RefillUpgradeWrapper)>
-public "getFilterSlotCount"(): integer
 public "supportsBlockPick"(): boolean
 public "allowsTargetSlotSelection"(): boolean
 public "getUpgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+public "getFilterSlotCount"(): integer
 get "type"(): $UpgradeType<($RefillUpgradeWrapper)>
-get "filterSlotCount"(): integer
 get "upgradeConflicts"(): $List<($IUpgradeItem$UpgradeConflictDefinition)>
+get "filterSlotCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10575,14 +10583,14 @@ constructor(arg0: $IStorageWrapper$Type, arg1: $ItemStack$Type, arg2: $Consumer$
 
 public "tick"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockPos$Type): void
 public "shouldFeedImmediatelyWhenHurt"(): boolean
-public "getFilterLogic"(): $FilterLogic
 public "setFeedAtHungerLevel"(arg0: $HungerLevel$Type): void
 public "setFeedImmediatelyWhenHurt"(arg0: boolean): void
 public "getFeedAtHungerLevel"(): $HungerLevel
-get "filterLogic"(): $FilterLogic
+public "getFilterLogic"(): $FilterLogic
 set "feedAtHungerLevel"(value: $HungerLevel$Type)
 set "feedImmediatelyWhenHurt"(value: boolean)
 get "feedAtHungerLevel"(): $HungerLevel
+get "filterLogic"(): $FilterLogic
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

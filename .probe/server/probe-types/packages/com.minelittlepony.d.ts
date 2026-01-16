@@ -66,9 +66,9 @@ import {$ScreenInitCallback$ButtonList, $ScreenInitCallback$ButtonList$Type} fro
 export interface $IViewRoot extends $IBounded, $ScreenInitCallback$ButtonList {
 
  "getContentPadding"(): $Padding
- "getChildElements"(): $List<($GuiEventListener)>
  "getContentBounds"(): $Bounds
  "getAllBounds"(): $Set<($Bounds)>
+ "getChildElements"(): $List<($GuiEventListener)>
  "buttons"<T extends ($GuiEventListener) & ($Renderable) & ($NarratableEntry)>(): $List<($NarratableEntry)>
  "getScrollY"(): integer
  "getScrollX"(): integer
@@ -261,10 +261,8 @@ export class $Bounds {
 
 constructor(top: integer, left: integer, width: integer, height: integer)
 
-public "right"(): integer
-public "bottom"(): integer
-public "add"(other: $Padding$Type): $Bounds
 public "add"(other: $Bounds$Type): $Bounds
+public "add"(other: $Padding$Type): $Bounds
 public "equals"(o: any): boolean
 public "hashCode"(): integer
 public "isEmpty"(): boolean
@@ -272,9 +270,11 @@ public "offset"(other: $Padding$Type): $Bounds
 public "contains"(x: double, y: double): boolean
 public static "empty"(): $Bounds
 public "copy"(other: $Bounds$Type): void
+public "bottom"(): integer
+public "right"(): integer
 public "debugMeasure"(context: $GuiGraphics$Type): void
-public "draw"(context: $GuiGraphics$Type, tint: integer): void
 public "translate"(matrices: $PoseStack$Type): void
+public "draw"(context: $GuiGraphics$Type, tint: integer): void
 public "containsX"(x: double): boolean
 public "containsY"(y: double): boolean
 }

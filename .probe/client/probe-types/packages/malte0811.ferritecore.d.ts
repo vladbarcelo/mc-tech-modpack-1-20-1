@@ -62,14 +62,14 @@ export class $FastMap<Value> {
 
 constructor(arg0: $Collection$Type<($Property$Type<(any)>)>, arg1: $Map$Type<($Map$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>), (Value)>, arg2: boolean)
 
-public "with"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>, arg2: T): Value
-public "getEntry"(arg0: integer, arg1: integer): $Map$Entry<($Property<(any)>), ($Comparable<(any)>)>
 public "getValue"(arg0: integer, arg1: any): $Comparable<(any)>
 public "getValue"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>): T
 public "getKey"(arg0: integer): $FastMapKey<(any)>
-public "numProperties"(): integer
+public "getEntry"(arg0: integer, arg1: integer): $Map$Entry<($Property<(any)>), ($Comparable<(any)>)>
+public "with"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>, arg2: T): Value
 public "isSingleState"(): boolean
 public "getPropertySet"(): $ImmutableSet<($Property<(any)>)>
+public "numProperties"(): integer
 public "withUnsafe"<T extends $Comparable<(T)>>(arg0: integer, arg1: $Property$Type<(T)>, arg2: any): Value
 public "getIndexOf"(arg0: $Map$Type<($Property$Type<(any)>), ($Comparable$Type<(any)>)>): integer
 get "singleState"(): boolean
@@ -156,9 +156,9 @@ import {$Property, $Property$Type} from "packages/net/minecraft/world/level/bloc
 export class $FastMapKey<T extends $Comparable<(T)>> {
 
 
-public "numValues"(): integer
 public "getProperty"(): $Property<(T)>
 public "getValue"(arg0: integer): T
+public "numValues"(): integer
 get "property"(): $Property<(T)>
 }
 /**

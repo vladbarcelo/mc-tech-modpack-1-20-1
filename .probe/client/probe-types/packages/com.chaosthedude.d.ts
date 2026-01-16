@@ -150,9 +150,9 @@ static readonly "FOUND": $CompassState
 static readonly "NOT_FOUND": $CompassState
 
 
-public "getID"(): integer
 public static "values"(): ($CompassState)[]
 public static "valueOf"(arg0: string): $CompassState
+public "getID"(): integer
 public static "fromID"(arg0: integer): $CompassState
 get "iD"(): integer
 }
@@ -178,9 +178,9 @@ static readonly "FOUND": $CompassState
 static readonly "NOT_FOUND": $CompassState
 
 
-public "getID"(): integer
 public static "values"(): ($CompassState)[]
 public static "valueOf"(arg0: string): $CompassState
+public "getID"(): integer
 public static "fromID"(arg0: integer): $CompassState
 get "iD"(): integer
 }

@@ -4,10 +4,10 @@ import {$MicroblockPart, $MicroblockPart$Type} from "packages/codechicken/microb
 import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 import {$MicroMaterial, $MicroMaterial$Type} from "packages/codechicken/microblock/api/$MicroMaterial"
 import {$RenderType, $RenderType$Type} from "packages/net/minecraft/client/renderer/$RenderType"
-import {$MaskedCuboid, $MaskedCuboid$Type} from "packages/codechicken/microblock/util/$MaskedCuboid"
 import {$ItemDisplayContext, $ItemDisplayContext$Type} from "packages/net/minecraft/world/item/$ItemDisplayContext"
-import {$CCRenderState, $CCRenderState$Type} from "packages/codechicken/lib/render/$CCRenderState"
+import {$MaskedCuboid, $MaskedCuboid$Type} from "packages/codechicken/microblock/util/$MaskedCuboid"
 import {$PoseStack, $PoseStack$Type} from "packages/com/mojang/blaze3d/vertex/$PoseStack"
+import {$CCRenderState, $CCRenderState$Type} from "packages/codechicken/lib/render/$CCRenderState"
 import {$PartRayTraceResult, $PartRayTraceResult$Type} from "packages/codechicken/multipart/util/$PartRayTraceResult"
 import {$ParticleEngine, $ParticleEngine$Type} from "packages/net/minecraft/client/particle/$ParticleEngine"
 import {$MultiBufferSource, $MultiBufferSource$Type} from "packages/net/minecraft/client/renderer/$MultiBufferSource"
@@ -21,10 +21,10 @@ public static "get"(arg0: $MicroMaterial$Type): $MicroMaterialClient
 public "getItemRenderLayer"(): $RenderType
 public "addHitEffects"(arg0: $MicroblockPart$Type, arg1: $PartRayTraceResult$Type, arg2: $ParticleEngine$Type): void
 public "addDestroyEffects"(arg0: $MicroblockPart$Type, arg1: $PartRayTraceResult$Type, arg2: $ParticleEngine$Type): void
-public "renderCuboids"(arg0: $CCRenderState$Type, arg1: $RenderType$Type, arg2: $Iterable$Type<($MaskedCuboid$Type)>): void
-public "renderDynamic"(arg0: $MicroblockPart$Type, arg1: $ItemDisplayContext$Type, arg2: $PoseStack$Type, arg3: $MultiBufferSource$Type, arg4: integer, arg5: integer, arg6: float): void
-public "addRunningEffects"(arg0: $MicroblockPart$Type, arg1: $PartRayTraceResult$Type, arg2: $Entity$Type): void
 public "addLandingEffects"(arg0: $MicroblockPart$Type, arg1: $PartRayTraceResult$Type, arg2: $Vector3$Type, arg3: integer): void
+public "addRunningEffects"(arg0: $MicroblockPart$Type, arg1: $PartRayTraceResult$Type, arg2: $Entity$Type): void
+public "renderDynamic"(arg0: $MicroblockPart$Type, arg1: $ItemDisplayContext$Type, arg2: $PoseStack$Type, arg3: $MultiBufferSource$Type, arg4: integer, arg5: integer, arg6: float): void
+public "renderCuboids"(arg0: $CCRenderState$Type, arg1: $RenderType$Type, arg2: $Iterable$Type<($MaskedCuboid$Type)>): void
 get "itemRenderLayer"(): $RenderType
 }
 /**
@@ -55,8 +55,8 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
 import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$CapabilityCache, $CapabilityCache$Type} from "packages/codechicken/lib/capability/$CapabilityCache"
@@ -72,49 +72,50 @@ export interface $IMicroShrinkRender extends $MultiPart {
  "getBounds"(): $Cuboid6
  "getSlot"(): integer
  "getSize"(): integer
- "getPriorityClass"(): integer
  "isTransparent"(): boolean
- "level"(): $Level
- "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "readDesc"(arg0: $MCDataInput$Type): void
+ "getPriorityClass"(): integer
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
+ "readDesc"(arg0: $MCDataInput$Type): void
+ "level"(): $Level
+ "getShape"(arg0: $CollisionContext$Type): $VoxelShape
  "scheduleTick"(arg0: integer): void
  "scheduledTick"(): void
  "onChunkLoad"(arg0: $LevelChunk$Type): void
  "onChunkUnload"(): void
  "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
  "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "getLightEmission"(): integer
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
  "onEntityCollision"(arg0: $Entity$Type): void
- "onWorldJoin"(): void
- "getRenderBounds"(): $Cuboid6
- "onPartChanged"(arg0: $MultiPart$Type): void
- "onEntityStanding"(arg0: $Entity$Type): void
- "invalidateConvertedTile"(): void
- "onConverted"(): void
- "onWorldSeparate"(): void
- "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
- "occlusionTest"(arg0: $MultiPart$Type): boolean
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
- "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getBlockSupportShape"(): $VoxelShape
+ "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
  "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "getLightEmission"(): integer
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "onWorldJoin"(): void
+ "occlusionTest"(arg0: $MultiPart$Type): boolean
+ "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
+ "onWorldSeparate"(): void
+ "onConverted"(): void
+ "invalidateConvertedTile"(): void
+ "onEntityStanding"(arg0: $Entity$Type): void
+ "onPartChanged"(arg0: $MultiPart$Type): void
+ "getRenderBounds"(): $Cuboid6
+ "onAdded"(): void
  "tile"(): $TileMultipart
  "getDrops"(): $Iterable<($ItemStack)>
  "onMoved"(): void
- "onAdded"(): void
  "writeDesc"(arg0: $MCDataOutput$Type): void
+ "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
  "capCache"(): $CapabilityCache
@@ -123,7 +124,6 @@ export interface $IMicroShrinkRender extends $MultiPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
- "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
 }
 
 export namespace $IMicroShrinkRender {
@@ -195,27 +195,27 @@ export class $MicroblockPart extends $BaseMultipart {
 
 constructor(arg0: $MicroMaterial$Type)
 
-public "readDesc"(arg0: $MCDataInput$Type): void
 public "load"(arg0: $CompoundTag$Type): void
 public "getBounds"(): $Cuboid6
 public "save"(arg0: $CompoundTag$Type): void
 public "getType"(): $MultipartType<(any)>
 public "getSize"(): integer
+public "readDesc"(arg0: $MCDataInput$Type): void
+public "getMaterial"(): $MicroMaterial
 public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
 public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
-public "getMaterial"(): $MicroMaterial
-public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
-public "isTransparent"(): boolean
-public "getShapeSlot"(): integer
-public "getMicroFactory"(): $MicroblockPartFactory
-public "getRenderCuboids"(arg0: boolean): $Iterable<($MaskedCuboid)>
-public "getItemFactoryId"(): integer
-public "sendShapeUpdate"(): void
-public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
-public "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
-public "getExplosionResistance"(arg0: $Explosion$Type): float
 public "getLightEmission"(): integer
+public "getExplosionResistance"(arg0: $Explosion$Type): float
 public "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+public "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+public "getMicroFactory"(): $MicroblockPartFactory
+public "getShapeSlot"(): integer
+public "sendShapeUpdate"(): void
+public "getItemFactoryId"(): integer
+public "getRenderCuboids"(arg0: boolean): $Iterable<($MaskedCuboid)>
+public "isTransparent"(): boolean
+public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
 public "getDrops"(): $Iterable<($ItemStack)>
 public "setShape"(arg0: integer, arg1: integer): void
 public "writeDesc"(arg0: $MCDataOutput$Type): void
@@ -224,11 +224,11 @@ get "bounds"(): $Cuboid6
 get "type"(): $MultipartType<(any)>
 get "size"(): integer
 get "material"(): $MicroMaterial
-get "transparent"(): boolean
-get "shapeSlot"(): integer
-get "microFactory"(): $MicroblockPartFactory
-get "itemFactoryId"(): integer
 get "lightEmission"(): integer
+get "microFactory"(): $MicroblockPartFactory
+get "shapeSlot"(): integer
+get "itemFactoryId"(): integer
+get "transparent"(): boolean
 get "drops"(): $Iterable<($ItemStack)>
 }
 /**
@@ -287,11 +287,11 @@ constructor(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $BlockHitResu
 public "expand"(arg0: $MicroblockPart$Type, arg1: $MicroblockPart$Type): $ExecutablePlacement
 public "expand"(arg0: $StandardMicroblockPart$Type): $ExecutablePlacement
 public "create"(arg0: integer, arg1: integer, arg2: $MicroMaterial$Type): $MicroblockPart
-public "externalPlacement"(arg0: integer): $ExecutablePlacement
-public "externalPlacement"(arg0: $MicroblockPart$Type): $ExecutablePlacement
+public static "getHitDepth"(arg0: $Vector3$Type, arg1: integer): double
 public "internalPlacement"(arg0: $TileMultipart$Type, arg1: $MicroblockPart$Type): $ExecutablePlacement
 public "internalPlacement"(arg0: $TileMultipart$Type, arg1: integer): $ExecutablePlacement
-public static "getHitDepth"(arg0: $Vector3$Type, arg1: integer): double
+public "externalPlacement"(arg0: $MicroblockPart$Type): $ExecutablePlacement
+public "externalPlacement"(arg0: integer): $ExecutablePlacement
 public "calculate"(): $ExecutablePlacement
 }
 /**
@@ -307,9 +307,9 @@ declare global {
 export type $MicroblockPlacement_ = $MicroblockPlacement$Type;
 }}
 declare module "packages/codechicken/microblock/part/$PlacementProperties" {
-import {$ExecutablePlacement, $ExecutablePlacement$Type} from "packages/codechicken/microblock/part/$ExecutablePlacement"
-import {$PlacementGrid, $PlacementGrid$Type} from "packages/codechicken/microblock/part/$PlacementGrid"
 import {$MicroblockPartFactory, $MicroblockPartFactory$Type} from "packages/codechicken/microblock/part/$MicroblockPartFactory"
+import {$PlacementGrid, $PlacementGrid$Type} from "packages/codechicken/microblock/part/$PlacementGrid"
+import {$ExecutablePlacement, $ExecutablePlacement$Type} from "packages/codechicken/microblock/part/$ExecutablePlacement"
 import {$MicroblockPlacement, $MicroblockPlacement$Type} from "packages/codechicken/microblock/part/$MicroblockPlacement"
 
 export class $PlacementProperties {
@@ -317,10 +317,10 @@ export class $PlacementProperties {
 constructor()
 
 public "expand"(arg0: integer, arg1: integer): boolean
-public "customPlacement"(arg0: $MicroblockPlacement$Type): $ExecutablePlacement
-public "placementGrid"(): $PlacementGrid
-public "microFactory"(): $MicroblockPartFactory
 public "sneakOpposite"(arg0: integer, arg1: integer): boolean
+public "microFactory"(): $MicroblockPartFactory
+public "placementGrid"(): $PlacementGrid
+public "customPlacement"(arg0: $MicroblockPlacement$Type): $ExecutablePlacement
 public "opposite"(arg0: integer, arg1: integer): integer
 }
 /**
@@ -344,8 +344,8 @@ import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/bl
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$MicroMaterialClient, $MicroMaterialClient$Type} from "packages/codechicken/microblock/api/$MicroMaterialClient"
 import {$Explosion, $Explosion$Type} from "packages/net/minecraft/world/level/$Explosion"
-import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Tier, $Tier$Type} from "packages/net/minecraft/world/item/$Tier"
 
 export class $MicroMaterial {
@@ -355,19 +355,19 @@ constructor()
 public "getLocalizedName"(): $Component
 public "getItem"(): $ItemStack
 public "getCutterTier"(): $Tier
-public "getRegistryName"(): $ResourceLocation
 public "initializeClient"(arg0: $Consumer$Type<($MicroMaterialClient$Type)>): void
-public "getStrength"(arg0: $Player$Type): float
-public "isTransparent"(): boolean
-public "getExplosionResistance"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Explosion$Type): float
 public "getLightEmission"(): integer
+public "getExplosionResistance"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Explosion$Type): float
+public "getStrength"(arg0: $Player$Type): float
+public "getRegistryName"(): $ResourceLocation
+public "isTransparent"(): boolean
 public "getSound"(): $SoundType
 get "localizedName"(): $Component
 get "item"(): $ItemStack
 get "cutterTier"(): $Tier
+get "lightEmission"(): integer
 get "registryName"(): $ResourceLocation
 get "transparent"(): boolean
-get "lightEmission"(): integer
 get "sound"(): $SoundType
 }
 /**
@@ -410,8 +410,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Tier$Type, arg1: $Item$Properties$Type)
 
-public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
 public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
+public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
 public static "getSawTier"(arg0: $Item$Type): $Tier
 public static "isTierGTEQ"(arg0: $Tier$Type, arg1: $Tier$Type): boolean
 }
@@ -513,12 +513,12 @@ public static "getFactory"(arg0: $ItemStack$Type): $StandardMicroFactory
 public static "getSize"(arg0: $ItemStack$Type): integer
 public static "create"(arg0: integer, arg1: integer, arg2: $ResourceLocation$Type): $ItemStack
 public static "create"(arg0: integer, arg1: integer, arg2: $MicroMaterial$Type): $ItemStack
-public static "createStack"(arg0: integer, arg1: integer, arg2: integer, arg3: $MicroMaterial$Type): $ItemStack
-public static "createStack"(arg0: integer, arg1: integer, arg2: integer, arg3: $ResourceLocation$Type): $ItemStack
 public static "getFactoryID"(arg0: $ItemStack$Type): integer
+public static "createStack"(arg0: integer, arg1: integer, arg2: integer, arg3: $ResourceLocation$Type): $ItemStack
+public static "createStack"(arg0: integer, arg1: integer, arg2: integer, arg3: $MicroMaterial$Type): $ItemStack
 public static "getMaterialFromStack"(arg0: $ItemStack$Type): $MicroMaterial
-public "getName"(arg0: $ItemStack$Type): $Component
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "getName"(arg0: $ItemStack$Type): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -555,14 +555,14 @@ export class $StandardMicroblockPart extends $MicroblockPart implements $IMicroO
 constructor(arg0: $MicroMaterial$Type)
 
 public "getSlot"(): integer
-public "onPartChanged"(arg0: $MultiPart$Type): void
-public "occlusionTest"(arg0: $MultiPart$Type): boolean
-public "getPriorityClass"(): integer
+public "getItemFactoryId"(): integer
+public "getRenderCuboids"(arg0: boolean): $Iterable<($MaskedCuboid)>
 public "getSlotMask"(): integer
 public "getPartialOcclusionShape"(): $VoxelShape
 public "recalcBounds"(): void
-public "getRenderCuboids"(arg0: boolean): $Iterable<($MaskedCuboid)>
-public "getItemFactoryId"(): integer
+public "getPriorityClass"(): integer
+public "occlusionTest"(arg0: $MultiPart$Type): boolean
+public "onPartChanged"(arg0: $MultiPart$Type): void
 public "onAdded"(): void
 public "readUpdate"(arg0: $MCDataInput$Type): void
 public "getBounds"(): $Cuboid6
@@ -573,10 +573,10 @@ public "isTransparent"(): boolean
 public "tile"(): $TileMultipart
 public "hasTile"(): boolean
 get "slot"(): integer
-get "priorityClass"(): integer
+get "itemFactoryId"(): integer
 get "slotMask"(): integer
 get "partialOcclusionShape"(): $VoxelShape
-get "itemFactoryId"(): integer
+get "priorityClass"(): integer
 get "bounds"(): $Cuboid6
 get "size"(): integer
 get "material"(): $MicroMaterial
@@ -612,8 +612,8 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
 import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$CapabilityCache, $CapabilityCache$Type} from "packages/codechicken/lib/capability/$CapabilityCache"
@@ -631,47 +631,48 @@ export interface $IMicroOcclusion extends $SlottedPart {
  "getSize"(): integer
  "getMaterial"(): $MicroMaterial
  "getSlotMask"(): integer
- "level"(): $Level
- "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "readDesc"(arg0: $MCDataInput$Type): void
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
+ "readDesc"(arg0: $MCDataInput$Type): void
+ "level"(): $Level
+ "getShape"(arg0: $CollisionContext$Type): $VoxelShape
  "scheduleTick"(arg0: integer): void
  "scheduledTick"(): void
  "onChunkLoad"(arg0: $LevelChunk$Type): void
  "onChunkUnload"(): void
  "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
  "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "getLightEmission"(): integer
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
  "onEntityCollision"(arg0: $Entity$Type): void
- "onWorldJoin"(): void
- "getRenderBounds"(): $Cuboid6
- "onPartChanged"(arg0: $MultiPart$Type): void
- "onEntityStanding"(arg0: $Entity$Type): void
- "invalidateConvertedTile"(): void
- "onConverted"(): void
- "onWorldSeparate"(): void
- "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
- "occlusionTest"(arg0: $MultiPart$Type): boolean
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
- "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getBlockSupportShape"(): $VoxelShape
+ "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
  "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "getLightEmission"(): integer
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "onWorldJoin"(): void
+ "occlusionTest"(arg0: $MultiPart$Type): boolean
+ "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
+ "onWorldSeparate"(): void
+ "onConverted"(): void
+ "invalidateConvertedTile"(): void
+ "onEntityStanding"(arg0: $Entity$Type): void
+ "onPartChanged"(arg0: $MultiPart$Type): void
+ "getRenderBounds"(): $Cuboid6
+ "onAdded"(): void
  "tile"(): $TileMultipart
  "getDrops"(): $Iterable<($ItemStack)>
  "onMoved"(): void
- "onAdded"(): void
  "writeDesc"(arg0: $MCDataOutput$Type): void
+ "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
  "capCache"(): $CapabilityCache
@@ -680,7 +681,6 @@ export interface $IMicroOcclusion extends $SlottedPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
- "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
 }
 
 export namespace $IMicroOcclusion {
@@ -738,8 +738,8 @@ readonly "pos": $BlockPos
 readonly "part": $MicroblockPart
 
 
-public "place"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ItemStack$Type): void
 public "consume"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ItemStack$Type): void
+public "place"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ItemStack$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

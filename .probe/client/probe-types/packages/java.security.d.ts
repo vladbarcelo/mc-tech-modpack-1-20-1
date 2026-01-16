@@ -3,9 +3,9 @@ import {$Serializable, $Serializable$Type} from "packages/java/io/$Serializable"
 
 export interface $Key extends $Serializable {
 
+ "getEncoded"(): (byte)[]
  "getAlgorithm"(): string
  "getFormat"(): string
- "getEncoded"(): (byte)[]
 }
 
 export namespace $Key {
@@ -26,8 +26,8 @@ export type $Key_ = $Key$Type;
 declare module "packages/java/security/$Signature" {
 import {$Certificate, $Certificate$Type} from "packages/java/security/cert/$Certificate"
 import {$SecureRandom, $SecureRandom$Type} from "packages/java/security/$SecureRandom"
-import {$PublicKey, $PublicKey$Type} from "packages/java/security/$PublicKey"
 import {$AlgorithmParameters, $AlgorithmParameters$Type} from "packages/java/security/$AlgorithmParameters"
+import {$PublicKey, $PublicKey$Type} from "packages/java/security/$PublicKey"
 import {$PrivateKey, $PrivateKey$Type} from "packages/java/security/$PrivateKey"
 import {$ByteBuffer, $ByteBuffer$Type} from "packages/java/nio/$ByteBuffer"
 import {$Provider, $Provider$Type} from "packages/java/security/$Provider"
@@ -37,16 +37,6 @@ import {$AlgorithmParameterSpec, $AlgorithmParameterSpec$Type} from "packages/ja
 export class $Signature extends $SignatureSpi {
 
 
-public "sign"(): (byte)[]
-public "sign"(arg0: (byte)[], arg1: integer, arg2: integer): integer
-public "getAlgorithm"(): string
-public "getProvider"(): $Provider
-public "initVerify"(arg0: $Certificate$Type): void
-public "initVerify"(arg0: $PublicKey$Type): void
-public "initSign"(arg0: $PrivateKey$Type, arg1: $SecureRandom$Type): void
-public "initSign"(arg0: $PrivateKey$Type): void
-public "verify"(arg0: (byte)[]): boolean
-public "verify"(arg0: (byte)[], arg1: integer, arg2: integer): boolean
 /**
  * 
  * @deprecated
@@ -60,18 +50,28 @@ public "setParameter"(arg0: $AlgorithmParameterSpec$Type): void
 public "getParameter"(arg0: string): any
 public "toString"(): string
 public "clone"(): any
-public "update"(arg0: byte): void
 public "update"(arg0: (byte)[]): void
 public "update"(arg0: (byte)[], arg1: integer, arg2: integer): void
 public "update"(arg0: $ByteBuffer$Type): void
-public static "getInstance"(arg0: string, arg1: string): $Signature
+public "update"(arg0: byte): void
 public static "getInstance"(arg0: string): $Signature
 public static "getInstance"(arg0: string, arg1: $Provider$Type): $Signature
+public static "getInstance"(arg0: string, arg1: string): $Signature
 public "getParameters"(): $AlgorithmParameters
-get "algorithm"(): string
-get "provider"(): $Provider
+public "verify"(arg0: (byte)[]): boolean
+public "verify"(arg0: (byte)[], arg1: integer, arg2: integer): boolean
+public "getProvider"(): $Provider
+public "getAlgorithm"(): string
+public "sign"(arg0: (byte)[], arg1: integer, arg2: integer): integer
+public "sign"(): (byte)[]
+public "initVerify"(arg0: $PublicKey$Type): void
+public "initVerify"(arg0: $Certificate$Type): void
+public "initSign"(arg0: $PrivateKey$Type): void
+public "initSign"(arg0: $PrivateKey$Type, arg1: $SecureRandom$Type): void
 set "parameter"(value: $AlgorithmParameterSpec$Type)
 get "parameters"(): $AlgorithmParameters
+get "provider"(): $Provider
+get "algorithm"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -93,14 +93,9 @@ import {$Provider, $Provider$Type} from "packages/java/security/$Provider"
 
 export class $SecureRandom extends $Random {
 
-constructor()
 constructor(arg0: (byte)[])
+constructor()
 
-public "getAlgorithm"(): string
-public "getProvider"(): $Provider
-public static "getSeed"(arg0: integer): (byte)[]
-public "nextBytes"(arg0: (byte)[]): void
-public "nextBytes"(arg0: (byte)[], arg1: $SecureRandomParameters$Type): void
 public "setSeed"(arg0: long): void
 public "setSeed"(arg0: (byte)[]): void
 public "generateSeed"(arg0: integer): (byte)[]
@@ -108,21 +103,26 @@ public static "getInstanceStrong"(): $SecureRandom
 public "reseed"(arg0: $SecureRandomParameters$Type): void
 public "reseed"(): void
 public "toString"(): string
-public static "getInstance"(arg0: string, arg1: $SecureRandomParameters$Type, arg2: string): $SecureRandom
-public static "getInstance"(arg0: string, arg1: $SecureRandomParameters$Type, arg2: $Provider$Type): $SecureRandom
-public static "getInstance"(arg0: string, arg1: $Provider$Type): $SecureRandom
-public static "getInstance"(arg0: string, arg1: $SecureRandomParameters$Type): $SecureRandom
 public static "getInstance"(arg0: string, arg1: string): $SecureRandom
 public static "getInstance"(arg0: string): $SecureRandom
+public static "getInstance"(arg0: string, arg1: $Provider$Type): $SecureRandom
+public static "getInstance"(arg0: string, arg1: $SecureRandomParameters$Type): $SecureRandom
+public static "getInstance"(arg0: string, arg1: $SecureRandomParameters$Type, arg2: string): $SecureRandom
+public static "getInstance"(arg0: string, arg1: $SecureRandomParameters$Type, arg2: $Provider$Type): $SecureRandom
 public "getParameters"(): $SecureRandomParameters
+public static "getSeed"(arg0: integer): (byte)[]
+public "getProvider"(): $Provider
+public "getAlgorithm"(): string
+public "nextBytes"(arg0: (byte)[], arg1: $SecureRandomParameters$Type): void
+public "nextBytes"(arg0: (byte)[]): void
 public static "getDefault"(): $RandomGenerator
 public static "of"(arg0: string): $RandomGenerator
-get "algorithm"(): string
-get "provider"(): $Provider
 set "seed"(value: long)
 set "seed"(value: (byte)[])
 get "instanceStrong"(): $SecureRandom
 get "parameters"(): $SecureRandomParameters
+get "provider"(): $Provider
+get "algorithm"(): string
 get "default"(): $RandomGenerator
 }
 /**
@@ -146,14 +146,14 @@ export class $Permission implements $Guard, $Serializable {
 
 constructor(arg0: string)
 
-public "newPermissionCollection"(): $PermissionCollection
-public "checkGuard"(arg0: any): void
 public "getName"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "implies"(arg0: $Permission$Type): boolean
 public "getActions"(): string
+public "newPermissionCollection"(): $PermissionCollection
+public "checkGuard"(arg0: any): void
 get "name"(): string
 get "actions"(): string
 }
@@ -227,8 +227,8 @@ declare module "packages/java/security/$Provider" {
 import {$BiConsumer, $BiConsumer$Type} from "packages/java/util/function/$BiConsumer"
 import {$Provider$Service, $Provider$Service$Type} from "packages/java/security/$Provider$Service"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
-import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$Enumeration, $Enumeration$Type} from "packages/java/util/$Enumeration"
+import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$InputStream, $InputStream$Type} from "packages/java/io/$InputStream"
 import {$Properties, $Properties$Type} from "packages/java/util/$Properties"
@@ -239,17 +239,6 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export class $Provider extends $Properties {
 
 
-/**
- * 
- * @deprecated
- */
-public "getVersion"(): double
-public "getService"(arg0: string, arg1: string): $Provider$Service
-public "getServices"(): $Set<($Provider$Service)>
-public "configure"(arg0: string): $Provider
-public "isConfigured"(): boolean
-public "getVersionStr"(): string
-public "getInfo"(): string
 public "getName"(): string
 public "remove"(arg0: any): any
 public "remove"(arg0: any, arg1: any): boolean
@@ -260,8 +249,8 @@ public "toString"(): string
 public "values"(): $Collection<(any)>
 public "load"(arg0: $InputStream$Type): void
 public "clear"(): void
-public "replace"(arg0: any, arg1: any, arg2: any): boolean
 public "replace"(arg0: any, arg1: any): any
+public "replace"(arg0: any, arg1: any, arg2: any): boolean
 public "replaceAll"(arg0: $BiFunction$Type<(any), (any), (any)>): void
 public "elements"(): $Enumeration<(any)>
 public "merge"(arg0: any, arg1: any, arg2: $BiFunction$Type<(any), (any), (any)>): any
@@ -275,6 +264,17 @@ public "keys"(): $Enumeration<(any)>
 public "keySet"(): $Set<(any)>
 public "getOrDefault"(arg0: any, arg1: any): any
 public "computeIfPresent"(arg0: any, arg1: $BiFunction$Type<(any), (any), (any)>): any
+/**
+ * 
+ * @deprecated
+ */
+public "getVersion"(): double
+public "getService"(arg0: string, arg1: string): $Provider$Service
+public "getServices"(): $Set<($Provider$Service)>
+public "configure"(arg0: string): $Provider
+public "isConfigured"(): boolean
+public "getVersionStr"(): string
+public "getInfo"(): string
 public static "copyOf"<K, V>(arg0: $Map$Type<(any), (any)>): $Map<(K), (V)>
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V, arg8: K, arg9: V): $Map<(K), (V)>
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V): $Map<(K), (V)>
@@ -289,12 +289,12 @@ public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, a
 public static "of"<K, V>(arg0: K, arg1: V, arg2: K, arg3: V, arg4: K, arg5: V, arg6: K, arg7: V, arg8: K, arg9: V, arg10: K, arg11: V): $Map<(K), (V)>
 public static "entry"<K, V>(arg0: K, arg1: V): $Map$Entry<(K), (V)>
 public static "ofEntries"<K, V>(...arg0: ($Map$Entry$Type<(any), (any)>)[]): $Map<(K), (V)>
+get "name"(): string
 get "version"(): double
 get "services"(): $Set<($Provider$Service)>
 get "configured"(): boolean
 get "versionStr"(): string
 get "info"(): string
-get "name"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -317,13 +317,13 @@ export class $Timestamp implements $Serializable {
 
 constructor(arg0: $Date$Type, arg1: $CertPath$Type)
 
-public "getTimestamp"(): $Date
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getSignerCertPath"(): $CertPath
-get "timestamp"(): $Date
+public "getTimestamp"(): $Date
 get "signerCertPath"(): $CertPath
+get "timestamp"(): $Date
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -377,21 +377,21 @@ import {$AlgorithmParameterSpec, $AlgorithmParameterSpec$Type} from "packages/ja
 export class $AlgorithmParameters {
 
 
-public "getAlgorithm"(): string
-public "getProvider"(): $Provider
-public "getParameterSpec"<T extends $AlgorithmParameterSpec>(arg0: $Class$Type<(T)>): T
 public "toString"(): string
-public static "getInstance"(arg0: string): $AlgorithmParameters
-public static "getInstance"(arg0: string, arg1: string): $AlgorithmParameters
 public static "getInstance"(arg0: string, arg1: $Provider$Type): $AlgorithmParameters
-public "init"(arg0: $AlgorithmParameterSpec$Type): void
-public "init"(arg0: (byte)[], arg1: string): void
+public static "getInstance"(arg0: string, arg1: string): $AlgorithmParameters
+public static "getInstance"(arg0: string): $AlgorithmParameters
 public "init"(arg0: (byte)[]): void
+public "init"(arg0: (byte)[], arg1: string): void
+public "init"(arg0: $AlgorithmParameterSpec$Type): void
 public "getEncoded"(): (byte)[]
 public "getEncoded"(arg0: string): (byte)[]
-get "algorithm"(): string
-get "provider"(): $Provider
+public "getParameterSpec"<T extends $AlgorithmParameterSpec>(arg0: $Class$Type<(T)>): T
+public "getProvider"(): $Provider
+public "getAlgorithm"(): string
 get "encoded"(): (byte)[]
+get "provider"(): $Provider
+get "algorithm"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -415,13 +415,13 @@ export class $PermissionCollection implements $Serializable {
 
 constructor()
 
-public "elementsAsStream"(): $Stream<($Permission)>
 public "add"(arg0: $Permission$Type): void
 public "toString"(): string
 public "elements"(): $Enumeration<($Permission)>
 public "setReadOnly"(): void
 public "implies"(arg0: $Permission$Type): boolean
 public "isReadOnly"(): boolean
+public "elementsAsStream"(): $Stream<($Permission)>
 get "readOnly"(): boolean
 }
 /**
@@ -470,9 +470,9 @@ import {$Key, $Key$Type} from "packages/java/security/$Key"
 
 export interface $PublicKey extends $Key {
 
+ "getEncoded"(): (byte)[]
  "getAlgorithm"(): string
  "getFormat"(): string
- "getEncoded"(): (byte)[]
 }
 
 export namespace $PublicKey {
@@ -525,18 +525,18 @@ export class $Provider$Service {
 
 constructor(arg0: $Provider$Type, arg1: string, arg2: string, arg3: string, arg4: $List$Type<(string)>, arg5: $Map$Type<(string), (string)>)
 
-public "getAlgorithm"(): string
-public "getProvider"(): $Provider
-public "getAttribute"(arg0: string): string
-public "supportsParameter"(arg0: any): boolean
 public "toString"(): string
 public "newInstance"(arg0: any): any
 public "getType"(): string
 public "getClassName"(): string
-get "algorithm"(): string
-get "provider"(): $Provider
+public "getProvider"(): $Provider
+public "getAlgorithm"(): string
+public "getAttribute"(arg0: string): string
+public "supportsParameter"(arg0: any): boolean
 get "type"(): string
 get "className"(): string
+get "provider"(): $Provider
+get "algorithm"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -558,18 +558,18 @@ import {$Provider, $Provider$Type} from "packages/java/security/$Provider"
 export class $Certificate implements $Serializable {
 
 
-public "verify"(arg0: $PublicKey$Type, arg1: string): void
-public "verify"(arg0: $PublicKey$Type, arg1: $Provider$Type): void
-public "verify"(arg0: $PublicKey$Type): void
-public "getPublicKey"(): $PublicKey
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getType"(): string
 public "getEncoded"(): (byte)[]
-get "publicKey"(): $PublicKey
+public "verify"(arg0: $PublicKey$Type): void
+public "verify"(arg0: $PublicKey$Type, arg1: string): void
+public "verify"(arg0: $PublicKey$Type, arg1: $Provider$Type): void
+public "getPublicKey"(): $PublicKey
 get "type"(): string
 get "encoded"(): (byte)[]
+get "publicKey"(): $PublicKey
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -748,9 +748,9 @@ import {$Destroyable, $Destroyable$Type} from "packages/javax/security/auth/$Des
 
 export interface $PrivateKey extends $Key, $Destroyable {
 
+ "getEncoded"(): (byte)[]
  "getAlgorithm"(): string
  "getFormat"(): string
- "getEncoded"(): (byte)[]
  "destroy"(): void
  "isDestroyed"(): boolean
 }
@@ -779,13 +779,13 @@ export class $CodeSigner implements $Serializable {
 
 constructor(arg0: $CertPath$Type, arg1: $Timestamp$Type)
 
-public "getTimestamp"(): $Timestamp
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "getSignerCertPath"(): $CertPath
-get "timestamp"(): $Timestamp
+public "getTimestamp"(): $Timestamp
 get "signerCertPath"(): $CertPath
+get "timestamp"(): $Timestamp
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

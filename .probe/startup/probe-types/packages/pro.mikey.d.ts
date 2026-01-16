@@ -118,10 +118,8 @@ static readonly "STARTER_ITEMS_GIVEN_FLAG": string
 constructor(arg0: $Player$Type)
 constructor(arg0: $Player$Type, arg1: string)
 
-public "getEntity"(): $Player
 public "addEquipmentItem"(arg0: string, arg1: $ItemStack$Type): void
 public "addItems"(...arg0: ($ItemStack$Type)[]): void
-get "entity"(): $Player
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -170,15 +168,15 @@ export class $LevelKu {
 
 constructor(arg0: $ServerLevel$Type)
 
-public "findSingleBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $BlockPos
 public "getRandomLocation"(arg0: $BlockPos$Type, arg1: integer, arg2: integer): $BlockPos
-public "spawnStructure"(arg0: string, arg1: $BlockPos$Type): void
+public "findSingleBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $BlockPos
 public "findEntitiesWithinRadius"(arg0: $ResourceLocation$Type, arg1: $BlockPos$Type, arg2: integer): $List<($LivingEntity)>
 public "findBlockWithinRadius"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: integer, arg3: boolean): $List<($BlockPos)>
+public "spawnStructure"(arg0: string, arg1: $BlockPos$Type): void
 public "seekCollectionOfBlocks"(arg0: $BlockPos$Type, arg1: integer, arg2: $Predicate$Type<($BlockPos$Type)>, arg3: $Predicate$Type<($BlockPos$Type)>): $List<($BlockPos)>
 public "isStructureAtLocation"(arg0: $BlockPos$Type, arg1: $ResourceLocation$Type): boolean
-public "getStructuresAtLocation"(arg0: $BlockPos$Type): $Set<($Structure)>
 public "getStructureIdsAtLocation"(arg0: $BlockPos$Type): $List<($ResourceLocation)>
+public "getStructuresAtLocation"(arg0: $BlockPos$Type): $Set<($Structure)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -202,12 +200,12 @@ export class $PlayerKu {
 constructor(arg0: $Player$Type)
 
 public "isClientSide"(): boolean
-public "showActionBarComponent"(arg0: $Component$Type): void
-public "showActionBar"(arg0: string, arg1: $Color$Type, arg2: boolean): void
+public "clearStarterItemsFlag"(): boolean
 public "showActionBar"(arg0: string, arg1: $Color$Type): void
+public "showActionBar"(arg0: string, arg1: $Color$Type, arg2: boolean): void
 public "showActionBar"(arg0: string, arg1: $Color$Type, arg2: boolean, arg3: boolean): void
 public "showActionBar"(arg0: string): void
-public "clearStarterItemsFlag"(): boolean
+public "showActionBarComponent"(arg0: $Component$Type): void
 get "clientSide"(): boolean
 }
 /**

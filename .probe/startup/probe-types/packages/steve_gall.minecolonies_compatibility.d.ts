@@ -82,17 +82,17 @@ import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from 
 
 export interface $IRestrictableModule extends $IBuildingModule {
 
- "setRestrictEnabled"(arg0: boolean): void
- "isRestrictEnabled"(): boolean
  "setRestrictArea"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getRestrictAreaPos1"(): $BlockPos
  "getRestrictAreaPos2"(): $BlockPos
  "getSearchRange"(): integer
+ "setRestrictEnabled"(arg0: boolean): void
+ "isRestrictEnabled"(): boolean
+ "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
+ "serializeToView"(arg0: $FriendlyByteBuf$Type): void
  "setBuilding"(arg0: $IBuilding$Type): $IBuildingModule
  "setProducer"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): $IBuildingModule
  "getProducer"(): $BuildingEntry$ModuleProducer<(any), (any)>
- "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
- "serializeToView"(arg0: $FriendlyByteBuf$Type): void
  "getBuilding"(): $IBuilding
  "markDirty"(): void
  "clearDirty"(): void
@@ -126,17 +126,17 @@ import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from 
 
 export interface $IRestrictableModuleView extends $IBuildingModuleView {
 
- "setRestrictEnabled"(arg0: boolean): void
- "isRestrictEnabled"(): boolean
  "setRestrictArea"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getRestrictAreaPos1"(): $BlockPos
  "getRestrictAreaPos2"(): $BlockPos
+ "setRestrictEnabled"(arg0: boolean): void
+ "isRestrictEnabled"(): boolean
  "getDesc"(): string
  "setProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): $IBuildingModuleView
  "getProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(): $BuildingEntry$ModuleProducer<(M), (V)>
+ "getBuildingView"(): $IBuildingView
  "setBuildingView"(arg0: $IBuildingView$Type): $IBuildingModuleView
  "isPageVisible"(): boolean
- "getBuildingView"(): $IBuildingView
  "getIcon"(): string
  "deserialize"(arg0: $FriendlyByteBuf$Type): void
  "getWindow"(): $BOWindow
@@ -174,8 +174,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
 import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$BaseEntityBlock, $BaseEntityBlock$Type} from "packages/net/minecraft/world/level/block/$BaseEntityBlock"
@@ -220,10 +220,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -277,8 +277,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$IBlockOverlayItem, $IBlockOverlayItem$Type} from "packages/com/minecolonies/api/items/$IBlockOverlayItem"
@@ -309,14 +309,14 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "getModule"(arg0: $ItemStack$Type): $IRestrictableModule
-public "updateModuleArea"(arg0: $Player$Type, arg1: $ItemStack$Type): void
 public "getModulePos"(arg0: $ItemStack$Type): $ModulePos
 public "getModuleView"(arg0: $ItemStack$Type): $IRestrictableModuleView
 public "getOverlayBoxes"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ItemStack$Type): $List<($IBlockOverlayItem$OverlayBox)>
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "updateModuleArea"(arg0: $Player$Type, arg1: $ItemStack$Type): void
+public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "setModule"(arg0: $ItemStack$Type, arg1: $IRestrictableModule$Type, arg2: $Component$Type): void
-public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "setPos2"(arg0: $ItemStack$Type, arg1: $BlockPos$Type): void
 public "setPos1"(arg0: $ItemStack$Type, arg1: $BlockPos$Type): void
 public "getPos1"(arg0: $ItemStack$Type): $BlockPos

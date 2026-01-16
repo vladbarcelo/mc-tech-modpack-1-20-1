@@ -35,7 +35,7 @@ export interface $Cursor {
 
  "apply"(): void
 
-(arg0: $Runnable$Type, arg1: any): $Cursor
+(): void
 }
 
 export namespace $Cursor {
@@ -47,8 +47,8 @@ const HAND: $Cursor
 const HORIZONTAL_RESIZE: $Cursor
 const VERTICAL_RESIZE: $Cursor
 const RESIZE: $Cursor
-function named(arg0: $Runnable$Type, arg1: any): $Cursor
 function of(arg0: $ResourceLocation$Type): $Cursor
+function named(arg0: $Runnable$Type, arg1: any): $Cursor
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -155,30 +155,32 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
+public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
+get "components"(): $List<($IMateriallyTexturedBlockComponent)>
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -460,33 +462,31 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
-get "components"(): $List<($IMateriallyTexturedBlockComponent)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -574,7 +574,6 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getRegistryName"(): $ResourceLocation
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
@@ -584,6 +583,7 @@ public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List
 public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $MenuProvider
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "registryName"(): $ResourceLocation
 }
@@ -679,30 +679,32 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
+public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
+get "components"(): $List<($IMateriallyTexturedBlockComponent)>
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -753,15 +755,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $FenceBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -814,14 +816,14 @@ readonly "canRepair": boolean
 constructor(arg0: $PaperWallBlock$Type, arg1: $Item$Properties$Type)
 
 public "getInputIds"(): $List<($ResourceLocation)>
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "inputIds"(): $List<($ResourceLocation)>
 get "group"(): $ResourceLocation
 }
@@ -883,9 +885,9 @@ static readonly "LIGHT_PAPER": $ExtraBlockType
 public static "values"(): ($ExtraBlockType)[]
 public static "valueOf"(arg0: string): $ExtraBlockType
 public "getMaterial"(): $Item
-public "isTranslucent"(): boolean
-public "adjustProperties"(arg0: $BlockBehaviour$Properties$Type): $BlockBehaviour$Properties
 public "getSoundType"(): $SoundType
+public "adjustProperties"(arg0: $BlockBehaviour$Properties$Type): $BlockBehaviour$Properties
+public "isTranslucent"(): boolean
 public "getCategory"(): $ExtraBlockCategory
 public "getSerializedName"(): string
 public "getColor"(): $DyeColor
@@ -893,8 +895,8 @@ public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: 
 public static "fromEnumWithMapping"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>, arg1: $Function$Type<(string), (string)>): $StringRepresentable$EnumCodec<(E)>
 public static "keys"(arg0: ($StringRepresentable$Type)[]): $Keyable
 get "material"(): $Item
-get "translucent"(): boolean
 get "soundType"(): $SoundType
+get "translucent"(): boolean
 get "category"(): $ExtraBlockCategory
 get "serializedName"(): string
 get "color"(): $DyeColor
@@ -936,8 +938,8 @@ import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/lev
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$FinishedRecipe, $FinishedRecipe$Type} from "packages/net/minecraft/data/recipes/$FinishedRecipe"
 import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
-import {$ShingleShapeType, $ShingleShapeType$Type} from "packages/com/ldtteam/domumornamentum/block/types/$ShingleShapeType"
 import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$ShingleShapeType, $ShingleShapeType$Type} from "packages/com/ldtteam/domumornamentum/block/types/$ShingleShapeType"
 import {$Half, $Half$Type} from "packages/net/minecraft/world/level/block/state/properties/$Half"
 import {$ICachedItemGroupBlock, $ICachedItemGroupBlock$Type} from "packages/com/ldtteam/domumornamentum/block/$ICachedItemGroupBlock"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
@@ -1003,14 +1005,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public static "getTypeFromShape"(arg0: $StairsShape$Type): $ShingleShapeType
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
@@ -1018,20 +1019,19 @@ public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "isStairs"(arg0: $BlockState$Type): boolean
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
-get "components"(): $List<($IMateriallyTexturedBlockComponent)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -1068,43 +1068,43 @@ constructor(arg0: $ResourceLocation$Type, arg1: integer)
 constructor(arg0: $ResourceLocation$Type, arg1: $ResourceLocation$Type, arg2: integer, arg3: $CompoundTag$Type)
 
 public "getCount"(): integer
-public "getBlockName"(): $ResourceLocation
 public "getAdditionalTag"(): $CompoundTag
+public "getBlockName"(): $ResourceLocation
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(arg0: $Container$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "matches"(arg0: $Container$Type, arg1: $Level$Type): boolean
 public "getId"(): $ResourceLocation
-public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
-public "isSpecial"(): boolean
-public "showNotification"(): boolean
-public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getRemainingItems"(arg0: $Container$Type): $NonNullList<($ItemStack)>
+public "getIngredients"(): $NonNullList<($Ingredient)>
+public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "isSpecial"(): boolean
+public "getGroup"(): string
+public "setGroup"(group: string): void
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "setGroup"(group: string): void
-public "getGroup"(): string
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
 get "count"(): integer
-get "blockName"(): $ResourceLocation
 get "additionalTag"(): $CompoundTag
-get "id"(): $ResourceLocation
+get "blockName"(): $ResourceLocation
 get "serializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
+get "special"(): boolean
+get "group"(): string
+set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
 get "mod"(): string
 }
@@ -1140,21 +1140,21 @@ static readonly "MIRRORED": ($RotationMirror)[]
 static readonly "NOT_MIRRORED": ($RotationMirror)[]
 
 
-public "rotate"(arg0: $Rotation$Type): $RotationMirror
 public "add"(arg0: $RotationMirror$Type): $RotationMirror
 public static "values"(): ($RotationMirror)[]
 public static "valueOf"(arg0: string): $RotationMirror
 public static "of"(arg0: $Rotation$Type, arg1: $Mirror$Type): $RotationMirror
 public "isMirrored"(): boolean
+public "rotate"(arg0: $Rotation$Type): $RotationMirror
 public "mirror"(): $Mirror
 public "calcDifferenceTowards"(arg0: $RotationMirror$Type): $RotationMirror
 public "rotation"(): $Rotation
 public "mirrorate"(): $RotationMirror
 public "mirrorate"(arg0: $Mirror$Type): $RotationMirror
+public "applyToPos"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $BlockPos
+public "applyToPos"(arg0: $Vec3$Type, arg1: $BlockPos$Type): $Vec3
 public "applyToPos"(arg0: $Vec3$Type): $Vec3
 public "applyToPos"(arg0: $BlockPos$Type): $BlockPos
-public "applyToPos"(arg0: $Vec3$Type, arg1: $BlockPos$Type): $Vec3
-public "applyToPos"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $BlockPos
 get "mirrored"(): boolean
 }
 /**
@@ -1333,14 +1333,14 @@ constructor(arg0: $TimberFrameType$Type)
 
 public "getBlock"(): $Block
 public static "getName"(arg0: $TimberFrameType$Type): string
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
+public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "getTimberFrameType"(): $TimberFrameType
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
@@ -1350,20 +1350,20 @@ public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
 get "timberFrameType"(): $TimberFrameType
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "components"(): $List<($IMateriallyTexturedBlockComponent)>
 get "randomMaterials"(): $MaterialTextureData
 }
@@ -1389,8 +1389,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Tuple, $Tuple$Type} from "packages/net/minecraft/util/$Tuple"
@@ -1416,11 +1416,11 @@ constructor(arg0: $Item$Properties$Type)
 public static "getBounds"(arg0: $ItemStack$Type): $Tuple<($BlockPos), ($BlockPos)>
 public "onAirRightClick"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $Level$Type, arg3: $Player$Type, arg4: $ItemStack$Type): $InteractionResult
 public "getRegisteredItemInstance"(): $AbstractItemWithPosSelector
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public static "setBounds"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type): void
 public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public static "setBounds"(arg0: $ItemStack$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type): void
 get "registeredItemInstance"(): $AbstractItemWithPosSelector
 }
 /**
@@ -1472,14 +1472,14 @@ readonly "canRepair": boolean
 constructor(arg0: $PostBlock$Type, arg1: $Item$Properties$Type)
 
 public "renderPreview"(): boolean
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -1560,14 +1560,14 @@ readonly "canRepair": boolean
 constructor(arg0: $ShingleSlabBlock$Type, arg1: $Item$Properties$Type)
 
 public "getInputIds"(): $List<($ResourceLocation)>
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "inputIds"(): $List<($ResourceLocation)>
 get "group"(): $ResourceLocation
 }
@@ -1658,13 +1658,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $Supplier$Type<($BlockState$Type)>, arg1: $BlockBehaviour$Properties$Type)
 
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "isStairs"(arg0: $BlockState$Type): boolean
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -1930,26 +1930,26 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
 public "getMainComponent"(): $IMateriallyTexturedBlockComponent
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
 get "mainComponent"(): $IMateriallyTexturedBlockComponent
@@ -2210,12 +2210,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -2401,31 +2401,31 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "components"(): $List<($IMateriallyTexturedBlockComponent)>
 get "randomMaterials"(): $MaterialTextureData
 }
@@ -2532,33 +2532,31 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
-get "components"(): $List<($IMateriallyTexturedBlockComponent)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -2610,14 +2608,14 @@ readonly "canRepair": boolean
 constructor(arg0: $ShingleBlock$Type, arg1: $Item$Properties$Type)
 
 public "getInputIds"(): $List<($ResourceLocation)>
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "inputIds"(): $List<($ResourceLocation)>
 get "group"(): $ResourceLocation
 }
@@ -2819,32 +2817,30 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
-get "components"(): $List<($IMateriallyTexturedBlockComponent)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -2950,26 +2946,26 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
 public "getMainComponent"(): $IMateriallyTexturedBlockComponent
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
 get "mainComponent"(): $IMateriallyTexturedBlockComponent
@@ -3114,32 +3110,30 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
-get "components"(): $List<($IMateriallyTexturedBlockComponent)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -3164,16 +3158,16 @@ export class $PlacementError {
 
 constructor(arg0: $PlacementError$PlacementErrorType$Type, arg1: $BlockPos$Type)
 
-public "setType"(arg0: $PlacementError$PlacementErrorType$Type): void
 public "getType"(): $PlacementError$PlacementErrorType
+public "setType"(arg0: $PlacementError$PlacementErrorType$Type): void
+public "setPos"(arg0: $BlockPos$Type): void
 public static "blockListToCommaSeparatedString"(arg0: $List$Type<($BlockPos$Type)>): string
 public static "partitionPlacementErrorsByErrorType"(arg0: $List$Type<($PlacementError$Type)>): $Map<($PlacementError$PlacementErrorType), ($List<($BlockPos)>)>
 public "getPos"(): $BlockPos
-public "setPos"(arg0: $BlockPos$Type): void
-set "type"(value: $PlacementError$PlacementErrorType$Type)
 get "type"(): $PlacementError$PlacementErrorType
-get "pos"(): $BlockPos
+set "type"(value: $PlacementError$PlacementErrorType$Type)
 set "pos"(value: $BlockPos$Type)
+get "pos"(): $BlockPos
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3223,15 +3217,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $FenceGateBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -3306,11 +3300,11 @@ constructor(arg0: $Minecraft$Type, arg1: $PoseStack$Type, arg2: $MultiBufferSour
 public "renderItemDecorations"(arg0: $ItemStack$Type, arg1: integer, arg2: integer): void
 public "renderItemDecorations"(arg0: $ItemStack$Type, arg1: integer, arg2: integer, arg3: string): void
 public "renderBlockStateAsItem"(arg0: $BlockStateRenderingData$Type, arg1: $ItemStack$Type): void
+public "applyCursor"(arg0: integer): void
 public "applyPoseToShader"(): void
+public "setCursor"(arg0: $Cursor$Type): void
 public "drawString"(arg0: string, arg1: float, arg2: float, arg3: integer, arg4: boolean): integer
 public "drawString"(arg0: string, arg1: float, arg2: float, arg3: integer): integer
-public "setCursor"(arg0: $Cursor$Type): void
-public "applyCursor"(arg0: integer): void
 set "cursor"(value: $Cursor$Type)
 }
 /**
@@ -3356,8 +3350,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -3385,9 +3379,9 @@ constructor(arg0: $Item$Properties$Type)
 
 public "onAirRightClick"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $Level$Type, arg3: $Player$Type, arg4: $ItemStack$Type): $InteractionResult
 public "getRegisteredItemInstance"(): $AbstractItemWithPosSelector
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 get "registeredItemInstance"(): $AbstractItemWithPosSelector
 }
 /**
@@ -3438,15 +3432,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $AllBrickBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -3575,31 +3569,31 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "components"(): $List<($IMateriallyTexturedBlockComponent)>
 get "randomMaterials"(): $MaterialTextureData
 }
@@ -3651,15 +3645,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $WallBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -3759,33 +3753,33 @@ constructor(arg0: $FramedLightType$Type)
 
 public "getBlock"(): $Block
 public static "getName"(arg0: $FramedLightType$Type): string
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
+public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "getFramedLightType"(): $FramedLightType
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "shouldDisplayFluidOverlay"(arg0: $BlockState$Type, arg1: $BlockAndTintGetter$Type, arg2: $BlockPos$Type, arg3: $FluidState$Type): boolean
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
 get "framedLightType"(): $FramedLightType
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -3837,14 +3831,14 @@ readonly "canRepair": boolean
 constructor(arg0: $FancyTrapdoorBlock$Type, arg1: $Item$Properties$Type)
 
 public "getInputIds"(): $List<($ResourceLocation)>
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "inputIds"(): $List<($ResourceLocation)>
 get "group"(): $ResourceLocation
 }
@@ -4021,12 +4015,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
@@ -4036,19 +4030,19 @@ public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$
 public "destroy"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -4103,16 +4097,16 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "getHighlightTip"(arg0: $ItemStack$Type, arg1: $Component$Type): $Component
+public "initializeClient"(arg0: $Consumer$Type<($IClientItemExtensions$Type)>): void
 public "onBlockPick"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $BlockPos$Type, arg3: boolean): $InteractionResult
 public "onAbsorbBlock"(arg0: $ServerPlayer$Type, arg1: $ItemStack$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type): void
 public "getAbsorbedBlock"(arg0: $ItemStack$Type): $BlockEntityTagSubstitution$ReplacementBlock
 public "getTooltipImage"(arg0: $ItemStack$Type): $Optional<($TooltipComponent)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4318,32 +4312,34 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getRegistryName"(): $ResourceLocation
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
 public "getMainComponent"(): $IMateriallyTexturedBlockComponent
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "getRegistryName"(arg0: $Block$Type): $ResourceLocation
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
 get "registryName"(): $ResourceLocation
 get "mainComponent"(): $IMateriallyTexturedBlockComponent
+get "components"(): $List<($IMateriallyTexturedBlockComponent)>
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
 get "randomMaterials"(): $MaterialTextureData
 }
@@ -4369,8 +4365,8 @@ import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/worl
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
-import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
 import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
+import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
 import {$MaterialTextureData, $MaterialTextureData$Type} from "packages/com/ldtteam/domumornamentum/client/model/data/$MaterialTextureData"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
@@ -4456,42 +4452,40 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "getPickupSound"(): $Optional<($SoundEvent)>
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "getPickupSound"(arg0: $BlockState$Type): $Optional<($SoundEvent)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
-get "components"(): $List<($IMateriallyTexturedBlockComponent)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "pickupSound"(): $Optional<($SoundEvent)>
 get "randomMaterials"(): $MaterialTextureData
 }
@@ -4543,15 +4537,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $DoorBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -4656,31 +4650,31 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getComponents"(): $List<($IMateriallyTexturedBlockComponent)>
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "components"(): $List<($IMateriallyTexturedBlockComponent)>
 get "randomMaterials"(): $MaterialTextureData
 }
@@ -4732,15 +4726,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $SlabBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -4792,15 +4786,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $PillarBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -4886,11 +4880,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getRegistryName"(): $ResourceLocation
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getRegistryName"(arg0: $Block$Type): $ResourceLocation
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "registryName"(): $ResourceLocation
@@ -5004,15 +4998,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $StairBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -5127,26 +5121,26 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
 public "getMainComponent"(): $IMateriallyTexturedBlockComponent
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
 get "mainComponent"(): $IMateriallyTexturedBlockComponent
@@ -5194,8 +5188,8 @@ public "onMouseReleased"(arg0: double, arg1: double): boolean
 public "getScreen"(): $BOScreen
 public "onClosed"(): void
 public "onKeyTyped"(arg0: character, arg1: integer): boolean
-public "onOpened"(): void
 public "drawSelf"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
+public "onOpened"(): void
 public "loadParams"(arg0: $PaneParams$Type): void
 get "xmlResourceLocation"(): $ResourceLocation
 get "renderType"(): $BOWindow$WindowRenderType
@@ -5324,14 +5318,14 @@ readonly "canRepair": boolean
 constructor(arg0: $TimberFrameBlock$Type, arg1: $Item$Properties$Type)
 
 public "getInputIds"(): $List<($ResourceLocation)>
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "inputIds"(): $List<($ResourceLocation)>
 get "group"(): $ResourceLocation
 }
@@ -5350,8 +5344,8 @@ export type $TimberFrameBlockItem_ = $TimberFrameBlockItem$Type;
 declare module "packages/com/ldtteam/blockui/$Pane" {
 import {$View, $View$Type} from "packages/com/ldtteam/blockui/views/$View"
 import {$BOWindow, $BOWindow$Type} from "packages/com/ldtteam/blockui/views/$BOWindow"
-import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$BOGuiGraphics, $BOGuiGraphics$Type} from "packages/com/ldtteam/blockui/$BOGuiGraphics"
+import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$UiRenderMacros, $UiRenderMacros$Type} from "packages/com/ldtteam/blockui/$UiRenderMacros"
 import {$PaneParams, $PaneParams$Type} from "packages/com/ldtteam/blockui/$PaneParams"
 import {$Alignment, $Alignment$Type} from "packages/com/ldtteam/blockui/$Alignment"
@@ -5363,20 +5357,18 @@ static readonly "HALF_BIAS": double
 constructor()
 constructor(arg0: $PaneParams$Type)
 
-public "getID"(): string
-public "setSize"(arg0: integer, arg1: integer): void
-public "getX"(): integer
-public "isEnabled"(): boolean
 public "getWidth"(): integer
 public "getHeight"(): integer
-public "setID"(arg0: string): void
 public "getY"(): integer
-public "enable"(): void
 public "off"(): void
 public "getParent"(): $View
 public "on"(): void
-public "findPaneOfTypeByID"<T extends $Pane>(arg0: string, arg1: $Class$Type<(T)>): T
-public "wasCursorInPane"(): boolean
+public "getX"(): integer
+public "enable"(): void
+public "getID"(): string
+public "setSize"(arg0: integer, arg1: integer): void
+public "setID"(arg0: string): void
+public "isEnabled"(): boolean
 public "onFocusLost"(): void
 public "parseChildren"(arg0: $PaneParams$Type): void
 public "setAlignment"(arg0: $Alignment$Type): void
@@ -5392,45 +5384,47 @@ public "scrollInput"(arg0: double, arg1: double, arg2: double): boolean
 public "setParentView"(arg0: $View$Type): void
 public "getHoverPane"(): $Pane
 public "onMouseDrag"(arg0: double, arg1: double, arg2: integer, arg3: double, arg4: double): boolean
+public "wasCursorInPane"(): boolean
+public "findPaneOfTypeByID"<T extends $Pane>(arg0: string, arg1: $Class$Type<(T)>): T
 public "setPosition"(arg0: integer, arg1: integer): void
 public "handleClick"(arg0: double, arg1: double): boolean
 public "handleRightClick"(arg0: double, arg1: double): boolean
-public "draw"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
 public "getCursor"(): $Cursor
+public "draw"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
 public "disable"(): void
 public "getAlignment"(): $Alignment
 public static "clearFocus"(): void
-public "hide"(): void
 public "setWindow"(arg0: $BOWindow$Type): void
 public "setCursor"(arg0: $Cursor$Type): void
 public "setEnabled"(arg0: boolean): void
 public "setVisible"(arg0: boolean): void
+public "hide"(): void
 public "isVisible"(): boolean
-public "onUpdate"(): void
 public "rightClick"(arg0: double, arg1: double): boolean
+public "onUpdate"(): void
 public "show"(): void
-public "click"(arg0: double, arg1: double): boolean
 public static "getFocus"(): $Pane
-public "onKeyTyped"(arg0: character, arg1: integer): boolean
+public "click"(arg0: double, arg1: double): boolean
 public "isFocus"(): boolean
+public "getWindow"(): $BOWindow
 public "setFocus"(): void
 public static "setFocus"(arg0: $Pane$Type): void
-public "getWindow"(): $BOWindow
+public "onKeyTyped"(arg0: character, arg1: integer): boolean
 public "shouldDraw"(): boolean
-public "onFocus"(): void
 public "moveBy"(arg0: integer, arg1: integer): void
 public "drawSelf"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
 public "drawHidden"(): void
 public "drawLast"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
 public "putInside"(arg0: $View$Type): void
-get "iD"(): string
-get "x"(): integer
-get "enabled"(): boolean
+public "onFocus"(): void
 get "width"(): integer
 get "height"(): integer
-set "iD"(value: string)
 get "y"(): integer
 get "parent"(): $View
+get "x"(): integer
+get "iD"(): string
+set "iD"(value: string)
+get "enabled"(): boolean
 set "alignment"(value: $Alignment$Type)
 set "hoverPane"(value: $Pane$Type)
 get "clickable"(): boolean
@@ -5445,8 +5439,8 @@ set "visible"(value: boolean)
 get "visible"(): boolean
 get "focus"(): $Pane
 get "focus"(): boolean
-set "focus"(value: $Pane$Type)
 get "window"(): $BOWindow
+set "focus"(value: $Pane$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5532,15 +5526,15 @@ constructor(arg0: $BlockState$Type, arg1: $BlockEntity$Type, arg2: $ModelData$Ty
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public static "of"(arg0: $BlockState$Type): $BlockStateRenderingData
 public static "of"(arg0: $BlockState$Type, arg1: $BlockEntity$Type): $BlockStateRenderingData
+public static "of"(arg0: $BlockState$Type): $BlockStateRenderingData
 public "blockEntity"(): $BlockEntity
+public "modelNeedsRotationFix"(): boolean
 public "playerPickedItemStack"(): $Lazy<($ItemStack)>
 public static "checkModelForYrotation"(arg0: $BlockState$Type): boolean
 public "updateBlockEntity"(arg0: $Function$Type<($BlockEntity$Type), ($BlockEntity$Type)>): $BlockStateRenderingData
-public "modelNeedsRotationFix"(): boolean
-public "blockState"(): $BlockState
 public "itemStack"(): $ItemStack
+public "blockState"(): $BlockState
 public "modelData"(): $ModelData
 }
 /**
@@ -5585,6 +5579,7 @@ public "setMd5"(arg0: string): void
 public "getMd5"(): string
 public "consume"(arg0: $List$Type<($ItemStack$Type)>): void
 public "shouldBlocksBeConsideredEqual"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
+public "isCorrectMD5"(arg0: string): boolean
 public "triggerEntitySuccess"(arg0: $BlockPos$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): void
 public "getStepsPerCall"(): integer
 public "getMaxBlocksCheckedPerCall"(): integer
@@ -5601,7 +5596,6 @@ public "getSolidBlockForPos"(arg0: $BlockPos$Type, arg1: $Function$Type<($BlockP
  */
 public "getSolidBlockForPos"(arg0: $BlockPos$Type): $BlockState
 public "onCompletion"(): void
-public "isCorrectMD5"(arg0: string): boolean
 public "getProgressPosInWorld"(arg0: $BlockPos$Type): $BlockPos
 public "fancyPlacement"(): boolean
 public "getHeldItem"(): $ItemStack
@@ -5663,17 +5657,16 @@ export interface $IFakeLevelBlockGetter extends $BlockGetter {
  "isPosInside"(arg0: $BlockPos$Type): boolean
  "describeSelfInCrashReport"(arg0: $CrashReportCategory$Type): void
  "getRawBlockStateFunction"(): $Function<($BlockPos), ($BlockState)>
- "isPosOutside"(arg0: $BlockPos$Type): boolean
  "getRawBlockState"(arg0: $BlockPos$Type): $BlockState
+ "isPosOutside"(arg0: $BlockPos$Type): boolean
  "getFluidState"(arg0: $BlockPos$Type): $FluidState
  "getMinBuildHeight"(): integer
  "getSizeX"(): short
- "getMaxZ"(): integer
+ "getSizeZ"(): short
  "getMinZ"(): integer
  "getMaxX"(): integer
- "getSizeZ"(): short
+ "getMaxZ"(): integer
  "getAABB"(): $AABB
- "getMaxLightLevel"(): integer
  "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
  "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
  "getLightEmission"(arg0: $BlockPos$Type): integer
@@ -5682,6 +5675,7 @@ export interface $IFakeLevelBlockGetter extends $BlockGetter {
  "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $BlockPos$Type, arg3: $VoxelShape$Type, arg4: $BlockState$Type): $BlockHitResult
  "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
  "getBlockFloorHeight"(arg0: $BlockPos$Type): double
+ "getMaxLightLevel"(): integer
  "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
  "getBlockState"(arg0: $BlockPos$Type): $BlockState
  "getHeight"(): integer
@@ -5753,15 +5747,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $AllBrickStairBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -5924,15 +5918,15 @@ static readonly "NUM_SLOTS": integer
 constructor(arg0: $CompoundTag$Type)
 
 public "nextSlot"(): void
-public "getCurrentSlotData"(): $ScanToolData$Slot
 public "getCurrentSlotId"(): integer
 public "setCurrentSlotData"(arg0: $ScanToolData$Slot$Type): void
-public "moveTo"(arg0: integer): void
+public "getCurrentSlotData"(): $ScanToolData$Slot
 public "getInternalTag"(): $CompoundTag
+public "moveTo"(arg0: integer): void
 public "prevSlot"(): void
-get "currentSlotData"(): $ScanToolData$Slot
 get "currentSlotId"(): integer
 set "currentSlotData"(value: $ScanToolData$Slot$Type)
+get "currentSlotData"(): $ScanToolData$Slot
 get "internalTag"(): $CompoundTag
 }
 /**
@@ -6084,26 +6078,28 @@ export class $PaneParams {
 
 constructor(arg0: $Node$Type)
 
-public "getString"(arg0: string, arg1: string): string
-public "getString"(arg0: string): string
-public "getChildren"(): $List<($PaneParams)>
-public "hasAttribute"(arg0: string): boolean
 public "getProperty"<T>(arg0: string, arg1: $Function$Type<(string), (T)>, arg2: T): T
 public "getBoolean"(arg0: string, arg1: boolean): boolean
 public "getFloat"(arg0: string, arg1: float): float
 public "getDouble"(arg0: string, arg1: double): double
+public "getResource"(arg0: string, arg1: $Consumer$Type<($ResourceLocation$Type)>): $ResourceLocation
 public "getResource"(arg0: string, arg1: $ResourceLocation$Type): $ResourceLocation
 /**
  * 
  * @deprecated
  */
 public "getResource"(arg0: string, arg1: string): $ResourceLocation
-public "getResource"(arg0: string, arg1: $Consumer$Type<($ResourceLocation$Type)>): $ResourceLocation
 public "getResource"(arg0: string): $ResourceLocation
 public "getType"(): string
 public "getInteger"(arg0: string, arg1: integer): integer
-public "getParentView"(): $View
+public "hasAttribute"(arg0: string): boolean
+public "getString"(arg0: string): string
+public "getString"(arg0: string, arg1: string): string
+public "getChildren"(): $List<($PaneParams)>
 public "getTextComponent"(arg0: string, arg1: $MutableComponent$Type): $MutableComponent
+public "getMultilineText"(arg0: string): $List<($MutableComponent)>
+public "getMultilineText"(arg0: string, arg1: $List$Type<($MutableComponent$Type)>): $List<($MutableComponent)>
+public "setParentView"(arg0: $View$Type): void
 public "hasAnyAttribute"(arg0: string, ...arg1: (string)[]): string
 public "getParentWidth"(): integer
 public "getParentHeight"(): integer
@@ -6111,21 +6107,19 @@ public "getScaledInteger"(arg0: string, arg1: integer, arg2: integer, arg3: $Con
 public "getScaledInteger"(arg0: string, arg1: integer, arg2: integer): integer
 public "getParentLeft"(): integer
 public "getParentTop"(): integer
-public "getMultilineText"(arg0: string): $List<($MutableComponent)>
-public "getMultilineText"(arg0: string, arg1: $List$Type<($MutableComponent$Type)>): $List<($MutableComponent)>
-public "setParentView"(arg0: $View$Type): void
+public "getParentView"(): $View
 public "applyShorthand"<T>(arg0: string, arg1: $Function$Type<(string), (T)>, arg2: integer, arg3: $Consumer$Type<($List$Type<(T)>)>): void
 public "getEnum"<T extends $Enum<(T)>>(arg0: string, arg1: $Class$Type<(T)>, arg2: T): T
 public "getText"(): string
 public "getColor"(arg0: string, arg1: integer): integer
-get "children"(): $List<($PaneParams)>
 get "type"(): string
-get "parentView"(): $View
+get "children"(): $List<($PaneParams)>
+set "parentView"(value: $View$Type)
 get "parentWidth"(): integer
 get "parentHeight"(): integer
 get "parentLeft"(): integer
 get "parentTop"(): integer
-set "parentView"(value: $View$Type)
+get "parentView"(): $View
 get "text"(): string
 }
 /**
@@ -6259,18 +6253,18 @@ constructor()
 constructor(arg0: $Item$Properties$Type)
 
 public "getHighlightTip"(arg0: $ItemStack$Type, arg1: $Component$Type): $Component
-public "onAirRightClick"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $Level$Type, arg3: $Player$Type, arg4: $ItemStack$Type): $InteractionResult
-public "getRegisteredItemInstance"(): $AbstractItemWithPosSelector
-public static "setAnchorPos"(arg0: $ItemStack$Type, arg1: $BlockPos$Type): void
-public static "saveStructure"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ScanToolData$Slot$Type, arg3: boolean): void
 public static "getStructureName"(arg0: $ItemStack$Type): string
 public "onBlockPick"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: $BlockPos$Type, arg3: boolean): $InteractionResult
 public static "setStructureName"(arg0: $ItemStack$Type, arg1: string): void
 public static "getAnchorPos"(arg0: $ItemStack$Type): $BlockPos
+public "onAirRightClick"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $Level$Type, arg3: $Player$Type, arg4: $ItemStack$Type): $InteractionResult
+public "getRegisteredItemInstance"(): $AbstractItemWithPosSelector
+public static "saveStructure"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ScanToolData$Slot$Type, arg3: boolean): void
+public static "setAnchorPos"(arg0: $ItemStack$Type, arg1: $BlockPos$Type): void
 public "onMouseScroll"(arg0: $Player$Type, arg1: $ItemStack$Type, arg2: double, arg3: boolean): $InteractionResult
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "loadSlot"(arg0: $ScanToolData$Type, arg1: $ItemStack$Type): $ScanToolData$Slot
 public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
+public "loadSlot"(arg0: $ScanToolData$Type, arg1: $ItemStack$Type): $ScanToolData$Slot
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public static "getBox"(arg0: $ItemStack$Type, arg1: $Player$Type): $BoxPreviewData
 public "onTeleport"(arg0: $Player$Type, arg1: $ItemStack$Type): boolean
 get "registeredItemInstance"(): $AbstractItemWithPosSelector
@@ -6328,8 +6322,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -6350,10 +6344,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
 public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6441,10 +6435,10 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getRegistryName"(): $ResourceLocation
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getRegistryName"(arg0: $Block$Type): $ResourceLocation
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -6524,10 +6518,10 @@ readonly "canRepair": boolean
 constructor(arg0: $ExtraBlock$Type, arg1: $Item$Properties$Type)
 
 public "getName"(arg0: $ItemStack$Type): $Component
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6772,31 +6766,31 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlock"(): $Block
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "fillItemCategory"(arg0: $NonNullList$Type<($ItemStack$Type)>): void
-public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getSoundType"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): $SoundType
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
+public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List<($ItemStack)>
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "resetCache"(): void
-public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "randomMaterials"(): $MaterialTextureData
 }
 /**
@@ -6925,8 +6919,8 @@ constructor()
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
 public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -6980,11 +6974,11 @@ public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseDragged"(arg0: double, arg1: double, arg2: integer, arg3: double, arg4: double): boolean
 public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
 public "charTyped"(arg0: character, arg1: integer): boolean
-public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "removed"(): void
 public "isPauseScreen"(): boolean
 public "tick"(): void
-public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
+public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
 public "getWindow"(): $BOWindow
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "framebufferWidth"(): integer
@@ -7117,14 +7111,14 @@ readonly "canRepair": boolean
 constructor(arg0: $FramedLightBlock$Type, arg1: $Item$Properties$Type)
 
 public "getInputIds"(): $List<($ResourceLocation)>
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "inputIds"(): $List<($ResourceLocation)>
 get "group"(): $ResourceLocation
 }
@@ -7157,16 +7151,16 @@ public static "fill"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: 
 public static "line"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer): void
 public static "line"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
 public static "populateFillGradientTriangles"(arg0: $Matrix4f$Type, arg1: $BufferBuilder$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: integer, arg10: integer, arg11: integer, arg12: integer, arg13: integer): void
+public static "populateFillTriangles"(arg0: $Matrix4f$Type, arg1: $BufferBuilder$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: integer): void
 public static "drawLineRectGradient"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: integer, arg10: integer, arg11: integer, arg12: integer, arg13: integer): void
 public static "drawLineRectGradient"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer): void
 public static "drawLineRectGradient"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer): void
+public static "drawLineRect"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: integer): void
 public static "drawLineRect"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
 public static "drawLineRect"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer): void
-public static "drawLineRect"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: integer): void
-public static "fillGradient"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer): void
 public static "fillGradient"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: integer, arg10: integer, arg11: integer, arg12: integer): void
+public static "fillGradient"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer): void
 public static "populateBlitTriangles"(arg0: $BufferBuilder$Type, arg1: $Matrix4f$Type, arg2: float, arg3: float, arg4: float, arg5: float, arg6: float, arg7: float, arg8: float, arg9: float): void
-public static "populateFillTriangles"(arg0: $Matrix4f$Type, arg1: $BufferBuilder$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: integer, arg7: integer, arg8: integer, arg9: integer): void
 public static "drawEntity"(arg0: $PoseStack$Type, arg1: integer, arg2: integer, arg3: double, arg4: float, arg5: float, arg6: float, arg7: $Entity$Type): void
 public static "blit"(arg0: $PoseStack$Type, arg1: $ResourceLocation$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: float, arg7: float, arg8: float, arg9: float): void
 public static "blit"(arg0: $PoseStack$Type, arg1: $ResourceLocation$Type, arg2: integer, arg3: integer, arg4: integer, arg5: integer): void
@@ -7447,13 +7441,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -7622,8 +7616,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -7644,10 +7638,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
 public "getCraftingRemainingItem"(arg0: $ItemStack$Type): $ItemStack
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "hasCraftingRemainingItem"(arg0: $ItemStack$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -7665,8 +7659,8 @@ declare module "packages/com/ldtteam/domumornamentum/block/$IMateriallyTexturedB
 import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$PropertyDispatch$QuadFunction, $PropertyDispatch$QuadFunction$Type} from "packages/net/minecraft/data/models/blockstates/$PropertyDispatch$QuadFunction"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$MaterialTextureData, $MaterialTextureData$Type} from "packages/com/ldtteam/domumornamentum/client/model/data/$MaterialTextureData"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
@@ -7683,15 +7677,15 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export interface $IMateriallyTexturedBlock {
 
  "getBlock"(): $Block
- "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
+ "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
+ "getRandomMaterials"(): $MaterialTextureData
+ "usesWorldSpecificTinting"(): boolean
  "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
  "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
  "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
  "getMainComponent"(): $IMateriallyTexturedBlockComponent
  "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
- "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
- "getRandomMaterials"(): $MaterialTextureData
- "usesWorldSpecificTinting"(): boolean
+ "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
  "getComponents"(): $Collection<($IMateriallyTexturedBlockComponent)>
 }
 
@@ -7747,37 +7741,37 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export class $Blueprint implements $IFakeLevelBlockGetter {
 
-constructor(arg0: short, arg1: short, arg2: short)
 constructor(arg0: short, arg1: short, arg2: short, arg3: short, arg4: $List$Type<($BlockState$Type)>, arg5: (((short)[])[])[], arg6: ($CompoundTag$Type)[], arg7: $List$Type<(string)>)
+constructor(arg0: short, arg1: short, arg2: short)
 
-public "getItem"(arg0: $BlockPos$Type): $Item
-public "getEntities"(): ($CompoundTag)[]
 public "getName"(): string
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "setName"(arg0: string): $Blueprint
 public "getFileName"(): string
+public "getEntities"(): ($CompoundTag)[]
+public "getItem"(arg0: $BlockPos$Type): $Item
 public "getTileEntities"(): ((($CompoundTag)[])[])[]
 public "setEntities"(arg0: ($CompoundTag$Type)[]): void
 public "describeSelfInCrashReport"(arg0: $CrashReportCategory$Type): void
 public "getBlockInfoAsMap"(): $Map<($BlockPos), ($BlockInfo)>
 public "getStructure"(): (((short)[])[])[]
-public "addBlockState"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
-public "setRotationMirror"(arg0: $RotationMirror$Type, arg1: $Level$Type): void
-public "getRotationMirror"(): $RotationMirror
-public "getPrimaryBlockOffset"(): $BlockPos
-public "getBlockInfoAsList"(): $List<($BlockInfo)>
 public "getTileEntityData"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $CompoundTag
-public "setFilePath"(arg0: $Path$Type): $Blueprint
 public "setPackName"(arg0: string): $Blueprint
 public "getPackName"(): string
+public "setRotationMirror"(arg0: $RotationMirror$Type, arg1: $Level$Type): void
+public "getRotationMirror"(): $RotationMirror
+public "setFilePath"(arg0: $Path$Type): $Blueprint
+public "getPrimaryBlockOffset"(): $BlockPos
+public "getBlockInfoAsList"(): $List<($BlockInfo)>
+public "addBlockState"(arg0: $BlockPos$Type, arg1: $BlockState$Type): void
 public "getFilePath"(): $Path
 public "setFileName"(arg0: string): $Blueprint
 public "getBluePrintPositionInfo"(arg0: $BlockPos$Type, arg1: boolean): $BlueprintPositionInfo
-public "setCachePrimaryOffset"(arg0: $BlockPos$Type): void
 public "setMissingMods"(...arg0: (string)[]): $Blueprint
 public "setArchitects"(arg0: (string)[]): void
+public "setCachePrimaryOffset"(arg0: $BlockPos$Type): void
 public "getPalleteSize"(): short
 public "getRequiredMods"(): $List<(string)>
 public "getArchitects"(): (string)[]
@@ -7798,22 +7792,21 @@ public "setRenderSource"(arg0: $BlockPos$Type): void
 public "getHeight"(): integer
 public "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
 public "getBlockState"(arg0: $BlockPos$Type): $BlockState
-public "getPalette"(): ($BlockState)[]
 public "getSizeX"(): short
+public "getPalette"(): ($BlockState)[]
 public "getSizeY"(): short
 public "getSizeZ"(): short
 public "getMinX"(): integer
 public "isPosInside"(arg0: $BlockPos$Type): boolean
 public "getRawBlockStateFunction"(): $Function<($BlockPos), ($BlockState)>
-public "isPosOutside"(arg0: $BlockPos$Type): boolean
 public "getRawBlockState"(arg0: $BlockPos$Type): $BlockState
+public "isPosOutside"(arg0: $BlockPos$Type): boolean
 public "getFluidState"(arg0: $BlockPos$Type): $FluidState
 public "getMinBuildHeight"(): integer
-public "getMaxZ"(): integer
 public "getMinZ"(): integer
 public "getMaxX"(): integer
+public "getMaxZ"(): integer
 public "getAABB"(): $AABB
-public "getMaxLightLevel"(): integer
 public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
 public "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
 public "getLightEmission"(arg0: $BlockPos$Type): integer
@@ -7823,6 +7816,7 @@ public "clip"(arg0: $ClipContext$Type): $BlockHitResult
 public "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $BlockPos$Type, arg3: $VoxelShape$Type, arg4: $BlockState$Type): $BlockHitResult
 public "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
 public "getBlockFloorHeight"(arg0: $BlockPos$Type): double
+public "getMaxLightLevel"(): integer
 public "getMaxBuildHeight"(): integer
 public "getSectionsCount"(): integer
 public "getMaxSection"(): integer
@@ -7838,25 +7832,25 @@ public "getModelDataManager"(): $ModelDataManager
 public "getBlockEntityRenderData"(pos: $BlockPos$Type): any
 public "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
 public "hasBiomes"(): boolean
-get "entities"(): ($CompoundTag)[]
 get "name"(): string
 set "name"(value: string)
 get "fileName"(): string
+get "entities"(): ($CompoundTag)[]
 get "tileEntities"(): ((($CompoundTag)[])[])[]
 set "entities"(value: ($CompoundTag$Type)[])
 get "blockInfoAsMap"(): $Map<($BlockPos), ($BlockInfo)>
 get "structure"(): (((short)[])[])[]
-get "rotationMirror"(): $RotationMirror
-get "primaryBlockOffset"(): $BlockPos
-get "blockInfoAsList"(): $List<($BlockInfo)>
-set "filePath"(value: $Path$Type)
 set "packName"(value: string)
 get "packName"(): string
+get "rotationMirror"(): $RotationMirror
+set "filePath"(value: $Path$Type)
+get "primaryBlockOffset"(): $BlockPos
+get "blockInfoAsList"(): $List<($BlockInfo)>
 get "filePath"(): $Path
 set "fileName"(value: string)
-set "cachePrimaryOffset"(value: $BlockPos$Type)
 set "missingMods"(value: (string)[])
 set "architects"(value: (string)[])
+set "cachePrimaryOffset"(value: $BlockPos$Type)
 get "palleteSize"(): short
 get "requiredMods"(): $List<(string)>
 get "architects"(): (string)[]
@@ -7865,16 +7859,16 @@ get "entitiesAsList"(): $List<($CompoundTag)>
 get "cachedEntitiesAsMap"(): $Map<($BlockPos), (($CompoundTag)[])>
 set "renderSource"(value: $BlockPos$Type)
 get "height"(): integer
-get "palette"(): ($BlockState)[]
 get "sizeX"(): short
+get "palette"(): ($BlockState)[]
 get "sizeY"(): short
 get "sizeZ"(): short
 get "minX"(): integer
 get "rawBlockStateFunction"(): $Function<($BlockPos), ($BlockState)>
 get "minBuildHeight"(): integer
-get "maxZ"(): integer
 get "minZ"(): integer
 get "maxX"(): integer
+get "maxZ"(): integer
 get "aABB"(): $AABB
 get "maxLightLevel"(): integer
 get "maxBuildHeight"(): integer
@@ -7932,14 +7926,14 @@ readonly "canRepair": boolean
 constructor(arg0: $PanelBlock$Type, arg1: $Item$Properties$Type)
 
 public "renderPreview"(): boolean
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -7992,26 +7986,26 @@ export class $StructurePackMeta {
 
 constructor(arg0: $JsonObject$Type, arg1: $Path$Type, arg2: string)
 
-public "getOwner"(): string
-public "getVersion"(): double
-public "isImmutable"(): boolean
-public "getDesc"(): string
-public "setImmutable"(arg0: boolean): void
 public "getName"(): string
 public "getPath"(): $Path
+public "getVersion"(): double
+public "getOwner"(): string
+public "getDesc"(): string
+public "isImmutable"(): boolean
+public "setImmutable"(arg0: boolean): void
 public "getPackFormat"(): integer
 public "getNormalizedSubPath"(arg0: string): string
 public "getIconPath"(): string
 public "getAuthors"(): $List<(string)>
 public "getModList"(): $List<(string)>
 public "getSubPath"(arg0: $Path$Type): string
-get "owner"(): string
-get "version"(): double
-get "immutable"(): boolean
-get "desc"(): string
-set "immutable"(value: boolean)
 get "name"(): string
 get "path"(): $Path
+get "version"(): double
+get "owner"(): string
+get "desc"(): string
+get "immutable"(): boolean
+set "immutable"(value: boolean)
 get "packFormat"(): integer
 get "iconPath"(): string
 get "authors"(): $List<(string)>
@@ -8094,14 +8088,14 @@ readonly "canRepair": boolean
 constructor(arg0: $FancyDoorBlock$Type, arg1: $Item$Properties$Type)
 
 public "getInputIds"(): $List<($ResourceLocation)>
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "inputIds"(): $List<($ResourceLocation)>
 get "group"(): $ResourceLocation
 }
@@ -8153,15 +8147,15 @@ readonly "canRepair": boolean
 
 constructor(arg0: $TrapdoorBlock$Type, arg1: $Item$Properties$Type)
 
+public "getGroup"(): $ResourceLocation
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "getName"(arg0: $ItemStack$Type): $Component
-public "getGroup"(): $ResourceLocation
 public "renderPreview"(): boolean
 public "getInputIds"(): $List<($ResourceLocation)>
-public "moonlight$setClientAnimationExtension"(arg0: any): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
-public "moonlight$getClientAnimationExtension"(): any
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
+public "moonlight$getClientAnimationExtension"(): any
+public "moonlight$setClientAnimationExtension"(arg0: any): void
 get "group"(): $ResourceLocation
 get "inputIds"(): $List<($ResourceLocation)>
 }
@@ -8253,12 +8247,18 @@ import {$Pos2i$ImmutablePos2i, $Pos2i$ImmutablePos2i$Type} from "packages/com/ld
 export class $View extends $Pane {
 static readonly "HALF_BIAS": double
 
-constructor(arg0: $PaneParams$Type)
 constructor()
+constructor(arg0: $PaneParams$Type)
 
 public "setSize"(arg0: integer, arg1: integer): void
-public "getChildren"(): $List<($Pane)>
 public "removeChild"(arg0: $Pane$Type): void
+public "getChildren"(): $List<($Pane)>
+public "parseChildren"(arg0: $PaneParams$Type): void
+public "drawSelfLast"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
+public "findPaneByID"(arg0: string): $Pane
+public "findPaneByType"<T extends $Pane>(arg0: $Class$Type<(T)>): T
+public "scrollInput"(arg0: double, arg1: double, arg2: double): boolean
+public "onMouseDrag"(arg0: double, arg1: double, arg2: integer, arg3: double, arg4: double): boolean
 public "mousePointableEventHandler"(arg0: double, arg1: double, arg2: $MouseEventCallback$Type, arg3: $MouseEventCallback$Type): boolean
 public "mouseClickableEventHandler"(arg0: double, arg1: double, arg2: $MouseEventCallback$Type): boolean
 public "findPaneForClick"(arg0: double, arg1: double): $Pane
@@ -8266,17 +8266,11 @@ public "getInteriorWidth"(): integer
 public "getInteriorHeight"(): integer
 public "mouseEventProcessor"(arg0: double, arg1: double, arg2: $MouseEventCallback$Type, arg3: $MouseEventCallback$Type, arg4: $MouseEventCallback$Type): boolean
 public "getAccumulatedPosition"(): $Pos2i$ImmutablePos2i
-public "parseChildren"(arg0: $PaneParams$Type): void
-public "drawSelfLast"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
-public "findPaneByID"(arg0: string): $Pane
-public "findPaneByType"<T extends $Pane>(arg0: $Class$Type<(T)>): T
-public "scrollInput"(arg0: double, arg1: double, arg2: double): boolean
-public "onMouseDrag"(arg0: double, arg1: double, arg2: integer, arg3: double, arg4: double): boolean
 public "setWindow"(arg0: $BOWindow$Type): void
-public "addChild"(arg0: $Pane$Type, arg1: integer): void
 public "addChild"(arg0: $Pane$Type): void
-public "onUpdate"(): void
+public "addChild"(arg0: $Pane$Type, arg1: integer): void
 public "rightClick"(arg0: double, arg1: double): boolean
+public "onUpdate"(): void
 public "click"(arg0: double, arg1: double): boolean
 public "drawSelf"(arg0: $BOGuiGraphics$Type, arg1: double, arg2: double): void
 public "drawHidden"(): void
@@ -8524,16 +8518,18 @@ import {$List, $List$Type} from "packages/java/util/$List"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Blueprint, $Blueprint$Type} from "packages/com/ldtteam/structurize/blueprints/v1/$Blueprint"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$PlacementSettings, $PlacementSettings$Type} from "packages/com/ldtteam/structurize/util/$PlacementSettings"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 
 export interface $IStructureHandler {
 
- "consume"(arg0: $List$Type<($ItemStack$Type)>): void
  "getSettings"(): $PlacementSettings
+ "consume"(arg0: $List$Type<($ItemStack$Type)>): void
  "shouldBlocksBeConsideredEqual"(arg0: $BlockState$Type, arg1: $BlockState$Type): boolean
+ "isCorrectMD5"(arg0: string): boolean
+ "triggerSuccess"(arg0: $BlockPos$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): void
  "triggerEntitySuccess"(arg0: $BlockPos$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): void
  "getStepsPerCall"(): integer
  "getMaxBlocksCheckedPerCall"(): integer
@@ -8550,15 +8546,13 @@ export interface $IStructureHandler {
  */
  "getSolidBlockForPos"(arg0: $BlockPos$Type): $BlockState
  "onCompletion"(): void
- "isCorrectMD5"(arg0: string): boolean
- "triggerSuccess"(arg0: $BlockPos$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): void
  "hasBluePrint"(): boolean
  "getBluePrint"(): $Blueprint
  "getWorldPos"(): $BlockPos
  "getProgressPosInWorld"(arg0: $BlockPos$Type): $BlockPos
  "fancyPlacement"(): boolean
- "getHeldItem"(): $ItemStack
  "setBlueprint"(arg0: $Blueprint$Type): void
+ "getHeldItem"(): $ItemStack
  "getInventory"(): $IItemHandler
  "getWorld"(): $Level
  "isReady"(): boolean
@@ -8634,12 +8628,6 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IBlueprintDataProviderBE {
 
- "getPositionedTags"(): $Map<($BlockPos), ($List<(string)>)>
- "getWorldTagPosMap"(): $Map<($BlockPos), ($List<(string)>)>
- "getWorldTagNamePosMap"(): $Map<(string), ($Set<($BlockPos)>)>
- "getRealWorldPos"(arg0: $BlockPos$Type): $BlockPos
- "getSchematicName"(): string
- "getInWorldCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "setSchematicName"(arg0: string): void
  "setPositionedTags"(arg0: $Map$Type<($BlockPos$Type), ($List$Type<(string)>)>): void
  "getSchematicCorners"(): $Tuple<($BlockPos), ($BlockPos)>
@@ -8650,6 +8638,12 @@ export interface $IBlueprintDataProviderBE {
  "setBlueprintPath"(arg0: string): void
  "getPackName"(): string
  "getBlueprintPath"(): string
+ "getWorldTagPosMap"(): $Map<($BlockPos), ($List<(string)>)>
+ "getWorldTagNamePosMap"(): $Map<(string), ($Set<($BlockPos)>)>
+ "getRealWorldPos"(arg0: $BlockPos$Type): $BlockPos
+ "getPositionedTags"(): $Map<($BlockPos), ($List<(string)>)>
+ "getSchematicName"(): string
+ "getInWorldCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
  "removeTag"(arg0: $BlockPos$Type, arg1: string): void
  "addTag"(arg0: $BlockPos$Type, arg1: string): void

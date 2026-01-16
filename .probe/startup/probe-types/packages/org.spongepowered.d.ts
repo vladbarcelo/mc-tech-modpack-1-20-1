@@ -19,22 +19,22 @@ constructor(arg0: string, arg1: boolean, arg2: byte)
 constructor(arg0: string, arg1: boolean, arg2: character)
 constructor(arg0: string, arg1: boolean, arg2: double)
 
-public "getReturnValueB"(): byte
-public "getReturnValueC"(): character
-public "getReturnValueD"(): double
-public "getReturnValueF"(): float
-public "getReturnValueI"(): integer
 public "getReturnValueJ"(): long
+public "getReturnValueD"(): double
+public "getReturnValueB"(): byte
+public "getReturnValueI"(): integer
+public "getReturnValueF"(): float
+public "getReturnValueC"(): character
 public "getReturnValueS"(): short
 public "getReturnValueZ"(): boolean
 public "setReturnValue"(arg0: R): void
 public "getReturnValue"(): R
-get "returnValueB"(): byte
-get "returnValueC"(): character
-get "returnValueD"(): double
-get "returnValueF"(): float
-get "returnValueI"(): integer
 get "returnValueJ"(): long
+get "returnValueD"(): double
+get "returnValueB"(): byte
+get "returnValueI"(): integer
+get "returnValueF"(): float
+get "returnValueC"(): character
 get "returnValueS"(): short
 get "returnValueZ"(): boolean
 set "returnValue"(value: R)
@@ -67,8 +67,8 @@ constructor(arg0: string, arg1: boolean)
 
 public "toString"(): string
 public "getId"(): string
-public static "getCallInfoClassName"(arg0: $Type$Type): string
 public "isCancellable"(): boolean
+public static "getCallInfoClassName"(arg0: $Type$Type): string
 public "cancel"(): void
 public "isCancelled"(): boolean
 get "id"(): string

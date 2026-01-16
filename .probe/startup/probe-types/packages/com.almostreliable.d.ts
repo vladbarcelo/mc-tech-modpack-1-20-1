@@ -9,12 +9,12 @@ export class $UnifyTag<T> extends $Record {
 
 constructor(boundType: $Class$Type<(T)>, location: $ResourceLocation$Type)
 
-public static "item"(location: $ResourceLocation$Type): $UnifyTag<($Item)>
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "location"(): $ResourceLocation
 public static "block"(location: $ResourceLocation$Type): $UnifyTag<($Block)>
+public static "item"(location: $ResourceLocation$Type): $UnifyTag<($Item)>
 public "boundType"(): $Class<(T)>
 }
 /**
@@ -58,37 +58,37 @@ static readonly "TYPE": $RecipeType<($ClientRecipeTracker)>
 
 public "getResultItem"(registryAccess: $RegistryAccess$Type): $ItemStack
 public "getLink"(recipeId: $ResourceLocation$Type): $ClientRecipeTracker$ClientRecipeLink
+public "canCraftInDimensions"(width: integer, height: integer): boolean
+public "getSerializer"(): $RecipeSerializer<(any)>
 public "assemble"(container: $Container$Type, registryAccess: $RegistryAccess$Type): $ItemStack
 public "matches"(container: $Container$Type, level: $Level$Type): boolean
 public "getId"(): $ResourceLocation
-public "canCraftInDimensions"(width: integer, height: integer): boolean
-public "getSerializer"(): $RecipeSerializer<(any)>
-public "isSpecial"(): boolean
-public "showNotification"(): boolean
-public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getRemainingItems"(arg0: $Container$Type): $NonNullList<($ItemStack)>
+public "getIngredients"(): $NonNullList<($Ingredient)>
+public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "isSpecial"(): boolean
+public "getGroup"(): string
+public "setGroup"(group: string): void
 public "getOrCreateId"(): $ResourceLocation
 public "getSchema"(): $RecipeSchema
-public "setGroup"(group: string): void
-public "getGroup"(): string
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
-get "id"(): $ResourceLocation
 get "serializer"(): $RecipeSerializer<(any)>
-get "special"(): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
+get "special"(): boolean
+get "group"(): string
+set "group"(value: string)
 get "orCreateId"(): $ResourceLocation
 get "schema"(): $RecipeSchema
-set "group"(value: string)
-get "group"(): string
 get "type"(): $ResourceLocation
 get "mod"(): string
 }
@@ -136,9 +136,9 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 export class $AlmostKube {
 
 
+public static "getPreferredTagForItem"(stack: $ItemStack$Type): string
 public static "getReplacementForItem"(stack: $ItemStack$Type): $ItemStack
 public static "getPreferredItemForTag"(tag: $ResourceLocation$Type): $ItemStack
-public static "getPreferredTagForItem"(stack: $ItemStack$Type): string
 public static "getUnifyConfig"(): $UnifyConfig
 public static "getTags"(): $Set<(string)>
 public static "getItemIds"(tag: $ResourceLocation$Type): $Set<(string)>
@@ -269,11 +269,11 @@ export class $ClientRecipeTracker$ClientRecipeLink extends $Record {
 
 constructor(id: $ResourceLocation$Type, isUnified: boolean, isDuplicate: boolean)
 
-public "isDuplicate"(): boolean
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "id"(): $ResourceLocation
+public "isDuplicate"(): boolean
 public "isUnified"(): boolean
 get "duplicate"(): boolean
 get "unified"(): boolean

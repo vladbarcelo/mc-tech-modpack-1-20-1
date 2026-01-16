@@ -181,18 +181,18 @@ static readonly "DEFAULT_SOUND_CHANCE": $Script
 constructor(version: integer, id: $ResourceLocation$Type, name: string, traits: $BiomeTraits$Type)
 constructor(version: integer, id: $ResourceLocation$Type, name: string, traits: $BiomeTraits$Type, biome: $Biome$Type)
 
-public "getVersion"(): integer
 public "toString"(): string
 public "compareTo"(o: $BiomeInfo$Type): integer
 public "update"(entry: $BiomeConfigRule$Type): void
 public "trim"(): void
+public "getVersion"(): integer
 public "getBackgroundMusic"(random: $IRandomizer$Type): $Optional<($Music)>
 public "getFogColor"(): $TextColor
-public "mergeTraits"(configRule: $BiomeConfigRule$Type): void
 public "isDeepOcean"(): boolean
+public "mergeTraits"(configRule: $BiomeConfigRule$Type): void
+public "getBiomeName"(): string
 public "findBiomeSoundMatches"(): $Collection<($ISoundFactory)>
 public "getExtraSound"(type: $SoundEventType$Type, random: $IRandomizer$Type): $Optional<($ISoundFactory)>
-public "getBiomeName"(): string
 public "getTraits"(): $BiomeTraits
 public "hasTrait"(trait: string): boolean
 public "isRiver"(): boolean
@@ -229,6 +229,9 @@ export interface $IRandomizer extends $RandomSource {
 
  "nextFloat"(min: float, max: float): float
  "triangle"(midPoint: integer, range: integer): integer
+ "nextInt"(arg0: integer): integer
+ "nextFloat"(): float
+ "nextDouble"(): double
  "nextLong"(): long
  "nextGaussian"(): double
  "fork"(): $RandomSource
@@ -240,9 +243,6 @@ export interface $IRandomizer extends $RandomSource {
  "triangle"(arg0: double, arg1: double): double
  "consumeCount"(arg0: integer): void
  "nextInt"(arg0: integer, arg1: integer): integer
- "nextFloat"(): float
- "nextDouble"(): double
- "nextInt"(arg0: integer): integer
 }
 
 export namespace $IRandomizer {
@@ -369,18 +369,18 @@ export class $BlockInfo {
 constructor(version: integer)
 constructor(version: integer, state: $BlockState$Type)
 
-public "getVersion"(): integer
 public "toString"(): string
 public "update"(config: $BlockConfigRule$Type): void
 public "trim"(): void
 public "isDefault"(): boolean
+public "getVersion"(): integer
 public "hasSoundsOrEffects"(): boolean
 public "getSoundToPlay"(random: $IRandomizer$Type): $Optional<($ISoundFactory)>
 public "getEffectProducers"(): $Collection<($IBlockEffectProducer)>
 public "getSoundReflectivity"(): float
 public "getSoundOcclusion"(): float
-get "version"(): integer
 get "default"(): boolean
+get "version"(): integer
 get "effectProducers"(): $Collection<($IBlockEffectProducer)>
 get "soundReflectivity"(): float
 get "soundOcclusion"(): float
@@ -406,8 +406,8 @@ constructor(property: integer, val: float, min: float, max: float)
 public "getValue"(): float
 public "apply"(sourceId: integer): void
 public "setValue"(f: float): void
-public "doProcess"(): boolean
 public "setProcess"(flag: boolean): void
+public "doProcess"(): boolean
 get "value"(): float
 set "value"(value: float)
 set "process"(value: boolean)
@@ -484,8 +484,8 @@ export class $EffectData {
 
 
 public "clamp"(): void
-public "doProcess"(): boolean
 public "setProcess"(flag: boolean): void
+public "doProcess"(): boolean
 set "process"(value: boolean)
 }
 /**
@@ -516,11 +516,11 @@ static readonly "CODEC": $Codec<($BlockConfigRule)>
 
 constructor(blocks: $List$Type<($IMatcher$Type<($BlockState$Type)>)>, clearSounds: boolean, soundChance: $Optional$Type<($Script$Type)>, acoustics: $List$Type<($AcousticConfig$Type)>, effects: $List$Type<($BlockEffectConfigRule$Type)>)
 
-public "blocks"(): $List<($IMatcher<($BlockState)>)>
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "match"(state: $BlockState$Type): boolean
+public "blocks"(): $List<($IMatcher<($BlockState)>)>
 public "soundChance"(): $Optional<($Script)>
 public "clearSounds"(): boolean
 public "effects"(): $List<($BlockEffectConfigRule)>
@@ -610,14 +610,14 @@ static readonly "FIREFLY": $BlockEffectType
 static readonly "CODEC": $Codec<($BlockEffectType)>
 
 
-public "isEnabled"(): boolean
-public "createInstance"(chance: $Script$Type, conditions: $Script$Type): $Optional<($IBlockEffectProducer)>
 public "getName"(): string
 public static "values"(): ($BlockEffectType)[]
 public static "valueOf"(name: string): $BlockEffectType
+public "createInstance"(chance: $Script$Type, conditions: $Script$Type): $Optional<($IBlockEffectProducer)>
+public "isEnabled"(): boolean
 public static "byName"(name: string): $BlockEffectType
-get "enabled"(): boolean
 get "name"(): string
+get "enabled"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -638,8 +638,8 @@ import {$ByteBuffer, $ByteBuffer$Type} from "packages/java/nio/$ByteBuffer"
 export interface $MixinSoundBuffer {
 
  "dsurround_getSample"(): $ByteBuffer
- "dsurround_getFormat"(): $AudioFormat
  "dsurround_setFormat"(arg0: $AudioFormat$Type): void
+ "dsurround_getFormat"(): $AudioFormat
 }
 
 export namespace $MixinSoundBuffer {
@@ -965,21 +965,21 @@ export class $EntityEffectInfo {
 
 constructor(version: integer, entity: $LivingEntity$Type, effects: $Collection$Type<($IEntityEffect$Type)>)
 
-public "getEntity"(): $LivingEntity
-public "tick"(): void
-public "getVersion"(): integer
 public "isAlive"(): boolean
 public "isDefault"(): boolean
+public "getVersion"(): integer
+public "tick"(): void
+public "getEntity"(): $LivingEntity
 public "isCurrentPlayer"(player: $LivingEntity$Type): boolean
 public static "createDefault"(version: integer): $EntityEffectInfo
 public "activate"(): void
 public "deactivate"(): void
 public "isRemoved"(): boolean
 public "getEffects"(): $Collection<($IEntityEffect)>
-get "entity"(): $LivingEntity
-get "version"(): integer
 get "alive"(): boolean
 get "default"(): boolean
+get "version"(): integer
+get "entity"(): $LivingEntity
 get "removed"(): boolean
 get "effects"(): $Collection<($IEntityEffect)>
 }
@@ -1001,10 +1001,10 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IBlockEffect {
 
- "tick"(): void
- "isDone"(): boolean
  "getPosition"(): $Vec3
  "remove"(): void
+ "tick"(): void
+ "isDone"(): boolean
  "getPosIndex"(): long
  "getPos"(): $BlockPos
 }
@@ -1070,8 +1070,8 @@ import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 
 export interface $ISourceContext {
 
- "dsurround_getId"(): integer
  "dsurround_setData"(arg0: $SourceContext$Type): void
+ "dsurround_getId"(): integer
  "dsurround_getData"(): $Optional<($SourceContext)>
 }
 
@@ -1151,8 +1151,8 @@ public "setPitch"(pitch: float): $BackgroundSoundLoop
 public "isFading"(): boolean
 public "fadeIn"(): void
 public "fadeOut"(): void
-public "tick"(): void
 public "setVolume"(volume: float): $BackgroundSoundLoop
+public "tick"(): void
 public static "createUnseededRandom"(): $RandomSource
 set "scaleTarget"(value: float)
 get "volume"(): float
@@ -1198,15 +1198,15 @@ declare global {
 export type $MixinClientWorldProperties_ = $MixinClientWorldProperties$Type;
 }}
 declare module "packages/org/orecruncher/dsurround/mixins/audio/$MixinSoundEngineAccessor" {
-import {$Listener, $Listener$Type} from "packages/com/mojang/blaze3d/audio/$Listener"
 import {$SoundInstance, $SoundInstance$Type} from "packages/net/minecraft/client/resources/sounds/$SoundInstance"
+import {$Listener, $Listener$Type} from "packages/com/mojang/blaze3d/audio/$Listener"
 import {$ChannelAccess$ChannelHandle, $ChannelAccess$ChannelHandle$Type} from "packages/net/minecraft/client/sounds/$ChannelAccess$ChannelHandle"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $MixinSoundEngineAccessor {
 
- "dsurround_getListener"(): $Listener
  "dsurround_getSources"(): $Map<($SoundInstance), ($ChannelAccess$ChannelHandle)>
+ "dsurround_getListener"(): $Listener
 }
 
 export namespace $MixinSoundEngineAccessor {
@@ -1236,35 +1236,35 @@ export class $SourceContext implements $Callable<(void)> {
 
 constructor(sourceId: integer)
 
-public "sync"(): any
-public "call"(): void
-public "tick"(): void
-public "isEnabled"(): boolean
 public "getPosition"(): $Vec3
-public "enable"(): void
 public "toString"(): string
 public "getId"(): integer
 public "exec"(): void
+public "enable"(): void
+public "call"(): void
+public "tick"(): void
+public "isEnabled"(): boolean
+public "sync"(): any
 public "shouldExecute"(): boolean
 public "getCategory"(): $SoundSource
 public "getSound"(): $SoundInstance
-public "getLowPass0"(): $LowPassData
 public "getLowPass1"(): $LowPassData
 public "getLowPass2"(): $LowPassData
-public "getLowPass3"(): $LowPassData
+public "getLowPass0"(): $LowPassData
 public "getAirAbsorb"(): $SourcePropertyFloat
+public "getLowPass3"(): $LowPassData
 public "attachSound"(sound: $SoundInstance$Type): void
 public "getDirect"(): $LowPassData
-get "enabled"(): boolean
 get "position"(): $Vec3
 get "id"(): integer
+get "enabled"(): boolean
 get "category"(): $SoundSource
 get "sound"(): $SoundInstance
-get "lowPass0"(): $LowPassData
 get "lowPass1"(): $LowPassData
 get "lowPass2"(): $LowPassData
-get "lowPass3"(): $LowPassData
+get "lowPass0"(): $LowPassData
 get "airAbsorb"(): $SourcePropertyFloat
+get "lowPass3"(): $LowPassData
 get "direct"(): $LowPassData
 }
 /**

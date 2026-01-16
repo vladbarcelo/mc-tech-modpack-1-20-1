@@ -28,8 +28,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -50,9 +50,9 @@ readonly "canRepair": boolean
 
 constructor(settings: $Item$Properties$Type)
 
-public "getName"(stack: $ItemStack$Type): $Component
-public "useOn"(context: $UseOnContext$Type): $InteractionResult
 public "use"(world: $Level$Type, user: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "useOn"(context: $UseOnContext$Type): $InteractionResult
+public "getName"(stack: $ItemStack$Type): $Component
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

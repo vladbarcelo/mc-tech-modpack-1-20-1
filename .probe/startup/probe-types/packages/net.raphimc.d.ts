@@ -57,13 +57,13 @@ static readonly "MAPS_PER_ATLAS": integer
 
 constructor(id: integer)
 
-public "getIdentifier"(): $ResourceLocation
 public "getId"(): integer
 public "close"(): void
+public "getIdentifier"(): $ResourceLocation
 public "getNextMapLocation"(): integer
 public "getTexture"(): $DynamicTexture
-get "identifier"(): $ResourceLocation
 get "id"(): integer
+get "identifier"(): $ResourceLocation
 get "nextMapLocation"(): integer
 get "texture"(): $DynamicTexture
 }

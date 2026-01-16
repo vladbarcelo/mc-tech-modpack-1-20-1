@@ -44,26 +44,6 @@ import {$Marker, $Marker$Type} from "packages/org/slf4j/$Marker"
 
 export interface $Logger {
 
- "warn"(arg0: $Marker$Type, arg1: string, arg2: any): void
- "warn"(arg0: $Marker$Type, arg1: string, arg2: any, arg3: any): void
- "warn"(arg0: $Marker$Type, arg1: string, ...arg2: (any)[]): void
- "warn"(arg0: $Marker$Type, arg1: string, arg2: $Throwable$Type): void
- "warn"(arg0: string, arg1: any): void
- "warn"(arg0: string, ...arg1: (any)[]): void
- "warn"(arg0: string, arg1: any, arg2: any): void
- "warn"(arg0: string, arg1: $Throwable$Type): void
- "warn"(arg0: string): void
- "warn"(arg0: $Marker$Type, arg1: string): void
- "error"(arg0: $Marker$Type, arg1: string, ...arg2: (any)[]): void
- "error"(arg0: $Marker$Type, arg1: string, arg2: any, arg3: any): void
- "error"(arg0: $Marker$Type, arg1: string, arg2: any): void
- "error"(arg0: $Marker$Type, arg1: string, arg2: $Throwable$Type): void
- "error"(arg0: string): void
- "error"(arg0: string, arg1: any): void
- "error"(arg0: string, arg1: any, arg2: any): void
- "error"(arg0: string, ...arg1: (any)[]): void
- "error"(arg0: string, arg1: $Throwable$Type): void
- "error"(arg0: $Marker$Type, arg1: string): void
  "getName"(): string
  "info"(arg0: string, arg1: any, arg2: any): void
  "info"(arg0: string, ...arg1: (any)[]): void
@@ -76,25 +56,45 @@ export interface $Logger {
  "info"(arg0: $Marker$Type, arg1: string, arg2: any): void
  "info"(arg0: $Marker$Type, arg1: string): void
  "trace"(arg0: $Marker$Type, arg1: string, arg2: $Throwable$Type): void
- "trace"(arg0: string, ...arg1: (any)[]): void
- "trace"(arg0: string, arg1: any, arg2: any): void
+ "trace"(arg0: string): void
  "trace"(arg0: string, arg1: any): void
+ "trace"(arg0: string, arg1: any, arg2: any): void
+ "trace"(arg0: string, arg1: $Throwable$Type): void
+ "trace"(arg0: string, ...arg1: (any)[]): void
  "trace"(arg0: $Marker$Type, arg1: string): void
  "trace"(arg0: $Marker$Type, arg1: string, arg2: any): void
  "trace"(arg0: $Marker$Type, arg1: string, arg2: any, arg3: any): void
- "trace"(arg0: string, arg1: $Throwable$Type): void
- "trace"(arg0: string): void
  "trace"(arg0: $Marker$Type, arg1: string, ...arg2: (any)[]): void
- "debug"(arg0: $Marker$Type, arg1: string): void
  "debug"(arg0: $Marker$Type, arg1: string, arg2: any, arg3: any): void
- "debug"(arg0: string): void
+ "debug"(arg0: $Marker$Type, arg1: string, arg2: any): void
  "debug"(arg0: $Marker$Type, arg1: string, ...arg2: (any)[]): void
  "debug"(arg0: $Marker$Type, arg1: string, arg2: $Throwable$Type): void
  "debug"(arg0: string, ...arg1: (any)[]): void
- "debug"(arg0: string, arg1: $Throwable$Type): void
- "debug"(arg0: $Marker$Type, arg1: string, arg2: any): void
  "debug"(arg0: string, arg1: any, arg2: any): void
  "debug"(arg0: string, arg1: any): void
+ "debug"(arg0: string): void
+ "debug"(arg0: $Marker$Type, arg1: string): void
+ "debug"(arg0: string, arg1: $Throwable$Type): void
+ "warn"(arg0: string): void
+ "warn"(arg0: string, ...arg1: (any)[]): void
+ "warn"(arg0: string, arg1: any): void
+ "warn"(arg0: $Marker$Type, arg1: string, ...arg2: (any)[]): void
+ "warn"(arg0: $Marker$Type, arg1: string, arg2: any): void
+ "warn"(arg0: $Marker$Type, arg1: string): void
+ "warn"(arg0: string, arg1: $Throwable$Type): void
+ "warn"(arg0: string, arg1: any, arg2: any): void
+ "warn"(arg0: $Marker$Type, arg1: string, arg2: any, arg3: any): void
+ "warn"(arg0: $Marker$Type, arg1: string, arg2: $Throwable$Type): void
+ "error"(arg0: $Marker$Type, arg1: string, arg2: any): void
+ "error"(arg0: string, arg1: any, arg2: any): void
+ "error"(arg0: $Marker$Type, arg1: string): void
+ "error"(arg0: $Marker$Type, arg1: string, arg2: any, arg3: any): void
+ "error"(arg0: $Marker$Type, arg1: string, ...arg2: (any)[]): void
+ "error"(arg0: $Marker$Type, arg1: string, arg2: $Throwable$Type): void
+ "error"(arg0: string): void
+ "error"(arg0: string, arg1: any): void
+ "error"(arg0: string, ...arg1: (any)[]): void
+ "error"(arg0: string, arg1: $Throwable$Type): void
  "atTrace"(): $LoggingEventBuilder
  "atDebug"(): $LoggingEventBuilder
  "atInfo"(): $LoggingEventBuilder
@@ -109,8 +109,8 @@ export interface $Logger {
  "isErrorEnabled"(): boolean
  "isInfoEnabled"(): boolean
  "isInfoEnabled"(arg0: $Marker$Type): boolean
- "isTraceEnabled"(arg0: $Marker$Type): boolean
  "isTraceEnabled"(): boolean
+ "isTraceEnabled"(arg0: $Marker$Type): boolean
  "isWarnEnabled"(): boolean
  "isWarnEnabled"(arg0: $Marker$Type): boolean
 }
@@ -173,12 +173,12 @@ export interface $Marker extends $Serializable {
  "iterator"(): $Iterator<($Marker)>
  "contains"(arg0: string): boolean
  "contains"(arg0: $Marker$Type): boolean
+ "hasReferences"(): boolean
 /**
  * 
  * @deprecated
  */
  "hasChildren"(): boolean
- "hasReferences"(): boolean
 }
 
 export namespace $Marker {

@@ -149,8 +149,8 @@ declare module "packages/fi/dy/masa/litematica/util/$IWorldUpdateSuppressor" {
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $IWorldUpdateSuppressor {
 
- "litematica_setShouldPreventBlockUpdates"(arg0: boolean): void
  "litematica_getShouldPreventBlockUpdates"(): boolean
+ "litematica_setShouldPreventBlockUpdates"(arg0: boolean): void
 }
 
 export namespace $IWorldUpdateSuppressor {

@@ -4,28 +4,28 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export class $AudioFormat {
 
-constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: integer, arg4: integer, arg5: float, arg6: boolean)
-constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: integer, arg4: integer, arg5: float, arg6: boolean, arg7: $Map$Type<(string), (any)>)
 constructor(arg0: float, arg1: integer, arg2: integer, arg3: boolean, arg4: boolean)
+constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: integer, arg4: integer, arg5: float, arg6: boolean, arg7: $Map$Type<(string), (any)>)
+constructor(arg0: $AudioFormat$Encoding$Type, arg1: float, arg2: integer, arg3: integer, arg4: integer, arg5: float, arg6: boolean)
 
-public "getFrameRate"(): float
-public "getEncoding"(): $AudioFormat$Encoding
 public "getProperty"(arg0: string): any
 public "toString"(): string
 public "matches"(arg0: $AudioFormat$Type): boolean
 public "properties"(): $Map<(string), (any)>
 public "isBigEndian"(): boolean
+public "getFrameRate"(): float
+public "getEncoding"(): $AudioFormat$Encoding
 public "getChannels"(): integer
 public "getFrameSize"(): integer
-public "getSampleRate"(): float
 public "getSampleSizeInBits"(): integer
+public "getSampleRate"(): float
+get "bigEndian"(): boolean
 get "frameRate"(): float
 get "encoding"(): $AudioFormat$Encoding
-get "bigEndian"(): boolean
 get "channels"(): integer
 get "frameSize"(): integer
-get "sampleRate"(): float
 get "sampleSizeInBits"(): integer
+get "sampleRate"(): float
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

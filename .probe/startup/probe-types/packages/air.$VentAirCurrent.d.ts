@@ -22,11 +22,11 @@ readonly "source": $VentCurrentSource
 constructor(arg0: $VentCurrentSource$Type)
 
 public "tick"(): void
-public static "isPlayerCreativeFlying"(arg0: $Entity$Type): boolean
 public static "getFlowLimit"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: float, arg3: $Direction$Type): float
+public static "isPlayerCreativeFlying"(arg0: $Entity$Type): boolean
 public "findEntities"(): void
-public "findAffectedHandlers"(): void
 public "tickAffectedHandlers"(): void
+public "findAffectedHandlers"(): void
 public "rebuild"(): void
 public "setVCIndex"(arg0: integer): void
 public "getTypeAt"(arg0: float): $FanProcessingType
