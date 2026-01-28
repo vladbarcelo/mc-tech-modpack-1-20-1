@@ -41,7 +41,7 @@ ServerEvents.recipes((event) => {
     event.recipes.createDeploying(sparkPlugInter, [sparkPlugInter, '#forge:wires/copper']),
     event.recipes.createDeploying(sparkPlugInter, [sparkPlugInter, '#forge:rods/steel']),
     event.recipes.createDeploying(sparkPlugInter, [sparkPlugInter, 'tfmg:screw']),
-    event.recipes.createDeploying(sparkPlugInter, [sparkPlugInter, 'tfmg:screwdriver']),
+    event.recipes.createDeploying(sparkPlugInter, [sparkPlugInter, 'tfmg:screw']),
   ]).transitionalItem(sparkPlugInter).loops(9)
 
   // diesel engine

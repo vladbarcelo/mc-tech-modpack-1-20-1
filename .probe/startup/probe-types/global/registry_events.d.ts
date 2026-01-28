@@ -12,7 +12,9 @@ import {MemoryModuleType, MemoryModuleType$Type} from "packages/moe/wolfgirl/pro
 import {WorldgenStructurePiece, WorldgenStructurePiece$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenStructurePiece"
 import {WorldgenConfiguredFeature, WorldgenConfiguredFeature$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenConfiguredFeature"
 import {Guardtypes, Guardtypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Guardtypes"
+import {EntityClimate, EntityClimate$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/EntityClimate"
 import {Activity, Activity$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Activity"
+import {ItemItemTemp, ItemItemTemp$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/ItemItemTemp"
 import {Instrument, Instrument$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Instrument"
 import {Interactionresponsehandlers, Interactionresponsehandlers$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Interactionresponsehandlers"
 import {Potion, Potion$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Potion"
@@ -20,6 +22,7 @@ import {LootFunctionType, LootFunctionType$Type} from "packages/moe/wolfgirl/pro
 import {Jobs, Jobs$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Jobs"
 import {Researchcosttypes, Researchcosttypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Researchcosttypes"
 import {CustomStat, CustomStat$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/CustomStat"
+import {WorldBiomeTemp, WorldBiomeTemp$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/WorldBiomeTemp"
 import {WorldgenTreeDecoratorType, WorldgenTreeDecoratorType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenTreeDecoratorType"
 import {WorldgenProcessorList, WorldgenProcessorList$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenProcessorList"
 import {Item, Item$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Item"
@@ -27,12 +30,13 @@ import {Dimension, Dimension$Type} from "packages/moe/wolfgirl/probejs/generated
 import {WorldgenFeatureSizeType, WorldgenFeatureSizeType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenFeatureSizeType"
 import {LootPoolEntryType, LootPoolEntryType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/LootPoolEntryType"
 import {Researchrequirementtypes, Researchrequirementtypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Researchrequirementtypes"
+import {EntitySpawnBiome, EntitySpawnBiome$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/EntitySpawnBiome"
 import {FloatProviderType, FloatProviderType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/FloatProviderType"
 import {EntityDataSerializers, EntityDataSerializers$Type} from "packages/moe/wolfgirl/probejs/generated/registry/forge/EntityDataSerializers"
 import {RewardGeneratorType, RewardGeneratorType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/RewardGeneratorType"
+import {TempEffect, TempEffect$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/TempEffect"
 import {Equipmenttypes, Equipmenttypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Equipmenttypes"
 import {IngredientModifierType, IngredientModifierType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/IngredientModifierType"
-import {ConditionSerializer, ConditionSerializer$Type} from "packages/moe/wolfgirl/probejs/generated/registry/crafttweaker/ConditionSerializer"
 import {WorldgenNoiseSettings, WorldgenNoiseSettings$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenNoiseSettings"
 import {RecipeType, RecipeType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/RecipeType"
 import {PartConverters, PartConverters$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cb_multipart/PartConverters"
@@ -40,12 +44,14 @@ import {StructureModifierSerializers, StructureModifierSerializers$Type} from "p
 import {WorldgenStructurePoolElement, WorldgenStructurePoolElement$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenStructurePoolElement"
 import {LootTeamNumberProviderType, LootTeamNumberProviderType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/LootTeamNumberProviderType"
 import {ShopOfferGenerator, ShopOfferGenerator$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/ShopOfferGenerator"
+import {ItemInsulator, ItemInsulator$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/ItemInsulator"
 import {PaintingVariant, PaintingVariant$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/PaintingVariant"
 import {WorldgenMultiNoiseBiomeSourceParameterList, WorldgenMultiNoiseBiomeSourceParameterList$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenMultiNoiseBiomeSourceParameterList"
 import {WorldgenMaterialRule, WorldgenMaterialRule$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenMaterialRule"
 import {Happinessfactortypes, Happinessfactortypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Happinessfactortypes"
 import {Recipetypeentries, Recipetypeentries$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Recipetypeentries"
 import {RuleBlockEntityModifier, RuleBlockEntityModifier$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/RuleBlockEntityModifier"
+import {ItemFuel, ItemFuel$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/ItemFuel"
 import {VillagerType, VillagerType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/VillagerType"
 import {LootConditionType, LootConditionType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/LootConditionType"
 import {LootNbtProviderType, LootNbtProviderType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/LootNbtProviderType"
@@ -55,6 +61,7 @@ import {GlobalLootModifierSerializers, GlobalLootModifierSerializers$Type} from 
 import {WorldgenBiome, WorldgenBiome$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenBiome"
 import {Fluid, Fluid$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Fluid"
 import {Questobjectives, Questobjectives$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Questobjectives"
+import {WorldTempRegion, WorldTempRegion$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/WorldTempRegion"
 import {Menu, Menu$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Menu"
 import {WorldgenConfiguredCarver, WorldgenConfiguredCarver$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenConfiguredCarver"
 import {WorldgenDensityFunctionType, WorldgenDensityFunctionType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenDensityFunctionType"
@@ -65,7 +72,9 @@ import {WorldgenStructureProcessor, WorldgenStructureProcessor$Type} from "packa
 import {TrimPattern, TrimPattern$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/TrimPattern"
 import {MicroMaterial, MicroMaterial$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cb_microblock/MicroMaterial"
 import {Questrewards, Questrewards$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Questrewards"
+import {EntityMount, EntityMount$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/EntityMount"
 import {CreativeModeTab, CreativeModeTab$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/CreativeModeTab"
+import {WorldStructureTemp, WorldStructureTemp$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/WorldStructureTemp"
 import {RuleTest, RuleTest$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/RuleTest"
 import {TrimMaterial, TrimMaterial$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/TrimMaterial"
 import {ChunkStatus, ChunkStatus$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/ChunkStatus"
@@ -74,6 +83,8 @@ import {WorldgenStructureType, WorldgenStructureType$Type} from "packages/moe/wo
 import {Schedule, Schedule$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Schedule"
 import {Enchantment, Enchantment$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Enchantment"
 import {WorldgenPlacementModifierType, WorldgenPlacementModifierType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenPlacementModifierType"
+import {EntityEntityTemp, EntityEntityTemp$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/EntityEntityTemp"
+import {EntityTempEffects, EntityTempEffects$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/EntityTempEffects"
 import {Craftingtypes, Craftingtypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Craftingtypes"
 import {LootEntityNumberProviderType, LootEntityNumberProviderType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/LootEntityNumberProviderType"
 import {Shop, Shop$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/Shop"
@@ -121,10 +132,12 @@ import {LootScoreProviderType, LootScoreProviderType$Type} from "packages/moe/wo
 import {CommandArgumentType, CommandArgumentType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/CommandArgumentType"
 import {WorldgenBiomeSource, WorldgenBiomeSource$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenBiomeSource"
 import {Contaminant, Contaminant$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/Contaminant"
+import {WorldDimensionTemp, WorldDimensionTemp$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/WorldDimensionTemp"
+import {ItemDryingItem, ItemDryingItem$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/ItemDryingItem"
 import {IntProviderType, IntProviderType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/IntProviderType"
 import {WorldgenDensityFunction, WorldgenDensityFunction$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenDensityFunction"
+import {ItemInsulationSlots, ItemInsulationSlots$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/ItemInsulationSlots"
 import {WorldgenMaterialCondition, WorldgenMaterialCondition$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenMaterialCondition"
-import {TransformerSerializer, TransformerSerializer$Type} from "packages/moe/wolfgirl/probejs/generated/registry/crafttweaker/TransformerSerializer"
 import {WorldgenFoliagePlacerType, WorldgenFoliagePlacerType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenFoliagePlacerType"
 import {Colonyeventtypes, Colonyeventtypes$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecolonies/Colonyeventtypes"
 import {TeamType, TeamType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/TeamType"
@@ -134,15 +147,18 @@ import {BlockPredicateType, BlockPredicateType$Type} from "packages/moe/wolfgirl
 import {PlacementConditionType, PlacementConditionType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/lithostitched/PlacementConditionType"
 import {ProcessorConditionType, ProcessorConditionType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/lithostitched/ProcessorConditionType"
 import {Block, Block$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/Block"
+import {ItemFood, ItemFood$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/ItemFood"
 import {ModifierPredicateType, ModifierPredicateType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/lithostitched/ModifierPredicateType"
 import {TeamDataType, TeamDataType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/petrolpark/TeamDataType"
 import {Condition, Condition$Type} from "packages/moe/wolfgirl/probejs/generated/registry/corgilib/Condition"
 import {StatType, StatType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/StatType"
 import {HeightProviderType, HeightProviderType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/HeightProviderType"
 import {VillagerProfession, VillagerProfession$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/VillagerProfession"
+import {Modifier, Modifier$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/Modifier"
 import {WorldgenCarver, WorldgenCarver$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenCarver"
 import {WorldgenTrunkPlacerType, WorldgenTrunkPlacerType$Type} from "packages/moe/wolfgirl/probejs/generated/registry/minecraft/WorldgenTrunkPlacerType"
 import {WorldgenModifier, WorldgenModifier$Type} from "packages/moe/wolfgirl/probejs/generated/registry/lithostitched/WorldgenModifier"
+import {BlockBlockTemp, BlockBlockTemp$Type} from "packages/moe/wolfgirl/probejs/generated/registry/cold_sweat/BlockBlockTemp"
 
 declare global {
 export namespace StartupEvents {
@@ -232,13 +248,14 @@ function registry(extra: "damage_type", handler: (event: DamageType) => void): v
 function registry(extra: "rule_block_entity_modifier", handler: (event: RuleBlockEntityModifier) => void): void
 function registry(extra: "decorated_pot_patterns", handler: (event: DecoratedPotPatterns) => void): void
 function registry(extra: "worldgen/multi_noise_biome_source_parameter_list", handler: (event: WorldgenMultiNoiseBiomeSourceParameterList) => void): void
-function registry(extra: "corgilib:villager_trades_item_listing", handler: (event: VillagerTradesItemListing) => void): void
 function registry(extra: "corgilib:condition", handler: (event: Condition) => void): void
+function registry(extra: "corgilib:villager_trades_item_listing", handler: (event: VillagerTradesItemListing) => void): void
 function registry(extra: "corgilib:blending_function", handler: (event: BlendingFunction) => void): void
 function registry(extra: "betterdays:time_effect", handler: (event: TimeEffect) => void): void
 function registry(extra: "cb_microblock:micro_material", handler: (event: MicroMaterial) => void): void
 function registry(extra: "cb_multipart:multipart_types", handler: (event: MultipartTypes) => void): void
 function registry(extra: "cb_multipart:part_converters", handler: (event: PartConverters) => void): void
+function registry(extra: "cold_sweat:temp_effect", handler: (event: TempEffect) => void): void
 function registry(extra: "forge:biome_modifier_serializers", handler: (event: BiomeModifierSerializers) => void): void
 function registry(extra: "forge:display_contexts", handler: (event: DisplayContexts) => void): void
 function registry(extra: "forge:entity_data_serializers", handler: (event: EntityDataSerializers) => void): void
@@ -284,12 +301,27 @@ function registry(extra: "petrolpark:shop", handler: (event: Shop) => void): voi
 function registry(extra: "petrolpark:shop_offer_generator", handler: (event: ShopOfferGenerator) => void): void
 function registry(extra: "petrolpark:team_data_type", handler: (event: TeamDataType) => void): void
 function registry(extra: "petrolpark:team_type", handler: (event: TeamType) => void): void
-function registry(extra: "crafttweaker:condition_serializer", handler: (event: ConditionSerializer) => void): void
-function registry(extra: "crafttweaker:transformer_serializer", handler: (event: TransformerSerializer) => void): void
-function registry(extra: "forge:structure_modifier", handler: (event: StructureModifier) => void): void
+function registry(extra: "cold_sweat:world/dimension_temp", handler: (event: WorldDimensionTemp) => void): void
 function registry(extra: "lithostitched:worldgen_modifier", handler: (event: WorldgenModifier) => void): void
+function registry(extra: "cold_sweat:entity/climate", handler: (event: EntityClimate) => void): void
+function registry(extra: "cold_sweat:item/item_temp", handler: (event: ItemItemTemp) => void): void
+function registry(extra: "cold_sweat:item/insulation_slots", handler: (event: ItemInsulationSlots) => void): void
+function registry(extra: "cold_sweat:item/food", handler: (event: ItemFood) => void): void
 function registry(extra: "moonlight:soft_fluids", handler: (event: SoftFluids) => void): void
-function registry(extra: "moonlight:map_markers", handler: (event: MapMarkers) => void): void
+function registry(extra: "cold_sweat:item/insulator", handler: (event: ItemInsulator) => void): void
+function registry(extra: "forge:structure_modifier", handler: (event: StructureModifier) => void): void
+function registry(extra: "cold_sweat:world/temp_region", handler: (event: WorldTempRegion) => void): void
+function registry(extra: "cold_sweat:item/drying_item", handler: (event: ItemDryingItem) => void): void
+function registry(extra: "cold_sweat:entity/spawn_biome", handler: (event: EntitySpawnBiome) => void): void
+function registry(extra: "cold_sweat:block/block_temp", handler: (event: BlockBlockTemp) => void): void
+function registry(extra: "cold_sweat:entity/entity_temp", handler: (event: EntityEntityTemp) => void): void
+function registry(extra: "cold_sweat:world/biome_temp", handler: (event: WorldBiomeTemp) => void): void
+function registry(extra: "cold_sweat:modifier", handler: (event: Modifier) => void): void
+function registry(extra: "cold_sweat:entity/temp_effects", handler: (event: EntityTempEffects) => void): void
+function registry(extra: "cold_sweat:world/structure_temp", handler: (event: WorldStructureTemp) => void): void
 function registry(extra: "forge:biome_modifier", handler: (event: BiomeModifier) => void): void
+function registry(extra: "cold_sweat:item/fuel", handler: (event: ItemFuel) => void): void
+function registry(extra: "cold_sweat:entity/mount", handler: (event: EntityMount) => void): void
+function registry(extra: "moonlight:map_markers", handler: (event: MapMarkers) => void): void
 }
 }

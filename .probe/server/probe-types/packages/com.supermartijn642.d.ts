@@ -37,13 +37,13 @@ export class $Triple<X, Y, Z> extends $Record {
 
 constructor(left: X, middle: Y, right: Z)
 
+public "left"(): X
+public "right"(): Z
+public "middle"(): Y
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "of"<X, Y, Z>(left: X, middle: Y, right: Z): $Triple<(X), (Y), (Z)>
-public "middle"(): Y
-public "left"(): X
-public "right"(): Z
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -89,6 +89,7 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 
 export interface $SpriteCreationContext {
 
+ "getTextureIdentifier"(): $ResourceLocation
  "getTextureWidth"(): integer
  "getTextureHeight"(): integer
  "createOriginalSprite"(): $TextureAtlasSprite
@@ -96,7 +97,6 @@ export interface $SpriteCreationContext {
  "getAtlasHeight"(): integer
  "getSpritePositionX"(): integer
  "getSpritePositionY"(): integer
- "getTextureIdentifier"(): $ResourceLocation
  "getTextureBuffers"(): ($NativeImage)[]
  "getSpriteWidth"(): integer
  "getSpriteHeight"(): integer
@@ -135,8 +135,8 @@ export interface $ModelType<T> extends $Serializer<(T)> {
  "getAsVanillaModel"(data: T): $BlockModel
  "getParentModels"(data: T): $List<($ResourceLocation)>
  "bake"(context: $ModelBakingContext$Type, data: T): $BakedModel
- "serialize"(data: T): $JsonObject
  "deserialize"(json: $JsonObject$Type): T
+ "serialize"(data: T): $JsonObject
 }
 
 export namespace $ModelType {
@@ -194,11 +194,11 @@ readonly "containerListeners": $List<($ContainerListener)>
 
 constructor(type: $BaseContainerType$Type<(any)>, player: $Player$Type)
 
-public "setContainerId"(id: integer): void
 public "getContainerType"(): $BaseContainerType<(any)>
+public "setContainerId"(id: integer): void
 public "stillValid"(playerIn: $Player$Type): boolean
-set "containerId"(value: integer)
 get "containerType"(): $BaseContainerType<(any)>
+set "containerId"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -238,11 +238,10 @@ readonly "tabsBefore": $List<($ResourceLocation)>
 readonly "tabsAfter": $List<($ResourceLocation)>
 
 
-public static "create"(modid: string, icon: $ItemLike$Type): $CreativeItemGroup
-public static "create"(modid: string, icon: $Supplier$Type<($ItemStack$Type)>): $CreativeItemGroup
-public static "create"(modid: string, name: string, icon: $ItemLike$Type): $CreativeItemGroup
 public static "create"(modid: string, name: string, icon: $Supplier$Type<($ItemStack$Type)>): $CreativeItemGroup
-public "getBackgroundLocation"(): $ResourceLocation
+public static "create"(modid: string, icon: $ItemLike$Type): $CreativeItemGroup
+public static "create"(modid: string, name: string, icon: $ItemLike$Type): $CreativeItemGroup
+public static "create"(modid: string, icon: $Supplier$Type<($ItemStack$Type)>): $CreativeItemGroup
 public static "getIngredients"(): $CreativeModeTab
 public static "getBuildingBlocks"(): $CreativeModeTab
 public static "getColoredBlocks"(): $CreativeModeTab
@@ -254,13 +253,13 @@ public static "getFoodAndDrinks"(): $CreativeModeTab
 public static "getSpawnEggs"(): $CreativeModeTab
 public static "getOperatorUtilities"(): $CreativeModeTab
 public "sortAlphabetically"(): $CreativeItemGroup
+public "getBackgroundLocation"(): $ResourceLocation
 public "sorter"(sorter: $Comparator$Type<($ItemStack$Type)>): $CreativeItemGroup
 public "getDisplayItems"(): $Collection<($ItemStack)>
 public "buildContents"(parameters: $CreativeModeTab$ItemDisplayParameters$Type): void
-public static "getCombat"(): $CreativeModeTab
 public "filler"(filler: $Consumer$Type<($Consumer$Type<($ItemStack$Type)>)>): $CreativeItemGroup
 public static "getSearch"(): $CreativeModeTab
-get "backgroundLocation"(): $ResourceLocation
+public static "getCombat"(): $CreativeModeTab
 get "ingredients"(): $CreativeModeTab
 get "buildingBlocks"(): $CreativeModeTab
 get "coloredBlocks"(): $CreativeModeTab
@@ -271,9 +270,10 @@ get "toolsAndUtilities"(): $CreativeModeTab
 get "foodAndDrinks"(): $CreativeModeTab
 get "spawnEggs"(): $CreativeModeTab
 get "operatorUtilities"(): $CreativeModeTab
+get "backgroundLocation"(): $ResourceLocation
 get "displayItems"(): $Collection<($ItemStack)>
-get "combat"(): $CreativeModeTab
 get "search"(): $CreativeModeTab
+get "combat"(): $CreativeModeTab
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -294,20 +294,20 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 export class $BaseItem$ItemUseResult {
 
 
-public static "fail"(stack: $ItemStack$Type): $BaseItem$ItemUseResult
-public static "consume"(stack: $ItemStack$Type): $BaseItem$ItemUseResult
 public static "success"(stack: $ItemStack$Type): $BaseItem$ItemUseResult
 public static "pass"(stack: $ItemStack$Type): $BaseItem$ItemUseResult
-/**
- * 
- * @deprecated
- */
-public "toUnderlying"(isClientSide: boolean): $InteractionResultHolder<($ItemStack)>
+public static "fail"(stack: $ItemStack$Type): $BaseItem$ItemUseResult
+public static "consume"(stack: $ItemStack$Type): $BaseItem$ItemUseResult
 /**
  * 
  * @deprecated
  */
 public static "fromUnderlying"(underlying: $InteractionResultHolder$Type<($ItemStack$Type)>): $BaseItem$ItemUseResult
+/**
+ * 
+ * @deprecated
+ */
+public "toUnderlying"(isClientSide: boolean): $InteractionResultHolder<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -347,15 +347,15 @@ declare global {
 export type $EntityModelPredicate_ = $EntityModelPredicate$Type;
 }}
 declare module "packages/com/supermartijn642/core/data/condition/$ResourceConditionSerializer" {
-import {$IConditionSerializer, $IConditionSerializer$Type} from "packages/net/minecraftforge/common/crafting/conditions/$IConditionSerializer"
 import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
+import {$IConditionSerializer, $IConditionSerializer$Type} from "packages/net/minecraftforge/common/crafting/conditions/$IConditionSerializer"
 import {$ResourceCondition, $ResourceCondition$Type} from "packages/com/supermartijn642/core/data/condition/$ResourceCondition"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 
 export interface $ResourceConditionSerializer<T extends $ResourceCondition> {
 
- "serialize"(json: $JsonObject$Type, condition: T): void
  "deserialize"(json: $JsonObject$Type): T
+ "serialize"(json: $JsonObject$Type, condition: T): void
 }
 
 export namespace $ResourceConditionSerializer {
@@ -523,8 +523,8 @@ import {$Pair, $Pair$Type} from "packages/com/supermartijn642/fusion/api/util/$P
 
 export interface $SpriteContentsExtension {
 
- "setFusionMetadata"(metadata: $Pair$Type<($TextureType$Type<(any)>), (any)>): void
  "getFusionMetadata"(): $Pair<($TextureType<(any)>), (any)>
+ "setFusionMetadata"(metadata: $Pair$Type<($TextureType$Type<(any)>), (any)>): void
 }
 
 export namespace $SpriteContentsExtension {
@@ -547,13 +547,13 @@ export {} // Mark the file as a module, do not remove unless there are other imp
 export class $FusionPackMetadata {
 
 
-public "getMinimumVersion"(): string
-public "isMinVersionSatisfied"(): boolean
 public "hasOverridesFolder"(): boolean
 public "getOverridesFolder"(): string
+public "getMinimumVersion"(): string
+public "isMinVersionSatisfied"(): boolean
+get "overridesFolder"(): string
 get "minimumVersion"(): string
 get "minVersionSatisfied"(): boolean
-get "overridesFolder"(): string
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -568,8 +568,8 @@ declare global {
 export type $FusionPackMetadata_ = $FusionPackMetadata$Type;
 }}
 declare module "packages/com/supermartijn642/fusion/api/model/$ModelBakingContext" {
-import {$ModelState, $ModelState$Type} from "packages/net/minecraft/client/resources/model/$ModelState"
 import {$ModelBaker, $ModelBaker$Type} from "packages/net/minecraft/client/resources/model/$ModelBaker"
+import {$ModelState, $ModelState$Type} from "packages/net/minecraft/client/resources/model/$ModelState"
 import {$ModelInstance, $ModelInstance$Type} from "packages/com/supermartijn642/fusion/api/model/$ModelInstance"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$SpriteIdentifier, $SpriteIdentifier$Type} from "packages/com/supermartijn642/fusion/api/model/$SpriteIdentifier"
@@ -577,13 +577,13 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 
 export interface $ModelBakingContext {
 
- "getTransformation"(): $ModelState
  "getModelBaker"(): $ModelBaker
+ "getTransformation"(): $ModelState
  "getModelIdentifier"(): $ResourceLocation
  "getTexture"(identifier: $SpriteIdentifier$Type): $TextureAtlasSprite
  "getTexture"(atlas: $ResourceLocation$Type, texture: $ResourceLocation$Type): $TextureAtlasSprite
- "getModel"(identifier: $ResourceLocation$Type): $ModelInstance<(any)>
  "getBlockTexture"(texture: $ResourceLocation$Type): $TextureAtlasSprite
+ "getModel"(identifier: $ResourceLocation$Type): $ModelInstance<(any)>
 }
 
 export namespace $ModelBakingContext {
@@ -660,8 +660,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(connecting: boolean, properties: $BlockProperties$Type)
 
-public "rotate"(state: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "rotate"(state: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -706,8 +706,8 @@ import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObjec
 
 export interface $Serializer<T> {
 
- "serialize"(data: T): $JsonObject
  "deserialize"(json: $JsonObject$Type): T
+ "serialize"(data: T): $JsonObject
 }
 
 export namespace $Serializer {
@@ -732,20 +732,20 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 export class $BaseBlockItem$ItemUseResult {
 
 
-public static "fail"(stack: $ItemStack$Type): $BaseBlockItem$ItemUseResult
-public static "consume"(stack: $ItemStack$Type): $BaseBlockItem$ItemUseResult
 public static "success"(stack: $ItemStack$Type): $BaseBlockItem$ItemUseResult
 public static "pass"(stack: $ItemStack$Type): $BaseBlockItem$ItemUseResult
-/**
- * 
- * @deprecated
- */
-public "toUnderlying"(isClientSide: boolean): $InteractionResultHolder<($ItemStack)>
+public static "fail"(stack: $ItemStack$Type): $BaseBlockItem$ItemUseResult
+public static "consume"(stack: $ItemStack$Type): $BaseBlockItem$ItemUseResult
 /**
  * 
  * @deprecated
  */
 public static "fromUnderlying"(underlying: $InteractionResultHolder$Type<($ItemStack$Type)>): $BaseBlockItem$ItemUseResult
+/**
+ * 
+ * @deprecated
+ */
+public "toUnderlying"(isClientSide: boolean): $InteractionResultHolder<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -767,16 +767,16 @@ import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunc
 export class $Pair<X, Y> {
 
 
+public "left"(): X
+public "right"(): Y
 public "equals"(o: any): boolean
 public "hashCode"(): integer
 public "apply"(consumer: $BiConsumer$Type<(X), (Y)>): void
 public "map"<R, S>(mapLeft: $Function$Type<(X), (R)>, mapRight: $Function$Type<(Y), (S)>): $Pair<(R), (S)>
 public static "of"<X, Y>(left: X, right: Y): $Pair<(X), (Y)>
 public "flatMap"<S>(mapper: $BiFunction$Type<(X), (Y), (S)>): S
-public "left"(): X
-public "right"(): Y
-public "mapLeft"<S>(mapper: $Function$Type<(X), (S)>): $Pair<(S), (Y)>
 public "mapRight"<S>(mapper: $Function$Type<(Y), (S)>): $Pair<(X), (S)>
+public "mapLeft"<S>(mapper: $Function$Type<(X), (S)>): $Pair<(S), (Y)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -805,8 +805,8 @@ export class $ConditionalRecipeSerializer implements $RecipeSerializer<($Recipe<
 static readonly "INSTANCE": $ConditionalRecipeSerializer
 
 
-public static "wrapRecipeWithForgeConditions"(recipe: $JsonObject$Type, conditions: $Collection$Type<($ICondition$Type)>): $JsonObject
 public "fromJson"(location: $ResourceLocation$Type, json: $JsonObject$Type, context: $ICondition$IContext$Type): $Recipe<(any)>
+public static "wrapRecipeWithForgeConditions"(recipe: $JsonObject$Type, conditions: $Collection$Type<($ICondition$Type)>): $JsonObject
 public "fromJson"(location: $ResourceLocation$Type, json: $JsonObject$Type): $Recipe<(any)>
 public "fromNetwork"(resourceLocation: $ResourceLocation$Type, friendlyByteBuf: $FriendlyByteBuf$Type): $Recipe<(any)>
 public "toNetwork"(friendlyByteBuf: $FriendlyByteBuf$Type, recipe: $Recipe$Type<(any)>): void
@@ -831,8 +831,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 
 export interface $BlockPropertiesAccessor {
 
- "getLootTableSupplier"(): $Supplier<($ResourceLocation)>
  "setLootTableSupplier"(supplier: $Supplier$Type<($ResourceLocation$Type)>): void
+ "getLootTableSupplier"(): $Supplier<($ResourceLocation)>
 }
 
 export namespace $BlockPropertiesAccessor {
@@ -916,12 +916,12 @@ import {$Pair, $Pair$Type} from "packages/com/supermartijn642/fusion/api/util/$P
 export interface $SpritePreparationContext {
 
  "getIdentifier"(): $ResourceLocation
+ "getOriginalFrameSize"(): $Pair<(integer), (integer)>
  "getTextureWidth"(): integer
  "getOriginalFrameWith"(): integer
  "getTextureHeight"(): integer
  "getOriginalFrameHeight"(): integer
  "getAnimationMetadata"(): $AnimationMetadataSection
- "getOriginalFrameSize"(): $Pair<(integer), (integer)>
 }
 
 export namespace $SpritePreparationContext {
@@ -959,8 +959,13 @@ constructor()
 
 public static "copy"(block: $Block$Type): $BlockProperties
 public static "create"(): $BlockProperties
-public "speedFactor"(factor: float): $BlockProperties
-public "explosionResistance"(resistance: float): $BlockProperties
+/**
+ * 
+ * @deprecated
+ */
+public "toUnderlying"(): $BlockBehaviour$Properties
+public "requiresCorrectTool"(): $BlockProperties
+public "destroyTime"(destroyTime: float): $BlockProperties
 public "isRedstoneConductor"(isRedstoneConductor: $TriPredicate$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type)>): $BlockProperties
 public "isRedstoneConductor"(isRedstoneConductor: boolean): $BlockProperties
 public "isSuffocating"(isSuffocating: $TriPredicate$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type)>): $BlockProperties
@@ -971,22 +976,17 @@ public "noOcclusion"(): $BlockProperties
 public "randomTicks"(): $BlockProperties
 public "dynamicShape"(): $BlockProperties
 public "lootTableFrom"(block: $Supplier$Type<($Block$Type)>): $BlockProperties
-public "requiresCorrectTool"(): $BlockProperties
-public "destroyTime"(destroyTime: float): $BlockProperties
-/**
- * 
- * @deprecated
- */
-public "toUnderlying"(): $BlockBehaviour$Properties
+public "explosionResistance"(resistance: float): $BlockProperties
+public "speedFactor"(factor: float): $BlockProperties
+public "air"(): $BlockProperties
+public "sound"(soundTypeIn: $SoundType$Type): $BlockProperties
 public "friction"(friction: float): $BlockProperties
 public "jumpFactor"(factor: float): $BlockProperties
-public "sound"(soundTypeIn: $SoundType$Type): $BlockProperties
-public "air"(): $BlockProperties
 public "lightLevel"(light: integer): $BlockProperties
 public "lightLevel"(stateLightFunction: $ToIntFunction$Type<($BlockState$Type)>): $BlockProperties
 public "lootTable"(lootTable: $ResourceLocation$Type): $BlockProperties
-public "mapColor"(color: $MapColor$Type): $BlockProperties
 public "mapColor"(colorFunction: $Function$Type<($BlockState$Type), ($MapColor$Type)>): $BlockProperties
+public "mapColor"(color: $MapColor$Type): $BlockProperties
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1103,15 +1103,15 @@ readonly "canRepair": boolean
 constructor(properties: $Item$Properties$Type)
 constructor(properties: $ItemProperties$Type)
 
-public "onItemUseFirst"(stack: $ItemStack$Type, context: $UseOnContext$Type): $InteractionResult
-public "initializeClient"(consumer: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "interactWithBlock"(stack: $ItemStack$Type, player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, hitPos: $BlockPos$Type, hitSide: $Direction$Type, hitLocation: $Vec3$Type): $BaseItem$InteractionFeedback
+public "isInCreativeGroup"(tab: $CreativeModeTab$Type): boolean
 public "interactWithBlockFirst"(stack: $ItemStack$Type, player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, hitPos: $BlockPos$Type, hitSide: $Direction$Type, hitLocation: $Vec3$Type): $BaseItem$InteractionFeedback
 public "interactWithEntity"(stack: $ItemStack$Type, target: $LivingEntity$Type, player: $Player$Type, hand: $InteractionHand$Type): $BaseItem$InteractionFeedback
 public "inventoryUpdate"(stack: $ItemStack$Type, level: $Level$Type, entity: $Entity$Type, itemSlot: integer, isSelected: boolean): void
-public "isInCreativeGroup"(tab: $CreativeModeTab$Type): boolean
-public "interactWithBlock"(stack: $ItemStack$Type, player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, hitPos: $BlockPos$Type, hitSide: $Direction$Type, hitLocation: $Vec3$Type): $BaseItem$InteractionFeedback
-public "use"(level: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "initializeClient"(consumer: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "onItemUseFirst"(stack: $ItemStack$Type, context: $UseOnContext$Type): $InteractionResult
 public "useOn"(context: $UseOnContext$Type): $InteractionResult
+public "use"(level: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "interactLivingEntity"(stack: $ItemStack$Type, player: $Player$Type, target: $LivingEntity$Type, hand: $InteractionHand$Type): $InteractionResult
 public "inventoryTick"(stack: $ItemStack$Type, level: $Level$Type, entity: $Entity$Type, slot: integer, isSelected: boolean): void
 public "appendHoverText"(stack: $ItemStack$Type, level: $Level$Type, information: $List$Type<($Component$Type)>, flag: $TooltipFlag$Type): void
@@ -1179,15 +1179,15 @@ readonly "canRepair": boolean
 constructor(block: $Block$Type, properties: $Item$Properties$Type)
 constructor(block: $Block$Type, properties: $ItemProperties$Type)
 
-public "onItemUseFirst"(stack: $ItemStack$Type, context: $UseOnContext$Type): $InteractionResult
-public "initializeClient"(consumer: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "interactWithBlock"(stack: $ItemStack$Type, player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, hitPos: $BlockPos$Type, hitSide: $Direction$Type, hitLocation: $Vec3$Type): $BaseBlockItem$InteractionFeedback
+public "isInCreativeGroup"(tab: $CreativeModeTab$Type): boolean
 public "interactWithBlockFirst"(stack: $ItemStack$Type, player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, hitPos: $BlockPos$Type, hitSide: $Direction$Type, hitLocation: $Vec3$Type): $BaseBlockItem$InteractionFeedback
 public "interactWithEntity"(stack: $ItemStack$Type, target: $LivingEntity$Type, player: $Player$Type, hand: $InteractionHand$Type): $BaseBlockItem$InteractionFeedback
 public "inventoryUpdate"(stack: $ItemStack$Type, level: $Level$Type, entity: $Entity$Type, itemSlot: integer, isSelected: boolean): void
-public "isInCreativeGroup"(tab: $CreativeModeTab$Type): boolean
-public "interactWithBlock"(stack: $ItemStack$Type, player: $Player$Type, hand: $InteractionHand$Type, level: $Level$Type, hitPos: $BlockPos$Type, hitSide: $Direction$Type, hitLocation: $Vec3$Type): $BaseBlockItem$InteractionFeedback
-public "use"(level: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+public "initializeClient"(consumer: $Consumer$Type<($IClientItemExtensions$Type)>): void
+public "onItemUseFirst"(stack: $ItemStack$Type, context: $UseOnContext$Type): $InteractionResult
 public "useOn"(context: $UseOnContext$Type): $InteractionResult
+public "use"(level: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "interactLivingEntity"(stack: $ItemStack$Type, player: $Player$Type, target: $LivingEntity$Type, hand: $InteractionHand$Type): $InteractionResult
 public "inventoryTick"(stack: $ItemStack$Type, level: $Level$Type, entity: $Entity$Type, slot: integer, isSelected: boolean): void
 public "appendHoverText"(stack: $ItemStack$Type, level: $Level$Type, information: $List$Type<($Component$Type)>, flag: $TooltipFlag$Type): void
@@ -1221,8 +1221,8 @@ constructor(model: $ModelPart$Type, isVanillaModel: boolean, textures: $List$Typ
 public "model"(): $ModelPart
 public "weight"(): double
 public "textures"(): $List<($ResourceLocation)>
-public "scaling"(): float
 public "isVanillaModel"(): boolean
+public "scaling"(): float
 get "vanillaModel"(): boolean
 }
 /**
@@ -1244,8 +1244,8 @@ import {$ICondition, $ICondition$Type} from "packages/net/minecraftforge/common/
 
 export interface $ResourceCondition {
 
- "test"(context: $ResourceConditionContext$Type): boolean
  "or"(alternative: $ResourceCondition$Type): $ResourceCondition
+ "test"(context: $ResourceConditionContext$Type): boolean
  "negate"(): $ResourceCondition
  "and"(condition: $ResourceCondition$Type): $ResourceCondition
  "getSerializer"(): $ResourceConditionSerializer<(any)>
@@ -1278,8 +1278,8 @@ export interface $TextureType<T> extends $Serializer<(T)> {
 
  "getFrameSize"(context: $SpritePreparationContext$Type, data: T): $Pair<(integer), (integer)>
  "createSprite"(context: $SpriteCreationContext$Type, data: T): $TextureAtlasSprite
- "serialize"(data: T): $JsonObject
  "deserialize"(json: $JsonObject$Type): T
+ "serialize"(data: T): $JsonObject
 }
 
 export namespace $TextureType {
@@ -1366,12 +1366,12 @@ constructor(saveTileData: boolean, properties: $BlockBehaviour$Properties$Type)
 constructor(saveTileData: boolean, properties: $BlockProperties$Type)
 
 public "getCloneItemStack"(state: $BlockState$Type, target: $HitResult$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, player: $Player$Type): $ItemStack
-public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): $InteractionResult
-public "getDrops"(state: $BlockState$Type, builder: $LootParams$Builder$Type): $List<($ItemStack)>
-public "setPlacedBy"(worldIn: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
-public "appendHoverText"(stack: $ItemStack$Type, level: $BlockGetter$Type, information: $List$Type<($Component$Type)>, flag: $TooltipFlag$Type): void
 public "getDescriptionId"(): string
 public "asItem"(): $Item
+public "setPlacedBy"(worldIn: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
+public "appendHoverText"(stack: $ItemStack$Type, level: $BlockGetter$Type, information: $List$Type<($Component$Type)>, flag: $TooltipFlag$Type): void
+public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hitResult: $BlockHitResult$Type): $InteractionResult
+public "getDrops"(state: $BlockState$Type, builder: $LootParams$Builder$Type): $List<($ItemStack)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "descriptionId"(): string
 }
@@ -1506,19 +1506,19 @@ import {$ItemRarity, $ItemRarity$Type} from "packages/com/supermartijn642/core/i
 export class $ItemProperties {
 
 
+public "maxStackSize"(maxStackSize: integer): $ItemProperties
 public "group"(group: $CreativeModeTab$Type): $ItemProperties
 public static "create"(): $ItemProperties
-public "maxStackSize"(maxStackSize: integer): $ItemProperties
-public "craftRemainder"(item: $Item$Type): $ItemProperties
 /**
  * 
  * @deprecated
  */
 public "toUnderlying"(): $Item$Properties
 public "fireResistant"(): $ItemProperties
+public "craftRemainder"(item: $Item$Type): $ItemProperties
+public "food"(foodProperties: $FoodProperties$Type): $ItemProperties
 public "rarity"(rarity: $ItemRarity$Type): $ItemProperties
 public "rarity"(rarity: $Rarity$Type): $ItemProperties
-public "food"(foodProperties: $FoodProperties$Type): $ItemProperties
 public "durability"(durability: integer): $ItemProperties
 }
 /**
@@ -1603,8 +1603,8 @@ constructor(identifier: $ModelLayerLocation$Type, defaultModel: $List$Type<($Ent
 
 public "identifier"(): $ModelLayerLocation
 public "transformed"(properties: $VanillaModelLayerProperties$Type): $EntityLayerProperties
-public "chooseModel"(entity: $Entity$Type): $Triple<($ModelPart), ($ResourceLocation), (float)>
 public "gatherModels"(output: $Consumer$Type<($ModelPart$Type)>): void
+public "chooseModel"(entity: $Entity$Type): $Triple<($ModelPart), ($ResourceLocation), (float)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1628,9 +1628,9 @@ export class $VanillaModelLayerProperties {
 
 public static "get"(location: $ModelLayerLocation$Type, renderer: $EntityRenderer$Type<(any)>): $VanillaModelLayerProperties
 public "transform"(poseStack: $PoseStack$Type): void
-public "shouldFlipZ"(): boolean
-public "shouldFlipX"(): boolean
 public "shouldFlipY"(): boolean
+public "shouldFlipX"(): boolean
+public "shouldFlipZ"(): boolean
 public "getOffsetY"(): float
 public "getOffsetX"(): float
 public "getOffsetZ"(): float
@@ -1760,11 +1760,11 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 
 export interface $ModelInstance<T> {
 
- "getModelData"(): T
+ "getModelType"(): $ModelType<(T)>
  "getModelDependencies"(): $Collection<($ResourceLocation)>
  "getAsVanillaModel"(): $BlockModel
  "getParentModels"(): $List<($ResourceLocation)>
- "getModelType"(): $ModelType<(T)>
+ "getModelData"(): T
  "bake"(context: $ModelBakingContext$Type): $BakedModel
 }
 

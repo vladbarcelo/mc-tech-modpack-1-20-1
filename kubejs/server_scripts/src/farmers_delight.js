@@ -40,32 +40,6 @@ ServerEvents.recipes((event) => {
 
   event.remove({ id: 'farmersdelight:cooking_pot' })
 
-  event.remove({ id: 'butchersdelight:cleaver_recipe' })
-  event.shaped(
-    Item.of('butchersdelight:cleaver'),
-    [
-      'A',
-      'A',
-      'B',
-    ],
-    {
-      A: '#forge:plates/cast_iron',
-      B: 'hot_iron:tool_handle'
-    }
-  )
-  event.shaped(
-    Item.of('butchersdelight:cleaver'),
-    [
-      'A',
-      'A',
-      'B',
-    ],
-    {
-      A: '#forge:plates/iron',
-      B: 'hot_iron:tool_handle'
-    }
-  )
-
   event.remove({ id: 'butchersdelight:hook_recipe' })
   event.shapeless(
     Item.of('butchersdelight:hook', 1),
@@ -74,4 +48,7 @@ ServerEvents.recipes((event) => {
       'hot_iron:smithing_hammer',
     ]
   ).customIngredientAction('hot_iron:smithing_hammer', 'keep_smithing_hammer');
+
+  event.recipes.create.milling('create:wheat_flour', 'minecolonies:durum')
+  event.recipes.create.crushing('create:wheat_flour', 'minecolonies:durum')
 });

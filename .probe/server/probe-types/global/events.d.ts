@@ -1,40 +1,17 @@
 import {$CustomTaskEventJS, $CustomTaskEventJS$Type} from "packages/dev/ftb/mods/ftbxmodcompat/ftbquests/kubejs/$CustomTaskEventJS"
-import {$PlayerRespawnEventJS, $PlayerRespawnEventJS$Type} from "packages/pie/ilikepiefoo/events/$PlayerRespawnEventJS"
 import {$FoodEatenEventJS, $FoodEatenEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$FoodEatenEventJS"
-import {$BlockPlacedEventJS, $BlockPlacedEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockPlacedEventJS"
-import {$ItemEntityInteractedEventJS, $ItemEntityInteractedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemEntityInteractedEventJS"
 import {$TagEventJS, $TagEventJS$Type} from "packages/dev/latvian/mods/kubejs/server/tag/$TagEventJS"
 import {$ExplosionEventJS$After, $ExplosionEventJS$After$Type} from "packages/dev/latvian/mods/kubejs/level/$ExplosionEventJS$After"
 import {$EntityTickEventJS, $EntityTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$EntityTickEventJS"
 import {$PlayerStopRidingEventJS, $PlayerStopRidingEventJS$Type} from "packages/net/rain/mejs/kubejs/$PlayerStopRidingEventJS"
-import {$MenuType, $MenuType$Type} from "packages/net/minecraft/world/inventory/$MenuType"
-import {$ItemEntityTickEventJS, $ItemEntityTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$ItemEntityTickEventJS"
-import {$BlockEntityTickEventJS, $BlockEntityTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$BlockEntityTickEventJS"
-import {$EntityType, $EntityType$Type} from "packages/net/minecraft/world/entity/$EntityType"
-import {$ItemDestroyedEventJS, $ItemDestroyedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/forge/$ItemDestroyedEventJS"
-import {$InventoryEventJS, $InventoryEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$InventoryEventJS"
-import {$CustomRewardEventJS, $CustomRewardEventJS$Type} from "packages/dev/ftb/mods/ftbxmodcompat/ftbquests/kubejs/$CustomRewardEventJS"
+import {$ApplyInsulationEventJS, $ApplyInsulationEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$ApplyInsulationEventJS"
 import {$UIEvents$BlockUIEventJS, $UIEvents$BlockUIEventJS$Type} from "packages/com/lowdragmc/lowdraglib/kjs/ui/$UIEvents$BlockUIEventJS"
+import {$FilterAvailableEnchantmentsEventJS, $FilterAvailableEnchantmentsEventJS$Type} from "packages/com/almostreliable/morejs/features/enchantment/$FilterAvailableEnchantmentsEventJS"
 import {$PlayerChatDecorateEventJS, $PlayerChatDecorateEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$PlayerChatDecorateEventJS"
-import {$DataPackEventJS, $DataPackEventJS$Type} from "packages/dev/latvian/mods/kubejs/script/data/$DataPackEventJS"
-import {$EntityCollisionEventJS, $EntityCollisionEventJS$Type} from "packages/net/rain/mejs/kubejs/$EntityCollisionEventJS"
 import {$GenericLootEventJS, $GenericLootEventJS$Type} from "packages/dev/latvian/mods/kubejs/loot/$GenericLootEventJS"
 import {$LivingEntityDeathEventJS, $LivingEntityDeathEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$LivingEntityDeathEventJS"
-import {$ChestLootEventJS, $ChestLootEventJS$Type} from "packages/dev/latvian/mods/kubejs/loot/$ChestLootEventJS"
 import {$QuestObjectStartedEventJS, $QuestObjectStartedEventJS$Type} from "packages/dev/ftb/mods/ftbxmodcompat/ftbquests/kubejs/$QuestObjectStartedEventJS"
-import {$SpecialRecipeSerializerManager, $SpecialRecipeSerializerManager$Type} from "packages/dev/latvian/mods/kubejs/recipe/special/$SpecialRecipeSerializerManager"
-import {$EntityLootEventJS, $EntityLootEventJS$Type} from "packages/dev/latvian/mods/kubejs/loot/$EntityLootEventJS"
-import {$BlockRightClickedEventJS, $BlockRightClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockRightClickedEventJS"
 import {$UIEvents$ItemUIEventJS, $UIEvents$ItemUIEventJS$Type} from "packages/com/lowdragmc/lowdraglib/kjs/ui/$UIEvents$ItemUIEventJS"
-import {$ServerEventJS, $ServerEventJS$Type} from "packages/dev/latvian/mods/kubejs/server/$ServerEventJS"
-import {$PlayerChangeDimensionEventJS, $PlayerChangeDimensionEventJS$Type} from "packages/pie/ilikepiefoo/events/$PlayerChangeDimensionEventJS"
-import {$EntitySpawnedEventJS, $EntitySpawnedEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$EntitySpawnedEventJS"
-import {$ItemClickedEventJS, $ItemClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemClickedEventJS"
-import {$BlockLeftClickedEventJS, $BlockLeftClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockLeftClickedEventJS"
-import {$CheckLivingEntitySpawnEventJS, $CheckLivingEntitySpawnEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$CheckLivingEntitySpawnEventJS"
-import {$BlockEntityDeathEventJS, $BlockEntityDeathEventJS$Type} from "packages/net/rain/mejs/kubejs/$BlockEntityDeathEventJS"
-import {$PlayerRespawnedEventJS, $PlayerRespawnedEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$PlayerRespawnedEventJS"
-import {$BlockBrokenEventJS, $BlockBrokenEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockBrokenEventJS"
 import {$CustomCommandEventJS, $CustomCommandEventJS$Type} from "packages/dev/latvian/mods/kubejs/server/$CustomCommandEventJS"
 import {$QuestObjectCompletedEventJS, $QuestObjectCompletedEventJS$Type} from "packages/dev/ftb/mods/ftbxmodcompat/ftbquests/kubejs/$QuestObjectCompletedEventJS"
 import {$StandOnFluidEventJS, $StandOnFluidEventJS$Type} from "packages/net/rain/mejs/kubejs/$StandOnFluidEventJS"
@@ -42,43 +19,85 @@ import {$GiftLootEventJS, $GiftLootEventJS$Type} from "packages/dev/latvian/mods
 import {$ProxyEventJS, $ProxyEventJS$Type} from "packages/pie/ilikepiefoo/events/$ProxyEventJS"
 import {$SimpleLevelEventJS, $SimpleLevelEventJS$Type} from "packages/dev/latvian/mods/kubejs/level/$SimpleLevelEventJS"
 import {$ExplosionEventJS$Before, $ExplosionEventJS$Before$Type} from "packages/dev/latvian/mods/kubejs/level/$ExplosionEventJS$Before"
-import {$ProjectileTickEventJS, $ProjectileTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$ProjectileTickEventJS"
 import {$PlayerStarterItems, $PlayerStarterItems$Type} from "packages/pro/mikey/kubeutils/kubejs/events/$PlayerStarterItems"
-import {$PlayerTeamEventJS, $PlayerTeamEventJS$Type} from "packages/dev/ftb/mods/ftbxmodcompat/ftbteams/kubejs/$PlayerTeamEventJS"
-import {$CompostableRecipesEventJS, $CompostableRecipesEventJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$CompostableRecipesEventJS"
+import {$EnchantmentTableServerEventJS, $EnchantmentTableServerEventJS$Type} from "packages/com/almostreliable/morejs/features/enchantment/$EnchantmentTableServerEventJS"
 import {$EntityRandomTeleportEventJS, $EntityRandomTeleportEventJS$Type} from "packages/net/rain/mejs/kubejs/$EntityRandomTeleportEventJS"
-import {$ItemDroppedEventJS, $ItemDroppedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemDroppedEventJS"
 import {$CommandRegistryEventJS, $CommandRegistryEventJS$Type} from "packages/dev/latvian/mods/kubejs/command/$CommandRegistryEventJS"
-import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
-import {$PlayerRideEntityEventJS, $PlayerRideEntityEventJS$Type} from "packages/net/rain/mejs/kubejs/$PlayerRideEntityEventJS"
+import {$UpdateAbstractVillagerOffersEventJS, $UpdateAbstractVillagerOffersEventJS$Type} from "packages/com/almostreliable/morejs/features/villager/events/$UpdateAbstractVillagerOffersEventJS"
 import {$ItemDurabilityDamageEventJS, $ItemDurabilityDamageEventJS$Type} from "packages/net/rain/mejs/kubejs/$ItemDurabilityDamageEventJS"
 import {$EntityEnterChunkEventJS, $EntityEnterChunkEventJS$Type} from "packages/pie/ilikepiefoo/events/$EntityEnterChunkEventJS"
 import {$RecipesEventJS, $RecipesEventJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$RecipesEventJS"
 import {$BlockLootEventJS, $BlockLootEventJS$Type} from "packages/dev/latvian/mods/kubejs/loot/$BlockLootEventJS"
+import {$AfterRecipesLoadedEventJS, $AfterRecipesLoadedEventJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$AfterRecipesLoadedEventJS"
+import {$ModRegistriesEventJS, $ModRegistriesEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$ModRegistriesEventJS"
+import {$SimplePlayerEventJS, $SimplePlayerEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$SimplePlayerEventJS"
+import {$ExperiencePlayerEventJS, $ExperiencePlayerEventJS$Type} from "packages/com/almostreliable/morejs/features/misc/$ExperiencePlayerEventJS"
+import {$BlockCollisionEventJS, $BlockCollisionEventJS$Type} from "packages/net/rain/mejs/kubejs/$BlockCollisionEventJS"
+import {$CommandEventJS, $CommandEventJS$Type} from "packages/dev/latvian/mods/kubejs/server/$CommandEventJS"
+import {$WandererTradingEventJS, $WandererTradingEventJS$Type} from "packages/com/almostreliable/morejs/features/villager/events/$WandererTradingEventJS"
+import {$UpdateVillagerOffersEventJS, $UpdateVillagerOffersEventJS$Type} from "packages/com/almostreliable/morejs/features/villager/events/$UpdateVillagerOffersEventJS"
+import {$NetworkEventJS, $NetworkEventJS$Type} from "packages/dev/latvian/mods/kubejs/net/$NetworkEventJS"
+import {$EntityTameEventJS, $EntityTameEventJS$Type} from "packages/pie/ilikepiefoo/events/$EntityTameEventJS"
+import {$VillagerTradingEventJS, $VillagerTradingEventJS$Type} from "packages/com/almostreliable/morejs/features/villager/events/$VillagerTradingEventJS"
+import {$ItemEntityDeathEventJS, $ItemEntityDeathEventJS$Type} from "packages/net/rain/mejs/kubejs/$ItemEntityDeathEventJS"
+import {$DefaultModifiersEventJS, $DefaultModifiersEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$DefaultModifiersEventJS"
+import {$PlayerRespawnEventJS, $PlayerRespawnEventJS$Type} from "packages/pie/ilikepiefoo/events/$PlayerRespawnEventJS"
+import {$BlockPlacedEventJS, $BlockPlacedEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockPlacedEventJS"
+import {$ItemEntityInteractedEventJS, $ItemEntityInteractedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemEntityInteractedEventJS"
+import {$MenuType, $MenuType$Type} from "packages/net/minecraft/world/inventory/$MenuType"
+import {$ItemEntityTickEventJS, $ItemEntityTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$ItemEntityTickEventJS"
+import {$PlayerEnchantEventJS, $PlayerEnchantEventJS$Type} from "packages/com/almostreliable/morejs/features/enchantment/$PlayerEnchantEventJS"
+import {$BlockEntityTickEventJS, $BlockEntityTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$BlockEntityTickEventJS"
+import {$EntityType, $EntityType$Type} from "packages/net/minecraft/world/entity/$EntityType"
+import {$ItemDestroyedEventJS, $ItemDestroyedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/forge/$ItemDestroyedEventJS"
+import {$InventoryEventJS, $InventoryEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$InventoryEventJS"
+import {$CustomRewardEventJS, $CustomRewardEventJS$Type} from "packages/dev/ftb/mods/ftbxmodcompat/ftbquests/kubejs/$CustomRewardEventJS"
+import {$FilterEnchantedTradeEventJS, $FilterEnchantedTradeEventJS$Type} from "packages/com/almostreliable/morejs/features/villager/events/$FilterEnchantedTradeEventJS"
+import {$DataPackEventJS, $DataPackEventJS$Type} from "packages/dev/latvian/mods/kubejs/script/data/$DataPackEventJS"
+import {$EntityCollisionEventJS, $EntityCollisionEventJS$Type} from "packages/net/rain/mejs/kubejs/$EntityCollisionEventJS"
+import {$ChestLootEventJS, $ChestLootEventJS$Type} from "packages/dev/latvian/mods/kubejs/loot/$ChestLootEventJS"
+import {$SpecialRecipeSerializerManager, $SpecialRecipeSerializerManager$Type} from "packages/dev/latvian/mods/kubejs/recipe/special/$SpecialRecipeSerializerManager"
+import {$EntityLootEventJS, $EntityLootEventJS$Type} from "packages/dev/latvian/mods/kubejs/loot/$EntityLootEventJS"
+import {$BlockRightClickedEventJS, $BlockRightClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockRightClickedEventJS"
+import {$ServerEventJS, $ServerEventJS$Type} from "packages/dev/latvian/mods/kubejs/server/$ServerEventJS"
+import {$PlayerChangeDimensionEventJS, $PlayerChangeDimensionEventJS$Type} from "packages/pie/ilikepiefoo/events/$PlayerChangeDimensionEventJS"
+import {$EntitySpawnedEventJS, $EntitySpawnedEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$EntitySpawnedEventJS"
+import {$ItemClickedEventJS, $ItemClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemClickedEventJS"
+import {$TempChangedEventJS, $TempChangedEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$TempChangedEventJS"
+import {$BlockLeftClickedEventJS, $BlockLeftClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockLeftClickedEventJS"
+import {$CheckLivingEntitySpawnEventJS, $CheckLivingEntitySpawnEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$CheckLivingEntitySpawnEventJS"
+import {$BlockEntityDeathEventJS, $BlockEntityDeathEventJS$Type} from "packages/net/rain/mejs/kubejs/$BlockEntityDeathEventJS"
+import {$StartTradingEventJS, $StartTradingEventJS$Type} from "packages/com/almostreliable/morejs/features/villager/events/$StartTradingEventJS"
+import {$PlayerRespawnedEventJS, $PlayerRespawnedEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$PlayerRespawnedEventJS"
+import {$BlockBrokenEventJS, $BlockBrokenEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockBrokenEventJS"
+import {$StructureLoadEventJS, $StructureLoadEventJS$Type} from "packages/com/almostreliable/morejs/features/structure/$StructureLoadEventJS"
+import {$AddModifierEventJS, $AddModifierEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$AddModifierEventJS"
+import {$PiglinPlayerBehaviorEventJS, $PiglinPlayerBehaviorEventJS$Type} from "packages/com/almostreliable/morejs/features/misc/$PiglinPlayerBehaviorEventJS"
+import {$EntityTeleportsEventJS, $EntityTeleportsEventJS$Type} from "packages/com/almostreliable/morejs/features/teleport/$EntityTeleportsEventJS"
+import {$ProjectileTickEventJS, $ProjectileTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$ProjectileTickEventJS"
+import {$PlayerTeamEventJS, $PlayerTeamEventJS$Type} from "packages/dev/ftb/mods/ftbxmodcompat/ftbteams/kubejs/$PlayerTeamEventJS"
+import {$CompostableRecipesEventJS, $CompostableRecipesEventJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$CompostableRecipesEventJS"
+import {$ItemDroppedEventJS, $ItemDroppedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemDroppedEventJS"
+import {$StructureAfterPlaceEventJS, $StructureAfterPlaceEventJS$Type} from "packages/com/almostreliable/morejs/features/structure/$StructureAfterPlaceEventJS"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$PlayerRideEntityEventJS, $PlayerRideEntityEventJS$Type} from "packages/net/rain/mejs/kubejs/$PlayerRideEntityEventJS"
 import {$ChunkTickEventJS, $ChunkTickEventJS$Type} from "packages/net/rain/mejs/kubejs/$ChunkTickEventJS"
 import {$ItemSmeltedEventJS, $ItemSmeltedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemSmeltedEventJS"
 import {$DetectorBlockEventJS, $DetectorBlockEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$DetectorBlockEventJS"
-import {$AfterRecipesLoadedEventJS, $AfterRecipesLoadedEventJS$Type} from "packages/dev/latvian/mods/kubejs/recipe/$AfterRecipesLoadedEventJS"
 import {$ItemEntityHurtEventJS, $ItemEntityHurtEventJS$Type} from "packages/net/rain/mejs/kubejs/$ItemEntityHurtEventJS"
 import {$NewDayEventJS, $NewDayEventJS$Type} from "packages/net/rain/mejs/kubejs/$NewDayEventJS"
-import {$SimplePlayerEventJS, $SimplePlayerEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$SimplePlayerEventJS"
 import {$InventoryChangedEventJS, $InventoryChangedEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$InventoryChangedEventJS"
 import {$DeathMessageEventJS, $DeathMessageEventJS$Type} from "packages/net/rain/mejs/kubejs/$DeathMessageEventJS"
-import {$BlockCollisionEventJS, $BlockCollisionEventJS$Type} from "packages/net/rain/mejs/kubejs/$BlockCollisionEventJS"
 import {$PlayerCloneEventJS, $PlayerCloneEventJS$Type} from "packages/pie/ilikepiefoo/events/$PlayerCloneEventJS"
-import {$CommandEventJS, $CommandEventJS$Type} from "packages/dev/latvian/mods/kubejs/server/$CommandEventJS"
 import {$FishingLootEventJS, $FishingLootEventJS$Type} from "packages/dev/latvian/mods/kubejs/loot/$FishingLootEventJS"
 import {$FarmlandTrampledEventJS, $FarmlandTrampledEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$FarmlandTrampledEventJS"
 import {$LivingEntityHurtEventJS, $LivingEntityHurtEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$LivingEntityHurtEventJS"
 import {$ProjectileShootEventJS, $ProjectileShootEventJS$Type} from "packages/net/rain/mejs/kubejs/$ProjectileShootEventJS"
-import {$NetworkEventJS, $NetworkEventJS$Type} from "packages/dev/latvian/mods/kubejs/net/$NetworkEventJS"
 import {$ChestEventJS, $ChestEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$ChestEventJS"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
 import {$ItemPickedUpEventJS, $ItemPickedUpEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemPickedUpEventJS"
-import {$EntityTameEventJS, $EntityTameEventJS$Type} from "packages/pie/ilikepiefoo/events/$EntityTameEventJS"
 import {$ItemCraftedEventJS, $ItemCraftedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemCraftedEventJS"
 import {$LivingEntityDropsEventJS, $LivingEntityDropsEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/forge/$LivingEntityDropsEventJS"
-import {$ItemEntityDeathEventJS, $ItemEntityDeathEventJS$Type} from "packages/net/rain/mejs/kubejs/$ItemEntityDeathEventJS"
 import {$EntityMoveEventJS, $EntityMoveEventJS$Type} from "packages/net/rain/mejs/kubejs/$EntityMoveEventJS"
 import {$PlayerAdvancementEventJS, $PlayerAdvancementEventJS$Type} from "packages/dev/latvian/mods/kubejs/player/$PlayerAdvancementEventJS"
 
@@ -115,6 +134,24 @@ function item(extra: string, handler: (event: $UIEvents$ItemUIEventJS) => void):
 function item(handler: (event: $UIEvents$ItemUIEventJS) => void): void
 function block(extra: string, handler: (event: $UIEvents$BlockUIEventJS) => void): void
 function block(handler: (event: $UIEvents$BlockUIEventJS) => void): void
+}
+export namespace MoreJSEvents {
+function updateVillagerOffers(handler: (event: $UpdateVillagerOffersEventJS) => void): void
+function updateAbstractVillagerOffers(handler: (event: $UpdateAbstractVillagerOffersEventJS) => void): void
+function teleport(handler: (event: $EntityTeleportsEventJS) => void): void
+function enchantmentTableEnchant(handler: (event: $PlayerEnchantEventJS) => void): void
+function wandererTrades(handler: (event: $WandererTradingEventJS) => void): void
+function structureLoad(handler: (event: $StructureLoadEventJS) => void): void
+function playerXpChange(handler: (event: $ExperiencePlayerEventJS) => void): void
+function filterAvailableEnchantments(handler: (event: $FilterAvailableEnchantmentsEventJS) => void): void
+function filterEnchantedBookTrade(handler: (event: $FilterEnchantedTradeEventJS) => void): void
+function structureAfterPlace(handler: (event: $StructureAfterPlaceEventJS) => void): void
+function enchantmentTableIsEnchantable(handler: (event: $EnchantmentTableServerEventJS) => void): void
+function piglinPlayerBehavior(handler: (event: $PiglinPlayerBehaviorEventJS) => void): void
+function enchantmentTableChanged(handler: (event: $EnchantmentTableServerEventJS) => void): void
+function playerStartTrading(handler: (event: $StartTradingEventJS) => void): void
+function updateWandererOffers(handler: (event: $UpdateAbstractVillagerOffersEventJS) => void): void
+function villagerTrades(handler: (event: $VillagerTradingEventJS) => void): void
 }
 export namespace ArchEvents {
 function handleServer(extra: string, handler: (event: $ProxyEventJS) => void): void
@@ -206,6 +243,13 @@ function beforeExplosion(handler: (event: $ExplosionEventJS$Before) => void): vo
 function tick(extra: string, handler: (event: $SimpleLevelEventJS) => void): void
 function tick(handler: (event: $SimpleLevelEventJS) => void): void
 function afterExplosion(handler: (event: $ExplosionEventJS$After) => void): void
+}
+export namespace ColdSweatEvents {
+function applyInsulation(handler: (event: $ApplyInsulationEventJS) => void): void
+function addModifier(handler: (event: $AddModifierEventJS) => void): void
+function temperatureChanged(handler: (event: $TempChangedEventJS) => void): void
+function gatherDefaultModifiers(handler: (event: $DefaultModifiersEventJS) => void): void
+function registries(handler: (event: $ModRegistriesEventJS) => void): void
 }
 export namespace ProjectileEvents {
 function shoot(extra: $EntityType$Type, handler: (event: $ProjectileShootEventJS) => void): void

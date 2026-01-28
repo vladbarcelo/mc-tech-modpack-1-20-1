@@ -48,14 +48,14 @@ declare global {
 export type $IChunkGenerator_ = $IChunkGenerator$Type;
 }}
 declare module "packages/org/embeddedt/modernfix/forge/registry/$DelegateHolder" {
-import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
 import {$Holder$Reference, $Holder$Reference$Type} from "packages/net/minecraft/core/$Holder$Reference"
+import {$Registry, $Registry$Type} from "packages/net/minecraft/core/$Registry"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 
 export interface $DelegateHolder<T> {
 
- "mfix$setDelegate"(arg0: $ResourceKey$Type<($Registry$Type<(T)>)>, arg1: $Holder$Reference$Type<(T)>): void
  "mfix$getDelegate"(arg0: $ResourceKey$Type<($Registry$Type<(T)>)>): $Holder$Reference<(T)>
+ "mfix$setDelegate"(arg0: $ResourceKey$Type<($Registry$Type<(T)>)>, arg1: $Holder$Reference$Type<(T)>): void
 }
 
 export namespace $DelegateHolder {
@@ -158,17 +158,17 @@ import {$LevelHeightAccessor, $LevelHeightAccessor$Type} from "packages/net/mine
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$ClipBlockStateContext, $ClipBlockStateContext$Type} from "packages/net/minecraft/world/level/$ClipBlockStateContext"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
-import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
 import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$Holder, $Holder$Type} from "packages/net/minecraft/core/$Holder"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$Biome, $Biome$Type} from "packages/net/minecraft/world/level/biome/$Biome"
 import {$ClipContext, $ClipContext$Type} from "packages/net/minecraft/world/level/$ClipContext"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
@@ -180,16 +180,14 @@ export class $SafeBlockGetter implements $BlockGetter {
 
 constructor(wrapped: $ServerLevel$Type)
 
-public "getHeight"(): integer
 public "getMaxBuildHeight"(): integer
-public "shouldUse"(): boolean
-public "getMaxLightLevel"(): integer
-public "getFluidState"(pos: $BlockPos$Type): $FluidState
-public "getMinBuildHeight"(): integer
-public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
 public "getBlockState"(pos: $BlockPos$Type): $BlockState
-public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
-public "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
+public "getBlockEntity"(pos: $BlockPos$Type): $BlockEntity
+public "getMinBuildHeight"(): integer
+public "getFluidState"(pos: $BlockPos$Type): $FluidState
+public "getMaxLightLevel"(): integer
+public "getHeight"(): integer
+public "shouldUse"(): boolean
 public "getLightEmission"(arg0: $BlockPos$Type): integer
 public "isBlockInLine"(arg0: $ClipBlockStateContext$Type): $BlockHitResult
 public static "traverseBlocks"<T, C>(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: C, arg3: $BiFunction$Type<(C), ($BlockPos$Type), (T)>, arg4: $Function$Type<(C), (T)>): T
@@ -197,6 +195,9 @@ public "clip"(arg0: $ClipContext$Type): $BlockHitResult
 public "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $BlockPos$Type, arg3: $VoxelShape$Type, arg4: $BlockState$Type): $BlockHitResult
 public "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
 public "getBlockFloorHeight"(arg0: $BlockPos$Type): double
+public "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
+public "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
+public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
 public "getSectionsCount"(): integer
 public "getMaxSection"(): integer
 public "getMinSection"(): integer
@@ -205,16 +206,15 @@ public "getSectionIndex"(arg0: integer): integer
 public "getSectionIndexFromSectionY"(arg0: integer): integer
 public "getSectionYFromSectionIndex"(arg0: integer): integer
 public static "create"(arg0: integer, arg1: integer): $LevelHeightAccessor
-public "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
-public "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
 public "getModelDataManager"(): $ModelDataManager
-public "getBlockEntityRenderData"(pos: $BlockPos$Type): any
+public "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
 public "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
+public "getBlockEntityRenderData"(pos: $BlockPos$Type): any
 public "hasBiomes"(): boolean
-get "height"(): integer
 get "maxBuildHeight"(): integer
-get "maxLightLevel"(): integer
 get "minBuildHeight"(): integer
+get "maxLightLevel"(): integer
+get "height"(): integer
 get "sectionsCount"(): integer
 get "maxSection"(): integer
 get "minSection"(): integer
@@ -389,9 +389,9 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ModelPartExtended {
 
- "embeddium$getDescendantsByName"(): $Map<(string), ($ModelPart)>
- "embeddium$asOptional"(): $Optional<($ModelPart)>
  "embeddium$getPartsList"(): $List<($ModelPart)>
+ "embeddium$asOptional"(): $Optional<($ModelPart)>
+ "embeddium$getDescendantsByName"(): $Map<(string), ($ModelPart)>
 }
 
 export namespace $ModelPartExtended {

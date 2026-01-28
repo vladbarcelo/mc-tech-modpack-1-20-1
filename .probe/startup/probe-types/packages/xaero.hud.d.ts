@@ -12,12 +12,12 @@ public "get"(arg0: integer): $Entity
 public "compareTo"(arg0: $RadarList$Type): integer
 public "size"(): integer
 public "getEntities"(): $Iterable<($Entity)>
-public "getCategory"(): $EntityRadarCategory
 public "setCategory"(arg0: $EntityRadarCategory$Type): $RadarList
+public "getCategory"(): $EntityRadarCategory
 public "clearEntities"(): void
 get "entities"(): $Iterable<($Entity)>
-get "category"(): $EntityRadarCategory
 set "category"(value: $EntityRadarCategory$Type)
+get "category"(): $EntityRadarCategory
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -34,17 +34,17 @@ export type $RadarList_ = $RadarList$Type;
 declare module "packages/xaero/hud/category/ui/node/options/$EditorSimpleButtonNode" {
 import {$EditorButton$PressActionWithContext, $EditorButton$PressActionWithContext$Type} from "packages/xaero/hud/category/ui/entry/widget/$EditorButton$PressActionWithContext"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$EditorNode, $EditorNode$Type} from "packages/xaero/hud/category/ui/node/$EditorNode"
 import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
+import {$EditorNode, $EditorNode$Type} from "packages/xaero/hud/category/ui/node/$EditorNode"
 
 export class $EditorSimpleButtonNode extends $EditorNode {
 
 
 public "getDisplayName"(): string
+public "getMessageSupplier"(arg0: $EditorNode$Type, arg1: $EditorSimpleButtonNode$Type): $Supplier<(string)>
 public "getPressAction"(): $EditorButton$PressActionWithContext
 public "getIsActiveSupplier"(arg0: $EditorNode$Type, arg1: $EditorSimpleButtonNode$Type): boolean
 public "getSubNodes"(): $List<($EditorNode)>
-public "getMessageSupplier"(arg0: $EditorNode$Type, arg1: $EditorSimpleButtonNode$Type): $Supplier<(string)>
 get "displayName"(): string
 get "pressAction"(): $EditorButton$PressActionWithContext
 get "subNodes"(): $List<($EditorNode)>
@@ -103,11 +103,11 @@ readonly "xaeroPlus$speedQueue": $DoubleArrayFIFOQueue
 
 
 public "getOrder"(): integer
-public "renderElement"(arg0: $Waypoint$Type, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
 public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
-public "modify$cbj000$xaeroplus$modifyDistanceText"(text: string, waypoint: $Waypoint$Type): string
+public "renderElement"(arg0: $Waypoint$Type, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
 public "getEtaSecondsToReachWaypoint"(waypoint: $Waypoint$Type): long
-public "modify$cbj000$xaeroplus$preferOwWaypointsRemoveSubworldText"(name: string): string
+public "modify$cbi000$xaeroplus$modifyDistanceText"(text: string, waypoint: $Waypoint$Type): string
+public "modify$cbi000$xaeroplus$preferOwWaypointsRemoveSubworldText"(name: string): string
 public "preRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 get "order"(): integer
@@ -172,8 +172,8 @@ export class $EntityRadarCategoryFileIO {
 
 
 public "loadRootCategory"(): $EntityRadarCategory
-public "saveRootCategory"(arg0: $Path$Type, arg1: string, arg2: integer): void
 public "saveRootCategory"(arg0: $EntityRadarCategory$Type): void
+public "saveRootCategory"(arg0: $Path$Type, arg1: string, arg2: integer): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -218,20 +218,20 @@ constructor(arg0: $GuiCategoryEditor$Type<(any), (any), (any), (any), (any), (an
 public "tick"(): void
 public "updateEntries"(): void
 public "setSelected"(arg0: $GuiCategoryEditor$SettingRowList$Entry$Type<>): void
-public "restoreScrollAfterUpdate"(): void
-public "setCutCategory"(arg0: ED, arg1: ED): void
 public "getDataConverter"(): $EditorCategoryNodeConverter<(C), (ED), (CB), (SD), (SDB), (EDB)>
+public "setCutCategory"(arg0: ED, arg1: ED): void
+public "restoreScrollAfterUpdate"(): void
+public "confirmSelection"(): boolean
+public "setLastExpandedData"(arg0: $EditorNode$Type): void
+public "narrateSelection"(): void
+public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "updateNarration"(arg0: $NarrationElementOutput$Type): void
 public "setFocused"(arg0: $GuiEventListener$Type): void
 public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
 public "keyReleased"(arg0: integer, arg1: integer, arg2: integer): boolean
 public "charTyped"(arg0: character, arg1: integer): boolean
 public "isFocused"(): boolean
 public "mouseMoved"(arg0: double, arg1: double): void
-public "updateNarration"(arg0: $NarrationElementOutput$Type): void
-public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
-public "confirmSelection"(): boolean
-public "narrateSelection"(): void
-public "setLastExpandedData"(arg0: $EditorNode$Type): void
 public "getRowWidth"(): integer
 public "isCut"(arg0: ED): boolean
 public "hasCut"(): boolean
@@ -239,9 +239,9 @@ public "getCut"(): ED
 public "pasteTo"(arg0: ED): void
 set "selected"(value: $GuiCategoryEditor$SettingRowList$Entry$Type<>)
 get "dataConverter"(): $EditorCategoryNodeConverter<(C), (ED), (CB), (SD), (SDB), (EDB)>
+set "lastExpandedData"(value: $EditorNode$Type)
 set "focused"(value: $GuiEventListener$Type)
 get "focused"(): boolean
-set "lastExpandedData"(value: $EditorNode$Type)
 get "rowWidth"(): integer
 get "cut"(): ED
 }
@@ -269,14 +269,16 @@ import {$EditorSettingsNode$Builder, $EditorSettingsNode$Builder$Type} from "pac
 export class $EditorCategoryNode$Builder<C extends $ObjectCategory<(any), (C)>, ED extends $EditorCategoryNode<(C), (SD), (ED)>, SD extends $EditorSettingsNode<(any)>, SDB extends $EditorSettingsNode$Builder<(SD), (SDB)>, EDB extends $EditorCategoryNode$Builder<(C), (ED), (SD), (SDB), (EDB)>> extends $EditorNode$Builder<(EDB)> {
 
 
+public "build"(): ED
+public "setDefault"(): EDB
 public "setName"(arg0: string): EDB
-public "setNewCategorySupplier"(arg0: $Function$Type<($EditorAdderNode$Type), (ED)>): EDB
 public "getSettingDataBuilder"(): SDB
-public "setSubIndex"(arg0: integer): EDB
+public "setNewCategorySupplier"(arg0: $Function$Type<($EditorAdderNode$Type), (ED)>): EDB
 public "addSubCategoryBuilder"(arg0: EDB): EDB
+public "setSubIndex"(arg0: integer): EDB
 set "name"(value: string)
-set "newCategorySupplier"(value: $Function$Type<($EditorAdderNode$Type), (ED)>)
 get "settingDataBuilder"(): SDB
+set "newCategorySupplier"(value: $Function$Type<($EditorAdderNode$Type), (ED)>)
 set "subIndex"(value: integer)
 }
 /**
@@ -323,18 +325,18 @@ export class $ServerWaypointManager {
 
 constructor()
 
+public "getIds"(): $IntIterable
 public "add"(arg0: integer, arg1: $Waypoint$Type): void
 public "remove"(arg0: integer): void
 public "clear"(): void
 public "isEmpty"(): boolean
 public "size"(): integer
-public "getIds"(): $IntIterable
 public "getWaypoints"(): $Iterable<($Waypoint)>
 public "addDisabled"(arg0: integer): void
 public "getById"(arg0: integer): $Waypoint
 public "getBySlot"(arg0: integer): $Waypoint
-get "empty"(): boolean
 get "ids"(): $IntIterable
+get "empty"(): boolean
 get "waypoints"(): $Iterable<($Waypoint)>
 }
 /**
@@ -411,10 +413,10 @@ export class $RadarColorHelper {
 
 constructor()
 
-public "getTeamColor"(arg0: $Entity$Type): integer
 public "getFallbackColor"(arg0: $EntityRadarCategory$Type): $RadarColor
-public "getEntityHeightFade"(arg0: float, arg1: integer, arg2: integer): float
 public "getEntityColor"(arg0: $Entity$Type, arg1: float, arg2: boolean, arg3: integer, arg4: integer, arg5: boolean, arg6: $RadarColor$Type, arg7: $RadarColor$Type): integer
+public "getTeamColor"(arg0: $Entity$Type): integer
+public "getEntityHeightFade"(arg0: float, arg1: integer, arg2: integer): float
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -515,15 +517,15 @@ static readonly "YELLOW": $WaypointColor
 static readonly "WHITE": $WaypointColor
 
 
+public static "getRandom"(): $WaypointColor
 public "getName"(): $Component
 public static "values"(): ($WaypointColor)[]
 public static "valueOf"(arg0: string): $WaypointColor
 public static "fromIndex"(arg0: integer): $WaypointColor
-public static "getRandom"(): $WaypointColor
 public "getFormat"(): character
 public "getHex"(): integer
-get "name"(): $Component
 get "random"(): $WaypointColor
+get "name"(): $Component
 get "format"(): character
 get "hex"(): integer
 }
@@ -560,41 +562,14 @@ export class $MinimapWorldRootContainer extends $WaypointWorldContainer {
 public "getName"(arg0: string): string
 public "isEmpty"(): boolean
 public "getRoot"(): $MinimapWorldRootContainer
+public "getDimensionType"(arg0: $ResourceKey$Type<($Level$Type)>): $DimensionType
 /**
  * 
  * @deprecated
  */
-public "setUsingMultiworldDetection"(arg0: boolean): void
-/**
- * 
- * @deprecated
- */
-public "isUsingDefaultTeleportCommand"(): boolean
-/**
- * 
- * @deprecated
- */
-public "getServerTeleportCommandRotationFormat"(): string
-/**
- * 
- * @deprecated
- */
-public "getServerTeleportCommandFormat"(): string
-/**
- * 
- * @deprecated
- */
-public "setUsingDefaultTeleportCommand"(arg0: boolean): void
-/**
- * 
- * @deprecated
- */
-public "setServerTeleportCommandFormat"(arg0: string): void
-/**
- * 
- * @deprecated
- */
-public "setServerTeleportCommandRotationFormat"(arg0: string): void
+public "isIgnoreHeightmaps"(): boolean
+public "getSubName"(): string
+public "getConfig"(): $RootConfig
 /**
  * 
  * @deprecated
@@ -614,10 +589,42 @@ public "isSortReversed"(): boolean
  * 
  * @deprecated
  */
-public "isIgnoreHeightmaps"(): boolean
-public "getDimensionType"(arg0: $ResourceKey$Type<($Level$Type)>): $DimensionType
-public "getConfig"(): $RootConfig
-public "getSubName"(): string
+public "setUsingMultiworldDetection"(arg0: boolean): void
+/**
+ * 
+ * @deprecated
+ */
+public "isUsingDefaultTeleportCommand"(): boolean
+/**
+ * 
+ * @deprecated
+ */
+public "setUsingDefaultTeleportCommand"(arg0: boolean): void
+/**
+ * 
+ * @deprecated
+ */
+public "getServerTeleportCommandFormat"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "getServerTeleportCommandRotationFormat"(): string
+/**
+ * 
+ * @deprecated
+ */
+public "setServerTeleportCommandFormat"(arg0: string): void
+/**
+ * 
+ * @deprecated
+ */
+public "setServerTeleportCommandRotationFormat"(arg0: string): void
+/**
+ * 
+ * @deprecated
+ */
+public "setIgnoreHeightmaps"(arg0: boolean): void
 public "getSubWorldConnections"(): $MinimapWorldConnectionManager
 public "updateConnectionsField"(arg0: $WaypointSession$Type): void
 public "getDimensionScale"(arg0: $ResourceKey$Type<($Level$Type)>): double
@@ -676,27 +683,23 @@ public "isIgnoreServerLevelId"(): boolean
  * @deprecated
  */
 public "setIgnoreServerLevelId"(arg0: boolean): void
-/**
- * 
- * @deprecated
- */
-public "setIgnoreHeightmaps"(arg0: boolean): void
 public "removeName"(arg0: string): void
 get "empty"(): boolean
 get "root"(): $MinimapWorldRootContainer
-set "usingMultiworldDetection"(value: boolean)
-get "usingDefaultTeleportCommand"(): boolean
-get "serverTeleportCommandRotationFormat"(): string
-get "serverTeleportCommandFormat"(): string
-set "usingDefaultTeleportCommand"(value: boolean)
-set "serverTeleportCommandFormat"(value: string)
-set "serverTeleportCommandRotationFormat"(value: string)
+get "ignoreHeightmaps"(): boolean
+get "subName"(): string
+get "config"(): $RootConfig
 get "sortType"(): $WaypointsSort
 get "teleportationEnabled"(): boolean
 get "sortReversed"(): boolean
-get "ignoreHeightmaps"(): boolean
-get "config"(): $RootConfig
-get "subName"(): string
+set "usingMultiworldDetection"(value: boolean)
+get "usingDefaultTeleportCommand"(): boolean
+set "usingDefaultTeleportCommand"(value: boolean)
+get "serverTeleportCommandFormat"(): string
+get "serverTeleportCommandRotationFormat"(): string
+set "serverTeleportCommandFormat"(value: string)
+set "serverTeleportCommandRotationFormat"(value: string)
+set "ignoreHeightmaps"(value: boolean)
 get "subWorldConnections"(): $MinimapWorldConnectionManager
 get "dimensionTypeIds"(): $Iterable<($Map$Entry<($ResourceKey<($Level)>), ($ResourceLocation)>)>
 get "configLoaded"(): boolean
@@ -708,7 +711,6 @@ set "sortType"(value: $WaypointsSort$Type)
 set "sortReversed"(value: boolean)
 get "ignoreServerLevelId"(): boolean
 set "ignoreServerLevelId"(value: boolean)
-set "ignoreHeightmaps"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -862,10 +864,10 @@ export class $PlayerTrackerMinimapElementRenderer extends $MinimapElementRendere
 
 
 public "getOrder"(): integer
+public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
 public "renderElement"(arg0: $PlayerTrackerMinimapElement$Type<(any)>, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
 public "getPlayerSkin"(arg0: $Player$Type, arg1: $PlayerInfo$Type): $ResourceLocation
 public "getCollector"(): $PlayerTrackerMinimapElementCollector
-public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
 public "preRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 get "order"(): integer
@@ -976,7 +978,6 @@ public "isInteractable"(arg0: $MinimapElementRenderLocation$Type, arg1: E): bool
 public "shouldScaleBoxWithOptionalScale"(): boolean
 public "shouldScalePartialCoordinates"(arg0: E, arg1: RC, arg2: $MinimapElementRenderInfo$Type): boolean
 public "isAlwaysHighlightedWhenHovered"(arg0: E, arg1: RC): boolean
-public "getCoordinateScale"(arg0: E, arg1: RC, arg2: $MinimapElementRenderInfo$Type): double
 public "getInteractionBoxLeft"(arg0: E, arg1: RC, arg2: float): integer
 public "getInteractionBoxRight"(arg0: E, arg1: RC, arg2: float): integer
 public "getInteractionBoxTop"(arg0: E, arg1: RC, arg2: float): integer
@@ -986,6 +987,7 @@ public "getRenderBoxRight"(arg0: E, arg1: RC, arg2: float): integer
 public "getRenderBoxTop"(arg0: E, arg1: RC, arg2: float): integer
 public "getRenderBoxBottom"(arg0: E, arg1: RC, arg2: float): integer
 public "getLeftSideLength"(arg0: E, arg1: $Minecraft$Type): integer
+public "getCoordinateScale"(arg0: E, arg1: RC, arg2: $MinimapElementRenderInfo$Type): double
 public "getMenuName"(arg0: E): string
 public "getFilterName"(arg0: E): string
 public "getMenuTextFillLeftPadding"(arg0: E): integer
@@ -1089,12 +1091,13 @@ public "update"(): void
 public "update"(arg0: $MinimapSession$Type): void
 public "init"(): void
 public "setCurrentWorldSpawn"(arg0: $BlockPos$Type): void
-public "getAutoRootContainerPath"(arg0: integer): $XaeroPath
+public "onServerLevelId"(arg0: integer): void
 /**
  * 
  * @deprecated
  */
 public "getAutoRootContainerPath"(arg0: integer, arg1: $ClientPacketListener$Type, arg2: $MinimapSession$Type): $XaeroPath
+public "getAutoRootContainerPath"(arg0: integer): $XaeroPath
 /**
  * 
  * @deprecated
@@ -1107,18 +1110,17 @@ public "ignoreContainerCase"(arg0: $XaeroPath$Type, arg1: $XaeroPath$Type): $Xae
  */
 public "getPotentialWorldNode"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: boolean, arg2: $MinimapSession$Type): string
 public "getPotentialWorldNode"(arg0: $ResourceKey$Type<($Level$Type)>, arg1: boolean): string
+public "getPotentialContainerPath"(): $XaeroPath
 /**
  * 
  * @deprecated
  */
 public "getPotentialContainerPath"(arg0: $MinimapSession$Type): $XaeroPath
-public "getPotentialContainerPath"(): $XaeroPath
 public "hasServerLevelId"(arg0: $MinimapWorldRootContainer$Type): boolean
 public "getAutoWorldNodeBase"(arg0: $MinimapWorldRootContainer$Type): any
-public "onServerLevelId"(arg0: integer): void
-public "handler$cap000$xaeroplus$customDataFolderResolve"(version: integer, cir: $CallbackInfoReturnable$Type<(any)>): void
-public "wrapOperation$cap000$xaeroplus$preferOverworldWpSetCustomPathOnDimUpdate$mixinextras$bridge$18"(instance: $MinimapWorldState$Type, autoWorldPath: $XaeroPath$Type, original: $Operation$Type<(any)>, oldAutoWorldPath: $LocalRef$Type<(any)>, potentialAutoWorldNode: $LocalRef$Type<(any)>): void
-public "wrapOperation$cap000$xaeroplus$preferOverworldWpSetCustomPathOnDimUpdate"(instance: $MinimapWorldState$Type, autoWorldPath: $XaeroPath$Type, original: $Operation$Type<(any)>, oldAutoWorldPath: $XaeroPath$Type, potentialAutoWorldNode: string): void
+public "handler$cao000$xaeroplus$customDataFolderResolve"(version: integer, cir: $CallbackInfoReturnable$Type<(any)>): void
+public "wrapOperation$cao000$xaeroplus$preferOverworldWpSetCustomPathOnDimUpdate$mixinextras$bridge$18"(instance: $MinimapWorldState$Type, autoWorldPath: $XaeroPath$Type, original: $Operation$Type<(any)>, oldAutoWorldPath: $LocalRef$Type<(any)>, potentialAutoWorldNode: $LocalRef$Type<(any)>): void
+public "wrapOperation$cao000$xaeroplus$preferOverworldWpSetCustomPathOnDimUpdate"(instance: $MinimapWorldState$Type, autoWorldPath: $XaeroPath$Type, original: $Operation$Type<(any)>, oldAutoWorldPath: $XaeroPath$Type, potentialAutoWorldNode: string): void
 set "currentWorldSpawn"(value: $BlockPos$Type)
 get "potentialContainerPath"(): $XaeroPath
 }
@@ -1193,27 +1195,27 @@ export class $MinimapWorldState {
 
 constructor()
 
-public "getAutoWorldPath"(): $XaeroPath
 public "setCustomWorldPath"(arg0: $XaeroPath$Type): void
-public "getCurrentWorldPath"(arg0: $XaeroPath$Type): $XaeroPath
 public "getCurrentWorldPath"(): $XaeroPath
-public "setOutdatedAutoRootContainerPath"(arg0: integer, arg1: $XaeroPath$Type): void
-public "getOutdatedAutoRootContainerPath"(arg0: integer): $XaeroPath
-public "getAutoContainerPathIgnoreCaseCache"(): $XaeroPath
-public "setAutoContainerPathIgnoreCaseCache"(arg0: $XaeroPath$Type): void
+public "getCurrentWorldPath"(arg0: $XaeroPath$Type): $XaeroPath
+public "getAutoWorldPath"(): $XaeroPath
 public "getCurrentRootContainerPath"(): $XaeroPath
+public "getAutoContainerPathIgnoreCaseCache"(): $XaeroPath
+public "getOutdatedAutoRootContainerPath"(arg0: integer): $XaeroPath
+public "setOutdatedAutoRootContainerPath"(arg0: integer, arg1: $XaeroPath$Type): void
+public "setAutoContainerPathIgnoreCaseCache"(arg0: $XaeroPath$Type): void
 public "setAutoRootContainerPath"(arg0: $XaeroPath$Type): void
 public "setAutoWorldPath"(arg0: $XaeroPath$Type): void
 public "getAutoRootContainerPath"(): $XaeroPath
 public "getCurrentContainerPath"(): $XaeroPath
 public "getCustomContainerPath"(): $XaeroPath
 public "getCustomWorldPath"(): $XaeroPath
-get "autoWorldPath"(): $XaeroPath
 set "customWorldPath"(value: $XaeroPath$Type)
 get "currentWorldPath"(): $XaeroPath
+get "autoWorldPath"(): $XaeroPath
+get "currentRootContainerPath"(): $XaeroPath
 get "autoContainerPathIgnoreCaseCache"(): $XaeroPath
 set "autoContainerPathIgnoreCaseCache"(value: $XaeroPath$Type)
-get "currentRootContainerPath"(): $XaeroPath
 set "autoRootContainerPath"(value: $XaeroPath$Type)
 set "autoWorldPath"(value: $XaeroPath$Type)
 get "autoRootContainerPath"(): $XaeroPath
@@ -1280,6 +1282,7 @@ export class $WaypointMapRenderer extends $MinimapElementRenderer<($Waypoint), (
 
 
 public "getOrder"(): integer
+public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
 /**
  * 
  * @deprecated
@@ -1287,7 +1290,6 @@ public "getOrder"(): integer
 public "drawSetChange"(arg0: $WaypointsManager$Type, arg1: $GuiGraphics$Type, arg2: $Window$Type): void
 public "drawSetChange"(arg0: $MinimapSession$Type, arg1: $GuiGraphics$Type, arg2: $Window$Type): void
 public "renderElement"(arg0: $Waypoint$Type, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
-public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
 public "drawIconOnGUI"(arg0: $GuiGraphics$Type, arg1: $MinimapRendererHelper$Type, arg2: $Waypoint$Type, arg3: integer, arg4: integer, arg5: integer, arg6: $MultiBufferSource$BufferSource$Type, arg7: $VertexConsumer$Type, arg8: $VertexConsumer$Type): void
 /**
  * 
@@ -1377,16 +1379,17 @@ readonly "narratables": $List<($NarratableEntry)>
 readonly "renderables": $List<($Renderable)>
  "font": $Font
 readonly "screenExecutor": $Executor
+ "self": $Screen
 
 
+public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
+public "tick"(): void
+public "init"(): void
 public "mouseClicked"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseDragged"(arg0: double, arg1: double, arg2: integer, arg3: double, arg4: double): boolean
 public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
 public "keyPressed"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "init"(): void
-public "tick"(): void
-public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: float): void
 public "getRowList"(): $GuiCategoryEditor$SettingRowList<>
 public static "getExtensions"(screen: $Screen$Type): $ScreenExtensions
 get "rowList"(): $GuiCategoryEditor$SettingRowList<>
@@ -1417,12 +1420,12 @@ constructor(arg0: string, arg1: $IRadarIconFormReader$Type, arg2: $IRadarIconFor
 
 public "getId"(): string
 public "addTo"(arg0: $Map$Type<(string), ($RadarIconFormType$Type)>): $RadarIconFormType
-public "getFailureResult"(): $XaeroIcon
 public "getPrerenderer"(): $IRadarIconFormPrerenderer
+public "getFailureResult"(): $XaeroIcon
 public "readForm"(arg0: $RadarIconDefinition$Type, arg1: (string)[]): $RadarIconForm
 get "id"(): string
-get "failureResult"(): $XaeroIcon
 get "prerenderer"(): $IRadarIconFormPrerenderer
+get "failureResult"(): $XaeroIcon
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1496,15 +1499,16 @@ import {$EditorSettingsNode, $EditorSettingsNode$Type} from "packages/xaero/hud/
 export class $EditorSettingsNode$Builder<SD extends $EditorSettingsNode<(any)>, SDB extends $EditorSettingsNode$Builder<(SD), (SDB)>> extends $EditorNode$Builder<($EditorSettingsNode$Builder<(SD), (SDB)>)> {
 
 
+public "setDefault"(): SDB
 public "setSettingValue"<T>(arg0: $ObjectCategorySetting$Type<(T)>, arg1: T): SDB
 public "getNameOptionBuilder"(): $EditorTextFieldOptionsNode$Builder
-public "getDeleteButtonBuilder"(): $EditorSimpleButtonNode$Builder
-public "setProtection"(arg0: boolean): SDB
 public "setRootSettings"(arg0: boolean): SDB
+public "setProtection"(arg0: boolean): SDB
+public "getDeleteButtonBuilder"(): $EditorSimpleButtonNode$Builder
 get "nameOptionBuilder"(): $EditorTextFieldOptionsNode$Builder
-get "deleteButtonBuilder"(): $EditorSimpleButtonNode$Builder
-set "protection"(value: boolean)
 set "rootSettings"(value: boolean)
+set "protection"(value: boolean)
+get "deleteButtonBuilder"(): $EditorSimpleButtonNode$Builder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1529,16 +1533,16 @@ export class $PlayerTrackerMinimapElement<P> {
 constructor(arg0: P, arg1: $IRenderedPlayerTracker$Type<(P)>)
 
 public "getY"(): double
-public "getX"(): double
 public "getDimension"(): $ResourceKey<($Level)>
+public "getX"(): double
 public "wasRenderedOnRadar"(): boolean
 public "getPlayerId"(): $UUID
 public "setRenderedOnRadar"(arg0: boolean): void
 public "getPlayer"(): P
 public "getZ"(): double
 get "y"(): double
-get "x"(): double
 get "dimension"(): $ResourceKey<($Level)>
+get "x"(): double
 get "playerId"(): $UUID
 set "renderedOnRadar"(value: boolean)
 get "player"(): P
@@ -1559,10 +1563,12 @@ export type $PlayerTrackerMinimapElement_<P> = $PlayerTrackerMinimapElement$Type
 declare module "packages/xaero/hud/category/ui/node/options/$EditorOptionsNode$Builder" {
 import {$EditorNode$Builder, $EditorNode$Builder$Type} from "packages/xaero/hud/category/ui/node/$EditorNode$Builder"
 import {$EditorOptionsNode$IOptionsNodeIsActiveSupplier, $EditorOptionsNode$IOptionsNodeIsActiveSupplier$Type} from "packages/xaero/hud/category/ui/node/options/$EditorOptionsNode$IOptionsNodeIsActiveSupplier"
+import {$EditorOptionsNode, $EditorOptionsNode$Type} from "packages/xaero/hud/category/ui/node/options/$EditorOptionsNode"
 
 export class $EditorOptionsNode$Builder<V, B extends $EditorOptionsNode$Builder<(V), (B)>> extends $EditorNode$Builder<(B)> {
 
 
+public "build"(): $EditorOptionsNode<(V)>
 public "setDisplayName"(arg0: string): B
 public "setCurrentValue"(arg0: V): B
 public "setIsActiveSupplier"(arg0: $EditorOptionsNode$IOptionsNodeIsActiveSupplier$Type): B
@@ -1671,6 +1677,11 @@ export class $Minimap {
 
 constructor(arg0: $HudMod$Type)
 
+public "getOverMapRendererHandler"(): $MinimapElementOverMapRendererHandler
+public "getWorldRendererHandler"(): $MinimapElementWorldRendererHandler
+public "setCrashedWith"(arg0: $Throwable$Type): void
+public "getInfoDisplays"(): $InfoDisplays
+public "getWaypointWorldRenderer"(): $WaypointWorldRenderer
 public "getCrashedWith"(): $Throwable
 /**
  * 
@@ -1702,13 +1713,13 @@ public "getInfoDisplayRenderer"(): $InfoDisplayRenderer
  */
 public "getInfoDisplayManager"(): $InfoDisplayManager
 public "checkCrashes"(): void
-public "getWaypointWorldRenderer"(): $WaypointWorldRenderer
-public "getOverMapRendererHandler"(): $MinimapElementOverMapRendererHandler
-public "getWorldRendererHandler"(): $MinimapElementWorldRendererHandler
-public "setCrashedWith"(arg0: $Throwable$Type): void
-public "getInfoDisplays"(): $InfoDisplays
 public "usingFBO"(): boolean
 public "getModMain"(): $HudMod
+get "overMapRendererHandler"(): $MinimapElementOverMapRendererHandler
+get "worldRendererHandler"(): $MinimapElementWorldRendererHandler
+set "crashedWith"(value: $Throwable$Type)
+get "infoDisplays"(): $InfoDisplays
+get "waypointWorldRenderer"(): $WaypointWorldRenderer
 get "crashedWith"(): $Throwable
 get "waypointsGuiRenderer"(): $WaypointsGuiRenderer$0
 get "waypointGuiRenderer"(): $WaypointsGuiRenderer
@@ -1719,11 +1730,6 @@ get "minimapSafeModeRenderer"(): $MinimapSafeModeRenderer
 get "compassRenderer"(): $CompassRenderer
 get "infoDisplayRenderer"(): $InfoDisplayRenderer
 get "infoDisplayManager"(): $InfoDisplayManager
-get "waypointWorldRenderer"(): $WaypointWorldRenderer
-get "overMapRendererHandler"(): $MinimapElementOverMapRendererHandler
-get "worldRendererHandler"(): $MinimapElementWorldRendererHandler
-set "crashedWith"(value: $Throwable$Type)
-get "infoDisplays"(): $InfoDisplays
 get "modMain"(): $HudMod
 }
 /**
@@ -1772,21 +1778,21 @@ import {$EditorExpandingOptionsNode$Builder, $EditorExpandingOptionsNode$Builder
 export class $EditorTextFieldOptionsNode$Builder extends $EditorExpandingOptionsNode$Builder<(string), ($EditorTextFieldOptionsNode$Builder)> {
 
 
-public static "begin"(arg0: $ListFactory$Type): $EditorTextFieldOptionsNode$Builder
-public "setInput"(arg0: string): $EditorTextFieldOptionsNode$Builder
 public "build"(): $EditorTextFieldOptionsNode
+public "setInput"(arg0: string): $EditorTextFieldOptionsNode$Builder
+public static "begin"(arg0: $ListFactory$Type): $EditorTextFieldOptionsNode$Builder
 public "setMaxLength"(arg0: integer): $EditorTextFieldOptionsNode$Builder
 public "setCurrentValue"(arg0: string): $EditorTextFieldOptionsNode$Builder
 public "setInputStringValidator"(arg0: $Predicate$Type<(string)>): $EditorTextFieldOptionsNode$Builder
 public "needsInputStringValidator"(): boolean
-public "setAllowCustomInput"(arg0: boolean): $EditorTextFieldOptionsNode$Builder
 public "setAutoConfirm"(arg0: boolean): $EditorTextFieldOptionsNode$Builder
+public "setAllowCustomInput"(arg0: boolean): $EditorTextFieldOptionsNode$Builder
 set "input"(value: string)
 set "maxLength"(value: integer)
 set "currentValue"(value: string)
 set "inputStringValidator"(value: $Predicate$Type<(string)>)
-set "allowCustomInput"(value: boolean)
 set "autoConfirm"(value: boolean)
+set "allowCustomInput"(value: boolean)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1812,24 +1818,24 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export class $EditorSettingsNode<SETTING_DATA extends ($EditorOptionsNode<(any)>) & ($IEditorSettingNode<(any)>)> extends $EditorNode {
 
 
-public "getSettings"(): $Map<($ObjectCategorySetting<(any)>), (SETTING_DATA)>
 public "getDisplayName"(): string
-public "setProtected"(arg0: boolean): void
+public "getSettings"(): $Map<($ObjectCategorySetting<(any)>), (SETTING_DATA)>
 public "getProtection"(): boolean
-public "getSettingData"(arg0: $ObjectCategorySetting$Type<(any)>): $IEditorSettingNode<(any)>
+public "setProtected"(arg0: boolean): void
 public "setToBeDeleted"(): void
-public "getNameOption"(): $EditorTextFieldOptionsNode
+public "getSettingData"(arg0: $ObjectCategorySetting$Type<(any)>): $IEditorSettingNode<(any)>
 public "isToBeDeleted"(): boolean
-public "isRootSettings"(): boolean
+public "getNameOption"(): $EditorTextFieldOptionsNode
 public "getSubNodes"(): $List<($EditorNode)>
-get "settings"(): $Map<($ObjectCategorySetting<(any)>), (SETTING_DATA)>
+public "isRootSettings"(): boolean
 get "displayName"(): string
-set "protected"(value: boolean)
+get "settings"(): $Map<($ObjectCategorySetting<(any)>), (SETTING_DATA)>
 get "protection"(): boolean
-get "nameOption"(): $EditorTextFieldOptionsNode
+set "protected"(value: boolean)
 get "toBeDeleted"(): boolean
-get "rootSettings"(): boolean
+get "nameOption"(): $EditorTextFieldOptionsNode
 get "subNodes"(): $List<($EditorNode)>
+get "rootSettings"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1918,14 +1924,14 @@ export type $PushboxHandler$State_ = $PushboxHandler$State$Type;
 }}
 declare module "packages/xaero/hud/controls/$ControlsRegister" {
 import {$KeyMapping, $KeyMapping$Type} from "packages/net/minecraft/client/$KeyMapping"
-import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$KeyMappingControllerManager, $KeyMappingControllerManager$Type} from "packages/xaero/hud/controls/key/$KeyMappingControllerManager"
+import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 
 export class $ControlsRegister {
 
 
-public "registerKeybindings"(arg0: $Consumer$Type<($KeyMapping$Type)>): void
 public "getKeyMappingControllers"(): $KeyMappingControllerManager
+public "registerKeybindings"(arg0: $Consumer$Type<($KeyMapping$Type)>): void
 public "onStage2"(): void
 get "keyMappingControllers"(): $KeyMappingControllerManager
 }
@@ -2059,14 +2065,14 @@ constructor(arg0: $HudMod$Type)
 public "loadWorldsFromAllSources"(arg0: $MinimapSession$Type, arg1: $ClientPacketListener$Type): void
 public "convertWorldDimFilesToFolders"(): void
 public "convertWorldDimFoldersToSingleFolder"(arg0: $MinimapSession$Type): void
-public "onRootContainerAdded"(arg0: $MinimapWorldRootContainer$Type): void
 public "loadAllWorlds"(arg0: $MinimapSession$Type): void
 public static "copyTempFilesBack"(arg0: $Path$Type): void
 public "loadWorldFile"(arg0: $MinimapWorldContainer$Type, arg1: string, arg2: $Path$Type): boolean
 public "checkWorldFileLine"(arg0: (string)[], arg1: $MinimapWorld$Type): boolean
-public "getWorldFile"(arg0: $MinimapWorld$Type): $Path
-public "saveAllWorlds"(arg0: $MinimapSession$Type): void
+public "onRootContainerAdded"(arg0: $MinimapWorldRootContainer$Type): void
 public "getRootConfigIO"(): $RootConfigIO
+public "saveAllWorlds"(arg0: $MinimapSession$Type): void
+public "getWorldFile"(arg0: $MinimapWorld$Type): $Path
 public "loadWorld"(arg0: $MinimapWorld$Type, arg1: $Path$Type): void
 public "saveWorld"(arg0: $MinimapWorld$Type): void
 public "saveWorld"(arg0: $MinimapWorld$Type, arg1: boolean): void
@@ -2099,13 +2105,9 @@ export class $HudSession {
 
 constructor(arg0: $HudMod$Type)
 
-public "init"(arg0: $ClientPacketListener$Type): void
 public "getSession"<MS extends $ModuleSession<(MS)>>(arg0: $HudModule$Type<(MS)>): MS
-/**
- * 
- * @deprecated
- */
-public "getMultiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
+public "init"(arg0: $ClientPacketListener$Type): void
+public static "getCurrentSession"(): $HudSession
 public static "getForPlayer"(arg0: $LocalPlayer$Type): $HudSession
 /**
  * 
@@ -2113,13 +2115,17 @@ public static "getForPlayer"(arg0: $LocalPlayer$Type): $HudSession
  */
 public "getControls"(): $ControlsHandler
 public "getKeyMappingTickHandler"(): $KeyMappingTickHandler
-public static "getCurrentSession"(): $HudSession
+/**
+ * 
+ * @deprecated
+ */
+public "getMultiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
 public "tryCleanup"(): void
 public "getHudMod"(): $HudMod
-get "multiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
+get "currentSession"(): $HudSession
 get "controls"(): $ControlsHandler
 get "keyMappingTickHandler"(): $KeyMappingTickHandler
-get "currentSession"(): $HudSession
+get "multiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
 get "hudMod"(): $HudMod
 }
 /**
@@ -2175,7 +2181,6 @@ public "isHidden"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type): b
 public "getRightClickTitleBackgroundColor"(arg0: $Waypoint$Type): integer
 public "shouldScaleBoxWithOptionalScale"(): boolean
 public "shouldScalePartialCoordinates"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: $MinimapElementRenderInfo$Type): boolean
-public "getCoordinateScale"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: $MinimapElementRenderInfo$Type): double
 public "getInteractionBoxLeft"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: float): integer
 public "getInteractionBoxRight"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: float): integer
 public "getInteractionBoxTop"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: float): integer
@@ -2185,6 +2190,7 @@ public "getRenderBoxRight"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext
 public "getRenderBoxTop"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: float): integer
 public "getRenderBoxBottom"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: float): integer
 public "getLeftSideLength"(arg0: $Waypoint$Type, arg1: $Minecraft$Type): integer
+public "getCoordinateScale"(arg0: $Waypoint$Type, arg1: $WaypointMapRenderContext$Type, arg2: $MinimapElementRenderInfo$Type): double
 public "getMenuName"(arg0: $Waypoint$Type): string
 public "getFilterName"(arg0: $Waypoint$Type): string
 public "getMenuTextFillLeftPadding"(arg0: $Waypoint$Type): integer
@@ -2212,8 +2218,8 @@ import {$EditorListRootEntryFactory, $EditorListRootEntryFactory$Type} from "pac
 export class $EditorNode$Builder<B extends $EditorNode$Builder<(B)>> {
 
 
-public "setDefault"(): B
 public "build"(): $EditorNode
+public "setDefault"(): B
 public "setListEntryFactory"(arg0: $EditorListRootEntryFactory$Type): B
 public "setTooltipSupplier"(arg0: $IEditorDataTooltipSupplier$Type): B
 public "setMovable"(arg0: boolean): B
@@ -2260,17 +2266,17 @@ export type $EditorTextField$UpdatedValueConsumer_ = $EditorTextField$UpdatedVal
 }}
 declare module "packages/xaero/hud/category/ui/node/tooltip/$IEditorDataTooltipSupplier" {
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
-import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 import {$EditorNode, $EditorNode$Type} from "packages/xaero/hud/category/ui/node/$EditorNode"
+import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunction"
 import {$CursorBox, $CursorBox$Type} from "packages/xaero/common/graphics/$CursorBox"
 
 export interface $IEditorDataTooltipSupplier extends $BiFunction<($EditorNode), ($EditorNode), ($Supplier<($CursorBox)>)> {
 
- "apply"(arg0: $EditorNode$Type, arg1: $EditorNode$Type): $Supplier<($CursorBox)>
  "andThen"<V>(arg0: $Function$Type<(any), (any)>): $BiFunction<($EditorNode), ($EditorNode), (V)>
+ "apply"(arg0: $EditorNode$Type, arg1: $EditorNode$Type): $Supplier<($CursorBox)>
 
-(arg0: $EditorNode$Type, arg1: $EditorNode$Type): $Supplier<($CursorBox)>
+(arg0: $Function$Type<(any), (any)>): $BiFunction<($EditorNode), ($EditorNode), (V)>
 }
 
 export namespace $IEditorDataTooltipSupplier {
@@ -2407,11 +2413,11 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export class $RadarRenderer extends $MinimapElementRenderer<($Entity), ($RadarRenderContext)> {
 
 
-public "renderElement"(arg0: $Entity$Type, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
 public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
-public "handler$cbe000$xaeroplus$forceEntityRadarRenderSettings"(e: $Entity$Type, ci: $CallbackInfo$Type): void
+public "renderElement"(arg0: $Entity$Type, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
+public "handler$cbd000$xaeroplus$forceEntityRadarRenderSettings"(e: $Entity$Type, ci: $CallbackInfo$Type): void
 public "renderSingleEntity"(arg0: $Entity$Type, arg1: boolean, arg2: boolean, arg3: float, arg4: boolean, arg5: boolean, arg6: $MinimapElementRenderLocation$Type, arg7: $RenderTarget$Type, arg8: $GuiGraphics$Type): void
-public "handler$cbe000$xaeroplus$adjustElementScaleForMinimapScaling"(cir: $CallbackInfoReturnable$Type<(any)>, renderInfoRef: $LocalRef$Type<(any)>, optionalScaleRef: $LocalFloatRef$Type): void
+public "handler$cbd000$xaeroplus$adjustElementScaleForMinimapScaling"(cir: $CallbackInfoReturnable$Type<(any)>, renderInfoRef: $LocalRef$Type<(any)>, optionalScaleRef: $LocalFloatRef$Type): void
 public "preRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 }
@@ -2436,12 +2442,12 @@ export class $ObjectCategoryData<D extends $ObjectCategoryData<(D)>> {
 
 public "getName"(): string
 public "getProtection"(): boolean
-public "getSubCategoryIterator"(): $Iterator<(D)>
 public "getSettingOverrideIterator"(): $Iterator<($Map$Entry<(string), (any)>)>
+public "getSubCategoryIterator"(): $Iterator<(D)>
 get "name"(): string
 get "protection"(): boolean
-get "subCategoryIterator"(): $Iterator<(D)>
 get "settingOverrideIterator"(): $Iterator<($Map$Entry<(string), (any)>)>
+get "subCategoryIterator"(): $Iterator<(D)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2464,32 +2470,32 @@ import {$MinimapSession, $MinimapSession$Type} from "packages/xaero/hud/minimap/
 import {$HudMod, $HudMod$Type} from "packages/xaero/common/$HudMod"
 import {$WaypointSharingHandler, $WaypointSharingHandler$Type} from "packages/xaero/hud/minimap/waypoint/$WaypointSharingHandler"
 import {$WaypointTeleport, $WaypointTeleport$Type} from "packages/xaero/hud/minimap/waypoint/$WaypointTeleport"
-import {$DeathpointHandler, $DeathpointHandler$Type} from "packages/xaero/hud/minimap/waypoint/$DeathpointHandler"
 import {$WaypointCollector, $WaypointCollector$Type} from "packages/xaero/hud/minimap/waypoint/$WaypointCollector"
+import {$DeathpointHandler, $DeathpointHandler$Type} from "packages/xaero/hud/minimap/waypoint/$DeathpointHandler"
 
 export class $WaypointSession {
 
 constructor(arg0: $HudMod$Type, arg1: $MinimapSession$Type)
 
 public "getSession"(): $MinimapSession
+public "getTeleport"(): $WaypointTeleport
+public "getCollector"(): $WaypointCollector
 public "getTemporaryHandler"(): $TemporaryWaypointHandler
 public "setSetChangedTime"(arg0: long): void
 public "getDeathpointHandler"(): $DeathpointHandler
-public "getTeleport"(): $WaypointTeleport
-public "getCollector"(): $WaypointCollector
-public "getDestinationHandler"(): $DestinationHandler
 public "getSetChangedTime"(): long
+public "getDestinationHandler"(): $DestinationHandler
 public "getSharing"(): $WaypointSharingHandler
 public "getMc"(): $Minecraft
 public "getDeleter"(): $WaypointDeleter
 get "session"(): $MinimapSession
+get "teleport"(): $WaypointTeleport
+get "collector"(): $WaypointCollector
 get "temporaryHandler"(): $TemporaryWaypointHandler
 set "setChangedTime"(value: long)
 get "deathpointHandler"(): $DeathpointHandler
-get "teleport"(): $WaypointTeleport
-get "collector"(): $WaypointCollector
-get "destinationHandler"(): $DestinationHandler
 get "setChangedTime"(): long
+get "destinationHandler"(): $DestinationHandler
 get "sharing"(): $WaypointSharingHandler
 get "mc"(): $Minecraft
 get "deleter"(): $WaypointDeleter
@@ -2523,37 +2529,37 @@ export class $MinimapWorldManager {
 
 constructor(arg0: $HudMod$Type, arg1: $MinimapSession$Type)
 
+public "removeContainer"(arg0: $XaeroPath$Type): boolean
+public "getAutoWorld"(): $MinimapWorld
 public "getRootWorldContainer"(arg0: string): $MinimapWorldRootContainer
 public "getRootWorldContainer"(arg0: $XaeroPath$Type): $MinimapWorldRootContainer
-public "getCurrentWorld"(arg0: $XaeroPath$Type): $MinimapWorld
 public "getCurrentWorld"(): $MinimapWorld
-public "getAutoWorld"(): $MinimapWorld
+public "getCurrentWorld"(arg0: $XaeroPath$Type): $MinimapWorld
 public "addRootWorldContainer"(arg0: $MinimapWorldRootContainer$Type): void
 public "getRootContainers"(): $Iterable<($MinimapWorldRootContainer)>
 public "getCurrentRootContainer"(): $MinimapWorldRootContainer
 public "hasCustomWaypoints"(): boolean
-public "getAutoRootContainer"(): $MinimapWorldRootContainer
 public "getWorldContainerNullable"(arg0: $XaeroPath$Type): $MinimapWorldContainer
 public "getWorldContainer"(arg0: $XaeroPath$Type): $MinimapWorldContainer
 public "addWorldContainer"(arg0: $XaeroPath$Type): $MinimapWorldContainer
-public "removeContainer"(arg0: $XaeroPath$Type): boolean
 public "containerExists"(arg0: $XaeroPath$Type): boolean
 /**
  * 
  * @deprecated
  */
 public "getRootContainersDirect"(): $HashMap<(string), ($MinimapWorldRootContainer)>
-public "getCustomWaypoints"(): $Iterable<($Waypoint)>
 public "getCustomWaypoints"(arg0: $ResourceLocation$Type): $Int2ObjectMap<($Waypoint)>
+public "getCustomWaypoints"(): $Iterable<($Waypoint)>
+public "getAutoRootContainer"(): $MinimapWorldRootContainer
 public "getWorld"(arg0: $XaeroPath$Type): $MinimapWorld
 public "addWorld"(arg0: $XaeroPath$Type): $MinimapWorld
-get "currentWorld"(): $MinimapWorld
 get "autoWorld"(): $MinimapWorld
+get "currentWorld"(): $MinimapWorld
 get "rootContainers"(): $Iterable<($MinimapWorldRootContainer)>
 get "currentRootContainer"(): $MinimapWorldRootContainer
-get "autoRootContainer"(): $MinimapWorldRootContainer
 get "rootContainersDirect"(): $HashMap<(string), ($MinimapWorldRootContainer)>
 get "customWaypoints"(): $Iterable<($Waypoint)>
+get "autoRootContainer"(): $MinimapWorldRootContainer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2577,14 +2583,14 @@ export class $FilterObjectCategoryData<D extends $FilterObjectCategoryData<(D)>>
 
 public "getExcludeMode"(): $ExcludeListMode
 public "getIncludeListInSuperCategory"(): boolean
+public "getIncludeListIterator"(): $Iterator<(string)>
 public "getExcludeListIterator"(): $Iterator<(string)>
 public "getHardInclude"(): string
-public "getIncludeListIterator"(): $Iterator<(string)>
 get "excludeMode"(): $ExcludeListMode
 get "includeListInSuperCategory"(): boolean
+get "includeListIterator"(): $Iterator<(string)>
 get "excludeListIterator"(): $Iterator<(string)>
 get "hardInclude"(): string
-get "includeListIterator"(): $Iterator<(string)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2606,11 +2612,11 @@ export class $ModuleSession<MS extends $ModuleSession<(MS)>> {
 
 constructor(arg0: $HudMod$Type, arg1: $HudModule$Type<(MS)>)
 
-public "getWidth"(arg0: double): integer
-public "getHeight"(arg0: double): integer
 public "getModule"(): $HudModule<(MS)>
 public "close"(): void
 public "isActive"(): boolean
+public "getWidth"(arg0: double): integer
+public "getHeight"(arg0: double): integer
 public "getEffectiveX"(arg0: integer, arg1: double): integer
 public "getEffectiveY"(arg0: integer, arg1: double): integer
 public "isFlippedHor"(): boolean
@@ -2619,14 +2625,14 @@ public "shouldFlipHorizontally"(arg0: integer, arg1: double): boolean
 public "shouldFlipVertically"(arg0: integer, arg1: double): boolean
 public "prePotentialRender"(): void
 public "onPostGameOverlay"(): void
-public "isCentered"(): boolean
 public "getModMain"(): $HudMod
+public "isCentered"(): boolean
 get "module"(): $HudModule<(MS)>
 get "active"(): boolean
 get "flippedHor"(): boolean
 get "flippedVer"(): boolean
-get "centered"(): boolean
 get "modMain"(): $HudMod
+get "centered"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2653,12 +2659,12 @@ static readonly "WAYPOINT_ADD_PREFIX": string
 static readonly "WAYPOINT_SHARE_PREFIX": string
 
 
-public "shareWaypoint"(arg0: $Screen$Type, arg1: $Waypoint$Type, arg2: $MinimapWorld$Type): void
 public "onWaypointAdd"(arg0: (string)[]): void
 public "onWaypointReceived"(arg0: string, arg1: string): void
-public "handler$cbi000$xaeroplus$shareWaypoint"(parent: $Screen$Type, w: $Waypoint$Type, wWorld: $MinimapWorld$Type, ci: $CallbackInfo$Type): void
+public "shareWaypoint"(arg0: $Screen$Type, arg1: $Waypoint$Type, arg2: $MinimapWorld$Type): void
+public "handler$cbh000$xaeroplus$shareWaypoint"(parent: $Screen$Type, w: $Waypoint$Type, wWorld: $MinimapWorld$Type, ci: $CallbackInfo$Type): void
 public "onShareConfirmationResult"(arg0: boolean): void
-public "handler$cbi000$xaeroplus$mutateWaypointSharingText"(confirm: boolean, ci: $CallbackInfo$Type, containerIdRef: $LocalRef$Type<(any)>): void
+public "handler$cbh000$xaeroplus$mutateWaypointSharingText"(confirm: boolean, ci: $CallbackInfo$Type, containerIdRef: $LocalRef$Type<(any)>): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2711,19 +2717,19 @@ import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 export class $MinimapWorld {
 
 
+public "getNode"(): string
 public "getContainer"(): $MinimapWorldContainer
 public "setNode"(arg0: string): void
-public "getNode"(): string
-public "getWaypointSet"(arg0: string): $WaypointSet
-public "getCurrentWaypointSet"(): $WaypointSet
+public "setContainer"(arg0: $MinimapWorldContainer$Type): void
+public "getRootConfig"(): $RootConfig
+public "getFullPath"(): $XaeroPath
 public "getIterableWaypointSets"(): $Iterable<($WaypointSet)>
 public "getCurrentWaypointSetId"(): string
 public "setCurrentWaypointSetId"(arg0: string): void
-public "getFullPath"(): $XaeroPath
-public "getRootConfig"(): $RootConfig
-public "setContainer"(arg0: $MinimapWorldContainer$Type): void
-public "addWaypointSet"(arg0: string): void
+public "getCurrentWaypointSet"(): $WaypointSet
+public "getWaypointSet"(arg0: string): $WaypointSet
 public "addWaypointSet"(arg0: $WaypointSet$Type): $WaypointSet
+public "addWaypointSet"(arg0: string): void
 public "cleanupOnSave"(arg0: $Path$Type): void
 public "getLocalWorldKey"(): $XaeroPath
 public "removeWaypointSet"(arg0: string): $WaypointSet
@@ -2732,16 +2738,16 @@ public "hasSomethingToRemoveOnSave"(): boolean
 public "getSetCount"(): integer
 public "getDimId"(): $ResourceKey<($Level)>
 public "setDimId"(arg0: $ResourceKey$Type<($Level$Type)>): void
+get "node"(): string
 get "container"(): $MinimapWorldContainer
 set "node"(value: string)
-get "node"(): string
-get "currentWaypointSet"(): $WaypointSet
+set "container"(value: $MinimapWorldContainer$Type)
+get "rootConfig"(): $RootConfig
+get "fullPath"(): $XaeroPath
 get "iterableWaypointSets"(): $Iterable<($WaypointSet)>
 get "currentWaypointSetId"(): string
 set "currentWaypointSetId"(value: string)
-get "fullPath"(): $XaeroPath
-get "rootConfig"(): $RootConfig
-set "container"(value: $MinimapWorldContainer$Type)
+get "currentWaypointSet"(): $WaypointSet
 get "localWorldKey"(): $XaeroPath
 get "setCount"(): integer
 get "dimId"(): $ResourceKey<($Level)>
@@ -2807,15 +2813,15 @@ static readonly "YELLOW": $RadarColor
 static readonly "WHITE": $RadarColor
 
 
+public static "getRandom"(): $RadarColor
 public "getName"(): $Component
 public static "values"(): ($RadarColor)[]
 public static "valueOf"(arg0: string): $RadarColor
 public static "fromIndex"(arg0: integer): $RadarColor
-public static "getRandom"(): $RadarColor
 public "getFormat"(): character
 public "getHex"(): integer
-get "name"(): $Component
 get "random"(): $RadarColor
+get "name"(): $Component
 get "format"(): character
 get "hex"(): integer
 }
@@ -2893,13 +2899,15 @@ export type $MinimapDimensionHelper_ = $MinimapDimensionHelper$Type;
 }}
 declare module "packages/xaero/hud/category/ui/node/options/$EditorOptionNode$Builder" {
 import {$EditorNode$Builder, $EditorNode$Builder$Type} from "packages/xaero/hud/category/ui/node/$EditorNode$Builder"
+import {$EditorOptionNode, $EditorOptionNode$Type} from "packages/xaero/hud/category/ui/node/options/$EditorOptionNode"
 
 export class $EditorOptionNode$Builder<V> extends $EditorNode$Builder<($EditorOptionNode$Builder<(V)>)> {
 
 
+public "build"(): $EditorOptionNode<(V)>
+public "setDefault"(): $EditorOptionNode$Builder<(V)>
 public static "begin"<V>(): $EditorOptionNode$Builder<(V)>
 public "setValue"(arg0: V): $EditorOptionNode$Builder<(V)>
-public "setDefault"(): $EditorOptionNode$Builder<(V)>
 public "setDisplayName"(arg0: string): $EditorOptionNode$Builder<(V)>
 set "value"(value: V)
 set "displayName"(value: string)
@@ -2926,11 +2934,11 @@ export class $EditorOptionNode<V> extends $EditorNode {
 
 constructor(arg0: V, arg1: string, arg2: boolean, arg3: $EditorListRootEntryFactory$Type, arg4: $IEditorDataTooltipSupplier$Type)
 
-public "getValue"(): V
 public "getDisplayName"(): string
+public "getValue"(): V
 public "getSubNodes"(): $List<($EditorNode)>
-get "value"(): V
 get "displayName"(): string
+get "value"(): V
 get "subNodes"(): $List<($EditorNode)>
 }
 /**
@@ -2954,15 +2962,15 @@ export class $InfoDisplayManager {
 
 constructor()
 
+public "getCount"(): integer
 public "add"(arg0: $InfoDisplay$Type<(any)>): void
 public "get"(arg0: string): $InfoDisplay<(any)>
 public "reset"(): void
-public "getCount"(): integer
-public "setOrder"(arg0: $List$Type<(string)>): void
 public "getOrderedStream"(): $Stream<($InfoDisplay<(any)>)>
+public "setOrder"(arg0: $List$Type<(string)>): void
 get "count"(): integer
-set "order"(value: $List$Type<(string)>)
 get "orderedStream"(): $Stream<($InfoDisplay<(any)>)>
+set "order"(value: $List$Type<(string)>)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3073,9 +3081,9 @@ constructor(arg0: $RenderedPlayerTrackerManager$Type)
 
 public "update"(arg0: $Minecraft$Type): void
 public "getElements"(): $Iterable<($PlayerTrackerMinimapElement<(any)>)>
+public "resetRenderedOnRadarFlags"(): void
 public "confirmPlayerRadarRender"(arg0: $Player$Type): void
 public "playerExists"(arg0: $UUID$Type): boolean
-public "resetRenderedOnRadarFlags"(): void
 get "elements"(): $Iterable<($PlayerTrackerMinimapElement<(any)>)>
 }
 /**
@@ -3181,18 +3189,19 @@ import {$Iterable, $Iterable$Type} from "packages/java/lang/$Iterable"
 export class $MinimapWorldContainer {
 
 
+public "getSession"(): $MinimapSession
 public "getName"(arg0: string): string
 public "toString"(): string
 public "isEmpty"(): boolean
 public "setName"(arg0: string, arg1: string): void
 public "getRoot"(): $MinimapWorldRootContainer
 public "getPath"(): $XaeroPath
-public "getSession"(): $MinimapSession
-public "addSubContainer"(arg0: $XaeroPath$Type): $MinimapWorldContainer
-public "getFirstWorld"(): $MinimapWorld
 public "getRootConfig"(): $RootConfig
-public "getSubName"(): string
 public "setPath"(arg0: $XaeroPath$Type): void
+public "getSubName"(): string
+public "getFirstWorld"(): $MinimapWorld
+public "addSubContainer"(arg0: $XaeroPath$Type): $MinimapWorldContainer
+public "getLastNode"(): string
 public "containsSubContainer"(arg0: $XaeroPath$Type): boolean
 public "deleteSubContainer"(arg0: $XaeroPath$Type): boolean
 public "removeWorld"(arg0: string): void
@@ -3204,25 +3213,24 @@ public "getAllWorldsIterable"(): $Iterable<($MinimapWorld)>
 public "fixPathCharacterCases"(arg0: $XaeroPath$Type): $XaeroPath
 public "getDirectoryPath"(): $Path
 public "getServerWaypointManager"(): $ServerWaypointManager
-public "getLastNode"(): string
 public "getWorlds"(): $Iterable<($MinimapWorld)>
-public "removeName"(arg0: string): void
-public "addWorld"(arg0: string): $MinimapWorld
 public "addWorld"(arg0: $MinimapWorld$Type): void
+public "addWorld"(arg0: string): $MinimapWorld
+public "removeName"(arg0: string): void
+get "session"(): $MinimapSession
 get "empty"(): boolean
 get "root"(): $MinimapWorldRootContainer
 get "path"(): $XaeroPath
-get "session"(): $MinimapSession
-get "firstWorld"(): $MinimapWorld
 get "rootConfig"(): $RootConfig
-get "subName"(): string
 set "path"(value: $XaeroPath$Type)
+get "subName"(): string
+get "firstWorld"(): $MinimapWorld
+get "lastNode"(): string
 get "worldsCopy"(): $List<($MinimapWorld)>
 get "subContainers"(): $Iterable<($MinimapWorldContainer)>
 get "allWorldsIterable"(): $Iterable<($MinimapWorld)>
 get "directoryPath"(): $Path
 get "serverWaypointManager"(): $ServerWaypointManager
-get "lastNode"(): string
 get "worlds"(): $Iterable<($MinimapWorld)>
 }
 /**
@@ -3247,9 +3255,9 @@ export class $ObjectCategory$Builder<C extends $ObjectCategory<(any), (C)>, B ex
 
 constructor(arg0: $ListFactory$Type, arg1: $MapFactory$Type)
 
-public "setName"(arg0: string): B
-public "setDefault"(): B
 public "build"(): C
+public "setDefault"(): B
+public "setName"(arg0: string): B
 public "setSuperCategory"(arg0: C): B
 public "setSettingValue"<T>(arg0: $ObjectCategorySetting$Type<(T)>, arg1: T): B
 public "setProtection"(arg0: boolean): B
@@ -3281,20 +3289,20 @@ import {$GuiCategoryEditor$SettingRowList, $GuiCategoryEditor$SettingRowList$Typ
 export class $EditorCategoryNode<C extends $ObjectCategory<(any), (C)>, SD extends $EditorSettingsNode<(any)>, ED extends $EditorCategoryNode<(C), (SD), (ED)>> extends $EditorNode {
 
 
-public "getName"(): string
 public "getDisplayName"(): string
+public "getName"(): string
 public "getMoveAction"(arg0: integer, arg1: integer, arg2: $GuiCategoryEditor$SettingRowList$Type<>): $Supplier<(boolean)>
+public "getSubCategories"(): $List<(ED)>
+public "removeProtectionRecursive"(): void
 public "getSettingsNode"(): SD
-public "getDuplicateAction"(arg0: integer, arg1: $GuiCategoryEditor$SettingRowList$Type<>): $Supplier<(boolean)>
 public "getCutAction"(arg0: ED, arg1: $GuiCategoryEditor$SettingRowList$Type<>): $Supplier<(boolean)>
 public "getPasteAction"(arg0: $GuiCategoryEditor$SettingRowList$Type<>): $Supplier<(boolean)>
-public "removeProtectionRecursive"(): void
-public "getSubCategories"(): $List<(ED)>
+public "getDuplicateAction"(arg0: integer, arg1: $GuiCategoryEditor$SettingRowList$Type<>): $Supplier<(boolean)>
 public "getSubNodes"(): $List<($EditorNode)>
-get "name"(): string
 get "displayName"(): string
-get "settingsNode"(): SD
+get "name"(): string
 get "subCategories"(): $List<(ED)>
+get "settingsNode"(): SD
 get "subNodes"(): $List<($EditorNode)>
 }
 /**
@@ -3322,8 +3330,8 @@ export interface $IRadarIconFormPrerenderer {
 
  "requiresEntityModel"(): boolean
  "isFlipped"(): boolean
- "isOutlined"(): boolean
  "prerender"<T extends $Entity>(arg0: $GuiGraphics$Type, arg1: $EntityRenderer$Type<(any)>, arg2: $EntityModel$Type<(T)>, arg3: T, arg4: $List$Type<($ModelRenderTrace$Type)>, arg5: $RadarIconCreator$Parameters$Type): boolean
+ "isOutlined"(): boolean
 }
 
 export namespace $IRadarIconFormPrerenderer {
@@ -3510,17 +3518,17 @@ export class $ObjectCategory<D extends $ObjectCategoryData<(D)>, C extends $Obje
 
 
 public "getName"(): string
-public "getDirectSubCategoryIterator"(): $Iterator<(C)>
-public "getSettingOverridesIterator"(): $Iterator<($Map$Entry<($ObjectCategorySetting<(any)>), (any)>)>
 public "getSuperCategory"(): C
 public "getSettingValue"<T>(arg0: $ObjectCategorySetting$Type<(T)>): T
 public "setSettingValue"<T>(arg0: $ObjectCategorySetting$Type<(T)>, arg1: T): void
 public "getProtection"(): boolean
+public "getDirectSubCategoryIterator"(): $Iterator<(C)>
+public "getSettingOverridesIterator"(): $Iterator<($Map$Entry<($ObjectCategorySetting<(any)>), (any)>)>
 get "name"(): string
-get "directSubCategoryIterator"(): $Iterator<(C)>
-get "settingOverridesIterator"(): $Iterator<($Map$Entry<($ObjectCategorySetting<(any)>), (any)>)>
 get "superCategory"(): C
 get "protection"(): boolean
+get "directSubCategoryIterator"(): $Iterator<(C)>
+get "settingOverridesIterator"(): $Iterator<($Map$Entry<($ObjectCategorySetting<(any)>), (any)>)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3537,37 +3545,37 @@ export type $ObjectCategory_<D, C> = $ObjectCategory$Type<(D), (C)>;
 declare module "packages/xaero/hud/category/ui/node/options/text/$EditorTextFieldOptionsNode" {
 import {$EditorOptionNode, $EditorOptionNode$Type} from "packages/xaero/hud/category/ui/node/options/$EditorOptionNode"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$EditorTextField$UpdatedValueConsumer, $EditorTextField$UpdatedValueConsumer$Type} from "packages/xaero/hud/category/ui/entry/widget/$EditorTextField$UpdatedValueConsumer"
 import {$EditorNode, $EditorNode$Type} from "packages/xaero/hud/category/ui/node/$EditorNode"
+import {$EditorTextField$UpdatedValueConsumer, $EditorTextField$UpdatedValueConsumer$Type} from "packages/xaero/hud/category/ui/entry/widget/$EditorTextField$UpdatedValueConsumer"
 import {$EditorExpandingOptionsNode, $EditorExpandingOptionsNode$Type} from "packages/xaero/hud/category/ui/node/options/$EditorExpandingOptionsNode"
 
 export class $EditorTextFieldOptionsNode extends $EditorExpandingOptionsNode<(string)> {
 
 
+public "getInput"(): string
 public "getDisplayName"(): string
 public "getResult"(): string
-public "getInput"(): string
-public "getCursorPos"(): integer
 public "setExpanded"(arg0: boolean): void
+public "getCursorPos"(): integer
 public "getCurrentValue"(): $EditorOptionNode<(string)>
 public "setCurrentValue"(arg0: $EditorOptionNode$Type<(string)>): void
 public "getMaxLength"(): integer
-public "getUpdatedValueConsumer"(): $EditorTextField$UpdatedValueConsumer
-public "getHighlightPos"(): integer
 public "getSubNodes"(): $List<($EditorNode)>
+public "getHighlightPos"(): integer
+public "getUpdatedValueConsumer"(): $EditorTextField$UpdatedValueConsumer
 public "onSelected"(arg0: $EditorOptionNode$Type<(string)>): boolean
 public "resetInput"(arg0: string): void
+get "input"(): string
 get "displayName"(): string
 get "result"(): string
-get "input"(): string
-get "cursorPos"(): integer
 set "expanded"(value: boolean)
+get "cursorPos"(): integer
 get "currentValue"(): $EditorOptionNode<(string)>
 set "currentValue"(value: $EditorOptionNode$Type<(string)>)
 get "maxLength"(): integer
-get "updatedValueConsumer"(): $EditorTextField$UpdatedValueConsumer
-get "highlightPos"(): integer
 get "subNodes"(): $List<($EditorNode)>
+get "highlightPos"(): integer
+get "updatedValueConsumer"(): $EditorTextField$UpdatedValueConsumer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3684,32 +3692,32 @@ export class $HudModule<MS extends $ModuleSession<(MS)>> {
 
 constructor(arg0: $ResourceLocation$Type, arg1: $Component$Type, arg2: $TriFunction$Type<($HudMod$Type), ($HudModule$Type<(MS)>), ($ClientPacketListener$Type), (MS)>, arg3: $Supplier$Type<($IModuleRenderer$Type<(MS)>)>, arg4: $Function$Type<($Screen$Type), ($Screen$Type)>)
 
+public "getDisplayName"(): $Component
 public "getId"(): $ResourceLocation
 public "isActive"(): boolean
-public "getDisplayName"(): $Component
-public "getRenderer"(): $IModuleRenderer<(MS)>
-public "getUsedTransform"(): $ModuleTransform
-public "setTransform"(arg0: $ModuleTransform$Type): void
 public "getCurrentSession"(): MS
+public "setTransform"(arg0: $ModuleTransform$Type): void
+public "getUsedTransform"(): $ModuleTransform
+public "getRenderer"(): $IModuleRenderer<(MS)>
 public "setActive"(arg0: boolean): void
+public "getPushState"(): $PushboxHandler$State
+public "getConfirmedTransform"(): $ModuleTransform
 public "getUnconfirmedTransform"(): $ModuleTransform
 public "cancelTransform"(): void
 public "confirmTransform"(): void
 public "getConfigScreenFactory"(): $Function<($Screen), ($Screen)>
-public "getPushState"(): $PushboxHandler$State
-public "getConfirmedTransform"(): $ModuleTransform
+get "displayName"(): $Component
 get "id"(): $ResourceLocation
 get "active"(): boolean
-get "displayName"(): $Component
-get "renderer"(): $IModuleRenderer<(MS)>
-get "usedTransform"(): $ModuleTransform
-set "transform"(value: $ModuleTransform$Type)
 get "currentSession"(): MS
+set "transform"(value: $ModuleTransform$Type)
+get "usedTransform"(): $ModuleTransform
+get "renderer"(): $IModuleRenderer<(MS)>
 set "active"(value: boolean)
-get "unconfirmedTransform"(): $ModuleTransform
-get "configScreenFactory"(): $Function<($Screen), ($Screen)>
 get "pushState"(): $PushboxHandler$State
 get "confirmedTransform"(): $ModuleTransform
+get "unconfirmedTransform"(): $ModuleTransform
+get "configScreenFactory"(): $Function<($Screen), ($Screen)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3726,12 +3734,14 @@ export type $HudModule_<MS> = $HudModule$Type<(MS)>;
 declare module "packages/xaero/hud/category/ui/node/options/$EditorExpandingOptionsNode$Builder" {
 import {$EditorOptionNode$Builder, $EditorOptionNode$Builder$Type} from "packages/xaero/hud/category/ui/node/options/$EditorOptionNode$Builder"
 import {$EditorOptionsNode$Builder, $EditorOptionsNode$Builder$Type} from "packages/xaero/hud/category/ui/node/options/$EditorOptionsNode$Builder"
+import {$EditorExpandingOptionsNode, $EditorExpandingOptionsNode$Type} from "packages/xaero/hud/category/ui/node/options/$EditorExpandingOptionsNode"
 
 export class $EditorExpandingOptionsNode$Builder<V, B extends $EditorExpandingOptionsNode$Builder<(V), (B)>> extends $EditorOptionsNode$Builder<(V), (B)> {
 
 
-public "addOptionBuilderFor"(arg0: V): B
+public "build"(): $EditorExpandingOptionsNode<(V)>
 public "addOptionBuilder"(arg0: $EditorOptionNode$Builder$Type<(V)>): B
+public "addOptionBuilderFor"(arg0: V): B
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3831,11 +3841,11 @@ export class $RadarIconForm {
 constructor(arg0: $RadarIconFormType$Type)
 
 public "getType"(): $RadarIconFormType
-public "getFailureResult"(): $XaeroIcon
 public "getPrerenderer"(): $IRadarIconFormPrerenderer
+public "getFailureResult"(): $XaeroIcon
 get "type"(): $RadarIconFormType
-get "failureResult"(): $XaeroIcon
 get "prerenderer"(): $IRadarIconFormPrerenderer
+get "failureResult"(): $XaeroIcon
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3861,49 +3871,49 @@ export class $EditorListEntry {
 
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: $GuiCategoryEditor$SettingRowList$Type<>, arg6: $Supplier$Type<($CursorBox$Type)>)
 
-public "getMessage"(): string
 public "tick"(): void
-public "keyReleased"(arg0: integer, arg1: integer, arg2: integer): boolean
-public "getNarrationMessage"(): string
+public "getMessage"(): string
 public "mouseClicked"(arg0: $GuiCategoryEditor$SettingRowList$Entry$Type<>, arg1: double, arg2: double, arg3: integer): boolean
 public "mouseReleased"(arg0: double, arg1: double, arg2: integer): boolean
 public "mouseScrolled"(arg0: double, arg1: double, arg2: double): boolean
 public "mouseDragged"(arg0: double, arg1: double, arg2: integer, arg3: double, arg4: double): boolean
+public "keyReleased"(arg0: integer, arg1: integer, arg2: integer): boolean
+public "getNarrationMessage"(): string
 public "render"(arg0: $GuiGraphics$Type, arg1: integer, arg2: integer, arg3: integer, arg4: integer, arg5: integer, arg6: boolean, arg7: float, arg8: $Font$Type, arg9: integer, arg10: integer, arg11: boolean, arg12: boolean): $EditorListEntry
+public "getTooltipSupplier"(): $Supplier<($CursorBox)>
+public "confirmSelection"(): $EditorListEntry
 public "isHoveredOver"(arg0: double, arg1: double): boolean
 public "unfocusRecursively"(): void
-public "confirmSelection"(): $EditorListEntry
-public "getSubNarration"(): string
-public "getSelectedNarration"(): string
+public "withSubEntry"(arg0: $EditorListEntry$Type): $EditorListEntry
+public "getEntryRelativeX"(): integer
+public "getEntryRelativeY"(): integer
+public "focusLastRecursively"(): void
+public "focusFirstRecursively"(): void
 public "getHoveredNarration"(): string
 public "getHoverNarration"(): string
 public "getNarration"(): string
 public "unhoverRecursively"(): void
-public "focusLastRecursively"(): void
-public "focusFirstRecursively"(): void
-public "withSubEntry"(arg0: $EditorListEntry$Type): $EditorListEntry
-public "getEntryRelativeX"(): integer
-public "getEntryRelativeY"(): integer
-public "getTooltipSupplier"(): $Supplier<($CursorBox)>
+public "getSubNarration"(): string
+public "getSelectedNarration"(): string
 public "preRender"(arg0: $GuiGraphics$Type, arg1: boolean, arg2: boolean): void
-public "keyPressed"(arg0: integer, arg1: integer, arg2: integer, arg3: boolean): boolean
-public "charTyped"(arg0: character, arg1: integer): boolean
-public "onSelected"(): $EditorListEntry
 public "mouseMoved"(arg0: double, arg1: double): void
 public "setFocused"(arg0: boolean): void
+public "onSelected"(): $EditorListEntry
+public "keyPressed"(arg0: integer, arg1: integer, arg2: integer, arg3: boolean): boolean
+public "charTyped"(arg0: character, arg1: integer): boolean
 public "postRender"(arg0: $GuiGraphics$Type): void
 public "moveFocus"(arg0: integer): boolean
 public "moveFocus"(arg0: integer, arg1: boolean): boolean
 get "message"(): string
 get "narrationMessage"(): string
-get "subNarration"(): string
-get "selectedNarration"(): string
+get "tooltipSupplier"(): $Supplier<($CursorBox)>
+get "entryRelativeX"(): integer
+get "entryRelativeY"(): integer
 get "hoveredNarration"(): string
 get "hoverNarration"(): string
 get "narration"(): string
-get "entryRelativeX"(): integer
-get "entryRelativeY"(): integer
-get "tooltipSupplier"(): $Supplier<($CursorBox)>
+get "subNarration"(): string
+get "selectedNarration"(): string
 set "focused"(value: boolean)
 }
 /**
@@ -3956,17 +3966,16 @@ import {$EditorSimpleButtonNode, $EditorSimpleButtonNode$Type} from "packages/xa
 export class $EditorSimpleButtonNode$Builder extends $EditorNode$Builder<($EditorSimpleButtonNode$Builder)> {
 
 
-public static "begin"(): $EditorSimpleButtonNode$Builder
-public "setDefault"(): $EditorSimpleButtonNode$Builder
 public "build"(): $EditorSimpleButtonNode
-public "setCallback"(arg0: $EditorSimpleButtonNode$ISimpleButtonCallback$Type): $EditorSimpleButtonNode$Builder
+public static "begin"(): $EditorSimpleButtonNode$Builder
 public "setDisplayName"(arg0: string): $EditorSimpleButtonNode$Builder
-public "setMessageSupplier"(arg0: $EditorSimpleButtonNode$ISimpleButtonMessageSupplier$Type): $EditorSimpleButtonNode$Builder
+public "setCallback"(arg0: $EditorSimpleButtonNode$ISimpleButtonCallback$Type): $EditorSimpleButtonNode$Builder
 public "setIsActiveSupplier"(arg0: $EditorSimpleButtonNode$ISimpleButtonIsActiveSupplier$Type): $EditorSimpleButtonNode$Builder
-set "callback"(value: $EditorSimpleButtonNode$ISimpleButtonCallback$Type)
+public "setMessageSupplier"(arg0: $EditorSimpleButtonNode$ISimpleButtonMessageSupplier$Type): $EditorSimpleButtonNode$Builder
 set "displayName"(value: string)
-set "messageSupplier"(value: $EditorSimpleButtonNode$ISimpleButtonMessageSupplier$Type)
+set "callback"(value: $EditorSimpleButtonNode$ISimpleButtonCallback$Type)
 set "isActiveSupplier"(value: $EditorSimpleButtonNode$ISimpleButtonIsActiveSupplier$Type)
+set "messageSupplier"(value: $EditorSimpleButtonNode$ISimpleButtonMessageSupplier$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3994,16 +4003,16 @@ public "init"(): void
 public "save"(): void
 public "getRootCategory"(): $EntityRadarCategory
 public "getDefaultCategoryConfigurator"(): $EntityRadarDefaultCategories
+public "getRuleResolver"(): $ObjectCategoryRuleResolver
 public "setRootCategory"(arg0: $EntityRadarCategory$Type): void
 public "getSecondaryFilePath"(): $Path
 public "getSecondaryFileIO"(): $EntityRadarCategoryFileIO
-public "getRuleResolver"(): $ObjectCategoryRuleResolver
 get "rootCategory"(): $EntityRadarCategory
 get "defaultCategoryConfigurator"(): $EntityRadarDefaultCategories
+get "ruleResolver"(): $ObjectCategoryRuleResolver
 set "rootCategory"(value: $EntityRadarCategory$Type)
 get "secondaryFilePath"(): $Path
 get "secondaryFileIO"(): $EntityRadarCategoryFileIO
-get "ruleResolver"(): $ObjectCategoryRuleResolver
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4050,10 +4059,10 @@ export class $MinimapWorldConnectionManager {
 
 public "isEmpty"(): boolean
 public "save"(arg0: $PrintWriter$Type): void
+public "isConnected"(arg0: $MinimapWorld$Type, arg1: $MinimapWorld$Type): boolean
 public "removeConnection"(arg0: $MinimapWorld$Type, arg1: $MinimapWorld$Type): void
 public "addConnection"(arg0: $XaeroPath$Type, arg1: $XaeroPath$Type): void
 public "addConnection"(arg0: $MinimapWorld$Type, arg1: $MinimapWorld$Type): void
-public "isConnected"(arg0: $MinimapWorld$Type, arg1: $MinimapWorld$Type): boolean
 public "swapConnections"(arg0: $MinimapWorld$Type, arg1: $MinimapWorld$Type): void
 public "renameDimension"(arg0: string, arg1: string): void
 get "empty"(): boolean
@@ -4109,18 +4118,18 @@ export class $MinimapElementRenderer<E, RC> implements $Comparable<($MinimapElem
 
 constructor(arg0: $MinimapElementReader$Type<(E), (RC)>, arg1: $MinimapElementRenderProvider$Type<(E), (RC)>, arg2: RC)
 
+public "getProvider"(): $MinimapElementRenderProvider<(E), (RC)>
 public "compareTo"(arg0: $MinimapElementRenderer$Type<(any), (any)>): integer
 public "getContext"(): RC
 public "getOrder"(): integer
-public "getProvider"(): $MinimapElementRenderProvider<(E), (RC)>
+public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
 public "getElementReader"(): $MinimapElementReader<(E), (RC)>
 public "renderElement"(arg0: E, arg1: boolean, arg2: boolean, arg3: double, arg4: float, arg5: double, arg6: double, arg7: $MinimapElementRenderInfo$Type, arg8: $GuiGraphics$Type, arg9: $MultiBufferSource$BufferSource$Type): boolean
-public "shouldRender"(arg0: $MinimapElementRenderLocation$Type): boolean
 public "preRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
 public "postRender"(arg0: $MinimapElementRenderInfo$Type, arg1: $MultiBufferSource$BufferSource$Type, arg2: $MultiTextureRenderTypeRendererProvider$Type): void
+get "provider"(): $MinimapElementRenderProvider<(E), (RC)>
 get "context"(): RC
 get "order"(): integer
-get "provider"(): $MinimapElementRenderProvider<(E), (RC)>
 get "elementReader"(): $MinimapElementReader<(E), (RC)>
 }
 /**
@@ -4166,8 +4175,8 @@ import {$EditorTextFieldOptionsNode, $EditorTextFieldOptionsNode$Type} from "pac
 export class $EditorAdderNode extends $EditorNode {
 
 
-public "reset"(): void
 public "getDisplayName"(): string
+public "reset"(): void
 public "setExpanded"(arg0: boolean): void
 public "getNameField"(): $EditorTextFieldOptionsNode
 public "isConfirmed"(): boolean
@@ -4279,26 +4288,26 @@ import {$CursorBox, $CursorBox$Type} from "packages/xaero/common/graphics/$Curso
 export class $ObjectCategorySetting<T> {
 
 
+public "getDisplayName"(): string
 public "getId"(): string
 public "getDefaultValue"(): T
-public "getDisplayName"(): string
-public "getUiLastOption"(): integer
 public "getUiFirstOption"(): integer
-public "getTooltip"(): $CursorBox
-public "getSettingUIType"(): $EditorSettingType
+public "getUiLastOption"(): integer
 public "getIndexWriter"(): $Function<(T), (integer)>
 public "getWidgetValueNameProvider"(): $Function<(T), (string)>
 public "getIndexReader"(): $IntFunction<(T)>
+public "getSettingUIType"(): $EditorSettingType
+public "getTooltip"(): $CursorBox
+get "displayName"(): string
 get "id"(): string
 get "defaultValue"(): T
-get "displayName"(): string
-get "uiLastOption"(): integer
 get "uiFirstOption"(): integer
-get "tooltip"(): $CursorBox
-get "settingUIType"(): $EditorSettingType
+get "uiLastOption"(): integer
 get "indexWriter"(): $Function<(T), (integer)>
 get "widgetValueNameProvider"(): $Function<(T), (string)>
 get "indexReader"(): $IntFunction<(T)>
+get "settingUIType"(): $EditorSettingType
+get "tooltip"(): $CursorBox
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4355,10 +4364,10 @@ constructor(arg0: $RadarIconCreator$Type)
 
 public "get"<T extends $Entity>(arg0: T, arg1: float, arg2: boolean, arg3: boolean, arg4: $GuiGraphics$Type, arg5: $RenderTarget$Type): $XaeroIcon
 public "reset"(): void
-public "allowPrerender"(): void
-public "resetResources"(): void
 public "onModelRenderTrace"(arg0: $EntityModel$Type<(any)>, arg1: $VertexConsumer$Type, arg2: float, arg3: float, arg4: float, arg5: float): void
 public "onModelPartRenderTrace"(arg0: $ModelPart$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
+public "resetResources"(): void
+public "allowPrerender"(): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4416,8 +4425,8 @@ constructor(arg0: $EntityModel$Type<(any)>, arg1: $ResourceLocation$Type, arg2: 
 
 public "toString"(): string
 public "isEmpty"(): boolean
-public "addVisibleModelPart"(arg0: $ModelPart$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
 public "sameVisibility"(arg0: $ModelRenderTrace$Type): boolean
+public "addVisibleModelPart"(arg0: $ModelPart$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
 public "getModelPartRenderInfo"(arg0: $ModelPart$Type): $ModelPartRenderTrace
 get "empty"(): boolean
 }
@@ -4526,27 +4535,27 @@ constructor()
 
 public "construct"(arg0: $ResourceLocation$Type): void
 public "getEntityId"(): $ResourceLocation
-public "getVariantIdBuilderMethodString"(): string
 public "getOldVariantIdMethodString"(): string
+public "getVariantIdBuilderMethodString"(): string
+public "getVariantIdBuilderMethod"(): $Method
+public "setVariantIdBuilderMethod"(arg0: $Method$Type): void
+public "getOldVariantIdMethod"(): $Method
+public "setOldVariantIdMethod"(arg0: $Method$Type): void
 public "getVariantForm"(arg0: string): $RadarIconForm
 public "getModelConfig"(arg0: integer): $RadarIconModelConfig
-public "setOldVariantIdMethod"(arg0: $Method$Type): void
-public "getOldVariantIdMethod"(): $Method
-public "setVariantIdBuilderMethod"(arg0: $Method$Type): void
-public "getVariantIdBuilderMethod"(): $Method
-public "setVariantMethod"(arg0: $Method$Type): void
 public "getVariantMethod"(): $Method
 public "getVariantMethodString"(): string
+public "setVariantMethod"(arg0: $Method$Type): void
 get "entityId"(): $ResourceLocation
-get "variantIdBuilderMethodString"(): string
 get "oldVariantIdMethodString"(): string
-set "oldVariantIdMethod"(value: $Method$Type)
-get "oldVariantIdMethod"(): $Method
-set "variantIdBuilderMethod"(value: $Method$Type)
+get "variantIdBuilderMethodString"(): string
 get "variantIdBuilderMethod"(): $Method
-set "variantMethod"(value: $Method$Type)
+set "variantIdBuilderMethod"(value: $Method$Type)
+get "oldVariantIdMethod"(): $Method
+set "oldVariantIdMethod"(value: $Method$Type)
 get "variantMethod"(): $Method
 get "variantMethodString"(): string
+set "variantMethod"(value: $Method$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4575,23 +4584,23 @@ public "getName"(): $Component
 public "getId"(): string
 public "getState"(): T
 public "reset"(): void
-public "getDefaultState"(): T
-public "getTextColor"(): integer
-public "createWidget"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $AbstractWidget
+public "getBackgroundColor"(): integer
 public "setBackgroundColor"(arg0: integer): void
 public "setTextColor"(arg0: integer): void
-public "getBackgroundColor"(): integer
+public "createWidget"(arg0: integer, arg1: integer, arg2: integer, arg3: integer): $AbstractWidget
+public "getTextColor"(): integer
+public "getDefaultState"(): T
 public "getCodec"(): $InfoDisplayStateCodec<(T)>
 set "state"(value: T)
 get "compiler"(): $InfoDisplayOnCompile<(T)>
 get "name"(): $Component
 get "id"(): string
 get "state"(): T
-get "defaultState"(): T
-get "textColor"(): integer
+get "backgroundColor"(): integer
 set "backgroundColor"(value: integer)
 set "textColor"(value: integer)
-get "backgroundColor"(): integer
+get "textColor"(): integer
+get "defaultState"(): T
 get "codec"(): $InfoDisplayStateCodec<(T)>
 }
 /**
@@ -4621,10 +4630,10 @@ public "hasNext"(arg0: $MinimapElementRenderLocation$Type, arg1: $RadarRenderCon
 public "end"(arg0: $MinimapElementRenderLocation$Type, arg1: $RadarRenderContext$Type): void
 public "begin"(arg0: $MinimapElementRenderLocation$Type, arg1: $RadarRenderContext$Type): void
 public "getNext"(arg0: $MinimapElementRenderLocation$Type, arg1: $RadarRenderContext$Type): $Entity
-public "isUsed"(): boolean
+public "setupContextAndGetNext"(arg0: $MinimapElementRenderLocation$Type, arg1: $RadarRenderContext$Type): $Entity
 public "setupContextForCategory"(arg0: $EntityRadarCategory$Type, arg1: $RadarRenderContext$Type): void
 public "setupContextForEntity"(arg0: $Entity$Type, arg1: $RadarRenderContext$Type): void
-public "setupContextAndGetNext"(arg0: $MinimapElementRenderLocation$Type, arg1: $RadarRenderContext$Type): $Entity
+public "isUsed"(): boolean
 get "used"(): boolean
 }
 /**
@@ -4710,8 +4719,8 @@ import {$HudMod, $HudMod$Type} from "packages/xaero/common/$HudMod"
 import {$MinimapWorldManager, $MinimapWorldManager$Type} from "packages/xaero/hud/minimap/world/$MinimapWorldManager"
 import {$HudModule, $HudModule$Type} from "packages/xaero/hud/module/$HudModule"
 import {$MinimapWorldStateUpdater, $MinimapWorldStateUpdater$Type} from "packages/xaero/hud/minimap/world/state/$MinimapWorldStateUpdater"
-import {$MinimapProcessor, $MinimapProcessor$Type} from "packages/xaero/common/minimap/$MinimapProcessor"
 import {$MinimapWorldState, $MinimapWorldState$Type} from "packages/xaero/hud/minimap/world/state/$MinimapWorldState"
+import {$MinimapProcessor, $MinimapProcessor$Type} from "packages/xaero/common/minimap/$MinimapProcessor"
 import {$ModuleSession, $ModuleSession$Type} from "packages/xaero/hud/module/$ModuleSession"
 import {$Minecraft, $Minecraft$Type} from "packages/net/minecraft/client/$Minecraft"
 import {$MinimapDimensionHelper, $MinimapDimensionHelper$Type} from "packages/xaero/hud/minimap/world/$MinimapDimensionHelper"
@@ -4723,37 +4732,37 @@ export class $MinimapSession extends $ModuleSession<($MinimapSession)> {
 
 constructor(arg0: $HudMod$Type, arg1: $HudModule$Type<($MinimapSession$Type)>, arg2: $ClientPacketListener$Type)
 
-public "getWidth"(arg0: double): integer
-public "getHeight"(arg0: double): integer
 public "close"(): void
 public "isActive"(): boolean
-public "getMultiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
-public "getProcessor"(): $MinimapProcessor
-public "getConfiguredWidth"(): integer
+public "getWidth"(arg0: double): integer
+public "getHeight"(arg0: double): integer
+public "getWaypointSession"(): $WaypointSession
+public "getWorldStateUpdater"(): $MinimapWorldStateUpdater
+public "getRadarSession"(): $RadarSession
+public "getWorldManager"(): $MinimapWorldManager
 public "prePotentialRender"(): void
+public "getConfiguredWidth"(): integer
 public "getHideMinimapUnderScreen"(): boolean
 public "getHideMinimapUnderF3"(): boolean
 public "getWorldState"(): $MinimapWorldState
-public "getWorldManagerIO"(): $MinimapWorldManagerIO
 public "getDimensionHelper"(): $MinimapDimensionHelper
-public "getWorldManager"(): $MinimapWorldManager
-public "getWorldStateUpdater"(): $MinimapWorldStateUpdater
-public "getRadarSession"(): $RadarSession
-public "getWaypointSession"(): $WaypointSession
+public "getWorldManagerIO"(): $MinimapWorldManagerIO
+public "getProcessor"(): $MinimapProcessor
+public "getMultiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
 public "getMc"(): $Minecraft
 get "active"(): boolean
-get "multiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
-get "processor"(): $MinimapProcessor
+get "waypointSession"(): $WaypointSession
+get "worldStateUpdater"(): $MinimapWorldStateUpdater
+get "radarSession"(): $RadarSession
+get "worldManager"(): $MinimapWorldManager
 get "configuredWidth"(): integer
 get "hideMinimapUnderScreen"(): boolean
 get "hideMinimapUnderF3"(): boolean
 get "worldState"(): $MinimapWorldState
-get "worldManagerIO"(): $MinimapWorldManagerIO
 get "dimensionHelper"(): $MinimapDimensionHelper
-get "worldManager"(): $MinimapWorldManager
-get "worldStateUpdater"(): $MinimapWorldStateUpdater
-get "radarSession"(): $RadarSession
-get "waypointSession"(): $WaypointSession
+get "worldManagerIO"(): $MinimapWorldManagerIO
+get "processor"(): $MinimapProcessor
+get "multiTextureRenderTypeRenderers"(): $MultiTextureRenderTypeRendererProvider
 get "mc"(): $Minecraft
 }
 /**
@@ -4823,8 +4832,8 @@ export interface $ITrackedPlayerReader<P> {
 
  "getY"(arg0: P): double
  "getId"(arg0: P): $UUID
- "getX"(arg0: P): double
  "getDimension"(arg0: P): $ResourceKey<($Level)>
+ "getX"(arg0: P): double
  "getZ"(arg0: P): double
 }
 
@@ -4859,9 +4868,9 @@ static "TRACING_MODEL_RENDERS": boolean
 constructor()
 
 public "trace"<T extends $Entity>(arg0: $PoseStack$Type, arg1: T, arg2: $EntityRenderer$Type<(any)>): $List<($ModelRenderTrace)>
-public "getEntityRendererModel"<T extends $Entity>(arg0: $EntityRenderer$Type<(any)>): $EntityModel<(T)>
 public "onModelRender"(arg0: $EntityModel$Type<(any)>, arg1: $VertexConsumer$Type, arg2: float, arg3: float, arg4: float, arg5: float): void
 public "onModelPartRender"(arg0: $ModelPart$Type, arg1: float, arg2: float, arg3: float, arg4: float): void
+public "getEntityRendererModel"<T extends $Entity>(arg0: $EntityRenderer$Type<(any)>): $EntityModel<(T)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4990,22 +4999,22 @@ import {$Path, $Path$Type} from "packages/java/nio/file/$Path"
 export class $XaeroPath {
 
 
+public "resolveSibling"(arg0: string): $XaeroPath
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "resolve"(arg0: $XaeroPath$Type): $XaeroPath
 public "resolve"(arg0: string): $XaeroPath
+public "resolve"(arg0: $XaeroPath$Type): $XaeroPath
 public "getParent"(): $XaeroPath
 public static "root"(arg0: string, arg1: boolean): $XaeroPath
 public static "root"(arg0: string): $XaeroPath
 public "getRoot"(): $XaeroPath
-public "resolveSibling"(arg0: string): $XaeroPath
 public "getNodeCount"(): integer
-public "applyToFilePath"(arg0: $Path$Type): $Path
 public "getLastNode"(): string
+public "applyToFilePath"(arg0: $Path$Type): $Path
 public "getSubPath"(arg0: integer): $XaeroPath
-public "isSubOf"(arg0: $XaeroPath$Type): boolean
 public "getAtIndex"(arg0: integer): $XaeroPath
+public "isSubOf"(arg0: $XaeroPath$Type): boolean
 get "parent"(): $XaeroPath
 get "nodeCount"(): integer
 get "lastNode"(): string
@@ -5141,18 +5150,18 @@ constructor(arg0: string, arg1: $BiFunction$Type<(E), (P), (S)>, arg2: $Supplier
 
 public "getId"(): string
 public "getSerializer"(): $Function<(S), (string)>
-public "getGetter"(): $BiFunction<(E), (P), (S)>
+public "getStringValidator"(): $Predicate<(string)>
 public "getAllElementSupplier"(): $Supplier<($Iterable<(S)>)>
 public "getElementResolver"(): $Function<(string), ($List<(S)>)>
 public "getStringFixer"(): $Function<(string), (string)>
-public "getStringValidator"(): $Predicate<(string)>
+public "getGetter"(): $BiFunction<(E), (P), (S)>
 get "id"(): string
 get "serializer"(): $Function<(S), (string)>
-get "getter"(): $BiFunction<(E), (P), (S)>
+get "stringValidator"(): $Predicate<(string)>
 get "allElementSupplier"(): $Supplier<($Iterable<(S)>)>
 get "elementResolver"(): $Function<(string), ($List<(S)>)>
 get "stringFixer"(): $Function<(string), (string)>
-get "stringValidator"(): $Predicate<(string)>
+get "getter"(): $BiFunction<(E), (P), (S)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5199,8 +5208,8 @@ export class $PushboxManager {
 
 constructor()
 
-public "add"(arg0: $PushBox$Type): void
 public "getAll"(): $Iterable<($PushBox)>
+public "add"(arg0: $PushBox$Type): void
 get "all"(): $Iterable<($PushBox)>
 }
 /**
@@ -5272,11 +5281,11 @@ export class $PushBox {
 
 constructor(arg0: integer, arg1: integer, arg2: integer, arg3: integer, arg4: float, arg5: float, arg6: integer)
 
+public "push"(arg0: $PushboxHandler$State$Type, arg1: integer, arg2: integer): void
 public "getY"(arg0: integer, arg1: integer): integer
 public "update"(): void
 public "isActive"(): boolean
 public "getX"(arg0: integer, arg1: integer): integer
-public "push"(arg0: $PushboxHandler$State$Type, arg1: integer, arg2: integer): void
 public "setActive"(arg0: boolean): void
 public "getVerticalBias"(): integer
 public "getW"(arg0: integer, arg1: integer): integer
@@ -5342,17 +5351,18 @@ export class $RootConfig {
 constructor(arg0: boolean)
 
 public "isLoaded"(): boolean
-public "setUsingMultiworldDetection"(arg0: boolean): void
-public "isUsingDefaultTeleportCommand"(): boolean
-public "getServerTeleportCommandRotationFormat"(): string
-public "getServerTeleportCommandFormat"(): string
-public "setUsingDefaultTeleportCommand"(arg0: boolean): void
-public "setServerTeleportCommandFormat"(arg0: string): void
-public "setServerTeleportCommandRotationFormat"(arg0: string): void
+public "isIgnoreHeightmaps"(): boolean
 public "getSortType"(): $WaypointsSort
 public "isTeleportationEnabled"(): boolean
 public "isSortReversed"(): boolean
-public "isIgnoreHeightmaps"(): boolean
+public "setUsingMultiworldDetection"(arg0: boolean): void
+public "isUsingDefaultTeleportCommand"(): boolean
+public "setUsingDefaultTeleportCommand"(arg0: boolean): void
+public "getServerTeleportCommandFormat"(): string
+public "getServerTeleportCommandRotationFormat"(): string
+public "setServerTeleportCommandFormat"(arg0: string): void
+public "setServerTeleportCommandRotationFormat"(arg0: string): void
+public "setIgnoreHeightmaps"(arg0: boolean): void
 public "getSubWorldConnections"(): $MinimapWorldConnectionManager
 public "resetSubWorldConnections"(arg0: boolean): void
 public "isUsingMultiworldDetection"(): boolean
@@ -5365,20 +5375,20 @@ public "setSortReversed"(arg0: boolean): void
 public "toggleSortReversed"(): void
 public "isIgnoreServerLevelId"(): boolean
 public "setIgnoreServerLevelId"(arg0: boolean): void
-public "setIgnoreHeightmaps"(arg0: boolean): void
 public "setLoaded"(arg0: boolean): void
 get "loaded"(): boolean
-set "usingMultiworldDetection"(value: boolean)
-get "usingDefaultTeleportCommand"(): boolean
-get "serverTeleportCommandRotationFormat"(): string
-get "serverTeleportCommandFormat"(): string
-set "usingDefaultTeleportCommand"(value: boolean)
-set "serverTeleportCommandFormat"(value: string)
-set "serverTeleportCommandRotationFormat"(value: string)
+get "ignoreHeightmaps"(): boolean
 get "sortType"(): $WaypointsSort
 get "teleportationEnabled"(): boolean
 get "sortReversed"(): boolean
-get "ignoreHeightmaps"(): boolean
+set "usingMultiworldDetection"(value: boolean)
+get "usingDefaultTeleportCommand"(): boolean
+set "usingDefaultTeleportCommand"(value: boolean)
+get "serverTeleportCommandFormat"(): string
+get "serverTeleportCommandRotationFormat"(): string
+set "serverTeleportCommandFormat"(value: string)
+set "serverTeleportCommandRotationFormat"(value: string)
+set "ignoreHeightmaps"(value: boolean)
 get "subWorldConnections"(): $MinimapWorldConnectionManager
 get "usingMultiworldDetection"(): boolean
 get "defaultMultiworldId"(): string
@@ -5388,7 +5398,6 @@ set "sortType"(value: $WaypointsSort$Type)
 set "sortReversed"(value: boolean)
 get "ignoreServerLevelId"(): boolean
 set "ignoreServerLevelId"(value: boolean)
-set "ignoreHeightmaps"(value: boolean)
 set "loaded"(value: boolean)
 }
 /**
@@ -5417,11 +5426,11 @@ static readonly "SLASH_TELEPORT_ANYWAY_COMMAND": string
 
 constructor(arg0: $HudMod$Type, arg1: $WaypointSession$Type, arg2: $MinimapSession$Type)
 
-public "isWorldTeleportable"(arg0: $MinimapWorld$Type): boolean
-public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $MinimapWorld$Type, arg2: $Screen$Type): void
-public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $MinimapWorld$Type, arg2: $Screen$Type, arg3: boolean): void
-public "teleportAnyway"(): void
 public "canTeleport"(arg0: boolean, arg1: $MinimapWorld$Type): boolean
+public "teleportAnyway"(): void
+public "isWorldTeleportable"(arg0: $MinimapWorld$Type): boolean
+public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $MinimapWorld$Type, arg2: $Screen$Type, arg3: boolean): void
+public "teleportToWaypoint"(arg0: $Waypoint$Type, arg1: $MinimapWorld$Type, arg2: $Screen$Type): void
 public "isTeleportationSafe"(arg0: $MinimapWorld$Type): boolean
 }
 /**
@@ -5475,17 +5484,17 @@ export class $Hud {
 
 constructor(arg0: $ModuleManager$Type, arg1: $PushboxManager$Type, arg2: $HudPresetManager$Type, arg3: $HudEventHandler$Type, arg4: $ModuleSessionHandler$Type, arg5: $OldSystemCompatibility$Type)
 
+public "getSessionHandler"(): $ModuleSessionHandler
+public "getEventHandler"(): $HudEventHandler
 public "getPushboxManager"(): $PushboxManager
 public "getModuleManager"(): $ModuleManager
 public "getPresetManager"(): $HudPresetManager
-public "getEventHandler"(): $HudEventHandler
-public "getSessionHandler"(): $ModuleSessionHandler
 public "getOldSystemCompatibility"(): $OldSystemCompatibility
+get "sessionHandler"(): $ModuleSessionHandler
+get "eventHandler"(): $HudEventHandler
 get "pushboxManager"(): $PushboxManager
 get "moduleManager"(): $ModuleManager
 get "presetManager"(): $HudPresetManager
-get "eventHandler"(): $HudEventHandler
-get "sessionHandler"(): $ModuleSessionHandler
 get "oldSystemCompatibility"(): $OldSystemCompatibility
 }
 /**
@@ -5514,10 +5523,10 @@ export class $KeyMappingControllerManager implements $Iterable<($KeyMappingContr
 constructor()
 
 public "iterator"(): $Iterator<($KeyMappingController)>
-public "registerFunction"(arg0: $KeyMapping$Type, arg1: $KeyMappingFunction$Type): void
+public "getController"(arg0: $KeyMapping$Type): $KeyMappingController
 public "registerController"(arg0: $KeyMapping$Type, arg1: boolean, arg2: $Consumer$Type<($KeyMapping$Type)>): void
 public "registerController"(arg0: $KeyMapping$Type, arg1: boolean): void
-public "getController"(arg0: $KeyMapping$Type): $KeyMappingController
+public "registerFunction"(arg0: $KeyMapping$Type, arg1: $KeyMappingFunction$Type): void
 public "spliterator"(): $Spliterator<($KeyMappingController)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
 [Symbol.iterator](): IterableIterator<$KeyMappingController>;
@@ -5694,13 +5703,13 @@ export class $EditorOptionsNode<V> extends $EditorNode {
 public "getDisplayName"(): string
 public "getCurrentValue"(): $EditorOptionNode<(V)>
 public "setCurrentValue"(arg0: $EditorOptionNode$Type<(V)>): void
-public "getIsActiveSupplier"(): $EditorOptionsNode$IOptionsNodeIsActiveSupplier
 public "getMessageSupplier"(): $Supplier<(string)>
+public "getIsActiveSupplier"(): $EditorOptionsNode$IOptionsNodeIsActiveSupplier
 get "displayName"(): string
 get "currentValue"(): $EditorOptionNode<(V)>
 set "currentValue"(value: $EditorOptionNode$Type<(V)>)
-get "isActiveSupplier"(): $EditorOptionsNode$IOptionsNodeIsActiveSupplier
 get "messageSupplier"(): $Supplier<(string)>
+get "isActiveSupplier"(): $EditorOptionsNode$IOptionsNodeIsActiveSupplier
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

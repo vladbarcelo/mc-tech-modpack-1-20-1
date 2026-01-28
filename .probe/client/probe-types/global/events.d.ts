@@ -7,6 +7,7 @@ import {$ExplosionEventJS$After, $ExplosionEventJS$After$Type} from "packages/de
 import {$PaintScreenEventJS, $PaintScreenEventJS$Type} from "packages/dev/latvian/mods/kubejs/client/painter/screen/$PaintScreenEventJS"
 import {$MenuType, $MenuType$Type} from "packages/net/minecraft/world/inventory/$MenuType"
 import {$WailaClientRegistrationEventJS, $WailaClientRegistrationEventJS$Type} from "packages/pie/ilikepiefoo/compat/jade/$WailaClientRegistrationEventJS"
+import {$ApplyInsulationEventJS, $ApplyInsulationEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$ApplyInsulationEventJS"
 import {$ItemTooltipEventJS, $ItemTooltipEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemTooltipEventJS"
 import {$EntityType, $EntityType$Type} from "packages/net/minecraft/world/entity/$EntityType"
 import {$ItemDestroyedEventJS, $ItemDestroyedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/forge/$ItemDestroyedEventJS"
@@ -22,11 +23,13 @@ import {$BlockRightClickedEventJS, $BlockRightClickedEventJS$Type} from "package
 import {$EntitySpawnedEventJS, $EntitySpawnedEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$EntitySpawnedEventJS"
 import {$RegisterFluidSubtypeEventJS, $RegisterFluidSubtypeEventJS$Type} from "packages/pie/ilikepiefoo/compat/jei/events/$RegisterFluidSubtypeEventJS"
 import {$ItemClickedEventJS, $ItemClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemClickedEventJS"
+import {$TempChangedEventJS, $TempChangedEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$TempChangedEventJS"
 import {$RegisterCategoriesEventJS, $RegisterCategoriesEventJS$Type} from "packages/pie/ilikepiefoo/compat/jei/events/$RegisterCategoriesEventJS"
 import {$BlockLeftClickedEventJS, $BlockLeftClickedEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockLeftClickedEventJS"
 import {$SnippetGenerationEventJS, $SnippetGenerationEventJS$Type} from "packages/moe/wolfgirl/probejs/events/$SnippetGenerationEventJS"
 import {$CheckLivingEntitySpawnEventJS, $CheckLivingEntitySpawnEventJS$Type} from "packages/dev/latvian/mods/kubejs/entity/$CheckLivingEntitySpawnEventJS"
 import {$BlockBrokenEventJS, $BlockBrokenEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$BlockBrokenEventJS"
+import {$AddModifierEventJS, $AddModifierEventJS$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/event/$AddModifierEventJS"
 import {$RegisterCuriosRendererEventJS, $RegisterCuriosRendererEventJS$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/mods/curios/$RegisterCuriosRendererEventJS"
 import {$OnRuntimeAvailableEventJS, $OnRuntimeAvailableEventJS$Type} from "packages/pie/ilikepiefoo/compat/jei/events/$OnRuntimeAvailableEventJS"
 import {$ProxyEventJS, $ProxyEventJS$Type} from "packages/pie/ilikepiefoo/events/$ProxyEventJS"
@@ -39,6 +42,7 @@ import {$TypeAssignmentEventJS, $TypeAssignmentEventJS$Type} from "packages/moe/
 import {$RegisterItemSubtypeEventJS, $RegisterItemSubtypeEventJS$Type} from "packages/pie/ilikepiefoo/compat/jei/events/$RegisterItemSubtypeEventJS"
 import {$ItemSmeltedEventJS, $ItemSmeltedEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/$ItemSmeltedEventJS"
 import {$DetectorBlockEventJS, $DetectorBlockEventJS$Type} from "packages/dev/latvian/mods/kubejs/block/$DetectorBlockEventJS"
+import {$EnchantmentTableTooltipEventJS, $EnchantmentTableTooltipEventJS$Type} from "packages/com/almostreliable/morejs/features/enchantment/$EnchantmentTableTooltipEventJS"
 import {$AddJEIEventJS, $AddJEIEventJS$Type} from "packages/dev/latvian/mods/kubejs/integration/forge/jei/$AddJEIEventJS"
 import {$RegisterRecipeCatalystsEventJS, $RegisterRecipeCatalystsEventJS$Type} from "packages/pie/ilikepiefoo/compat/jei/events/$RegisterRecipeCatalystsEventJS"
 import {$AtlasSpriteRegistryEventJS, $AtlasSpriteRegistryEventJS$Type} from "packages/dev/latvian/mods/kubejs/client/$AtlasSpriteRegistryEventJS"
@@ -63,6 +67,9 @@ import {$LivingEntityDropsEventJS, $LivingEntityDropsEventJS$Type} from "package
 import {$RemoveJEIRecipesEvent, $RemoveJEIRecipesEvent$Type} from "packages/dev/latvian/mods/kubejs/integration/forge/jei/$RemoveJEIRecipesEvent"
 
 declare global {
+export namespace MoreJSEvents {
+function enchantmentTableTooltip(handler: (event: $EnchantmentTableTooltipEventJS) => void): void
+}
 export namespace CuriosEvents {
 function registerRenderer(handler: (event: $RegisterCuriosRendererEventJS) => void): void
 }
@@ -147,6 +154,11 @@ function beforeExplosion(handler: (event: $ExplosionEventJS$Before) => void): vo
 function tick(extra: string, handler: (event: $SimpleLevelEventJS) => void): void
 function tick(handler: (event: $SimpleLevelEventJS) => void): void
 function afterExplosion(handler: (event: $ExplosionEventJS$After) => void): void
+}
+export namespace ColdSweatEvents {
+function applyInsulation(handler: (event: $ApplyInsulationEventJS) => void): void
+function addModifier(handler: (event: $AddModifierEventJS) => void): void
+function temperatureChanged(handler: (event: $TempChangedEventJS) => void): void
 }
 export namespace EntityEvents {
 function spawned(extra: $EntityType$Type, handler: (event: $EntitySpawnedEventJS) => void): void

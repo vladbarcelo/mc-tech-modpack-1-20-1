@@ -92,8 +92,8 @@ import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/s
 import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
-import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
 import {$EnumProperty, $EnumProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$EnumProperty"
 import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
@@ -152,12 +152,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $DyeColor$Type)
 
-public static "dropRopeSupport"(arg0: $BlockPos$Type, arg1: $Direction$Type, arg2: boolean, arg3: $Level$Type): void
-public static "getDirectionToOther"(arg0: $BedPart$Type, arg1: $Direction$Type): $Direction
 public "getBlockEntityType"(): $BlockEntityType<(any)>
-public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public static "getDirectionToOther"(arg0: $BedPart$Type, arg1: $Direction$Type): $Direction
+public static "dropRopeSupport"(arg0: $BlockPos$Type, arg1: $Direction$Type, arg2: boolean, arg3: $Level$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "blockEntityType"(): $BlockEntityType<(any)>
@@ -246,14 +246,14 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -369,12 +369,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BaseComfortsBlock$BedType$Type, arg1: $DyeColor$Type, arg2: $BlockBehaviour$Properties$Type)
 
 public "getBlockEntityType"(): $BlockEntityType<(any)>
-public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public static "trySleep"(arg0: $ServerPlayer$Type, arg1: $BlockPos$Type, arg2: boolean): $Either<($Player$BedSleepingProblem), ($Unit)>
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean

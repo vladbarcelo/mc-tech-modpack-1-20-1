@@ -9,6 +9,21 @@
 			"item": "kubejs:sawblade_sand_cast"
 		},
 		{
+			"item": "kubejs:shovel_blade_sand_cast"
+		},
+		{
+			"item": "kubejs:cooking_pot_sand_cast"
+		},
+		{
+			"item": "kubejs:oil_can_sand_cast"
+		},
+		{
+			"item": "kubejs:bottle_sand_cast"
+		},
+		{
+			"item": "kubejs:large_bottle_sand_cast"
+		},
+		{
 			"item": "tconstruct:blank_sand_cast"
 		},
 		{

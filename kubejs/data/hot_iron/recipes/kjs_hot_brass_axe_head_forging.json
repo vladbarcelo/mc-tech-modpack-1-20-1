@@ -2,9 +2,6 @@
 	"type": "hot_iron:forging",
 	"ingredients": [
 		{
-			"item": "hot_iron:jei_empty_tag"
-		},
-		{
 			"item": "kubejs:hot_brass_ingot"
 		},
 		{
@@ -14,10 +11,13 @@
 			"tag": "hot_iron:jei_empty_tag"
 		},
 		{
+			"item": "kubejs:hot_brass_ingot"
+		},
+		{
 			"tag": "hot_iron:jei_empty_tag"
 		},
 		{
-			"tag": "kubejs:hot_brass_ingot"
+			"tag": "hot_iron:jei_empty_tag"
 		},
 		{
 			"tag": "hot_iron:jei_empty_tag"

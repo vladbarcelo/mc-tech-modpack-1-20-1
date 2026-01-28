@@ -1,4 +1,29 @@
 ServerEvents.recipes((event) => {
+  event.remove({
+    id: 'minecraft:bricks'
+  })
+  event.shaped(
+    Item.of('minecraft:bricks', 4),
+    [
+      'ABA',
+      'BAB',
+      'ABA'
+    ],
+    {
+      A: 'minecraft:brick',
+      B: 'immersive_weathering:mortar'
+    }
+  )
+  event.remove({ id: 'immersive_weathering:mortar' })
+  event.shapeless(
+    Item.of('immersive_weathering:mortar', 16),
+    [
+      'minecraft:water_bucket',
+      'immersive_weathering:sand_layer_block',
+      'minecraft:clay_ball',
+    ]
+  )
+
   // tunnels and funnels
   event.remove({
     id: 'create:crafting/logistics/andesite_funnel'

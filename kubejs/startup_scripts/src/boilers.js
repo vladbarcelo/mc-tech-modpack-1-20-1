@@ -10,6 +10,8 @@
  * Like a change of blockstate in adjacent blocks, breaking/placing, etc.
  * 
  * source: https://kubejs-notes.pages.dev/en-us/example-scripts/KubeJS-Create-Events.html
+ * 
+ * THIS WORKS ONLY FOR BOILERS!
 */
 
 CreateEvents.boilerHeatHandler((event) => {

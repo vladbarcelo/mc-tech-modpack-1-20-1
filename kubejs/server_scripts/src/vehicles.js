@@ -639,7 +639,7 @@ ServerEvents.recipes((event) => {
               "item": tractorFrameInter
             },
             {
-              "item": "tfmg:screwdriver"
+              "item": "tfmg:screw"
             }
           ],
           "results": [
@@ -784,7 +784,7 @@ ServerEvents.recipes((event) => {
               "item": automobileFrameInter
             },
             {
-              "item": "tfmg:screwdriver"
+              "item": "tfmg:screw"
             }
           ],
           "results": [

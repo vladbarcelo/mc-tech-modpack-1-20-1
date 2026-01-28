@@ -69,7 +69,7 @@
     "easyPlaceSwapInterval": 0,
     "pickBlockableSlots": "1,2,3,4,5",
     "toolItem": "minecraft:end_rod",
-    "printingMode": false,
+    "printingMode": true,
     "printingDebug": false,
     "printingInterval": 12,
     "printingRange": 5.0,

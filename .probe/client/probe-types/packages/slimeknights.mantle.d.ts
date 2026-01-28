@@ -37,13 +37,13 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public static "isValidContainer"(arg0: $AbstractContainerMenu$Type): boolean
 public "openLecternScreenClient"(arg0: $BlockPos$Type, arg1: $ItemStack$Type): void
+public static "isValidContainer"(arg0: $AbstractContainerMenu$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "openScreen"(arg0: $Player$Type, arg1: integer, arg2: $ItemStack$Type): void
-public "openScreen"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $ItemStack$Type): void
 public "overrideOtherStackedOnMe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type, arg2: $Slot$Type, arg3: $ClickAction$Type, arg4: $Player$Type, arg5: $SlotAccess$Type): boolean
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
+public "openScreen"(arg0: $Player$Type, arg1: integer, arg2: $ItemStack$Type): void
+public "openScreen"(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $ItemStack$Type): void
 public "getBook"(arg0: $ItemStack$Type): $BookScreenOpener
 }
 /**
@@ -169,8 +169,8 @@ import {$RecordLoadable, $RecordLoadable$Type} from "packages/slimeknights/mantl
 
 export interface $IJsonPredicate<I> extends $GenericLoaderRegistry$IHaveLoader {
 
- "matches"(arg0: I): boolean
  "getLoader"(): $RecordLoadable<(any)>
+ "matches"(arg0: I): boolean
  "inverted"(): $IJsonPredicate<(I)>
 }
 
@@ -474,38 +474,38 @@ public "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type
 public "defaultField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
 public "defaultField"<P>(arg0: string, arg1: boolean, arg2: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
 public "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
-public static "create"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function5$Type<(A), (B), (C), (D), (E), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function7$Type<(A), (B), (C), (D), (E), (F), (G), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function6$Type<(A), (B), (C), (D), (E), (F), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function4$Type<(A), (B), (C), (D), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $BiFunction$Type<(A), (B), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $Function3$Type<(A), (B), (C), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function4$Type<(A), (B), (C), (D), (R)>): $RecordLoadable<(R)>
+public static "create"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $Function$Type<(A), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function8$Type<(A), (B), (C), (D), (E), (F), (G), (H), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function7$Type<(A), (B), (C), (D), (E), (F), (G), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function6$Type<(A), (B), (C), (D), (E), (F), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function5$Type<(A), (B), (C), (D), (E), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $RecordField$Type<(P), (any)>, arg16: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (P), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (R)>): $RecordLoadable<(R)>
-public static "create"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $Function$Type<(A), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $BiFunction$Type<(A), (B), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function6$Type<(A), (B), (C), (D), (E), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function5$Type<(A), (B), (C), (D), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $RecordField$Type<(P), (any)>, arg16: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (P), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (R)>): $RecordLoadable<(R)>
 public static "withLoader"<A, B, C, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $Function4$Type<(A), (B), (C), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $Function3$Type<(A), (B), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $BiFunction$Type<(A), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<R>(arg0: $Function$Type<($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 public static "withLoader"<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function8$Type<(A), (B), (C), (D), (E), (F), (G), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<R>(arg0: $Function$Type<($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $BiFunction$Type<(A), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $Function3$Type<(A), (B), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function5$Type<(A), (B), (C), (D), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 public static "withLoader"<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function7$Type<(A), (B), (C), (D), (E), (F), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function6$Type<(A), (B), (C), (D), (E), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 get "default"(): T
 }
 /**
@@ -541,17 +541,15 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $StringLoadable<T> extends $Loadable<(T)> {
 
- "convert"(arg0: $JsonElement$Type, arg1: string, arg2: $TypedMap$Type): T
- "validate"(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (T)>): $StringLoadable<(T)>
  "getString"(arg0: T): string
- "parseString"(arg0: string, arg1: string): T
  "parseString"(arg0: string, arg1: string, arg2: $TypedMap$Type): T
- "mapWithValues"<V>(arg0: $Loadable$Type<(V)>, arg1: integer): $Loadable<($Map<(T), (V)>)>
+ "parseString"(arg0: string, arg1: string): T
+ "convert"(arg0: $JsonElement$Type, arg1: string, arg2: $TypedMap$Type): T
  "mapWithValues"<V>(arg0: $Loadable$Type<(V)>): $Loadable<($Map<(T), (V)>)>
+ "mapWithValues"<V>(arg0: $Loadable$Type<(V)>, arg1: integer): $Loadable<($Map<(T), (V)>)>
+ "comapFlatMap"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>, arg1: $Function$Type<(M), (T)>): $StringLoadable<(M)>
  "serialize"(arg0: T): $JsonElement
  "xmap"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (T)>): $StringLoadable<(M)>
- "flatComap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (T)>): $StringLoadable<(M)>
- "flatXmap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $Function$Type<(M), (T)>): $StringLoadable<(M)>
  "convert"(arg0: $JsonElement$Type, arg1: string): T
  "list"(arg0: integer): $Loadable<($List<(T)>)>
  "list"(): $Loadable<($List<(T)>)>
@@ -559,10 +557,8 @@ export interface $StringLoadable<T> extends $Loadable<(T)> {
  "array"(arg0: $IntFunction$Type<((T)[])>, arg1: boolean, arg2: integer): $ArrayLoadable<((T)[])>
  "set"(arg0: integer): $Loadable<($Set<(T)>)>
  "set"(): $Loadable<($Set<(T)>)>
- "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
  "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T, arg3: $TypedMap$Type): T
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
+ "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
  "requiredField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
  "nullableField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
  "defaultField"<P>(arg0: string, arg1: T, arg2: boolean, arg3: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
@@ -570,8 +566,10 @@ export interface $StringLoadable<T> extends $Loadable<(T)> {
  "tryDirectField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>, ...arg2: (string)[]): $LoadableField<(T), (P)>
  "mapWithKeys"<K>(arg0: integer, arg1: $Function$Type<(T), (K)>): $Loadable<($Map<(K), (T)>)>
  "mapWithValues"<V>(arg0: integer, arg1: $Function$Type<(T), (V)>): $Loadable<($Map<(T), (V)>)>
- "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
  "deserialize"(arg0: $JsonElement$Type, arg1: $Type$Type, arg2: $JsonDeserializationContext$Type): T
+ "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
  "decode"(arg0: $FriendlyByteBuf$Type, arg1: $TypedMap$Type): T
  "decode"(arg0: $FriendlyByteBuf$Type): T
  "encode"(arg0: $FriendlyByteBuf$Type, arg1: T): void
@@ -721,38 +719,38 @@ constructor(arg0: $ResourceLocation$Type, arg1: $WoodType$Type, arg2: $BuildingB
 
 public "values"(): $List<($Block)>
 public "forEach"(arg0: $Consumer$Type<(any)>): void
+public "getFenceGate"(): $FenceGateBlock
 public "getStrippedLog"(): $Block
-public "getStrippedWood"(): $Block
+public "getWoodType"(): $WoodType
+public "getTrapdoor"(): $TrapDoorBlock
 public "getPressurePlate"(): $PressurePlateBlock
 public "getWallSign"(): $WallSignBlock
 public "getHangingSign"(): $CeilingHangingSignBlock
 public "getWallHangingSign"(): $WallHangingSignBlock
 public "getLogBlockTag"(): $TagKey<($Block)>
 public "getLogItemTag"(): $TagKey<($Item)>
-public "getTrapdoor"(): $TrapDoorBlock
-public "getWoodType"(): $WoodType
-public "getFenceGate"(): $FenceGateBlock
+public "getStrippedWood"(): $Block
 public "getButton"(): $ButtonBlock
 public "getDoor"(): $DoorBlock
 public "getWood"(): $Block
-public "getSign"(): $StandingSignBlock
 public "getLog"(): $Block
+public "getSign"(): $StandingSignBlock
+get "fenceGate"(): $FenceGateBlock
 get "strippedLog"(): $Block
-get "strippedWood"(): $Block
+get "woodType"(): $WoodType
+get "trapdoor"(): $TrapDoorBlock
 get "pressurePlate"(): $PressurePlateBlock
 get "wallSign"(): $WallSignBlock
 get "hangingSign"(): $CeilingHangingSignBlock
 get "wallHangingSign"(): $WallHangingSignBlock
 get "logBlockTag"(): $TagKey<($Block)>
 get "logItemTag"(): $TagKey<($Item)>
-get "trapdoor"(): $TrapDoorBlock
-get "woodType"(): $WoodType
-get "fenceGate"(): $FenceGateBlock
+get "strippedWood"(): $Block
 get "button"(): $ButtonBlock
 get "door"(): $DoorBlock
 get "wood"(): $Block
-get "sign"(): $StandingSignBlock
 get "log"(): $Block
+get "sign"(): $StandingSignBlock
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -841,10 +839,10 @@ constructor(arg0: string)
 
 public "getName"(): string
 public "toString"(): string
-public "mappedField"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>): $RecordField<(M), (any)>
 public "requiredField"(): $RecordField<(T), (any)>
 public "nullableField"(): $RecordField<(T), (any)>
 public "defaultField"(arg0: T): $RecordField<(T), (any)>
+public "mappedField"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>): $RecordField<(M), (any)>
 get "name"(): string
 }
 /**
@@ -899,19 +897,19 @@ import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 export class $FluidBuilder<T extends $FluidBuilder<(T)>> {
 
 
+public "build"(arg0: $Supplier$Type<(any)>, arg1: $Supplier$Type<(any)>, arg2: $Supplier$Type<(any)>): $ForgeFlowingFluid$Properties
 public "getBlock"(): $Supplier<(any)>
 public "getType"(): $Supplier<(any)>
 public static "create"(arg0: $Supplier$Type<(any)>): $FluidBuilder<(any)>
 public "block"(arg0: $Supplier$Type<(any)>): T
-public "build"(arg0: $Supplier$Type<(any)>, arg1: $Supplier$Type<(any)>, arg2: $Supplier$Type<(any)>): $ForgeFlowingFluid$Properties
 public "bucket"(arg0: $Supplier$Type<(any)>): T
-public "getLevelDecreasePerBlock"(): integer
-public "getTickRate"(): integer
-public "getSlopeFindDistance"(): integer
-public "getExplosionResistance"(): float
-public "explosionResistance"(arg0: integer): T
 public "slopeFindDistance"(arg0: integer): T
 public "levelDecreasePerBlock"(arg0: integer): T
+public "getExplosionResistance"(): float
+public "explosionResistance"(arg0: integer): T
+public "getTickRate"(): integer
+public "getSlopeFindDistance"(): integer
+public "getLevelDecreasePerBlock"(): integer
 public "getBucket"(): $Supplier<(any)>
 public "tickRate"(arg0: integer): T
 get "type"(): $Supplier<(any)>
@@ -936,10 +934,10 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $ILecternBookItem {
 
- "openLecternScreen"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $ItemStack$Type): boolean
  "openLecternScreenClient"(arg0: $BlockPos$Type, arg1: $ItemStack$Type): void
+ "openLecternScreen"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $ItemStack$Type): boolean
 
-(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $ItemStack$Type): boolean
+(arg0: $BlockPos$Type, arg1: $ItemStack$Type): void
 }
 
 export namespace $ILecternBookItem {
@@ -1010,8 +1008,8 @@ readonly "showNotification": boolean
 constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: $CraftingBookCategory$Type, arg3: integer, arg4: integer, arg5: $NonNullList$Type<($Ingredient$Type)>, arg6: $ItemStack$Type, arg7: $List$Type<($ResourceLocation$Type)>)
 constructor(arg0: $ShapedRecipe$Type, arg1: $List$Type<($ResourceLocation$Type)>)
 
-public "getSerializer"(): $RecipeSerializer<(any)>
 public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
+public "getSerializer"(): $RecipeSerializer<(any)>
 get "serializer"(): $RecipeSerializer<(any)>
 }
 /**
@@ -1040,12 +1038,11 @@ static readonly "EMPTY": $FluidOutput
 
 constructor()
 
-public "get"(): $FluidStack
+public "getTag"(): $TagKey<($Fluid)>
 public "isEmpty"(): boolean
 public "write"(arg0: $FriendlyByteBuf$Type): void
 public static "read"(arg0: $FriendlyByteBuf$Type): $FluidOutput
 public "copy"(): $FluidStack
-public "getTag"(): $TagKey<($Fluid)>
 public "serialize"(arg0: $JsonObject$Type): void
 /**
  * 
@@ -1053,12 +1050,12 @@ public "serialize"(arg0: $JsonObject$Type): void
  */
 public "serialize"(): $JsonObject
 public "getAmount"(): integer
+public static "fromStack"(arg0: $FluidStack$Type): $FluidOutput
 public static "fromTag"(arg0: $TagKey$Type<($Fluid$Type)>, arg1: integer): $FluidOutput
 public static "fromTag"(arg0: $TagKey$Type<($Fluid$Type)>, arg1: integer, arg2: $CompoundTag$Type): $FluidOutput
-public static "fromStack"(arg0: $FluidStack$Type): $FluidOutput
 public static "fromFluid"(arg0: $Fluid$Type, arg1: integer): $FluidOutput
-get "empty"(): boolean
 get "tag"(): $TagKey<($Fluid)>
+get "empty"(): boolean
 get "amount"(): integer
 }
 /**
@@ -1160,12 +1157,12 @@ export interface $ArrayLoadable<A> extends $Loadable<(A)> {
  "getLength"(arg0: A): integer
  "convert"(arg0: $JsonElement$Type, arg1: string, arg2: $TypedMap$Type): A
  "checkSize"(arg0: string, arg1: integer, arg2: $ErrorFactory$Type): void
+ "convertArray"(arg0: $JsonArray$Type, arg1: string, arg2: $TypedMap$Type): A
+ "serialize"(arg0: A): $JsonElement
+ "serializeAll"(arg0: $JsonArray$Type, arg1: A): void
  "allowCompact"(): boolean
  "convertCompact"(arg0: $JsonElement$Type, arg1: string, arg2: $TypedMap$Type): A
  "serializeFirst"(arg0: A): $JsonElement
- "serializeAll"(arg0: $JsonArray$Type, arg1: A): void
- "serialize"(arg0: A): $JsonElement
- "convertArray"(arg0: $JsonArray$Type, arg1: string, arg2: $TypedMap$Type): A
  "emptyField"<P>(arg0: string, arg1: boolean, arg2: $Function$Type<(P), (A)>): $LoadableField<(A), (P)>
  "emptyField"<P>(arg0: string, arg1: $Function$Type<(P), (A)>): $LoadableField<(A), (P)>
  "convert"(arg0: $JsonElement$Type, arg1: string): A
@@ -1176,10 +1173,8 @@ export interface $ArrayLoadable<A> extends $Loadable<(A)> {
  "array"(arg0: $IntFunction$Type<((A)[])>, arg1: boolean, arg2: integer): $ArrayLoadable<((A)[])>
  "set"(arg0: integer): $Loadable<($Set<(A)>)>
  "set"(): $Loadable<($Set<(A)>)>
- "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: A): A
  "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: A, arg3: $TypedMap$Type): A
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): A
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string): A
+ "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: A): A
  "requiredField"<P>(arg0: string, arg1: $Function$Type<(P), (A)>): $LoadableField<(A), (P)>
  "nullableField"<P>(arg0: string, arg1: $Function$Type<(P), (A)>): $LoadableField<(A), (P)>
  "defaultField"<P>(arg0: string, arg1: A, arg2: boolean, arg3: $Function$Type<(P), (A)>): $LoadableField<(A), (P)>
@@ -1187,9 +1182,11 @@ export interface $ArrayLoadable<A> extends $Loadable<(A)> {
  "tryDirectField"<P>(arg0: string, arg1: $Function$Type<(P), (A)>, ...arg2: (string)[]): $LoadableField<(A), (P)>
  "mapWithKeys"<K>(arg0: integer, arg1: $Function$Type<(A), (K)>): $Loadable<($Map<(K), (A)>)>
  "mapWithValues"<V>(arg0: integer, arg1: $Function$Type<(A), (V)>): $Loadable<($Map<(A), (V)>)>
- "serialize"(arg0: A, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
- "comapFlatMap"<M>(arg0: $BiFunction$Type<(A), ($ErrorFactory$Type), (M)>, arg1: $Function$Type<(M), (A)>): $Loadable<(M)>
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): A
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string): A
  "deserialize"(arg0: $JsonElement$Type, arg1: $Type$Type, arg2: $JsonDeserializationContext$Type): A
+ "comapFlatMap"<M>(arg0: $BiFunction$Type<(A), ($ErrorFactory$Type), (M)>, arg1: $Function$Type<(M), (A)>): $Loadable<(M)>
+ "serialize"(arg0: A, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
  "xmap"<M>(arg0: $BiFunction$Type<(A), ($ErrorFactory$Type), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (A)>): $Loadable<(M)>
  "flatComap"<M>(arg0: $Function$Type<(A), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (A)>): $Loadable<(M)>
  "flatXmap"<M>(arg0: $Function$Type<(A), (M)>, arg1: $Function$Type<(M), (A)>): $Loadable<(M)>
@@ -1365,6 +1362,7 @@ readonly "properties": $BlockBehaviour$Properties
 
 
 public static "dropInventoryItems"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $IItemHandler$Type): void
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 /**
  * 
  * @deprecated
@@ -1385,10 +1383,9 @@ public "triggerEvent"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos
  * @deprecated
  */
 public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $MenuProvider
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1495,9 +1492,6 @@ import {$Container, $Container$Type} from "packages/net/minecraft/world/$Contain
 export interface $ISingleStackContainer extends $IRecipeContainer {
 
  "getStack"(): $ItemStack
- "countItem"(arg0: $Item$Type): integer
- "hasAnyOf"(arg0: $Set$Type<($Item$Type)>): boolean
- "isEmpty"(): boolean
 /**
  * 
  * @deprecated
@@ -1508,6 +1502,9 @@ export interface $ISingleStackContainer extends $IRecipeContainer {
  * @deprecated
  */
  "getItem"(arg0: integer): $ItemStack
+ "isEmpty"(): boolean
+ "countItem"(arg0: $Item$Type): integer
+ "hasAnyOf"(arg0: $Set$Type<($Item$Type)>): boolean
 /**
  * 
  * @deprecated
@@ -1517,7 +1514,7 @@ export interface $ISingleStackContainer extends $IRecipeContainer {
  * 
  * @deprecated
  */
- "stillValid"(arg0: $Player$Type): boolean
+ "removeItemNoUpdate"(arg0: integer): $ItemStack
 /**
  * 
  * @deprecated
@@ -1537,20 +1534,20 @@ export interface $ISingleStackContainer extends $IRecipeContainer {
  * 
  * @deprecated
  */
- "removeItemNoUpdate"(arg0: integer): $ItemStack
- "isMutable"(): boolean
- "getSlots"(): integer
- "getStackInSlot"(slot: integer): $ItemStack
- "insertItem"(slot: integer, stack: $ItemStack$Type, simulate: boolean): $ItemStack
- "getSlotLimit"(slot: integer): integer
- "extractItem"(slot: integer, amount: integer, simulate: boolean): $ItemStack
+ "stillValid"(arg0: $Player$Type): boolean
+ "getBlock"(level: $Level$Type): $BlockContainerJS
  "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
  "isItemValid"(slot: integer, stack: $ItemStack$Type): boolean
  "getWidth"(): integer
  "getHeight"(): integer
  "setChanged"(): void
  "asContainer"(): $Container
- "getBlock"(level: $Level$Type): $BlockContainerJS
+ "extractItem"(slot: integer, amount: integer, simulate: boolean): $ItemStack
+ "insertItem"(slot: integer, stack: $ItemStack$Type, simulate: boolean): $ItemStack
+ "isMutable"(): boolean
+ "getSlots"(): integer
+ "getStackInSlot"(slot: integer): $ItemStack
+ "getSlotLimit"(slot: integer): integer
  "kjs$self"(): $Container
  "getMaxStackSize"(): integer
  "startOpen"(arg0: $Player$Type): void
@@ -1559,11 +1556,11 @@ export interface $ISingleStackContainer extends $IRecipeContainer {
  "canTakeItem"(arg0: $Container$Type, arg1: integer, arg2: $ItemStack$Type): boolean
  "hasAnyMatching"(arg0: $Predicate$Type<($ItemStack$Type)>): boolean
  "clear"(): void
- "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
- "countNonEmpty"(): integer
- "countNonEmpty"(ingredient: $Ingredient$Type): integer
- "getAllItems"(): $List<($ItemStack)>
  "isEmpty"(): boolean
+ "getAllItems"(): $List<($ItemStack)>
+ "countNonEmpty"(ingredient: $Ingredient$Type): integer
+ "countNonEmpty"(): integer
+ "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
  "clear"(ingredient: $Ingredient$Type): void
  "find"(ingredient: $Ingredient$Type): integer
  "find"(): integer
@@ -1728,8 +1725,8 @@ constructor(arg0: $Item$Properties$Type)
 
 public static "interactWithBlock"(arg0: $PlayerInteractEvent$RightClickBlock$Type): void
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
-public "openLecternScreen"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $ItemStack$Type): boolean
 public "openLecternScreenClient"(arg0: $BlockPos$Type, arg1: $ItemStack$Type): void
+public "openLecternScreen"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Player$Type, arg3: $ItemStack$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1747,6 +1744,7 @@ declare module "packages/slimeknights/mantle/command/argument/$ResourceOrTagKeyA
 import {$Suggestions, $Suggestions$Type} from "packages/com/mojang/brigadier/suggestion/$Suggestions"
 import {$Record, $Record$Type} from "packages/java/lang/$Record"
 import {$CommandSourceStack, $CommandSourceStack$Type} from "packages/net/minecraft/commands/$CommandSourceStack"
+import {$StringReader, $StringReader$Type} from "packages/com/mojang/brigadier/$StringReader"
 import {$CompletableFuture, $CompletableFuture$Type} from "packages/java/util/concurrent/$CompletableFuture"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$ResourceOrTagKeyArgument$Result, $ResourceOrTagKeyArgument$Result$Type} from "packages/slimeknights/mantle/command/argument/$ResourceOrTagKeyArgument$Result"
@@ -1764,8 +1762,9 @@ public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "key"(): $ResourceOrTagKeyArgument<(any)>
-public "listSuggestions"<S>(arg0: $CommandContext$Type<(S)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
+public "parse"(arg0: $StringReader$Type): $ResourceOrTagKeyArgument$Result
 public "getExamples"(): $Collection<(string)>
+public "listSuggestions"<S>(arg0: $CommandContext$Type<(S)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 public "registry"(): $ResourceKey<(any)>
 public static "registry"<T>(arg0: $ResourceKey$Type<(any)>): $ResourceOrTagKeyArgument<(T)>
 get "examples"(): $Collection<(string)>
@@ -1879,23 +1878,23 @@ static readonly "EMPTY": $ItemOutput
 
 constructor()
 
+public "getCount"(): integer
+public "getTag"(): $TagKey<($Item)>
 public "get"(): $ItemStack
 public "isEmpty"(): boolean
 public "write"(arg0: $FriendlyByteBuf$Type): void
 public static "read"(arg0: $FriendlyByteBuf$Type): $ItemOutput
 public "copy"(): $ItemStack
-public "getCount"(): integer
-public "getTag"(): $TagKey<($Item)>
 public "serialize"(arg0: boolean): $JsonElement
+public static "fromStack"(arg0: $ItemStack$Type): $ItemOutput
 public static "fromTag"(arg0: $TagKey$Type<($Item$Type)>): $ItemOutput
 public static "fromTag"(arg0: $TagKey$Type<($Item$Type)>, arg1: integer): $ItemOutput
 public static "fromTag"(arg0: $TagKey$Type<($Item$Type)>, arg1: integer, arg2: $CompoundTag$Type): $ItemOutput
-public static "fromStack"(arg0: $ItemStack$Type): $ItemOutput
 public static "fromItem"(arg0: $ItemLike$Type, arg1: integer): $ItemOutput
 public static "fromItem"(arg0: $ItemLike$Type): $ItemOutput
-get "empty"(): boolean
 get "count"(): integer
 get "tag"(): $TagKey<($Item)>
+get "empty"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1920,12 +1919,12 @@ export class $ResourceOrTagKeyArgument$Result extends $Record {
 
 constructor(location: $ResourceLocation$Type, isTag: boolean)
 
+public "resource"<T>(arg0: $ResourceKey$Type<(any)>): $TagKey<(T)>
+public "tag"<T>(arg0: $ResourceKey$Type<(any)>): $TagKey<(T)>
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "location"(): $ResourceLocation
-public "tag"<T>(arg0: $ResourceKey$Type<(any)>): $TagKey<(T)>
-public "resource"<T>(arg0: $ResourceKey$Type<(any)>): $TagKey<(T)>
 public "tagEntry"(): $TagEntry
 public "isTag"(): boolean
 }
@@ -2015,8 +2014,8 @@ import {$List, $List$Type} from "packages/java/util/$List"
 import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
-import {$Container, $Container$Type} from "packages/net/minecraft/world/$Container"
 import {$BlockContainerJS, $BlockContainerJS$Type} from "packages/dev/latvian/mods/kubejs/level/$BlockContainerJS"
+import {$Container, $Container$Type} from "packages/net/minecraft/world/$Container"
 
 export interface $IRecipeContainer extends $Container {
 
@@ -2029,7 +2028,7 @@ export interface $IRecipeContainer extends $Container {
  * 
  * @deprecated
  */
- "stillValid"(arg0: $Player$Type): boolean
+ "removeItemNoUpdate"(arg0: integer): $ItemStack
 /**
  * 
  * @deprecated
@@ -2049,21 +2048,24 @@ export interface $IRecipeContainer extends $Container {
  * 
  * @deprecated
  */
- "removeItemNoUpdate"(arg0: integer): $ItemStack
- "isMutable"(): boolean
- "getSlots"(): integer
- "getStackInSlot"(slot: integer): $ItemStack
- "insertItem"(slot: integer, stack: $ItemStack$Type, simulate: boolean): $ItemStack
- "getSlotLimit"(slot: integer): integer
- "extractItem"(slot: integer, amount: integer, simulate: boolean): $ItemStack
+ "stillValid"(arg0: $Player$Type): boolean
+ "getBlock"(level: $Level$Type): $BlockContainerJS
  "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
  "isItemValid"(slot: integer, stack: $ItemStack$Type): boolean
  "getWidth"(): integer
  "getHeight"(): integer
  "setChanged"(): void
  "asContainer"(): $Container
- "getBlock"(level: $Level$Type): $BlockContainerJS
+ "extractItem"(slot: integer, amount: integer, simulate: boolean): $ItemStack
+ "insertItem"(slot: integer, stack: $ItemStack$Type, simulate: boolean): $ItemStack
+ "isMutable"(): boolean
+ "getSlots"(): integer
+ "getStackInSlot"(slot: integer): $ItemStack
+ "getSlotLimit"(slot: integer): integer
  "kjs$self"(): $Container
+ "getContainerSize"(): integer
+ "getItem"(arg0: integer): $ItemStack
+ "isEmpty"(): boolean
  "getMaxStackSize"(): integer
  "startOpen"(arg0: $Player$Type): void
  "stopOpen"(arg0: $Player$Type): void
@@ -2074,13 +2076,10 @@ export interface $IRecipeContainer extends $Container {
  "hasAnyMatching"(arg0: $Predicate$Type<($ItemStack$Type)>): boolean
  "clear"(): void
  "isEmpty"(): boolean
- "getContainerSize"(): integer
- "getItem"(arg0: integer): $ItemStack
- "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
- "countNonEmpty"(): integer
- "countNonEmpty"(ingredient: $Ingredient$Type): integer
  "getAllItems"(): $List<($ItemStack)>
- "isEmpty"(): boolean
+ "countNonEmpty"(ingredient: $Ingredient$Type): integer
+ "countNonEmpty"(): integer
+ "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
  "clear"(ingredient: $Ingredient$Type): void
  "find"(ingredient: $Ingredient$Type): integer
  "find"(): integer
@@ -2409,48 +2408,50 @@ public "toString"(): string
 public "decode"(arg0: $FriendlyByteBuf$Type, arg1: $TypedMap$Type): T
 public "encode"(arg0: $FriendlyByteBuf$Type, arg1: T): void
 public "register"(arg0: $ResourceLocation$Type, arg1: $RecordLoadable$Type<(any)>): void
-public "getConditionalLoader"(): $RecordLoadable<(T)>
-public "directField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $RecordField<(T), (P)>
-public "serialize"(arg0: T): $JsonElement
-public "serialize"(arg0: T, arg1: $JsonObject$Type): void
 public "deserialize"(arg0: $JsonObject$Type, arg1: $TypedMap$Type): T
+public "serialize"(arg0: T, arg1: $JsonObject$Type): void
+public "serialize"(arg0: T): $JsonElement
+public "directField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $RecordField<(T), (P)>
+public "getConditionalLoader"(): $RecordLoadable<(T)>
 public "validate"(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (T)>): $RecordLoadable<(T)>
-public static "create"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function5$Type<(A), (B), (C), (D), (E), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function7$Type<(A), (B), (C), (D), (E), (F), (G), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function6$Type<(A), (B), (C), (D), (E), (F), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function4$Type<(A), (B), (C), (D), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $BiFunction$Type<(A), (B), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $Function3$Type<(A), (B), (C), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function4$Type<(A), (B), (C), (D), (R)>): $RecordLoadable<(R)>
+public static "create"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $Function$Type<(A), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function8$Type<(A), (B), (C), (D), (E), (F), (G), (H), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function7$Type<(A), (B), (C), (D), (E), (F), (G), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function6$Type<(A), (B), (C), (D), (E), (F), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function5$Type<(A), (B), (C), (D), (E), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $RecordField$Type<(P), (any)>, arg16: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (P), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (R)>): $RecordLoadable<(R)>
 public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (R)>): $RecordLoadable<(R)>
-public static "create"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $Function$Type<(A), (R)>): $RecordLoadable<(R)>
-public static "create"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $BiFunction$Type<(A), (B), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $RecordField$Type<(P), (any)>, arg16: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (P), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (R)>): $RecordLoadable<(R)>
+public static "create"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (R)>): $RecordLoadable<(R)>
 public "compact"(arg0: $Loadable$Type<(T)>, arg1: $Predicate$Type<(T)>): $RecordLoadable<(T)>
-public "directField"<P>(arg0: $Function$Type<(P), (T)>): $RecordField<(T), (P)>
 public "deserialize"(arg0: $JsonObject$Type): T
+public "comapFlatMap"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>, arg1: $Function$Type<(M), (T)>): $RecordLoadable<(M)>
+public "directField"<P>(arg0: $Function$Type<(P), (T)>): $RecordField<(T), (P)>
 public "flatComap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (T)>): $RecordLoadable<(M)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function6$Type<(A), (B), (C), (D), (E), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function5$Type<(A), (B), (C), (D), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public "flatXmap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $Function$Type<(M), (T)>): $RecordLoadable<(M)>
 public static "withLoader"<A, B, C, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $Function4$Type<(A), (B), (C), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $Function3$Type<(A), (B), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $BiFunction$Type<(A), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<R>(arg0: $Function$Type<($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-public static "withLoader"<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 public static "withLoader"<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function8$Type<(A), (B), (C), (D), (E), (F), (G), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<R>(arg0: $Function$Type<($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $BiFunction$Type<(A), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $Function3$Type<(A), (B), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function5$Type<(A), (B), (C), (D), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 public static "withLoader"<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function7$Type<(A), (B), (C), (D), (E), (F), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function6$Type<(A), (B), (C), (D), (E), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+public static "withLoader"<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 public "convert"(arg0: $JsonElement$Type, arg1: string): T
 public "list"(arg0: integer): $Loadable<($List<(T)>)>
 public "list"(): $Loadable<($List<(T)>)>
@@ -2458,10 +2459,8 @@ public "array"(arg0: $IntFunction$Type<((T)[])>, arg1: boolean, arg2: integer, a
 public "array"(arg0: $IntFunction$Type<((T)[])>, arg1: boolean, arg2: integer): $ArrayLoadable<((T)[])>
 public "set"(arg0: integer): $Loadable<($Set<(T)>)>
 public "set"(): $Loadable<($Set<(T)>)>
-public "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
 public "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T, arg3: $TypedMap$Type): T
-public "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
-public "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
+public "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
 public "requiredField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
 public "nullableField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
 public "defaultField"<P>(arg0: string, arg1: T, arg2: boolean, arg3: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
@@ -2469,8 +2468,10 @@ public "defaultField"<P>(arg0: string, arg1: T, arg2: $Function$Type<(P), (T)>):
 public "tryDirectField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>, ...arg2: (string)[]): $LoadableField<(T), (P)>
 public "mapWithKeys"<K>(arg0: integer, arg1: $Function$Type<(T), (K)>): $Loadable<($Map<(K), (T)>)>
 public "mapWithValues"<V>(arg0: integer, arg1: $Function$Type<(T), (V)>): $Loadable<($Map<(T), (V)>)>
-public "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
+public "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
+public "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
 public "deserialize"(arg0: $JsonElement$Type, arg1: $Type$Type, arg2: $JsonDeserializationContext$Type): T
+public "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
 public "decode"(arg0: $FriendlyByteBuf$Type): T
 get "name"(): string
 get "conditionalLoader"(): $RecordLoadable<(T)>
@@ -2695,10 +2696,10 @@ readonly "category": $CraftingBookCategory
 readonly "showNotification": boolean
 
 
-public "getResultItem"(arg0: $Item$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "getTexture"(): $Ingredient
-public "getSerializer"(): $RecipeSerializer<(any)>
+public "getResultItem"(arg0: $Item$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "getSerializer"(): $RecipeSerializer<(any)>
 get "texture"(): $Ingredient
 get "serializer"(): $RecipeSerializer<(any)>
 }
@@ -2799,18 +2800,18 @@ export type $TypedMap$Key_<K> = $TypedMap$Key$Type<(K)>;
 declare module "packages/slimeknights/mantle/registration/deferred/$BlockDeferredRegister" {
 import {$IEventBus, $IEventBus$Type} from "packages/net/minecraftforge/eventbus/api/$IEventBus"
 import {$ItemObject, $ItemObject$Type} from "packages/slimeknights/mantle/registration/object/$ItemObject"
-import {$FenceBuildingBlockObject, $FenceBuildingBlockObject$Type} from "packages/slimeknights/mantle/registration/object/$FenceBuildingBlockObject"
-import {$WoodBlockObject, $WoodBlockObject$Type} from "packages/slimeknights/mantle/registration/object/$WoodBlockObject"
 import {$EnumObject, $EnumObject$Type} from "packages/slimeknights/mantle/registration/object/$EnumObject"
+import {$FenceBuildingBlockObject, $FenceBuildingBlockObject$Type} from "packages/slimeknights/mantle/registration/object/$FenceBuildingBlockObject"
 import {$MetalItemObject, $MetalItemObject$Type} from "packages/slimeknights/mantle/registration/object/$MetalItemObject"
+import {$WoodBlockObject, $WoodBlockObject$Type} from "packages/slimeknights/mantle/registration/object/$WoodBlockObject"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$RegistryObject, $RegistryObject$Type} from "packages/net/minecraftforge/registries/$RegistryObject"
 import {$StringRepresentable, $StringRepresentable$Type} from "packages/net/minecraft/util/$StringRepresentable"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
-import {$WallBuildingBlockObject, $WallBuildingBlockObject$Type} from "packages/slimeknights/mantle/registration/object/$WallBuildingBlockObject"
 import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
+import {$WallBuildingBlockObject, $WallBuildingBlockObject$Type} from "packages/slimeknights/mantle/registration/object/$WallBuildingBlockObject"
 import {$DeferredRegisterWrapper, $DeferredRegisterWrapper$Type} from "packages/slimeknights/mantle/registration/deferred/$DeferredRegisterWrapper"
 import {$BuildingBlockObject, $BuildingBlockObject$Type} from "packages/slimeknights/mantle/registration/object/$BuildingBlockObject"
 import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
@@ -2821,30 +2822,30 @@ export class $BlockDeferredRegister extends $DeferredRegisterWrapper<($Block)> {
 
 constructor(arg0: string)
 
-public "register"(arg0: $IEventBus$Type): void
-public "register"<B extends $Block>(arg0: string, arg1: $Supplier$Type<(any)>, arg2: $Function$Type<(any), (any)>): $ItemObject<(B)>
 public "register"(arg0: string, arg1: $BlockBehaviour$Properties$Type, arg2: $Function$Type<(any), (any)>): $ItemObject<($Block)>
-public "registerNoItem"(arg0: string, arg1: $BlockBehaviour$Properties$Type): $RegistryObject<($Block)>
-public "registerNoItem"<B extends $Block>(arg0: string, arg1: $Supplier$Type<(any)>): $RegistryObject<(B)>
-public "registerBuilding"(arg0: string, arg1: $BlockBehaviour$Properties$Type, arg2: $Function$Type<(any), (any)>): $BuildingBlockObject
-public "registerBuilding"(arg0: string, arg1: $Supplier$Type<(any)>, arg2: $Function$Type<(any), (any)>): $BuildingBlockObject
-public "registerWallBuilding"(arg0: string, arg1: $Supplier$Type<(any)>, arg2: $Function$Type<(any), (any)>): $WallBuildingBlockObject
-public "registerWallBuilding"(arg0: string, arg1: $BlockBehaviour$Properties$Type, arg2: $Function$Type<(any), (any)>): $WallBuildingBlockObject
+public "register"<B extends $Block>(arg0: string, arg1: $Supplier$Type<(any)>, arg2: $Function$Type<(any), (any)>): $ItemObject<(B)>
+public "register"(arg0: $IEventBus$Type): void
+public "registerPotted"(arg0: $RegistryObject$Type<(any)>): $RegistryObject<($FlowerPotBlock)>
+public "registerPotted"(arg0: string, arg1: $Supplier$Type<(any)>): $RegistryObject<($FlowerPotBlock)>
+public "registerPotted"(arg0: $ItemObject$Type<(any)>): $RegistryObject<($FlowerPotBlock)>
+public "registerEnumNoItem"<T extends $Enum<(T)>, B extends $Block>(arg0: (T)[], arg1: string, arg2: $Function$Type<(T), (any)>): $EnumObject<(T), (B)>
+public "registerPottedEnum"<T extends ($Enum<(T)>) & ($StringRepresentable), B extends $Block>(arg0: (T)[], arg1: string, arg2: $EnumObject$Type<(T), (B)>): $EnumObject<(T), ($FlowerPotBlock)>
+public "registerPottedEnum"<T extends ($Enum<(T)>) & ($StringRepresentable), B extends $Block>(arg0: string, arg1: $EnumObject$Type<(T), (B)>): $EnumObject<(T), ($FlowerPotBlock)>
 public "registerFenceBuilding"(arg0: string, arg1: $Supplier$Type<(any)>, arg2: $Function$Type<(any), (any)>): $FenceBuildingBlockObject
 public "registerFenceBuilding"(arg0: string, arg1: $BlockBehaviour$Properties$Type, arg2: $Function$Type<(any), (any)>): $FenceBuildingBlockObject
-public "registerWood"(arg0: string, arg1: $Function$Type<($WoodBlockObject$WoodVariant$Type), ($BlockBehaviour$Properties$Type)>, arg2: boolean): $WoodBlockObject
-public "registerPotted"(arg0: $RegistryObject$Type<(any)>): $RegistryObject<($FlowerPotBlock)>
-public "registerPotted"(arg0: $ItemObject$Type<(any)>): $RegistryObject<($FlowerPotBlock)>
-public "registerPotted"(arg0: string, arg1: $Supplier$Type<(any)>): $RegistryObject<($FlowerPotBlock)>
-public "registerEnumNoItem"<T extends $Enum<(T)>, B extends $Block>(arg0: (T)[], arg1: string, arg2: $Function$Type<(T), (any)>): $EnumObject<(T), (B)>
-public "registerPottedEnum"<T extends ($Enum<(T)>) & ($StringRepresentable), B extends $Block>(arg0: string, arg1: $EnumObject$Type<(T), (B)>): $EnumObject<(T), ($FlowerPotBlock)>
-public "registerPottedEnum"<T extends ($Enum<(T)>) & ($StringRepresentable), B extends $Block>(arg0: (T)[], arg1: string, arg2: $EnumObject$Type<(T), (B)>): $EnumObject<(T), ($FlowerPotBlock)>
-public "registerMetal"(arg0: string, arg1: $Supplier$Type<($Block$Type)>, arg2: $Function$Type<($Block$Type), (any)>, arg3: $Item$Properties$Type): $MetalItemObject
 public "registerMetal"(arg0: string, arg1: string, arg2: $Supplier$Type<($Block$Type)>, arg3: $Function$Type<($Block$Type), (any)>, arg4: $Item$Properties$Type): $MetalItemObject
-public "registerMetal"(arg0: string, arg1: string, arg2: $BlockBehaviour$Properties$Type, arg3: $Function$Type<($Block$Type), (any)>, arg4: $Item$Properties$Type): $MetalItemObject
 public "registerMetal"(arg0: string, arg1: $BlockBehaviour$Properties$Type, arg2: $Function$Type<($Block$Type), (any)>, arg3: $Item$Properties$Type): $MetalItemObject
+public "registerMetal"(arg0: string, arg1: $Supplier$Type<($Block$Type)>, arg2: $Function$Type<($Block$Type), (any)>, arg3: $Item$Properties$Type): $MetalItemObject
+public "registerMetal"(arg0: string, arg1: string, arg2: $BlockBehaviour$Properties$Type, arg3: $Function$Type<($Block$Type), (any)>, arg4: $Item$Properties$Type): $MetalItemObject
 public "registerEnum"<T extends $Enum<(T)>, B extends $Block>(arg0: (T)[], arg1: string, arg2: $Function$Type<(T), (any)>, arg3: $Function$Type<(any), (any)>): $EnumObject<(T), (B)>
 public "registerEnum"<T extends $Enum<(T)>, B extends $Block>(arg0: string, arg1: (T)[], arg2: $Function$Type<(T), (any)>, arg3: $Function$Type<(any), (any)>): $EnumObject<(T), (B)>
+public "registerWallBuilding"(arg0: string, arg1: $Supplier$Type<(any)>, arg2: $Function$Type<(any), (any)>): $WallBuildingBlockObject
+public "registerWallBuilding"(arg0: string, arg1: $BlockBehaviour$Properties$Type, arg2: $Function$Type<(any), (any)>): $WallBuildingBlockObject
+public "registerWood"(arg0: string, arg1: $Function$Type<($WoodBlockObject$WoodVariant$Type), ($BlockBehaviour$Properties$Type)>, arg2: boolean): $WoodBlockObject
+public "registerNoItem"<B extends $Block>(arg0: string, arg1: $Supplier$Type<(any)>): $RegistryObject<(B)>
+public "registerNoItem"(arg0: string, arg1: $BlockBehaviour$Properties$Type): $RegistryObject<($Block)>
+public "registerBuilding"(arg0: string, arg1: $BlockBehaviour$Properties$Type, arg2: $Function$Type<(any), (any)>): $BuildingBlockObject
+public "registerBuilding"(arg0: string, arg1: $Supplier$Type<(any)>, arg2: $Function$Type<(any), (any)>): $BuildingBlockObject
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2890,10 +2891,8 @@ export interface $Loadable<T> extends $JsonDeserializer<(T)>, $JsonSerializer<(T
  "array"(arg0: $IntFunction$Type<((T)[])>, arg1: boolean, arg2: integer): $ArrayLoadable<((T)[])>
  "set"(arg0: integer): $Loadable<($Set<(T)>)>
  "set"(): $Loadable<($Set<(T)>)>
- "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
  "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T, arg3: $TypedMap$Type): T
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
+ "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
  "requiredField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
  "nullableField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
  "defaultField"<P>(arg0: string, arg1: T, arg2: boolean, arg3: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
@@ -2901,10 +2900,12 @@ export interface $Loadable<T> extends $JsonDeserializer<(T)>, $JsonSerializer<(T
  "tryDirectField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>, ...arg2: (string)[]): $LoadableField<(T), (P)>
  "mapWithKeys"<K>(arg0: integer, arg1: $Function$Type<(T), (K)>): $Loadable<($Map<(K), (T)>)>
  "mapWithValues"<V>(arg0: integer, arg1: $Function$Type<(T), (V)>): $Loadable<($Map<(T), (V)>)>
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
+ "deserialize"(arg0: $JsonElement$Type, arg1: $Type$Type, arg2: $JsonDeserializationContext$Type): T
+ "comapFlatMap"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>, arg1: $Function$Type<(M), (T)>): $Loadable<(M)>
  "serialize"(arg0: T): $JsonElement
  "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
- "comapFlatMap"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>, arg1: $Function$Type<(M), (T)>): $Loadable<(M)>
- "deserialize"(arg0: $JsonElement$Type, arg1: $Type$Type, arg2: $JsonDeserializationContext$Type): T
  "xmap"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (T)>): $Loadable<(M)>
  "flatComap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (T)>): $Loadable<(M)>
  "flatXmap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $Function$Type<(M), (T)>): $Loadable<(M)>
@@ -2945,8 +2946,8 @@ constructor(arg0: $DefaultedRegistry$Type<(I)>, arg1: I)
 
 public "get"(): I
 public "getId"(): $ResourceLocation
-public "asItem"(): $Item
 public "getOrNull"(): I
+public "asItem"(): $Item
 get "id"(): $ResourceLocation
 get "orNull"(): I
 }
@@ -3108,6 +3109,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public static "formatCapacity"(arg0: integer): $MutableComponent
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+/**
+ * 
+ * @deprecated
+ */
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 /**
  * 
  * @deprecated
@@ -3133,12 +3140,6 @@ public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $Bloc
  * @deprecated
  */
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-/**
- * 
- * @deprecated
- */
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3180,27 +3181,27 @@ export interface $ICustomOutputRecipe<C extends $Container> extends $ICommonReci
  * @deprecated
  */
  "assemble"(arg0: C, arg1: $RegistryAccess$Type): $ItemStack
+ "isSpecial"(): boolean
 /**
  * 
  * @deprecated
  */
  "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
- "isSpecial"(): boolean
+ "getId"(): $ResourceLocation
+ "matches"(arg0: C, arg1: $Level$Type): boolean
  "getRemainingItems"(arg0: C): $NonNullList<($ItemStack)>
  "getIngredients"(): $NonNullList<($Ingredient)>
  "showNotification"(): boolean
  "getToastSymbol"(): $ItemStack
  "getSerializer"(): $RecipeSerializer<(any)>
  "isIncomplete"(): boolean
- "matches"(arg0: C, arg1: $Level$Type): boolean
- "getId"(): $ResourceLocation
- "getGroup"(): string
- "setGroup"(group: string): void
- "getOrCreateId"(): $ResourceLocation
- "getSchema"(): $RecipeSchema
- "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
- "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
  "getType"(): $ResourceLocation
+ "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+ "getSchema"(): $RecipeSchema
+ "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+ "getOrCreateId"(): $ResourceLocation
+ "setGroup"(group: string): void
+ "getGroup"(): string
  "getMod"(): string
  "hasInput"(match: $ReplacementMatch$Type): boolean
  "hasOutput"(match: $ReplacementMatch$Type): boolean
@@ -3295,12 +3296,14 @@ export interface $RecordLoadable<T> extends $Loadable<(T)> {
  "convert"(arg0: $JsonElement$Type, arg1: string, arg2: $TypedMap$Type): T
  "validate"(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (T)>): $RecordLoadable<(T)>
  "compact"(arg0: $Loadable$Type<(T)>, arg1: $Predicate$Type<(T)>): $RecordLoadable<(T)>
- "directField"<P>(arg0: $Function$Type<(P), (T)>): $RecordField<(T), (P)>
- "serialize"(arg0: T): $JsonElement
- "serialize"(arg0: T, arg1: $JsonObject$Type): void
  "deserialize"(arg0: $JsonObject$Type, arg1: $TypedMap$Type): T
  "deserialize"(arg0: $JsonObject$Type): T
+ "comapFlatMap"<M>(arg0: $BiFunction$Type<(T), ($ErrorFactory$Type), (M)>, arg1: $Function$Type<(M), (T)>): $RecordLoadable<(M)>
+ "serialize"(arg0: T): $JsonElement
+ "serialize"(arg0: T, arg1: $JsonObject$Type): void
+ "directField"<P>(arg0: $Function$Type<(P), (T)>): $RecordField<(T), (P)>
  "flatComap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $BiFunction$Type<(M), ($ErrorFactory$Type), (T)>): $RecordLoadable<(M)>
+ "flatXmap"<M>(arg0: $Function$Type<(T), (M)>, arg1: $Function$Type<(M), (T)>): $RecordLoadable<(M)>
  "convert"(arg0: $JsonElement$Type, arg1: string): T
  "list"(arg0: integer): $Loadable<($List<(T)>)>
  "list"(): $Loadable<($List<(T)>)>
@@ -3308,10 +3311,8 @@ export interface $RecordLoadable<T> extends $Loadable<(T)> {
  "array"(arg0: $IntFunction$Type<((T)[])>, arg1: boolean, arg2: integer): $ArrayLoadable<((T)[])>
  "set"(arg0: integer): $Loadable<($Set<(T)>)>
  "set"(): $Loadable<($Set<(T)>)>
- "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
  "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T, arg3: $TypedMap$Type): T
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
- "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
+ "getOrDefault"(arg0: $JsonObject$Type, arg1: string, arg2: T): T
  "requiredField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
  "nullableField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
  "defaultField"<P>(arg0: string, arg1: T, arg2: boolean, arg3: $Function$Type<(P), (T)>): $LoadableField<(T), (P)>
@@ -3319,46 +3320,48 @@ export interface $RecordLoadable<T> extends $Loadable<(T)> {
  "tryDirectField"<P>(arg0: string, arg1: $Function$Type<(P), (T)>, ...arg2: (string)[]): $LoadableField<(T), (P)>
  "mapWithKeys"<K>(arg0: integer, arg1: $Function$Type<(T), (K)>): $Loadable<($Map<(K), (T)>)>
  "mapWithValues"<V>(arg0: integer, arg1: $Function$Type<(T), (V)>): $Loadable<($Map<(T), (V)>)>
- "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string, arg2: $TypedMap$Type): T
+ "getIfPresent"(arg0: $JsonObject$Type, arg1: string): T
  "deserialize"(arg0: $JsonElement$Type, arg1: $Type$Type, arg2: $JsonDeserializationContext$Type): T
+ "serialize"(arg0: T, arg1: $Type$Type, arg2: $JsonSerializationContext$Type): $JsonElement
  "decode"(arg0: $FriendlyByteBuf$Type, arg1: $TypedMap$Type): T
  "decode"(arg0: $FriendlyByteBuf$Type): T
  "encode"(arg0: $FriendlyByteBuf$Type, arg1: T): void
 }
 
 export namespace $RecordLoadable {
-function create<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function5$Type<(A), (B), (C), (D), (E), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function7$Type<(A), (B), (C), (D), (E), (F), (G), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function6$Type<(A), (B), (C), (D), (E), (F), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function4$Type<(A), (B), (C), (D), (R)>): $RecordLoadable<(R)>
+function create<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $BiFunction$Type<(A), (B), (R)>): $RecordLoadable<(R)>
 function create<A, B, C, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $Function3$Type<(A), (B), (C), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function4$Type<(A), (B), (C), (D), (R)>): $RecordLoadable<(R)>
+function create<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $Function$Type<(A), (R)>): $RecordLoadable<(R)>
 function create<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (R)>): $RecordLoadable<(R)>
 function create<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function8$Type<(A), (B), (C), (D), (E), (F), (G), (H), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function7$Type<(A), (B), (C), (D), (E), (F), (G), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function6$Type<(A), (B), (C), (D), (E), (F), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function5$Type<(A), (B), (C), (D), (E), (R)>): $RecordLoadable<(R)>
 function create<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (R)>): $RecordLoadable<(R)>
-function create<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $RecordField$Type<(P), (any)>, arg16: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (P), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (R)>): $RecordLoadable<(R)>
 function create<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (R)>): $RecordLoadable<(R)>
-function create<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $Function$Type<(A), (R)>): $RecordLoadable<(R)>
-function create<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $BiFunction$Type<(A), (B), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function6$Type<(A), (B), (C), (D), (E), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function5$Type<(A), (B), (C), (D), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $RecordField$Type<(P), (any)>, arg16: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), (P), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (R)>): $RecordLoadable<(R)>
+function create<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (R)>): $RecordLoadable<(R)>
 function withLoader<A, B, C, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $Function4$Type<(A), (B), (C), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $Function3$Type<(A), (B), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $BiFunction$Type<(A), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<R>(arg0: $Function$Type<($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
-function withLoader<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $RecordField$Type<(O), (any)>, arg15: $Function16$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), (O), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, M, N, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $RecordField$Type<(N), (any)>, arg14: $Function15$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), (N), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, M, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $RecordField$Type<(M), (any)>, arg13: $Function14$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), (M), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 function withLoader<A, B, C, D, E, F, G, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $Function8$Type<(A), (B), (C), (D), (E), (F), (G), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<R>(arg0: $Function$Type<($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $BiFunction$Type<(A), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $Function3$Type<(A), (B), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $Function9$Type<(A), (B), (C), (D), (E), (F), (G), (H), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $Function5$Type<(A), (B), (C), (D), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 function withLoader<A, B, C, D, E, F, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $Function7$Type<(A), (B), (C), (D), (E), (F), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $Function6$Type<(A), (B), (C), (D), (E), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, I, J, K, L, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $RecordField$Type<(L), (any)>, arg12: $Function13$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), (L), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, I, J, K, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $RecordField$Type<(K), (any)>, arg11: $Function12$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), (K), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, I, J, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $RecordField$Type<(J), (any)>, arg10: $Function11$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), (J), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
+function withLoader<A, B, C, D, E, F, G, H, I, R>(arg0: $RecordField$Type<(A), (any)>, arg1: $RecordField$Type<(B), (any)>, arg2: $RecordField$Type<(C), (any)>, arg3: $RecordField$Type<(D), (any)>, arg4: $RecordField$Type<(E), (any)>, arg5: $RecordField$Type<(F), (any)>, arg6: $RecordField$Type<(G), (any)>, arg7: $RecordField$Type<(H), (any)>, arg8: $RecordField$Type<(I), (any)>, arg9: $Function10$Type<(A), (B), (C), (D), (E), (F), (G), (H), (I), ($RecordLoadable$Type<(R)>), (R)>): $RecordLoadable<(R)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3416,29 +3419,29 @@ import {$OutputReplacement, $OutputReplacement$Type} from "packages/dev/latvian/
 
 export interface $ICommonRecipe<C extends $Container> extends $Recipe<(C)> {
 
+ "isSpecial"(): boolean
+ "assemble"(arg0: C, arg1: $RegistryAccess$Type): $ItemStack
 /**
  * 
  * @deprecated
  */
  "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
- "assemble"(arg0: C, arg1: $RegistryAccess$Type): $ItemStack
- "isSpecial"(): boolean
  "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+ "getId"(): $ResourceLocation
+ "matches"(arg0: C, arg1: $Level$Type): boolean
  "getRemainingItems"(arg0: C): $NonNullList<($ItemStack)>
  "getIngredients"(): $NonNullList<($Ingredient)>
  "showNotification"(): boolean
  "getToastSymbol"(): $ItemStack
  "getSerializer"(): $RecipeSerializer<(any)>
  "isIncomplete"(): boolean
- "matches"(arg0: C, arg1: $Level$Type): boolean
- "getId"(): $ResourceLocation
- "getGroup"(): string
- "setGroup"(group: string): void
- "getOrCreateId"(): $ResourceLocation
- "getSchema"(): $RecipeSchema
- "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
- "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
  "getType"(): $ResourceLocation
+ "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+ "getSchema"(): $RecipeSchema
+ "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+ "getOrCreateId"(): $ResourceLocation
+ "setGroup"(group: string): void
+ "getGroup"(): string
  "getMod"(): string
  "hasInput"(match: $ReplacementMatch$Type): boolean
  "hasOutput"(match: $ReplacementMatch$Type): boolean

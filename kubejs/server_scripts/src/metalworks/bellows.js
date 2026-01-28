@@ -16,6 +16,9 @@ ServerEvents.recipes((event) => {
   )
 })
 
+/**
+ * This is a hack to disable redstone power on the bellows.
+ */
 BlockEntityEvents.tick((event) => {
   if (event.level.levelData.getGameTime() % 20 !== 0) return
 

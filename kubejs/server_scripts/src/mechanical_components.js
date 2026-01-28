@@ -104,7 +104,7 @@ ServerEvents.recipes((event) => {
     event.recipes.createDeploying(steelComponentInter, [steelComponentInter, 'createloveandwar:ball_bearings']),
     event.recipes.createDeploying(steelComponentInter, [steelComponentInter, 'vintageimprovements:small_steel_spring']),
     event.recipes.createDeploying(steelComponentInter, [steelComponentInter, 'tfmg:screw']),
-    event.recipes.createDeploying(steelComponentInter, [steelComponentInter, 'tfmg:screwdriver']),
+    event.recipes.createDeploying(steelComponentInter, [steelComponentInter, 'tfmg:screw']),
     event.recipes.createDeploying(steelComponentInter, [steelComponentInter, '#forge:plates/steel']),
   ]).transitionalItem(steelComponentInter).loops(1)
 
@@ -122,7 +122,7 @@ ServerEvents.recipes((event) => {
       [steelMechanismInter, Fluid.of('tfmg:lubrication_oil', 10)]
     ),
     event.recipes.createDeploying(steelMechanismInter, [steelMechanismInter, 'tfmg:screw']),
-    event.recipes.createDeploying(steelMechanismInter, [steelMechanismInter, 'tfmg:screwdriver']),
+    event.recipes.createDeploying(steelMechanismInter, [steelMechanismInter, 'tfmg:screw']),
   ]).transitionalItem(steelMechanismInter).loops(3)
 
   // hydraulic engine
@@ -140,6 +140,6 @@ ServerEvents.recipes((event) => {
     event.recipes.createDeploying(hydraulicEngineInter, [hydraulicEngineInter, 'create:piston_extension_pole']),
     event.recipes.createPressing(hydraulicEngineInter, hydraulicEngineInter),
     event.recipes.createDeploying(hydraulicEngineInter, [hydraulicEngineInter, 'tfmg:screw']),
-    event.recipes.createDeploying(hydraulicEngineInter, [hydraulicEngineInter, 'tfmg:screwdriver']),
+    event.recipes.createDeploying(hydraulicEngineInter, [hydraulicEngineInter, 'tfmg:screw']),
   ]).transitionalItem(hydraulicEngineInter).loops(3)
 });

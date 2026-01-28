@@ -6,6 +6,8 @@ ServerEvents.recipes((event) => {
     'tinore:tin_ingot_from_raw_tin_blasting',
     'tinore:tin_ingot_from_deepslate_tin_ore_blasting',
     'immersiveengineering:alloysmelter/bronze',
+    "immersiveengineering:alloysmelter/constantan",
+    'immersiveengineering:alloysmelter/brass',
     'hot_iron:brass_ingot_in_tongs_heating',
     'hot_iron:electrum_ingot_in_tongs_heating',
     'hot_iron:silver_ingot_in_tongs_heating',

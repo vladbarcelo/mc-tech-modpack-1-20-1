@@ -15,7 +15,7 @@ StartupEvents.registry('item', event => {
  */
 function addTools(event, metal) {
   // forging, available only for smithable and base castable metals
-  if (global.isSmithable(metal) || global.isBaseCastable(metal)) {
+  if ((global.isSmithable(metal) || global.isBaseCastable(metal)) && metal !== 'cast_iron') {
     // hot_%metal%_pickaxe_head_forging.json
     JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_hot_${metal}_pickaxe_head_forging.json`, {
       "type": "hot_iron:forging",
@@ -58,9 +58,6 @@ function addTools(event, metal) {
       "type": "hot_iron:forging",
       "ingredients": [
         {
-          "item": "hot_iron:jei_empty_tag"
-        },
-        {
           "item": `kubejs:hot_${metal}_ingot`
         },
         {
@@ -70,10 +67,13 @@ function addTools(event, metal) {
           "tag": "hot_iron:jei_empty_tag"
         },
         {
+          "item": `kubejs:hot_${metal}_ingot`
+        },
+        {
           "tag": "hot_iron:jei_empty_tag"
         },
         {
-          "tag": `kubejs:hot_${metal}_ingot`
+          "tag": "hot_iron:jei_empty_tag"
         },
         {
           "tag": "hot_iron:jei_empty_tag"
@@ -95,13 +95,13 @@ function addTools(event, metal) {
       "type": "hot_iron:forging",
       "ingredients": [
         {
-          "item": "hot_iron:jei_empty_tag"
+          "tag": "hot_iron:jei_empty_tag"
         },
         {
           "item": `kubejs:hot_${metal}_ingot`
         },
         {
-          "item": "hot_iron:jei_empty_tag"
+          "tag": "hot_iron:jei_empty_tag"
         },
         {
           "tag": "hot_iron:jei_empty_tag"
@@ -132,13 +132,13 @@ function addTools(event, metal) {
       "type": "hot_iron:forging",
       "ingredients": [
         {
-          "item": "hot_iron:jei_empty_tag"
-        },
-        {
           "item": `kubejs:hot_${metal}_ingot`
         },
         {
           "item": `kubejs:hot_${metal}_ingot`
+        },
+        {
+          "tag": "hot_iron:jei_empty_tag"
         },
         {
           "tag": "hot_iron:jei_empty_tag"
@@ -169,25 +169,23 @@ function addTools(event, metal) {
       "type": "hot_iron:forging",
       "ingredients": [
         {
-          "item": "hot_iron:jei_empty_tag"
+          "tag": "hot_iron:jei_empty_tag"
         },
         {
           "item": `kubejs:hot_${metal}_ingot`
         },
         {
-          "item": "hot_iron:jei_empty_tag"
+          "tag": "hot_iron:jei_empty_tag"
         },
-
         {
           "tag": "hot_iron:jei_empty_tag"
         },
         {
-          "tag": `kubejs:hot_${metal}_ingot`
+          "item": `kubejs:hot_${metal}_ingot`
         },
         {
           "tag": "hot_iron:jei_empty_tag"
         },
-        
         {
           "tag": "hot_iron:jei_empty_tag"
         },
@@ -236,20 +234,18 @@ function addTools(event, metal) {
       .displayName(toSentenceCase(`${metal} ${part}`))
 
     // add missing tools
-    if (!global.toolItems[metal][part] && (!global.tConstructToolParts[part] || !global.metalHasTConstructItems[metal])) {
-      let type = part.split('_')[0]
-      let toolItem = `${metal}_${type}`
+    let type = part.split('_')[0]
+    let toolItem = `${metal}_${type}`
 
-      event
-        .create(toolItem, type)
-        .maxDamage(global.baseMetalDurability[metal])
-        .tier(global.metalTiers[metal])
-        .texture(`minecraft:item/stone_${type}`)
-        .color(0, global.metalColors[metal])
-        .displayName(toSentenceCase(toolItem))
+    event
+      .create(toolItem, type)
+      .maxDamage(global.baseMetalDurability[metal])
+      .tier(global.metalTiers[metal])
+      .texture(`minecraft:item/stone_${type}`)
+      .color(0, global.metalColors[metal])
+      .displayName(toSentenceCase(toolItem))
 
-        global.toolItems[metal][part] = `kubejs:${toolItem}`
-    }
+      global.toolItems[metal][part] = `kubejs:${toolItem}`
 
     // cooling into rough part, available for all metals
 
@@ -337,19 +333,19 @@ function addSheets(event, metal) {
       .displayName(toSentenceCase(`${metal} Plate`))
   }
 
-  if (global.isSmithable(metal)) {
+  if (global.isSmithable(metal) && metal !== 'cast_iron') {
     // %metal%_plate_forging.json
     JsonIO.write(`kubejs/data/hot_iron/recipes/kjs_${metal}_plate_forging.json`, {
       "type": "hot_iron:forging",
       "ingredients": [
         {
-          "item": "hot_iron:jei_empty_tag"
+          "tag": "hot_iron:jei_empty_tag"
         },
         {
           "item": global.ingotDictionary[metal]
         },
         {
-          "item": "hot_iron:jei_empty_tag"
+          "tag": "hot_iron:jei_empty_tag"
         },
         {
           "tag": "hot_iron:jei_empty_tag"

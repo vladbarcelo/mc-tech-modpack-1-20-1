@@ -6,7 +6,6 @@ import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$LootBuilder, $LootBuilder$Type} from "packages/dev/latvian/mods/kubejs/loot/$LootBuilder"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$RandomTickCallbackJS, $RandomTickCallbackJS$Type} from "packages/dev/latvian/mods/kubejs/block/$RandomTickCallbackJS"
-import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 
 export class $FeastBlockBuilder extends $BlockBuilder {
  "randomTickCallback": $Consumer<($RandomTickCallbackJS)>
@@ -20,10 +19,9 @@ readonly "id": $ResourceLocation
 
 constructor(arg0: $ResourceLocation$Type)
 
-public "createObject"(): $Block
+public "hasLeftovers"(arg0: boolean): $FeastBlockBuilder
 public "servingsAmount"(arg0: integer): $FeastBlockBuilder
 public "servingItems"(arg0: ($ResourceLocation$Type)[]): $FeastBlockBuilder
-public "hasLeftovers"(arg0: boolean): $FeastBlockBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

@@ -52,7 +52,8 @@
       "hidden": false,
       "keys": [
         "key.hotbar.8",
-        "key.hotbar.9"
+        "key.hotbar.9",
+        "key.trade_cycling.cycle_trades"
       ]
     },
     {
@@ -168,13 +169,11 @@
       ]
     },
     {
-      "name": "jei.key.category.search",
+      "name": "key.categories.astikorcarts",
       "index": 14,
       "hidden": false,
       "keys": [
-        "key.jei.previousSearch",
-        "key.jei.clearSearchBar",
-        "key.jei.nextSearch"
+        "key.astikorcarts.desc"
       ]
     },
     {
@@ -188,41 +187,54 @@
       ]
     },
     {
-      "name": "jei.key.category.cheat.mode",
+      "name": "jei.key.category.mouse.hover",
       "index": 15,
       "hidden": false,
       "keys": [
-        "key.jei.cheatOneItem2",
-        "key.jei.cheatOneItem",
-        "key.jei.cheatItemStack",
-        "key.jei.cheatItemStack2",
-        "key.jei.toggleCheatMode"
+        "key.jei.showRecipe",
+        "key.jei.transferRecipeBookmark",
+        "key.jei.showUses",
+        "key.jei.maxTransferRecipeBookmark",
+        "key.jei.showUses2",
+        "key.jei.bookmark",
+        "key.jei.showRecipe2"
       ]
     },
     {
       "name": "jei.key.category.overlays",
-      "index": 17,
+      "index": 16,
       "hidden": false,
       "keys": [
         "key.jei.toggleOverlay",
+        "key.jei.nextPage",
         "key.jei.toggleBookmarkOverlay",
         "key.jei.previousPage",
-        "key.jei.focusSearch",
-        "key.jei.nextPage"
+        "key.jei.focusSearch"
       ]
     },
     {
-      "name": "jei.key.category.mouse.hover",
+      "name": "jei.key.category.recipe.gui",
+      "index": 17,
+      "hidden": false,
+      "keys": [
+        "key.jei.previousCategory",
+        "key.jei.nextCategory",
+        "key.jei.recipeBack",
+        "key.jei.nextRecipePage",
+        "key.jei.closeRecipeGui",
+        "key.jei.previousRecipePage"
+      ]
+    },
+    {
+      "name": "jei.key.category.cheat.mode",
       "index": 18,
       "hidden": false,
       "keys": [
-        "key.jei.transferRecipeBookmark",
-        "key.jei.showRecipe",
-        "key.jei.maxTransferRecipeBookmark",
-        "key.jei.showRecipe2",
-        "key.jei.showUses",
-        "key.jei.showUses2",
-        "key.jei.bookmark"
+        "key.jei.cheatOneItem",
+        "key.jei.cheatItemStack",
+        "key.jei.cheatOneItem2",
+        "key.jei.cheatItemStack2",
+        "key.jei.toggleCheatMode"
       ]
     },
     {
@@ -230,22 +242,19 @@
       "index": 19,
       "hidden": false,
       "keys": [
-        "key.jei.toggleHideIngredient",
         "key.jei.toggleWildcardHideIngredient",
+        "key.jei.toggleHideIngredient",
         "key.jei.toggleEditMode"
       ]
     },
     {
-      "name": "jei.key.category.recipe.gui",
+      "name": "jei.key.category.search",
       "index": 20,
       "hidden": false,
       "keys": [
-        "key.jei.recipeBack",
-        "key.jei.nextRecipePage",
-        "key.jei.previousCategory",
-        "key.jei.nextCategory",
-        "key.jei.previousRecipePage",
-        "key.jei.closeRecipeGui"
+        "key.jei.nextSearch",
+        "key.jei.clearSearchBar",
+        "key.jei.previousSearch"
       ]
     },
     {
@@ -291,34 +300,34 @@
     },
     {
       "name": "XaeroPlus",
-      "index": 24,
+      "index": 25,
       "hidden": false,
       "keys": [
-        "xaeroplus.setting.portals",
-        "xaeroplus.setting.old_biomes_enabled",
-        "xaeroplus.keybind.world_map_baritone_path_here",
-        "xaeroplus.setting.world_tools",
-        "xaeroplus.setting.map_art_grid",
+        "xaeroplus.setting.new_chunks_highlighting",
         "xaeroplus.setting.old_chunks_highlighting",
-        "xaeroplus.keybind.switch_to_overworld",
+        "xaeroplus.setting.show_render_distance",
+        "xaeroplus.setting.old_biomes_enabled",
+        "xaeroplus.keybind.world_map_baritone_elytra_here",
+        "xaeroplus.setting.2b2t_highways_enabled",
+        "xaeroplus.setting.portals",
+        "xaeroplus.setting.map_art_grid",
         "xaeroplus.keybind.world_map_baritone_goal_here",
-        "xaeroplus.setting.palette_new_chunks_highlighting",
-        "xaeroplus.setting.player_spawn_chunks"
+        "xaeroplus.setting.portal_skip_detection"
       ]
     },
     {
       "name": "XaeroPlus",
-      "index": 25,
+      "index": 26,
       "hidden": false,
       "keys": [
         "xaeroplus.keybind.switch_to_nether",
         "xaeroplus.setting.spawn_chunks",
-        "xaeroplus.setting.portal_skip_detection",
-        "xaeroplus.setting.2b2t_highways_enabled",
-        "xaeroplus.setting.new_chunks_highlighting",
-        "xaeroplus.setting.show_render_distance",
-        "xaeroplus.keybind.world_map_baritone_elytra_here",
-        "xaeroplus.keybind.switch_to_end"
+        "xaeroplus.keybind.world_map_baritone_path_here",
+        "xaeroplus.setting.player_spawn_chunks",
+        "xaeroplus.keybind.switch_to_end",
+        "xaeroplus.setting.palette_new_chunks_highlighting",
+        "xaeroplus.keybind.switch_to_overworld",
+        "xaeroplus.setting.world_tools"
       ]
     },
     {
@@ -398,6 +407,23 @@
       ]
     },
     {
+      "name": "itemGroup.immersive_aircraft.immersive_aircraft_tab",
+      "index": 32,
+      "hidden": false,
+      "keys": [
+        "key.immersive_aircraft.fallback_control_left",
+        "key.immersive_aircraft.fallback_control_right",
+        "key.immersive_aircraft.fallback_control_forward",
+        "key.immersive_aircraft.fallback_control_backward",
+        "key.immersive_aircraft.fallback_control_up",
+        "key.immersive_aircraft.fallback_control_down",
+        "key.immersive_aircraft.fallback_control_pull",
+        "key.immersive_aircraft.fallback_control_push",
+        "key.immersive_aircraft.fallback_use",
+        "key.immersive_aircraft.dismount"
+      ]
+    },
+    {
       "name": "Xaero\u0027s World Map",
       "index": 32,
       "hidden": false,
@@ -411,19 +437,11 @@
       ]
     },
     {
-      "name": "keybind.sophisticatedbackpacks.category",
+      "name": "itemGroup.immersive_aircraft.immersive_aircraft_tab",
       "index": 33,
       "hidden": false,
       "keys": [
-        "keybind.sophisticatedbackpacks.open_backpack",
-        "keybind.sophisticatedbackpacks.inventory_interaction",
-        "keybind.sophisticatedbackpacks.tool_swap",
-        "keybind.sophisticatedbackpacks.sort",
-        "keybind.sophisticatedbackpacks.toggle_upgrade_1",
-        "keybind.sophisticatedbackpacks.toggle_upgrade_5",
-        "keybind.sophisticatedbackpacks.toggle_upgrade_4",
-        "keybind.sophisticatedbackpacks.toggle_upgrade_3",
-        "keybind.sophisticatedbackpacks.toggle_upgrade_2"
+        "key.immersive_aircraft.boost"
       ]
     },
     {
@@ -433,6 +451,22 @@
       "keys": [
         "railways.keyinfo.bogey_menu",
         "railways.keyinfo.cycle_menu"
+      ]
+    },
+    {
+      "name": "keybind.sophisticatedbackpacks.category",
+      "index": 36,
+      "hidden": false,
+      "keys": [
+        "keybind.sophisticatedbackpacks.open_backpack",
+        "keybind.sophisticatedbackpacks.inventory_interaction",
+        "keybind.sophisticatedbackpacks.tool_swap",
+        "keybind.sophisticatedbackpacks.sort",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_5",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_4",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_3",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_2",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_1"
       ]
     },
     {
@@ -514,14 +548,6 @@
       "keys": [
         "key.presencefootsteps.settings",
         "key.presencefootsteps.toggle"
-      ]
-    },
-    {
-      "name": "key.antique_atlas.category",
-      "index": 41,
-      "hidden": false,
-      "keys": [
-        "key.antique_atlas.open"
       ]
     },
     {

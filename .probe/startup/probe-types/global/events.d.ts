@@ -15,6 +15,7 @@ import {$SpecialFluidHandlerEvent, $SpecialFluidHandlerEvent$Type} from "package
 import {$ItemArmorTierRegistryEventJS, $ItemArmorTierRegistryEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/custom/$ItemArmorTierRegistryEventJS"
 import {$DynamicBEEventJS, $DynamicBEEventJS$Type} from "packages/com/prunoideae/powerfuljs/events/forge/$DynamicBEEventJS"
 import {$SpecialSpoutHandlerEvent, $SpecialSpoutHandlerEvent$Type} from "packages/dev/latvian/mods/kubejs/create/events/$SpecialSpoutHandlerEvent"
+import {$PotionBrewingRegisterEvent, $PotionBrewingRegisterEvent$Type} from "packages/com/almostreliable/morejs/features/potion/$PotionBrewingRegisterEvent"
 import {$BlockEntityCapEventJS, $BlockEntityCapEventJS$Type} from "packages/com/prunoideae/powerfuljs/events/$BlockEntityCapEventJS"
 import {$ArchEventRegisterEventJS, $ArchEventRegisterEventJS$Type} from "packages/pie/ilikepiefoo/events/custom/$ArchEventRegisterEventJS"
 import {$ProxyEventJS, $ProxyEventJS$Type} from "packages/pie/ilikepiefoo/events/$ProxyEventJS"
@@ -23,6 +24,9 @@ import {$RemoveWorldgenEventJS, $RemoveWorldgenEventJS$Type} from "packages/dev/
 import {$ItemToolTierRegistryEventJS, $ItemToolTierRegistryEventJS$Type} from "packages/dev/latvian/mods/kubejs/item/custom/$ItemToolTierRegistryEventJS"
 
 declare global {
+export namespace MoreJSEvents {
+function registerPotionBrewing(handler: (event: $PotionBrewingRegisterEvent) => void): void
+}
 export namespace ArchEvents {
 function registry(handler: (event: $ArchEventRegisterEventJS) => void): void
 function handleStartup(extra: string, handler: (event: $ProxyEventJS) => void): void

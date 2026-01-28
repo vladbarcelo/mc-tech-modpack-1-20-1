@@ -10,4 +10,15 @@ ServerEvents.recipes((event) => {
     rate: 10,
     temperature: 800
   })
+
+  event.custom({
+    type: "tconstruct:melting_fuel",
+    duration: 100,
+    fluid: {
+      amount: 50,
+      fluid: "immersiveengineering:creosote"
+    },
+    rate: 10,
+    temperature: 1000
+  })
 });

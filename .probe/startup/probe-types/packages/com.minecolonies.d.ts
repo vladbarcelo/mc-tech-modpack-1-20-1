@@ -52,9 +52,9 @@ import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/
 import {$IVisitorManager, $IVisitorManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IVisitorManager"
 import {$ColonyState, $ColonyState$Type} from "packages/com/minecolonies/api/colony/$ColonyState"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
+import {$TickEvent$ServerTickEvent, $TickEvent$ServerTickEvent$Type} from "packages/net/minecraftforge/event/$TickEvent$ServerTickEvent"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
 import {$IColonyPackageManager, $IColonyPackageManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IColonyPackageManager"
-import {$TickEvent$ServerTickEvent, $TickEvent$ServerTickEvent$Type} from "packages/net/minecraftforge/event/$TickEvent$ServerTickEvent"
 import {$IRequestManager, $IRequestManager$Type} from "packages/com/minecolonies/api/colony/requestsystem/manager/$IRequestManager"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 import {$IRegisteredStructureManager, $IRegisteredStructureManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IRegisteredStructureManager"
@@ -63,6 +63,8 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IColony {
 
+ "getID"(): integer
+ "getDay"(): integer
  "getName"(): string
  "write"(arg0: $CompoundTag$Type): $CompoundTag
  "read"(arg0: $CompoundTag$Type): void
@@ -71,28 +73,15 @@ export interface $IColony {
  "getState"(): $ColonyState
  "isActive"(): boolean
  "getDimension"(): $ResourceKey<($Level)>
- "getID"(): integer
- "getDay"(): integer
+ "onWorldTick"(arg0: $TickEvent$LevelTickEvent$Type): void
+ "onServerTick"(arg0: $TickEvent$ServerTickEvent$Type): void
+ "getDistanceSquared"(arg0: $BlockPos$Type): long
+ "getStructurePack"(): string
+ "onWorldLoad"(arg0: $Level$Type): void
+ "onWorldUnload"(arg0: $Level$Type): void
  "getRequesterBuildingForPosition"(arg0: $BlockPos$Type): $IRequester
  "getImportantMessageEntityPlayers"(): $List<($Player)>
- "getTextureStyleId"(): string
- "getRaiderManager"(): $IRaiderManager
- "getStatisticsManager"(): $IStatisticsManager
- "isCoordInColony"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
- "getGraveManager"(): $IGraveManager
- "getEventDescriptionManager"(): $IEventDescriptionManager
- "getCitizenManager"(): $ICitizenManager
- "getOverallHappiness"(): double
- "getEventManager"(): $IEventManager
- "getPackageManager"(): $IColonyPackageManager
- "getWayPoints"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $List<($BlockPos)>
- "getWayPoints"(): $Map<($BlockPos), ($BlockState)>
  "getWorkManager"(): $IWorkManager
- "getTeamColonyColor"(): $ChatFormatting
- "setStructurePack"(arg0: string): void
- "getBuildingManager"(): $IRegisteredStructureManager
- "getResearchManager"(): $IResearchManager
- "hasBuilding"(arg0: string, arg1: integer, arg2: boolean): boolean
  "hasTownHall"(): boolean
  "hasWarehouse"(): boolean
  "getColonyFlag"(): $ListTag
@@ -131,17 +120,28 @@ export interface $IColony {
  "setNameStyle"(arg0: string): void
  "getCitizenNameFile"(): $CitizenNameFile
  "getQuestManager"(): $IQuestManager
+ "hasBuilding"(arg0: string, arg1: integer, arg2: boolean): boolean
+ "getTextureStyleId"(): string
+ "getCitizenManager"(): $ICitizenManager
+ "getResearchManager"(): $IResearchManager
+ "setStructurePack"(arg0: string): void
+ "getEventManager"(): $IEventManager
+ "getPackageManager"(): $IColonyPackageManager
+ "getTeamColonyColor"(): $ChatFormatting
+ "getBuildingManager"(): $IRegisteredStructureManager
+ "getOverallHappiness"(): double
  "getMessagePlayerEntities"(): $List<($Player)>
  "getRequestManager"(): $IRequestManager
- "onWorldLoad"(arg0: $Level$Type): void
- "onWorldUnload"(arg0: $Level$Type): void
- "getDistanceSquared"(arg0: $BlockPos$Type): long
- "getStructurePack"(): string
- "onServerTick"(arg0: $TickEvent$ServerTickEvent$Type): void
- "onWorldTick"(arg0: $TickEvent$LevelTickEvent$Type): void
+ "getWayPoints"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $List<($BlockPos)>
+ "getWayPoints"(): $Map<($BlockPos), ($BlockState)>
+ "getRaiderManager"(): $IRaiderManager
+ "getStatisticsManager"(): $IStatisticsManager
+ "isCoordInColony"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
+ "getGraveManager"(): $IGraveManager
+ "getEventDescriptionManager"(): $IEventDescriptionManager
  "getWorld"(): $Level
- "getCenter"(): $BlockPos
  "markDirty"(): void
+ "getCenter"(): $BlockPos
  "isRemote"(): boolean
  "isDay"(): boolean
  "getCitizen"(arg0: integer): $ICitizen
@@ -199,9 +199,9 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "getOverlayBoxes"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ItemStack$Type): $List<($IBlockOverlayItem$OverlayBox)>
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "getDestroySpeed"(arg0: $ItemStack$Type, arg1: $BlockState$Type): float
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -281,13 +281,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getRegistryName"(): $ResourceLocation
+public "getDescriptionId"(): string
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "getDescriptionId"(): string
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "registryName"(): $ResourceLocation
 get "descriptionId"(): string
@@ -411,8 +411,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 
 export interface $IResearchEffectManager {
 
- "getEffectStrength"(arg0: $ResourceLocation$Type): double
  "applyEffect"(arg0: $IResearchEffect$Type<(any)>): void
+ "getEffectStrength"(arg0: $ResourceLocation$Type): double
  "removeAllEffects"(): void
  "getEffect"<W extends $IResearchEffect<(any)>>(arg0: $ResourceLocation$Type, arg1: $Class$Type<(W)>): W
 }
@@ -575,9 +575,9 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "customArrow"(arg0: $AbstractArrow$Type): $AbstractArrow
+public "getAllSupportedProjectiles"(): $Predicate<($ItemStack)>
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "releaseUsing"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type, arg3: integer): void
-public "getAllSupportedProjectiles"(): $Predicate<($ItemStack)>
 get "allSupportedProjectiles"(): $Predicate<($ItemStack)>
 }
 /**
@@ -604,18 +604,18 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IEventManager {
 
+ "onEntityDeath"(arg0: $LivingEntity$Type, arg1: integer): void
+ "readFromNBT"(arg0: $CompoundTag$Type): void
+ "registerEntity"(arg0: $Entity$Type, arg1: integer): void
+ "getStructureManager"(): $IEventStructureManager
+ "getEventByID"(arg0: integer): $IColonyEvent
+ "onColonyTick"(arg0: $IColony$Type): void
  "getAndTakeNextEventID"(): integer
  "onTileEntityBreak"(arg0: integer, arg1: $BlockEntity$Type): void
  "onNightFall"(): void
  "unregisterEntity"(arg0: $Entity$Type, arg1: integer): void
- "onColonyTick"(arg0: $IColony$Type): void
- "registerEntity"(arg0: $Entity$Type, arg1: integer): void
- "getEventByID"(arg0: integer): $IColonyEvent
- "getStructureManager"(): $IEventStructureManager
- "readFromNBT"(arg0: $CompoundTag$Type): void
- "onEntityDeath"(arg0: $LivingEntity$Type, arg1: integer): void
- "writeToNBT"(arg0: $CompoundTag$Type): void
  "getEvents"(): $Map<(integer), ($IColonyEvent)>
+ "writeToNBT"(arg0: $CompoundTag$Type): void
  "addEvent"(arg0: $IColonyEvent$Type): void
 }
 
@@ -772,6 +772,9 @@ constructor()
 public "getBlock"(): $Block
 public "getRegistryName"(): $ResourceLocation
 public "getComponents"(): $Collection<($IMateriallyTexturedBlockComponent)>
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 /**
@@ -788,26 +791,23 @@ public "getDrops"(arg0: $BlockState$Type, arg1: $LootParams$Builder$Type): $List
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "spawnAfterBreak"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type, arg4: boolean): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
-public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
-public "getRandomMaterials"(): $MaterialTextureData
-public "usesWorldSpecificTinting"(): boolean
 public "getDOExplosionResistance"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($BlockGetter$Type), ($BlockPos$Type), ($Explosion$Type), (float)>, arg1: $BlockState$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Explosion$Type): float
 public "getDODestroyProgress"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($Player$Type), ($BlockGetter$Type), ($BlockPos$Type), (float)>, arg1: $BlockState$Type, arg2: $Player$Type, arg3: $BlockGetter$Type, arg4: $BlockPos$Type): float
 public "getDOSoundType"(arg0: $PropertyDispatch$QuadFunction$Type<($BlockState$Type), ($LevelReader$Type), ($BlockPos$Type), ($Entity$Type), ($SoundType$Type)>, arg1: $BlockState$Type, arg2: $LevelReader$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): $SoundType
 public "getMainComponent"(): $IMateriallyTexturedBlockComponent
 public "fillDOItemCategory"(arg0: $Block$Type, arg1: $NonNullList$Type<($ItemStack$Type)>, arg2: $List$Type<($ItemStack$Type)>): void
+public "getValidCutterRecipes"(): $Collection<($FinishedRecipe)>
+public "getRandomMaterials"(): $MaterialTextureData
+public "usesWorldSpecificTinting"(): boolean
 public "isCorrectToolForDrops"(arg0: $BlockState$Type, arg1: $ItemStack$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "block"(): $Block
 get "registryName"(): $ResourceLocation
 get "components"(): $Collection<($IMateriallyTexturedBlockComponent)>
+get "mainComponent"(): $IMateriallyTexturedBlockComponent
 get "validCutterRecipes"(): $Collection<($FinishedRecipe)>
 get "randomMaterials"(): $MaterialTextureData
-get "mainComponent"(): $IMateriallyTexturedBlockComponent
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -829,16 +829,16 @@ import {$IBuilding, $IBuilding$Type} from "packages/com/minecolonies/api/colony/
 export interface $ICitizenColonyHandler {
 
  "registered"(): boolean
+ "updateColonyClient"(): void
+ "registerWithColony"(arg0: integer, arg1: integer): void
+ "setColonyId"(arg0: integer): void
+ "getColonyOrRegister"(): $IColony
+ "getColonyId"(): integer
  "getPerBuildingFoodCost"(): double
  "getWorkBuilding"(): $IBuilding
  "onCitizenRemoved"(): void
  "onSyncDataUpdate"(arg0: $EntityDataAccessor$Type<(any)>): void
  "getHomeBuilding"(): $IBuilding
- "getColonyOrRegister"(): $IColony
- "getColonyId"(): integer
- "setColonyId"(arg0: integer): void
- "updateColonyClient"(): void
- "registerWithColony"(arg0: integer, arg1: integer): void
  "getColony"(): $IColony
 }
 
@@ -868,8 +868,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -900,9 +900,9 @@ constructor(arg0: $Item$Properties$Type)
 public "onAirRightClick"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: $Level$Type, arg3: $Player$Type, arg4: $ItemStack$Type): $InteractionResult
 public "getRegisteredItemInstance"(): $AbstractItemWithPosSelector
 public static "saveStructure"(arg0: $Level$Type, arg1: $Player$Type, arg2: $AABB$Type): $Blueprint
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
 get "registeredItemInstance"(): $AbstractItemWithPosSelector
 }
 /**
@@ -956,10 +956,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $MinecoloniesCropBlock$Type, arg1: $Item$Properties$Type, arg2: $TagKey$Type<($Biome$Type)>)
 
-public "handler$gdb000$minecolonies_tweaks$init"(arg0: $MinecoloniesCropBlock$Type, arg1: $Item$Properties$Type, arg2: $TagKey$Type<(any)>, arg3: $CallbackInfo$Type): void
-public "minecolonies_tweaks$onServerConfigReloaded"(): void
 public "canBePlantedIn"(arg0: $Holder$Type<($Biome$Type)>): boolean
-public "handler$gdb002$minecolonies_tweaks$appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<(any)>, arg3: $TooltipFlag$Type, arg4: $CallbackInfo$Type): void
+public "minecolonies_tweaks$onServerConfigReloaded"(): void
+public "handler$ghj000$minecolonies_tweaks$init"(arg0: $MinecoloniesCropBlock$Type, arg1: $Item$Properties$Type, arg2: $TagKey$Type<(any)>, arg3: $CallbackInfo$Type): void
+public "handler$ghj002$minecolonies_tweaks$appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<(any)>, arg3: $TooltipFlag$Type, arg4: $CallbackInfo$Type): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "moonlight$getAdditionalBehavior"(): $AdditionalItemPlacement
 public "moonlight$addAdditionalBehavior"(arg0: $AdditionalItemPlacement$Type): void
@@ -1003,8 +1003,8 @@ import {$ChatFormatting, $ChatFormatting$Type} from "packages/net/minecraft/$Cha
 import {$IEventDescriptionManager, $IEventDescriptionManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IEventDescriptionManager"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$ICitizenManager, $ICitizenManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$ICitizenManager"
-import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
+import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$CitizenNameFile, $CitizenNameFile$Type} from "packages/com/minecolonies/api/colony/$CitizenNameFile"
 import {$IResearchManager, $IResearchManager$Type} from "packages/com/minecolonies/api/research/$IResearchManager"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
@@ -1018,8 +1018,8 @@ import {$ICitizenDataView, $ICitizenDataView$Type} from "packages/com/minecoloni
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
-import {$IColonyPackageManager, $IColonyPackageManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IColonyPackageManager"
 import {$TickEvent$ServerTickEvent, $TickEvent$ServerTickEvent$Type} from "packages/net/minecraftforge/event/$TickEvent$ServerTickEvent"
+import {$IColonyPackageManager, $IColonyPackageManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IColonyPackageManager"
 import {$IRequestManager, $IRequestManager$Type} from "packages/com/minecolonies/api/colony/requestsystem/manager/$IRequestManager"
 import {$ResourceKey, $ResourceKey$Type} from "packages/net/minecraft/resources/$ResourceKey"
 import {$IBuildingView, $IBuildingView$Type} from "packages/com/minecolonies/api/colony/buildings/views/$IBuildingView"
@@ -1029,11 +1029,15 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IColonyView extends $IColony {
 
+ "getID"(): integer
  "getName"(): string
  "getPermissions"(): $IPermissions
  "setName"(arg0: string): void
  "getDimension"(): $ResourceKey<($Level)>
- "getID"(): integer
+ "getBuilding"(arg0: $BlockPos$Type): $IBuildingView
+ "getBuilding"(arg0: integer, arg1: integer, arg2: integer): $IBuildingView
+ "getDistanceSquared"(arg0: $BlockPos$Type): long
+ "getStructurePack"(): string
  "handleColonyViewVisitorMessage"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
  "handleColonyViewResearchManagerUpdate"(arg0: $CompoundTag$Type): void
  "handlePermissionsViewMessage"(arg0: $FriendlyByteBuf$Type): $IMessage
@@ -1044,14 +1048,7 @@ export interface $IColonyView extends $IColony {
  "handleColonyViewRemoveBuildingMessage"(arg0: $BlockPos$Type): $IMessage
  "handleColonyViewRemoveWorkOrderMessage"(arg0: integer): $IMessage
  "getRequesterBuildingForPosition"(arg0: $BlockPos$Type): $IRequester
- "getCitizens"(): $Map<(integer), ($ICitizenDataView)>
- "isCoordInColony"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
- "getOverallHappiness"(): double
- "areSpiesEnabled"(): boolean
- "getWorkOrder"(arg0: integer): $IWorkOrderView
- "getBuildingExtension"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): $IBuildingExtension
- "getBuildings"(): $List<($IBuildingView)>
- "handleColonyViewMessage"(arg0: $FriendlyByteBuf$Type, arg1: $Level$Type, arg2: boolean): $IMessage
+ "getWorkOrders"(): $Collection<($IWorkOrderView)>
  "hasTownHall"(): boolean
  "hasWarehouse"(): boolean
  "getLastContactInHours"(): integer
@@ -1070,50 +1067,41 @@ export interface $IColonyView extends $IColony {
  "getCitizenCount"(): integer
  "getCitizenCountLimit"(): integer
  "getBuildingExtensions"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): $List<($IBuildingExtension)>
+ "removePlayer"(arg0: $UUID$Type): void
  "getLastSpawnPoints"(): $List<($BlockPos)>
  "getNameFileIds"(): $List<(string)>
- "getWorkOrders"(): $Collection<($IWorkOrderView)>
+ "getBuildings"(): $List<($IBuildingView)>
+ "getBuildingExtension"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): $IBuildingExtension
+ "getWorkOrder"(arg0: integer): $IWorkOrderView
+ "areSpiesEnabled"(): boolean
+ "getOverallHappiness"(): double
+ "handleColonyViewMessage"(arg0: $FriendlyByteBuf$Type, arg1: $Level$Type, arg2: boolean): $IMessage
  "getRequestManager"(): $IRequestManager
- "getDistanceSquared"(arg0: $BlockPos$Type): long
- "getStructurePack"(): string
- "removePlayer"(arg0: $UUID$Type): void
- "getBuilding"(arg0: $BlockPos$Type): $IBuildingView
- "getBuilding"(arg0: integer, arg1: integer, arg2: integer): $IBuildingView
+ "getCitizens"(): $Map<(integer), ($ICitizenDataView)>
+ "isCoordInColony"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
  "handleColonyBuildingExtensionViewUpdateMessage"(arg0: $Set$Type<($IBuildingExtension$Type)>): void
  "getWorld"(): $Level
- "getCenter"(): $BlockPos
  "markDirty"(): void
- "isRemote"(): boolean
+ "getCenter"(): $BlockPos
  "getPlayers"(): $Map<($UUID), ($ColonyPlayer)>
+ "isRemote"(): boolean
  "addPlayer"(arg0: string): void
- "getCitizen"(arg0: integer): $ICitizenDataView
+ "canMoveIn"(): boolean
  "isRaiding"(): boolean
  "getAllies"(): $List<($CompactColonyReference)>
  "getFeuds"(): $List<($CompactColonyReference)>
  "getVisitor"(arg0: integer): $ICitizenDataView
- "canMoveIn"(): boolean
+ "getDay"(): integer
  "write"(arg0: $CompoundTag$Type): $CompoundTag
  "read"(arg0: $CompoundTag$Type): void
  "getState"(): $ColonyState
  "isActive"(): boolean
- "getDay"(): integer
+ "onWorldTick"(arg0: $TickEvent$LevelTickEvent$Type): void
+ "onServerTick"(arg0: $TickEvent$ServerTickEvent$Type): void
+ "onWorldLoad"(arg0: $Level$Type): void
+ "onWorldUnload"(arg0: $Level$Type): void
  "getImportantMessageEntityPlayers"(): $List<($Player)>
- "getTextureStyleId"(): string
- "getRaiderManager"(): $IRaiderManager
- "getStatisticsManager"(): $IStatisticsManager
- "getGraveManager"(): $IGraveManager
- "getEventDescriptionManager"(): $IEventDescriptionManager
- "getCitizenManager"(): $ICitizenManager
- "getEventManager"(): $IEventManager
- "getPackageManager"(): $IColonyPackageManager
- "getWayPoints"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $List<($BlockPos)>
- "getWayPoints"(): $Map<($BlockPos), ($BlockState)>
  "getWorkManager"(): $IWorkManager
- "getTeamColonyColor"(): $ChatFormatting
- "setStructurePack"(arg0: string): void
- "getBuildingManager"(): $IRegisteredStructureManager
- "getResearchManager"(): $IResearchManager
- "hasBuilding"(arg0: string, arg1: integer, arg2: boolean): boolean
  "getColonyFlag"(): $ListTag
  "getVisitorManager"(): $IVisitorManager
  "getReproductionManager"(): $IReproductionManager
@@ -1140,11 +1128,22 @@ export interface $IColonyView extends $IColony {
  "setNameStyle"(arg0: string): void
  "getCitizenNameFile"(): $CitizenNameFile
  "getQuestManager"(): $IQuestManager
+ "hasBuilding"(arg0: string, arg1: integer, arg2: boolean): boolean
+ "getTextureStyleId"(): string
+ "getCitizenManager"(): $ICitizenManager
+ "getResearchManager"(): $IResearchManager
+ "setStructurePack"(arg0: string): void
+ "getEventManager"(): $IEventManager
+ "getPackageManager"(): $IColonyPackageManager
+ "getTeamColonyColor"(): $ChatFormatting
+ "getBuildingManager"(): $IRegisteredStructureManager
  "getMessagePlayerEntities"(): $List<($Player)>
- "onWorldLoad"(arg0: $Level$Type): void
- "onWorldUnload"(arg0: $Level$Type): void
- "onServerTick"(arg0: $TickEvent$ServerTickEvent$Type): void
- "onWorldTick"(arg0: $TickEvent$LevelTickEvent$Type): void
+ "getWayPoints"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): $List<($BlockPos)>
+ "getWayPoints"(): $Map<($BlockPos), ($BlockState)>
+ "getRaiderManager"(): $IRaiderManager
+ "getStatisticsManager"(): $IStatisticsManager
+ "getGraveManager"(): $IGraveManager
+ "getEventDescriptionManager"(): $IEventDescriptionManager
  "isDay"(): boolean
 }
 
@@ -1188,41 +1187,41 @@ public "getStrength"(): integer
 public "getFermentTime"(): integer
 public static "individualize"(arg0: $Item$Type, arg1: $CompostRecipe$Type): $CompostRecipe
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
+public "assemble"(arg0: $Container$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "matches"(arg0: $Container$Type, arg1: $Level$Type): boolean
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "assemble"(arg0: $Container$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "matches"(arg0: $Container$Type, arg1: $Level$Type): boolean
-public "getId"(): $ResourceLocation
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $Container$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
 get "input"(): $Ingredient
 get "strength"(): integer
 get "fermentTime"(): integer
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -1246,8 +1245,8 @@ import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/co
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
-import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
+import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$ILocation, $ILocation$Type} from "packages/com/minecolonies/api/colony/requestsystem/location/$ILocation"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/requestsystem/request/$IRequest"
@@ -1265,15 +1264,31 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IBuildingView extends $IRequester, $IModuleContainerView {
 
+ "getID"(): $BlockPos
  "getRange"(): integer
- "getPosition"(): $BlockPos
  "getParent"(): $BlockPos
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
+ "getContainerList"(): $List<($BlockPos)>
+ "getBuildingType"(): $BuildingEntry
+ "getCustomName"(): string
+ "getStructurePack"(): string
+ "getBuildingDmPrio"(): integer
+ "getBuildingMaxLevel"(): integer
+ "getOpenRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
+ "isDeconstructing"(): boolean
+ "isRepairing"(): boolean
+ "getCurrentWorkOrderLevel"(): integer
+ "isBuildingMaxLevel"(): boolean
+ "allowsAssignment"(): boolean
+ "getAllAssignedCitizens"(): $Set<(integer)>
+ "getResolverIds"(): $ImmutableCollection<($IToken<(any)>)>
+ "getRotation"(): integer
+ "setCustomName"(arg0: string): void
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
  "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenDataView$Type, arg1: $Class$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
- "getStructurePath"(): string
  "getOpenRequestsOfBuilding"(): $ImmutableList<($IRequest<(any)>)>
- "getBuildingLevel"(): integer
+ "getStructurePath"(): string
  "getBuildingDisplayName"(): string
  "hasWorkOrder"(): boolean
  "getClaimRadius"(): integer
@@ -1281,40 +1296,24 @@ export interface $IBuildingView extends $IRequester, $IModuleContainerView {
  "getOpenRequestsOfType"<R>(arg0: $ICitizenDataView$Type, arg1: $Class$Type<(R)>): $ImmutableList<($IRequest<(any)>)>
  "setBuildingType"(arg0: $BuildingEntry$Type): void
  "isDeconstructed"(): boolean
- "getBuildingMaxLevel"(): integer
- "isBuildingMaxLevel"(): boolean
- "getCurrentWorkOrderLevel"(): integer
- "isRepairing"(): boolean
- "isDeconstructing"(): boolean
- "getOpenRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
- "getBuildingDmPrio"(): integer
- "getResolverIds"(): $ImmutableCollection<($IToken<(any)>)>
- "getAllAssignedCitizens"(): $Set<(integer)>
- "allowsAssignment"(): boolean
- "setCustomName"(arg0: string): void
- "getRotation"(): integer
- "getStructurePack"(): string
- "getCustomName"(): string
- "getBuildingType"(): $BuildingEntry
- "getContainerList"(): $List<($BlockPos)>
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
- "isBuilding"(): boolean
- "getWindow"(): $BOWindow
+ "getBuildingLevel"(): integer
  "openGui"(arg0: boolean): void
+ "getWindow"(): $BOWindow
+ "isBuilding"(): boolean
  "getColony"(): $IColonyView
  "getLocation"(): $ILocation
  "getId"(): $IToken<(any)>
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
+ "registerModule"(arg0: $IBuildingModuleView$Type): void
+ "getAllModuleViews"(): $List<($IBuildingModuleView)>
+ "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
+ "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
+ "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
+ "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
  "getModuleView"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): V
  "getModuleView"(arg0: integer): $IBuildingModuleView
- "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
- "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
- "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
- "getAllModuleViews"(): $List<($IBuildingModuleView)>
- "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
- "registerModule"(arg0: $IBuildingModuleView$Type): void
 }
 
 export namespace $IBuildingView {
@@ -1362,9 +1361,9 @@ export interface $IInteractionResponseHandler extends $INBTSerializable<($Compou
  "isVisible"(arg0: $Level$Type): boolean
  "onClosed"(): void
  "isPrimary"(): boolean
+ "onOpened"(arg0: $Player$Type): void
  "getInquiry"(): $Component
  "getInquiry"(arg0: $Player$Type): $Component
- "onOpened"(arg0: $Player$Type): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -1659,16 +1658,16 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "getValidBreak"(): boolean
 public "getBuildingEntry"(): $BuildingEntry
 public "getRequirements"(arg0: $ClientLevel$Type, arg1: $BlockPos$Type, arg2: $LocalPlayer$Type): $List<($MutableComponent)>
-public "getValidBreak"(): boolean
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
 public "getHutName"(): string
 public static "createTickerHelper"<E extends $BlockEntity, A extends $BlockEntity>(arg0: $BlockEntityType$Type<(A)>, arg1: $BlockEntityType$Type<(E)>, arg2: $BlockEntityTicker$Type<(any)>): $BlockEntityTicker<(A)>
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "buildingEntry"(): $BuildingEntry
 get "validBreak"(): boolean
+get "buildingEntry"(): $BuildingEntry
 get "hutName"(): string
 }
 /**
@@ -1811,9 +1810,9 @@ export interface $IRetryingRequestResolver extends $IQueuedRequestResolver<($IRe
  "getMaximalDelayBetweenRetriesInTicks"(): integer
  "getCurrentReassignmentAttempt"(): integer
  "getCurrentlyBeingReassignedRequest"(): $IToken<(any)>
- "updateManager"(arg0: $IRequestManager$Type): void
- "getMaximalTries"(): integer
  "isReassigning"(): boolean
+ "getMaximalTries"(): integer
+ "updateManager"(arg0: $IRequestManager$Type): void
  "getAllAssignedRequests"(): $ImmutableList<($IToken<(any)>)>
  "onSystemReset"(): void
  "tick"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type): void
@@ -1821,15 +1820,15 @@ export interface $IRetryingRequestResolver extends $IQueuedRequestResolver<($IRe
  "getPriority"(): integer
  "isValid"(): boolean
  "onColonyUpdate"(arg0: $IRequestManager$Type, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): void
- "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getFollowupRequestForCompletion"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IRequest<(any)>)>
- "getRequestType"(): $TypeToken<(any)>
- "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
- "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "resolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestAssigned"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>, arg2: boolean): void
- "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
+ "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "getRequestType"(): $TypeToken<(any)>
+ "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
  "getSuitabilityMetric"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): integer
+ "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getLocation"(): $ILocation
  "getId"(): $IToken<(any)>
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
@@ -1857,19 +1856,19 @@ import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$IBuildingExtensionModule, $IBuildingExtensionModule$Type} from "packages/com/minecolonies/api/colony/buildingextensions/modules/$IBuildingExtensionModule"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$IBuildingExtension, $IBuildingExtension$Type} from "packages/com/minecolonies/api/colony/buildingextensions/$IBuildingExtension"
-import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export class $BuildingExtensionRegistries$BuildingExtensionEntry {
 
 
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
+public "getRegistryName"(): $ResourceLocation
 public "getExtensionModuleProducers"(): $List<($Function<($IBuildingExtension), ($IBuildingExtensionModule)>)>
 public "produceExtension"(arg0: $BlockPos$Type): $IBuildingExtension
-public "getRegistryName"(): $ResourceLocation
-get "extensionModuleProducers"(): $List<($Function<($IBuildingExtension), ($IBuildingExtensionModule)>)>
 get "registryName"(): $ResourceLocation
+get "extensionModuleProducers"(): $List<($Function<($IBuildingExtension), ($IBuildingExtensionModule)>)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2108,58 +2107,58 @@ readonly "level": $Level
 
 constructor(arg0: $Mob$Type, arg1: $Level$Type)
 
-public "getAvgHeuristicModifier"(): double
-public "setSwimSpeedFactor"(arg0: double): void
-public "setStuckHandler"(arg0: $IStuckHandler$Type<(any)>): void
+public "getPathResult"(): $PathResult<(any)>
+public static "getSmartGroundY"(arg0: $BlockGetter$Type, arg1: $BlockPos$MutableBlockPos$Type, arg2: double): double
 public "getSpeedFactor"(): double
 public "getSafeDestination"(): $BlockPos
 public "getStuckHandler"(): $IStuckHandler<($MinecoloniesAdvancedPathNavigate)>
-public "moveAwayFromLivingEntity"(arg0: $Entity$Type, arg1: double, arg2: double): $PathResult<($PathJobMoveAwayFromLocation)>
 public "walkToEntity"(arg0: $Entity$Type, arg1: double): $PathResult<($PathJobMoveToLocation)>
 public "setSafeDestinationPos"(arg0: $BlockPos$Type): void
 public "setPauseTicks"(arg0: integer): void
-public static "getSmartGroundY"(arg0: $BlockGetter$Type, arg1: $BlockPos$MutableBlockPos$Type, arg2: double): double
-public "getPathResult"(): $PathResult<(any)>
+public "moveAwayFromLivingEntity"(arg0: $Entity$Type, arg1: double, arg2: double): $PathResult<($PathJobMoveAwayFromLocation)>
+public "setSwimSpeedFactor"(arg0: double): void
+public "setStuckHandler"(arg0: $IStuckHandler$Type<(any)>): void
+public "getAvgHeuristicModifier"(): double
 public "recomputePath"(): void
-/**
- * 
- * @deprecated
- */
-public "moveTo"(arg0: $Path$Type, arg1: double): boolean
-public "moveTo"(arg0: $Entity$Type, arg1: double): boolean
-public "setSpeedModifier"(arg0: double): void
-public "createPath"(arg0: $BlockPos$Type, arg1: integer): $Path
+public "stop"(): void
 public "isDone"(): boolean
 /**
  * 
  * @deprecated
  */
 public "moveTo"(arg0: double, arg1: double, arg2: double, arg3: double): boolean
-public "setCanFloat"(arg0: boolean): void
 public "tick"(): void
-public "stop"(): void
-public "recalc"(): void
-public "setPathJob"<T extends $AbstractPathJob>(arg0: $AbstractPathJob$Type, arg1: $BlockPos$Type, arg2: double, arg3: boolean): $PathResult<(T)>
+public "createPath"(arg0: $BlockPos$Type, arg1: integer): $Path
+public "setCanFloat"(arg0: boolean): void
+public "setSpeedModifier"(arg0: double): void
+/**
+ * 
+ * @deprecated
+ */
+public "moveTo"(arg0: $Path$Type, arg1: double): boolean
+public "moveTo"(arg0: $Entity$Type, arg1: double): boolean
 /**
  * 
  * @deprecated
  */
 public "walkTo"(arg0: $BlockPos$Type, arg1: double): boolean
+public "setPathJob"<T extends $AbstractPathJob>(arg0: $AbstractPathJob$Type, arg1: $BlockPos$Type, arg2: double, arg3: boolean): $PathResult<(T)>
+public "recalc"(): void
 public "walkToTree"(arg0: integer, arg1: double, arg2: $List$Type<($ItemStorage$Type)>, arg3: integer, arg4: $IColony$Type): $TreePathResult
 public "walkToTree"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: double, arg3: $List$Type<($ItemStorage$Type)>, arg4: integer, arg5: $IColony$Type): $TreePathResult
 public "getOurEntity"(): $Mob
-get "avgHeuristicModifier"(): double
-set "swimSpeedFactor"(value: double)
-set "stuckHandler"(value: $IStuckHandler$Type<(any)>)
+get "pathResult"(): $PathResult<(any)>
 get "speedFactor"(): double
 get "safeDestination"(): $BlockPos
 get "stuckHandler"(): $IStuckHandler<($MinecoloniesAdvancedPathNavigate)>
 set "safeDestinationPos"(value: $BlockPos$Type)
 set "pauseTicks"(value: integer)
-get "pathResult"(): $PathResult<(any)>
-set "speedModifier"(value: double)
+set "swimSpeedFactor"(value: double)
+set "stuckHandler"(value: $IStuckHandler$Type<(any)>)
+get "avgHeuristicModifier"(): double
 get "done"(): boolean
 set "canFloat"(value: boolean)
+set "speedModifier"(value: double)
 get "ourEntity"(): $Mob
 }
 /**
@@ -2179,8 +2178,8 @@ import {$IState, $IState$Type} from "packages/com/minecolonies/api/entity/ai/sta
 
 export interface $ITickingStateAI {
 
- "getState"(): $IState
  "tick"(): void
+ "getState"(): $IState
  "onRemoval"(): void
  "resetAI"(): void
 }
@@ -2201,8 +2200,8 @@ declare global {
 export type $ITickingStateAI_ = $ITickingStateAI$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/buildings/workerbuildings/$IWareHouse" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IRequestable, $IRequestable$Type} from "packages/com/minecolonies/api/colony/requestsystem/requestable/$IRequestable"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -2232,8 +2231,8 @@ import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/re
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
-import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$BuildingEntry, $BuildingEntry$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IBlueprintDataProviderBE, $IBlueprintDataProviderBE$Type} from "packages/com/ldtteam/structurize/blockentities/interfaces/$IBlueprintDataProviderBE"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
@@ -2251,23 +2250,26 @@ export interface $IWareHouse extends $IBuilding {
  "upgradeContainers"(arg0: $Level$Type): void
  "canAccessWareHouse"(arg0: $ICitizenData$Type): boolean
  "hasContainerPosition"(arg0: $BlockPos$Type): boolean
- "destroy"(): void
  "getHandlers"(): $List<($IItemHandler)>
+ "destroy"(): void
+ "getBuildingType"(): $BuildingEntry
+ "getCustomName"(): string
+ "onDestroyed"(): void
+ "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
  "getCompletedRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
+ "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
  "upgradeBuildingLevelToSchematicData"(): void
  "getOpenRequestsByRequestableType"(): $Map<($TypeToken<(any)>), ($Collection<($IToken<(any)>)>)>
- "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
- "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
- "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
- "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean): integer
- "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
- "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
- "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "hasWorkerOpenRequestsFiltered"(arg0: integer, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): boolean
+ "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
  "onUpgradeComplete"(arg0: integer): void
- "onPlacement"(): void
  "getBuildingDisplayName"(): string
+ "onPlacement"(): void
  "onPlayerEnterNearby"(arg0: $Player$Type): void
  "onPlayerEnterBuilding"(arg0: $Player$Type): void
  "isMatchingBlock"(arg0: $Block$Type): boolean
@@ -2312,34 +2314,31 @@ export interface $IWareHouse extends $IBuilding {
  "canAssignCitizens"(): boolean
  "getAllAssignedCitizen"(): $Set<($ICitizenData)>
  "getSettingValueOrDefault"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>, arg1: S): S
- "onDestroyed"(): void
- "getCustomName"(): string
- "getBuildingType"(): $BuildingEntry
  "onRestart"(arg0: $ICitizenData$Type): void
  "canEat"(arg0: $ItemStack$Type): boolean
- "isBuilt"(): boolean
  "markDirty"(): void
+ "isBuilt"(): boolean
  "pickUp"(arg0: $Player$Type): void
+ "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
  "getColony"(): $IColony
  "onWakeUp"(): void
  "onCleanUp"(arg0: $ICitizenData$Type): void
- "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+ "getContainers"(): $List<($BlockPos)>
  "getPickUpPriority"(): integer
  "alterPickUpPriority"(arg0: integer): void
  "addContainerPosition"(arg0: $BlockPos$Type): void
  "removeContainerPosition"(arg0: $BlockPos$Type): void
- "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "registerBlockPosition"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
+ "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "setTileEntity"(arg0: $AbstractTileEntityColonyBuilding$Type): void
- "getContainers"(): $List<($BlockPos)>
- "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
- "deserializeNBT"(arg0: $CompoundTag$Type): void
  "getModule"(arg0: integer): $IBuildingModule
  "getModule"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): M
- "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
+ "registerModule"(arg0: $IBuildingModule$Type): void
  "getModuleMatching"<T2 extends T>(arg0: $Class$Type<(T2)>, arg1: $Predicate$Type<(any)>): T2
  "getModulesByType"<T2 extends T>(arg0: $Class$Type<(T2)>): $List<(T2)>
- "registerModule"(arg0: $IBuildingModule$Type): void
+ "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
  "hasModule"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
  "hasModule"(arg0: $Class$Type<(any)>): boolean
  "getId"(): $IToken<(any)>
@@ -2347,28 +2346,28 @@ export interface $IWareHouse extends $IBuilding {
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
- "getPosition"(): $BlockPos
+ "getChildren"(): $Set<($BlockPos)>
+ "getID"(): $BlockPos
  "getParent"(): $BlockPos
  "setParent"(arg0: $BlockPos$Type): void
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
  "isDirty"(): boolean
- "getChildren"(): $Set<($BlockPos)>
+ "getSchematicName"(): string
+ "getStructurePack"(): string
+ "setBlueprintPath"(arg0: string): void
+ "getBlueprintPath"(): string
+ "getRotation"(): integer
  "setStructurePack"(arg0: string): void
  "setBuildingLevel"(arg0: integer): void
  "setIsMirrored"(arg0: boolean): void
- "getBuildingLevel"(): integer
  "getMaxBuildingLevel"(): integer
  "isDeconstructed"(): boolean
  "setDeconstructed"(): void
  "onUpgradeSchematicTo"(arg0: string, arg1: string, arg2: $IBlueprintDataProviderBE$Type): void
- "getRotation"(): integer
- "setBlueprintPath"(arg0: string): void
- "getBlueprintPath"(): string
- "getStructurePack"(): string
- "getSchematicName"(): string
- "hasParent"(): boolean
+ "getBuildingLevel"(): integer
  "clearDirty"(): void
+ "hasParent"(): boolean
  "setCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
@@ -2416,8 +2415,8 @@ declare module "packages/com/minecolonies/api/colony/workorders/$IServerWorkOrde
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
-import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Blueprint, $Blueprint$Type} from "packages/com/ldtteam/structurize/blueprints/v1/$Blueprint"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$IWorkOrder, $IWorkOrder$Type} from "packages/com/minecolonies/api/colony/workorders/$IWorkOrder"
 import {$WorkOrderType, $WorkOrderType$Type} from "packages/com/minecolonies/api/colony/workorders/$WorkOrderType"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
@@ -2432,34 +2431,34 @@ export interface $IServerWorkOrder extends $IWorkOrder {
  "read"(arg0: $CompoundTag$Type, arg1: $IWorkManager$Type): void
  "isValid"(arg0: $IColony$Type): boolean
  "isDirty"(): boolean
- "serializeViewNetworkData"(arg0: $FriendlyByteBuf$Type): void
  "resetChange"(): void
+ "serializeViewNetworkData"(arg0: $FriendlyByteBuf$Type): void
  "onAdded"(arg0: $IColony$Type, arg1: boolean): void
+ "getDisplayName"(): $Component
+ "getID"(): integer
+ "setID"(arg0: integer): void
  "getLocation"(): $BlockPos
  "setPriority"(arg0: integer): void
  "getPriority"(): integer
  "getFileName"(): string
  "isMirrored"(): boolean
- "getDisplayName"(): $Component
- "getID"(): integer
- "setID"(arg0: integer): void
+ "getTranslationKey"(): string
+ "getStructurePack"(): string
+ "getBlueprint"(): $Blueprint
+ "setBlueprint"(arg0: $Blueprint$Type, arg1: $Level$Type): void
+ "getRotation"(): integer
+ "getBoundingBox"(): $AABB
+ "getClaimedBy"(): $BlockPos
+ "setClaimedBy"(arg0: $BlockPos$Type): void
  "loadBlueprint"(arg0: $Level$Type, arg1: $Consumer$Type<($Blueprint$Type)>): void
  "getStructurePath"(): string
  "getWorkOrderType"(): $WorkOrderType
  "getTargetLevel"(): integer
  "getCurrentLevel"(): integer
  "clearBlueprint"(): void
- "setClaimedBy"(arg0: $BlockPos$Type): void
- "getClaimedBy"(): $BlockPos
- "getBoundingBox"(): $AABB
- "getRotation"(): integer
- "setBlueprint"(arg0: $Blueprint$Type, arg1: $Level$Type): void
- "getStructurePack"(): string
- "getBlueprint"(): $Blueprint
- "getTranslationKey"(): string
- "isClaimed"(): boolean
- "setColony"(arg0: $IColony$Type): void
  "getColony"(): $IColony
+ "setColony"(arg0: $IColony$Type): void
+ "isClaimed"(): boolean
 }
 
 export namespace $IServerWorkOrder {
@@ -2540,8 +2539,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2631,13 +2630,13 @@ import {$IJob, $IJob$Type} from "packages/com/minecolonies/api/colony/jobs/$IJob
 
 export interface $ICitizenJobHandler {
 
- "getColonyJob"(): $IJob<(any)>
- "getColonyJob"<J extends $IJob<(any)>>(arg0: $Class$Type<(J)>): J
- "setModelDependingOnJob"(arg0: $IJob$Type<(any)>): void
  "onJobChanged"(arg0: $IJob$Type<(any)>): void
  "shouldRunAvoidance"(): boolean
- "setWorkAI"(arg0: $ITickingStateAI$Type): void
+ "setModelDependingOnJob"(arg0: $IJob$Type<(any)>): void
+ "getColonyJob"(): $IJob<(any)>
+ "getColonyJob"<J extends $IJob<(any)>>(arg0: $Class$Type<(J)>): J
  "getWorkAI"(): $ITickingStateAI
+ "setWorkAI"(arg0: $ITickingStateAI$Type): void
 }
 
 export namespace $ICitizenJobHandler {
@@ -2743,30 +2742,30 @@ import {$List, $List$Type} from "packages/java/util/$List"
 import {$AbstractBlockHut, $AbstractBlockHut$Type} from "packages/com/minecolonies/api/blocks/$AbstractBlockHut"
 import {$IBuildingView, $IBuildingView$Type} from "packages/com/minecolonies/api/colony/buildings/views/$IBuildingView"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
 import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$IBuilding, $IBuilding$Type} from "packages/com/minecolonies/api/colony/buildings/$IBuilding"
-import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export class $BuildingEntry {
 
 
+public "getTranslationKey"(): string
+public "getModuleProducers"(): $List<($BuildingEntry$ModuleProducer)>
+public "getBuildingBlock"(): $AbstractBlockHut<(any)>
+public "getRegistryName"(): $ResourceLocation
 public static "produceModuleWithoutBuilding"(arg0: string): $IBuildingModule
 public "produceBuilding"(arg0: $BlockPos$Type, arg1: $IColony$Type): $IBuilding
 public "produceBuildingView"(arg0: $BlockPos$Type, arg1: $IColonyView$Type): $IBuildingView
 public static "produceViewWithoutBuilding"(arg0: string): $IBuildingModuleView
 public static "getALlModuleProducers"(): $Map<(string), ($BuildingEntry$ModuleProducer)>
-public static "getProducer"(arg0: integer): $BuildingEntry$ModuleProducer<(any), (any)>
 public static "getProducer"(arg0: string): $BuildingEntry$ModuleProducer<(any), (any)>
-public "getBuildingBlock"(): $AbstractBlockHut<(any)>
-public "getRegistryName"(): $ResourceLocation
-public "getModuleProducers"(): $List<($BuildingEntry$ModuleProducer)>
-public "getTranslationKey"(): string
-get "aLlModuleProducers"(): $Map<(string), ($BuildingEntry$ModuleProducer)>
+public static "getProducer"(arg0: integer): $BuildingEntry$ModuleProducer<(any), (any)>
+get "translationKey"(): string
+get "moduleProducers"(): $List<($BuildingEntry$ModuleProducer)>
 get "buildingBlock"(): $AbstractBlockHut<(any)>
 get "registryName"(): $ResourceLocation
-get "moduleProducers"(): $List<($BuildingEntry$ModuleProducer)>
-get "translationKey"(): string
+get "aLlModuleProducers"(): $Map<(string), ($BuildingEntry$ModuleProducer)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2814,8 +2813,8 @@ import {$ItemClipboardAccessor, $ItemClipboardAccessor$Type} from "packages/stev
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$AbstractItemMinecolonies, $AbstractItemMinecolonies$Type} from "packages/com/minecolonies/core/items/$AbstractItemMinecolonies"
@@ -2838,8 +2837,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2946,15 +2945,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: float, arg2: integer, arg3: integer)
 
+public "registerBlock"(arg0: $IForgeRegistry$Type<($Block$Type)>): $AbstractBlockGate
+public "registerBlockItem"(arg0: $IForgeRegistry$Type<($Item$Type)>, arg1: $Item$Properties$Type): void
+public "getMaxHeight"(): integer
+public "getMaxWidth"(): integer
 /**
  * 
  * @deprecated
  */
 public "getBlockHardness"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): float
-public "getMaxHeight"(): integer
-public "registerBlock"(arg0: $IForgeRegistry$Type<($Block$Type)>): $AbstractBlockGate
-public "registerBlockItem"(arg0: $IForgeRegistry$Type<($Item$Type)>, arg1: $Item$Properties$Type): void
-public "getMaxWidth"(): integer
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
@@ -2962,15 +2965,11 @@ public "getOcclusionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "setOpen"(arg0: $Entity$Type, arg1: $Level$Type, arg2: $BlockState$Type, arg3: $BlockPos$Type, arg4: boolean): void
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
-public "toggleGate"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): void
 public "removeGate"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): integer
+public "toggleGate"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Direction$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "maxHeight"(): integer
 get "maxWidth"(): integer
@@ -2997,13 +2996,13 @@ import {$IStuckHandler, $IStuckHandler$Type} from "packages/com/minecolonies/api
 
 export interface $IMinecoloniesNavigator {
 
+ "getPathResult"(): $PathResult<(any)>
  "getSafeDestination"(): $BlockPos
  "getStuckHandler"(): $IStuckHandler<($MinecoloniesAdvancedPathNavigate)>
  "getOurEntity"(): $Mob
  "setPauseTicks"(arg0: integer): void
- "getPathResult"(): $PathResult<(any)>
- "recalc"(): void
  "setPathJob"<T extends $AbstractPathJob>(arg0: $AbstractPathJob$Type, arg1: $BlockPos$Type, arg2: double, arg3: boolean): $PathResult<(T)>
+ "recalc"(): void
 }
 
 export namespace $IMinecoloniesNavigator {
@@ -3025,9 +3024,9 @@ declare module "packages/com/minecolonies/api/entity/citizen/citizenhandlers/$IC
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $ICitizenExperienceHandler {
 
- "dropExperience"(): void
- "addExperience"(arg0: double): void
  "updateLevel"(): void
+ "addExperience"(arg0: double): void
+ "dropExperience"(): void
  "gatherXp"(): void
 }
 
@@ -3052,8 +3051,8 @@ import {$IState, $IState$Type} from "packages/com/minecolonies/api/entity/ai/sta
 export interface $IStateMachineTransition<S extends $IState> {
 
  "getState"(): S
- "getNextState"(): S
  "checkCondition"(): boolean
+ "getNextState"(): S
 }
 
 export namespace $IStateMachineTransition {
@@ -3140,19 +3139,19 @@ export type $ItemCompost_ = $ItemCompost$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/managers/interfaces/$IStatisticsManager" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
-import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$Set, $Set$Type} from "packages/java/util/$Set"
 
 export interface $IStatisticsManager {
 
  "increment"(arg0: string, arg1: integer): void
- "getStatTypes"(): $Set<(string)>
+ "readFromNBT"(arg0: $CompoundTag$Type): void
+ "incrementBy"(arg0: string, arg1: integer, arg2: integer): void
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "serialize"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
  "getStatTotal"(arg0: string): integer
  "getStatsInPeriod"(arg0: string, arg1: integer, arg2: integer): integer
- "incrementBy"(arg0: string, arg1: integer, arg2: integer): void
- "readFromNBT"(arg0: $CompoundTag$Type): void
- "serialize"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getStatTypes"(): $Set<(string)>
  "writeToNBT"(arg0: $CompoundTag$Type): void
 }
 
@@ -3298,6 +3297,7 @@ readonly "rotA": float
  "lastPos": $BlockPos
  "autoSpinAttackTicks": integer
  "brain": $Brain<(any)>
+ "self": $LivingEntity
  "sodiumdynamiclights$luminance": integer
  "supp$slimedTicks": integer
 static readonly "ID_TAG": string
@@ -3376,47 +3376,47 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
  "forgeFluidTypeHeight": $Object2DoubleMap<($FluidType)>
 
 
+public "changeDimension"(arg0: $ServerLevel$Type, arg1: $ITeleporter$Type): $Entity
+public "isInWall"(): boolean
+public "isShiftKeyDown"(): boolean
 public "setCanBeStuck"(arg0: boolean): void
 public "hadHorizontalCollission"(): boolean
-public "changeDimension"(arg0: $ServerLevel$Type, arg1: $ITeleporter$Type): $Entity
-public "isShiftKeyDown"(): boolean
-public "isInWaterRainOrBubble"(): boolean
-public "setSharedFlagOnFire"(arg0: boolean): void
-public "setTicksFrozen"(arg0: integer): void
-public "attack"(arg0: $DamageSource$Type, arg1: float): boolean
+public "setShiftKeyDown"(arg0: boolean): void
+public "onInsideBubbleColumn"(arg0: boolean): void
+public "canChangeDimensions"(): boolean
 public "canSpawnSprintParticle"(): boolean
 public "updateFluidOnEyes"(): void
 public "updateSwimming"(): void
+public "attack"(arg0: $DamageSource$Type, arg1: float): boolean
+public "setTicksFrozen"(arg0: integer): void
+public "setSharedFlagOnFire"(arg0: boolean): void
+public "isInWaterRainOrBubble"(): boolean
 public "canSpawnSoulSpeedParticle"(): boolean
-public "canChangeDimensions"(): boolean
-public "isInWall"(): boolean
-public "setShiftKeyDown"(arg0: boolean): void
-public "onInsideBubbleColumn"(arg0: boolean): void
-public "canBeLeashed"(arg0: $Player$Type): boolean
 public "knockback"(arg0: double, arg1: double, arg2: double): void
 public "updateSwimAmount"(): void
 public "checkBedExists"(): boolean
 public "updateFallFlying"(): void
 public "pushEntities"(): void
+public "canBeLeashed"(arg0: $Player$Type): boolean
 public "getTeamId"(): integer
 public "canBeStuck"(): boolean
-public "sdl$shouldUpdateDynamicLight"(): boolean
-public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sdl$getDynamicLightX"(): double
 public "sdl$getDynamicLightY"(): double
 public "sdl$getDynamicLightZ"(): double
 public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$shouldUpdateDynamicLight"(): boolean
+public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "getAlpha"(le: $LivingEntity$Type, partialTicks: float): float
 public static "tickEntity"(entity: $LivingEntity$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "shiftKeyDown"(): boolean
-get "inWaterRainOrBubble"(): boolean
-set "sharedFlagOnFire"(value: boolean)
-set "ticksFrozen"(value: integer)
 get "inWall"(): boolean
+get "shiftKeyDown"(): boolean
 set "shiftKeyDown"(value: boolean)
+set "ticksFrozen"(value: integer)
+set "sharedFlagOnFire"(value: boolean)
+get "inWaterRainOrBubble"(): boolean
 get "teamId"(): integer
 }
 /**
@@ -3439,8 +3439,8 @@ import {$IResearchRequirement, $IResearchRequirement$Type} from "packages/com/mi
 export class $ResearchRequirementEntry {
 
 
-public "getRegistryName"(): $ResourceLocation
 public "readFromNBT"(arg0: $CompoundTag$Type): $IResearchRequirement
+public "getRegistryName"(): $ResourceLocation
 get "registryName"(): $ResourceLocation
 }
 /**
@@ -3574,15 +3574,15 @@ import {$List, $List$Type} from "packages/java/util/$List"
 
 export interface $IResearchCost {
 
+ "getCount"(): integer
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
  "getType"(): $ModResearchCostTypes$ResearchCostType
- "getCount"(): integer
+ "getTranslatedName"(): $Component
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "serialize"(arg0: $FriendlyByteBuf$Type): void
  "hasCorrectJsonFields"(arg0: $JsonObject$Type): boolean
  "parseFromJson"(arg0: $JsonObject$Type): void
- "getTranslatedName"(): $Component
- "serialize"(arg0: $FriendlyByteBuf$Type): void
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
  "getItems"(): $List<($Item)>
 }
 
@@ -3668,8 +3668,8 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public static "shouldBlockBeReplacedWithRack"(arg0: $Block$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3769,13 +3769,13 @@ import {$IState, $IState$Type} from "packages/com/minecolonies/api/entity/ai/sta
 
 export interface $ITickingTransition<S extends $IState> extends $IStateMachineTransition<(S)> {
 
- "getTickRate"(): integer
- "countdownTicksToUpdate"(arg0: integer): integer
  "setTicksToUpdate"(arg0: integer): void
+ "countdownTicksToUpdate"(arg0: integer): integer
+ "getTickRate"(): integer
  "setTickRate"(arg0: integer): void
  "getState"(): S
- "getNextState"(): S
  "checkCondition"(): boolean
+ "getNextState"(): S
 }
 
 export namespace $ITickingTransition {
@@ -3810,15 +3810,15 @@ export interface $IRequestResolver<R extends $IRequestable> extends $IRequester 
  "getPriority"(): integer
  "isValid"(): boolean
  "onColonyUpdate"(arg0: $IRequestManager$Type, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): void
- "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getFollowupRequestForCompletion"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IRequest<(any)>)>
- "getRequestType"(): $TypeToken<(any)>
- "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
- "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "resolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestAssigned"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>, arg2: boolean): void
- "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
+ "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "getRequestType"(): $TypeToken<(any)>
+ "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
  "getSuitabilityMetric"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): integer
+ "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getLocation"(): $ILocation
  "getId"(): $IToken<(any)>
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
@@ -3961,8 +3961,8 @@ import {$AbstractEntityCitizen, $AbstractEntityCitizen$Type} from "packages/com/
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$ICitizenData, $ICitizenData$Type} from "packages/com/minecolonies/api/colony/$ICitizenData"
 import {$HiringMode, $HiringMode$Type} from "packages/com/minecolonies/api/colony/buildings/$HiringMode"
-import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$IBuilding, $IBuilding$Type} from "packages/com/minecolonies/api/colony/buildings/$IBuilding"
+import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
 
 export interface $IAssignsJob extends $IAssignsCitizen {
@@ -3970,20 +3970,20 @@ export interface $IAssignsJob extends $IAssignsCitizen {
  "getJobEntry"(): $JobEntry
  "hasAssignedCitizen"(): boolean
  "isFull"(): boolean
+ "getAssignedCitizen"(): $List<($ICitizenData)>
  "assignCitizen"(arg0: $ICitizenData$Type): boolean
  "getModuleMax"(): integer
  "getAssignedEntities"(): $List<($Optional<($AbstractEntityCitizen)>)>
  "setHiringMode"(arg0: $HiringMode$Type): void
  "getHiringMode"(): $HiringMode
- "getAssignedCitizen"(): $List<($ICitizenData)>
  "hasAssignedCitizen"(arg0: $ICitizenData$Type): boolean
  "removeCitizen"(arg0: $ICitizenData$Type): boolean
- "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
- "serializeToView"(arg0: $FriendlyByteBuf$Type): void
+ "getBuilding"(): $IBuilding
  "setBuilding"(arg0: $IBuilding$Type): $IBuildingModule
  "setProducer"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): $IBuildingModule
  "getProducer"(): $BuildingEntry$ModuleProducer<(any), (any)>
- "getBuilding"(): $IBuilding
+ "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
+ "serializeToView"(arg0: $FriendlyByteBuf$Type): void
  "markDirty"(): void
  "clearDirty"(): void
  "checkDirty"(): boolean
@@ -4041,9 +4041,9 @@ static readonly "MAP_DEATHS": $Action
 static readonly "ACCESS_TOGGLEABLES": $Action
 
 
+public "getFlag"(): long
 public static "values"(): ($Action)[]
 public static "valueOf"(arg0: string): $Action
-public "getFlag"(): long
 get "flag"(): long
 }
 /**
@@ -4076,8 +4076,8 @@ static readonly "MAX_ITEMS": integer
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "addItem"(arg0: $ItemStack$Type): boolean
 public "isDone"(): boolean
+public "addItem"(arg0: $ItemStack$Type): boolean
 public "checkIfWorking"(): boolean
 public "retrieveCompost"(arg0: double): $ItemStack
 public "getItems"(): integer
@@ -4107,8 +4107,8 @@ import {$List, $List$Type} from "packages/java/util/$List"
 import {$PermissionEvent, $PermissionEvent$Type} from "packages/com/minecolonies/api/colony/permissions/$PermissionEvent"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
-import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
+import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$ILocation, $ILocation$Type} from "packages/com/minecolonies/api/colony/requestsystem/location/$ILocation"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/requestsystem/request/$IRequest"
@@ -4126,18 +4126,34 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ITownHallView extends $IBuildingView {
 
- "getPermissionEvents"(): $List<($PermissionEvent)>
  "getColonyEvents"(): $List<($IColonyEventDescription)>
+ "getPermissionEvents"(): $List<($PermissionEvent)>
  "canPlayerUseTP"(): boolean
+ "getID"(): $BlockPos
  "getRange"(): integer
- "getPosition"(): $BlockPos
  "getParent"(): $BlockPos
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
+ "getContainerList"(): $List<($BlockPos)>
+ "getBuildingType"(): $BuildingEntry
+ "getCustomName"(): string
+ "getStructurePack"(): string
+ "getBuildingDmPrio"(): integer
+ "getBuildingMaxLevel"(): integer
+ "getOpenRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
+ "isDeconstructing"(): boolean
+ "isRepairing"(): boolean
+ "getCurrentWorkOrderLevel"(): integer
+ "isBuildingMaxLevel"(): boolean
+ "allowsAssignment"(): boolean
+ "getAllAssignedCitizens"(): $Set<(integer)>
+ "getResolverIds"(): $ImmutableCollection<($IToken<(any)>)>
+ "getRotation"(): integer
+ "setCustomName"(arg0: string): void
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
  "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenDataView$Type, arg1: $Class$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
- "getStructurePath"(): string
  "getOpenRequestsOfBuilding"(): $ImmutableList<($IRequest<(any)>)>
- "getBuildingLevel"(): integer
+ "getStructurePath"(): string
  "getBuildingDisplayName"(): string
  "hasWorkOrder"(): boolean
  "getClaimRadius"(): integer
@@ -4145,40 +4161,24 @@ export interface $ITownHallView extends $IBuildingView {
  "getOpenRequestsOfType"<R>(arg0: $ICitizenDataView$Type, arg1: $Class$Type<(R)>): $ImmutableList<($IRequest<(any)>)>
  "setBuildingType"(arg0: $BuildingEntry$Type): void
  "isDeconstructed"(): boolean
- "getBuildingMaxLevel"(): integer
- "isBuildingMaxLevel"(): boolean
- "getCurrentWorkOrderLevel"(): integer
- "isRepairing"(): boolean
- "isDeconstructing"(): boolean
- "getOpenRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
- "getBuildingDmPrio"(): integer
- "getResolverIds"(): $ImmutableCollection<($IToken<(any)>)>
- "getAllAssignedCitizens"(): $Set<(integer)>
- "allowsAssignment"(): boolean
- "setCustomName"(arg0: string): void
- "getRotation"(): integer
- "getStructurePack"(): string
- "getCustomName"(): string
- "getBuildingType"(): $BuildingEntry
- "getContainerList"(): $List<($BlockPos)>
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
- "isBuilding"(): boolean
- "getWindow"(): $BOWindow
+ "getBuildingLevel"(): integer
  "openGui"(arg0: boolean): void
+ "getWindow"(): $BOWindow
+ "isBuilding"(): boolean
  "getColony"(): $IColonyView
  "getLocation"(): $ILocation
  "getId"(): $IToken<(any)>
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
+ "registerModule"(arg0: $IBuildingModuleView$Type): void
+ "getAllModuleViews"(): $List<($IBuildingModuleView)>
+ "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
+ "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
+ "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
+ "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
  "getModuleView"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): V
  "getModuleView"(arg0: integer): $IBuildingModuleView
- "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
- "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
- "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
- "getAllModuleViews"(): $List<($IBuildingModuleView)>
- "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
- "registerModule"(arg0: $IBuildingModuleView$Type): void
 }
 
 export namespace $ITownHallView {
@@ -4252,8 +4252,8 @@ import {$INBTSerializable, $INBTSerializable$Type} from "packages/net/minecraftf
 
 export interface $IEventDescriptionManager extends $INBTSerializable<($CompoundTag)> {
 
- "addEventDescription"(arg0: $IColonyEventDescription$Type): void
  "serialize"(arg0: $FriendlyByteBuf$Type): void
+ "addEventDescription"(arg0: $IColonyEventDescription$Type): void
  "computeNews"(): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
@@ -4282,11 +4282,11 @@ import {$ResearchEffectEntry, $ResearchEffectEntry$Type} from "packages/com/mine
 
 export interface $IResearchEffect<T> {
 
- "getId"(): $ResourceLocation
  "overrides"(arg0: $IResearchEffect$Type<(any)>): boolean
  "getDesc"(): $TranslatableContents
- "getSubtitle"(): $TranslatableContents
+ "getId"(): $ResourceLocation
  "getRegistryEntry"(): $ResearchEffectEntry
+ "getSubtitle"(): $TranslatableContents
  "getEffect"(): T
  "writeToNBT"(): $CompoundTag
  "setEffect"(arg0: T): void
@@ -4373,8 +4373,8 @@ import {$ILocation, $ILocation$Type} from "packages/com/minecolonies/api/colony/
 import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$Pair, $Pair$Type} from "packages/com/mojang/datafixers/util/$Pair"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
@@ -4396,19 +4396,19 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public static "isActive"(arg0: $ItemStack$Type): boolean
+public static "broadcastPlayerToRally"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $ILocation$Type): integer
+public "onDroppedByPlayer"(arg0: $ItemStack$Type, arg1: $Player$Type): boolean
+public static "getGuardTowerLocations"(arg0: $ItemStack$Type): $ImmutableList<($ILocation)>
+public static "toggleBanner"(arg0: $ItemStack$Type, arg1: $Player$Type): void
 public static "checkForCompound"(arg0: $ItemStack$Type): $CompoundTag
 public static "isGuardBuilding"(arg0: $Level$Type, arg1: $BlockPos$Type): boolean
 public static "getGuardBuilding"(arg0: $Level$Type, arg1: $BlockPos$Type): $IGuardBuilding
 public static "removeGuardTowerAtLocation"(arg0: $ItemStack$Type, arg1: $ILocation$Type): boolean
-public static "toggleBanner"(arg0: $ItemStack$Type, arg1: $Player$Type): void
-public static "getGuardTowerLocations"(arg0: $ItemStack$Type): $ImmutableList<($ILocation)>
 public static "getGuardBuildingView"(arg0: $Level$Type, arg1: $BlockPos$Type): $AbstractBuildingGuards$View
 public static "getGuardTowerViews"(arg0: $ItemStack$Type, arg1: $Level$Type): $List<($Pair<($ILocation), ($AbstractBuildingGuards$View)>)>
 public "isActiveForGuardTower"(arg0: $ItemStack$Type, arg1: $IGuardBuilding$Type): boolean
-public static "broadcastPlayerToRally"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $ILocation$Type): integer
-public "onDroppedByPlayer"(arg0: $ItemStack$Type, arg1: $Player$Type): boolean
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isFoil"(arg0: $ItemStack$Type): boolean
 }
@@ -4440,8 +4440,8 @@ import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/f
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IBlueprintDataProviderBE, $IBlueprintDataProviderBE$Type} from "packages/com/ldtteam/structurize/blockentities/interfaces/$IBlueprintDataProviderBE"
-import {$ICapabilityProvider, $ICapabilityProvider$Type} from "packages/net/minecraftforge/common/capabilities/$ICapabilityProvider"
 import {$List, $List$Type} from "packages/java/util/$List"
+import {$ICapabilityProvider, $ICapabilityProvider$Type} from "packages/net/minecraftforge/common/capabilities/$ICapabilityProvider"
 import {$Tuple, $Tuple$Type} from "packages/net/minecraft/util/$Tuple"
 import {$IBuildingView, $IBuildingView$Type} from "packages/com/minecolonies/api/colony/buildings/views/$IBuildingView"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -4456,34 +4456,35 @@ export class $AbstractTileEntityColonyBuilding extends $TileEntityRack implement
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getPosition"(): $BlockPos
 public "isMirrored"(): boolean
-public "getPositionOfChestWithItemStack"(arg0: $Predicate$Type<($ItemStack$Type)>): $BlockPos
-public static "isInTileEntity"(arg0: $ICapabilityProvider$Type, arg1: $Predicate$Type<($ItemStack$Type)>): boolean
-public "hasAccessPermission"(arg0: $Player$Type): boolean
-public "getColonyId"(): integer
-public "setStructurePack"(arg0: $StructurePackMeta$Type): void
-public "setBuilding"(arg0: $IBuilding$Type): void
-public "getBuildingView"(): $IBuildingView
-public "getBuildingName"(): $ResourceLocation
-public "setSchematicName"(arg0: string): void
-public "setPositionedTags"(arg0: $Map$Type<($BlockPos$Type), ($List$Type<(string)>)>): void
+public "getPosition"(): $BlockPos
+public "getBuilding"(): $IBuilding
+public "getSchematicName"(): string
+public "getPositionedTags"(): $Map<($BlockPos), ($List<(string)>)>
+public "getStructurePack"(): $StructurePackMeta
 public "getSchematicCorners"(): $Tuple<($BlockPos), ($BlockPos)>
 public "setSchematicCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
 public "readSchematicDataFromNBT"(arg0: $CompoundTag$Type): void
 public "setBlueprintPath"(arg0: string): void
 public "getBlueprintPath"(): string
-public "getStructurePack"(): $StructurePackMeta
-public "getPositionedTags"(): $Map<($BlockPos), ($List<(string)>)>
-public "getSchematicName"(): string
-public "getBuilding"(): $IBuilding
-public "saveAdditional"(arg0: $CompoundTag$Type): void
+public "setSchematicName"(arg0: string): void
+public "setPositionedTags"(arg0: $Map$Type<($BlockPos$Type), ($List$Type<(string)>)>): void
+public "getPositionOfChestWithItemStack"(arg0: $Predicate$Type<($ItemStack$Type)>): $BlockPos
+public "getBuildingView"(): $IBuildingView
+public "setBuilding"(arg0: $IBuilding$Type): void
+public "getBuildingName"(): $ResourceLocation
+public "setStructurePack"(arg0: $StructurePackMeta$Type): void
+public "getColonyId"(): integer
+public static "isInTileEntity"(arg0: $ICapabilityProvider$Type, arg1: $Predicate$Type<($ItemStack$Type)>): boolean
+public "hasAccessPermission"(arg0: $Player$Type): boolean
 public "load"(arg0: $CompoundTag$Type): void
+public "saveAdditional"(arg0: $CompoundTag$Type): void
 public "isOutdated"(): boolean
 public "getTilePos"(): $BlockPos
-public "setColony"(arg0: $IColony$Type): void
 public "getColony"(): $IColony
 public "setMirror"(arg0: boolean): void
+public "setColony"(arg0: $IColony$Type): void
+public "getInWorldCorners"(): $Tuple<($BlockPos), ($BlockPos)>
 public "writeSchematicDataToNBT"(arg0: $CompoundTag$Type): void
 public "setPackName"(arg0: string): void
 public "getPackName"(): string
@@ -4492,37 +4493,36 @@ public static "readTagPosMapFrom"(arg0: $CompoundTag$Type): $Map<($BlockPos), ($
 public "getWorldTagPosMap"(): $Map<($BlockPos), ($List<(string)>)>
 public "getWorldTagNamePosMap"(): $Map<(string), ($Set<($BlockPos)>)>
 public "getRealWorldPos"(arg0: $BlockPos$Type): $BlockPos
-public "getInWorldCorners"(): $Tuple<($BlockPos), ($BlockPos)>
 public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
 public "removeTag"(arg0: $BlockPos$Type, arg1: string): void
 public "addTag"(arg0: $BlockPos$Type, arg1: string): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "position"(): $BlockPos
 get "mirrored"(): boolean
-get "colonyId"(): integer
-set "structurePack"(value: $StructurePackMeta$Type)
-set "building"(value: $IBuilding$Type)
-get "buildingView"(): $IBuildingView
-get "buildingName"(): $ResourceLocation
-set "schematicName"(value: string)
-set "positionedTags"(value: $Map$Type<($BlockPos$Type), ($List$Type<(string)>)>)
+get "position"(): $BlockPos
+get "building"(): $IBuilding
+get "schematicName"(): string
+get "positionedTags"(): $Map<($BlockPos), ($List<(string)>)>
+get "structurePack"(): $StructurePackMeta
 get "schematicCorners"(): $Tuple<($BlockPos), ($BlockPos)>
 set "blueprintPath"(value: string)
 get "blueprintPath"(): string
-get "structurePack"(): $StructurePackMeta
-get "positionedTags"(): $Map<($BlockPos), ($List<(string)>)>
-get "schematicName"(): string
-get "building"(): $IBuilding
+set "schematicName"(value: string)
+set "positionedTags"(value: $Map$Type<($BlockPos$Type), ($List$Type<(string)>)>)
+get "buildingView"(): $IBuildingView
+set "building"(value: $IBuilding$Type)
+get "buildingName"(): $ResourceLocation
+set "structurePack"(value: $StructurePackMeta$Type)
+get "colonyId"(): integer
 get "outdated"(): boolean
 get "tilePos"(): $BlockPos
-set "colony"(value: $IColony$Type)
 get "colony"(): $IColony
 set "mirror"(value: boolean)
+set "colony"(value: $IColony$Type)
+get "inWorldCorners"(): $Tuple<($BlockPos), ($BlockPos)>
 set "packName"(value: string)
 get "packName"(): string
 get "worldTagPosMap"(): $Map<($BlockPos), ($List<(string)>)>
 get "worldTagNamePosMap"(): $Map<(string), ($Set<($BlockPos)>)>
-get "inWorldCorners"(): $Tuple<($BlockPos), ($BlockPos)>
 get "updatePacket"(): $ClientboundBlockEntityDataPacket
 }
 /**
@@ -4655,26 +4655,26 @@ import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from 
 
 export interface $IBuildingExtension extends $IModuleContainer<($IBuildingExtensionModule)> {
 
- "getPosition"(): $BlockPos
  "equals"(arg0: any): boolean
  "hashCode"(): integer
+ "getPosition"(): $BlockPos
+ "serializeNBT"(): $CompoundTag
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "serialize"(arg0: $FriendlyByteBuf$Type): void
  "setBuilding"(arg0: $BlockPos$Type): void
  "getBuildingExtensionType"(): $BuildingExtensionRegistries$BuildingExtensionEntry
  "getBuildingId"(): $BlockPos
  "resetOwningBuilding"(): void
  "getSqDistance"(arg0: $IBuildingView$Type): integer
  "isValidPlacement"(arg0: $IColony$Type): boolean
- "serializeNBT"(): $CompoundTag
- "deserializeNBT"(arg0: $CompoundTag$Type): void
- "serialize"(arg0: $FriendlyByteBuf$Type): void
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
  "isTaken"(): boolean
  "getModule"(arg0: integer): $IBuildingModule
  "getModule"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): M
- "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
+ "registerModule"(arg0: $IBuildingExtensionModule$Type): void
  "getModuleMatching"<T2 extends T>(arg0: $Class$Type<(T2)>, arg1: $Predicate$Type<(any)>): T2
  "getModulesByType"<T2 extends T>(arg0: $Class$Type<(T2)>): $List<(T2)>
- "registerModule"(arg0: $IBuildingExtensionModule$Type): void
+ "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
  "hasModule"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
  "hasModule"(arg0: $Class$Type<(any)>): boolean
 }
@@ -4714,15 +4714,15 @@ export interface $IQueuedRequestResolver<R extends $IRequestable> extends $IRequ
  "getPriority"(): integer
  "isValid"(): boolean
  "onColonyUpdate"(arg0: $IRequestManager$Type, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): void
- "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getFollowupRequestForCompletion"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IRequest<(any)>)>
- "getRequestType"(): $TypeToken<(any)>
- "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
- "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "resolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestAssigned"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>, arg2: boolean): void
- "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
+ "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "getRequestType"(): $TypeToken<(any)>
+ "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
  "getSuitabilityMetric"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): integer
+ "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getLocation"(): $ILocation
  "getId"(): $IToken<(any)>
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
@@ -4881,13 +4881,13 @@ export interface $ICitizenSkillHandler {
  "init"(arg0: $IColony$Type, arg1: $ICitizenData$Type, arg2: $ICitizenData$Type, arg3: $Random$Type): void
  "write"(): $CompoundTag
  "read"(arg0: $CompoundTag$Type): void
- "addXpToSkill"(arg0: $Skill$Type, arg1: double, arg2: $ICitizenData$Type): void
- "incrementLevel"(arg0: $Skill$Type, arg1: integer): void
  "getLevel"(arg0: $Skill$Type): integer
- "tryLevelUpIntelligence"(arg0: $Random$Type, arg1: double, arg2: $ICitizenData$Type): boolean
+ "incrementLevel"(arg0: $Skill$Type, arg1: integer): void
+ "addXpToSkill"(arg0: $Skill$Type, arg1: double, arg2: $ICitizenData$Type): void
  "removeXpFromSkill"(arg0: $Skill$Type, arg1: double, arg2: $ICitizenData$Type): void
- "levelUp"(arg0: $ICitizenData$Type): void
+ "tryLevelUpIntelligence"(arg0: $Random$Type, arg1: double, arg2: $ICitizenData$Type): boolean
  "getTotalXP"(): double
+ "levelUp"(arg0: $ICitizenData$Type): void
  "getSkills"(): $Map<($Skill), ($CitizenSkillHandler$SkillData)>
 }
 
@@ -4919,16 +4919,16 @@ export interface $IColonySpawnEvent extends $IColonyEvent {
 
  "setSpawnPoint"(arg0: $BlockPos$Type): void
  "getSpawnPos"(): $BlockPos
- "getID"(): integer
  "onStart"(): void
+ "getID"(): integer
+ "getStatus"(): $EventStatus
  "onTileEntityBreak"(arg0: $BlockEntity$Type): void
  "getEventTypeID"(): $ResourceLocation
  "onNightFall"(): void
- "getStatus"(): $EventStatus
  "onFinish"(): void
  "onUpdate"(): void
- "setStatus"(arg0: $EventStatus$Type): void
  "setColony"(arg0: $IColony$Type): void
+ "setStatus"(arg0: $EventStatus$Type): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -5044,27 +5044,28 @@ readonly "requiredFeatures": $FeatureFlagSet
 readonly "properties": $BlockBehaviour$Properties
  "drops": $ResourceLocation
 
-constructor()
 constructor(arg0: $BlockBehaviour$Properties$Type)
+constructor()
 
-public "setup"(arg0: $ServerPlayer$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Blueprint$Type, arg4: $PlacementSettings$Type, arg5: boolean, arg6: string, arg7: string): boolean
 public "getDesc"(): $List<($MutableComponent)>
-public "getBlueprintDisplayName"(): $Component
-public "getStructureHandler"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Blueprint$Type, arg3: $PlacementSettings$Type, arg4: boolean): $AbstractStructureHandler
-public "getBlueprintName"(): string
+public "setup"(arg0: $ServerPlayer$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Blueprint$Type, arg4: $PlacementSettings$Type, arg5: boolean, arg6: string, arg7: string): boolean
+public "registerBlock"(arg0: $IForgeRegistry$Type<($Block$Type)>): B
+public "registerBlockItem"(arg0: $IForgeRegistry$Type<($Item$Type)>, arg1: $Item$Properties$Type): void
+public "getRegistryName"(): $ResourceLocation
+public "areRequirementsMet"(arg0: $ClientLevel$Type, arg1: $BlockPos$Type, arg2: $LocalPlayer$Type): boolean
+public "getLevel"(arg0: $CompoundTag$Type): integer
 public "getBuildingEntry"(): $BuildingEntry
 public "onBlockPlacedByBuildTool"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type, arg5: boolean, arg6: string, arg7: string): void
 public "getRequirements"(arg0: $ClientLevel$Type, arg1: $BlockPos$Type, arg2: $LocalPlayer$Type): $List<($MutableComponent)>
-public "getRegistryName"(): $ResourceLocation
-public "areRequirementsMet"(arg0: $ClientLevel$Type, arg1: $BlockPos$Type, arg2: $LocalPlayer$Type): boolean
-public "registerBlockItem"(arg0: $IForgeRegistry$Type<($Item$Type)>, arg1: $Item$Properties$Type): void
-public "getLevel"(arg0: $CompoundTag$Type): integer
+public "getBlueprintDisplayName"(): $Component
+public "getStructureHandler"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Blueprint$Type, arg3: $PlacementSettings$Type, arg4: boolean): $AbstractStructureHandler
+public "getBlueprintName"(): string
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getDestroyProgress"(arg0: $BlockState$Type, arg1: $Player$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type): float
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "isVisible"(arg0: $CompoundTag$Type): boolean
 public "getHutName"(): string
@@ -5074,10 +5075,10 @@ public "shouldBrowseBuildings"(arg0: $PlayerInteractEvent$RightClickItem$Type): 
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "desc"(): $List<($MutableComponent)>
+get "registryName"(): $ResourceLocation
+get "buildingEntry"(): $BuildingEntry
 get "blueprintDisplayName"(): $Component
 get "blueprintName"(): string
-get "buildingEntry"(): $BuildingEntry
-get "registryName"(): $ResourceLocation
 get "hutName"(): string
 }
 /**
@@ -5162,13 +5163,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public static "getPlacementState"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): $BlockState
-public "getRegistryName"(): $ResourceLocation
 public static "getConnections"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Direction$Type, arg3: boolean): $List<($Direction)>
-public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "getRegistryName"(): $ResourceLocation
+public static "getPlacementState"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): $BlockState
 public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "onLand"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockState$Type, arg4: $FallingBlockEntity$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "registryName"(): $ResourceLocation
@@ -5233,16 +5234,16 @@ public "getName"(): string
 public "toString"(): string
 public static "values"(): ($RackType)[]
 public static "valueOf"(arg0: string): $RackType
+public "getTranslationKey"(): string
 public "getInvBasedVariant"(arg0: boolean): $RackType
 public "isDoubleVariant"(): boolean
-public "getTranslationKey"(): string
 public "getSerializedName"(): string
 public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>): $StringRepresentable$EnumCodec<(E)>
 public static "fromEnumWithMapping"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>, arg1: $Function$Type<(string), (string)>): $StringRepresentable$EnumCodec<(E)>
 public static "keys"(arg0: ($StringRepresentable$Type)[]): $Keyable
 get "name"(): string
-get "doubleVariant"(): boolean
 get "translationKey"(): string
+get "doubleVariant"(): boolean
 get "serializedName"(): string
 }
 /**
@@ -5292,22 +5293,22 @@ import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$ICivilianData, $ICivilianData$Type} from "packages/com/minecolonies/api/colony/$ICivilianData"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$AbstractCivilianEntity, $AbstractCivilianEntity$Type} from "packages/com/minecolonies/api/entity/citizen/$AbstractCivilianEntity"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IEntityManager {
 
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
- "createAndRegisterCivilianData"(): $ICivilianData
- "removeCivilian"(arg0: $ICivilianData$Type): void
- "onColonyTick"(arg0: $IColony$Type): void
- "getCivilian"<T extends $ICivilianData>(arg0: integer): T
- "spawnOrCreateCivilian"<T extends $ICivilianData>(arg0: T, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): T
  "sendPackets"(arg0: $Set$Type<($ServerPlayer$Type)>, arg1: $Set$Type<($ServerPlayer$Type)>): void
- "getCivilianDataMap"(): $Map<(integer), ($ICivilianData)>
+ "createAndRegisterCivilianData"(): $ICivilianData
+ "spawnOrCreateCivilian"<T extends $ICivilianData>(arg0: T, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): T
+ "getCivilian"<T extends $ICivilianData>(arg0: integer): T
+ "onColonyTick"(arg0: $IColony$Type): void
+ "removeCivilian"(arg0: $ICivilianData$Type): void
  "registerCivilian"(arg0: $AbstractCivilianEntity$Type): void
  "unregisterCivilian"(arg0: $AbstractCivilianEntity$Type): void
+ "getCivilianDataMap"(): $Map<(integer), ($ICivilianData)>
  "markDirty"(): void
  "clearDirty"(): void
 }
@@ -5338,8 +5339,8 @@ import {$ItemResourceScrollAccessor, $ItemResourceScrollAccessor$Type} from "pac
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -5364,8 +5365,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 }
 /**
@@ -5391,8 +5392,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$PlacementError, $PlacementError$Type} from "packages/com/ldtteam/structurize/placement/handlers/placement/$PlacementError"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -5418,8 +5419,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public static "canShipBePlaced"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Blueprint$Type, arg3: $List$Type<($PlacementError$Type)>, arg4: $Player$Type): boolean
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5491,8 +5492,8 @@ import {$MutableComponent, $MutableComponent$Type} from "packages/net/minecraft/
 import {$RequestState, $RequestState$Type} from "packages/com/minecolonies/api/colony/requestsystem/request/$RequestState"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
 import {$IColonyView, $IColonyView$Type} from "packages/com/minecolonies/api/colony/$IColonyView"
-import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
+import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
@@ -5502,40 +5503,40 @@ import {$TypeToken, $TypeToken$Type} from "packages/com/google/common/reflect/$T
 
 export interface $IRequest<R extends $IRequestable> {
 
+ "getChildren"(): $ImmutableCollection<($IToken<(any)>)>
+ "setResult"(arg0: R): void
  "setState"(arg0: $IRequestManager$Type, arg1: $RequestState$Type): void
+ "getResult"(): R
  "getParent"<T extends $IToken<(any)>>(): T
  "getId"<T extends $IToken<(any)>>(): T
  "getState"(): $RequestState
  "getType"(): $TypeToken<(any)>
  "setParent"<T extends $IToken<(any)>>(arg0: T): void
- "getResult"(): R
- "setResult"(arg0: R): void
  "removeChild"<T extends $IToken<(any)>>(arg0: T): void
- "getChildren"(): $ImmutableCollection<($IToken<(any)>)>
- "getLongDisplayString"(): $Component
- "addChildren"<T extends $IToken<(any)>>(...arg0: (T)[]): void
- "addChildren"<T extends $IToken<(any)>>(arg0: $Collection$Type<(T)>): void
- "getRequester"(): $IRequester
- "removeChildren"<T extends $IToken<(any)>>(arg0: $Collection$Type<(T)>): void
- "removeChildren"<T extends $IToken<(any)>>(...arg0: (T)[]): void
- "overrideCurrentDeliveries"(arg0: $ImmutableList$Type<($ItemStack$Type)>): void
  "getShortDisplayString"(): $Component
+ "getSuperClasses"(): $Set<($TypeToken<(any)>)>
+ "getDisplayStacks"(): $List<($ItemStack)>
+ "hasChildren"(): boolean
+ "getStrategy"(): $AssigningStrategy
+ "removeChildren"<T extends $IToken<(any)>>(...arg0: (T)[]): void
+ "removeChildren"<T extends $IToken<(any)>>(arg0: $Collection$Type<(T)>): void
+ "overrideCurrentDeliveries"(arg0: $ImmutableList$Type<($ItemStack$Type)>): void
+ "getRequester"(): $IRequester
+ "getLongDisplayString"(): $Component
  "addDelivery"(arg0: $List$Type<($ItemStack$Type)>): void
  "addDelivery"(arg0: $ItemStack$Type): void
  "canBeDelivered"(): boolean
  "getDeliveries"(): $ImmutableList<($ItemStack)>
- "getDisplayStacks"(): $List<($ItemStack)>
- "getSuperClasses"(): $Set<($TypeToken<(any)>)>
- "hasChildren"(): boolean
- "getStrategy"(): $AssigningStrategy
- "hasResult"(): boolean
- "getRequest"(): R
- "addChild"<T extends $IToken<(any)>>(arg0: T): void
- "childStateUpdated"(arg0: $IRequestManager$Type, arg1: $IToken$Type<(any)>): void
- "getDisplayIcon"(): $ResourceLocation
- "getRequestOfType"<T>(arg0: $Class$Type<(T)>): $Optional<(T)>
+ "addChildren"<T extends $IToken<(any)>>(arg0: $Collection$Type<(T)>): void
+ "addChildren"<T extends $IToken<(any)>>(...arg0: (T)[]): void
  "getResolverToolTip"(arg0: $IColonyView$Type): $List<($MutableComponent)>
  "resetDeliveries"(): void
+ "getDisplayIcon"(): $ResourceLocation
+ "getRequestOfType"<T>(arg0: $Class$Type<(T)>): $Optional<(T)>
+ "childStateUpdated"(arg0: $IRequestManager$Type, arg1: $IToken$Type<(any)>): void
+ "hasResult"(): boolean
+ "addChild"<T extends $IToken<(any)>>(arg0: T): void
+ "getRequest"(): R
  "hasParent"(): boolean
 }
 
@@ -5636,12 +5637,12 @@ export class $JobEntry {
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
 public "getKey"(): $ResourceLocation
-public "getJobViewProducer"(): $Supplier<($BiFunction<($IColonyView), ($ICitizenDataView), ($IJobView)>)>
 public "getTranslationKey"(): string
+public "getJobViewProducer"(): $Supplier<($BiFunction<($IColonyView), ($ICitizenDataView), ($IJobView)>)>
 public "produceJob"(arg0: $ICitizenData$Type): $IJob<(any)>
 get "key"(): $ResourceLocation
-get "jobViewProducer"(): $Supplier<($BiFunction<($IColonyView), ($ICitizenDataView), ($IJobView)>)>
 get "translationKey"(): string
+get "jobViewProducer"(): $Supplier<($BiFunction<($IColonyView), ($ICitizenDataView), ($IJobView)>)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5730,8 +5731,8 @@ declare global {
 export type $GraveType_ = $GraveType$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/buildings/$IMysticalSite" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IRequestable, $IRequestable$Type} from "packages/com/minecolonies/api/colony/requestsystem/requestable/$IRequestable"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -5761,8 +5762,8 @@ import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/re
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
-import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$BuildingEntry, $BuildingEntry$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IBlueprintDataProviderBE, $IBlueprintDataProviderBE$Type} from "packages/com/ldtteam/structurize/blockentities/interfaces/$IBlueprintDataProviderBE"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
@@ -5777,23 +5778,26 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IMysticalSite extends $IBuilding {
 
- "destroy"(): void
  "getHandlers"(): $List<($IItemHandler)>
+ "destroy"(): void
+ "getBuildingType"(): $BuildingEntry
+ "getCustomName"(): string
+ "onDestroyed"(): void
+ "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
  "getCompletedRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
+ "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
  "upgradeBuildingLevelToSchematicData"(): void
  "getOpenRequestsByRequestableType"(): $Map<($TypeToken<(any)>), ($Collection<($IToken<(any)>)>)>
- "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
- "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
- "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
- "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean): integer
- "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
- "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
- "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "hasWorkerOpenRequestsFiltered"(arg0: integer, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): boolean
+ "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
  "onUpgradeComplete"(arg0: integer): void
- "onPlacement"(): void
  "getBuildingDisplayName"(): string
+ "onPlacement"(): void
  "onPlayerEnterNearby"(arg0: $Player$Type): void
  "onPlayerEnterBuilding"(arg0: $Player$Type): void
  "isMatchingBlock"(arg0: $Block$Type): boolean
@@ -5838,35 +5842,32 @@ export interface $IMysticalSite extends $IBuilding {
  "canAssignCitizens"(): boolean
  "getAllAssignedCitizen"(): $Set<($ICitizenData)>
  "getSettingValueOrDefault"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>, arg1: S): S
- "onDestroyed"(): void
- "getCustomName"(): string
- "getBuildingType"(): $BuildingEntry
  "onRestart"(arg0: $ICitizenData$Type): void
  "canEat"(arg0: $ItemStack$Type): boolean
- "isBuilt"(): boolean
  "markDirty"(): void
+ "isBuilt"(): boolean
  "pickUp"(arg0: $Player$Type): void
+ "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
  "getColony"(): $IColony
  "onWakeUp"(): void
  "onCleanUp"(arg0: $ICitizenData$Type): void
- "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+ "getContainers"(): $List<($BlockPos)>
+ "getTileEntity"(): $AbstractTileEntityColonyBuilding
  "getPickUpPriority"(): integer
  "alterPickUpPriority"(arg0: integer): void
  "addContainerPosition"(arg0: $BlockPos$Type): void
  "removeContainerPosition"(arg0: $BlockPos$Type): void
- "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "registerBlockPosition"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
+ "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "setTileEntity"(arg0: $AbstractTileEntityColonyBuilding$Type): void
- "getTileEntity"(): $AbstractTileEntityColonyBuilding
- "getContainers"(): $List<($BlockPos)>
- "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
- "deserializeNBT"(arg0: $CompoundTag$Type): void
  "getModule"(arg0: integer): $IBuildingModule
  "getModule"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): M
- "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
+ "registerModule"(arg0: $IBuildingModule$Type): void
  "getModuleMatching"<T2 extends T>(arg0: $Class$Type<(T2)>, arg1: $Predicate$Type<(any)>): T2
  "getModulesByType"<T2 extends T>(arg0: $Class$Type<(T2)>): $List<(T2)>
- "registerModule"(arg0: $IBuildingModule$Type): void
+ "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
  "hasModule"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
  "hasModule"(arg0: $Class$Type<(any)>): boolean
  "getId"(): $IToken<(any)>
@@ -5874,28 +5875,28 @@ export interface $IMysticalSite extends $IBuilding {
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
- "getPosition"(): $BlockPos
+ "getChildren"(): $Set<($BlockPos)>
+ "getID"(): $BlockPos
  "getParent"(): $BlockPos
  "setParent"(arg0: $BlockPos$Type): void
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
  "isDirty"(): boolean
- "getChildren"(): $Set<($BlockPos)>
+ "getSchematicName"(): string
+ "getStructurePack"(): string
+ "setBlueprintPath"(arg0: string): void
+ "getBlueprintPath"(): string
+ "getRotation"(): integer
  "setStructurePack"(arg0: string): void
  "setBuildingLevel"(arg0: integer): void
  "setIsMirrored"(arg0: boolean): void
- "getBuildingLevel"(): integer
  "getMaxBuildingLevel"(): integer
  "isDeconstructed"(): boolean
  "setDeconstructed"(): void
  "onUpgradeSchematicTo"(arg0: string, arg1: string, arg2: $IBlueprintDataProviderBE$Type): void
- "getRotation"(): integer
- "setBlueprintPath"(arg0: string): void
- "getBlueprintPath"(): string
- "getStructurePack"(): string
- "getSchematicName"(): string
- "hasParent"(): boolean
+ "getBuildingLevel"(): integer
  "clearDirty"(): void
+ "hasParent"(): boolean
  "setCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
@@ -5943,12 +5944,13 @@ export class $AbstractTileEntityRack extends $BlockEntity implements $MenuProvid
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: integer)
 
-public "isEmpty"(): boolean
 public "getCount"(arg0: $ItemStorage$Type): integer
 public "getCount"(arg0: $ItemStack$Type, arg1: boolean, arg2: boolean): integer
 public "getItemCount"(arg0: $Predicate$Type<($ItemStack$Type)>): integer
+public "isEmpty"(): boolean
+public "getInventory"(): $IItemHandlerModifiable
+public "createInventory"(arg0: integer): $ItemStackHandler
 public "getFreeSlots"(): integer
-public "getOtherChest"(): $AbstractTileEntityRack
 public "updateWarehouseIfAvailable"(arg0: $ItemStack$Type): void
 public "setInWarehouse"(arg0: boolean): void
 public "hasItemStorage"(arg0: $ItemStorage$Type, arg1: integer): boolean
@@ -5957,21 +5959,20 @@ public "upgradeRackSize"(): void
 public "setBuildingPos"(arg0: $BlockPos$Type): void
 public "getUpgradeSize"(): integer
 public "updateItemStorage"(): void
-public "hasItemStack"(arg0: $ItemStack$Type, arg1: integer, arg2: boolean): boolean
+public "getOtherChest"(): $AbstractTileEntityRack
 public "hasItemStack"(arg0: $Predicate$Type<($ItemStack$Type)>): boolean
-public "createInventory"(arg0: integer): $ItemStackHandler
-public "getInventory"(): $IItemHandlerModifiable
+public "hasItemStack"(arg0: $ItemStack$Type, arg1: integer, arg2: boolean): boolean
 public "getDisplayName"(): $Component
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "shouldCloseCurrentScreen"(): boolean
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "empty"(): boolean
+get "inventory"(): $IItemHandlerModifiable
 get "freeSlots"(): integer
-get "otherChest"(): $AbstractTileEntityRack
 set "inWarehouse"(value: boolean)
 set "buildingPos"(value: $BlockPos$Type)
 get "upgradeSize"(): integer
-get "inventory"(): $IItemHandlerModifiable
+get "otherChest"(): $AbstractTileEntityRack
 get "displayName"(): $Component
 }
 /**
@@ -5998,10 +5999,10 @@ export interface $IModuleContainer<T> {
 
  "getModule"(arg0: integer): $IBuildingModule
  "getModule"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): M
- "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
+ "registerModule"(arg0: T): void
  "getModuleMatching"<T2 extends T>(arg0: $Class$Type<(T2)>, arg1: $Predicate$Type<(any)>): T2
  "getModulesByType"<T2 extends T>(arg0: $Class$Type<(T2)>): $List<(T2)>
- "registerModule"(arg0: T): void
+ "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
  "hasModule"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
  "hasModule"(arg0: $Class$Type<(any)>): boolean
 }
@@ -6037,13 +6038,13 @@ export interface $ISettingsModuleView extends $IBuildingModuleView {
  "trigger"(arg0: $ISettingKey$Type<(any)>): void
  "getSetting"<T extends $ISetting<(any)>>(arg0: $ISettingKey$Type<(T)>): T
  "getDesc"(): string
- "setProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): $IBuildingModuleView
- "getProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(): $BuildingEntry$ModuleProducer<(M), (V)>
- "getBuildingView"(): $IBuildingView
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getIcon"(): string
  "setBuildingView"(arg0: $IBuildingView$Type): $IBuildingModuleView
  "isPageVisible"(): boolean
- "getIcon"(): string
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getBuildingView"(): $IBuildingView
+ "setProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): $IBuildingModuleView
+ "getProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(): $BuildingEntry$ModuleProducer<(M), (V)>
  "getWindow"(): $BOWindow
  "getColony"(): $IColonyView
 }
@@ -6185,15 +6186,15 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: string, arg1: boolean, arg2: double)
 
 public "getRegistryName"(): $ResourceLocation
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "useShapeForLightOcclusion"(arg0: $BlockState$Type): boolean
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "fallOn"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockPos$Type, arg3: $Entity$Type, arg4: float): void
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public static "turnToDirt"(arg0: $Entity$Type, arg1: $BlockState$Type, arg2: $Level$Type, arg3: $BlockPos$Type): void
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -6370,6 +6371,7 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getRegistryName"(): $ResourceLocation
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 /**
  * 
@@ -6383,7 +6385,6 @@ public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public static "createTickerHelper"<E extends $BlockEntity, A extends $BlockEntity>(arg0: $BlockEntityType$Type<(A)>, arg1: $BlockEntityType$Type<(E)>, arg2: $BlockEntityTicker$Type<(any)>): $BlockEntityTicker<(A)>
@@ -6484,11 +6485,11 @@ export interface $ICitizenHappinessHandler {
  "getModifiers"(): $List<(string)>
  "write"(arg0: $CompoundTag$Type, arg1: boolean): void
  "read"(arg0: $CompoundTag$Type, arg1: boolean): void
+ "addModifier"(arg0: $IHappinessModifier$Type): void
+ "getModifier"(arg0: string): $IHappinessModifier
+ "getHappiness"(arg0: $IColony$Type, arg1: $ICitizenData$Type): double
  "resetModifier"(arg0: string): void
  "processDailyHappiness"(arg0: $ICitizenData$Type): void
- "getHappiness"(arg0: $IColony$Type, arg1: $ICitizenData$Type): double
- "getModifier"(arg0: string): $IHappinessModifier
- "addModifier"(arg0: $IHappinessModifier$Type): void
 }
 
 export namespace $ICitizenHappinessHandler {
@@ -6761,8 +6762,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -6789,8 +6790,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "getOverlayBoxes"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ItemStack$Type): $List<($IBlockOverlayItem$OverlayBox)>
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 }
 /**
@@ -7181,34 +7182,34 @@ import {$ImmutableItemStorage, $ImmutableItemStorage$Type} from "packages/com/mi
 
 export class $ItemStorage {
 
-constructor(arg0: $ItemStack$Type, arg1: boolean)
 constructor(arg0: $ItemStack$Type)
 constructor(arg0: $Item$Type)
 constructor(arg0: $JsonObject$Type)
 constructor(arg0: $ItemStack$Type, arg1: integer, arg2: boolean)
 constructor(arg0: $ItemStack$Type, arg1: integer, arg2: boolean, arg3: boolean)
 constructor(arg0: $ItemStack$Type, arg1: boolean, arg2: boolean)
+constructor(arg0: $ItemStack$Type, arg1: boolean)
 
+public "getItem"(): $Item
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "isEmpty"(): boolean
 public "copy"(): $ItemStorage
-public "getItem"(): $Item
+public "getItemStack"(): $ItemStack
+public "toImmutable"(): $ImmutableItemStorage
 public static "getItemStackOfListMatchingPredicate"(arg0: $List$Type<($ItemStorage$Type)>, arg1: $Predicate$Type<($ItemStack$Type)>): $ItemStorage
 public "getDamageValue"(): integer
 public "ignoreDamageValue"(): boolean
-public "getItemStack"(): $ItemStack
-public "toImmutable"(): $ImmutableItemStorage
-public "matchDefinitionEquals"(arg0: $ItemStorage$Type): boolean
 public "getRemainingDurablityValue"(): integer
+public "matchDefinitionEquals"(arg0: $ItemStorage$Type): boolean
 public "getAmount"(): integer
 public "setAmount"(arg0: integer): void
 public "ignoreNBT"(): boolean
-get "empty"(): boolean
 get "item"(): $Item
-get "damageValue"(): integer
+get "empty"(): boolean
 get "itemStack"(): $ItemStack
+get "damageValue"(): integer
 get "remainingDurablityValue"(): integer
 get "amount"(): integer
 set "amount"(value: integer)
@@ -7230,38 +7231,38 @@ import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$
 import {$WorkOrderType, $WorkOrderType$Type} from "packages/com/minecolonies/api/colony/workorders/$WorkOrderType"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
-import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Blueprint, $Blueprint$Type} from "packages/com/ldtteam/structurize/blueprints/v1/$Blueprint"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 
 export interface $IWorkOrder {
 
+ "getDisplayName"(): $Component
+ "getID"(): integer
+ "setID"(arg0: integer): void
  "getLocation"(): $BlockPos
  "setPriority"(arg0: integer): void
  "getPriority"(): integer
  "getFileName"(): string
  "isMirrored"(): boolean
- "getDisplayName"(): $Component
- "getID"(): integer
- "setID"(arg0: integer): void
+ "getTranslationKey"(): string
+ "getStructurePack"(): string
+ "getBlueprint"(): $Blueprint
+ "setBlueprint"(arg0: $Blueprint$Type, arg1: $Level$Type): void
+ "getRotation"(): integer
+ "getBoundingBox"(): $AABB
+ "getClaimedBy"(): $BlockPos
+ "setClaimedBy"(arg0: $BlockPos$Type): void
  "loadBlueprint"(arg0: $Level$Type, arg1: $Consumer$Type<($Blueprint$Type)>): void
  "getStructurePath"(): string
  "getWorkOrderType"(): $WorkOrderType
  "getTargetLevel"(): integer
  "getCurrentLevel"(): integer
  "clearBlueprint"(): void
- "setClaimedBy"(arg0: $BlockPos$Type): void
- "getClaimedBy"(): $BlockPos
- "getBoundingBox"(): $AABB
- "getRotation"(): integer
- "setBlueprint"(arg0: $Blueprint$Type, arg1: $Level$Type): void
- "getStructurePack"(): string
- "getBlueprint"(): $Blueprint
- "getTranslationKey"(): string
- "isClaimed"(): boolean
- "setColony"(arg0: $IColony$Type): void
  "getColony"(): $IColony
+ "setColony"(arg0: $IColony$Type): void
+ "isClaimed"(): boolean
 }
 
 export namespace $IWorkOrder {
@@ -7421,8 +7422,8 @@ declare module "packages/com/minecolonies/api/colony/workorders/$IWorkManager" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
-import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$List, $List$Type} from "packages/java/util/$List"
+import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$IServerWorkOrder, $IServerWorkOrder$Type} from "packages/com/minecolonies/api/colony/workorders/$IServerWorkOrder"
 import {$ICitizenData, $ICitizenData$Type} from "packages/com/minecolonies/api/colony/$ICitizenData"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
@@ -7433,18 +7434,18 @@ export interface $IWorkManager {
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
  "isDirty"(): boolean
- "getWorkOrder"(arg0: integer): $IServerWorkOrder
- "getWorkOrder"<W extends $IServerWorkOrder>(arg0: integer, arg1: $Class$Type<(W)>): W
- "removeWorkOrder"(arg0: $IServerWorkOrder$Type): void
- "removeWorkOrder"(arg0: integer): void
- "onColonyTick"(arg0: $IColony$Type): void
- "getOrderedList"(arg0: $Predicate$Type<($IServerWorkOrder$Type)>, arg1: $BlockPos$Type): $List<($IServerWorkOrder)>
- "getOrderedList"<W extends $IServerWorkOrder>(arg0: $Class$Type<(W)>, arg1: $BlockPos$Type): $List<(W)>
+ "getWorkOrders"(): $Map<(integer), ($IServerWorkOrder)>
  "getWorkOrdersOfType"<W extends $IServerWorkOrder>(arg0: $Class$Type<(W)>): $List<(W)>
  "addWorkOrder"(arg0: $IServerWorkOrder$Type, arg1: boolean): void
- "getWorkOrders"(): $Map<(integer), ($IServerWorkOrder)>
- "getUnassignedWorkOrder"<W extends $IServerWorkOrder>(arg0: $Class$Type<(W)>): W
+ "getOrderedList"<W extends $IServerWorkOrder>(arg0: $Class$Type<(W)>, arg1: $BlockPos$Type): $List<(W)>
+ "getOrderedList"(arg0: $Predicate$Type<($IServerWorkOrder$Type)>, arg1: $BlockPos$Type): $List<($IServerWorkOrder)>
+ "getWorkOrder"(arg0: integer): $IServerWorkOrder
+ "getWorkOrder"<W extends $IServerWorkOrder>(arg0: integer, arg1: $Class$Type<(W)>): W
+ "removeWorkOrder"(arg0: integer): void
+ "removeWorkOrder"(arg0: $IServerWorkOrder$Type): void
+ "onColonyTick"(arg0: $IColony$Type): void
  "clearWorkForCitizen"(arg0: $ICitizenData$Type): void
+ "getUnassignedWorkOrder"<W extends $IServerWorkOrder>(arg0: $Class$Type<(W)>): W
  "setDirty"(arg0: boolean): void
  "getColony"(): $IColony
 }
@@ -7470,13 +7471,13 @@ import {$IState, $IState$Type} from "packages/com/minecolonies/api/entity/ai/sta
 
 export interface $IStateMachine<T extends $IStateMachineTransition<(S)>, S extends $IState> {
 
+ "tick"(): void
  "getState"(): S
  "reset"(): void
- "tick"(): void
+ "removeTransition"(arg0: T): void
+ "addTransition"(arg0: T): void
  "checkTransition"(arg0: T): boolean
  "transitionToNext"(arg0: T): boolean
- "addTransition"(arg0: T): void
- "removeTransition"(arg0: T): void
 }
 
 export namespace $IStateMachine {
@@ -7595,10 +7596,10 @@ export interface $ICitizenFoodHandler {
 
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
- "getDiseaseModifier"(arg0: double): double
  "hasFullFoodHistory"(): boolean
  "getFoodHappinessStats"(): $ICitizenFoodHandler$CitizenFoodStats
  "addLastEaten"(arg0: $Item$Type): void
+ "getDiseaseModifier"(arg0: double): double
  "getLastEaten"(): $Item
  "checkLastEaten"(arg0: $Item$Type): integer
 }
@@ -7628,8 +7629,8 @@ export class $ModResearchCostTypes$ResearchCostType {
 
 constructor(arg0: $ResourceLocation$Type, arg1: $Function$Type<($ModResearchCostTypes$ResearchCostType$Type), ($IResearchCost$Type)>)
 
-public "getId"(): $ResourceLocation
 public "createInstance"(): $IResearchCost
+public "getId"(): $ResourceLocation
 public "hasCorrectJsonFields"(arg0: $JsonObject$Type): boolean
 public "parseFromJson"(arg0: $JsonObject$Type): $IResearchCost
 get "id"(): $ResourceLocation
@@ -7652,19 +7653,19 @@ import {$Set, $Set$Type} from "packages/java/util/$Set"
 
 export interface $IColonyPackageManager {
 
- "removeImportantColonyPlayer"(arg0: $ServerPlayer$Type): void
- "getCloseSubscribers"(): $Set<($ServerPlayer)>
- "removeCloseSubscriber"(arg0: $ServerPlayer$Type): void
- "addCloseSubscriber"(arg0: $ServerPlayer$Type): void
  "addImportantColonyPlayer"(arg0: $ServerPlayer$Type): void
- "sendColonyViewPackets"(): void
  "sendPermissionsPackets"(): void
+ "sendColonyViewPackets"(): void
+ "addCloseSubscriber"(arg0: $ServerPlayer$Type): void
+ "removeCloseSubscriber"(arg0: $ServerPlayer$Type): void
+ "removeImportantColonyPlayer"(arg0: $ServerPlayer$Type): void
  "getLastContactInHours"(): integer
+ "getCloseSubscribers"(): $Set<($ServerPlayer)>
+ "updateSubscribers"(): void
  "getImportantColonyPlayers"(): $Set<($ServerPlayer)>
  "updateAwayTime"(): void
- "updateSubscribers"(): void
- "setLastContactInHours"(arg0: integer): void
  "sendWorkOrderPackets"(): void
+ "setLastContactInHours"(arg0: integer): void
  "setDirty"(): void
 }
 
@@ -7691,8 +7692,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 export class $ResearchEffectEntry {
 
 
-public "getRegistryName"(): $ResourceLocation
 public "readFromNBT"(arg0: $CompoundTag$Type): $IResearchEffect<(any)>
+public "getRegistryName"(): $ResourceLocation
 get "registryName"(): $ResourceLocation
 }
 /**
@@ -7713,8 +7714,8 @@ import {$WorkOrderType, $WorkOrderType$Type} from "packages/com/minecolonies/api
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
-import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Blueprint, $Blueprint$Type} from "packages/com/ldtteam/structurize/blueprints/v1/$Blueprint"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$IBuildingView, $IBuildingView$Type} from "packages/com/minecolonies/api/colony/buildings/views/$IBuildingView"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$IWorkOrder, $IWorkOrder$Type} from "packages/com/minecolonies/api/colony/workorders/$IWorkOrder"
@@ -7723,33 +7724,33 @@ import {$AABB, $AABB$Type} from "packages/net/minecraft/world/phys/$AABB"
 export interface $IWorkOrderView extends $IWorkOrder {
 
  "deserialize"(arg0: $FriendlyByteBuf$Type): void
- "shouldShowIn"(arg0: $IBuildingView$Type): boolean
  "canBuildIgnoringDistance"(arg0: $BlockPos$Type, arg1: integer): boolean
+ "shouldShowIn"(arg0: $IBuildingView$Type): boolean
+ "getDisplayName"(): $Component
+ "getID"(): integer
+ "setID"(arg0: integer): void
  "getLocation"(): $BlockPos
  "setPriority"(arg0: integer): void
  "getPriority"(): integer
  "getFileName"(): string
  "isMirrored"(): boolean
- "getDisplayName"(): $Component
- "getID"(): integer
- "setID"(arg0: integer): void
+ "getTranslationKey"(): string
+ "getStructurePack"(): string
+ "getBlueprint"(): $Blueprint
+ "setBlueprint"(arg0: $Blueprint$Type, arg1: $Level$Type): void
+ "getRotation"(): integer
+ "getBoundingBox"(): $AABB
+ "getClaimedBy"(): $BlockPos
+ "setClaimedBy"(arg0: $BlockPos$Type): void
  "loadBlueprint"(arg0: $Level$Type, arg1: $Consumer$Type<($Blueprint$Type)>): void
  "getStructurePath"(): string
  "getWorkOrderType"(): $WorkOrderType
  "getTargetLevel"(): integer
  "getCurrentLevel"(): integer
  "clearBlueprint"(): void
- "setClaimedBy"(arg0: $BlockPos$Type): void
- "getClaimedBy"(): $BlockPos
- "getBoundingBox"(): $AABB
- "getRotation"(): integer
- "setBlueprint"(arg0: $Blueprint$Type, arg1: $Level$Type): void
- "getStructurePack"(): string
- "getBlueprint"(): $Blueprint
- "getTranslationKey"(): string
- "isClaimed"(): boolean
- "setColony"(arg0: $IColony$Type): void
  "getColony"(): $IColony
+ "setColony"(arg0: $IColony$Type): void
+ "isClaimed"(): boolean
 }
 
 export namespace $IWorkOrderView {
@@ -7778,10 +7779,10 @@ export interface $ICitizenDiseaseHandler {
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
  "onCollission"(arg0: $ICitizenData$Type): void
- "setSleepsAtHospital"(arg0: boolean): void
  "sleepsAtHospital"(): boolean
- "cure"(): void
+ "setSleepsAtHospital"(arg0: boolean): void
  "isHurt"(): boolean
+ "cure"(): void
  "isSick"(): boolean
  "setDisease"(arg0: $Disease$Type): boolean
  "getDisease"(): $Disease
@@ -7918,8 +7919,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 }
 /**
@@ -8297,20 +8298,20 @@ readonly "level": $Level
 
 constructor(arg0: $Mob$Type, arg1: $Level$Type)
 
+public "getPathResult"(): $PathResult<(any)>
+public "getOurEntity"(): $Mob
+public "setSafeDestinationPos"(arg0: $BlockPos$Type): void
 public "setSwimSpeedFactor"(arg0: double): void
 public "getPathingOptions"(): $PathingOptions
 public "setStuckHandler"(arg0: $IStuckHandler$Type<(any)>): void
-public "getOurEntity"(): $Mob
-public "setSafeDestinationPos"(arg0: $BlockPos$Type): void
-public "getPathResult"(): $PathResult<(any)>
 public "walkToTree"(arg0: $BlockPos$Type, arg1: $BlockPos$Type, arg2: double, arg3: $List$Type<($ItemStorage$Type)>, arg4: integer, arg5: $IColony$Type): $TreePathResult
 public "walkToTree"(arg0: integer, arg1: double, arg2: $List$Type<($ItemStorage$Type)>, arg3: integer, arg4: $IColony$Type): $TreePathResult
+get "pathResult"(): $PathResult<(any)>
+get "ourEntity"(): $Mob
+set "safeDestinationPos"(value: $BlockPos$Type)
 set "swimSpeedFactor"(value: double)
 get "pathingOptions"(): $PathingOptions
 set "stuckHandler"(value: $IStuckHandler$Type<(any)>)
-get "ourEntity"(): $Mob
-set "safeDestinationPos"(value: $BlockPos$Type)
-get "pathResult"(): $PathResult<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -8461,8 +8462,8 @@ import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packa
 import {$AbstractBlockMinecoloniesNamedGrave, $AbstractBlockMinecoloniesNamedGrave$Type} from "packages/com/minecolonies/api/blocks/$AbstractBlockMinecoloniesNamedGrave"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -8520,8 +8521,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public static "getPlacementState"(arg0: $BlockState$Type, arg1: $BlockEntity$Type, arg2: $BlockPos$Type): $BlockState
 public "getRegistryName"(): $ResourceLocation
+public static "getPlacementState"(arg0: $BlockState$Type, arg1: $BlockEntity$Type, arg2: $BlockPos$Type): $BlockState
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 /**
  * 
  * @deprecated
@@ -8534,8 +8537,6 @@ public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "registryName"(): $ResourceLocation
@@ -8553,8 +8554,8 @@ declare global {
 export type $BlockMinecoloniesNamedGrave_ = $BlockMinecoloniesNamedGrave$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/buildings/$IGuardBuilding" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IRequestable, $IRequestable$Type} from "packages/com/minecolonies/api/colony/requestsystem/requestable/$IRequestable"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$AbstractEntityCitizen, $AbstractEntityCitizen$Type} from "packages/com/minecolonies/api/entity/citizen/$AbstractEntityCitizen"
@@ -8585,8 +8586,8 @@ import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/re
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
-import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$BuildingEntry, $BuildingEntry$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IBlueprintDataProviderBE, $IBlueprintDataProviderBE$Type} from "packages/com/ldtteam/structurize/blockentities/interfaces/$IBlueprintDataProviderBE"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
@@ -8602,7 +8603,14 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export interface $IGuardBuilding extends $IBuilding {
 
  "getTask"(): string
- "shallRetrieveOnLowHealth"(): boolean
+ "getPlayerToFollowOrRally"(): $Player
+ "getPatrolDistance"(): integer
+ "setGuardPos"(arg0: $BlockPos$Type): void
+ "resetPatrolTargets"(): void
+ "addPatrolTarget"(arg0: $BlockPos$Type): void
+ "setPlayerToFollow"(arg0: $Player$Type): void
+ "setRallyLocation"(arg0: $ILocation$Type): void
+ "setTempNextPatrolPoint"(arg0: $BlockPos$Type): void
  "requiresManualTarget"(): boolean
  "arrivedAtPatrolPoint"(arg0: $AbstractEntityCitizen$Type): void
  "getNextPatrolTarget"(arg0: boolean): $BlockPos
@@ -8613,32 +8621,28 @@ export interface $IGuardBuilding extends $IBuilding {
  "getRallyLocation"(): $ILocation
  "getBonusVision"(): integer
  "calculateMobs"(): void
- "setPlayerToFollow"(arg0: $Player$Type): void
- "getPatrolDistance"(): integer
- "setGuardPos"(arg0: $BlockPos$Type): void
- "resetPatrolTargets"(): void
- "addPatrolTarget"(arg0: $BlockPos$Type): void
- "setTempNextPatrolPoint"(arg0: $BlockPos$Type): void
- "setRallyLocation"(arg0: $ILocation$Type): void
- "getPlayerToFollowOrRally"(): $Player
+ "shallRetrieveOnLowHealth"(): boolean
  "getMinePos"(): $BlockPos
- "destroy"(): void
  "getHandlers"(): $List<($IItemHandler)>
+ "destroy"(): void
+ "getBuildingType"(): $BuildingEntry
+ "getCustomName"(): string
+ "onDestroyed"(): void
+ "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
  "getCompletedRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
+ "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
  "upgradeBuildingLevelToSchematicData"(): void
  "getOpenRequestsByRequestableType"(): $Map<($TypeToken<(any)>), ($Collection<($IToken<(any)>)>)>
- "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
- "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
- "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
- "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean): integer
- "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
- "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
- "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "hasWorkerOpenRequestsFiltered"(arg0: integer, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): boolean
+ "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
  "onUpgradeComplete"(arg0: integer): void
- "onPlacement"(): void
  "getBuildingDisplayName"(): string
+ "onPlacement"(): void
  "onPlayerEnterNearby"(arg0: $Player$Type): void
  "onPlayerEnterBuilding"(arg0: $Player$Type): void
  "isMatchingBlock"(arg0: $Block$Type): boolean
@@ -8683,35 +8687,32 @@ export interface $IGuardBuilding extends $IBuilding {
  "canAssignCitizens"(): boolean
  "getAllAssignedCitizen"(): $Set<($ICitizenData)>
  "getSettingValueOrDefault"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>, arg1: S): S
- "onDestroyed"(): void
- "getCustomName"(): string
- "getBuildingType"(): $BuildingEntry
  "onRestart"(arg0: $ICitizenData$Type): void
  "canEat"(arg0: $ItemStack$Type): boolean
- "isBuilt"(): boolean
  "markDirty"(): void
+ "isBuilt"(): boolean
  "pickUp"(arg0: $Player$Type): void
+ "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
  "getColony"(): $IColony
  "onWakeUp"(): void
  "onCleanUp"(arg0: $ICitizenData$Type): void
- "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+ "getContainers"(): $List<($BlockPos)>
+ "getTileEntity"(): $AbstractTileEntityColonyBuilding
  "getPickUpPriority"(): integer
  "alterPickUpPriority"(arg0: integer): void
  "addContainerPosition"(arg0: $BlockPos$Type): void
  "removeContainerPosition"(arg0: $BlockPos$Type): void
- "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "registerBlockPosition"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
+ "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "setTileEntity"(arg0: $AbstractTileEntityColonyBuilding$Type): void
- "getTileEntity"(): $AbstractTileEntityColonyBuilding
- "getContainers"(): $List<($BlockPos)>
- "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
- "deserializeNBT"(arg0: $CompoundTag$Type): void
  "getModule"(arg0: integer): $IBuildingModule
  "getModule"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): M
- "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
+ "registerModule"(arg0: $IBuildingModule$Type): void
  "getModuleMatching"<T2 extends T>(arg0: $Class$Type<(T2)>, arg1: $Predicate$Type<(any)>): T2
  "getModulesByType"<T2 extends T>(arg0: $Class$Type<(T2)>): $List<(T2)>
- "registerModule"(arg0: $IBuildingModule$Type): void
+ "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
  "hasModule"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
  "hasModule"(arg0: $Class$Type<(any)>): boolean
  "getId"(): $IToken<(any)>
@@ -8719,28 +8720,28 @@ export interface $IGuardBuilding extends $IBuilding {
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
- "getPosition"(): $BlockPos
+ "getChildren"(): $Set<($BlockPos)>
+ "getID"(): $BlockPos
  "getParent"(): $BlockPos
  "setParent"(arg0: $BlockPos$Type): void
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
  "isDirty"(): boolean
- "getChildren"(): $Set<($BlockPos)>
+ "getSchematicName"(): string
+ "getStructurePack"(): string
+ "setBlueprintPath"(arg0: string): void
+ "getBlueprintPath"(): string
+ "getRotation"(): integer
  "setStructurePack"(arg0: string): void
  "setBuildingLevel"(arg0: integer): void
  "setIsMirrored"(arg0: boolean): void
- "getBuildingLevel"(): integer
  "getMaxBuildingLevel"(): integer
  "isDeconstructed"(): boolean
  "setDeconstructed"(): void
  "onUpgradeSchematicTo"(arg0: string, arg1: string, arg2: $IBlueprintDataProviderBE$Type): void
- "getRotation"(): integer
- "setBlueprintPath"(arg0: string): void
- "getBlueprintPath"(): string
- "getStructurePack"(): string
- "getSchematicName"(): string
- "hasParent"(): boolean
+ "getBuildingLevel"(): integer
  "clearDirty"(): void
+ "hasParent"(): boolean
  "setCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
@@ -8924,8 +8925,8 @@ import {$INBTSerializable, $INBTSerializable$Type} from "packages/net/minecraftf
 
 export interface $IObjectiveInstance extends $INBTSerializable<($CompoundTag)> {
 
- "getMissingQuantity"(): integer
  "isFulfilled"(): boolean
+ "getMissingQuantity"(): integer
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -9107,14 +9108,14 @@ static readonly "WORKING": $VisibleCitizenStatus
 constructor(arg0: $ResourceLocation$Type, arg1: string)
 
 public "getId"(): integer
-public static "getVisibleStatus"(): $Map<(integer), ($VisibleCitizenStatus)>
 public "getTranslationKey"(): string
 public "getIcon"(): $ResourceLocation
+public static "getVisibleStatus"(): $Map<(integer), ($VisibleCitizenStatus)>
 public static "getForId"(arg0: integer): $VisibleCitizenStatus
 get "id"(): integer
-get "visibleStatus"(): $Map<(integer), ($VisibleCitizenStatus)>
 get "translationKey"(): string
 get "icon"(): $ResourceLocation
+get "visibleStatus"(): $Map<(integer), ($VisibleCitizenStatus)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9137,9 +9138,9 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 
 export interface $IBlockMinecolonies<B extends $IBlockMinecolonies<(B)>> {
 
- "getRegistryName"(): $ResourceLocation
  "registerBlock"(arg0: $IForgeRegistry$Type<($Block$Type)>): B
  "registerBlockItem"(arg0: $IForgeRegistry$Type<($Item$Type)>, arg1: $Item$Properties$Type): void
+ "getRegistryName"(): $ResourceLocation
 }
 
 export namespace $IBlockMinecolonies {
@@ -9281,36 +9282,36 @@ import {$IResearchRequirement, $IResearchRequirement$Type} from "packages/com/mi
 
 export interface $IGlobalResearch {
 
+ "getChildren"(): $List<($ResourceLocation)>
  "canDisplay"(arg0: integer): boolean
+ "isImmutable"(): boolean
  "getName"(): $TranslatableContents
  "isHidden"(): boolean
  "getParent"(): $ResourceLocation
  "getId"(): $ResourceLocation
  "setParent"(arg0: $ResourceLocation$Type): void
- "getChildren"(): $List<($ResourceLocation)>
- "isImmutable"(): boolean
- "getSubtitle"(): $TranslatableContents
- "isAutostart"(): boolean
- "getSortOrder"(): integer
  "addRequirement"(arg0: $IResearchRequirement$Type): void
+ "getSortOrder"(): integer
  "getDepth"(): integer
  "getIconTextureResourceLocation"(): $ResourceLocation
- "addChild"(arg0: $IGlobalResearch$Type): void
- "addChild"(arg0: $ResourceLocation$Type): void
- "canResearch"(arg0: integer, arg1: $ILocalResearchTree$Type): boolean
- "hasOnlyChild"(): boolean
+ "isAutostart"(): boolean
  "getIconItemStack"(): $ItemStack
+ "hasOnlyChild"(): boolean
+ "getSubtitle"(): $TranslatableContents
+ "canResearch"(arg0: integer, arg1: $ILocalResearchTree$Type): boolean
  "getCostList"(): $List<($IResearchCost)>
  "getResearchRequirement"(): $List<($IResearchRequirement)>
  "hasResearchedChild"(arg0: $ILocalResearchTree$Type): boolean
- "hasEnoughResources"(arg0: $IItemHandler$Type): boolean
- "startResearch"(arg0: $ILocalResearchTree$Type): void
  "setOnlyChild"(arg0: boolean): void
+ "startResearch"(arg0: $ILocalResearchTree$Type): void
+ "hasEnoughResources"(arg0: $IItemHandler$Type): boolean
+ "addChild"(arg0: $IGlobalResearch$Type): void
+ "addChild"(arg0: $ResourceLocation$Type): void
  "getEffects"(): $List<($IResearchEffect<(any)>)>
  "addEffect"(arg0: $IResearchEffect$Type<(any)>): void
  "getBranch"(): $ResourceLocation
- "isInstant"(): boolean
  "addCost"(arg0: $IResearchCost$Type): void
+ "isInstant"(): boolean
 }
 
 export namespace $IGlobalResearch {
@@ -9384,8 +9385,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$PlacementError, $PlacementError$Type} from "packages/com/ldtteam/structurize/placement/handlers/placement/$PlacementError"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
@@ -9411,8 +9412,8 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public static "canCampBePlaced"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $List$Type<($PlacementError$Type)>, arg3: $Player$Type): boolean
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -9464,12 +9465,12 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IQuestManager extends $INBTSerializable<($CompoundTag)> {
 
+ "onWorldLoad"(): void
  "getAvailableOrInProgressQuest"(arg0: $ResourceLocation$Type): $IQuestInstance
- "onColonyTick"(): void
- "getReputation"(): double
  "unlockQuest"(arg0: $ResourceLocation$Type): void
  "alterReputation"(arg0: double): void
- "onWorldLoad"(): void
+ "getReputation"(): double
+ "onColonyTick"(): void
  "attemptAcceptQuest"(arg0: $ResourceLocation$Type, arg1: $Player$Type): boolean
  "completeQuest"(arg0: $ResourceLocation$Type): void
  "deleteQuest"(arg0: $ResourceLocation$Type): void
@@ -9664,16 +9665,16 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IColonyEventDescription extends $INBTSerializable<($CompoundTag)> {
 
- "getName"(): string
  "getDay"(): integer
+ "getName"(): string
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "serialize"(arg0: $FriendlyByteBuf$Type): void
  "includeInSummary"(): boolean
  "toDisplayString"(): string
  "getEventTypeId"(): $ResourceLocation
  "getEventPos"(): $BlockPos
  "setEventPos"(arg0: $BlockPos$Type): void
  "getSummaryTranslationKey"(): string
- "serialize"(arg0: $FriendlyByteBuf$Type): void
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
  "setDay"(arg0: integer): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
@@ -9696,8 +9697,8 @@ export type $IColonyEventDescription_ = $IColonyEventDescription$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/buildings/$IBuilding" {
 import {$IModuleContainer, $IModuleContainer$Type} from "packages/com/minecolonies/api/colony/modules/$IModuleContainer"
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IRequestable, $IRequestable$Type} from "packages/com/minecolonies/api/colony/requestsystem/requestable/$IRequestable"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$IBuildingContainer, $IBuildingContainer$Type} from "packages/com/minecolonies/api/colony/buildings/$IBuildingContainer"
@@ -9729,8 +9730,8 @@ import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/ite
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
 import {$ISchematicProvider, $ISchematicProvider$Type} from "packages/com/minecolonies/api/colony/buildings/$ISchematicProvider"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
-import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$BuildingEntry, $BuildingEntry$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IBlueprintDataProviderBE, $IBlueprintDataProviderBE$Type} from "packages/com/ldtteam/structurize/blockentities/interfaces/$IBlueprintDataProviderBE"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
@@ -9745,23 +9746,26 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IBuilding extends $IBuildingContainer, $IModuleContainer<($IBuildingModule)>, $IRequestResolverProvider, $IRequester, $ISchematicProvider {
 
- "destroy"(): void
  "getHandlers"(): $List<($IItemHandler)>
+ "destroy"(): void
+ "getBuildingType"(): $BuildingEntry
+ "getCustomName"(): string
+ "onDestroyed"(): void
+ "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
  "getCompletedRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
+ "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
  "upgradeBuildingLevelToSchematicData"(): void
  "getOpenRequestsByRequestableType"(): $Map<($TypeToken<(any)>), ($Collection<($IToken<(any)>)>)>
- "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
- "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
- "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
- "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean): integer
- "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
- "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
- "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "hasWorkerOpenRequestsFiltered"(arg0: integer, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): boolean
+ "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
  "onUpgradeComplete"(arg0: integer): void
- "onPlacement"(): void
  "getBuildingDisplayName"(): string
+ "onPlacement"(): void
  "onPlayerEnterNearby"(arg0: $Player$Type): void
  "onPlayerEnterBuilding"(arg0: $Player$Type): void
  "isMatchingBlock"(arg0: $Block$Type): boolean
@@ -9806,35 +9810,32 @@ export interface $IBuilding extends $IBuildingContainer, $IModuleContainer<($IBu
  "canAssignCitizens"(): boolean
  "getAllAssignedCitizen"(): $Set<($ICitizenData)>
  "getSettingValueOrDefault"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>, arg1: S): S
- "onDestroyed"(): void
- "getCustomName"(): string
- "getBuildingType"(): $BuildingEntry
  "onRestart"(arg0: $ICitizenData$Type): void
  "canEat"(arg0: $ItemStack$Type): boolean
- "isBuilt"(): boolean
  "markDirty"(): void
+ "isBuilt"(): boolean
  "pickUp"(arg0: $Player$Type): void
+ "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
  "getColony"(): $IColony
  "onWakeUp"(): void
  "onCleanUp"(arg0: $ICitizenData$Type): void
- "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+ "getContainers"(): $List<($BlockPos)>
+ "getTileEntity"(): $AbstractTileEntityColonyBuilding
  "getPickUpPriority"(): integer
  "alterPickUpPriority"(arg0: integer): void
  "addContainerPosition"(arg0: $BlockPos$Type): void
  "removeContainerPosition"(arg0: $BlockPos$Type): void
- "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "registerBlockPosition"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
+ "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "setTileEntity"(arg0: $AbstractTileEntityColonyBuilding$Type): void
- "getTileEntity"(): $AbstractTileEntityColonyBuilding
- "getContainers"(): $List<($BlockPos)>
- "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
- "deserializeNBT"(arg0: $CompoundTag$Type): void
  "getModule"(arg0: integer): $IBuildingModule
  "getModule"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): M
- "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
+ "registerModule"(arg0: $IBuildingModule$Type): void
  "getModuleMatching"<T2 extends T>(arg0: $Class$Type<(T2)>, arg1: $Predicate$Type<(any)>): T2
  "getModulesByType"<T2 extends T>(arg0: $Class$Type<(T2)>): $List<(T2)>
- "registerModule"(arg0: $IBuildingModule$Type): void
+ "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
  "hasModule"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
  "hasModule"(arg0: $Class$Type<(any)>): boolean
  "getId"(): $IToken<(any)>
@@ -9842,28 +9843,28 @@ export interface $IBuilding extends $IBuildingContainer, $IModuleContainer<($IBu
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
- "getPosition"(): $BlockPos
+ "getChildren"(): $Set<($BlockPos)>
+ "getID"(): $BlockPos
  "getParent"(): $BlockPos
  "setParent"(arg0: $BlockPos$Type): void
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
  "isDirty"(): boolean
- "getChildren"(): $Set<($BlockPos)>
+ "getSchematicName"(): string
+ "getStructurePack"(): string
+ "setBlueprintPath"(arg0: string): void
+ "getBlueprintPath"(): string
+ "getRotation"(): integer
  "setStructurePack"(arg0: string): void
  "setBuildingLevel"(arg0: integer): void
  "setIsMirrored"(arg0: boolean): void
- "getBuildingLevel"(): integer
  "getMaxBuildingLevel"(): integer
  "isDeconstructed"(): boolean
  "setDeconstructed"(): void
  "onUpgradeSchematicTo"(arg0: string, arg1: string, arg2: $IBlueprintDataProviderBE$Type): void
- "getRotation"(): integer
- "setBlueprintPath"(arg0: string): void
- "getBlueprintPath"(): string
- "getStructurePack"(): string
- "getSchematicName"(): string
- "hasParent"(): boolean
+ "getBuildingLevel"(): integer
  "clearDirty"(): void
+ "hasParent"(): boolean
  "setCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
@@ -9890,8 +9891,8 @@ import {$PathNavigation, $PathNavigation$Type} from "packages/net/minecraft/worl
 
 export interface $IStuckHandler<NAV extends ($PathNavigation) & ($IMinecoloniesNavigator)> {
 
- "getStuckLevel"(): integer
  "resetGlobalStuckTimers"(): void
+ "getStuckLevel"(): integer
  "checkStuck"(arg0: NAV): void
 }
 
@@ -9971,8 +9972,8 @@ export type $PathJobMoveAwayFromLocation_ = $PathJobMoveAwayFromLocation$Type;
 declare module "packages/com/minecolonies/api/quests/$IQuestInstance" {
 import {$IQuestParticipant, $IQuestParticipant$Type} from "packages/com/minecolonies/api/quests/$IQuestParticipant"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
-import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$IQuestGiver, $IQuestGiver$Type} from "packages/com/minecolonies/api/quests/$IQuestGiver"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -9982,21 +9983,21 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 
 export interface $IQuestInstance extends $INBTSerializable<($CompoundTag)> {
 
+ "onStart"(arg0: $Player$Type, arg1: $IColony$Type): void
  "getId"(): $ResourceLocation
  "isValid"(arg0: $IColony$Type): boolean
- "onStart"(arg0: $Player$Type, arg1: $IColony$Type): void
+ "onWorldLoad"(): void
  "getCurrentObjectiveInstance"(): $IObjectiveInstance
  "onCompletion"(): void
  "getObjectiveIndex"(): integer
  "getQuestGiver"(): $IQuestGiver
  "getQuestGiverId"(): integer
- "advanceObjective"(arg0: $Player$Type, arg1: integer): $IObjectiveInstance
  "advanceObjective"(arg0: $Player$Type): void
+ "advanceObjective"(arg0: $Player$Type, arg1: integer): $IObjectiveInstance
  "getParticipant"(arg0: integer): $IQuestParticipant
  "getParticipants"(): $List<(integer)>
  "getQuestTarget"(): integer
  "getAssignedPlayer"(): $UUID
- "onWorldLoad"(): void
  "getColony"(): $IColony
  "onDeletion"(): void
  "serializeNBT"(): $CompoundTag
@@ -10133,27 +10134,27 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: string, arg1: $Block$Type, arg2: $List$Type<($Block$Type)>, arg3: $TagKey$Type<($Biome$Type)>)
 
-public "minecolonies_tweaks$onServerConfigReloaded"(): void
-public "getDroppedFrom"(): $List<($Block)>
+public "registerBlockItem"(arg0: $IForgeRegistry$Type<($Item$Type)>, arg1: $Item$Properties$Type): void
 public "getPreferredBiome"(): $TagKey<($Biome)>
+public "getDroppedFrom"(): $List<($Block)>
+public "getRegistryName"(): $ResourceLocation
+public "minecolonies_tweaks$onServerConfigReloaded"(): void
 public "getPreferredFarmland"(): $Block
 public "attemptGrow"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type): void
-public "getRegistryName"(): $ResourceLocation
-public "registerBlockItem"(arg0: $IForgeRegistry$Type<($Item$Type)>, arg1: $Item$Properties$Type): void
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "isPathfindable"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $PathComputationType$Type): boolean
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "isValidBonemealTarget"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: boolean): boolean
 public "isBonemealSuccess"(arg0: $Level$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): boolean
 public "performBonemeal"(arg0: $ServerLevel$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
 public "isMaxAge"(arg0: $BlockState$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
-get "droppedFrom"(): $List<($Block)>
 get "preferredBiome"(): $TagKey<($Biome)>
-get "preferredFarmland"(): $Block
+get "droppedFrom"(): $List<($Block)>
 get "registryName"(): $ResourceLocation
+get "preferredFarmland"(): $Block
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -10254,14 +10255,14 @@ import {$TypeToken, $TypeToken$Type} from "packages/com/google/common/reflect/$T
 
 export interface $IFactory<Input, Output> {
 
+ "deserialize"(arg0: $IFactoryController$Type, arg1: $CompoundTag$Type): Output
+ "deserialize"(arg0: $IFactoryController$Type, arg1: $FriendlyByteBuf$Type): Output
+ "serialize"(arg0: $IFactoryController$Type, arg1: Output, arg2: $FriendlyByteBuf$Type): void
+ "serialize"(arg0: $IFactoryController$Type, arg1: Output): $CompoundTag
  "getFactoryOutputType"(): $TypeToken<(any)>
  "getFactoryInputType"(): $TypeToken<(any)>
  "getSerializationId"(): short
  "getNewInstance"(arg0: $IFactoryController$Type, arg1: Input, ...arg2: (any)[]): Output
- "serialize"(arg0: $IFactoryController$Type, arg1: Output, arg2: $FriendlyByteBuf$Type): void
- "serialize"(arg0: $IFactoryController$Type, arg1: Output): $CompoundTag
- "deserialize"(arg0: $IFactoryController$Type, arg1: $CompoundTag$Type): Output
- "deserialize"(arg0: $IFactoryController$Type, arg1: $FriendlyByteBuf$Type): Output
 }
 
 export namespace $IFactory {
@@ -10319,8 +10320,8 @@ import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$Compo
 import {$WalkAnimationState, $WalkAnimationState$Type} from "packages/net/minecraft/world/entity/$WalkAnimationState"
 import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
-import {$DamageSource, $DamageSource$Type} from "packages/net/minecraft/world/damagesource/$DamageSource"
 import {$MobSpawnType, $MobSpawnType$Type} from "packages/net/minecraft/world/entity/$MobSpawnType"
+import {$DamageSource, $DamageSource$Type} from "packages/net/minecraft/world/damagesource/$DamageSource"
 import {$PathNavigation, $PathNavigation$Type} from "packages/net/minecraft/world/entity/ai/navigation/$PathNavigation"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
 import {$EntityDataAccessor, $EntityDataAccessor$Type} from "packages/net/minecraft/network/syncher/$EntityDataAccessor"
@@ -10451,6 +10452,7 @@ readonly "rotA": float
  "lastPos": $BlockPos
  "autoSpinAttackTicks": integer
  "brain": $Brain<(any)>
+ "self": $LivingEntity
  "sodiumdynamiclights$luminance": integer
  "supp$slimedTicks": integer
 static readonly "ID_TAG": string
@@ -10531,51 +10533,51 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
 constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
 constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type, arg2: integer)
 
-public "initStatsFor"(arg0: double, arg1: double, arg2: double): void
+public "changeDimension"(arg0: $ServerLevel$Type, arg1: $ITeleporter$Type): $Entity
+public "getDifficulty"(): double
+public "addAdditionalSaveData"(arg0: $CompoundTag$Type): void
+public "readAdditionalSaveData"(arg0: $CompoundTag$Type): void
 public "getRaiderType"(): $RaiderType
-public "getNavigation"(): $AbstractAdvancedPathNavigate
-public "registerWithColony"(): void
 public "setEnvDamageInterval"(arg0: integer): void
 public "setEnvDamageImmunity"(arg0: boolean): void
 public "setTempEnvDamageImmunity"(arg0: boolean): void
-public "getDifficulty"(): double
-public "changeDimension"(arg0: $ServerLevel$Type, arg1: $ITeleporter$Type): $Entity
-public "attack"(arg0: $DamageSource$Type, arg1: float): boolean
-public "remove"(arg0: $Entity$RemovalReason$Type): void
-public "addAdditionalSaveData"(arg0: $CompoundTag$Type): void
-public "readAdditionalSaveData"(arg0: $CompoundTag$Type): void
+public "registerWithColony"(): void
+public "getNavigation"(): $AbstractAdvancedPathNavigate
+public "initStatsFor"(arg0: double, arg1: double, arg2: double): void
 public "finalizeSpawn"(arg0: $ServerLevelAccessor$Type, arg1: $DifficultyInstance$Type, arg2: $MobSpawnType$Type, arg3: $SpawnGroupData$Type, arg4: $CompoundTag$Type): $SpawnGroupData
 public "die"(arg0: $DamageSource$Type): void
 public "aiStep"(): void
+public "attack"(arg0: $DamageSource$Type, arg1: float): boolean
+public "remove"(arg0: $Entity$RemovalReason$Type): void
 public "removeWhenFarAway"(arg0: double): boolean
 public "getTeamId"(): integer
+public "getColony"(): $IColony
+public "setColony"(arg0: $IColony$Type): void
 public "getEventID"(): integer
 public "setEventID"(arg0: integer): void
-public "setColony"(arg0: $IColony$Type): void
-public "getColony"(): $IColony
 public "getThreatTable"(): $ThreatTable<(any)>
-public "sdl$shouldUpdateDynamicLight"(): boolean
-public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sdl$getDynamicLightX"(): double
 public "sdl$getDynamicLightY"(): double
 public "sdl$getDynamicLightZ"(): double
 public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$shouldUpdateDynamicLight"(): boolean
+public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "getAlpha"(le: $LivingEntity$Type, partialTicks: float): float
 public static "tickEntity"(entity: $LivingEntity$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
+get "difficulty"(): double
 get "raiderType"(): $RaiderType
-get "navigation"(): $AbstractAdvancedPathNavigate
 set "envDamageInterval"(value: integer)
 set "envDamageImmunity"(value: boolean)
 set "tempEnvDamageImmunity"(value: boolean)
-get "difficulty"(): double
+get "navigation"(): $AbstractAdvancedPathNavigate
 get "teamId"(): integer
+get "colony"(): $IColony
+set "colony"(value: $IColony$Type)
 get "eventID"(): integer
 set "eventID"(value: integer)
-set "colony"(value: $IColony$Type)
-get "colony"(): $IColony
 get "threatTable"(): $ThreatTable<(any)>
 }
 /**
@@ -10652,13 +10654,13 @@ export interface $ICitizen {
 
  "getName"(): string
  "getId"(): integer
- "getSaturation"(): double
  "getInventory"(): $InventoryCitizen
  "isChild"(): boolean
+ "getSaturation"(): double
  "isPaused"(): boolean
- "setPaused"(arg0: boolean): void
- "isFemale"(): boolean
  "getColony"(): $IColony
+ "isFemale"(): boolean
+ "setPaused"(arg0: boolean): void
 }
 
 export namespace $ICitizen {
@@ -10867,6 +10869,7 @@ readonly "rotA": float
  "lastPos": $BlockPos
  "autoSpinAttackTicks": integer
  "brain": $Brain<(any)>
+ "self": $LivingEntity
  "sodiumdynamiclights$luminance": integer
  "supp$slimedTicks": integer
 static readonly "ID_TAG": string
@@ -10948,44 +10951,44 @@ constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
 constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type, arg2: integer)
 
 public static "getDefaultAttributes"(): $AttributeSupplier$Builder
-public "getThreatTable"(): $ThreatTable<(any)>
-public "getSpawnPos"(): $BlockPos
-public "initStatsFor"(arg0: double, arg1: double, arg2: double): void
-public "getRaiderType"(): $RaiderType
-public "getSwimSpeedFactor"(): double
-public "getNavigation"(): $AbstractAdvancedPathNavigate
-public "getTextureId"(): integer
-public "getDifficulty"(): double
 public "changeDimension"(arg0: $ServerLevel$Type, arg1: $ITeleporter$Type): $Entity
-public "attack"(arg0: $DamageSource$Type, arg1: float): boolean
-public "push"(arg0: $Entity$Type): void
-public "isPushedByFluid"(): boolean
+public "getDifficulty"(): double
 public "addAdditionalSaveData"(arg0: $CompoundTag$Type): void
 public "readAdditionalSaveData"(arg0: $CompoundTag$Type): void
+public "getRaiderType"(): $RaiderType
+public "getSwimSpeedFactor"(): double
+public "getSpawnPos"(): $BlockPos
+public "getNavigation"(): $AbstractAdvancedPathNavigate
+public "getTextureId"(): integer
+public "initStatsFor"(arg0: double, arg1: double, arg2: double): void
+public "getThreatTable"(): $ThreatTable<(any)>
 public "aiStep"(): void
-public "playAmbientSound"(): void
+public "attack"(arg0: $DamageSource$Type, arg1: float): boolean
+public "push"(arg0: $Entity$Type): void
 public "pushEntities"(): void
+public "isPushedByFluid"(): boolean
+public "playAmbientSound"(): void
 public "getTeamId"(): integer
 public "getAI"(): $ITickRateStateMachine<($IState)>
-public "sdl$shouldUpdateDynamicLight"(): boolean
-public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sdl$getDynamicLightX"(): double
 public "sdl$getDynamicLightY"(): double
 public "sdl$getDynamicLightZ"(): double
 public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$shouldUpdateDynamicLight"(): boolean
+public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "getAlpha"(le: $LivingEntity$Type, partialTicks: float): float
 public static "tickEntity"(entity: $LivingEntity$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "defaultAttributes"(): $AttributeSupplier$Builder
-get "threatTable"(): $ThreatTable<(any)>
-get "spawnPos"(): $BlockPos
+get "difficulty"(): double
 get "raiderType"(): $RaiderType
 get "swimSpeedFactor"(): double
+get "spawnPos"(): $BlockPos
 get "navigation"(): $AbstractAdvancedPathNavigate
 get "textureId"(): integer
-get "difficulty"(): double
+get "threatTable"(): $ThreatTable<(any)>
 get "pushedByFluid"(): boolean
 get "teamId"(): integer
 get "aI"(): $ITickRateStateMachine<($IState)>
@@ -11003,8 +11006,8 @@ declare global {
 export type $AbstractEntityMinecoloniesMonster_ = $AbstractEntityMinecoloniesMonster$Type;
 }}
 declare module "packages/com/minecolonies/api/research/$IResearchManager" {
-import {$IResearchEffectManager, $IResearchEffectManager$Type} from "packages/com/minecolonies/api/research/effects/$IResearchEffectManager"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$IResearchEffectManager, $IResearchEffectManager$Type} from "packages/com/minecolonies/api/research/effects/$IResearchEffectManager"
 import {$ServerPlayer, $ServerPlayer$Type} from "packages/net/minecraft/server/level/$ServerPlayer"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$ILocalResearchTree, $ILocalResearchTree$Type} from "packages/com/minecolonies/api/research/$ILocalResearchTree"
@@ -11014,15 +11017,15 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 export interface $IResearchManager {
 
  "isDirty"(): boolean
+ "readFromNBT"(arg0: $CompoundTag$Type): void
+ "sendPackets"(arg0: $Set$Type<($ServerPlayer$Type)>, arg1: $Set$Type<($ServerPlayer$Type)>): void
+ "getResearchTree"(): $ILocalResearchTree
+ "checkAutoStartResearch"(): void
  "getResearchEffectIdFrom"(arg0: $Block$Type): $ResourceLocation
  "getResearchEffects"(): $IResearchEffectManager
- "checkAutoStartResearch"(): void
- "getResearchTree"(): $ILocalResearchTree
- "sendPackets"(arg0: $Set$Type<($ServerPlayer$Type)>, arg1: $Set$Type<($ServerPlayer$Type)>): void
- "readFromNBT"(arg0: $CompoundTag$Type): void
  "markDirty"(): void
- "clearDirty"(): void
  "writeToNBT"(arg0: $CompoundTag$Type): void
+ "clearDirty"(): void
 }
 
 export namespace $IResearchManager {
@@ -11056,23 +11059,23 @@ export class $AbstractPathJob implements $Callable<($Path)>, $IPathJob {
 static readonly "MAX_NODES": integer
  "extraNodes": integer
 
-constructor(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type, arg3: $PathResult$Type<(any)>, arg4: $Mob$Type)
 constructor(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: integer, arg3: $PathResult$Type<(any)>, arg4: $Mob$Type)
+constructor(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type, arg3: $PathResult$Type<(any)>, arg4: $Mob$Type)
 
-public "toString"(): string
 public "getResult"(): $PathResult<(any)>
+public "toString"(): string
 public "getEntity"(): $Mob
+public "getPathingOptions"(): $PathingOptions
 public "setPathingOptions"(arg0: $PathingOptions$Type): void
 public "getActualWorld"(): $Level
-public "getPathingOptions"(): $PathingOptions
-public "initDebug"(): void
 public "getStart"(): $BlockPos
+public "initDebug"(): void
 public "syncDebug"(arg0: $List$Type<($ServerPlayer$Type)>): void
 get "result"(): $PathResult<(any)>
 get "entity"(): $Mob
+get "pathingOptions"(): $PathingOptions
 set "pathingOptions"(value: $PathingOptions$Type)
 get "actualWorld"(): $Level
-get "pathingOptions"(): $PathingOptions
 get "start"(): $BlockPos
 }
 /**
@@ -11092,8 +11095,8 @@ import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$Compo
 import {$ServerPlayer, $ServerPlayer$Type} from "packages/net/minecraft/server/level/$ServerPlayer"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
-import {$AbstractEntityCitizen, $AbstractEntityCitizen$Type} from "packages/com/minecolonies/api/entity/citizen/$AbstractEntityCitizen"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
+import {$AbstractEntityCitizen, $AbstractEntityCitizen$Type} from "packages/com/minecolonies/api/entity/citizen/$AbstractEntityCitizen"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$IBuildingExtension, $IBuildingExtension$Type} from "packages/com/minecolonies/api/colony/buildingextensions/$IBuildingExtension"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
@@ -11114,46 +11117,46 @@ export interface $IRegisteredStructureManager {
 
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
- "getMysticalSiteMaxBuildingLevel"(): integer
+ "getBuilding"(arg0: $BlockPos$Type): $IBuilding
+ "getBuilding"<B extends $IBuilding>(arg0: $BlockPos$Type, arg1: $Class$Type<(B)>): B
+ "sendPackets"(arg0: $Set$Type<($ServerPlayer$Type)>, arg1: $Set$Type<($ServerPlayer$Type)>): void
+ "getRandomBuilding"(arg0: $Predicate$Type<($IBuilding$Type)>): $BlockPos
  "markBuildingExtensionsDirty"(): void
- "getBuildingExtension"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): $Optional<($IBuildingExtension)>
- "onColonyTick"(arg0: $IColony$Type): void
- "addNewBuilding"(arg0: $AbstractTileEntityColonyBuilding$Type, arg1: $Level$Type): $IBuilding
- "removeBuilding"(arg0: $IBuilding$Type, arg1: $Set$Type<($ServerPlayer$Type)>): void
- "getBuildings"(): $Map<($BlockPos), ($IBuilding)>
- "getWareHouses"(): $List<($IWareHouse)>
- "guardBuildingChangedAt"(arg0: $IBuilding$Type, arg1: integer): void
- "markBuildingsDirty"(): void
- "hasGuardBuildingNear"(arg0: $IBuilding$Type): boolean
+ "getMysticalSiteMaxBuildingLevel"(): integer
+ "hasTownHall"(): boolean
+ "hasWarehouse"(): boolean
+ "getTownHall"(): $ITownHall
+ "getBuildingExtensions"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): $List<($IBuildingExtension)>
+ "getBestBuilding"(arg0: $AbstractEntityCitizen$Type, arg1: $Class$Type<(any)>): $BlockPos
+ "getBestBuilding"(arg0: $BlockPos$Type, arg1: $Class$Type<(any)>): $BlockPos
+ "onBuildingUpgradeComplete"(arg0: $IBuilding$Type, arg1: integer): void
  "addLeisureSite"(arg0: $BlockPos$Type): void
  "removeLeisureSite"(arg0: $BlockPos$Type): void
  "addBuildingExtension"(arg0: $IBuildingExtension$Type): boolean
  "removeBuildingExtension"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): void
- "onBuildingUpgradeComplete"(arg0: $IBuilding$Type, arg1: integer): void
- "hasTownHall"(): boolean
- "hasWarehouse"(): boolean
- "getRandomBuilding"(arg0: $Predicate$Type<($IBuilding$Type)>): $BlockPos
- "getBestBuilding"(arg0: $AbstractEntityCitizen$Type, arg1: $Class$Type<(any)>): $BlockPos
- "getBestBuilding"(arg0: $BlockPos$Type, arg1: $Class$Type<(any)>): $BlockPos
- "getTownHall"(): $ITownHall
- "getBuildingExtensions"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): $List<($IBuildingExtension)>
- "sendPackets"(arg0: $Set$Type<($ServerPlayer$Type)>, arg1: $Set$Type<($ServerPlayer$Type)>): void
- "getBuilding"<B extends $IBuilding>(arg0: $BlockPos$Type, arg1: $Class$Type<(B)>): B
- "getBuilding"(arg0: $BlockPos$Type): $IBuilding
+ "getWareHouses"(): $List<($IWareHouse)>
+ "markBuildingsDirty"(): void
+ "hasGuardBuildingNear"(arg0: $IBuilding$Type): boolean
+ "guardBuildingChangedAt"(arg0: $IBuilding$Type, arg1: integer): void
+ "removeBuilding"(arg0: $IBuilding$Type, arg1: $Set$Type<($ServerPlayer$Type)>): void
+ "getBuildings"(): $Map<($BlockPos), ($IBuilding)>
+ "getBuildingExtension"(arg0: $Predicate$Type<($IBuildingExtension$Type)>): $Optional<($IBuildingExtension)>
+ "addNewBuilding"(arg0: $AbstractTileEntityColonyBuilding$Type, arg1: $Level$Type): $IBuilding
+ "onColonyTick"(arg0: $IColony$Type): void
  "getClosestWarehouseInColony"(arg0: $BlockPos$Type): $IWareHouse
- "hasMysticalSite"(): boolean
- "setTownHall"(arg0: $ITownHall$Type): void
- "removeWareHouse"(arg0: $IWareHouse$Type): void
  "removeMysticalSite"(arg0: $IMysticalSite$Type): void
- "getLeisureSites"(): $List<($BlockPos)>
- "getFirstBuildingMatching"(arg0: $Predicate$Type<($IBuilding$Type)>): $IBuilding
- "cleanUpBuildings"(arg0: $IColony$Type): void
- "keepChunkColonyLoaded"(arg0: $LevelChunk$Type): boolean
- "getRandomLeisureSite"(): $BlockPos
- "getHouseWithSpareBed"(): $IBuilding
  "getMysticalSites"(): $List<($IMysticalSite)>
- "canPlaceAt"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Player$Type): boolean
+ "removeWareHouse"(arg0: $IWareHouse$Type): void
+ "keepChunkColonyLoaded"(arg0: $LevelChunk$Type): boolean
+ "cleanUpBuildings"(arg0: $IColony$Type): void
+ "getHouseWithSpareBed"(): $IBuilding
+ "getRandomLeisureSite"(): $BlockPos
+ "setTownHall"(arg0: $ITownHall$Type): void
+ "hasMysticalSite"(): boolean
+ "getFirstBuildingMatching"(arg0: $Predicate$Type<($IBuilding$Type)>): $IBuilding
+ "getLeisureSites"(): $List<($BlockPos)>
  "clearDirty"(): void
+ "canPlaceAt"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Player$Type): boolean
 }
 
 export namespace $IRegisteredStructureManager {
@@ -11224,21 +11227,21 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 export interface $IColonyEntitySpawnEvent extends $IColonySpawnEvent {
 
  "getEntities"(): $List<($Entity)>
- "unregisterEntity"(arg0: $Entity$Type): void
- "registerEntity"(arg0: $Entity$Type): void
  "onEntityDeath"(arg0: $LivingEntity$Type): void
+ "registerEntity"(arg0: $Entity$Type): void
+ "unregisterEntity"(arg0: $Entity$Type): void
  "setSpawnPoint"(arg0: $BlockPos$Type): void
  "getSpawnPos"(): $BlockPos
- "getID"(): integer
  "onStart"(): void
+ "getID"(): integer
+ "getStatus"(): $EventStatus
  "onTileEntityBreak"(arg0: $BlockEntity$Type): void
  "getEventTypeID"(): $ResourceLocation
  "onNightFall"(): void
- "getStatus"(): $EventStatus
  "onFinish"(): void
  "onUpdate"(): void
- "setStatus"(arg0: $EventStatus$Type): void
  "setColony"(arg0: $IColony$Type): void
+ "setStatus"(arg0: $EventStatus$Type): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -11294,8 +11297,8 @@ constructor(arg0: string, arg1: $Supplier$Type<($IBuildingModule$Type)>, arg2: $
 
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
-public "getRuntimeID"(): integer
 public "hasServerModule"(): boolean
+public "getRuntimeID"(): integer
 public "hasView"(): boolean
 get "runtimeID"(): integer
 }
@@ -11392,8 +11395,8 @@ export type $BlockHutShepherd_ = $BlockHutShepherd$Type;
 }}
 declare module "packages/com/minecolonies/core/colony/buildings/views/$AbstractBuildingView" {
 import {$ILocation, $ILocation$Type} from "packages/com/minecolonies/api/colony/requestsystem/location/$ILocation"
-import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
+import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/requestsystem/request/$IRequest"
 import {$MutableComponent, $MutableComponent$Type} from "packages/net/minecraft/network/chat/$MutableComponent"
@@ -11402,102 +11405,102 @@ import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/reques
 import {$IColonyView, $IColonyView$Type} from "packages/com/minecolonies/api/colony/$IColonyView"
 import {$BOWindow, $BOWindow$Type} from "packages/com/ldtteam/blockui/views/$BOWindow"
 import {$ICitizenDataView, $ICitizenDataView$Type} from "packages/com/minecolonies/api/colony/$ICitizenDataView"
-import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
 import {$BuildingEntry, $BuildingEntry$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$ImmutableList, $ImmutableList$Type} from "packages/com/google/common/collect/$ImmutableList"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$IRequestManager, $IRequestManager$Type} from "packages/com/minecolonies/api/colony/requestsystem/manager/$IRequestManager"
 import {$ImmutableCollection, $ImmutableCollection$Type} from "packages/com/google/common/collect/$ImmutableCollection"
 import {$IBuildingView, $IBuildingView$Type} from "packages/com/minecolonies/api/colony/buildings/views/$IBuildingView"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
+import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export class $AbstractBuildingView implements $IBuildingView {
 
 
-public "getPosition"(): $BlockPos
+public "getID"(): $BlockPos
 public "getLocation"(): $ILocation
 public "getParent"(): $BlockPos
 public "getId"(): $IToken<(any)>
 public "isMirrored"(): boolean
-public "getID"(): $BlockPos
-public "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
+public "getPosition"(): $BlockPos
+public "registerModule"(arg0: $IBuildingModuleView$Type): void
+public "getContainerList"(): $List<($BlockPos)>
+public "getBuildingType"(): $BuildingEntry
+public "getCustomName"(): string
+public "getStructurePack"(): string
+public "getBuildingDmPrio"(): integer
+public "getBuildingMaxLevel"(): integer
+public "getOpenRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
+public "isDeconstructing"(): boolean
+public "isRepairing"(): boolean
+public "getCurrentWorkOrderLevel"(): integer
+public "isBuildingMaxLevel"(): boolean
+public "allowsAssignment"(): boolean
+public "getAllAssignedCitizens"(): $Set<(integer)>
+public "getResolverIds"(): $ImmutableCollection<($IToken<(any)>)>
+public "getAllModuleViews"(): $List<($IBuildingModuleView)>
+public "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
+public "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
+public "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
+public "getRotation"(): integer
+public "setCustomName"(arg0: string): void
+public "deserialize"(arg0: $FriendlyByteBuf$Type): void
 public "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenDataView$Type, arg1: $Class$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
-public "getModuleView"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): V
-public "getModuleView"(arg0: integer): $IBuildingModuleView
-public "getStructurePath"(): string
+public "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
 public "getOpenRequestsOfBuilding"(): $ImmutableList<($IRequest<(any)>)>
-public "getBuildingLevel"(): integer
+public "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
+public "getStructurePath"(): string
 public "hasWorkOrder"(): boolean
 public "getClaimRadius"(): integer
 public "getOpenRequests"(arg0: $ICitizenDataView$Type): $ImmutableList<($IRequest<(any)>)>
 public "getOpenRequestsOfType"<R>(arg0: $ICitizenDataView$Type, arg1: $Class$Type<(R)>): $ImmutableList<($IRequest<(any)>)>
 public "setBuildingType"(arg0: $BuildingEntry$Type): void
-public "isDeconstructed"(): boolean
 public "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
 public "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
-public "getBuildingMaxLevel"(): integer
-public "isBuildingMaxLevel"(): boolean
-public "getCurrentWorkOrderLevel"(): integer
-public "isRepairing"(): boolean
-public "isDeconstructing"(): boolean
-public "getOpenRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
-public "getBuildingDmPrio"(): integer
-public "getResolverIds"(): $ImmutableCollection<($IToken<(any)>)>
-public "getAllAssignedCitizens"(): $Set<(integer)>
-public "allowsAssignment"(): boolean
-public "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
-public "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
-public "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
-public "getAllModuleViews"(): $List<($IBuildingModuleView)>
-public "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
-public "setCustomName"(arg0: string): void
-public "getRotation"(): integer
-public "getStructurePack"(): string
-public "getCustomName"(): string
-public "getBuildingType"(): $BuildingEntry
-public "getContainerList"(): $List<($BlockPos)>
-public "registerModule"(arg0: $IBuildingModuleView$Type): void
-public "deserialize"(arg0: $FriendlyByteBuf$Type): void
-public "isBuilding"(): boolean
-public "getWindow"(): $BOWindow
+public "isDeconstructed"(): boolean
+public "getBuildingLevel"(): integer
+public "getModuleView"(arg0: integer): $IBuildingModuleView
+public "getModuleView"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): V
 public "openGui"(arg0: boolean): void
+public "getWindow"(): $BOWindow
+public "isBuilding"(): boolean
 public "getColony"(): $IColonyView
 public "getRange"(): integer
 public "getBuildingDisplayName"(): string
-get "position"(): $BlockPos
+get "iD"(): $BlockPos
 get "location"(): $ILocation
 get "parent"(): $BlockPos
 get "id"(): $IToken<(any)>
 get "mirrored"(): boolean
-get "iD"(): $BlockPos
-get "structurePath"(): string
+get "position"(): $BlockPos
+get "containerList"(): $List<($BlockPos)>
+get "buildingType"(): $BuildingEntry
+get "customName"(): string
+get "structurePack"(): string
+get "buildingDmPrio"(): integer
+get "buildingMaxLevel"(): integer
+get "openRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
+get "deconstructing"(): boolean
+get "repairing"(): boolean
+get "currentWorkOrderLevel"(): integer
+get "buildingMaxLevel"(): boolean
+get "allAssignedCitizens"(): $Set<(integer)>
+get "resolverIds"(): $ImmutableCollection<($IToken<(any)>)>
+get "allModuleViews"(): $List<($IBuildingModuleView)>
+get "rotation"(): integer
+set "customName"(value: string)
 get "openRequestsOfBuilding"(): $ImmutableList<($IRequest<(any)>)>
-get "buildingLevel"(): integer
+get "structurePath"(): string
 get "claimRadius"(): integer
 set "buildingType"(value: $BuildingEntry$Type)
 get "deconstructed"(): boolean
-get "buildingMaxLevel"(): integer
-get "buildingMaxLevel"(): boolean
-get "currentWorkOrderLevel"(): integer
-get "repairing"(): boolean
-get "deconstructing"(): boolean
-get "openRequestsByCitizen"(): $Map<(integer), ($Collection<($IToken<(any)>)>)>
-get "buildingDmPrio"(): integer
-get "resolverIds"(): $ImmutableCollection<($IToken<(any)>)>
-get "allAssignedCitizens"(): $Set<(integer)>
-get "allModuleViews"(): $List<($IBuildingModuleView)>
-set "customName"(value: string)
-get "rotation"(): integer
-get "structurePack"(): string
-get "customName"(): string
-get "buildingType"(): $BuildingEntry
-get "containerList"(): $List<($BlockPos)>
-get "building"(): boolean
+get "buildingLevel"(): integer
 get "window"(): $BOWindow
+get "building"(): boolean
 get "colony"(): $IColonyView
 get "range"(): integer
 get "buildingDisplayName"(): string
@@ -11568,15 +11571,15 @@ import {$IStateMachine, $IStateMachine$Type} from "packages/com/minecolonies/api
 export interface $ITickRateStateMachine<S extends $IState> extends $IStateMachine<($ITickingTransition<(S)>), (S)> {
 
  "tick"(): void
- "setCurrentDelay"(arg0: integer): void
  "getTickRate"(): integer
  "checkTransition"(arg0: $ITickingTransition$Type<(S)>): boolean
  "setTickRate"(arg0: integer): void
+ "setCurrentDelay"(arg0: integer): void
  "getState"(): S
  "reset"(): void
- "transitionToNext"(arg0: $ITickingTransition$Type<(S)>): boolean
- "addTransition"(arg0: $ITickingTransition$Type<(S)>): void
  "removeTransition"(arg0: $ITickingTransition$Type<(S)>): void
+ "addTransition"(arg0: $ITickingTransition$Type<(S)>): void
+ "transitionToNext"(arg0: $ITickingTransition$Type<(S)>): boolean
 }
 
 export namespace $ITickRateStateMachine {
@@ -11700,21 +11703,21 @@ export type $BlockHutHospital_ = $BlockHutHospital$Type;
 declare module "packages/com/minecolonies/api/colony/buildings/views/$IModuleContainerView" {
 import {$IBuildingModuleView, $IBuildingModuleView$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModuleView"
 import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
-import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
+import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
+import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 
 export interface $IModuleContainerView {
 
+ "registerModule"(arg0: $IBuildingModuleView$Type): void
+ "getAllModuleViews"(): $List<($IBuildingModuleView)>
+ "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
+ "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
+ "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
+ "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
  "getModuleView"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): V
  "getModuleView"(arg0: integer): $IBuildingModuleView
- "hasModuleView"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
- "getModuleViewMatching"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>, arg1: $Predicate$Type<(any)>): T
- "getModuleViews"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): $List<(T)>
- "getAllModuleViews"(): $List<($IBuildingModuleView)>
- "getModuleViewByType"<T extends $IBuildingModuleView>(arg0: $Class$Type<(T)>): T
- "registerModule"(arg0: $IBuildingModuleView$Type): void
 }
 
 export namespace $IModuleContainerView {
@@ -11879,12 +11882,12 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getRegistryName"(): $ResourceLocation
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "registryName"(): $ResourceLocation
 }
@@ -11952,8 +11955,8 @@ declare global {
 export type $ItemScrollHighlight_ = $ItemScrollHighlight$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/$ICitizenDataView" {
-import {$ICitizenSkillHandler, $ICitizenSkillHandler$Type} from "packages/com/minecolonies/api/entity/citizen/citizenhandlers/$ICitizenSkillHandler"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
+import {$ICitizenSkillHandler, $ICitizenSkillHandler$Type} from "packages/com/minecolonies/api/entity/citizen/citizenhandlers/$ICitizenSkillHandler"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$EquipmentSlot, $EquipmentSlot$Type} from "packages/net/minecraft/world/entity/$EquipmentSlot"
@@ -11961,8 +11964,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$ICitizen, $ICitizen$Type} from "packages/com/minecolonies/api/colony/$ICitizen"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$MutableComponent, $MutableComponent$Type} from "packages/net/minecraft/network/chat/$MutableComponent"
-import {$VisibleCitizenStatus, $VisibleCitizenStatus$Type} from "packages/com/minecolonies/api/entity/citizen/$VisibleCitizenStatus"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$VisibleCitizenStatus, $VisibleCitizenStatus$Type} from "packages/com/minecolonies/api/entity/citizen/$VisibleCitizenStatus"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$ICitizenHappinessHandler, $ICitizenHappinessHandler$Type} from "packages/com/minecolonies/api/entity/citizen/citizenhandlers/$ICitizenHappinessHandler"
@@ -11973,18 +11976,13 @@ import {$Tuple, $Tuple$Type} from "packages/com/minecolonies/api/util/$Tuple"
 
 export interface $ICitizenDataView extends $ICitizen {
 
- "getPosition"(): $BlockPos
  "getChildren"(): $List<(integer)>
- "getWorkBuilding"(): $BlockPos
- "getHomeBuilding"(): $BlockPos
- "setHomeBuilding"(arg0: $BlockPos$Type): void
- "getStatusPosition"(): $BlockPos
- "getInteractionIcon"(): $ResourceLocation
- "getColonyId"(): integer
- "getVisibleStatus"(): $VisibleCitizenStatus
- "getCitizenSkillHandler"(): $ICitizenSkillHandler
- "getJobComponent"(): $MutableComponent
+ "getPosition"(): $BlockPos
+ "getEntityId"(): integer
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getParents"(): $Tuple<(string), (string)>
  "setWorkBuilding"(arg0: $BlockPos$Type): void
+ "getJobComponent"(): $MutableComponent
  "getHappiness"(): double
  "getOrderedInteractions"(): $List<($IInteractionResponseHandler)>
  "getSpecificInteraction"(arg0: $Component$Type): $IInteractionResponseHandler
@@ -11994,27 +11992,32 @@ export interface $ICitizenDataView extends $ICitizen {
  "getHappinessHandler"(): $ICitizenHappinessHandler
  "getCustomTextureUUID"(): $UUID
  "getDisplayArmor"(arg0: $EquipmentSlot$Type): $ItemStack
- "getEntityId"(): integer
  "getMaxHealth"(): double
- "getSiblings"(): $List<(integer)>
  "getCustomTexture"(): $ResourceLocation
- "getParents"(): $Tuple<(string), (string)>
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getVisibleStatus"(): $VisibleCitizenStatus
+ "getCitizenSkillHandler"(): $ICitizenSkillHandler
+ "getColonyId"(): integer
+ "getInteractionIcon"(): $ResourceLocation
+ "setHomeBuilding"(arg0: $BlockPos$Type): void
+ "getStatusPosition"(): $BlockPos
+ "getSiblings"(): $List<(integer)>
+ "getWorkBuilding"(): $BlockPos
+ "getHomeBuilding"(): $BlockPos
+ "getHealth"(): double
  "getJob"(): string
  "getPartner"(): integer
- "getHealth"(): double
  "isSick"(): boolean
  "getJobView"(): $IJobView
  "setJobView"(arg0: $IJobView$Type): void
  "getName"(): string
  "getId"(): integer
- "getSaturation"(): double
  "getInventory"(): $InventoryCitizen
  "isChild"(): boolean
+ "getSaturation"(): double
  "isPaused"(): boolean
- "setPaused"(arg0: boolean): void
- "isFemale"(): boolean
  "getColony"(): $IColony
+ "isFemale"(): boolean
+ "setPaused"(arg0: boolean): void
 }
 
 export namespace $ICitizenDataView {
@@ -12041,11 +12044,11 @@ export interface $ICitizenMournHandler {
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
  "addDeceasedCitizen"(arg0: string): void
+ "getDeceasedCitizens"(): $Set<(string)>
  "removeDeceasedCitizen"(arg0: string): void
  "clearDeceasedCitizen"(): void
- "setMourning"(arg0: boolean): void
  "shouldMourn"(): boolean
- "getDeceasedCitizens"(): $Set<(string)>
+ "setMourning"(arg0: boolean): void
  "isMourning"(): boolean
 }
 
@@ -12074,8 +12077,8 @@ import {$ItemColonyMapAccessor, $ItemColonyMapAccessor$Type} from "packages/stev
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$AbstractItemMinecolonies, $AbstractItemMinecolonies$Type} from "packages/com/minecolonies/core/items/$AbstractItemMinecolonies"
@@ -12098,8 +12101,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12193,8 +12196,8 @@ declare global {
 export type $BlockHutChickenHerder_ = $BlockHutChickenHerder$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/buildings/workerbuildings/$ITownHall" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$IRequestable, $IRequestable$Type} from "packages/com/minecolonies/api/colony/requestsystem/requestable/$IRequestable"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -12226,8 +12229,8 @@ import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/re
 import {$IItemHandler, $IItemHandler$Type} from "packages/net/minecraftforge/items/$IItemHandler"
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
-import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$BuildingEntry, $BuildingEntry$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IBlueprintDataProviderBE, $IBlueprintDataProviderBE$Type} from "packages/com/ldtteam/structurize/blockentities/interfaces/$IBlueprintDataProviderBE"
 import {$IRequester, $IRequester$Type} from "packages/com/minecolonies/api/colony/requestsystem/requester/$IRequester"
@@ -12244,23 +12247,26 @@ export interface $ITownHall extends $IBuilding {
 
  "addPermissionEvent"(arg0: $PermissionEvent$Type): void
  "removePermissionEvents"(arg0: $UUID$Type): void
- "destroy"(): void
  "getHandlers"(): $List<($IItemHandler)>
+ "destroy"(): void
+ "getBuildingType"(): $BuildingEntry
+ "getCustomName"(): string
+ "onDestroyed"(): void
+ "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
  "getCompletedRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
+ "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
+ "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
  "upgradeBuildingLevelToSchematicData"(): void
  "getOpenRequestsByRequestableType"(): $Map<($TypeToken<(any)>), ($Collection<($IToken<(any)>)>)>
- "overruleNextOpenRequestOfCitizenWithStack"(arg0: $ICitizenData$Type, arg1: $ItemStack$Type): boolean
- "getOpenRequestsOfTypeFiltered"<R>(arg0: $ICitizenData$Type, arg1: $TypeToken$Type<(R)>, arg2: $Predicate$Type<($IRequest$Type<(any)>)>): $ImmutableList<($IRequest<(any)>)>
- "overruleNextOpenRequestWithStack"(arg0: $ItemStack$Type): void
- "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean): integer
- "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
- "hasCitizenCompletedRequests"(arg0: $ICitizenData$Type): boolean
- "hasCitizenCompletedRequestsToPickup"(arg0: $ICitizenData$Type): boolean
+ "buildingRequiresCertainAmountOfItem"(arg0: $ItemStack$Type, arg1: $List$Type<($ItemStorage$Type)>, arg2: boolean, arg3: $JobEntry$Type): integer
  "hasWorkerOpenRequestsFiltered"(arg0: integer, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): boolean
+ "hasWorkerOpenRequestsOfType"<R>(arg0: integer, arg1: $TypeToken$Type<(R)>): boolean
  "onUpgradeComplete"(arg0: integer): void
- "onPlacement"(): void
  "getBuildingDisplayName"(): string
+ "onPlacement"(): void
  "onPlayerEnterNearby"(arg0: $Player$Type): void
  "onPlayerEnterBuilding"(arg0: $Player$Type): void
  "isMatchingBlock"(arg0: $Block$Type): boolean
@@ -12305,35 +12311,32 @@ export interface $ITownHall extends $IBuilding {
  "canAssignCitizens"(): boolean
  "getAllAssignedCitizen"(): $Set<($ICitizenData)>
  "getSettingValueOrDefault"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>, arg1: S): S
- "onDestroyed"(): void
- "getCustomName"(): string
- "getBuildingType"(): $BuildingEntry
  "onRestart"(arg0: $ICitizenData$Type): void
  "canEat"(arg0: $ItemStack$Type): boolean
- "isBuilt"(): boolean
  "markDirty"(): void
+ "isBuilt"(): boolean
  "pickUp"(arg0: $Player$Type): void
+ "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
  "getColony"(): $IColony
  "onWakeUp"(): void
  "onCleanUp"(arg0: $ICitizenData$Type): void
- "getSetting"<T extends $ISetting<(S)>, S>(arg0: $ISettingKey$Type<(T)>): T
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+ "getContainers"(): $List<($BlockPos)>
+ "getTileEntity"(): $AbstractTileEntityColonyBuilding
  "getPickUpPriority"(): integer
  "alterPickUpPriority"(arg0: integer): void
  "addContainerPosition"(arg0: $BlockPos$Type): void
  "removeContainerPosition"(arg0: $BlockPos$Type): void
- "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "registerBlockPosition"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
+ "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "setTileEntity"(arg0: $AbstractTileEntityColonyBuilding$Type): void
- "getTileEntity"(): $AbstractTileEntityColonyBuilding
- "getContainers"(): $List<($BlockPos)>
- "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
- "deserializeNBT"(arg0: $CompoundTag$Type): void
  "getModule"(arg0: integer): $IBuildingModule
  "getModule"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): M
- "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
+ "registerModule"(arg0: $IBuildingModule$Type): void
  "getModuleMatching"<T2 extends T>(arg0: $Class$Type<(T2)>, arg1: $Predicate$Type<(any)>): T2
  "getModulesByType"<T2 extends T>(arg0: $Class$Type<(T2)>): $List<(T2)>
- "registerModule"(arg0: $IBuildingModule$Type): void
+ "getFirstModuleOccurance"<T2 extends T>(arg0: $Class$Type<(T2)>): T2
  "hasModule"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): boolean
  "hasModule"(arg0: $Class$Type<(any)>): boolean
  "getId"(): $IToken<(any)>
@@ -12341,28 +12344,28 @@ export interface $ITownHall extends $IBuilding {
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestedRequestComplete"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getRequesterDisplayName"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $MutableComponent
- "getPosition"(): $BlockPos
+ "getChildren"(): $Set<($BlockPos)>
+ "getID"(): $BlockPos
  "getParent"(): $BlockPos
  "setParent"(arg0: $BlockPos$Type): void
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
  "isDirty"(): boolean
- "getChildren"(): $Set<($BlockPos)>
+ "getSchematicName"(): string
+ "getStructurePack"(): string
+ "setBlueprintPath"(arg0: string): void
+ "getBlueprintPath"(): string
+ "getRotation"(): integer
  "setStructurePack"(arg0: string): void
  "setBuildingLevel"(arg0: integer): void
  "setIsMirrored"(arg0: boolean): void
- "getBuildingLevel"(): integer
  "getMaxBuildingLevel"(): integer
  "isDeconstructed"(): boolean
  "setDeconstructed"(): void
  "onUpgradeSchematicTo"(arg0: string, arg1: string, arg2: $IBlueprintDataProviderBE$Type): void
- "getRotation"(): integer
- "setBlueprintPath"(arg0: string): void
- "getBlueprintPath"(): string
- "getStructurePack"(): string
- "getSchematicName"(): string
- "hasParent"(): boolean
+ "getBuildingLevel"(): integer
  "clearDirty"(): void
+ "hasParent"(): boolean
  "setCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
@@ -12601,10 +12604,10 @@ static readonly "FAILED": $RequestState
 
 public static "values"(): ($RequestState)[]
 public static "valueOf"(arg0: string): $RequestState
+public static "deserialize"(arg0: $IntTag$Type): $RequestState
+public static "deserialize"(arg0: $FriendlyByteBuf$Type): $RequestState
 public "serialize"(): $IntTag
 public "serialize"(arg0: $FriendlyByteBuf$Type): void
-public static "deserialize"(arg0: $FriendlyByteBuf$Type): $RequestState
-public static "deserialize"(arg0: $IntTag$Type): $RequestState
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -12627,8 +12630,8 @@ import {$MutableComponent, $MutableComponent$Type} from "packages/net/minecraft/
 export interface $IResearchRequirement {
 
  "getDesc"(): $MutableComponent
- "isFulfilled"(arg0: $IColony$Type): boolean
  "getRegistryEntry"(): $ResearchRequirementEntry
+ "isFulfilled"(arg0: $IColony$Type): boolean
  "writeToNBT"(): $CompoundTag
 }
 
@@ -12756,14 +12759,14 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getRegistryName"(): $ResourceLocation
-public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
-public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
-public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "wasExploded"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Explosion$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
+public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -12793,16 +12796,16 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 
 export interface $IColonyEvent extends $INBTSerializable<($CompoundTag)> {
 
- "getID"(): integer
  "onStart"(): void
+ "getID"(): integer
+ "getStatus"(): $EventStatus
  "onTileEntityBreak"(arg0: $BlockEntity$Type): void
  "getEventTypeID"(): $ResourceLocation
  "onNightFall"(): void
- "getStatus"(): $EventStatus
  "onFinish"(): void
  "onUpdate"(): void
- "setStatus"(arg0: $EventStatus$Type): void
  "setColony"(arg0: $IColony$Type): void
+ "setStatus"(arg0: $EventStatus$Type): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -12935,8 +12938,8 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -13002,8 +13005,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public static "getPlacementState"(arg0: $BlockState$Type, arg1: $BlockPos$Type): $BlockState
 public "getRegistryName"(): $ResourceLocation
+public static "getPlacementState"(arg0: $BlockState$Type, arg1: $BlockPos$Type): $BlockState
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 /**
@@ -13019,9 +13025,6 @@ public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getCollisionShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "spawnAfterBreak"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $ItemStack$Type, arg4: boolean): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "registryName"(): $ResourceLocation
@@ -13134,8 +13137,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -13156,12 +13159,12 @@ export class $CitizenSkillHandler$SkillData {
 
 
 public "setLevel"(arg0: integer): void
-public "getExperience"(): double
 public "getLevel"(): integer
+public "getExperience"(): double
 public "setExperience"(arg0: double): void
 set "level"(value: integer)
-get "experience"(): double
 get "level"(): integer
+get "experience"(): double
 set "experience"(value: double)
 }
 /**
@@ -13283,70 +13286,70 @@ public "isEmpty"(): boolean
 public "write"(arg0: $CompoundTag$Type): void
 public "read"(arg0: $CompoundTag$Type): void
 public "isFull"(): boolean
-public "getIterableArmorAndHandInv"(): $Iterable<($ItemStack)>
-public "getArmorInSlot"(arg0: $EquipmentSlot$Type): $ItemStack
-public "moveArmorToInventory"(arg0: $EquipmentSlot$Type): void
-public "transferArmorToSlot"(arg0: $EquipmentSlot$Type, arg1: integer): void
-public "forceArmorStackToSlot"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): void
-public "forceClearArmorInSlot"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): void
-public "getHeldItemSlot"(arg0: $InteractionHand$Type): integer
-public "setCustomName"(arg0: string): void
-public "getStackInSlot"(arg0: integer): $ItemStack
-public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
-public "getSlotLimit"(arg0: integer): integer
-public "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
-public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
 public "getHeldItem"(arg0: $InteractionHand$Type): $ItemStack
 public "setHeldItem"(arg0: $InteractionHand$Type, arg1: integer): void
+public "getStackInSlot"(arg0: integer): $ItemStack
+public "extractItem"(arg0: integer, arg1: integer, arg2: boolean): $ItemStack
+public "getSlotLimit"(arg0: integer): integer
+public "isItemValid"(arg0: integer, arg1: $ItemStack$Type): boolean
+public "setStackInSlot"(arg0: integer, arg1: $ItemStack$Type): void
+public "setCustomName"(arg0: string): void
+public "forceArmorStackToSlot"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): void
+public "forceClearArmorInSlot"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): void
+public "transferArmorToSlot"(arg0: $EquipmentSlot$Type, arg1: integer): void
+public "moveArmorToInventory"(arg0: $EquipmentSlot$Type): void
+public "getHeldItemSlot"(arg0: $InteractionHand$Type): integer
+public "getIterableArmorAndHandInv"(): $Iterable<($ItemStack)>
+public "getArmorInSlot"(arg0: $EquipmentSlot$Type): $ItemStack
 public "getSlots"(): integer
-public "getDisplayName"(): $Component
-public "hasCustomName"(): boolean
 public "getName"(): $Component
+public "getDisplayName"(): $Component
 public "shrinkInventoryItem"(arg0: integer): boolean
 public "damageInventoryItem"<T extends $LivingEntity>(arg0: integer, arg1: integer, arg2: T, arg3: $Consumer$Type<(T)>): boolean
+public "hasCustomName"(): boolean
 public "insertItem"(arg0: integer, arg1: $ItemStack$Type, arg2: boolean): $ItemStack
 public "markDirty"(): void
 public "hasSpace"(): boolean
 public "getCustomName"(): $Component
+public "getBlock"(level: $Level$Type): $BlockContainerJS
+public "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
+public "isItemValid"(i: integer, itemStack: $ItemStack$Type): boolean
+public "extractItem"(i: integer, i1: integer, b: boolean): $ItemStack
+public "insertItem"(i: integer, itemStack: $ItemStack$Type, b: boolean): $ItemStack
 public "isMutable"(): boolean
 public "getSlots"(): integer
 public "getStackInSlot"(i: integer): $ItemStack
-public "insertItem"(i: integer, itemStack: $ItemStack$Type, b: boolean): $ItemStack
 public "getSlotLimit"(i: integer): integer
-public "extractItem"(i: integer, i1: integer, b: boolean): $ItemStack
-public "setStackInSlot"(slot: integer, stack: $ItemStack$Type): void
-public "isItemValid"(i: integer, itemStack: $ItemStack$Type): boolean
-public "getBlock"(level: $Level$Type): $BlockContainerJS
 public "kjs$self"(): $IItemHandler
-public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
+public "isEmpty"(): boolean
+public "getAllItems"(): $List<($ItemStack)>
+public "countNonEmpty"(ingredient: $Ingredient$Type): integer
+public "countNonEmpty"(): integer
 public "getWidth"(): integer
 public "getHeight"(): integer
 public "setChanged"(): void
 public "asContainer"(): $Container
-public "countNonEmpty"(): integer
-public "countNonEmpty"(ingredient: $Ingredient$Type): integer
-public "getAllItems"(): $List<($ItemStack)>
-public "isEmpty"(): boolean
-public "clear"(): void
+public "insertItem"(stack: $ItemStack$Type, simulate: boolean): $ItemStack
 public "clear"(ingredient: $Ingredient$Type): void
+public "clear"(): void
 public "find"(ingredient: $Ingredient$Type): integer
 public "find"(): integer
 public "count"(ingredient: $Ingredient$Type): integer
 public "count"(): integer
 get "empty"(): boolean
 get "full"(): boolean
-get "iterableArmorAndHandInv"(): $Iterable<($ItemStack)>
 set "customName"(value: string)
+get "iterableArmorAndHandInv"(): $Iterable<($ItemStack)>
 get "slots"(): integer
-get "displayName"(): $Component
 get "name"(): $Component
+get "displayName"(): $Component
 get "customName"(): $Component
 get "mutable"(): boolean
 get "slots"(): integer
+get "empty"(): boolean
+get "allItems"(): $List<($ItemStack)>
 get "width"(): integer
 get "height"(): integer
-get "allItems"(): $List<($ItemStack)>
-get "empty"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -13519,13 +13522,13 @@ export interface $IGraveManager {
 
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
- "createCitizenGrave"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $ICitizenData$Type): boolean
- "onColonyTick"(arg0: $IColony$Type): void
  "unReserveGrave"(arg0: $BlockPos$Type): void
  "reserveNextFreeGrave"(): $BlockPos
- "reserveGrave"(arg0: $BlockPos$Type): boolean
+ "onColonyTick"(arg0: $IColony$Type): void
+ "createCitizenGrave"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $ICitizenData$Type): boolean
  "removeGrave"(arg0: $BlockPos$Type): void
  "addNewGrave"(arg0: $BlockPos$Type): boolean
+ "reserveGrave"(arg0: $BlockPos$Type): boolean
  "getGraves"(): $Map<($BlockPos), (boolean)>
 }
 
@@ -13554,23 +13557,23 @@ import {$ICivilianData, $ICivilianData$Type} from "packages/com/minecolonies/api
 import {$IVisitorData, $IVisitorData$Type} from "packages/com/minecolonies/api/colony/$IVisitorData"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$AbstractCivilianEntity, $AbstractCivilianEntity$Type} from "packages/com/minecolonies/api/entity/citizen/$AbstractCivilianEntity"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IVisitorManager extends $IEntityManager {
 
  "getVisitor"<T extends $IVisitorData>(arg0: integer): T
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
- "createAndRegisterCivilianData"(): $ICivilianData
- "removeCivilian"(arg0: $ICivilianData$Type): void
- "onColonyTick"(arg0: $IColony$Type): void
- "getCivilian"<T extends $ICivilianData>(arg0: integer): T
- "spawnOrCreateCivilian"<T extends $ICivilianData>(arg0: T, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): T
  "sendPackets"(arg0: $Set$Type<($ServerPlayer$Type)>, arg1: $Set$Type<($ServerPlayer$Type)>): void
- "getCivilianDataMap"(): $Map<(integer), ($ICivilianData)>
+ "createAndRegisterCivilianData"(): $ICivilianData
+ "spawnOrCreateCivilian"<T extends $ICivilianData>(arg0: T, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): T
+ "getCivilian"<T extends $ICivilianData>(arg0: integer): T
+ "onColonyTick"(arg0: $IColony$Type): void
+ "removeCivilian"(arg0: $ICivilianData$Type): void
  "registerCivilian"(arg0: $AbstractCivilianEntity$Type): void
  "unregisterCivilian"(arg0: $AbstractCivilianEntity$Type): void
+ "getCivilianDataMap"(): $Map<(integer), ($ICivilianData)>
  "markDirty"(): void
  "clearDirty"(): void
 }
@@ -13684,12 +13687,12 @@ import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from 
 
 export interface $IBuildingModule extends $IHasDirty {
 
- "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
- "serializeToView"(arg0: $FriendlyByteBuf$Type): void
+ "getBuilding"(): $IBuilding
  "setBuilding"(arg0: $IBuilding$Type): $IBuildingModule
  "setProducer"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): $IBuildingModule
  "getProducer"(): $BuildingEntry$ModuleProducer<(any), (any)>
- "getBuilding"(): $IBuilding
+ "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
+ "serializeToView"(arg0: $FriendlyByteBuf$Type): void
  "markDirty"(): void
  "clearDirty"(): void
  "checkDirty"(): boolean
@@ -13855,8 +13858,8 @@ static readonly "MAX_NODES": integer
 
 constructor(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockPos$Type, arg3: integer, arg4: $Mob$Type)
 
-public "toString"(): string
 public "getDestination"(): $BlockPos
+public "toString"(): string
 public static "isJobFor"(arg0: $AbstractPathJob$Type, arg1: $BlockPos$Type): boolean
 get "destination"(): $BlockPos
 }
@@ -13894,38 +13897,38 @@ export interface $ICivilianData extends $ICitizen, $INBTSerializable<($CompoundT
  "setName"(arg0: string): void
  "isDirty"(): boolean
  "getEntity"(): $Optional<(any)>
- "getTextureSuffix"(): string
- "initEntityValues"(): void
- "decreaseSaturation"(arg0: double): void
+ "createRequest"<R extends $IRequestable>(arg0: R): $IToken<(any)>
+ "getTextureId"(): integer
  "initForNewCivilian"(): void
  "setGenderAndGenerateName"(arg0: boolean): void
  "updateEntityIfNecessary"(): void
  "serializeViewNetworkData"(arg0: $FriendlyByteBuf$Type): void
  "increaseSaturation"(arg0: double): void
  "createRequestAsync"<R extends $IRequestable>(arg0: R): $IToken<(any)>
- "getTextureId"(): integer
- "createRequest"<R extends $IRequestable>(arg0: R): $IToken<(any)>
  "onRequestCancelled"(arg0: $IToken$Type<(any)>): void
  "isRequestAsync"(arg0: $IToken$Type<(any)>): boolean
  "onResponseTriggered"(arg0: $Component$Type, arg1: integer, arg2: $Player$Type): void
  "triggerInteraction"(arg0: $IInteractionResponseHandler$Type): void
  "getVoiceProfile"(): integer
  "setVoiceProfile"(arg0: integer): void
- "getUUID"(): $UUID
+ "getTextureSuffix"(): string
+ "initEntityValues"(): void
+ "decreaseSaturation"(arg0: double): void
  "markDirty"(arg0: integer): void
+ "getUUID"(): $UUID
  "clearDirty"(): void
- "setEntity"(arg0: $AbstractCivilianEntity$Type): void
  "setGender"(arg0: boolean): void
+ "setEntity"(arg0: $AbstractCivilianEntity$Type): void
  "setSuffix"(arg0: string): void
  "getName"(): string
  "getId"(): integer
- "getSaturation"(): double
  "getInventory"(): $InventoryCitizen
  "isChild"(): boolean
+ "getSaturation"(): double
  "isPaused"(): boolean
- "setPaused"(arg0: boolean): void
- "isFemale"(): boolean
  "getColony"(): $IColony
+ "isFemale"(): boolean
+ "setPaused"(arg0: boolean): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -14034,8 +14037,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$UseAnim, $UseAnim$Type} from "packages/net/minecraft/world/item/$UseAnim"
@@ -14062,11 +14065,11 @@ readonly "canRepair": boolean
 
 constructor(arg0: string, arg1: $Item$Properties$Type)
 
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "getUseDuration"(arg0: $ItemStack$Type): integer
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "finishUsingItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type): $ItemStack
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "getUseDuration"(arg0: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -14086,23 +14089,23 @@ import {$ServerPlayer, $ServerPlayer$Type} from "packages/net/minecraft/server/l
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$ISetting, $ISetting$Type} from "packages/com/minecolonies/api/colony/buildings/modules/settings/$ISetting"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
-import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$IBuilding, $IBuilding$Type} from "packages/com/minecolonies/api/colony/buildings/$IBuilding"
+import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
 
 export interface $ISettingsModule extends $IBuildingModule {
 
  "with"(arg0: $ISettingKey$Type<(any)>, arg1: $ISetting$Type<(any)>): $ISettingsModule
- "getSettingValueOrDefault"<S, T extends $ISetting<(S)>>(arg0: $ISettingKey$Type<(T)>, arg1: S): S
  "updateSetting"(arg0: $ISettingKey$Type<(any)>, arg1: $ISetting$Type<(any)>, arg2: $ServerPlayer$Type): void
+ "getSettingValueOrDefault"<S, T extends $ISetting<(S)>>(arg0: $ISettingKey$Type<(T)>, arg1: S): S
  "getOptionalSetting"<T extends $ISetting<(any)>>(arg0: $ISettingKey$Type<(T)>): $Optional<(T)>
  "getSetting"<T extends $ISetting<(any)>>(arg0: $ISettingKey$Type<(T)>): T
- "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
- "serializeToView"(arg0: $FriendlyByteBuf$Type): void
+ "getBuilding"(): $IBuilding
  "setBuilding"(arg0: $IBuilding$Type): $IBuildingModule
  "setProducer"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): $IBuildingModule
  "getProducer"(): $BuildingEntry$ModuleProducer<(any), (any)>
- "getBuilding"(): $IBuilding
+ "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
+ "serializeToView"(arg0: $FriendlyByteBuf$Type): void
  "markDirty"(): void
  "clearDirty"(): void
  "checkDirty"(): boolean
@@ -14247,15 +14250,15 @@ export interface $IPlayerRequestResolver extends $IQueuedRequestResolver<($IRequ
  "getPriority"(): integer
  "isValid"(): boolean
  "onColonyUpdate"(arg0: $IRequestManager$Type, arg1: $Predicate$Type<($IRequest$Type<(any)>)>): void
- "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getFollowupRequestForCompletion"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IRequest<(any)>)>
- "getRequestType"(): $TypeToken<(any)>
- "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
- "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "onAssignedRequestBeingCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "resolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "onRequestAssigned"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>, arg2: boolean): void
- "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
+ "attemptResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): $List<($IToken<(any)>)>
+ "getRequestType"(): $TypeToken<(any)>
+ "canResolveRequest"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): boolean
  "getSuitabilityMetric"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): integer
+ "onAssignedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
  "getLocation"(): $ILocation
  "getId"(): $IToken<(any)>
  "onRequestedRequestCancelled"(arg0: $IRequestManager$Type, arg1: $IRequest$Type<(any)>): void
@@ -14288,12 +14291,12 @@ import {$Style, $Style$Type} from "packages/net/minecraft/network/chat/$Style"
 export interface $IQuestObjectiveTemplate {
 
  "getTarget"(): integer
- "getProgressText"(arg0: $IQuestInstance$Type, arg1: $Style$Type): $Component
+ "onWorldLoad"(arg0: $IQuestInstance$Type): void
  "getRewardUnlocks"(): $List<(integer)>
  "startObjective"(arg0: $IQuestInstance$Type): $IObjectiveInstance
+ "getProgressText"(arg0: $IQuestInstance$Type, arg1: $Style$Type): $Component
  "onCancellation"(arg0: $IQuestInstance$Type): void
  "createObjectiveInstance"(): $IObjectiveInstance
- "onWorldLoad"(arg0: $IQuestInstance$Type): void
 }
 
 export namespace $IQuestObjectiveTemplate {
@@ -14320,21 +14323,21 @@ import {$TypeToken, $TypeToken$Type} from "packages/com/google/common/reflect/$T
 
 export interface $IFactoryController {
 
- "getFactoryForSerializationId"<Output>(arg0: short): $IFactory<(any), (Output)>
- "getNewInstance"<Input, Output>(arg0: $TypeToken$Type<(any)>, arg1: Input, ...arg2: (any)[]): Output
- "getNewInstance"<Output>(arg0: $TypeToken$Type<(any)>): Output
  "registerNewFactory"<Input, Output>(arg0: $IFactory$Type<(Input), (Output)>): void
+ "deserialize"<Output>(arg0: $FriendlyByteBuf$Type): Output
+ "deserialize"<Output>(arg0: $CompoundTag$Type): Output
  "serialize"<Output>(arg0: Output): $CompoundTag
  "serialize"<Output>(arg0: $FriendlyByteBuf$Type, arg1: Output): void
- "deserialize"<Output>(arg0: $CompoundTag$Type): Output
- "deserialize"<Output>(arg0: $FriendlyByteBuf$Type): Output
+ "getNewInstance"<Input, Output>(arg0: $TypeToken$Type<(any)>, arg1: Input, ...arg2: (any)[]): Output
+ "getNewInstance"<Output>(arg0: $TypeToken$Type<(any)>): Output
  "registerNewTypeOverrideHandler"<Output>(arg0: $ITypeOverrideHandler$Type<(Output)>): void
- "getFactoryForOutput"<Output>(arg0: string): $IFactory<(any), (Output)>
- "getFactoryForOutput"<Output>(arg0: short): $IFactory<(any), (Output)>
- "getFactoryForOutput"<Output>(arg0: $TypeToken$Type<(any)>): $IFactory<(any), (Output)>
- "getFactoryForIO"<Input, Output>(arg0: $TypeToken$Type<(any)>, arg1: $TypeToken$Type<(any)>): $IFactory<(Input), (Output)>
- "getFactoryForInput"<Input>(arg0: string): $IFactory<(Input), (any)>
+ "getFactoryForSerializationId"<Output>(arg0: short): $IFactory<(any), (Output)>
  "getFactoryForInput"<Input>(arg0: $TypeToken$Type<(any)>): $IFactory<(Input), (any)>
+ "getFactoryForInput"<Input>(arg0: string): $IFactory<(Input), (any)>
+ "getFactoryForIO"<Input, Output>(arg0: $TypeToken$Type<(any)>, arg1: $TypeToken$Type<(any)>): $IFactory<(Input), (Output)>
+ "getFactoryForOutput"<Output>(arg0: string): $IFactory<(any), (Output)>
+ "getFactoryForOutput"<Output>(arg0: $TypeToken$Type<(any)>): $IFactory<(any), (Output)>
+ "getFactoryForOutput"<Output>(arg0: short): $IFactory<(any), (Output)>
 }
 
 export namespace $IFactoryController {
@@ -14387,28 +14390,28 @@ import {$AbstractEntityCitizen, $AbstractEntityCitizen$Type} from "packages/com/
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$ICitizenData, $ICitizenData$Type} from "packages/com/minecolonies/api/colony/$ICitizenData"
 import {$HiringMode, $HiringMode$Type} from "packages/com/minecolonies/api/colony/buildings/$HiringMode"
-import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$IBuilding, $IBuilding$Type} from "packages/com/minecolonies/api/colony/buildings/$IBuilding"
+import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
 
 export interface $IAssignsCitizen extends $IBuildingModule {
 
  "isFull"(): boolean
+ "getAssignedCitizen"(): $List<($ICitizenData)>
  "assignCitizen"(arg0: $ICitizenData$Type): boolean
  "getModuleMax"(): integer
  "getAssignedEntities"(): $List<($Optional<($AbstractEntityCitizen)>)>
  "setHiringMode"(arg0: $HiringMode$Type): void
  "getHiringMode"(): $HiringMode
- "getAssignedCitizen"(): $List<($ICitizenData)>
  "hasAssignedCitizen"(): boolean
  "hasAssignedCitizen"(arg0: $ICitizenData$Type): boolean
  "removeCitizen"(arg0: $ICitizenData$Type): boolean
- "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
- "serializeToView"(arg0: $FriendlyByteBuf$Type): void
+ "getBuilding"(): $IBuilding
  "setBuilding"(arg0: $IBuilding$Type): $IBuildingModule
  "setProducer"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): $IBuildingModule
  "getProducer"(): $BuildingEntry$ModuleProducer<(any), (any)>
- "getBuilding"(): $IBuilding
+ "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
+ "serializeToView"(arg0: $FriendlyByteBuf$Type): void
  "markDirty"(): void
  "clearDirty"(): void
  "checkDirty"(): boolean
@@ -14466,16 +14469,25 @@ import {$Tuple, $Tuple$Type} from "packages/com/minecolonies/api/util/$Tuple"
 
 export interface $ICitizenData extends $ICivilianData, $IQuestGiver, $IQuestParticipant {
 
- "generateName"(arg0: $Random$Type, arg1: string, arg2: string, arg3: $CitizenNameFile$Type): void
- "getRandom"(): $Random
  "getChildren"(): $List<(integer)>
+ "getRandom"(): $Random
+ "generateName"(arg0: $Random$Type, arg1: string, arg2: string, arg3: $CitizenNameFile$Type): void
  "getEntity"(): $Optional<($AbstractEntityCitizen)>
- "setVisibleStatus"(arg0: $VisibleCitizenStatus$Type): void
- "getWorkBuilding"(): $IBuilding
- "getCitizenHappinessHandler"(): $ICitizenHappinessHandler
- "getHomeBuilding"(): $IBuilding
+ "shouldRestart"(): boolean
+ "setParents"(arg0: string, arg1: string): void
+ "getParents"(): $Tuple<(string), (string)>
+ "getStatus"(): $VisibleCitizenStatus
+ "getCustomTexture"(): $UUID
+ "getLastPosition"(): $BlockPos
+ "setInteractedRecently"(arg0: $UUID$Type): void
+ "getCitizenDiseaseHandler"(): $ICitizenDiseaseHandler
+ "getCitizenSkillHandler"(): $ICitizenSkillHandler
+ "getCitizenFoodHandler"(): $ICitizenFoodHandler
+ "setLastPosition"(arg0: $BlockPos$Type): void
+ "isIdleAtJob"(): boolean
  "onRemoveBuilding"(arg0: $IBuilding$Type): void
  "setHomeBuilding"(arg0: $IBuilding$Type): void
+ "setSaturation"(arg0: double): void
  "getCitizenMournHandler"(): $ICitizenMournHandler
  "scheduleRestart"(arg0: $ServerPlayer$Type): void
  "restartDone"(): void
@@ -14485,6 +14497,7 @@ export interface $ICitizenData extends $ICivilianData, $IQuestGiver, $IQuestPart
  "applyResearchEffects"(): void
  "setNextRespawnPosition"(arg0: $BlockPos$Type): void
  "needsBetterFood"(): boolean
+ "getSiblings"(): $List<(integer)>
  "addSiblings"(...arg0: (integer)[]): void
  "addChildren"(...arg0: (integer)[]): void
  "isRelatedTo"(arg0: $ICitizenData$Type): boolean
@@ -14499,25 +14512,18 @@ export interface $ICitizenData extends $ICivilianData, $IQuestGiver, $IQuestPart
  "hasQuestAssignment"(): boolean
  "getHomePosition"(): $BlockPos
  "getDiseaseModifier"(): double
- "isIdleAtJob"(): boolean
- "setLastPosition"(arg0: $BlockPos$Type): void
- "setInteractedRecently"(arg0: $UUID$Type): void
- "getCitizenDiseaseHandler"(): $ICitizenDiseaseHandler
- "getCitizenSkillHandler"(): $ICitizenSkillHandler
- "getLastPosition"(): $BlockPos
- "setSaturation"(arg0: double): void
- "getSiblings"(): $List<(integer)>
- "getCitizenFoodHandler"(): $ICitizenFoodHandler
- "getCustomTexture"(): $UUID
- "getStatus"(): $VisibleCitizenStatus
- "getParents"(): $Tuple<(string), (string)>
- "setParents"(arg0: string, arg1: string): void
- "shouldRestart"(): boolean
+ "setVisibleStatus"(arg0: $VisibleCitizenStatus$Type): void
+ "getWorkBuilding"(): $IBuilding
+ "getCitizenHappinessHandler"(): $ICitizenHappinessHandler
+ "getHomeBuilding"(): $IBuilding
  "onDeath"(arg0: integer): void
- "getJob"<J extends $IJob<(any)>>(arg0: $Class$Type<(J)>): J
  "getJob"(): $IJob<(any)>
- "getPartner"(): $ICitizenData
+ "getJob"<J extends $IJob<(any)>>(arg0: $Class$Type<(J)>): J
  "isWorking"(): boolean
+ "getPartner"(): $ICitizenData
+ "setIsChild"(arg0: boolean): void
+ "isAsleep"(): boolean
+ "setJob"(arg0: $IJob$Type<(any)>): void
  "getBedPos"(): $BlockPos
  "setAsleep"(arg0: boolean): void
  "setBedPos"(arg0: $BlockPos$Type): void
@@ -14526,34 +14532,31 @@ export interface $ICitizenData extends $ICivilianData, $IQuestGiver, $IQuestPart
  "onGoSleep"(): void
  "setPartner"(arg0: integer): void
  "setWorking"(arg0: boolean): void
- "setIsChild"(arg0: boolean): void
- "isAsleep"(): boolean
- "setJob"(arg0: $IJob$Type<(any)>): void
  "update"(arg0: integer): void
  "setName"(arg0: string): void
  "isDirty"(): boolean
- "getTextureSuffix"(): string
- "initEntityValues"(): void
- "decreaseSaturation"(arg0: double): void
+ "createRequest"<R extends $IRequestable>(arg0: R): $IToken<(any)>
+ "getTextureId"(): integer
  "initForNewCivilian"(): void
  "setGenderAndGenerateName"(arg0: boolean): void
  "updateEntityIfNecessary"(): void
  "serializeViewNetworkData"(arg0: $FriendlyByteBuf$Type): void
  "increaseSaturation"(arg0: double): void
  "createRequestAsync"<R extends $IRequestable>(arg0: R): $IToken<(any)>
- "getTextureId"(): integer
- "createRequest"<R extends $IRequestable>(arg0: R): $IToken<(any)>
  "onRequestCancelled"(arg0: $IToken$Type<(any)>): void
  "isRequestAsync"(arg0: $IToken$Type<(any)>): boolean
  "onResponseTriggered"(arg0: $Component$Type, arg1: integer, arg2: $Player$Type): void
  "triggerInteraction"(arg0: $IInteractionResponseHandler$Type): void
  "getVoiceProfile"(): integer
  "setVoiceProfile"(arg0: integer): void
- "getUUID"(): $UUID
+ "getTextureSuffix"(): string
+ "initEntityValues"(): void
+ "decreaseSaturation"(arg0: double): void
  "markDirty"(arg0: integer): void
+ "getUUID"(): $UUID
  "clearDirty"(): void
- "setEntity"(arg0: $AbstractCivilianEntity$Type): void
  "setGender"(arg0: boolean): void
+ "setEntity"(arg0: $AbstractCivilianEntity$Type): void
  "setSuffix"(arg0: string): void
  "assignQuest"(arg0: $IQuestInstance$Type): void
  "getName"(): string
@@ -14562,13 +14565,13 @@ export interface $ICitizenData extends $ICivilianData, $IQuestGiver, $IQuestPart
  "isParticipantOfQuest"(arg0: $ResourceLocation$Type): boolean
  "openDialogue"(arg0: $IQuestInstance$Type, arg1: integer): void
  "getId"(): integer
- "getSaturation"(): double
  "getInventory"(): $InventoryCitizen
  "isChild"(): boolean
+ "getSaturation"(): double
  "isPaused"(): boolean
- "setPaused"(arg0: boolean): void
- "isFemale"(): boolean
  "getColony"(): $IColony
+ "isFemale"(): boolean
+ "setPaused"(arg0: boolean): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -14599,15 +14602,15 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 export interface $IColonyTagCapability {
 
  "reset"(arg0: $LevelChunk$Type): void
- "getOwningColony"(): integer
- "getAllClaimingBuildings"(): $Map<(integer), ($Set<($BlockPos)>)>
- "removeColony"(arg0: integer, arg1: $LevelChunk$Type): void
- "getStaticClaimColonies"(): $List<(integer)>
- "setOwningColony"(arg0: integer, arg1: $LevelChunk$Type): void
- "addBuildingClaim"(arg0: integer, arg1: $BlockPos$Type, arg2: $LevelChunk$Type): void
- "removeBuildingClaim"(arg0: integer, arg1: $BlockPos$Type, arg2: $LevelChunk$Type): void
- "setStaticColonyClaim"(arg0: $List$Type<(integer)>): void
  "readFromNBT"(arg0: $CompoundTag$Type): void
+ "addBuildingClaim"(arg0: integer, arg1: $BlockPos$Type, arg2: $LevelChunk$Type): void
+ "removeColony"(arg0: integer, arg1: $LevelChunk$Type): void
+ "removeBuildingClaim"(arg0: integer, arg1: $BlockPos$Type, arg2: $LevelChunk$Type): void
+ "setOwningColony"(arg0: integer, arg1: $LevelChunk$Type): void
+ "getStaticClaimColonies"(): $List<(integer)>
+ "setStaticColonyClaim"(arg0: $List$Type<(integer)>): void
+ "getAllClaimingBuildings"(): $Map<(integer), ($Set<($BlockPos)>)>
+ "getOwningColony"(): integer
  "addColony"(arg0: integer, arg1: $LevelChunk$Type): void
 }
 
@@ -14629,16 +14632,16 @@ export type $IColonyTagCapability_ = $IColonyTagCapability$Type;
 declare module "packages/com/minecolonies/api/colony/jobs/$IJobView" {
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
 import {$JobEntry, $JobEntry$Type} from "packages/com/minecolonies/api/colony/jobs/registry/$JobEntry"
-import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$Set, $Set$Type} from "packages/java/util/$Set"
 
 export interface $IJobView {
 
+ "setEntry"(arg0: $JobEntry$Type): void
  "getName"(): string
  "getEntry"(): $JobEntry
- "setEntry"(arg0: $JobEntry$Type): void
- "getAsyncRequests"(): $Set<($IToken<(any)>)>
  "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getAsyncRequests"(): $Set<($IToken<(any)>)>
 }
 
 export namespace $IJobView {
@@ -14687,19 +14690,19 @@ import {$Action, $Action$Type} from "packages/com/minecolonies/api/colony/permis
 
 export class $PermissionEvent {
 
-constructor(arg0: $UUID$Type, arg1: string, arg2: $Action$Type, arg3: $BlockPos$Type)
 constructor(arg0: $FriendlyByteBuf$Type)
+constructor(arg0: $UUID$Type, arg1: string, arg2: $Action$Type, arg3: $BlockPos$Type)
 
-public "getPosition"(): $BlockPos
 public "getName"(): string
 public "equals"(arg0: any): boolean
 public "hashCode"(): integer
 public "getId"(): $UUID
+public "getPosition"(): $BlockPos
 public "serialize"(arg0: $FriendlyByteBuf$Type): void
 public "getAction"(): $Action
-get "position"(): $BlockPos
 get "name"(): string
 get "id"(): $UUID
+get "position"(): $BlockPos
 get "action"(): $Action
 }
 /**
@@ -15296,6 +15299,7 @@ readonly "rotA": float
  "lastPos": $BlockPos
  "autoSpinAttackTicks": integer
  "brain": $Brain<(any)>
+ "self": $LivingEntity
  "sodiumdynamiclights$luminance": integer
  "supp$slimedTicks": integer
 static readonly "ID_TAG": string
@@ -15377,15 +15381,20 @@ constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
 
 public "getLocation"(): $ILocation
 public static "getDefaultAttributes"(): $AttributeSupplier$Builder
+public "getRotationYaw"(): float
+public "getRotationPitch"(): float
+public "getModelType"(): $ResourceLocation
+public "setTextureId"(arg0: integer): void
+public "getTexture"(): $ResourceLocation
+public "calculateDamageAfterAbsorbs"(arg0: $DamageSource$Type, arg1: float): float
+public "decreaseSaturationForAction"(): void
+public "decreaseSaturationForContinuousAction"(): void
 public "getCitizenExperienceHandler"(): $ICitizenExperienceHandler
 public "setCitizenExperienceHandler"(arg0: $ICitizenExperienceHandler$Type): void
-public "decreaseSaturationForContinuousAction"(): void
-public "decreaseSaturationForAction"(): void
-public "calculateDamageAfterAbsorbs"(arg0: $DamageSource$Type, arg1: float): float
+public "getTicksExisted"(): integer
 public "getCitizenJobHandler"(): $ICitizenJobHandler
 public "getCitizenColonyHandler"(): $ICitizenColonyHandler
 public "onPlayerCollide"(arg0: $Player$Type): void
-public "getTicksExisted"(): integer
 public "getCitizenData"(): $ICitizenData
 public "getCitizenDataView"(): $ICitizenDataView
 public "setTextureDirty"(): void
@@ -15410,28 +15419,23 @@ public "callForHelp"(arg0: $Entity$Type, arg1: integer): void
 public "markEquipmentDirty"(): void
 public "onArmorRemove"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type): void
 public "getEntityStateController"(): $ITickRateStateMachine<($IState)>
-public "setTextureId"(arg0: integer): void
-public "getRotationYaw"(): float
-public "getRotationPitch"(): float
-public "getModelType"(): $ResourceLocation
-public "getTexture"(): $ResourceLocation
+public "isDead"(): boolean
+public "aiStep"(): void
+public "isSleeping"(): boolean
+public "setItemSlot"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): void
+public "getTeamColor"(): integer
 public "push"(arg0: $Entity$Type): void
 public "isPushable"(): boolean
-public "getTeamColor"(): integer
-public "getRandom"(): $RandomSource
 public "getDisplayName"(): $Component
-public "isPushedByFluid"(): boolean
-public "interactAt"(arg0: $Player$Type, arg1: $Vec3$Type, arg2: $InteractionHand$Type): $InteractionResult
-public "setItemSlot"(arg0: $EquipmentSlot$Type, arg1: $ItemStack$Type): void
-public "isSleeping"(): boolean
-public "aiStep"(): void
-public "isDead"(): boolean
-public "isNoAi"(): boolean
-public "canPickUpLoot"(): boolean
+public "getRandom"(): $RandomSource
 public "isBlocking"(): boolean
 public "detectEquipmentUpdates"(): void
 public "pushEntities"(): void
+public "isPushedByFluid"(): boolean
+public "interactAt"(arg0: $Player$Type, arg1: $Vec3$Type, arg2: $InteractionHand$Type): $InteractionResult
 public "isControlledByLocalInstance"(): boolean
+public "isNoAi"(): boolean
+public "canPickUpLoot"(): boolean
 public "setTexture"(): void
 public "setFemale"(arg0: boolean): void
 public "setModelId"(arg0: $ResourceLocation$Type): void
@@ -15441,24 +15445,29 @@ public "setIsChild"(arg0: boolean): void
 public "onArmorAdd"(arg0: $ItemStack$Type, arg1: $EquipmentSlot$Type): void
 public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public "shouldCloseCurrentScreen"(): boolean
-public "sdl$shouldUpdateDynamicLight"(): boolean
-public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sdl$getDynamicLightX"(): double
 public "sdl$getDynamicLightY"(): double
 public "sdl$getDynamicLightZ"(): double
 public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$shouldUpdateDynamicLight"(): boolean
+public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "getAlpha"(le: $LivingEntity$Type, partialTicks: float): float
 public static "tickEntity"(entity: $LivingEntity$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "location"(): $ILocation
 get "defaultAttributes"(): $AttributeSupplier$Builder
+get "rotationYaw"(): float
+get "rotationPitch"(): float
+get "modelType"(): $ResourceLocation
+set "textureId"(value: integer)
+get "texture"(): $ResourceLocation
 get "citizenExperienceHandler"(): $ICitizenExperienceHandler
 set "citizenExperienceHandler"(value: $ICitizenExperienceHandler$Type)
+get "ticksExisted"(): integer
 get "citizenJobHandler"(): $ICitizenJobHandler
 get "citizenColonyHandler"(): $ICitizenColonyHandler
-get "ticksExisted"(): integer
 get "citizenData"(): $ICitizenData
 get "citizenDataView"(): $ICitizenDataView
 get "navigation"(): $AbstractAdvancedPathNavigate
@@ -15476,21 +15485,16 @@ get "citizenSleepHandler"(): $ICitizenSleepHandler
 set "citizenSleepHandler"(value: $ICitizenSleepHandler$Type)
 set "citizenJobHandler"(value: $ICitizenJobHandler$Type)
 get "entityStateController"(): $ITickRateStateMachine<($IState)>
-set "textureId"(value: integer)
-get "rotationYaw"(): float
-get "rotationPitch"(): float
-get "modelType"(): $ResourceLocation
-get "texture"(): $ResourceLocation
-get "pushable"(): boolean
-get "teamColor"(): integer
-get "random"(): $RandomSource
-get "displayName"(): $Component
-get "pushedByFluid"(): boolean
-get "sleeping"(): boolean
 get "dead"(): boolean
-get "noAi"(): boolean
+get "sleeping"(): boolean
+get "teamColor"(): integer
+get "pushable"(): boolean
+get "displayName"(): $Component
+get "random"(): $RandomSource
 get "blocking"(): boolean
+get "pushedByFluid"(): boolean
 get "controlledByLocalInstance"(): boolean
+get "noAi"(): boolean
 set "female"(value: boolean)
 set "modelId"(value: $ResourceLocation$Type)
 get "tasks"(): $GoalSelector
@@ -15523,22 +15527,22 @@ public "hashCode"(): integer
 public "compareTo"(arg0: $Rank$Type): integer
 public "getPermissions"(): long
 public "getId"(): integer
-public "addPermission"(arg0: $Action$Type): boolean
-public "removePermission"(arg0: $Action$Type): boolean
+public "setColonyManager"(arg0: boolean): void
 public "isSubscriber"(): boolean
 public "setSubscriber"(arg0: boolean): void
 public "isColonyManager"(): boolean
-public "setColonyManager"(arg0: boolean): void
+public "addPermission"(arg0: $Action$Type): boolean
+public "removePermission"(arg0: $Action$Type): boolean
 public "isHostile"(): boolean
 public "setHostile"(arg0: boolean): void
 public "isInitial"(): boolean
 get "name"(): string
 get "permissions"(): long
 get "id"(): integer
+set "colonyManager"(value: boolean)
 get "subscriber"(): boolean
 set "subscriber"(value: boolean)
 get "colonyManager"(): boolean
-set "colonyManager"(value: boolean)
 get "hostile"(): boolean
 set "hostile"(value: boolean)
 get "initial"(): boolean
@@ -15798,13 +15802,13 @@ declare global {
 export type $ItemScepterBeekeeper_ = $ItemScepterBeekeeper$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/buildings/$IBuildingContainer" {
-import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
-import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
-import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$Capability, $Capability$Type} from "packages/net/minecraftforge/common/capabilities/$Capability"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$ISchematicProvider, $ISchematicProvider$Type} from "packages/com/minecolonies/api/colony/buildings/$ISchematicProvider"
 import {$AbstractTileEntityColonyBuilding, $AbstractTileEntityColonyBuilding$Type} from "packages/com/minecolonies/api/tileentities/$AbstractTileEntityColonyBuilding"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
@@ -15816,40 +15820,40 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $IBuildingContainer extends $ISchematicProvider, $ICapabilityProvider {
 
+ "deserializeNBT"(arg0: $CompoundTag$Type): void
+ "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+ "getContainers"(): $List<($BlockPos)>
+ "getTileEntity"(): $AbstractTileEntityColonyBuilding
  "getPickUpPriority"(): integer
  "alterPickUpPriority"(arg0: integer): void
  "addContainerPosition"(arg0: $BlockPos$Type): void
  "removeContainerPosition"(arg0: $BlockPos$Type): void
- "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "registerBlockPosition"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
+ "registerBlockPosition"(arg0: $Block$Type, arg1: $BlockPos$Type, arg2: $Level$Type): void
  "setTileEntity"(arg0: $AbstractTileEntityColonyBuilding$Type): void
- "getTileEntity"(): $AbstractTileEntityColonyBuilding
- "getContainers"(): $List<($BlockPos)>
- "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
- "deserializeNBT"(arg0: $CompoundTag$Type): void
- "getPosition"(): $BlockPos
+ "getChildren"(): $Set<($BlockPos)>
+ "getID"(): $BlockPos
  "getParent"(): $BlockPos
  "setParent"(arg0: $BlockPos$Type): void
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
  "isDirty"(): boolean
- "getChildren"(): $Set<($BlockPos)>
+ "getSchematicName"(): string
+ "getStructurePack"(): string
+ "setBlueprintPath"(arg0: string): void
+ "getBlueprintPath"(): string
+ "getRotation"(): integer
  "setStructurePack"(arg0: string): void
  "setBuildingLevel"(arg0: integer): void
  "setIsMirrored"(arg0: boolean): void
- "getBuildingLevel"(): integer
  "getMaxBuildingLevel"(): integer
  "isDeconstructed"(): boolean
  "setDeconstructed"(): void
  "onUpgradeSchematicTo"(arg0: string, arg1: string, arg2: $IBlueprintDataProviderBE$Type): void
- "getRotation"(): integer
- "setBlueprintPath"(arg0: string): void
- "getBlueprintPath"(): string
- "getStructurePack"(): string
- "getSchematicName"(): string
+ "getBuildingLevel"(): integer
  "markDirty"(): void
- "hasParent"(): boolean
  "clearDirty"(): void
+ "hasParent"(): boolean
  "setCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
@@ -16089,39 +16093,39 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $IPermissions {
 
- "setPermission"(arg0: $Rank$Type, arg1: $Action$Type, arg2: boolean): boolean
  "getOwner"(): $UUID
+ "setPermission"(arg0: $Rank$Type, arg1: $Action$Type, arg2: boolean): boolean
  "setOwner"(arg0: $Player$Type): boolean
- "getOwnerName"(): string
- "getRankOwner"(): $Rank
- "isColonyMember"(arg0: $Player$Type): boolean
  "hasPermission"(arg0: $Player$Type, arg1: $Action$Type): boolean
  "hasPermission"(arg0: $Rank$Type, arg1: $Action$Type): boolean
+ "isColonyMember"(arg0: $Player$Type): boolean
  "removePlayer"(arg0: $UUID$Type): boolean
- "getPlayersByRank"(arg0: $Rank$Type): $Set<($ColonyPlayer)>
- "getPlayersByRank"(arg0: $Set$Type<($Rank$Type)>): $Set<($ColonyPlayer)>
- "canAlterPermission"(arg0: $Rank$Type, arg1: $Rank$Type, arg2: $Action$Type): boolean
- "getFilteredPlayers"(arg0: $Predicate$Type<($Rank$Type)>): $Set<($ColonyPlayer)>
- "getOwnerEntry"(): $Map$Entry<($UUID), ($ColonyPlayer)>
- "restoreOwnerIfNull"(): void
+ "getRankOwner"(): $Rank
+ "getOwnerName"(): string
  "getRankFriend"(): $Rank
  "getRankHostile"(): $Rank
- "isSubscriber"(arg0: $Player$Type): boolean
- "setOwnerAbandoned"(): void
+ "getFilteredPlayers"(arg0: $Predicate$Type<($Rank$Type)>): $Set<($ColonyPlayer)>
+ "restoreOwnerIfNull"(): void
+ "canAlterPermission"(arg0: $Rank$Type, arg1: $Rank$Type, arg2: $Action$Type): boolean
+ "getOwnerEntry"(): $Map$Entry<($UUID), ($ColonyPlayer)>
+ "getPlayersByRank"(arg0: $Set$Type<($Rank$Type)>): $Set<($ColonyPlayer)>
+ "getPlayersByRank"(arg0: $Rank$Type): $Set<($ColonyPlayer)>
  "getRankOfficer"(): $Rank
- "getRankNeutral"(): $Rank
- "setPlayerRank"(arg0: $UUID$Type, arg1: $Rank$Type, arg2: $Level$Type): boolean
+ "setOwnerAbandoned"(): void
  "alterPermission"(arg0: $Rank$Type, arg1: $Rank$Type, arg2: $Action$Type, arg3: boolean): boolean
+ "isSubscriber"(arg0: $Player$Type): boolean
+ "setPlayerRank"(arg0: $UUID$Type, arg1: $Rank$Type, arg2: $Level$Type): boolean
+ "getRankNeutral"(): $Rank
  "getPlayers"(): $Map<($UUID), ($ColonyPlayer)>
+ "getRank"(arg0: integer): $Rank
+ "getRank"(arg0: $Player$Type): $Rank
+ "getRank"(arg0: $UUID$Type): $Rank
  "addPlayer"(arg0: $UUID$Type, arg1: string, arg2: $Rank$Type): boolean
  "addPlayer"(arg0: string, arg1: $Rank$Type, arg2: $Level$Type): boolean
  "addPlayer"(arg0: $GameProfile$Type, arg1: $Rank$Type): boolean
- "getRank"(arg0: integer): $Rank
- "getRank"(arg0: $UUID$Type): $Rank
- "getRank"(arg0: $Player$Type): $Rank
- "removeRank"(arg0: $Rank$Type): void
- "addRank"(arg0: string): void
  "getRanks"(): $Map<(integer), ($Rank)>
+ "addRank"(arg0: string): void
+ "removeRank"(arg0: $Rank$Type): void
 }
 
 export namespace $IPermissions {
@@ -16167,18 +16171,18 @@ public "getName"(): string
 public "toString"(): string
 public static "values"(): ($BarrelType)[]
 public static "valueOf"(arg0: string): $BarrelType
-public "getMaterialColor"(): $MapColor
 public "getTranslationKey"(): string
 public "getMetadata"(): integer
+public "getMaterialColor"(): $MapColor
 public "getSerializedName"(): string
 public static "byMetadata"(arg0: integer): $BarrelType
 public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>): $StringRepresentable$EnumCodec<(E)>
 public static "fromEnumWithMapping"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>, arg1: $Function$Type<(string), (string)>): $StringRepresentable$EnumCodec<(E)>
 public static "keys"(arg0: ($StringRepresentable$Type)[]): $Keyable
 get "name"(): string
-get "materialColor"(): $MapColor
 get "translationKey"(): string
 get "metadata"(): integer
+get "materialColor"(): $MapColor
 get "serializedName"(): string
 }
 /**
@@ -16212,14 +16216,14 @@ export interface $ISetting<S> {
  "getValue"(): S
  "isActive"(arg0: $ISettingsModuleView$Type): boolean
  "isActive"(arg0: $ISettingsModule$Type): boolean
- "setHoverPane"(arg0: $ISettingKey$Type<(any)>, arg1: $Pane$Type, arg2: $ISettingsModuleView$Type): void
+ "render"(arg0: $ISettingKey$Type<(any)>, arg1: $Pane$Type, arg2: $ISettingsModuleView$Type, arg3: $IBuildingView$Type, arg4: $BOWindow$Type): void
  "getLayoutItem"(): $ResourceLocation
  "setupHandler"(arg0: $ISettingKey$Type<(any)>, arg1: $Pane$Type, arg2: $ISettingsModuleView$Type, arg3: $IBuildingView$Type, arg4: $BOWindow$Type): void
  "shouldHideWhenInactive"(): boolean
  "updateSetting"(arg0: $ISetting$Type<(any)>): void
  "getInactiveReason"(): $Component
  "getToolTipText"(): $Component
- "render"(arg0: $ISettingKey$Type<(any)>, arg1: $Pane$Type, arg2: $ISettingsModuleView$Type, arg3: $IBuildingView$Type, arg4: $BOWindow$Type): void
+ "setHoverPane"(arg0: $ISettingKey$Type<(any)>, arg1: $Pane$Type, arg2: $ISettingsModuleView$Type): void
  "onUpdate"(arg0: $IBuilding$Type, arg1: $ServerPlayer$Type): void
 }
 
@@ -16347,9 +16351,9 @@ export type $BlockHutSwineHerder_ = $BlockHutSwineHerder$Type;
 }}
 declare module "packages/com/minecolonies/api/colony/requestsystem/manager/$IRequestManager" {
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
-import {$IDataStoreManager, $IDataStoreManager$Type} from "packages/com/minecolonies/api/colony/requestsystem/data/$IDataStoreManager"
-import {$IRequestable, $IRequestable$Type} from "packages/com/minecolonies/api/colony/requestsystem/requestable/$IRequestable"
 import {$IFactoryController, $IFactoryController$Type} from "packages/com/minecolonies/api/colony/requestsystem/factory/$IFactoryController"
+import {$IRequestable, $IRequestable$Type} from "packages/com/minecolonies/api/colony/requestsystem/requestable/$IRequestable"
+import {$IDataStoreManager, $IDataStoreManager$Type} from "packages/com/minecolonies/api/colony/requestsystem/data/$IDataStoreManager"
 import {$IRetryingRequestResolver, $IRetryingRequestResolver$Type} from "packages/com/minecolonies/api/colony/requestsystem/resolver/retrying/$IRetryingRequestResolver"
 import {$IColony, $IColony$Type} from "packages/com/minecolonies/api/colony/$IColony"
 import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
@@ -16357,8 +16361,8 @@ import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicat
 import {$IRequestResolverProvider, $IRequestResolverProvider$Type} from "packages/com/minecolonies/api/colony/requestsystem/resolver/$IRequestResolverProvider"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
-import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/requestsystem/request/$IRequest"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$IRequest, $IRequest$Type} from "packages/com/minecolonies/api/colony/requestsystem/request/$IRequest"
 import {$ITickable, $ITickable$Type} from "packages/com/minecolonies/api/tileentities/$ITickable"
 import {$RequestState, $RequestState$Type} from "packages/com/minecolonies/api/colony/requestsystem/request/$RequestState"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
@@ -16374,25 +16378,25 @@ export interface $IRequestManager extends $INBTSerializable<($CompoundTag)>, $IT
  "log"(arg0: string): void
  "reset"(): void
  "isDirty"(): boolean
- "getRequestForToken"(arg0: $IToken$Type<(any)>): $IRequest<(any)>
- "getDataStoreManager"(): $IDataStoreManager
- "createRequest"<T extends $IRequestable>(arg0: $IRequester$Type, arg1: T): $IToken<(any)>
- "getFactoryController"(): $IFactoryController
+ "deserialize"(arg0: $IFactoryController$Type, arg1: $FriendlyByteBuf$Type): void
+ "serialize"(arg0: $IFactoryController$Type, arg1: $FriendlyByteBuf$Type): void
  "getPlayerResolver"(): $IPlayerRequestResolver
  "getRetryingRequestResolver"(): $IRetryingRequestResolver
  "assignRequest"(arg0: $IToken$Type<(any)>): void
  "reassignRequest"(arg0: $IToken$Type<(any)>, arg1: $Collection$Type<($IToken$Type<(any)>)>): $IToken<(any)>
  "overruleRequest"(arg0: $IToken$Type<(any)>, arg1: $ItemStack$Type): void
+ "getFactoryController"(): $IFactoryController
  "onColonyUpdate"(arg0: $Predicate$Type<($IRequest$Type<(any)>)>): void
+ "createRequest"<T extends $IRequestable>(arg0: $IRequester$Type, arg1: T): $IToken<(any)>
+ "getRequestForToken"(arg0: $IToken$Type<(any)>): $IRequest<(any)>
  "getResolverForRequest"(arg0: $IToken$Type<(any)>): $IRequestResolver<(any)>
  "updateRequestState"(arg0: $IToken$Type<(any)>, arg1: $RequestState$Type): void
- "serialize"(arg0: $IFactoryController$Type, arg1: $FriendlyByteBuf$Type): void
- "deserialize"(arg0: $IFactoryController$Type, arg1: $FriendlyByteBuf$Type): void
+ "getDataStoreManager"(): $IDataStoreManager
  "onRequesterRemovedFromColony"(arg0: $IRequester$Type): void
  "onProviderRemovedFromColony"(arg0: $IRequestResolverProvider$Type): void
+ "createAndAssignRequest"<T extends $IRequestable>(arg0: $IRequester$Type, arg1: T): $IToken<(any)>
  "getResolverForToken"(arg0: $IToken$Type<(any)>): $IRequestResolver<(any)>
  "onProviderAddedToColony"(arg0: $IRequestResolverProvider$Type): void
- "createAndAssignRequest"<T extends $IRequestable>(arg0: $IRequester$Type, arg1: T): $IToken<(any)>
  "markDirty"(): void
  "setDirty"(arg0: boolean): void
  "getColony"(): $IColony
@@ -16452,9 +16456,9 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
+public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "onUseTick"(arg0: $Level$Type, arg1: $LivingEntity$Type, arg2: $ItemStack$Type, arg3: integer): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getUseDuration"(arg0: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -16610,8 +16614,8 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 export interface $IQuestTemplate {
 
  "getName"(): $Component
- "getObjective"(arg0: integer): $IQuestObjectiveTemplate
  "getParents"(): $List<($ResourceLocation)>
+ "getObjective"(arg0: integer): $IQuestObjectiveTemplate
  "attemptStart"(arg0: $IColony$Type): $IQuestInstance
  "getQuestTimeout"(): integer
  "getMaxOccurrence"(): integer
@@ -16737,8 +16741,8 @@ import {$CitizenNameFile, $CitizenNameFile$Type} from "packages/com/minecolonies
 import {$Class, $Class$Type} from "packages/java/lang/$Class"
 import {$Random, $Random$Type} from "packages/java/util/$Random"
 import {$IQuestInstance, $IQuestInstance$Type} from "packages/com/minecolonies/api/quests/$IQuestInstance"
-import {$ICitizenData, $ICitizenData$Type} from "packages/com/minecolonies/api/colony/$ICitizenData"
 import {$ICitizenDiseaseHandler, $ICitizenDiseaseHandler$Type} from "packages/com/minecolonies/api/entity/citizen/citizenhandlers/$ICitizenDiseaseHandler"
+import {$ICitizenData, $ICitizenData$Type} from "packages/com/minecolonies/api/colony/$ICitizenData"
 import {$IToken, $IToken$Type} from "packages/com/minecolonies/api/colony/requestsystem/token/$IToken"
 import {$VisibleCitizenStatus, $VisibleCitizenStatus$Type} from "packages/com/minecolonies/api/entity/citizen/$VisibleCitizenStatus"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
@@ -16753,16 +16757,25 @@ export interface $IVisitorData extends $ICitizenData {
  "getSittingPosition"(): $BlockPos
  "setRecruitCosts"(arg0: $ItemStack$Type): void
  "setSittingPosition"(arg0: $BlockPos$Type): void
- "generateName"(arg0: $Random$Type, arg1: string, arg2: string, arg3: $CitizenNameFile$Type): void
- "getRandom"(): $Random
  "getChildren"(): $List<(integer)>
+ "getRandom"(): $Random
+ "generateName"(arg0: $Random$Type, arg1: string, arg2: string, arg3: $CitizenNameFile$Type): void
  "getEntity"(): $Optional<($AbstractEntityCitizen)>
- "setVisibleStatus"(arg0: $VisibleCitizenStatus$Type): void
- "getWorkBuilding"(): $IBuilding
- "getCitizenHappinessHandler"(): $ICitizenHappinessHandler
- "getHomeBuilding"(): $IBuilding
+ "shouldRestart"(): boolean
+ "setParents"(arg0: string, arg1: string): void
+ "getParents"(): $Tuple<(string), (string)>
+ "getStatus"(): $VisibleCitizenStatus
+ "getCustomTexture"(): $UUID
+ "getLastPosition"(): $BlockPos
+ "setInteractedRecently"(arg0: $UUID$Type): void
+ "getCitizenDiseaseHandler"(): $ICitizenDiseaseHandler
+ "getCitizenSkillHandler"(): $ICitizenSkillHandler
+ "getCitizenFoodHandler"(): $ICitizenFoodHandler
+ "setLastPosition"(arg0: $BlockPos$Type): void
+ "isIdleAtJob"(): boolean
  "onRemoveBuilding"(arg0: $IBuilding$Type): void
  "setHomeBuilding"(arg0: $IBuilding$Type): void
+ "setSaturation"(arg0: double): void
  "getCitizenMournHandler"(): $ICitizenMournHandler
  "scheduleRestart"(arg0: $ServerPlayer$Type): void
  "restartDone"(): void
@@ -16772,6 +16785,7 @@ export interface $IVisitorData extends $ICitizenData {
  "applyResearchEffects"(): void
  "setNextRespawnPosition"(arg0: $BlockPos$Type): void
  "needsBetterFood"(): boolean
+ "getSiblings"(): $List<(integer)>
  "addSiblings"(...arg0: (integer)[]): void
  "addChildren"(...arg0: (integer)[]): void
  "isRelatedTo"(arg0: $ICitizenData$Type): boolean
@@ -16786,25 +16800,18 @@ export interface $IVisitorData extends $ICitizenData {
  "hasQuestAssignment"(): boolean
  "getHomePosition"(): $BlockPos
  "getDiseaseModifier"(): double
- "isIdleAtJob"(): boolean
- "setLastPosition"(arg0: $BlockPos$Type): void
- "setInteractedRecently"(arg0: $UUID$Type): void
- "getCitizenDiseaseHandler"(): $ICitizenDiseaseHandler
- "getCitizenSkillHandler"(): $ICitizenSkillHandler
- "getLastPosition"(): $BlockPos
- "setSaturation"(arg0: double): void
- "getSiblings"(): $List<(integer)>
- "getCitizenFoodHandler"(): $ICitizenFoodHandler
- "getCustomTexture"(): $UUID
- "getStatus"(): $VisibleCitizenStatus
- "getParents"(): $Tuple<(string), (string)>
- "setParents"(arg0: string, arg1: string): void
- "shouldRestart"(): boolean
+ "setVisibleStatus"(arg0: $VisibleCitizenStatus$Type): void
+ "getWorkBuilding"(): $IBuilding
+ "getCitizenHappinessHandler"(): $ICitizenHappinessHandler
+ "getHomeBuilding"(): $IBuilding
  "onDeath"(arg0: integer): void
- "getJob"<J extends $IJob<(any)>>(arg0: $Class$Type<(J)>): J
  "getJob"(): $IJob<(any)>
- "getPartner"(): $ICitizenData
+ "getJob"<J extends $IJob<(any)>>(arg0: $Class$Type<(J)>): J
  "isWorking"(): boolean
+ "getPartner"(): $ICitizenData
+ "setIsChild"(arg0: boolean): void
+ "isAsleep"(): boolean
+ "setJob"(arg0: $IJob$Type<(any)>): void
  "getBedPos"(): $BlockPos
  "setAsleep"(arg0: boolean): void
  "setBedPos"(arg0: $BlockPos$Type): void
@@ -16813,34 +16820,31 @@ export interface $IVisitorData extends $ICitizenData {
  "onGoSleep"(): void
  "setPartner"(arg0: integer): void
  "setWorking"(arg0: boolean): void
- "setIsChild"(arg0: boolean): void
- "isAsleep"(): boolean
- "setJob"(arg0: $IJob$Type<(any)>): void
  "update"(arg0: integer): void
  "setName"(arg0: string): void
  "isDirty"(): boolean
- "getTextureSuffix"(): string
- "initEntityValues"(): void
- "decreaseSaturation"(arg0: double): void
+ "createRequest"<R extends $IRequestable>(arg0: R): $IToken<(any)>
+ "getTextureId"(): integer
  "initForNewCivilian"(): void
  "setGenderAndGenerateName"(arg0: boolean): void
  "updateEntityIfNecessary"(): void
  "serializeViewNetworkData"(arg0: $FriendlyByteBuf$Type): void
  "increaseSaturation"(arg0: double): void
  "createRequestAsync"<R extends $IRequestable>(arg0: R): $IToken<(any)>
- "getTextureId"(): integer
- "createRequest"<R extends $IRequestable>(arg0: R): $IToken<(any)>
  "onRequestCancelled"(arg0: $IToken$Type<(any)>): void
  "isRequestAsync"(arg0: $IToken$Type<(any)>): boolean
  "onResponseTriggered"(arg0: $Component$Type, arg1: integer, arg2: $Player$Type): void
  "triggerInteraction"(arg0: $IInteractionResponseHandler$Type): void
  "getVoiceProfile"(): integer
  "setVoiceProfile"(arg0: integer): void
- "getUUID"(): $UUID
+ "getTextureSuffix"(): string
+ "initEntityValues"(): void
+ "decreaseSaturation"(arg0: double): void
  "markDirty"(arg0: integer): void
+ "getUUID"(): $UUID
  "clearDirty"(): void
- "setEntity"(arg0: $AbstractCivilianEntity$Type): void
  "setGender"(arg0: boolean): void
+ "setEntity"(arg0: $AbstractCivilianEntity$Type): void
  "setSuffix"(arg0: string): void
  "assignQuest"(arg0: $IQuestInstance$Type): void
  "getName"(): string
@@ -16849,13 +16853,13 @@ export interface $IVisitorData extends $ICitizenData {
  "isParticipantOfQuest"(arg0: $ResourceLocation$Type): boolean
  "openDialogue"(arg0: $IQuestInstance$Type, arg1: integer): void
  "getId"(): integer
- "getSaturation"(): double
  "getInventory"(): $InventoryCitizen
  "isChild"(): boolean
+ "getSaturation"(): double
  "isPaused"(): boolean
- "setPaused"(arg0: boolean): void
- "isFemale"(): boolean
  "getColony"(): $IColony
+ "isFemale"(): boolean
+ "setPaused"(arg0: boolean): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -16884,8 +16888,8 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
-import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$AbstractItemMinecolonies, $AbstractItemMinecolonies$Type} from "packages/com/minecolonies/core/items/$AbstractItemMinecolonies"
@@ -16908,8 +16912,8 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type)
 
-public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17013,13 +17017,13 @@ import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from 
 export interface $IBuildingModuleView {
 
  "getDesc"(): string
- "setProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): $IBuildingModuleView
- "getProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(): $BuildingEntry$ModuleProducer<(M), (V)>
- "getBuildingView"(): $IBuildingView
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getIcon"(): string
  "setBuildingView"(arg0: $IBuildingView$Type): $IBuildingModuleView
  "isPageVisible"(): boolean
- "getIcon"(): string
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getBuildingView"(): $IBuildingView
+ "setProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): $IBuildingModuleView
+ "getProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(): $BuildingEntry$ModuleProducer<(M), (V)>
  "getWindow"(): $BOWindow
  "getColony"(): $IColonyView
 }
@@ -17051,17 +17055,17 @@ import {$IGlobalResearch, $IGlobalResearch$Type} from "packages/com/minecolonies
 
 export interface $ILocalResearchTree {
 
+ "readFromNBT"(arg0: $CompoundTag$Type, arg1: $IResearchEffectManager$Type): void
  "getResearch"(arg0: $ResourceLocation$Type, arg1: $ResourceLocation$Type): $ILocalResearch
+ "hasCompletedResearch"(arg0: $ResourceLocation$Type): boolean
+ "isComplete"(arg0: $ResourceLocation$Type): boolean
+ "addResearch"(arg0: $ResourceLocation$Type, arg1: $ILocalResearch$Type): void
  "finishResearch"(arg0: $ResourceLocation$Type): void
  "getResearchInProgress"(): $List<($ILocalResearch)>
- "addResearch"(arg0: $ResourceLocation$Type, arg1: $ILocalResearch$Type): void
- "hasCompletedResearch"(arg0: $ResourceLocation$Type): boolean
- "readFromNBT"(arg0: $CompoundTag$Type, arg1: $IResearchEffectManager$Type): void
- "isComplete"(arg0: $ResourceLocation$Type): boolean
  "getCompletedList"(): $List<($ResourceLocation)>
- "branchFinishedHighestLevel"(arg0: $ResourceLocation$Type): boolean
  "attemptResetResearch"(arg0: $Player$Type, arg1: $IColony$Type, arg2: $ILocalResearch$Type): void
  "attemptBeginResearch"(arg0: $Player$Type, arg1: $IColony$Type, arg2: $IGlobalResearch$Type): void
+ "branchFinishedHighestLevel"(arg0: $ResourceLocation$Type): boolean
  "writeToNBT"(arg0: $CompoundTag$Type): void
 }
 
@@ -17097,38 +17101,38 @@ constructor()
 
 public "getPath"(): $Path
 public "isDone"(): boolean
-public "setPathReachesDestination"(arg0: boolean): void
-public "isInProgress"(): boolean
-public "isComputing"(): boolean
+public "isCancelled"(): boolean
+public "cancel"(): void
+public "getStatus"(): $PathFindingStatus
+public "hasPath"(): boolean
 public "getPathLength"(): integer
 public "failedToReachDestination"(): boolean
 public "getDebugWatchers"(): $List<($ServerPlayer)>
-public "getStatus"(): $PathFindingStatus
-public "cancel"(): void
-public "isCancelled"(): boolean
+public "isInProgress"(): boolean
+public "isComputing"(): boolean
+public "setPathReachesDestination"(arg0: boolean): void
 public "isPathReachingDestination"(): boolean
 public "addTrackingPlayer"(arg0: $UUID$Type): void
-public "processCalculationResults"(): void
 public "isCalculatingPath"(): boolean
-public "hasPath"(): boolean
+public "processCalculationResults"(): void
 public "getJob"(): T
-public "setStatus"(arg0: $PathFindingStatus$Type): void
 public "setJob"(arg0: T): void
+public "setStatus"(arg0: $PathFindingStatus$Type): void
 public "startJob"(arg0: $ExecutorService$Type): void
 get "path"(): $Path
 get "done"(): boolean
-set "pathReachesDestination"(value: boolean)
-get "inProgress"(): boolean
-get "computing"(): boolean
+get "cancelled"(): boolean
+get "status"(): $PathFindingStatus
 get "pathLength"(): integer
 get "debugWatchers"(): $List<($ServerPlayer)>
-get "status"(): $PathFindingStatus
-get "cancelled"(): boolean
+get "inProgress"(): boolean
+get "computing"(): boolean
+set "pathReachesDestination"(value: boolean)
 get "pathReachingDestination"(): boolean
 get "calculatingPath"(): boolean
 get "job"(): T
-set "status"(value: $PathFindingStatus$Type)
 set "job"(value: T)
+set "status"(value: $PathFindingStatus$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -17211,8 +17215,8 @@ constructor(arg0: $BlockBehaviour$Properties$Type)
 public static "changeStateOverFullness"(arg0: $AbstractTileEntityBarrel$Type, arg1: $BlockState$Type): $BlockState
 public static "createTickerHelper"<E extends $BlockEntity, A extends $BlockEntity>(arg0: $BlockEntityType$Type<(A)>, arg1: $BlockEntityType$Type<(E)>, arg2: $BlockEntityTicker$Type<(any)>): $BlockEntityTicker<(A)>
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
-public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -17247,17 +17251,8 @@ import {$IBuilding, $IBuilding$Type} from "packages/com/minecolonies/api/colony/
 
 export interface $IJob<AI extends $ITickingStateAI> extends $INBTSerializable<($CompoundTag)> {
 
+ "getJobRegistryEntry"(): $JobEntry
  "triggerActivityChangeAction"(arg0: boolean): void
- "getNameTagDescription"(): string
- "initEntityValues"(arg0: $AbstractEntityCitizen$Type): void
- "getWorkBuilding"(): $IBuilding
- "canAIBeInterrupted"(): boolean
- "triggerDeathAchievement"(arg0: $DamageSource$Type, arg1: $AbstractEntityCitizen$Type): void
- "getDiseaseModifier"(): double
- "markRequestSync"(arg0: $IToken$Type<(any)>): void
- "getWorkerAI"(): AI
- "serializeToView"(arg0: $FriendlyByteBuf$Type): void
- "processOfflineTime"(arg0: long): void
  "hasCheckedForFoodToday"(): boolean
  "setCheckedForFood"(): void
  "onStackPickUp"(arg0: $ItemStack$Type): boolean
@@ -17265,29 +17260,38 @@ export interface $IJob<AI extends $ITickingStateAI> extends $INBTSerializable<($
  "pickupSuccess"(arg0: $ItemStack$Type): boolean
  "getInactivityLimit"(): integer
  "getIdleSeverity"(arg0: boolean): integer
+ "setRegistryEntry"(arg0: $JobEntry$Type): void
  "getBuildingPos"(): $BlockPos
+ "getWorkerAI"(): AI
+ "markRequestSync"(arg0: $IToken$Type<(any)>): void
+ "serializeToView"(arg0: $FriendlyByteBuf$Type): void
+ "processOfflineTime"(arg0: long): void
  "getActionsDone"(): integer
  "getAsyncRequests"(): $Set<($IToken<(any)>)>
  "getWorkModule"(): $IAssignsJob
  "clearActionsDone"(): void
- "incrementActionsDone"(): void
  "incrementActionsDone"(arg0: integer): void
- "setRegistryEntry"(arg0: $JobEntry$Type): void
- "getJobRegistryEntry"(): $JobEntry
+ "incrementActionsDone"(): void
+ "getDiseaseModifier"(): double
+ "getNameTagDescription"(): string
+ "initEntityValues"(arg0: $AbstractEntityCitizen$Type): void
  "ignoresDamage"(arg0: $DamageSource$Type): boolean
+ "getWorkBuilding"(): $IBuilding
+ "canAIBeInterrupted"(): boolean
+ "triggerDeathAchievement"(arg0: $DamageSource$Type, arg1: $AbstractEntityCitizen$Type): void
  "getModel"(): $ResourceLocation
  "onRemoval"(): void
  "isGuard"(): boolean
- "setNameTag"(arg0: string): void
- "getCitizen"(): $ICitizenData
- "resetAI"(): void
  "getColony"(): $IColony
- "onWakeUp"(): void
  "createAI"(): void
  "generateAI"(): AI
  "onLevelUp"(): void
  "isIdling"(): boolean
  "assignTo"(arg0: $IAssignsJob$Type): boolean
+ "getCitizen"(): $ICitizenData
+ "resetAI"(): void
+ "setNameTag"(arg0: string): void
+ "onWakeUp"(): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -17317,29 +17321,29 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $ISchematicProvider extends $INBTSerializable<($CompoundTag)> {
 
- "getPosition"(): $BlockPos
+ "getChildren"(): $Set<($BlockPos)>
+ "getID"(): $BlockPos
  "getParent"(): $BlockPos
  "setParent"(arg0: $BlockPos$Type): void
  "isMirrored"(): boolean
- "getID"(): $BlockPos
+ "getPosition"(): $BlockPos
  "isDirty"(): boolean
- "getChildren"(): $Set<($BlockPos)>
+ "getSchematicName"(): string
+ "getStructurePack"(): string
+ "setBlueprintPath"(arg0: string): void
+ "getBlueprintPath"(): string
+ "getRotation"(): integer
  "setStructurePack"(arg0: string): void
  "setBuildingLevel"(arg0: integer): void
  "setIsMirrored"(arg0: boolean): void
- "getBuildingLevel"(): integer
  "getMaxBuildingLevel"(): integer
  "isDeconstructed"(): boolean
  "setDeconstructed"(): void
  "onUpgradeSchematicTo"(arg0: string, arg1: string, arg2: $IBlueprintDataProviderBE$Type): void
- "getRotation"(): integer
- "setBlueprintPath"(arg0: string): void
- "getBlueprintPath"(): string
- "getStructurePack"(): string
- "getSchematicName"(): string
+ "getBuildingLevel"(): integer
  "markDirty"(): void
- "hasParent"(): boolean
  "clearDirty"(): void
+ "hasParent"(): boolean
  "setCorners"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getCorners"(): $Tuple<($BlockPos), ($BlockPos)>
  "serializeNBT"(): $CompoundTag
@@ -17362,8 +17366,8 @@ declare global {
 export type $ISchematicProvider_ = $ISchematicProvider$Type;
 }}
 declare module "packages/com/minecolonies/core/tileentities/$TileEntityRack" {
-import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$LazyOptional, $LazyOptional$Type} from "packages/net/minecraftforge/common/util/$LazyOptional"
+import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$Connection, $Connection$Type} from "packages/net/minecraft/network/$Connection"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -17393,50 +17397,50 @@ export class $TileEntityRack extends $AbstractTileEntityRack implements $IMateri
  "remove": boolean
  "blockState": $BlockState
 
+constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: integer)
-constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "isEmpty"(): boolean
 public "getCount"(arg0: $ItemStack$Type, arg1: boolean, arg2: boolean): integer
 public "getCount"(arg0: $ItemStorage$Type): integer
 public "getItemCount"(arg0: $Predicate$Type<($ItemStack$Type)>): integer
+public "isEmpty"(): boolean
+public "createInventory"(arg0: integer): $ItemStackHandler
+public "updateTextureDataWith"(arg0: $MaterialTextureData$Type): void
+public "getTextureData"(): $MaterialTextureData
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
+public "onDataPacket"(arg0: $Connection$Type, arg1: $ClientboundBlockEntityDataPacket$Type): void
+public "handleUpdateTag"(arg0: $CompoundTag$Type): void
+public "getModelData"(): $ModelData
 public "getFreeSlots"(): integer
-public "getOtherChest"(): $AbstractTileEntityRack
 public "setInWarehouse"(arg0: boolean): void
 public "hasItemStorage"(arg0: $ItemStorage$Type, arg1: integer): boolean
 public "hasSimilarStack"(arg0: $ItemStack$Type): boolean
 public "upgradeRackSize"(): void
 public "getUpgradeSize"(): integer
 public "updateItemStorage"(): void
+public "getOtherChest"(): $AbstractTileEntityRack
 public "getAllContent"(): $Map<($ItemStorage), (integer)>
-public "hasItemStack"(arg0: $Predicate$Type<($ItemStack$Type)>): boolean
 public "hasItemStack"(arg0: $ItemStack$Type, arg1: integer, arg2: boolean): boolean
-public "onDataPacket"(arg0: $Connection$Type, arg1: $ClientboundBlockEntityDataPacket$Type): void
-public "handleUpdateTag"(arg0: $CompoundTag$Type): void
-public "getModelData"(): $ModelData
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "updateTextureDataWith"(arg0: $MaterialTextureData$Type): void
-public "getTextureData"(): $MaterialTextureData
-public "createInventory"(arg0: integer): $ItemStackHandler
-public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
-public "getDisplayName"(): $Component
+public "hasItemStack"(arg0: $Predicate$Type<($ItemStack$Type)>): boolean
 public "setChanged"(): void
+public "getDisplayName"(): $Component
+public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
+public "load"(arg0: $CompoundTag$Type): void
 public "saveAdditional"(arg0: $CompoundTag$Type): void
 public "getUpdateTag"(): $CompoundTag
 public "setRemoved"(): void
-public "load"(arg0: $CompoundTag$Type): void
-public "createMenu"(arg0: integer, arg1: $Inventory$Type, arg2: $Player$Type): $AbstractContainerMenu
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "empty"(): boolean
-get "freeSlots"(): integer
-get "otherChest"(): $AbstractTileEntityRack
-set "inWarehouse"(value: boolean)
-get "upgradeSize"(): integer
-get "allContent"(): $Map<($ItemStorage), (integer)>
-get "modelData"(): $ModelData
 get "textureData"(): $MaterialTextureData
 get "updatePacket"(): $ClientboundBlockEntityDataPacket
+get "modelData"(): $ModelData
+get "freeSlots"(): integer
+set "inWarehouse"(value: boolean)
+get "upgradeSize"(): integer
+get "otherChest"(): $AbstractTileEntityRack
+get "allContent"(): $Map<($ItemStorage), (integer)>
 get "displayName"(): $Component
 get "updateTag"(): $CompoundTag
 }
@@ -17556,8 +17560,8 @@ export interface $IPathJob extends $Callable<($Path)> {
 
  "getResult"(): $PathResult<(any)>
  "getEntity"(): $Mob
- "getActualWorld"(): $Level
  "getPathingOptions"(): $PathingOptions
+ "getActualWorld"(): $Level
  "getStart"(): $BlockPos
  "call"(): $Path
 }
@@ -17664,12 +17668,12 @@ export class $ColonyPlayer {
 
 constructor(arg0: $UUID$Type, arg1: string, arg2: $Rank$Type)
 
-public "getName"(): string
 public "getID"(): $UUID
+public "getName"(): string
 public "getRank"(): $Rank
 public "setRank"(arg0: $Rank$Type): void
-get "name"(): string
 get "iD"(): $UUID
+get "name"(): string
 get "rank"(): $Rank
 set "rank"(value: $Rank$Type)
 }
@@ -17893,29 +17897,29 @@ constructor()
 
 public "canWalkUnderWater"(): boolean
 public "canUseRails"(): boolean
-public "canPassDanger"(): boolean
-public "canEnterDoors"(): boolean
 public "withDropCost"(arg0: double): $PathingOptions
 public "withJumpCost"(arg0: double): $PathingOptions
 public "setPassDanger"(arg0: boolean): void
-public "setEnterDoors"(arg0: boolean): void
-public "setCanOpenDoors"(arg0: boolean): void
-public "setCanUseRails"(arg0: boolean): void
-public "setCanClimbAdvanced"(arg0: boolean): void
+public "withToggleCost"(arg0: double): $PathingOptions
+public "withStartSwimCost"(arg0: double): $PathingOptions
+public "withSwimCost"(arg0: double): $PathingOptions
 public "withDivingCost"(arg0: double): $PathingOptions
 public "withCanEnterDoors"(arg0: boolean): $PathingOptions
 public "withWalkUnderWater"(arg0: boolean): $PathingOptions
 public "withNonLadderClimbableCost"(arg0: double): $PathingOptions
-public "withStartSwimCost"(arg0: double): $PathingOptions
-public "withSwimCost"(arg0: double): $PathingOptions
-public "withToggleCost"(arg0: double): $PathingOptions
-public "canOpenDoors"(): boolean
-public "withOnPathCost"(arg0: double): $PathingOptions
-public "withOnRailCost"(arg0: double): $PathingOptions
-public "withRailExitCost"(arg0: double): $PathingOptions
-public "withCanSwim"(arg0: boolean): $PathingOptions
+public "setCanUseRails"(arg0: boolean): void
+public "setCanClimbAdvanced"(arg0: boolean): void
+public "setEnterDoors"(arg0: boolean): void
+public "setCanOpenDoors"(arg0: boolean): void
+public "canPassDanger"(): boolean
+public "canEnterDoors"(): boolean
 public "canClimbAdvanced"(): boolean
 public "setWalkUnderWater"(arg0: boolean): void
+public "withRailExitCost"(arg0: double): $PathingOptions
+public "withCanSwim"(arg0: boolean): $PathingOptions
+public "canOpenDoors"(): boolean
+public "withOnRailCost"(arg0: double): $PathingOptions
+public "withOnPathCost"(arg0: double): $PathingOptions
 public "canSwim"(): boolean
 public "importFrom"(arg0: $PathingOptions$Type): void
 public "setCanSwim"(arg0: boolean): void
@@ -17978,43 +17982,44 @@ import {$Set, $Set$Type} from "packages/java/util/$Set"
 import {$IEntityManager, $IEntityManager$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IEntityManager"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$Map, $Map$Type} from "packages/java/util/$Map"
 import {$AbstractCivilianEntity, $AbstractCivilianEntity$Type} from "packages/com/minecolonies/api/entity/citizen/$AbstractCivilianEntity"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ICitizenManager extends $IEntityManager {
 
  "createAndRegisterCivilianData"(): $ICitizenData
- "getCitizens"(): $List<($ICitizenData)>
- "injectModifier"(arg0: $IHappinessModifier$Type): void
- "resurrectCivilianData"(arg0: $CompoundTag$Type, arg1: boolean, arg2: $Level$Type, arg3: $BlockPos$Type): $ICitizenData
- "updateCitizenMourn"(arg0: $ICitizenData$Type, arg1: boolean): void
+ "getCivilian"(arg0: integer): $ICitizenData
+ "getCurrentCitizenCount"(): integer
  "getPotentialMaxCitizens"(): integer
  "calculateMaxCitizens"(): void
  "getMaxCitizens"(): integer
- "getCurrentCitizenCount"(): integer
- "checkCitizensForHappiness"(): void
- "tickCitizenData"(arg0: integer): boolean
- "updateCitizenSleep"(arg0: boolean): void
- "afterBuildingLoad"(): void
- "spawnOrCreateCitizen"(arg0: $ICitizenData$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $ICitizenData
- "spawnOrCreateCitizen"(arg0: $ICitizenData$Type, arg1: $Level$Type): $ICitizenData
- "spawnOrCreateCitizen"(): void
- "setMaxCitizens"(arg0: integer): void
- "getRandomCitizen"(): $ICitizenData
- "getJoblessCitizen"(): $ICitizenData
+ "resurrectCivilianData"(arg0: $CompoundTag$Type, arg1: boolean, arg2: $Level$Type, arg3: $BlockPos$Type): $ICitizenData
+ "updateCitizenMourn"(arg0: $ICitizenData$Type, arg1: boolean): void
+ "getCitizens"(): $List<($ICitizenData)>
+ "injectModifier"(arg0: $IHappinessModifier$Type): void
  "onCitizenSleep"(): void
- "setPotentialMaxCitizens"(arg0: integer): void
+ "getJoblessCitizen"(): $ICitizenData
+ "afterBuildingLoad"(): void
+ "getRandomCitizen"(): $ICitizenData
+ "updateCitizenSleep"(arg0: boolean): void
+ "tickCitizenData"(arg0: integer): boolean
+ "setMaxCitizens"(arg0: integer): void
+ "spawnOrCreateCitizen"(arg0: $ICitizenData$Type, arg1: $Level$Type, arg2: $BlockPos$Type): $ICitizenData
+ "spawnOrCreateCitizen"(): void
+ "spawnOrCreateCitizen"(arg0: $ICitizenData$Type, arg1: $Level$Type): $ICitizenData
  "maxCitizensFromResearch"(): double
+ "setPotentialMaxCitizens"(arg0: integer): void
+ "checkCitizensForHappiness"(): void
  "onWakeUp"(): void
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
- "removeCivilian"(arg0: $ICivilianData$Type): void
- "onColonyTick"(arg0: $IColony$Type): void
- "spawnOrCreateCivilian"<T extends $ICivilianData>(arg0: T, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): T
  "sendPackets"(arg0: $Set$Type<($ServerPlayer$Type)>, arg1: $Set$Type<($ServerPlayer$Type)>): void
- "getCivilianDataMap"(): $Map<(integer), ($ICivilianData)>
+ "spawnOrCreateCivilian"<T extends $ICivilianData>(arg0: T, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: boolean): T
+ "onColonyTick"(arg0: $IColony$Type): void
+ "removeCivilian"(arg0: $ICivilianData$Type): void
  "registerCivilian"(arg0: $AbstractCivilianEntity$Type): void
  "unregisterCivilian"(arg0: $AbstractCivilianEntity$Type): void
+ "getCivilianDataMap"(): $Map<(integer), ($ICivilianData)>
  "markDirty"(): void
  "clearDirty"(): void
 }
@@ -18160,6 +18165,7 @@ readonly "rotA": float
  "lastPos": $BlockPos
  "autoSpinAttackTicks": integer
  "brain": $Brain<(any)>
+ "self": $LivingEntity
  "sodiumdynamiclights$luminance": integer
  "supp$slimedTicks": integer
 static readonly "ID_TAG": string
@@ -18239,24 +18245,24 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
 
 
 public "toString"(): string
+public "startRiding"(arg0: $Entity$Type, arg1: boolean): boolean
 public "setCivilianData"(arg0: $ICivilianData$Type): void
 public "getCivilianData"(): $ICivilianData
 public "getCivilianID"(): integer
 public "setCitizenId"(arg0: integer): void
 public "onPlayerCollide"(arg0: $Player$Type): void
-public "startRiding"(arg0: $Entity$Type, arg1: boolean): boolean
 public "push"(arg0: $Entity$Type): void
 public "checkBedExists"(): boolean
 public "markDirty"(arg0: integer): void
-public "queueSound"(arg0: $SoundEvent$Type, arg1: $BlockPos$Type, arg2: integer, arg3: integer): void
 public "queueSound"(arg0: $SoundEvent$Type, arg1: $BlockPos$Type, arg2: integer, arg3: integer, arg4: float, arg5: float): void
-public "sdl$shouldUpdateDynamicLight"(): boolean
-public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
+public "queueSound"(arg0: $SoundEvent$Type, arg1: $BlockPos$Type, arg2: integer, arg3: integer): void
 public "sdl$getDynamicLightX"(): double
 public "sdl$getDynamicLightY"(): double
 public "sdl$getDynamicLightZ"(): double
 public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$shouldUpdateDynamicLight"(): boolean
+public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "getAlpha"(le: $LivingEntity$Type, partialTicks: float): float
 public static "tickEntity"(entity: $LivingEntity$Type): void
@@ -18361,8 +18367,8 @@ declare module "packages/com/minecolonies/api/colony/managers/interfaces/$IRaide
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$IRaiderManager$RaidSpawnResult, $IRaiderManager$RaidSpawnResult$Type} from "packages/com/minecolonies/api/colony/managers/interfaces/$IRaiderManager$RaidSpawnResult"
-import {$ICitizenData, $ICitizenData$Type} from "packages/com/minecolonies/api/colony/$ICitizenData"
 import {$AbstractEntityMinecoloniesRaider, $AbstractEntityMinecoloniesRaider$Type} from "packages/com/minecolonies/api/entity/mobs/$AbstractEntityMinecoloniesRaider"
+import {$ICitizenData, $ICitizenData$Type} from "packages/com/minecolonies/api/colony/$ICitizenData"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$IColonyRaidEvent, $IColonyRaidEvent$Type} from "packages/com/minecolonies/api/colony/colonyEvents/$IColonyRaidEvent"
 
@@ -18370,31 +18376,31 @@ export interface $IRaiderManager {
 
  "write"(arg0: $CompoundTag$Type): void
  "read"(arg0: $CompoundTag$Type): void
- "onLostCitizen"(arg0: $ICitizenData$Type): void
+ "getRandomBuilding"(): $BlockPos
+ "onRaiderDeath"(arg0: $AbstractEntityMinecoloniesRaider$Type): void
+ "setPassThroughRaid"(): void
+ "getLastSpawnPoints"(): $List<($BlockPos)>
+ "willRaidTonight"(): boolean
+ "getNightsSinceLastRaid"(): integer
+ "setSpiesEnabled"(arg0: boolean): void
+ "getRaidDifficultyModifier"(): double
+ "getColonyRaidLevel"(): integer
  "setNightsSinceLastRaid"(arg0: integer): void
  "areSpiesEnabled"(): boolean
  "onRaidEventFinished"(arg0: $IColonyRaidEvent$Type): void
  "onNightFall"(): void
- "getRaidDifficultyModifier"(): double
- "getColonyRaidLevel"(): integer
- "onRaiderDeath"(arg0: $AbstractEntityMinecoloniesRaider$Type): void
- "getNightsSinceLastRaid"(): integer
- "setSpiesEnabled"(arg0: boolean): void
- "willRaidTonight"(): boolean
- "getRandomBuilding"(): $BlockPos
- "setPassThroughRaid"(): void
- "getLastSpawnPoints"(): $List<($BlockPos)>
- "getLostCitizen"(): integer
- "calculateSpawnLocation"(): $BlockPos
- "calculateRaiderAmount"(arg0: integer): integer
+ "onLostCitizen"(arg0: $ICitizenData$Type): void
+ "canHaveRaiderEvents"(): boolean
  "setCanHaveRaiderEvents"(arg0: boolean): void
  "raiderEvent"(arg0: string, arg1: boolean): $IRaiderManager$RaidSpawnResult
  "raiderEvent"(arg0: string, arg1: boolean, arg2: boolean): $IRaiderManager$RaidSpawnResult
  "raiderEvent"(): void
- "setRaidNextNight"(arg0: boolean, arg1: string): void
- "setRaidNextNight"(arg0: boolean): void
  "setRaidNextNight"(arg0: boolean, arg1: string, arg2: boolean): void
- "canHaveRaiderEvents"(): boolean
+ "setRaidNextNight"(arg0: boolean): void
+ "setRaidNextNight"(arg0: boolean, arg1: string): void
+ "calculateSpawnLocation"(): $BlockPos
+ "calculateRaiderAmount"(arg0: integer): integer
+ "getLostCitizen"(): integer
  "isRaided"(): boolean
  "canRaid"(): boolean
 }
@@ -18529,8 +18535,8 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -18602,14 +18608,14 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getRegistryName"(): $ResourceLocation
-public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
-public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
-public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
-public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "wasExploded"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $Explosion$Type): void
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "playerWillDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Player$Type): void
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
+public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "shouldBrowseBuildings"(arg0: $PlayerInteractEvent$RightClickItem$Type): boolean
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
@@ -18985,8 +18991,8 @@ import {$ILeveledBlueprintAnchorBlock, $ILeveledBlueprintAnchorBlock$Type} from 
 import {$SimpleWaterloggedBlock, $SimpleWaterloggedBlock$Type} from "packages/net/minecraft/world/level/block/$SimpleWaterloggedBlock"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
@@ -19059,15 +19065,15 @@ constructor()
 
 public "getRegistryName"(): $ResourceLocation
 public "getLevel"(arg0: $CompoundTag$Type): integer
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -19110,25 +19116,25 @@ export interface $IColonyRaidEvent extends $IColonyEntitySpawnEvent {
  "getNormalRaiderType"(): $EntityType<(any)>
  "getArcherRaiderType"(): $EntityType<(any)>
  "getBossRaiderType"(): $EntityType<(any)>
- "getWayPoints"(): $List<($BlockPos)>
  "isRaidActive"(): boolean
+ "getWayPoints"(): $List<($BlockPos)>
  "addSpawner"(arg0: $BlockPos$Type): void
  "getEntities"(): $List<($Entity)>
- "unregisterEntity"(arg0: $Entity$Type): void
- "registerEntity"(arg0: $Entity$Type): void
  "onEntityDeath"(arg0: $LivingEntity$Type): void
+ "registerEntity"(arg0: $Entity$Type): void
+ "unregisterEntity"(arg0: $Entity$Type): void
  "setSpawnPoint"(arg0: $BlockPos$Type): void
  "getSpawnPos"(): $BlockPos
- "getID"(): integer
  "onStart"(): void
+ "getID"(): integer
+ "getStatus"(): $EventStatus
  "onTileEntityBreak"(arg0: $BlockEntity$Type): void
  "getEventTypeID"(): $ResourceLocation
  "onNightFall"(): void
- "getStatus"(): $EventStatus
  "onFinish"(): void
  "onUpdate"(): void
- "setStatus"(arg0: $EventStatus$Type): void
  "setColony"(arg0: $IColony$Type): void
+ "setStatus"(arg0: $EventStatus$Type): void
  "serializeNBT"(): $CompoundTag
  "deserializeNBT"(arg0: $CompoundTag$Type): void
 }
@@ -19241,8 +19247,8 @@ import {$GameEventListener, $GameEventListener$Type} from "packages/net/minecraf
 export interface $ITickableBlockMinecolonies extends $EntityBlock {
 
  "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
- "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
  "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+ "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 
 (arg0: $BlockEntityType$Type<(A)>, arg1: $BlockEntityType$Type<(E)>, arg2: $BlockEntityTicker$Type<(any)>): $BlockEntityTicker<(A)>
 }

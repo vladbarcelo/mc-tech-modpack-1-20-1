@@ -541,8 +541,8 @@ public "getName"(): string
 public "toString"(): string
 public static "values"(): ($BWGBoatEntity$Type)[]
 public static "valueOf"(name: string): $BWGBoatEntity$Type
-public "getBoatItem"(): $Supplier<($Item)>
 public "getChestBoatItem"(): $Supplier<($Item)>
+public "getBoatItem"(): $Supplier<($Item)>
 public "getSerializedName"(): string
 public static "byName"(name: string): $BWGBoatEntity$Type
 public static "byId"(id: integer): $BWGBoatEntity$Type
@@ -550,8 +550,8 @@ public static "fromEnum"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: 
 public static "fromEnumWithMapping"<E extends ($Enum<(E)>) & ($StringRepresentable)>(arg0: $Supplier$Type<((E)[])>, arg1: $Function$Type<(string), (string)>): $StringRepresentable$EnumCodec<(E)>
 public static "keys"(arg0: ($StringRepresentable$Type)[]): $Keyable
 get "name"(): string
-get "boatItem"(): $Supplier<($Item)>
 get "chestBoatItem"(): $Supplier<($Item)>
+get "boatItem"(): $Supplier<($Item)>
 get "serializedName"(): string
 }
 /**
@@ -744,10 +744,10 @@ constructor(radius: $IntProvider$Type, height: $IntProvider$Type, noiseFrequency
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "blendFunction"(): $SimpleWeightedRandomList<($BlendingFunction)>
-public "noiseFrequency"(): $FloatProvider
-public "checkedBlockPlacement"(): $CheckedBlockPlacement
 public "height"(): $IntProvider
+public "noiseFrequency"(): $FloatProvider
+public "blendFunction"(): $SimpleWeightedRandomList<($BlendingFunction)>
+public "checkedBlockPlacement"(): $CheckedBlockPlacement
 public "radius"(): $IntProvider
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -882,12 +882,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "rotate"(state: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(state: $BlockState$Type, mirror: $Mirror$Type): $BlockState
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
@@ -975,9 +975,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type, fruitBlock: $Supplier$Type<($BWGFruitBlock$Type)>, tickSpawnChance: float)
 
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
@@ -1131,9 +1131,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
+public "isPathfindable"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $PathComputationType$Type): boolean
 public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "isPathfindable"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, type: $PathComputationType$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1859,9 +1859,9 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type, item: $Supplier$Type<($Supplier$Type<($Item$Type)>)>, hurtEntityInside: boolean)
 constructor(item: $Supplier$Type<($Supplier$Type<($Item$Type)>)>, hurtEntityInside: boolean)
 
+public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "entityInside"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): void
-public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1946,8 +1946,8 @@ constructor(properties: $BlockBehaviour$Properties$Type, growableBlock: $Supplie
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
-public static "tryGet"(arg0: $ItemLike$Type): $SuspiciousEffectHolder
 public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
+public static "tryGet"(arg0: $ItemLike$Type): $SuspiciousEffectHolder
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "allEffectHolders"(): $List<($SuspiciousEffectHolder)>
 }
@@ -2102,10 +2102,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(dustColor: integer)
 
+public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, fallDistance: float): void
 public "getOcclusionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type): $VoxelShape
 public "getVisualShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "entityInside"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): void
-public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, fallDistance: float): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2387,9 +2387,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
@@ -2418,8 +2418,8 @@ import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/worl
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$BWGBerryBush, $BWGBerryBush$Type} from "packages/net/potionstudios/biomeswevegone/world/level/block/plants/bush/$BWGBerryBush"
@@ -2474,10 +2474,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
-public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
 public "animateTick"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
+public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -2557,8 +2557,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
+public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3113,10 +3113,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(dirt: $Supplier$Type<($Block$Type)>)
 
-public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "fallOn"(level: $Level$Type, state: $BlockState$Type, pos: $BlockPos$Type, entity: $Entity$Type, fallDistance: float): void
+public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
+public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3353,9 +3353,9 @@ constructor(bandStates: $SimpleWeightedRandomList$Type<($BlockState$Type)>, band
 public "apply"(context: $SurfaceRules$Context$Type): $SurfaceRules$SurfaceRule
 public "codec"(): $KeyDispatchDataCodec<(any)>
 public static "bootstrap"(arg0: $Registry$Type<($Codec$Type<(any)>)>): $Codec<(any)>
-public static "identity"<T>(): $Function<($SurfaceRules$Context), ($SurfaceRules$Context)>
 public "compose"<V>(arg0: $Function$Type<(any), (any)>): $Function<(V), ($SurfaceRules$SurfaceRule)>
 public "andThen"<V>(arg0: $Function$Type<(any), (any)>): $Function<($SurfaceRules$Context), (V)>
+public static "identity"<T>(): $Function<($SurfaceRules$Context), ($SurfaceRules$Context)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3389,10 +3389,10 @@ constructor(checkedBlockPlacement: $CheckedBlockPlacement$Type, height: $IntProv
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "height"(): $IntProvider
 public "checkedBlockPlacement"(): $CheckedBlockPlacement
 public "minRadiusScale"(): $FloatProvider
 public "distanceTestType"(): $SimpleWeightedRandomList<($PillarFeature$DistanceTestType)>
-public "height"(): $IntProvider
 public "radius"(): $IntProvider
 public "noisefreq"(): $FloatProvider
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -3561,15 +3561,15 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type, fruit: $Supplier$Type<($Supplier$Type<($Item$Type)>)>, leaves: string)
 constructor(fruit: $Supplier$Type<($Supplier$Type<($Item$Type)>)>, leaves: string)
 
+public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, hit: $BlockHitResult$Type, projectile: $Projectile$Type): void
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
+public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "use"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
 public "getCollisionShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
-public "isRandomlyTicking"(state: $BlockState$Type): boolean
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
-public "onProjectileHit"(level: $Level$Type, state: $BlockState$Type, hit: $BlockHitResult$Type, projectile: $Projectile$Type): void
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
@@ -3786,12 +3786,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "getFluidState"(state: $BlockState$Type): $FluidState
 public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void
@@ -3828,10 +3828,10 @@ static readonly "CODEC": $Codec<($ConfigurableFreezeTopLayer$Config)>
 
 constructor(ice: $BlockStateProvider$Type, snow: $BlockStateProvider$Type)
 
+public "ice"(): $BlockStateProvider
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "ice"(): $BlockStateProvider
 public "snow"(): $BlockStateProvider
 public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
 get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
@@ -3907,8 +3907,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(dirtBlock: $Supplier$Type<(any)>)
 
-public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "tick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -4428,8 +4428,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type, next: $Supplier$Type<($LeavesBlock$Type)>, chance: float, particleTypes: $Supplier$Type<($SimpleParticleType$Type)>)
 constructor(properties: $BlockBehaviour$Properties$Type, next: $Supplier$Type<($LeavesBlock$Type)>, chance: float)
 
-public "randomTick"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
 public "isRandomlyTicking"(blockState: $BlockState$Type): boolean
+public "randomTick"(state: $BlockState$Type, serverLevel: $ServerLevel$Type, pos: $BlockPos$Type, randomSource: $RandomSource$Type): void
 public "isValidBonemealTarget"(blockGetter: $LevelReader$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, b: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): void
@@ -4768,8 +4768,8 @@ constructor(properties: $BlockBehaviour$Properties$Type, validGround: $TagKey$Ty
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public "getShape"(state: $BlockState$Type, level: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public static "tryGet"(arg0: $ItemLike$Type): $SuspiciousEffectHolder
 public static "getAllEffectHolders"(): $List<($SuspiciousEffectHolder)>
+public static "tryGet"(arg0: $ItemLike$Type): $SuspiciousEffectHolder
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "allEffectHolders"(): $List<($SuspiciousEffectHolder)>
 }
@@ -4972,8 +4972,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -5134,12 +5134,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, neighborBlock: $Block$Type, neighborPos: $BlockPos$Type, movedByPiston: boolean): void
-public "getFluidState"(state: $BlockState$Type): $FluidState
-public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
 public "getCloneItemStack"(level: $BlockGetter$Type, pos: $BlockPos$Type, state: $BlockState$Type): $ItemStack
 public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
+public "neighborChanged"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, neighborBlock: $Block$Type, neighborPos: $BlockPos$Type, movedByPiston: boolean): void
+public "getFluidState"(state: $BlockState$Type): $FluidState
+public "canSurvive"(state: $BlockState$Type, level: $LevelReader$Type, pos: $BlockPos$Type): boolean
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -5218,8 +5218,8 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "isRandomlyTicking"(state: $BlockState$Type): boolean
+public "randomTick"(state: $BlockState$Type, level: $ServerLevel$Type, pos: $BlockPos$Type, random: $RandomSource$Type): void
 public "isValidBonemealTarget"(level: $LevelReader$Type, pos: $BlockPos$Type, state: $BlockState$Type, isClient: boolean): boolean
 public "isBonemealSuccess"(level: $Level$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): boolean
 public "performBonemeal"(level: $ServerLevel$Type, random: $RandomSource$Type, pos: $BlockPos$Type, state: $BlockState$Type): void

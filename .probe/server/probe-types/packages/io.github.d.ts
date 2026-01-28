@@ -103,12 +103,12 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $LivingEntity$Type, arg4: $ItemStack$Type): void
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -273,13 +273,110 @@ export type $WheelBase$Type = ($WheelBase);
 declare global {
 export type $WheelBase_ = $WheelBase$Type;
 }}
+declare module "packages/io/github/mortuusars/salt/block/$SaltCauldronBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$LayeredCauldronBlock, $LayeredCauldronBlock$Type} from "packages/net/minecraft/world/level/block/$LayeredCauldronBlock"
+import {$Biome$Precipitation, $Biome$Precipitation$Type} from "packages/net/minecraft/world/level/biome/$Biome$Precipitation"
+import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+import {$Predicate, $Predicate$Type} from "packages/java/util/function/$Predicate"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$CauldronInteraction, $CauldronInteraction$Type} from "packages/net/minecraft/core/cauldron/$CauldronInteraction"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$HitResult, $HitResult$Type} from "packages/net/minecraft/world/phys/$HitResult"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $SaltCauldronBlock extends $LayeredCauldronBlock {
+static readonly "MIN_FILL_LEVEL": integer
+static readonly "MAX_FILL_LEVEL": integer
+static readonly "LEVEL": $IntegerProperty
+static readonly "RAIN": $Predicate<($Biome$Precipitation)>
+static readonly "SNOW": $Predicate<($Biome$Precipitation)>
+static readonly "FLOOR_LEVEL": integer
+static readonly "SHAPE": $VoxelShape
+readonly "interactions": $Map<($Item), ($CauldronInteraction)>
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $Predicate$Type<($Biome$Precipitation$Type)>, arg1: $Map$Type<($Item$Type), ($CauldronInteraction$Type)>)
+
+public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
+public "destroy"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): void
+public "handlePrecipitation"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Biome$Precipitation$Type): void
+public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
+public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SaltCauldronBlock$Type = ($SaltCauldronBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SaltCauldronBlock_ = $SaltCauldronBlock$Type;
+}}
 declare module "packages/io/github/foundationgames/automobility/item/$AutomobileComponentItem" {
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
 import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
-import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$CreativeModeTab$Output, $CreativeModeTab$Output$Type} from "packages/net/minecraft/world/item/$CreativeModeTab$Output"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
@@ -307,10 +404,10 @@ readonly "canRepair": boolean
 
 constructor(arg0: $Item$Properties$Type, arg1: string, arg2: string, arg3: $SimpleMapContentRegistry$Type<(T)>)
 
-public "provideCreativeOutput"(arg0: $CreativeModeTab$Output$Type): void
-public "setComponent"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type): void
 public "createStack"(arg0: T): $ItemStack
+public "setComponent"(arg0: $ItemStack$Type, arg1: $ResourceLocation$Type): void
 public "getComponent"(arg0: $ItemStack$Type): T
+public "provideCreativeOutput"(arg0: $CreativeModeTab$Output$Type): void
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "isVisible"(arg0: T): boolean
 }
@@ -457,6 +554,89 @@ export type $PartDefinitionAccess$Type = ($PartDefinitionAccess);
 declare global {
 export type $PartDefinitionAccess_ = $PartDefinitionAccess$Type;
 }}
+declare module "packages/io/github/mortuusars/salt/block/$SaltSandBlock" {
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$ISaltBlock, $ISaltBlock$Type} from "packages/io/github/mortuusars/salt/block/$ISaltBlock"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$SandBlock, $SandBlock$Type} from "packages/net/minecraft/world/level/block/$SandBlock"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $SaltSandBlock extends $SandBlock implements $ISaltBlock {
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $BlockState$Type, arg1: integer, arg2: $BlockBehaviour$Properties$Type)
+constructor(arg0: integer, arg1: $BlockBehaviour$Properties$Type)
+
+public "getDissolvedState"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $Fluid$Type): $BlockState
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public static "maybeGrowCluster"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+public "onSaltAnimateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "onSaltRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
+public static "canGrowCluster"(arg0: $BlockPos$Type, arg1: $ServerLevel$Type): boolean
+public static "getFluidDrippingOn"(arg0: $ServerLevel$Type, arg1: $BlockPos$Type): $Fluid
+public static "growCluster"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SaltSandBlock$Type = ($SaltSandBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SaltSandBlock_ = $SaltSandBlock$Type;
+}}
 declare module "packages/io/github/foundationgames/automobility/automobile/$AutomobileFrame$FrameModel" {
 import {$Record, $Record$Type} from "packages/java/lang/$Record"
 import {$WheelBase, $WheelBase$Type} from "packages/io/github/foundationgames/automobility/automobile/$WheelBase"
@@ -469,11 +649,11 @@ constructor(texture: $ResourceLocation$Type, modelId: $ResourceLocation$Type, wh
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
+public "texture"(): $ResourceLocation
 public "enginePosBack"(): float
 public "enginePosUp"(): float
 public "rearAttachmentPos"(): float
 public "frontAttachmentPos"(): float
-public "texture"(): $ResourceLocation
 public "modelId"(): $ResourceLocation
 public "wheelBase"(): $WheelBase
 public "lengthPx"(): float
@@ -503,11 +683,11 @@ export class $AutomobilePrefab extends $Record {
 
 constructor(id: $ResourceLocation$Type, frame: $AutomobileFrame$Type, wheel: $AutomobileWheel$Type, engine: $AutomobileEngine$Type)
 
+public "frame"(): $AutomobileFrame
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "id"(): $ResourceLocation
-public "frame"(): $AutomobileFrame
 public "engine"(): $AutomobileEngine
 public "toStack"(): $ItemStack
 public "wheel"(): $AutomobileWheel
@@ -541,8 +721,8 @@ readonly "type": T
 constructor(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type)
 
 public "tick"(): void
-public "setExtended"(arg0: boolean): void
 public "searchHeight"(): double
+public "setExtended"(arg0: boolean): void
 public "plow"(arg0: $Vec3$Type, arg1: $ServerLevel$Type): void
 public "plowResult"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockState
 public "plowSound"(): $SoundEvent
@@ -636,9 +816,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type, arg1: boolean)
 
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -681,6 +861,88 @@ export type $DeployableRearAttachment$Type = ($DeployableRearAttachment);
 declare global {
 export type $DeployableRearAttachment_ = $DeployableRearAttachment$Type;
 }}
+declare module "packages/io/github/mortuusars/salt/block/$SaltBlock" {
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$ISaltBlock, $ISaltBlock$Type} from "packages/io/github/mortuusars/salt/block/$ISaltBlock"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $SaltBlock extends $Block implements $ISaltBlock {
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: $BlockState$Type, arg1: $BlockBehaviour$Properties$Type)
+constructor(arg0: $BlockBehaviour$Properties$Type)
+
+public "getDissolvedState"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $Fluid$Type): $BlockState
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public static "maybeGrowCluster"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+public "onSaltAnimateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "onSaltRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
+public static "canGrowCluster"(arg0: $BlockPos$Type, arg1: $ServerLevel$Type): boolean
+public static "getFluidDrippingOn"(arg0: $ServerLevel$Type, arg1: $BlockPos$Type): $Fluid
+public static "growCluster"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SaltBlock$Type = ($SaltBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SaltBlock_ = $SaltBlock$Type;
+}}
 declare module "packages/io/github/foundationgames/automobility/automobile/attachment/rear/$RearAttachment" {
 import {$AutomobileComponent, $AutomobileComponent$Type} from "packages/io/github/foundationgames/automobility/automobile/$AutomobileComponent"
 import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
@@ -694,23 +956,23 @@ export class $RearAttachment extends $BaseAttachment<($RearAttachmentType<(any)>
 readonly "type": T
 
 
-public "pos"(): $Vec3
-public "origin"(): $Vec3
 public "tick"(): void
+public "origin"(): $Vec3
+public "pos"(): $Vec3
 public "pull"(arg0: $Vec3$Type): void
 public "getPassengerHeightOffset"(): double
 public "scaledYawVec"(): $Vec3
 public "onTrackedYawUpdated"(arg0: float): void
-public "writeNbt"(arg0: $CompoundTag$Type): void
 public static "fromNbt"(arg0: $CompoundTag$Type): $RearAttachmentType<(any)>
 public "setYaw"(arg0: float): void
-public "yaw"(): float
 public "yaw"(arg0: float): float
+public "yaw"(): float
+public "writeNbt"(arg0: $CompoundTag$Type): void
 public "readNbt"(arg0: $CompoundTag$Type): void
 public "createMenu"(arg0: $ContainerLevelAccess$Type): $MenuProvider
-public "yawVec"(): $Vec3
 public "isRideable"(): boolean
 public "hasMenu"(): boolean
+public "yawVec"(): $Vec3
 get "passengerHeightOffset"(): double
 get "rideable"(): boolean
 }
@@ -783,21 +1045,21 @@ static readonly "STAT_SPEED": $DisplayStat<($AutomobileEngine)>
 
 constructor(id: $ResourceLocation$Type, torque: float, speed: float, sound: $Supplier$Type<($SoundEvent$Type)>, model: $AutomobileEngine$EngineModel$Type)
 
+public "model"(): $AutomobileEngine$EngineModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "isEmpty"(): boolean
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "model"(): $AutomobileEngine$EngineModel
+public "getTranslationKey"(): string
 public "containerId"(): $ResourceLocation
 public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileEngine$Type)>)>): void
-public "getTranslationKey"(): string
-public "speed"(): float
 public "sound"(): $Supplier<($SoundEvent)>
+public "speed"(): float
 public "torque"(): float
-public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileEngine$Type): void
 public "getContainerTextKey"(): string
+public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileEngine$Type): void
 get "empty"(): boolean
 get "translationKey"(): string
 get "containerTextKey"(): string
@@ -834,6 +1096,37 @@ export type $ShovelItemAccess$Type = ($ShovelItemAccess);
  */
 declare global {
 export type $ShovelItemAccess_ = $ShovelItemAccess$Type;
+}}
+declare module "packages/io/github/mortuusars/salt/crafting/recipe/$SaltingRecipe$Serializer" {
+import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
+import {$SaltingRecipe, $SaltingRecipe$Type} from "packages/io/github/mortuusars/salt/crafting/recipe/$SaltingRecipe"
+import {$RecipeSerializer, $RecipeSerializer$Type} from "packages/net/minecraft/world/item/crafting/$RecipeSerializer"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
+import {$ICondition$IContext, $ICondition$IContext$Type} from "packages/net/minecraftforge/common/crafting/conditions/$ICondition$IContext"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Recipe, $Recipe$Type} from "packages/net/minecraft/world/item/crafting/$Recipe"
+
+export class $SaltingRecipe$Serializer implements $RecipeSerializer<($SaltingRecipe)> {
+
+constructor()
+
+public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $SaltingRecipe
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $SaltingRecipe
+public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $SaltingRecipe$Type): void
+public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
+public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $SaltingRecipe
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SaltingRecipe$Serializer$Type = ($SaltingRecipe$Serializer);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SaltingRecipe$Serializer_ = $SaltingRecipe$Serializer$Type;
 }}
 declare module "packages/io/github/foundationgames/automobility/util/$SimpleMapContentRegistry" {
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
@@ -908,6 +1201,84 @@ export type $SlopeBlockItem$Type = ($SlopeBlockItem);
 declare global {
 export type $SlopeBlockItem_ = $SlopeBlockItem$Type;
 }}
+declare module "packages/io/github/mortuusars/salt/crafting/recipe/$SaltingRecipe" {
+import {$RegistryAccess, $RegistryAccess$Type} from "packages/net/minecraft/core/$RegistryAccess"
+import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
+import {$RecipeSerializer, $RecipeSerializer$Type} from "packages/net/minecraft/world/item/crafting/$RecipeSerializer"
+import {$CustomRecipe, $CustomRecipe$Type} from "packages/net/minecraft/world/item/crafting/$CustomRecipe"
+import {$Ingredient, $Ingredient$Type} from "packages/net/minecraft/world/item/crafting/$Ingredient"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$CraftingContainer, $CraftingContainer$Type} from "packages/net/minecraft/world/inventory/$CraftingContainer"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+
+export class $SaltingRecipe extends $CustomRecipe {
+
+constructor(arg0: $ResourceLocation$Type, arg1: string, arg2: $NonNullList$Type<($Ingredient$Type)>)
+
+public "matches"(arg0: $CraftingContainer$Type, arg1: $Level$Type): boolean
+public "getRemainingItems"(arg0: $CraftingContainer$Type): $NonNullList<($ItemStack)>
+public "getFoodIngredient"(): $Ingredient
+public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
+public "getIngredients"(): $NonNullList<($Ingredient)>
+public "getSerializer"(): $RecipeSerializer<(any)>
+public "assemble"(arg0: $CraftingContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+get "foodIngredient"(): $Ingredient
+get "ingredients"(): $NonNullList<($Ingredient)>
+get "serializer"(): $RecipeSerializer<(any)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SaltingRecipe$Type = ($SaltingRecipe);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SaltingRecipe_ = $SaltingRecipe$Type;
+}}
+declare module "packages/io/github/mortuusars/salt/item/$SaltItem" {
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$UseOnContext, $UseOnContext$Type} from "packages/net/minecraft/world/item/context/$UseOnContext"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $SaltItem extends $Item {
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(arg0: $Item$Properties$Type)
+
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SaltItem$Type = ($SaltItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SaltItem_ = $SaltItem$Type;
+}}
 declare module "packages/io/github/foundationgames/automobility/entity/$AutomobileEntity$Displacement" {
 import {$CollisionArea, $CollisionArea$Type} from "packages/io/github/foundationgames/automobility/util/duck/$CollisionArea"
 import {$Set, $Set$Type} from "packages/java/util/$Set"
@@ -922,8 +1293,8 @@ readonly "otherColliders": $Set<($CollisionArea)>
 constructor()
 
 public "tick"(arg0: $Level$Type, arg1: $AutomobileEntity$Type, arg2: $Vec3$Type, arg3: double, arg4: double): void
-public "getVertical"(arg0: float): float
 public "applyWheelbase"(arg0: $WheelBase$Type): void
+public "getVertical"(arg0: float): float
 public "getAngularX"(arg0: float): float
 public "getAngularZ"(arg0: float): float
 public "preTick"(): void
@@ -1119,44 +1490,44 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ResourceLocation$Type, arg2: $S
 
 public "compareTo"(arg0: $AutoMechanicTableRecipe$Type): integer
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
+public "getCategory"(): $ResourceLocation
 public "forMissingIngredients"(arg0: $Container$Type, arg1: $Consumer$Type<($Ingredient$Type)>): void
 public "getResultItem"(): $ItemStack
-public "getCategory"(): $ResourceLocation
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
-public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
 public "assemble"(arg0: $SimpleContainer$Type): $ItemStack
+public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
-get "resultItem"(): $ItemStack
 get "category"(): $ResourceLocation
-get "serializer"(): $RecipeSerializer<(any)>
+get "resultItem"(): $ItemStack
 get "id"(): $ResourceLocation
+get "serializer"(): $RecipeSerializer<(any)>
+get "special"(): boolean
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -1305,9 +1676,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1375,6 +1746,7 @@ static readonly "GRASS_CUTTER": $FrontAttachmentType<($GrassCutterFrontAttachmen
 
 constructor(id: $ResourceLocation$Type, arg1: $BiFunction$Type<($FrontAttachmentType$Type<(T)>), ($AutomobileEntity$Type), (T)>, model: $FrontAttachmentType$FrontAttachmentModel$Type)
 
+public "model"(): $FrontAttachmentType$FrontAttachmentModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -1382,11 +1754,10 @@ public "isEmpty"(): boolean
 public "constructor"(): $BiFunction<($FrontAttachmentType<(T)>), ($AutomobileEntity), (T)>
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "model"(): $FrontAttachmentType$FrontAttachmentModel
 public "containerId"(): $ResourceLocation
 public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($FrontAttachmentType$Type<(any)>)>)>): void
-public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $FrontAttachmentType$Type<(any)>): void
 public "getContainerTextKey"(): string
+public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $FrontAttachmentType$Type<(any)>): void
 get "empty"(): boolean
 get "containerTextKey"(): string
 }
@@ -1415,10 +1786,10 @@ export interface $AutomobileComponent<T extends $AutomobileComponent<(T)>> exten
 
  "isEmpty"(): boolean
  "getId"(): $ResourceLocation
- "containerId"(): $ResourceLocation
- "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: T): void
- "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(T)>)>): void
  "getContainerTextKey"(): string
+ "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: T): void
+ "containerId"(): $ResourceLocation
+ "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(T)>)>): void
 }
 
 export namespace $AutomobileComponent {
@@ -1459,6 +1830,47 @@ export type $MaterialDefinitionAccess$Type = ($MaterialDefinitionAccess);
 declare global {
 export type $MaterialDefinitionAccess_ = $MaterialDefinitionAccess$Type;
 }}
+declare module "packages/io/github/mortuusars/salt/world/feature/configurations/$MineralDepositConfiguration" {
+import {$MineralDepositConfiguration$DepositBlockStateInfo, $MineralDepositConfiguration$DepositBlockStateInfo$Type} from "packages/io/github/mortuusars/salt/world/feature/configurations/$MineralDepositConfiguration$DepositBlockStateInfo"
+import {$Record, $Record$Type} from "packages/java/lang/$Record"
+import {$BlockStateProvider, $BlockStateProvider$Type} from "packages/net/minecraft/world/level/levelgen/feature/stateproviders/$BlockStateProvider"
+import {$ConfiguredFeature, $ConfiguredFeature$Type} from "packages/net/minecraft/world/level/levelgen/feature/$ConfiguredFeature"
+import {$List, $List$Type} from "packages/java/util/$List"
+import {$RuleTest, $RuleTest$Type} from "packages/net/minecraft/world/level/levelgen/structure/templatesystem/$RuleTest"
+import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
+import {$FeatureConfiguration, $FeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$FeatureConfiguration"
+import {$Codec, $Codec$Type} from "packages/com/mojang/serialization/$Codec"
+
+export class $MineralDepositConfiguration extends $Record implements $FeatureConfiguration {
+static readonly "CODEC": $Codec<($MineralDepositConfiguration)>
+
+constructor(mainStateInfos: $List$Type<($MineralDepositConfiguration$DepositBlockStateInfo$Type)>, clusterStateInfo: $MineralDepositConfiguration$DepositBlockStateInfo$Type)
+
+public "equals"(arg0: any): boolean
+public "toString"(): string
+public "hashCode"(): integer
+public "getSize"(): integer
+public "clusterStateInfo"(): $MineralDepositConfiguration$DepositBlockStateInfo
+public "getClusterChance"(): float
+public "mainStateInfos"(): $List<($MineralDepositConfiguration$DepositBlockStateInfo)>
+public static "blockStateInfo"(arg0: $BlockStateProvider$Type, arg1: $RuleTest$Type): $MineralDepositConfiguration$DepositBlockStateInfo
+public "getFeatures"(): $Stream<($ConfiguredFeature<(any), (any)>)>
+get "size"(): integer
+get "clusterChance"(): float
+get "features"(): $Stream<($ConfiguredFeature<(any), (any)>)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $MineralDepositConfiguration$Type = ($MineralDepositConfiguration);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $MineralDepositConfiguration_ = $MineralDepositConfiguration$Type;
+}}
 declare module "packages/io/github/foundationgames/automobility/automobile/$StatContainer" {
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
@@ -1468,10 +1880,10 @@ import {$DisplayStat, $DisplayStat$Type} from "packages/io/github/foundationgame
 
 export interface $StatContainer<C extends $StatContainer<(C)>> {
 
- "containerId"(): $ResourceLocation
- "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: C): void
- "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(C)>)>): void
  "getContainerTextKey"(): string
+ "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: C): void
+ "containerId"(): $ResourceLocation
+ "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<(C)>)>): void
 }
 
 export namespace $StatContainer {
@@ -1540,11 +1952,11 @@ readonly "type": T
 
 constructor(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type, arg2: $BlockState$Type, arg3: $BiFunction$Type<($ContainerLevelAccess$Type), ($BlockRearAttachment$Type), ($MenuProvider$Type)>)
 
-public static "cartographyTable"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
-public static "smithingTable"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
-public static "autoMechanicTable"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
-public static "stonecutter"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
 public static "craftingTable"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
+public static "stonecutter"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
+public static "autoMechanicTable"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
+public static "smithingTable"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
+public static "cartographyTable"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
 public static "grindstone"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
 public static "loom"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BlockRearAttachment
 public "createMenu"(arg0: $ContainerLevelAccess$Type): $MenuProvider
@@ -1561,6 +1973,112 @@ export type $BlockRearAttachment$Type = ($BlockRearAttachment);
  */
 declare global {
 export type $BlockRearAttachment_ = $BlockRearAttachment$Type;
+}}
+declare module "packages/io/github/mortuusars/salt/block/$SaltClusterBlock" {
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$Projectile, $Projectile$Type} from "packages/net/minecraft/world/entity/projectile/$Projectile"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$PushReaction, $PushReaction$Type} from "packages/net/minecraft/world/level/material/$PushReaction"
+import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$ISaltBlock, $ISaltBlock$Type} from "packages/io/github/mortuusars/salt/block/$ISaltBlock"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$Rotation, $Rotation$Type} from "packages/net/minecraft/world/level/block/$Rotation"
+
+export class $SaltClusterBlock extends $Block implements $ISaltBlock {
+static readonly "FACING": $DirectionProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(arg0: integer, arg1: integer, arg2: $BlockBehaviour$Properties$Type)
+
+public "getDissolvedState"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $Fluid$Type): $BlockState
+public "onDestroyedByPlayer"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: boolean, arg5: $FluidState$Type): boolean
+public "getPistonPushReaction"(arg0: $BlockState$Type): $PushReaction
+public "onProjectileHit"(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockHitResult$Type, arg3: $Projectile$Type): void
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
+public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
+public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
+public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
+public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "randomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public static "maybeGrowCluster"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+public "onSaltAnimateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "onSaltRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
+public static "canGrowCluster"(arg0: $BlockPos$Type, arg1: $ServerLevel$Type): boolean
+public static "getFluidDrippingOn"(arg0: $ServerLevel$Type, arg1: $BlockPos$Type): $Fluid
+public static "growCluster"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SaltClusterBlock$Type = ($SaltClusterBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SaltClusterBlock_ = $SaltClusterBlock$Type;
 }}
 declare module "packages/io/github/foundationgames/automobility/automobile/attachment/front/$MobControllerFrontAttachment" {
 import {$AutomobileComponent, $AutomobileComponent$Type} from "packages/io/github/foundationgames/automobility/automobile/$AutomobileComponent"
@@ -1705,9 +2223,9 @@ static readonly "INSTANCE": $AutoMechanicTableRecipeSerializer
 
 constructor()
 
-public static "autoComponentStackFromJson"(arg0: $JsonObject$Type): $ItemStack
 public "fromNetwork"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $AutoMechanicTableRecipe
 public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type): $AutoMechanicTableRecipe
+public static "autoComponentStackFromJson"(arg0: $JsonObject$Type): $ItemStack
 public "toNetwork"(arg0: $FriendlyByteBuf$Type, arg1: $AutoMechanicTableRecipe$Type): void
 public static "register"<S extends $RecipeSerializer<(T)>, T extends $Recipe<(any)>>(arg0: string, arg1: S): S
 public "fromJson"(arg0: $ResourceLocation$Type, arg1: $JsonObject$Type, arg2: $ICondition$IContext$Type): $AutoMechanicTableRecipe
@@ -1834,6 +2352,7 @@ static readonly "PAVER": $RearAttachmentType<($PaverRearAttachment)>
 
 constructor(id: $ResourceLocation$Type, arg1: $BiFunction$Type<($RearAttachmentType$Type<(T)>), ($AutomobileEntity$Type), (T)>, model: $RearAttachmentType$RearAttachmentModel$Type)
 
+public "model"(): $RearAttachmentType$RearAttachmentModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -1841,11 +2360,10 @@ public "isEmpty"(): boolean
 public "constructor"(): $BiFunction<($RearAttachmentType<(T)>), ($AutomobileEntity), (T)>
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "model"(): $RearAttachmentType$RearAttachmentModel
 public "containerId"(): $ResourceLocation
 public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($RearAttachmentType$Type<(any)>)>)>): void
-public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $RearAttachmentType$Type<(any)>): void
 public "getContainerTextKey"(): string
+public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $RearAttachmentType$Type<(any)>): void
 get "empty"(): boolean
 get "containerTextKey"(): string
 }
@@ -1907,8 +2425,8 @@ import {$Collection, $Collection$Type} from "packages/java/util/$Collection"
 import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$AtomicInteger, $AtomicInteger$Type} from "packages/java/util/concurrent/atomic/$AtomicInteger"
 import {$SynchedEntityData, $SynchedEntityData$Type} from "packages/net/minecraft/network/syncher/$SynchedEntityData"
-import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$EntityDimensions, $EntityDimensions$Type} from "packages/net/minecraft/world/entity/$EntityDimensions"
 
 export class $AutomobileEntity extends $Entity implements $RenderableAutomobile, $EntityWithInventory {
@@ -1992,20 +2510,39 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
  "wasOnFire": boolean
  "mainSupportingBlockPos": $Optional<($BlockPos)>
  "forgeFluidTypeHeight": $Object2DoubleMap<($FluidType)>
+ "self": $Entity
  "sodiumdynamiclights$luminance": integer
 
 constructor(arg0: $EntityType$Type<(any)>, arg1: $Level$Type)
 constructor(arg0: $Level$Type)
 
 public "getTime"(): long
-public "getTrackedRearAttachmentYaw"(): float
+public "playHitSound"(arg0: $Vec3$Type): void
+public "setComponents"(arg0: $AutomobileFrame$Type, arg1: $AutomobileWheel$Type, arg2: $AutomobileEngine$Type): void
+public "hasInventory"(): boolean
+public "openInventory"(arg0: $Player$Type): void
+public "provideClientInput"(arg0: boolean, arg1: boolean, arg2: boolean, arg3: boolean, arg4: boolean): void
+public "addAdditionalSaveData"(arg0: $CompoundTag$Type): void
+public "readAdditionalSaveData"(arg0: $CompoundTag$Type): void
+public "positionRider"(arg0: $Entity$Type, arg1: $Entity$MoveFunction$Type): void
+public "getPassengersRidingOffset"(): double
+public "canBeCollidedWith"(): boolean
+public "interact"(arg0: $Player$Type, arg1: $InteractionHand$Type): $InteractionResult
+public "lerpTo"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): void
 public "getTrackedRearAttachmentAnimation"(): float
 public "getTrackedFrontAttachmentAnimation"(): float
 public "setTrackedRearAttachmentYaw"(arg0: float): void
 public "setTrackedRearAttachmentAnimation"(arg0: float): void
 public "setTrackedFrontAttachmentAnimation"(arg0: float): void
+public "getTrackedRearAttachmentYaw"(): float
+public "automobileOnGround"(): boolean
 public "getRearAttachment"(): $RearAttachment
 public "setRearAttachment"<T extends $RearAttachment>(arg0: $RearAttachmentType$Type<(T)>): void
+public "getFrontAttachment"(): $FrontAttachment
+public "setFrontAttachment"<T extends $FrontAttachment>(arg0: $FrontAttachmentType$Type<(T)>): void
+public "debrisColor"(): $Vector3f
+public "writeSyncToClientData"(arg0: $FriendlyByteBuf$Type): void
+public "compactInputData"(): byte
 public "readSyncToClientData"(arg0: $FriendlyByteBuf$Type): void
 public "readCompactedInputData"(arg0: byte): void
 public "getSteering"(arg0: float): float
@@ -2035,87 +2572,69 @@ public "getRearAttachmentYaw"(arg0: float): float
 public "getStandStillTime"(): float
 public "destroyRearAttachment"(arg0: boolean): void
 public "destroyFrontAttachment"(arg0: boolean): void
-public "getFrontAttachment"(): $FrontAttachment
-public "setFrontAttachment"<T extends $FrontAttachment>(arg0: $FrontAttachmentType$Type<(T)>): void
-public "debrisColor"(): $Vector3f
-public "writeSyncToClientData"(arg0: $FriendlyByteBuf$Type): void
-public "compactInputData"(): byte
-public "automobileOnGround"(): boolean
-public "provideClientInput"(arg0: boolean, arg1: boolean, arg2: boolean, arg3: boolean, arg4: boolean): void
-public "hasInventory"(): boolean
-public "openInventory"(arg0: $Player$Type): void
-public "setComponents"(arg0: $AutomobileFrame$Type, arg1: $AutomobileWheel$Type, arg2: $AutomobileEngine$Type): void
-public "playHitSound"(arg0: $Vec3$Type): void
-public "getControllingPassenger"(): $LivingEntity
-public "isPushable"(): boolean
-public "lerpTo"(arg0: double, arg1: double, arg2: double, arg3: float, arg4: float, arg5: integer, arg6: boolean): void
-public "canCollideWith"(arg0: $Entity$Type): boolean
-public "isPickable"(): boolean
-public "addAdditionalSaveData"(arg0: $CompoundTag$Type): void
-public "readAdditionalSaveData"(arg0: $CompoundTag$Type): void
-public "interact"(arg0: $Player$Type, arg1: $InteractionHand$Type): $InteractionResult
-public "canBeCollidedWith"(): boolean
-public "positionRider"(arg0: $Entity$Type, arg1: $Entity$MoveFunction$Type): void
-public "getPassengersRidingOffset"(): double
-public "causeFallDamage"(arg0: float, arg1: float, arg2: $DamageSource$Type): boolean
+public "getEngine"(): $AutomobileEngine
 public "move"(arg0: $MoverType$Type, arg1: $Vec3$Type): void
 public "tick"(): void
-public "getEngine"(): $AutomobileEngine
-public "boost"(arg0: float, arg1: integer): void
+public "causeFallDamage"(arg0: float, arg1: float, arg2: $DamageSource$Type): boolean
+public "canCollideWith"(arg0: $Entity$Type): boolean
+public "getControllingPassenger"(): $LivingEntity
+public "isPushable"(): boolean
+public "isPickable"(): boolean
+public "onSyncedDataUpdated"(arg0: $EntityDataAccessor$Type<(any)>): void
 public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
 public "recreateFromPacket"(arg0: $ClientboundAddEntityPacket$Type): void
 public "getPickResult"(): $ItemStack
-public "onSyncedDataUpdated"(arg0: $EntityDataAccessor$Type<(any)>): void
-public "markDirty"(): void
 public "setSpeed"(arg0: float, arg1: float): void
-public "bounce"(): void
+public "boost"(arg0: float, arg1: integer): void
+public "markDirty"(): void
 public "getFrame"(): $AutomobileFrame
+public "setInputs"(arg0: boolean, arg1: boolean, arg2: boolean, arg3: boolean, arg4: boolean): void
+public "bounce"(): void
+public "getTailPos"(): $Vec3
+public "getHeadPos"(): $Vec3
+public "burningOut"(): boolean
 public "getWheels"(): $AutomobileWheel
 public "getHSpeed"(): float
 public "getVSpeed"(): float
 public "debris"(): boolean
 public "isDrifting"(): boolean
-public "setInputs"(arg0: boolean, arg1: boolean, arg2: boolean, arg3: boolean, arg4: boolean): void
-public "getHeadPos"(): $Vec3
-public "burningOut"(): boolean
-public "getTailPos"(): $Vec3
+public "getWheelCount"(): integer
 public "getRearAttachmentType"(): $RearAttachmentType<(any)>
 public "getFrontAttachmentType"(): $FrontAttachmentType<(any)>
-public "getWheelCount"(): integer
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "time"(): long
-get "trackedRearAttachmentYaw"(): float
+get "passengersRidingOffset"(): double
 get "trackedRearAttachmentAnimation"(): float
 get "trackedFrontAttachmentAnimation"(): float
 set "trackedRearAttachmentYaw"(value: float)
 set "trackedRearAttachmentAnimation"(value: float)
 set "trackedFrontAttachmentAnimation"(value: float)
+get "trackedRearAttachmentYaw"(): float
 get "rearAttachment"(): $RearAttachment
 set "rearAttachment"(value: $RearAttachmentType$Type<(T)>)
+get "frontAttachment"(): $FrontAttachment
+set "frontAttachment"(value: $FrontAttachmentType$Type<(T)>)
 get "turboCharge"(): integer
 get "boostTimer"(): integer
 get "effectiveSpeed"(): double
 get "displacement"(): $AutomobileEntity$Displacement
 get "standStillTime"(): float
-get "frontAttachment"(): $FrontAttachment
-set "frontAttachment"(value: $FrontAttachmentType$Type<(T)>)
+get "engine"(): $AutomobileEngine
 get "controllingPassenger"(): $LivingEntity
 get "pushable"(): boolean
 get "pickable"(): boolean
-get "passengersRidingOffset"(): double
-get "engine"(): $AutomobileEngine
 get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
 get "pickResult"(): $ItemStack
 get "frame"(): $AutomobileFrame
+get "tailPos"(): $Vec3
+get "headPos"(): $Vec3
 get "wheels"(): $AutomobileWheel
 get "hSpeed"(): float
 get "vSpeed"(): float
 get "drifting"(): boolean
-get "headPos"(): $Vec3
-get "tailPos"(): $Vec3
+get "wheelCount"(): integer
 get "rearAttachmentType"(): $RearAttachmentType<(any)>
 get "frontAttachmentType"(): $FrontAttachmentType<(any)>
-get "wheelCount"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2140,10 +2659,10 @@ readonly "type": T
 
 
 public "tick"(): void
-public "extendAnimation"(arg0: float): float
 public "setExtended"(arg0: boolean): void
-public "onTrackedAnimationUpdated"(arg0: float): void
+public "extendAnimation"(arg0: float): float
 public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
+public "onTrackedAnimationUpdated"(arg0: float): void
 public "extended"(): boolean
 public "writeNbt"(arg0: $CompoundTag$Type): void
 public "readNbt"(arg0: $CompoundTag$Type): void
@@ -2160,6 +2679,30 @@ export type $ExtendableRearAttachment$Type = ($ExtendableRearAttachment);
  */
 declare global {
 export type $ExtendableRearAttachment_ = $ExtendableRearAttachment$Type;
+}}
+declare module "packages/io/github/mortuusars/salt/world/feature/configurations/$MineralDepositConfiguration$DepositBlockStateInfo" {
+import {$BlockStateProvider, $BlockStateProvider$Type} from "packages/net/minecraft/world/level/levelgen/feature/stateproviders/$BlockStateProvider"
+import {$RuleTest, $RuleTest$Type} from "packages/net/minecraft/world/level/levelgen/structure/templatesystem/$RuleTest"
+import {$Codec, $Codec$Type} from "packages/com/mojang/serialization/$Codec"
+
+export class $MineralDepositConfiguration$DepositBlockStateInfo {
+static readonly "CODEC": $Codec<($MineralDepositConfiguration$DepositBlockStateInfo)>
+readonly "blockStateProvider": $BlockStateProvider
+readonly "ruleTest": $RuleTest
+
+
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $MineralDepositConfiguration$DepositBlockStateInfo$Type = ($MineralDepositConfiguration$DepositBlockStateInfo);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $MineralDepositConfiguration$DepositBlockStateInfo_ = $MineralDepositConfiguration$DepositBlockStateInfo$Type;
 }}
 declare module "packages/io/github/foundationgames/automobility/automobile/attachment/rear/$PaverRearAttachment" {
 import {$SoundEvent, $SoundEvent$Type} from "packages/net/minecraft/sounds/$SoundEvent"
@@ -2256,11 +2799,11 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type, arg1: $Vector3f$Type)
 
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -2321,8 +2864,8 @@ constructor(arg0: $FrontAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type
 
 public "tick"(): void
 public "onBlockHarvested"(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $List$Type<($ItemStack$Type)>): void
-public "harvest"(arg0: $Vec3$Type, arg1: $ServerLevel$Type): void
 public "canHarvest"(arg0: $BlockState$Type): boolean
+public "harvest"(arg0: $Vec3$Type, arg1: $ServerLevel$Type): void
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2368,8 +2911,8 @@ constructor(radius: float, width: float, texture: $ResourceLocation$Type, modelI
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
-public "texture"(): $ResourceLocation
 public "width"(): float
+public "texture"(): $ResourceLocation
 public "radius"(): float
 public "modelId"(): $ResourceLocation
 }
@@ -2525,9 +3068,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type, arg1: boolean)
 
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "slopeStep"(arg0: $Direction$Type, arg1: double): $VoxelShape
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
@@ -2600,19 +3143,19 @@ static readonly "STAT_WEIGHT": $DisplayStat<($AutomobileFrame)>
 
 constructor(id: $ResourceLocation$Type, weight: float, model: $AutomobileFrame$FrameModel$Type)
 
+public "model"(): $AutomobileFrame$FrameModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "isEmpty"(): boolean
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "model"(): $AutomobileFrame$FrameModel
-public "containerId"(): $ResourceLocation
-public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileFrame$Type)>)>): void
 public "getTranslationKey"(): string
 public "weight"(): float
-public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileFrame$Type): void
+public "containerId"(): $ResourceLocation
+public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileFrame$Type)>)>): void
 public "getContainerTextKey"(): string
+public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileFrame$Type): void
 get "empty"(): boolean
 get "translationKey"(): string
 get "containerTextKey"(): string
@@ -2653,21 +3196,21 @@ readonly "type": T
 constructor(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type)
 
 public "erase"(): void
+public "setFromItem"(arg0: $ItemStack$Type): void
 public "getBaseColor"(): $DyeColor
 public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
 public "getPatterns"(): $List<($Pair<($Holder<($BannerPattern)>), ($DyeColor)>)>
-public "setFromItem"(arg0: $ItemStack$Type): void
 public "sendPacket"(): void
 public "writeNbt"(arg0: $CompoundTag$Type): void
 public "readNbt"(arg0: $CompoundTag$Type): void
 public "createMenu"(arg0: $ContainerLevelAccess$Type): $MenuProvider
 public "onRemoved"(): void
-public "putToNbt"(arg0: $CompoundTag$Type): void
-public "setFromNbt"(arg0: $CompoundTag$Type): void
 public "hasMenu"(): boolean
+public "setFromNbt"(arg0: $CompoundTag$Type): void
+public "putToNbt"(arg0: $CompoundTag$Type): void
+set "fromItem"(value: $ItemStack$Type)
 get "baseColor"(): $DyeColor
 get "patterns"(): $List<($Pair<($Holder<($BannerPattern)>), ($DyeColor)>)>
-set "fromItem"(value: $ItemStack$Type)
 set "fromNbt"(value: $CompoundTag$Type)
 }
 /**
@@ -2699,8 +3242,8 @@ constructor(arg0: $FrontAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type
 
 public "pos"(): $Vec3
 public "dropOrTransfer"(arg0: $ItemStack$Type, arg1: $Vec3$Type): void
-public "writeNbt"(arg0: $CompoundTag$Type): void
 public static "fromNbt"(arg0: $CompoundTag$Type): $FrontAttachmentType<(any)>
+public "writeNbt"(arg0: $CompoundTag$Type): void
 public "readNbt"(arg0: $CompoundTag$Type): void
 public "canDrive"(arg0: $Entity$Type): boolean
 }
@@ -2836,6 +3379,41 @@ export type $EntityWithInventory$Type = ($EntityWithInventory);
 declare global {
 export type $EntityWithInventory_ = $EntityWithInventory$Type;
 }}
+declare module "packages/io/github/mortuusars/salt/block/$ISaltBlock" {
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export interface $ISaltBlock {
+
+ "getDissolvedState"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $Fluid$Type): $BlockState
+ "onSaltAnimateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+ "onSaltRandomTick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): boolean
+
+(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+}
+
+export namespace $ISaltBlock {
+function maybeGrowCluster(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+function canGrowCluster(arg0: $BlockPos$Type, arg1: $ServerLevel$Type): boolean
+function getFluidDrippingOn(arg0: $ServerLevel$Type, arg1: $BlockPos$Type): $Fluid
+function growCluster(arg0: $BlockState$Type, arg1: $BlockPos$Type, arg2: $ServerLevel$Type): void
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ISaltBlock$Type = ($ISaltBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ISaltBlock_ = $ISaltBlock$Type;
+}}
 declare module "packages/io/github/foundationgames/automobility/automobile/$WheelBase$WheelPos" {
 import {$WheelBase$WheelEnd, $WheelBase$WheelEnd$Type} from "packages/io/github/foundationgames/automobility/automobile/$WheelBase$WheelEnd"
 import {$Record, $Record$Type} from "packages/java/lang/$Record"
@@ -2845,12 +3423,12 @@ export class $WheelBase$WheelPos extends $Record {
 
 constructor(forward: float, right: float, scale: float, yaw: float, end: $WheelBase$WheelEnd$Type, side: $WheelBase$WheelSide$Type)
 
+public "right"(): float
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public "scale"(): float
 public "end"(): $WheelBase$WheelEnd
-public "right"(): float
 public "side"(): $WheelBase$WheelSide
 public "forward"(): float
 public "yaw"(): float
@@ -2997,13 +3575,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
 public static "onCollideWithDashPanel"(arg0: $BlockState$Type, arg1: $Entity$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "getFluidState"(arg0: $BlockState$Type): $FluidState
 public "canSurvive"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "canPlaceLiquid"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Fluid$Type): boolean
 public "placeLiquid"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $FluidState$Type): boolean
 public "pickupBlock"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
@@ -3053,9 +3631,9 @@ readonly "type": T
 
 constructor(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type, arg2: $BlockState$Type, arg3: $BiFunction$Type<($ContainerLevelAccess$Type), ($BlockRearAttachment$Type), ($MenuProvider$Type)>)
 
+public "tick"(): void
 public "close"(arg0: $Player$Type): void
 public "open"(arg0: $Player$Type): void
-public "tick"(): void
 public static "saddledBarrel"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BaseChestRearAttachment
 public "onTrackedAnimationUpdated"(arg0: float): void
 public static "chest"(arg0: $RearAttachmentType$Type<(any)>, arg1: $AutomobileEntity$Type): $BaseChestRearAttachment
@@ -3151,7 +3729,11 @@ import {$FrontAttachment, $FrontAttachment$Type} from "packages/io/github/founda
 export interface $RenderableAutomobile {
 
  "getTime"(): long
+ "automobileOnGround"(): boolean
+ "getWheelCount"(): integer
  "getRearAttachment"(): $RearAttachment
+ "getFrontAttachment"(): $FrontAttachment
+ "debrisColor"(): $Vector3f
  "getSteering"(arg0: float): float
  "getWheelAngle"(arg0: float): float
  "getSuspensionBounce"(arg0: float): float
@@ -3162,10 +3744,6 @@ export interface $RenderableAutomobile {
  "getRearAttachmentYaw"(arg0: float): float
  "getRearAttachmentType"(): $RearAttachmentType<(any)>
  "getFrontAttachmentType"(): $FrontAttachmentType<(any)>
- "getWheelCount"(): integer
- "getFrontAttachment"(): $FrontAttachment
- "debrisColor"(): $Vector3f
- "automobileOnGround"(): boolean
  "getEngine"(): $AutomobileEngine
  "getFrame"(): $AutomobileFrame
  "getWheels"(): $AutomobileWheel
@@ -3285,6 +3863,130 @@ export type $AutomobileItem$Type = ($AutomobileItem);
 declare global {
 export type $AutomobileItem_ = $AutomobileItem$Type;
 }}
+declare module "packages/io/github/mortuusars/salt/world/feature/$MineralDepositFeature" {
+import {$BonusChestFeature, $BonusChestFeature$Type} from "packages/net/minecraft/world/level/levelgen/feature/$BonusChestFeature"
+import {$RandomFeatureConfiguration, $RandomFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RandomFeatureConfiguration"
+import {$MineralDepositConfiguration, $MineralDepositConfiguration$Type} from "packages/io/github/mortuusars/salt/world/feature/configurations/$MineralDepositConfiguration"
+import {$SpikeConfiguration, $SpikeConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SpikeConfiguration"
+import {$LakeFeature$Configuration, $LakeFeature$Configuration$Type} from "packages/net/minecraft/world/level/levelgen/feature/$LakeFeature$Configuration"
+import {$BlockColumnConfiguration, $BlockColumnConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$BlockColumnConfiguration"
+import {$MultifaceGrowthConfiguration, $MultifaceGrowthConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$MultifaceGrowthConfiguration"
+import {$RootSystemConfiguration, $RootSystemConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RootSystemConfiguration"
+import {$UnderwaterMagmaConfiguration, $UnderwaterMagmaConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$UnderwaterMagmaConfiguration"
+import {$RandomPatchConfiguration, $RandomPatchConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RandomPatchConfiguration"
+import {$ProbabilityFeatureConfiguration, $ProbabilityFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ProbabilityFeatureConfiguration"
+import {$Codec, $Codec$Type} from "packages/com/mojang/serialization/$Codec"
+import {$TreeConfiguration, $TreeConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$TreeConfiguration"
+import {$TwistingVinesConfig, $TwistingVinesConfig$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$TwistingVinesConfig"
+import {$FeaturePlaceContext, $FeaturePlaceContext$Type} from "packages/net/minecraft/world/level/levelgen/feature/$FeaturePlaceContext"
+import {$DripstoneClusterConfiguration, $DripstoneClusterConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$DripstoneClusterConfiguration"
+import {$LayerConfiguration, $LayerConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$LayerConfiguration"
+import {$HugeMushroomFeatureConfiguration, $HugeMushroomFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$HugeMushroomFeatureConfiguration"
+import {$ReplaceBlockConfiguration, $ReplaceBlockConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ReplaceBlockConfiguration"
+import {$BlockStateConfiguration, $BlockStateConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$BlockStateConfiguration"
+import {$SimpleBlockConfiguration, $SimpleBlockConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SimpleBlockConfiguration"
+import {$HugeFungusConfiguration, $HugeFungusConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/$HugeFungusConfiguration"
+import {$DiskConfiguration, $DiskConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$DiskConfiguration"
+import {$SeagrassFeature, $SeagrassFeature$Type} from "packages/net/minecraft/world/level/levelgen/feature/$SeagrassFeature"
+import {$ReplaceSphereConfiguration, $ReplaceSphereConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ReplaceSphereConfiguration"
+import {$FossilFeatureConfiguration, $FossilFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/$FossilFeatureConfiguration"
+import {$DeltaFeatureConfiguration, $DeltaFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$DeltaFeatureConfiguration"
+import {$PointedDripstoneConfiguration, $PointedDripstoneConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$PointedDripstoneConfiguration"
+import {$SpringConfiguration, $SpringConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SpringConfiguration"
+import {$BlockPileConfiguration, $BlockPileConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$BlockPileConfiguration"
+import {$OreConfiguration, $OreConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$OreConfiguration"
+import {$SimpleRandomFeatureConfiguration, $SimpleRandomFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SimpleRandomFeatureConfiguration"
+import {$SculkPatchConfiguration, $SculkPatchConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$SculkPatchConfiguration"
+import {$NetherForestVegetationConfig, $NetherForestVegetationConfig$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$NetherForestVegetationConfig"
+import {$GeodeConfiguration, $GeodeConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$GeodeConfiguration"
+import {$LargeDripstoneConfiguration, $LargeDripstoneConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$LargeDripstoneConfiguration"
+import {$RandomBooleanFeatureConfiguration, $RandomBooleanFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$RandomBooleanFeatureConfiguration"
+import {$ColumnFeatureConfiguration, $ColumnFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$ColumnFeatureConfiguration"
+import {$CountConfiguration, $CountConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$CountConfiguration"
+import {$VegetationPatchConfiguration, $VegetationPatchConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$VegetationPatchConfiguration"
+import {$Feature, $Feature$Type} from "packages/net/minecraft/world/level/levelgen/feature/$Feature"
+import {$NoneFeatureConfiguration, $NoneFeatureConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$NoneFeatureConfiguration"
+import {$EndGatewayConfiguration, $EndGatewayConfiguration$Type} from "packages/net/minecraft/world/level/levelgen/feature/configurations/$EndGatewayConfiguration"
+
+export class $MineralDepositFeature extends $Feature<($MineralDepositConfiguration)> {
+static readonly "NO_OP": $Feature<($NoneFeatureConfiguration)>
+static readonly "TREE": $Feature<($TreeConfiguration)>
+static readonly "FLOWER": $Feature<($RandomPatchConfiguration)>
+static readonly "NO_BONEMEAL_FLOWER": $Feature<($RandomPatchConfiguration)>
+static readonly "RANDOM_PATCH": $Feature<($RandomPatchConfiguration)>
+static readonly "BLOCK_PILE": $Feature<($BlockPileConfiguration)>
+static readonly "SPRING": $Feature<($SpringConfiguration)>
+static readonly "CHORUS_PLANT": $Feature<($NoneFeatureConfiguration)>
+static readonly "REPLACE_SINGLE_BLOCK": $Feature<($ReplaceBlockConfiguration)>
+static readonly "VOID_START_PLATFORM": $Feature<($NoneFeatureConfiguration)>
+static readonly "DESERT_WELL": $Feature<($NoneFeatureConfiguration)>
+static readonly "FOSSIL": $Feature<($FossilFeatureConfiguration)>
+static readonly "HUGE_RED_MUSHROOM": $Feature<($HugeMushroomFeatureConfiguration)>
+static readonly "HUGE_BROWN_MUSHROOM": $Feature<($HugeMushroomFeatureConfiguration)>
+static readonly "ICE_SPIKE": $Feature<($NoneFeatureConfiguration)>
+static readonly "GLOWSTONE_BLOB": $Feature<($NoneFeatureConfiguration)>
+static readonly "FREEZE_TOP_LAYER": $Feature<($NoneFeatureConfiguration)>
+static readonly "VINES": $Feature<($NoneFeatureConfiguration)>
+static readonly "BLOCK_COLUMN": $Feature<($BlockColumnConfiguration)>
+static readonly "VEGETATION_PATCH": $Feature<($VegetationPatchConfiguration)>
+static readonly "WATERLOGGED_VEGETATION_PATCH": $Feature<($VegetationPatchConfiguration)>
+static readonly "ROOT_SYSTEM": $Feature<($RootSystemConfiguration)>
+static readonly "MULTIFACE_GROWTH": $Feature<($MultifaceGrowthConfiguration)>
+static readonly "UNDERWATER_MAGMA": $Feature<($UnderwaterMagmaConfiguration)>
+static readonly "MONSTER_ROOM": $Feature<($NoneFeatureConfiguration)>
+static readonly "BLUE_ICE": $Feature<($NoneFeatureConfiguration)>
+static readonly "ICEBERG": $Feature<($BlockStateConfiguration)>
+static readonly "FOREST_ROCK": $Feature<($BlockStateConfiguration)>
+static readonly "DISK": $Feature<($DiskConfiguration)>
+static readonly "LAKE": $Feature<($LakeFeature$Configuration)>
+static readonly "ORE": $Feature<($OreConfiguration)>
+static readonly "END_SPIKE": $Feature<($SpikeConfiguration)>
+static readonly "END_ISLAND": $Feature<($NoneFeatureConfiguration)>
+static readonly "END_GATEWAY": $Feature<($EndGatewayConfiguration)>
+static readonly "SEAGRASS": $SeagrassFeature
+static readonly "KELP": $Feature<($NoneFeatureConfiguration)>
+static readonly "CORAL_TREE": $Feature<($NoneFeatureConfiguration)>
+static readonly "CORAL_MUSHROOM": $Feature<($NoneFeatureConfiguration)>
+static readonly "CORAL_CLAW": $Feature<($NoneFeatureConfiguration)>
+static readonly "SEA_PICKLE": $Feature<($CountConfiguration)>
+static readonly "SIMPLE_BLOCK": $Feature<($SimpleBlockConfiguration)>
+static readonly "BAMBOO": $Feature<($ProbabilityFeatureConfiguration)>
+static readonly "HUGE_FUNGUS": $Feature<($HugeFungusConfiguration)>
+static readonly "NETHER_FOREST_VEGETATION": $Feature<($NetherForestVegetationConfig)>
+static readonly "WEEPING_VINES": $Feature<($NoneFeatureConfiguration)>
+static readonly "TWISTING_VINES": $Feature<($TwistingVinesConfig)>
+static readonly "BASALT_COLUMNS": $Feature<($ColumnFeatureConfiguration)>
+static readonly "DELTA_FEATURE": $Feature<($DeltaFeatureConfiguration)>
+static readonly "REPLACE_BLOBS": $Feature<($ReplaceSphereConfiguration)>
+static readonly "FILL_LAYER": $Feature<($LayerConfiguration)>
+static readonly "BONUS_CHEST": $BonusChestFeature
+static readonly "BASALT_PILLAR": $Feature<($NoneFeatureConfiguration)>
+static readonly "SCATTERED_ORE": $Feature<($OreConfiguration)>
+static readonly "RANDOM_SELECTOR": $Feature<($RandomFeatureConfiguration)>
+static readonly "SIMPLE_RANDOM_SELECTOR": $Feature<($SimpleRandomFeatureConfiguration)>
+static readonly "RANDOM_BOOLEAN_SELECTOR": $Feature<($RandomBooleanFeatureConfiguration)>
+static readonly "GEODE": $Feature<($GeodeConfiguration)>
+static readonly "DRIPSTONE_CLUSTER": $Feature<($DripstoneClusterConfiguration)>
+static readonly "LARGE_DRIPSTONE": $Feature<($LargeDripstoneConfiguration)>
+static readonly "POINTED_DRIPSTONE": $Feature<($PointedDripstoneConfiguration)>
+static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
+
+constructor(arg0: $Codec$Type<($MineralDepositConfiguration$Type)>)
+
+public "place"(arg0: $FeaturePlaceContext$Type<($MineralDepositConfiguration$Type)>): boolean
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $MineralDepositFeature$Type = ($MineralDepositFeature);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $MineralDepositFeature_ = $MineralDepositFeature$Type;
+}}
 declare module "packages/io/github/foundationgames/automobility/block/$SlopeWithDashPanelBlock" {
 import {$Half, $Half$Type} from "packages/net/minecraft/world/level/block/state/properties/$Half"
 import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
@@ -3366,9 +4068,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3468,6 +4170,7 @@ static readonly "STAT_GRIP": $DisplayStat<($AutomobileWheel)>
 
 constructor(id: $ResourceLocation$Type, size: float, grip: float, model: $AutomobileWheel$WheelModel$Type, ...abilities: ($AutomobileWheel$Ability$Type)[])
 
+public "model"(): $AutomobileWheel$WheelModel
 public "equals"(arg0: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
@@ -3475,14 +4178,13 @@ public "isEmpty"(): boolean
 public "size"(): float
 public "id"(): $ResourceLocation
 public "getId"(): $ResourceLocation
-public "model"(): $AutomobileWheel$WheelModel
+public "getTranslationKey"(): string
 public "containerId"(): $ResourceLocation
 public "forEachStat"(arg0: $Consumer$Type<($DisplayStat$Type<($AutomobileWheel$Type)>)>): void
-public "getTranslationKey"(): string
 public "abilities"(): ($AutomobileWheel$Ability)[]
 public "grip"(): float
-public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileWheel$Type): void
 public "getContainerTextKey"(): string
+public "appendTexts"(arg0: $List$Type<($Component$Type)>, arg1: $AutomobileWheel$Type): void
 get "empty"(): boolean
 get "translationKey"(): string
 get "containerTextKey"(): string
@@ -3542,15 +4244,15 @@ readonly "type": T
 
 constructor(arg0: T, arg1: $AutomobileEntity$Type)
 
-public "pos"(): $Vec3
 public "tick"(): void
-public "onTrackedAnimationUpdated"(arg0: float): void
-public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
+public "pos"(): $Vec3
 public "setAnimation"(arg0: float): void
+public "updatePacketRequested"(arg0: $ServerPlayer$Type): void
+public "onTrackedAnimationUpdated"(arg0: float): void
 public "animation"(): float
+public "toNbt"(): $CompoundTag
 public "automobile"(): $AutomobileEntity
 public "writeNbt"(arg0: $CompoundTag$Type): void
-public "toNbt"(): $CompoundTag
 public "readNbt"(arg0: $CompoundTag$Type): void
 public "onRemoved"(): void
 }

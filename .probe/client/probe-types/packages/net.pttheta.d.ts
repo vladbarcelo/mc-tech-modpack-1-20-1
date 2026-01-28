@@ -13,17 +13,17 @@ static readonly "SIZE": $Lazy<(integer)>
 
 constructor(arg0: $ResourceLocation$Type, arg1: $ResourceLocation$Type, arg2: $ResourceLocation$Type, arg3: integer, arg4: $Vector3f$Type, arg5: $FluidType$Properties$Type)
 
-public "getFogColor"(): $Vector3f
-public "initializeClient"(arg0: $Consumer$Type<($IClientFluidTypeExtensions$Type)>): void
+public "getTintColor"(): integer
 public "getOverlayTexture"(): $ResourceLocation
 public "getStillTexture"(): $ResourceLocation
 public "getFlowingTexture"(): $ResourceLocation
-public "getTintColor"(): integer
-get "fogColor"(): $Vector3f
+public "initializeClient"(arg0: $Consumer$Type<($IClientFluidTypeExtensions$Type)>): void
+public "getFogColor"(): $Vector3f
+get "tintColor"(): integer
 get "overlayTexture"(): $ResourceLocation
 get "stillTexture"(): $ResourceLocation
 get "flowingTexture"(): $ResourceLocation
-get "tintColor"(): integer
+get "fogColor"(): $Vector3f
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -112,8 +112,8 @@ import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Directio
 import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
 import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
 import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
-import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
 import {$IBE, $IBE$Type} from "packages/com/simibubi/create/foundation/block/$IBE"
@@ -184,25 +184,25 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
+public "getRequiredItems"(arg0: $BlockState$Type, arg1: $BlockEntity$Type): $ItemRequirement
 public "getBlockEntityClass"(): $Class<($DistillationColumnBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
 public "onSneakWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "getRequiredItems"(arg0: $BlockState$Type, arg1: $BlockEntity$Type): $ItemRequirement
+public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "rotate"(arg0: $BlockState$Type, arg1: $Rotation$Type): $BlockState
 public "mirror"(arg0: $BlockState$Type, arg1: $Mirror$Type): $BlockState
-public "getCloneItemStack"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): $ItemStack
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
-public static "isTank"(arg0: $BlockState$Type): boolean
 public "onWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $InteractionResult
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $DistillationColumnBlockEntity
+public static "isTank"(arg0: $BlockState$Type): boolean
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($DistillationColumnBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($DistillationColumnBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($DistillationColumnBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $DistillationColumnBlockEntity
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getRotatedBlockState"(arg0: $BlockState$Type, arg1: $Direction$Type): $BlockState
 public "updateAfterWrenched"(arg0: $BlockState$Type, arg1: $UseOnContext$Type): $BlockState
@@ -265,19 +265,17 @@ export class $DistillationColumnBlockEntity extends $SmartBlockEntity implements
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "getWidth"(): integer
-public "getHeight"(): integer
+public "tick"(): void
 public "initialize"(): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "tick"(): void
 public "invalidate"(): void
-public "getOtherDistillationColumnBlockEntity"(arg0: $Direction$Type): $DistillationColumnBlockEntity
-public "updateTemperature"(): integer
-public "updateConnectivity"(): void
+public "getWidth"(): integer
+public "getHeight"(): integer
+public "getControllerBE"(): $DistillationColumnBlockEntity
 public "updateVerticalMulti"(): void
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public "getController"(): $BlockPos
+public "updateConnectivity"(): void
+public "updateTemperature"(): integer
+public "getExtraData"(): any
 public "toggleWindows"(): void
 public static "getCapacityMultiplier"(): integer
 public "isController"(): boolean
@@ -295,26 +293,30 @@ public "modifyExtraData"(arg0: any): any
 public "getMainConnectionAxis"(): $Direction$Axis
 public "getTankSize"(arg0: integer): integer
 public "setTankSize"(arg0: integer, arg1: integer): void
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
 public "addToGoggleTooltip"(arg0: $List$Type<($Component$Type)>, arg1: boolean): boolean
-public "getExtraData"(): any
-public "getMaxWidth"(): integer
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "getController"(): $BlockPos
 public "getMaxLength"(arg0: $Direction$Axis$Type, arg1: integer): integer
+public "getMaxWidth"(): integer
+public "getOtherDistillationColumnBlockEntity"(arg0: $Direction$Type): $DistillationColumnBlockEntity
 public "getFluid"(arg0: integer): $FluidStack
 public "setHeight"(arg0: integer): void
+public "setWidth"(arg0: integer): void
+public "getTank"(arg0: integer): $IFluidTank
+public "sendData"(): void
 public "setWindows"(arg0: boolean): void
 public "hasTank"(): boolean
 public "isBottom"(): boolean
-public "getTank"(arg0: integer): $IFluidTank
-public "sendData"(): void
-public "setWidth"(arg0: integer): void
-public "getPurityColor"(arg0: integer): $ChatFormatting
 public "containedFluidTooltip"(arg0: $List$Type<(any)>, arg1: boolean, arg2: $LazyOptional$Type<(any)>): boolean
+public "getPurityColor"(arg0: integer): $ChatFormatting
 public "getIcon"(arg0: boolean): $ItemStack
 public "getMainAxisOf"(arg0: $BlockEntity$Type): $Direction$Axis
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 get "width"(): integer
 get "height"(): integer
-get "controller"(): $BlockPos
+get "controllerBE"(): $DistillationColumnBlockEntity
+get "extraData"(): any
 get "capacityMultiplier"(): integer
 get "controller"(): boolean
 get "lastKnownPos"(): $BlockPos
@@ -324,12 +326,12 @@ get "totalTankSize"(): integer
 get "fluidLevel"(): $LerpedFloat
 set "extraData"(value: any)
 get "mainConnectionAxis"(): $Direction$Axis
-get "extraData"(): any
+get "controller"(): $BlockPos
 get "maxWidth"(): integer
 set "height"(value: integer)
+set "width"(value: integer)
 set "windows"(value: boolean)
 get "bottom"(): boolean
-set "width"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -376,13 +378,13 @@ import {$ItemEntity, $ItemEntity$Type} from "packages/net/minecraft/world/entity
 
 export interface $StampingBehaviour$StampingBehaviourSpecifics {
 
- "onStampingCompleted"(): void
- "setTemplate"(arg0: $ItemStack$Type): void
+ "canProcessInBulk"(): boolean
+ "getKineticSpeed"(): float
+ "getParticleAmount"(): integer
  "tryProcessInWorld"(arg0: $ItemEntity$Type, arg1: boolean): boolean
  "tryProcessOnBelt"(arg0: $TransportedItemStack$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): boolean
- "getParticleAmount"(): integer
- "getKineticSpeed"(): float
- "canProcessInBulk"(): boolean
+ "setTemplate"(arg0: $ItemStack$Type): void
+ "onStampingCompleted"(): void
 }
 
 export namespace $StampingBehaviour$StampingBehaviourSpecifics {
@@ -531,14 +533,14 @@ static readonly "TYPE": $BehaviourType<($BeltProcessingBehaviour)>
 
 constructor<T extends ($SmartBlockEntity) & ($DrawingBehaviour$DrawingBehaviourSpecifics)>(arg0: T)
 
+public "tick"(): void
 public "start"(arg0: $DrawingBehaviour$Mode$Type): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "read"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "tick"(): void
 public "getRenderedHeadOffset"(arg0: float): float
-public "getRunningTickSpeed"(): integer
 public "makePressingParticleEffect"(arg0: $Vec3$Type, arg1: $ItemStack$Type, arg2: integer): void
 public "makePressingParticleEffect"(arg0: $Vec3$Type, arg1: $ItemStack$Type): void
+public "getRunningTickSpeed"(): integer
 public "inWorld"(): boolean
 get "runningTickSpeed"(): integer
 }
@@ -587,12 +589,12 @@ import {$ItemEntity, $ItemEntity$Type} from "packages/net/minecraft/world/entity
 
 export interface $DrawingBehaviour$DrawingBehaviourSpecifics {
 
- "onDrawingCompleted"(): void
+ "canProcessInBulk"(): boolean
+ "getKineticSpeed"(): float
+ "getParticleAmount"(): integer
  "tryProcessInWorld"(arg0: $ItemEntity$Type, arg1: boolean): boolean
  "tryProcessOnBelt"(arg0: $TransportedItemStack$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): boolean
- "getParticleAmount"(): integer
- "getKineticSpeed"(): float
- "canProcessInBulk"(): boolean
+ "onDrawingCompleted"(): void
 }
 
 export namespace $DrawingBehaviour$DrawingBehaviourSpecifics {
@@ -634,30 +636,30 @@ export class $StampingRecipe extends $ProcessingRecipe<($RecipeWrapper)> impleme
 public "matches"(arg0: $RecipeWrapper$Type, arg1: $Level$Type): boolean
 public static "register"(): void
 public "getIngredient"(): $Ingredient
-public "getResultItem"(): $ItemStack
 public "getDescriptionForAssembly"(): $Component
 public "addRequiredMachines"(arg0: $Set$Type<($ItemLike$Type)>): void
 public "addAssemblyIngredients"(arg0: $List$Type<($Ingredient$Type)>): void
 public "getJEISubCategory"(): $Supplier<($Supplier<($SequencedAssemblySubCategory)>)>
 public "getTemplate"(): $ItemStack
+public "getResultItem"(): $ItemStack
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
+public "isSpecial"(): boolean
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getToastSymbol"(): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
-public "isSpecial"(): boolean
 public "assemble"(arg0: $RecipeWrapper$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "addAssemblyFluidIngredients"(arg0: $List$Type<($FluidIngredient$Type)>): void
 public "supportsAssembly"(): boolean
+public "addAssemblyFluidIngredients"(arg0: $List$Type<($FluidIngredient$Type)>): void
 get "ingredient"(): $Ingredient
-get "resultItem"(): $ItemStack
 get "descriptionForAssembly"(): $Component
 get "jEISubCategory"(): $Supplier<($Supplier<($SequencedAssemblySubCategory)>)>
 get "template"(): $ItemStack
-get "toastSymbol"(): $ItemStack
-get "serializer"(): $RecipeSerializer<(any)>
+get "resultItem"(): $ItemStack
 get "id"(): $ResourceLocation
 get "special"(): boolean
+get "toastSymbol"(): $ItemStack
+get "serializer"(): $RecipeSerializer<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -695,28 +697,28 @@ export class $DrawingRecipe extends $ProcessingRecipe<($RecipeWrapper)> implemen
 public "matches"(arg0: $RecipeWrapper$Type, arg1: $Level$Type): boolean
 public static "register"(): void
 public "getIngredient"(): $Ingredient
-public "getResultItem"(): $ItemStack
 public "getDescriptionForAssembly"(): $Component
 public "addRequiredMachines"(arg0: $Set$Type<($ItemLike$Type)>): void
 public "addAssemblyIngredients"(arg0: $List$Type<($Ingredient$Type)>): void
 public "getJEISubCategory"(): $Supplier<($Supplier<($SequencedAssemblySubCategory)>)>
+public "getResultItem"(): $ItemStack
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
+public "isSpecial"(): boolean
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getToastSymbol"(): $ItemStack
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
-public "isSpecial"(): boolean
 public "assemble"(arg0: $RecipeWrapper$Type, arg1: $RegistryAccess$Type): $ItemStack
-public "addAssemblyFluidIngredients"(arg0: $List$Type<($FluidIngredient$Type)>): void
 public "supportsAssembly"(): boolean
+public "addAssemblyFluidIngredients"(arg0: $List$Type<($FluidIngredient$Type)>): void
 get "ingredient"(): $Ingredient
-get "resultItem"(): $ItemStack
 get "descriptionForAssembly"(): $Component
 get "jEISubCategory"(): $Supplier<($Supplier<($SequencedAssemblySubCategory)>)>
-get "toastSymbol"(): $ItemStack
-get "serializer"(): $RecipeSerializer<(any)>
+get "resultItem"(): $ItemStack
 get "id"(): $ResourceLocation
 get "special"(): boolean
+get "toastSymbol"(): $ItemStack
+get "serializer"(): $RecipeSerializer<(any)>
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -766,23 +768,23 @@ export class $DrawingPressBlockEntity extends $KineticBlockEntity implements $Dr
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
-public "find"(arg0: $RecipeWrapper$Type, arg1: $Level$Type): $Optional<($DrawingRecipe)>
 public "tick"(): void
+public "find"(arg0: $RecipeWrapper$Type, arg1: $Level$Type): $Optional<($DrawingRecipe)>
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "canProcessInBulk"(): boolean
+public "getKineticSpeed"(): float
+public "getParticleAmount"(): integer
+public "tryProcessInWorld"(arg0: $ItemEntity$Type, arg1: boolean): boolean
+public "tryProcessOnBelt"(arg0: $TransportedItemStack$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): boolean
+public static "canCompress"<C extends $Container>(arg0: $Recipe$Type<(C)>): boolean
 public "onItemDrawn"(arg0: $ItemStack$Type): void
 public "getDrawingBehaviour"(): $DrawingBehaviour
 public "onDrawingCompleted"(): void
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public static "canCompress"<C extends $Container>(arg0: $Recipe$Type<(C)>): boolean
-public "tryProcessInWorld"(arg0: $ItemEntity$Type, arg1: boolean): boolean
-public "tryProcessOnBelt"(arg0: $TransportedItemStack$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): boolean
-public "getParticleAmount"(): integer
-public "getKineticSpeed"(): float
-public "canProcessInBulk"(): boolean
 public "getRecipe"(arg0: $ItemStack$Type): $Optional<($DrawingRecipe)>
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "drawingBehaviour"(): $DrawingBehaviour
-get "particleAmount"(): integer
 get "kineticSpeed"(): float
+get "particleAmount"(): integer
+get "drawingBehaviour"(): $DrawingBehaviour
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -873,19 +875,19 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getBlockEntityClass"(): $Class<($StampingPressBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
 public "hasShaftTowards"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Direction$Type): boolean
+public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $StampingPressBlockEntity
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($StampingPressBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($StampingPressBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($StampingPressBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $StampingPressBlockEntity
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -930,15 +932,15 @@ static readonly "TYPE": $BehaviourType<($BeltProcessingBehaviour)>
 
 constructor<T extends ($SmartBlockEntity) & ($StampingBehaviour$StampingBehaviourSpecifics)>(arg0: T)
 
+public "tick"(): void
 public "start"(arg0: $StampingBehaviour$Mode$Type): void
 public "write"(arg0: $CompoundTag$Type, arg1: boolean): void
 public "read"(arg0: $CompoundTag$Type, arg1: boolean): void
-public "tick"(): void
 public "getRenderedHeadOffset"(arg0: float): float
-public "getRunningTickSpeed"(): integer
 public "makePressingParticleEffect"(arg0: $Vec3$Type, arg1: $ItemStack$Type, arg2: integer): void
 public "makePressingParticleEffect"(arg0: $Vec3$Type, arg1: $ItemStack$Type): void
 public "addTemplate"(arg0: $ItemStack$Type): void
+public "getRunningTickSpeed"(): integer
 public "inWorld"(): boolean
 get "runningTickSpeed"(): integer
 }
@@ -1028,18 +1030,18 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getBlockEntityClass"(): $Class<($DrawingPressBlockEntity)>
 public "getBlockEntityType"(): $BlockEntityType<(any)>
 public "hasShaftTowards"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Direction$Type): boolean
-public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
+public "getRotationAxis"(arg0: $BlockState$Type): $Direction$Axis
 public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $DrawingPressBlockEntity
+public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "withBlockEntityDo"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Consumer$Type<($DrawingPressBlockEntity$Type)>): void
 public "getBlockEntityOptional"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $Optional<($DrawingPressBlockEntity)>
 public "onBlockEntityUse"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Function$Type<($DrawingPressBlockEntity$Type), ($InteractionResult$Type)>): $InteractionResult
-public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
+public "getBlockEntity"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $DrawingPressBlockEntity
 public static "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): void
+public "getTicker"<S extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(S)>): $BlockEntityTicker<(S)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
@@ -1094,8 +1096,8 @@ import {$KineticBlockEntity, $KineticBlockEntity$Type} from "packages/com/simibu
 import {$StampingBehaviour$StampingBehaviourSpecifics, $StampingBehaviour$StampingBehaviourSpecifics$Type} from "packages/net/pttheta/loveandwar/blocks/stamping/$StampingBehaviour$StampingBehaviourSpecifics"
 import {$Recipe, $Recipe$Type} from "packages/net/minecraft/world/item/crafting/$Recipe"
 import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/fabric/api/attachment/v1/$AttachmentTarget"
-import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$RecipeType, $RecipeType$Type} from "packages/net/minecraft/world/item/crafting/$RecipeType"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
 import {$StampingBehaviour, $StampingBehaviour$Type} from "packages/net/pttheta/loveandwar/blocks/stamping/$StampingBehaviour"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
 import {$List, $List$Type} from "packages/java/util/$List"
@@ -1121,32 +1123,32 @@ export class $StampingPressBlockEntity extends $KineticBlockEntity implements $S
 
 constructor(arg0: $BlockEntityType$Type<(any)>, arg1: $BlockPos$Type, arg2: $BlockState$Type)
 
+public "tick"(): void
 public "find"(arg0: $RecipeWrapper$Type, arg1: $Level$Type): $Optional<($StampingRecipe)>
 public "destroy"(): void
-public "tick"(): void
+public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
+public "canProcessInBulk"(): boolean
+public "getKineticSpeed"(): float
+public "getParticleAmount"(): integer
+public "tryProcessInWorld"(arg0: $ItemEntity$Type, arg1: boolean): boolean
+public "tryProcessOnBelt"(arg0: $TransportedItemStack$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): boolean
+public "setTemplate"(arg0: $ItemStack$Type): void
+public static "canCompress"<C extends $Container>(arg0: $Recipe$Type<(C)>): boolean
+public "getRecipeFor"<C extends $Container, T extends $Recipe<(C)>>(arg0: $RecipeType$Type<(T)>, arg1: C, arg2: $Level$Type, arg3: $ItemStack$Type): $Optional<($StampingRecipe)>
+public "onItemDrawn"(arg0: $ItemStack$Type): void
 public "getRenderStack"(): $ItemStack
 public "dropTemplate"(): void
 public "getStampingBehaviour"(): $StampingBehaviour
 public "onStampingCompleted"(): void
 public "templateInteract"(arg0: $ItemStack$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): void
-public "onItemDrawn"(arg0: $ItemStack$Type): void
-public "getRecipeFor"<C extends $Container, T extends $Recipe<(C)>>(arg0: $RecipeType$Type<(T)>, arg1: C, arg2: $Level$Type, arg3: $ItemStack$Type): $Optional<($StampingRecipe)>
-public "addBehaviours"(arg0: $List$Type<($BlockEntityBehaviour$Type)>): void
-public static "canCompress"<C extends $Container>(arg0: $Recipe$Type<(C)>): boolean
-public "setTemplate"(arg0: $ItemStack$Type): void
-public "tryProcessInWorld"(arg0: $ItemEntity$Type, arg1: boolean): boolean
-public "tryProcessOnBelt"(arg0: $TransportedItemStack$Type, arg1: $List$Type<($ItemStack$Type)>, arg2: boolean): boolean
-public "getParticleAmount"(): integer
-public "getKineticSpeed"(): float
-public "canProcessInBulk"(): boolean
 public "getRecipe"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $Optional<($StampingRecipe)>
 public "getRecipes"(arg0: $ItemStack$Type, arg1: $ItemStack$Type): $Optional<($StampingRecipe)>
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
+get "kineticSpeed"(): float
+get "particleAmount"(): integer
+set "template"(value: $ItemStack$Type)
 get "renderStack"(): $ItemStack
 get "stampingBehaviour"(): $StampingBehaviour
-set "template"(value: $ItemStack$Type)
-get "particleAmount"(): integer
-get "kineticSpeed"(): float
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

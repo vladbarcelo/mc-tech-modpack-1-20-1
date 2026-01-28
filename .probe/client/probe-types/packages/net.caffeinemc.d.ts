@@ -13,12 +13,12 @@ export interface $VertexBufferWriter {
  */
  "isFullWriter"(): boolean
 
-(arg0: $VertexConsumer$Type): $VertexBufferWriter
+(arg0: $VertexBufferWriter$Type, arg1: $MemoryStack$Type, arg2: long, arg3: integer, arg4: $VertexFormatDescription$Type): void
 }
 
 export namespace $VertexBufferWriter {
-function of(arg0: $VertexConsumer$Type): $VertexBufferWriter
 function copyInto(arg0: $VertexBufferWriter$Type, arg1: $MemoryStack$Type, arg2: long, arg3: integer, arg4: $VertexFormatDescription$Type): void
+function of(arg0: $VertexConsumer$Type): $VertexBufferWriter
 function tryOf(arg0: $VertexConsumer$Type): $VertexBufferWriter
 }
 /**
@@ -72,9 +72,9 @@ export interface $VertexFormatDescription {
 
  "id"(): integer
  "stride"(): integer
+ "isSimpleFormat"(): boolean
  "containsElement"(arg0: $CommonVertexAttribute$Type): boolean
  "getElementOffset"(arg0: $CommonVertexAttribute$Type): integer
- "isSimpleFormat"(): boolean
 }
 
 export namespace $VertexFormatDescription {

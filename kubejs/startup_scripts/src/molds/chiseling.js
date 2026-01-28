@@ -14,6 +14,21 @@ StartupEvents.registry('item', event => {
         {
           "item": `kubejs:sawblade_${sandType}_cast`
         },
+        {
+          "item": `kubejs:shovel_blade_${sandType}_cast`
+        },
+        {
+          "item": `kubejs:cooking_pot_${sandType}_cast`
+        },
+        {
+          "item": `kubejs:oil_can_${sandType}_cast`
+        },
+        {
+          "item": `kubejs:bottle_${sandType}_cast`
+        },
+        {
+          "item": `kubejs:large_bottle_${sandType}_cast`
+        }
       ].concat(global.tconstructDefaultCasts.map((cast) => {
         return {
           "item": `tconstruct:${cast}_${sandType}_cast`

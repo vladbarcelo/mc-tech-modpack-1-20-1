@@ -657,37 +657,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -1006,10 +1006,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1126,37 +1126,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -1680,37 +1680,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -1801,6 +1801,8 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getBlockPathType"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Mob$Type): $BlockPathTypes
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "triggerEvent"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: integer, arg4: integer): boolean
@@ -1811,8 +1813,6 @@ public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $Block
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -2074,11 +2074,11 @@ readonly "canRepair": boolean
 
 constructor()
 
+public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "finishUsingItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type): $ItemStack
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "getUseDuration"(arg0: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -2190,37 +2190,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -2637,6 +2637,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
@@ -2648,9 +2651,6 @@ public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: 
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -2984,11 +2984,11 @@ readonly "properties": $BlockBehaviour$Properties
 constructor()
 
 public "getFireSpreadSpeed"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
-public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3230,37 +3230,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -3680,6 +3680,9 @@ constructor()
 public "getBlockPathType"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Mob$Type): $BlockPathTypes
 public "getFireSpreadSpeed"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public "onPlace"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "canBeReplaced"(arg0: $BlockState$Type, arg1: $BlockPlaceContext$Type): boolean
 public "getLightBlock"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
@@ -3688,9 +3691,6 @@ public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockP
 public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "tick"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
-public "getStateForPlacement"(arg0: $BlockPlaceContext$Type): $BlockState
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
-public "updateShape"(arg0: $BlockState$Type, arg1: $Direction$Type, arg2: $BlockState$Type, arg3: $LevelAccessor$Type, arg4: $BlockPos$Type, arg5: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -3735,10 +3735,10 @@ readonly "canRepair": boolean
 
 constructor()
 
+public "getUseDuration"(arg0: $ItemStack$Type): integer
 public "use"(arg0: $Level$Type, arg1: $Player$Type, arg2: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "finishUsingItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $LivingEntity$Type): $ItemStack
 public "getUseAnimation"(arg0: $ItemStack$Type): $UseAnim
-public "getUseDuration"(arg0: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -3992,8 +3992,10 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor()
 
-public "getFlammability"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "getFireSpreadSpeed"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "getFlammability"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
+public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
+public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "onRemove"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "triggerEvent"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: integer, arg4: integer): boolean
@@ -4003,8 +4005,6 @@ public "getMenuProvider"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $Block
 public "getAnalogOutputSignal"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type): integer
 public "getShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
 public "getVisualShape"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $CollisionContext$Type): $VoxelShape
-public "appendHoverText"(arg0: $ItemStack$Type, arg1: $BlockGetter$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
-public "propagatesSkylightDown"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): boolean
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -4283,37 +4283,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -4395,37 +4395,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**
@@ -4497,37 +4497,37 @@ constructor(arg0: $ResourceLocation$Type, arg1: $ItemStack$Type, arg2: $NonNullL
 
 public "matches"(arg0: $SimpleContainer$Type, arg1: $Level$Type): boolean
 public "getResultItem"(arg0: $RegistryAccess$Type): $ItemStack
+public "getId"(): $ResourceLocation
 public "canCraftInDimensions"(arg0: integer, arg1: integer): boolean
 public "getIngredients"(): $NonNullList<($Ingredient)>
 public "getSerializer"(): $RecipeSerializer<(any)>
-public "getId"(): $ResourceLocation
 public "assemble"(arg0: $SimpleContainer$Type, arg1: $RegistryAccess$Type): $ItemStack
+public "isSpecial"(): boolean
 public "getRemainingItems"(arg0: $SimpleContainer$Type): $NonNullList<($ItemStack)>
 public "showNotification"(): boolean
 public "getToastSymbol"(): $ItemStack
 public "isIncomplete"(): boolean
-public "isSpecial"(): boolean
-public "getGroup"(): string
-public "setGroup"(group: string): void
-public "getOrCreateId"(): $ResourceLocation
-public "getSchema"(): $RecipeSchema
-public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
-public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
 public "getType"(): $ResourceLocation
+public "replaceInput"(match: $ReplacementMatch$Type, arg1: $InputReplacement$Type): boolean
+public "getSchema"(): $RecipeSchema
+public "replaceOutput"(match: $ReplacementMatch$Type, arg1: $OutputReplacement$Type): boolean
+public "getOrCreateId"(): $ResourceLocation
+public "setGroup"(group: string): void
+public "getGroup"(): string
 public "getMod"(): string
 public "hasInput"(match: $ReplacementMatch$Type): boolean
 public "hasOutput"(match: $ReplacementMatch$Type): boolean
+get "id"(): $ResourceLocation
 get "ingredients"(): $NonNullList<($Ingredient)>
 get "serializer"(): $RecipeSerializer<(any)>
-get "id"(): $ResourceLocation
+get "special"(): boolean
 get "toastSymbol"(): $ItemStack
 get "incomplete"(): boolean
-get "special"(): boolean
-get "group"(): string
-set "group"(value: string)
-get "orCreateId"(): $ResourceLocation
-get "schema"(): $RecipeSchema
 get "type"(): $ResourceLocation
+get "schema"(): $RecipeSchema
+get "orCreateId"(): $ResourceLocation
+set "group"(value: string)
+get "group"(): string
 get "mod"(): string
 }
 /**

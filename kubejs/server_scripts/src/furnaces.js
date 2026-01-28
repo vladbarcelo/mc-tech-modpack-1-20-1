@@ -50,3 +50,49 @@ ServerEvents.recipes((event) => {
     }
   )
 });
+
+// light for IE furnaces
+BlockEntityEvents.tick(event => {
+  if (event.level.levelData.getGameTime() % 60 !== 0) return
+
+  let level = event.getLevel();
+  let blockPosition = event.getPos()
+  let block = level.getBlock(blockPosition);
+
+  if (
+    block.id !== 'immersiveengineering:coke_oven' ||
+    block.id !== 'immersiveengineering:blast_furnace' || 
+    block.id !== 'immersiveengineering:alloy_smelter'
+  ) return
+
+  if (block.properties.active === 'true') {
+    let lightBlock = Block.getBlock('minecraft:light').blockStates[15]
+    if (block.getNorth().getNorth().id === 'minecraft:air') {
+      level.setBlock(block.getNorth().getNorth().pos, lightBlock, 3)
+      return
+    } else if (block.getSouth().getSouth().id === 'minecraft:air') {
+      level.setBlock(block.getSouth().getSouth().pos, lightBlock, 3)
+      return
+    } else if (block.getWest().getWest().id === 'minecraft:air') {
+      level.setBlock(block.getWest().getWest().pos, lightBlock, 3)
+      return
+    } else if (block.getEast().getEast().id === 'minecraft:air') {
+      level.setBlock(block.getEast().getEast().pos, lightBlock, 3)
+      return
+    }
+  } else {
+    if (block.getNorth().getNorth().id === 'minecraft:light') {
+      level.setBlock(block.getNorth().getNorth().pos, Block.getBlock('minecraft:air').defaultBlockState(), 3)
+      return
+    } else if (block.getSouth().getSouth().id === 'minecraft:light') {
+      level.setBlock(block.getSouth().getSouth().pos, Block.getBlock('minecraft:air').defaultBlockState(), 3)
+      return
+    } else if (block.getWest().getWest().id === 'minecraft:light') {
+      level.setBlock(block.getWest().getWest().pos, Block.getBlock('minecraft:air').defaultBlockState(), 3)
+      return
+    } else if (block.getEast().getEast().id === 'minecraft:light') {
+      level.setBlock(block.getEast().getEast().pos, Block.getBlock('minecraft:air').defaultBlockState(), 3)
+      return
+    }
+  }
+})

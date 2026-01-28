@@ -4,9 +4,7 @@ import {$LevelRenderer, $LevelRenderer$Type} from "packages/net/minecraft/client
 
 export interface $DynamicLightSource {
 
- "sdl$shouldUpdateDynamicLight"(): boolean
- "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
- "sdl$isDynamicLightEnabled"(): boolean
+ "sdl$dynamicLightTick"(): void
  "sdl$setDynamicLightEnabled"(enabled: boolean): void
  "sdl$getDynamicLightX"(): double
  "sdl$getDynamicLightY"(): double
@@ -14,7 +12,9 @@ export interface $DynamicLightSource {
  "sdl$getDynamicLightLevel"(): $Level
  "sdl$resetDynamicLight"(): void
  "sdl$getLuminance"(): integer
- "sdl$dynamicLightTick"(): void
+ "sdl$isDynamicLightEnabled"(): boolean
+ "sdl$shouldUpdateDynamicLight"(): boolean
+ "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
  "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 }
 

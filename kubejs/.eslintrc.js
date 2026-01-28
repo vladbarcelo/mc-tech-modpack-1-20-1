@@ -38,7 +38,10 @@ module.exports = {
     'BlockEvents': true,
     'BlockProperties': true,
     'MEJSEvents': true,
+    'MoreJSEvents': true,
+    'TradeItem': true,
     'BlockPos': true,
+    'VillagerUtils': true,
     // helpers
     'getRandomArrValue': true,
     'toSentenceCase': true,

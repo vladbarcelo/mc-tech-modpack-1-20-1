@@ -79,4 +79,21 @@ ServerEvents.recipes((event) => {
     },
     "time": 200
   })
+
+  event.custom({
+    "type": "immersiveengineering:alloy",
+    "input0": {
+      "tag": "forge:ingots/zinc"
+    },
+    "input1": {
+      "tag": "forge:ingots/copper"
+    },
+    "result": {
+      "base_ingredient": {
+        "item": "kubejs:hot_brass_ingot"
+      },
+      "count": 1
+    },
+    "time": 200
+  })
 });

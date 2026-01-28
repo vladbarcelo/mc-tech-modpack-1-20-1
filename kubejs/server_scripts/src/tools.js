@@ -30,8 +30,8 @@ ServerEvents.recipes((event) => {
   event.shaped(
     Item.of('rechiseled:chisel', 1),
     [
-      'A',
-      'B',
+      ' A',
+      'B ',
     ],
     {
       A: '#forge:plates/cast_iron',
@@ -41,8 +41,8 @@ ServerEvents.recipes((event) => {
   event.shaped(
     Item.of('rechiseled:chisel', 1),
     [
-      'A',
-      'B',
+      ' A',
+      'B ',
     ],
     {
       A: '#forge:plates/iron',
@@ -52,21 +52,52 @@ ServerEvents.recipes((event) => {
 
   // canteen
   event.remove({ id: 'thirstcanteen:leather_canteen' })
-  event.shaped(
-    Item.of('thirstcanteen:leather_canteen', 1),
-    [
-      'A A',
-      ' A ',
-    ],
-    {
-      A: '#forge:leather',
-    }
-  )
   event.shapeless(
     Item.of('thirstcanteen:leather_canteen', 1),
     [
       '#forge:leather',
       'minecraft:glass_bottle'
     ]
+  )
+
+  event.remove({ id: 'create:wrench' })
+  event.shaped(
+    Item.of('rechiseled:chisel', 1),
+    [
+      'AA',
+      'AB',
+      ' C'
+    ],
+    {
+      A: '#forge:plates/brass',
+      B: 'create:cogwheel',
+      C: 'hot_iron:tool_handle'
+    }
+  )
+
+  event.remove({ id: 'butchersdelight:cleaver_recipe' })
+  event.shaped(
+    Item.of('butchersdelight:cleaver'),
+    [
+      '  A',
+      ' A ',
+      'B  ',
+    ],
+    {
+      A: '#forge:plates/cast_iron',
+      B: 'hot_iron:tool_handle'
+    }
+  )
+  event.shaped(
+    Item.of('butchersdelight:cleaver'),
+    [
+      '  A',
+      ' A ',
+      'B  ',
+    ],
+    {
+      A: '#forge:plates/iron',
+      B: 'hot_iron:tool_handle'
+    }
   )
 });

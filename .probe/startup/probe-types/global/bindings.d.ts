@@ -5,8 +5,8 @@ import {$DamageSource, $DamageSource$Type} from "packages/net/minecraft/world/da
 import {$ResourceTexture, $ResourceTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$ResourceTexture"
 import {$CodeEditorWidget, $CodeEditorWidget$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/$CodeEditorWidget"
 import {$SelectableWidgetGroup, $SelectableWidgetGroup$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$SelectableWidgetGroup"
-import {$ItemStackTexture, $ItemStackTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$ItemStackTexture"
 import {$Blocks, $Blocks$Type} from "packages/net/minecraft/world/level/block/$Blocks"
+import {$ItemStackTexture, $ItemStackTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$ItemStackTexture"
 import {$BlockWrapper, $BlockWrapper$Type} from "packages/dev/latvian/mods/kubejs/bindings/$BlockWrapper"
 import {$OutputItem, $OutputItem$Type} from "packages/dev/latvian/mods/kubejs/item/$OutputItem"
 import {$ForgeEventWrapper, $ForgeEventWrapper$Type} from "packages/dev/latvian/mods/kubejs/forge/$ForgeEventWrapper"
@@ -18,15 +18,20 @@ import {$ProgressTexture, $ProgressTexture$Type} from "packages/com/lowdragmc/lo
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
 import {$Matrix3f, $Matrix3f$Type} from "packages/org/joml/$Matrix3f"
 import {$Stats, $Stats$Type} from "packages/net/minecraft/stats/$Stats"
+import {$KubeBindings, $KubeBindings$Type} from "packages/com/momosoftworks/coldsweat/compat/kubejs/$KubeBindings"
 import {$GuiTextureGroup, $GuiTextureGroup$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$GuiTextureGroup"
 import {$ItemUIJSFactory, $ItemUIJSFactory$Type} from "packages/com/lowdragmc/lowdraglib/kjs/ui/$ItemUIJSFactory"
 import {$JavaWrapper, $JavaWrapper$Type} from "packages/dev/latvian/mods/kubejs/bindings/$JavaWrapper"
+import {$Collectors, $Collectors$Type} from "packages/java/util/stream/$Collectors"
+import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$RotationAxis, $RotationAxis$Type} from "packages/dev/latvian/mods/kubejs/util/$RotationAxis"
 import {$Painter, $Painter$Type} from "packages/dev/latvian/mods/kubejs/client/painter/$Painter"
 import {$TabButton, $TabButton$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$TabButton"
 import {$BlockUIJSFactory, $BlockUIJSFactory$Type} from "packages/com/lowdragmc/lowdraglib/kjs/ui/$BlockUIJSFactory"
+import {$MoreJSBinding, $MoreJSBinding$Type} from "packages/com/almostreliable/morejs/$MoreJSBinding"
 import {$IngredientForgeHelper, $IngredientForgeHelper$Type} from "packages/dev/latvian/mods/kubejs/platform/forge/$IngredientForgeHelper"
 import {$CuriosCapability, $CuriosCapability$Type} from "packages/top/theillusivec4/curios/api/$CuriosCapability"
+import {$EnchantmentInstance, $EnchantmentInstance$Type} from "packages/net/minecraft/world/item/enchantment/$EnchantmentInstance"
 import {$CapabilitiesHelperIE, $CapabilitiesHelperIE$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/mods/immersive/$CapabilitiesHelperIE"
 import {$AlmostKube, $AlmostKube$Type} from "packages/com/almostreliable/unified/compat/$AlmostKube"
 import {$AnimationTexture, $AnimationTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$AnimationTexture"
@@ -51,8 +56,8 @@ import {$DialogWidget, $DialogWidget$Type} from "packages/com/lowdragmc/lowdragl
 import {$ForgeCapabilities, $ForgeCapabilities$Type} from "packages/net/minecraftforge/common/capabilities/$ForgeCapabilities"
 import {$Structures, $Structures$Type} from "packages/net/minecraft/data/worldgen/$Structures"
 import {$ItemStackTransfer, $ItemStackTransfer$Type} from "packages/com/lowdragmc/lowdraglib/misc/$ItemStackTransfer"
-import {$KMath, $KMath$Type} from "packages/dev/latvian/mods/kubejs/bindings/$KMath"
 import {$Vector3f, $Vector3f$Type} from "packages/org/joml/$Vector3f"
+import {$KMath, $KMath$Type} from "packages/dev/latvian/mods/kubejs/bindings/$KMath"
 import {$Vec3i, $Vec3i$Type} from "packages/net/minecraft/core/$Vec3i"
 import {$ColorWrapper, $ColorWrapper$Type} from "packages/dev/latvian/mods/rhino/mod/wrapper/$ColorWrapper"
 import {$NBTUtils, $NBTUtils$Type} from "packages/dev/latvian/mods/rhino/mod/util/$NBTUtils"
@@ -67,9 +72,9 @@ import {$NotificationBuilder, $NotificationBuilder$Type} from "packages/dev/latv
 import {$FluidTransferHelperImpl, $FluidTransferHelperImpl$Type} from "packages/com/lowdragmc/lowdraglib/side/fluid/forge/$FluidTransferHelperImpl"
 import {$CapabilitiesCurios, $CapabilitiesCurios$Type} from "packages/com/prunoideae/powerfuljs/capabilities/forge/mods/curios/$CapabilitiesCurios"
 import {$ICurioRenderer, $ICurioRenderer$Type} from "packages/top/theillusivec4/curios/api/client/$ICurioRenderer"
-import {$Items, $Items$Type} from "packages/net/minecraft/world/item/$Items"
 import {$TextWrapper, $TextWrapper$Type} from "packages/dev/latvian/mods/kubejs/bindings/$TextWrapper"
 import {$LabelWidget, $LabelWidget$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$LabelWidget"
+import {$Items, $Items$Type} from "packages/net/minecraft/world/item/$Items"
 import {$ColorRectTexture, $ColorRectTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$ColorRectTexture"
 import {$Math, $Math$Type} from "packages/java/lang/$Math"
 import {$ButtonWidget, $ButtonWidget$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$ButtonWidget"
@@ -91,8 +96,11 @@ import {$BaseBindings, $BaseBindings$Type} from "packages/pro/mikey/kubeutils/ku
 import {$LanguageDefinition, $LanguageDefinition$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/language/$LanguageDefinition"
 import {$BlockStateProperties, $BlockStateProperties$Type} from "packages/net/minecraft/world/level/block/state/properties/$BlockStateProperties"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$Comparator, $Comparator$Type} from "packages/java/util/$Comparator"
 import {$TabContainer, $TabContainer$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/$TabContainer"
+import {$TradeItem, $TradeItem$Type} from "packages/com/almostreliable/morejs/features/villager/$TradeItem"
 import {$AABBWrapper, $AABBWrapper$Type} from "packages/dev/latvian/mods/rhino/mod/wrapper/$AABBWrapper"
+import {$VillagerUtils, $VillagerUtils$Type} from "packages/com/almostreliable/morejs/features/villager/$VillagerUtils"
 import {$ShaderTexture, $ShaderTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$ShaderTexture"
 import {$TextTexture$TextType, $TextTexture$TextType$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$TextTexture$TextType"
 import {$ResourceBorderTexture, $ResourceBorderTexture$Type} from "packages/com/lowdragmc/lowdraglib/gui/texture/$ResourceBorderTexture"
@@ -104,97 +112,104 @@ import {$PhantomSlotWidget, $PhantomSlotWidget$Type} from "packages/com/lowdragm
 import {$Languages, $Languages$Type} from "packages/com/lowdragmc/lowdraglib/gui/widget/codeeditor/language/$Languages"
 
 declare global {
-const TankWidget: typeof $TankWidget
 const Platform: typeof $PlatformWrapper
 const ProgressTexture: typeof $ProgressTexture
 const Widget: typeof $Widget
-const EditorLanguageDefinition: typeof $LanguageDefinition
 const OutputItem: typeof $OutputItem
 const RotationAxis: typeof $RotationAxis
 const TextBoxWidget: typeof $TextBoxWidget
 const Feature: typeof $Feature
-const TabContainer: typeof $TabContainer
 const GuiTextureGroup: typeof $GuiTextureGroup
 const SlotWidget: typeof $SlotWidget
 const ModularUI: typeof $ModularUI
 const ForgeModEvents: $ForgeEventWrapper
-const ProgressWidget: typeof $ProgressWidget
 const Painter: $Painter
+const ImageWidget: typeof $ImageWidget
+const PhantomFluidWidget: typeof $PhantomFluidWidget
+const FillDirection: typeof $ProgressTexture$FillDirection
+const ResourceBorderTexture: typeof $ResourceBorderTexture
+const CodeEditorWidget: typeof $CodeEditorWidget
+const TextType: typeof $TextTexture$TextType
+const Matrix4f: typeof $Matrix4f
+const PhantomSlotWidget: typeof $PhantomSlotWidget
+const TabButton: typeof $TabButton
+const Vector3f: typeof $Vector3f
+const AlmostUnified: typeof $AlmostKube
+const TextFieldWidget: typeof $TextFieldWidget
+const TradeItem: typeof $TradeItem
+const JavaMath: typeof $Math
+const DraggableScrollableWidgetGroup: typeof $DraggableScrollableWidgetGroup
+const global: $HashMap<(any), (any)>
+const DraggableWidgetGroup: typeof $DraggableWidgetGroup
+const IngredientHelper: $IngredientForgeHelper
+const Notification: typeof $NotificationBuilder
+const AnimationTexture: typeof $AnimationTexture
+const UIProject: typeof $UIProject
+const Matrix3f: typeof $Matrix3f
+const ResourceLocation: typeof $ResourceLocation
+const Structures: typeof $Structures
+const BlockProperties: typeof $BlockStateProperties
+const SceneWidget: typeof $SceneWidget
+const Java: $JavaWrapper
+const Blocks: typeof $Blocks
+const SelectableWidgetGroup: typeof $SelectableWidgetGroup
+const Quaternionf: typeof $Quaternionf
+const ColorRectTexture: typeof $ColorRectTexture
+const WidgetGroup: typeof $WidgetGroup
+const Text: typeof $TextWrapper
+const ColorPattern: typeof $ColorPattern
+const ItemUIFactory: typeof $ItemUIJSFactory
+const EnchantmentInstance: typeof $EnchantmentInstance
+const LabelWidget: typeof $LabelWidget
+const coldsweat: $KubeBindings
+const ItemStackTransfer: typeof $ItemStackTransfer
+const TankWidget: typeof $TankWidget
+const EditorLanguageDefinition: typeof $LanguageDefinition
+const TabContainer: typeof $TabContainer
+const ProgressWidget: typeof $ProgressWidget
 const Items: typeof $Items
 const MINUTE: double
 const BlockPos: typeof $BlockPos
-const ImageWidget: typeof $ImageWidget
-const PhantomFluidWidget: typeof $PhantomFluidWidget
 const Client: $Minecraft
 const SoundType: typeof $SoundType
-const FillDirection: typeof $ProgressTexture$FillDirection
-const ResourceBorderTexture: typeof $ResourceBorderTexture
+const Collectors: typeof $Collectors
+const Optional: typeof $Optional
 const Fluid: typeof $FluidWrapper
 const CuriosCapabilities: typeof $CuriosCapability
 const Duration: typeof $Duration
 const SwitchWidget: typeof $SwitchWidget
 const ShaderTexture: typeof $ShaderTexture
 const DialogWidget: typeof $DialogWidget
-const CodeEditorWidget: typeof $CodeEditorWidget
 const ButtonWidget: typeof $ButtonWidget
-const TextType: typeof $TextTexture$TextType
-const Matrix4f: typeof $Matrix4f
-const PhantomSlotWidget: typeof $PhantomSlotWidget
 const KMath: typeof $KMath
-const TabButton: typeof $TabButton
-const Vector3f: typeof $Vector3f
-const AlmostUnified: typeof $AlmostKube
 const Stats: typeof $Stats
 const BlockUIFactory: typeof $BlockUIJSFactory
 const Block: typeof $BlockWrapper
-const TextFieldWidget: typeof $TextFieldWidget
-const JavaMath: typeof $Math
-const DraggableScrollableWidgetGroup: typeof $DraggableScrollableWidgetGroup
 const HOUR: double
-const global: $HashMap<(any), (any)>
-const DraggableWidgetGroup: typeof $DraggableWidgetGroup
-const IngredientHelper: $IngredientForgeHelper
+const MoreJS: typeof $MoreJSBinding
+const VillagerUtils: typeof $VillagerUtils
 const GuiSize: typeof $Size
 const Vec4f: typeof $Vector4f
-const Notification: typeof $NotificationBuilder
-const AnimationTexture: typeof $AnimationTexture
-const UIProject: typeof $UIProject
 const BlockSelectorWidget: typeof $BlockSelectorWidget
-const Matrix3f: typeof $Matrix3f
 const TreeListWidget: typeof $TreeListWidget
-const ResourceLocation: typeof $ResourceLocation
 const TextTexture: typeof $TextTexture
-const Structures: typeof $Structures
-const BlockProperties: typeof $BlockStateProperties
 const Component: typeof $TextWrapper
-const SceneWidget: typeof $SceneWidget
 const console: $ConsoleJS
-const Java: $JavaWrapper
 const JsonIO: typeof $JsonIO
 const Vec3i: typeof $Vec3i
 const ItemStackTexture: typeof $ItemStackTexture
-const Blocks: typeof $Blocks
 const DamageSource: typeof $DamageSource
 const ResourceTexture: typeof $ResourceTexture
-const SelectableWidgetGroup: typeof $SelectableWidgetGroup
 const FTBQuests: $FTBQuestsKubeJSWrapper
 const ForgeCapabilities: typeof $ForgeCapabilities
-const Quaternionf: typeof $Quaternionf
-const ColorRectTexture: typeof $ColorRectTexture
-const WidgetGroup: typeof $WidgetGroup
-const Text: typeof $TextWrapper
-const ColorPattern: typeof $ColorPattern
 const Vec3f: typeof $Vector3f
 const Vec3d: typeof $Vec3
-const ItemUIFactory: typeof $ItemUIJSFactory
 const ItemTransferHelper: typeof $ItemTransferHelperImpl
 const GuiPos: typeof $Position
 const ForgeEvents: $ForgeEventWrapper
 const InputItem: typeof $InputItem
-const LabelWidget: typeof $LabelWidget
 const SECOND: double
 const FluidTransferHelper: typeof $FluidTransferHelperImpl
-const ItemStackTransfer: typeof $ItemStackTransfer
 const FluidStorage: typeof $FluidStorage
 export import NBT = $NBTUtils
 export import Facing = $DirectionWrapper
@@ -203,6 +218,7 @@ export import Ku = $BaseBindings
 export import NBTIO = $NBTIOWrapper
 export import CapabilityBuilder = $CapabilitiesForge
 export import Direction = $DirectionWrapper
+export import Comparator = $Comparator
 export import IECapabilityBuilder = $CapabilitiesIE
 export import Item = $ItemWrapper
 export import Utils = $UtilsWrapper

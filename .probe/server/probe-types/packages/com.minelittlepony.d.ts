@@ -9,11 +9,11 @@ export class $Padding {
 constructor(top: integer, left: integer, bottom: integer, right: integer)
 
 public "setAll"(padding: integer): void
-public "setHorizontal"(padding: integer): void
 public "setVertical"(padding: integer): void
+public "setHorizontal"(padding: integer): void
 set "all"(value: integer)
-set "horizontal"(value: integer)
 set "vertical"(value: integer)
+set "horizontal"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -202,8 +202,8 @@ export interface $ITextContext {
 
  "drawCenteredLabel"(context: $GuiGraphics$Type, text: $Component$Type, x: integer, y: integer, color: integer, zIndex: double): void
  "drawTextBlock"(context: $GuiGraphics$Type, text: $FormattedText$Type, x: integer, y: integer, maxWidth: integer, color: integer): void
- "drawLabel"(context: $GuiGraphics$Type, text: $Component$Type, x: integer, y: integer, color: integer, zIndex: double): void
  "getFont"(): $Font
+ "drawLabel"(context: $GuiGraphics$Type, text: $Component$Type, x: integer, y: integer, color: integer, zIndex: double): void
 }
 
 export namespace $ITextContext {
@@ -261,6 +261,7 @@ export class $Bounds {
 
 constructor(top: integer, left: integer, width: integer, height: integer)
 
+public "right"(): integer
 public "add"(other: $Bounds$Type): $Bounds
 public "add"(other: $Padding$Type): $Bounds
 public "equals"(o: any): boolean
@@ -271,10 +272,9 @@ public "contains"(x: double, y: double): boolean
 public static "empty"(): $Bounds
 public "copy"(other: $Bounds$Type): void
 public "bottom"(): integer
-public "right"(): integer
 public "debugMeasure"(context: $GuiGraphics$Type): void
-public "translate"(matrices: $PoseStack$Type): void
 public "draw"(context: $GuiGraphics$Type, tint: integer): void
+public "translate"(matrices: $PoseStack$Type): void
 public "containsX"(x: double): boolean
 public "containsY"(y: double): boolean
 }

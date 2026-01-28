@@ -2464,8 +2464,8 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "setBlock"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): boolean
+public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 }
 /**
@@ -4510,8 +4510,8 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "setBlock"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): boolean
+public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "checkSpace"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type): boolean
 }
@@ -4647,11 +4647,11 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 public "placeLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $FoliagePlacer$FoliageSetter$Type, arg3: FC): boolean
 public "placeAltLeaves"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $FoliagePlacer$FoliageSetter$Type, arg3: FC): boolean
 public "setTrunkFruit"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: FC): boolean
+public static "isFree"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $Direction$Axis$Type, arg3: $BiConsumer$Type<($BlockPos$Type), ($BlockState$Type)>, arg4: FC): boolean
 public "placeLog"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: $BiConsumer$Type<($BlockPos$Type), ($BlockState$Type)>, arg3: FC): boolean
 public "setVine"(arg0: $LevelAccessor$Type, arg1: $RandomSource$Type, arg2: $BlockPos$Type, arg3: $Direction$Type, arg4: integer, arg5: FC): boolean
 public "setHanging"(arg0: $LevelAccessor$Type, arg1: $BlockPos$Type, arg2: FC): boolean
-public static "isFree"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -5886,8 +5886,8 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "setBlock"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): boolean
+public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "checkSpace"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type): boolean
 }
@@ -6142,8 +6142,8 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "setBlock"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): boolean
+public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 }
 /**
@@ -6439,8 +6439,8 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
 public "placeCobweb"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: integer, arg3: $Direction$Type): void
-public "canPlace"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: integer, arg3: $Direction$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
+public "canPlace"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: integer, arg3: $Direction$Type): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -6567,8 +6567,8 @@ static readonly "SCULK_PATCH": $Feature<($SculkPatchConfiguration)>
 
 constructor(arg0: $Codec$Type<($NoneFeatureConfiguration$Type)>)
 
-public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "setBlock"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type): boolean
+public static "isAir"(arg0: $LevelSimulatedReader$Type, arg1: $BlockPos$Type): boolean
 public "place"(arg0: $FeaturePlaceContext$Type<($NoneFeatureConfiguration$Type)>): boolean
 public "checkSpace"(arg0: $WorldGenLevel$Type, arg1: $BlockPos$Type): boolean
 }

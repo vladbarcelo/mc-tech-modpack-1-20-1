@@ -86,7 +86,7 @@ ServerEvents.recipes((event) => {
     {
       A: '#tconstruct:smeltery_bricks',
       B: 'kubejs:borosilicate_glass',
-      C: 'createdeco:copper_bars'
+      C: '#forge:plates/copper'
     }
   )
   // drains

@@ -13,9 +13,9 @@ export class $CapabilityFluid$CustomTankBuilderItemStack extends $CapabilityBuil
 constructor()
 
 public "getCapacity"(getCapacity: $ToIntFunction$Type<($ItemStack$Type)>): $CapabilityFluid$CustomTankBuilderItemStack
-public "acceptFluid"(fluid: $Fluid$Type): $CapabilityFluid$CustomTankBuilderItemStack
-public "withCapacity"(capacity: integer): $CapabilityFluid$CustomTankBuilderItemStack
 public "isFluidGood"(isFluidGood: $BiPredicate$Type<($ItemStack$Type), ($FluidStackJS$Type)>): $CapabilityFluid$CustomTankBuilderItemStack
+public "withCapacity"(capacity: integer): $CapabilityFluid$CustomTankBuilderItemStack
+public "acceptFluid"(fluid: $Fluid$Type): $CapabilityFluid$CustomTankBuilderItemStack
 public "onFill"(onFill: $CapabilityFluid$FluidIOItemStack$Type): $CapabilityFluid$CustomTankBuilderItemStack
 public "onDrain"(onDrain: $CapabilityFluid$FluidIOItemStack$Type): $CapabilityFluid$CustomTankBuilderItemStack
 }
@@ -236,14 +236,14 @@ export class $CapabilityCurios$ItemStackBuilder extends $CapabilityBuilderForge<
 
 constructor()
 
-public "getCapability"(instance: $ItemStack$Type): $ICurio
 public "getDropRule"(getDropRule: $CapabilityCurios$ShouldDrop$Type): $CapabilityCurios$ItemStackBuilder
+public "getCapability"(instance: $ItemStack$Type): $ICurio
 public "modifyAttribute"(attribute: $ResourceLocation$Type, identifier: string, d: double, operation: $AttributeModifier$Operation$Type): $CapabilityCurios$ItemStackBuilder
 public "dynamicAttribute"(context: $Consumer$Type<($CapabilityCurios$AttributeModificationContext$Type)>): $CapabilityCurios$ItemStackBuilder
 public "canEquip"(canEquip: $BiPredicate$Type<($ItemStack$Type), ($SlotContext$Type)>): $CapabilityCurios$ItemStackBuilder
+public "canUnequip"(canUnequip: $BiPredicate$Type<($ItemStack$Type), ($SlotContext$Type)>): $CapabilityCurios$ItemStackBuilder
 public "onEquip"(onEquip: $CapabilityCurios$EquipCallback$Type): $CapabilityCurios$ItemStackBuilder
 public "onUnequip"(onUnequip: $CapabilityCurios$EquipCallback$Type): $CapabilityCurios$ItemStackBuilder
-public "canUnequip"(canUnequip: $BiPredicate$Type<($ItemStack$Type), ($SlotContext$Type)>): $CapabilityCurios$ItemStackBuilder
 public "curioTick"(curioTick: $BiConsumer$Type<($ItemStack$Type), ($SlotContext$Type)>): $CapabilityCurios$ItemStackBuilder
 }
 /**
@@ -291,10 +291,10 @@ export class $CapabilityForgeEnergy$BlockEntityBuilder extends $CapabilityBuilde
 
 constructor()
 
-public "receiveEnergy"(receiveEnergy: $CapabilityForgeEnergy$EnergyIOBlockEntity$Type): $CapabilityForgeEnergy$BlockEntityBuilder
-public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOBlockEntity$Type): $CapabilityForgeEnergy$BlockEntityBuilder
 public "getMaxEnergyStored"(getMaxEnergyStored: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
 public "getEnergyStored"(getEnergyStored: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
+public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOBlockEntity$Type): $CapabilityForgeEnergy$BlockEntityBuilder
+public "receiveEnergy"(receiveEnergy: $CapabilityForgeEnergy$EnergyIOBlockEntity$Type): $CapabilityForgeEnergy$BlockEntityBuilder
 public "withCapacity"(capacity: integer): $CapabilityForgeEnergy$BlockEntityBuilder
 public "canExtract"(canExtract: $Predicate$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
 public "canReceive"(canReceive: $Predicate$Type<($BlockEntity$Type)>): $CapabilityForgeEnergy$BlockEntityBuilder
@@ -825,9 +825,9 @@ constructor()
 
 public "getCapability"(instance: $BlockEntity$Type): $IItemHandler
 public "getStackInSlot"(getStackInSlot: $BiFunction$Type<($BlockEntity$Type), (integer), ($ItemStack$Type)>): $CapabilityItem$BlockEntityBuilder
-public "isItemValid"(isItemValid: $CapabilityItem$IsItemValid$Type): $CapabilityItem$BlockEntityBuilder
-public "getSlotLimit"(getSlotLimit: $ToIntBiFunction$Type<($BlockEntity$Type), (integer)>): $CapabilityItem$BlockEntityBuilder
 public "extractItem"(extractItem: $CapabilityItem$ExtractItem$Type): $CapabilityItem$BlockEntityBuilder
+public "getSlotLimit"(getSlotLimit: $ToIntBiFunction$Type<($BlockEntity$Type), (integer)>): $CapabilityItem$BlockEntityBuilder
+public "isItemValid"(isItemValid: $CapabilityItem$IsItemValid$Type): $CapabilityItem$BlockEntityBuilder
 public "getSlots"(getSlots: $ToIntFunction$Type<($BlockEntity$Type)>): $CapabilityItem$BlockEntityBuilder
 public "insertItem"(insertItem: $CapabilityItem$InsertItem$Type): $CapabilityItem$BlockEntityBuilder
 }
@@ -936,10 +936,10 @@ export class $CapabilityForgeEnergy$ItemStackBuilder extends $CapabilityBuilderF
 
 constructor()
 
-public "receiveEnergy"(receiveEnergy: $CapabilityForgeEnergy$EnergyIOItemStack$Type): $CapabilityForgeEnergy$ItemStackBuilder
-public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOItemStack$Type): $CapabilityForgeEnergy$ItemStackBuilder
 public "getMaxEnergyStored"(getMaxEnergyStored: $ToIntFunction$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
 public "getEnergyStored"(getEnergyStored: $ToIntFunction$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
+public "extractEnergy"(extractEnergy: $CapabilityForgeEnergy$EnergyIOItemStack$Type): $CapabilityForgeEnergy$ItemStackBuilder
+public "receiveEnergy"(receiveEnergy: $CapabilityForgeEnergy$EnergyIOItemStack$Type): $CapabilityForgeEnergy$ItemStackBuilder
 public "withCapacity"(capacity: integer): $CapabilityForgeEnergy$ItemStackBuilder
 public "canExtract"(canExtract: $Predicate$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
 public "canReceive"(canReceive: $Predicate$Type<($ItemStack$Type)>): $CapabilityForgeEnergy$ItemStackBuilder
@@ -1015,8 +1015,8 @@ export class $CapabilityRotationAcceptor$BlockEntityBuilder extends $CapabilityB
 
 constructor()
 
-public "inputRotation"(inputRotation: $BiConsumer$Type<($BlockEntity$Type), (double)>): $CapabilityRotationAcceptor$BlockEntityBuilder
 public "getCapability"(instance: $BlockEntity$Type): $IRotationAcceptor
+public "inputRotation"(inputRotation: $BiConsumer$Type<($BlockEntity$Type), (double)>): $CapabilityRotationAcceptor$BlockEntityBuilder
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

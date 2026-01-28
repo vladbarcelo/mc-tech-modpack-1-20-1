@@ -398,7 +398,6 @@ ServerEvents.recipes((event) => {
     'tconstruct:smeltery/melting/metal/tungsten/ore_sparse',
     'tconstruct:smeltery/melting/metal/tungsten/raw',
     'tconstruct:smeltery/melting/metal/tungsten/raw_block',
-    "immersiveengineering:alloysmelter/constantan",
     "createaddition:compat/immersiveengineering/constantan",
     "createloveandwar:mixing/steel_ingot",
     "immersiveengineering:blastfurnace/steel",

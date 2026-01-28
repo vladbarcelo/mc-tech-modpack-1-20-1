@@ -29,25 +29,25 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $ISnowTrackedChunk {
 
- "sereneseasonsplus$getLastWinterId"(): integer
- "sereneseasonsplus$setLastWinterId"(arg0: integer): void
- "sereneseasonsplus$getSnowColumns"(): $Map<($BlockPos), (integer)>
- "sereneseasonsplus$getIceColumns"(): $Set<($BlockPos)>
- "sereneseasonsplus$getAvailableSnowColumns"(): integer
- "sereneseasonsplus$setAvailableSnowColumns"(arg0: integer): void
- "sereneseasonsplus$getStormProgress"(): float
- "sereneseasonsplus$setStormProgress"(arg0: float): void
- "sereneseasonsplus$getStormIdApplied"(): integer
- "sereneseasonsplus$getTotalSnowLayers"(): integer
- "sereneseasonsplus$getTrackedColumnCount"(): integer
- "sereneseasonsplus$getLastProgressTick"(): integer
- "sereneseasonsplus$setLastProgressTick"(arg0: integer): void
- "sereneseasonsplus$setStormIdApplied"(arg0: integer): void
  "sereneseasonsplus$getSurfaceHeight"(): integer
  "sereneseasonsplus$setSurfaceHeight"(arg0: integer): void
  "sereneseasonsplus$getDestroyedStormId"(): integer
  "sereneseasonsplus$getDestroyedColumns"(): $Set<(long)>
  "sereneseasonsplus$setDestroyedStormId"(arg0: integer): void
+ "sereneseasonsplus$getLastWinterId"(): integer
+ "sereneseasonsplus$setLastWinterId"(arg0: integer): void
+ "sereneseasonsplus$getIceColumns"(): $Set<($BlockPos)>
+ "sereneseasonsplus$getAvailableSnowColumns"(): integer
+ "sereneseasonsplus$setAvailableSnowColumns"(arg0: integer): void
+ "sereneseasonsplus$getSnowColumns"(): $Map<($BlockPos), (integer)>
+ "sereneseasonsplus$getStormProgress"(): float
+ "sereneseasonsplus$setStormProgress"(arg0: float): void
+ "sereneseasonsplus$getStormIdApplied"(): integer
+ "sereneseasonsplus$setStormIdApplied"(arg0: integer): void
+ "sereneseasonsplus$getLastProgressTick"(): integer
+ "sereneseasonsplus$setLastProgressTick"(arg0: integer): void
+ "sereneseasonsplus$getTotalSnowLayers"(): integer
+ "sereneseasonsplus$getTrackedColumnCount"(): integer
 }
 
 export namespace $ISnowTrackedChunk {

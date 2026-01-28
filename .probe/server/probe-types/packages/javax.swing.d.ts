@@ -16,10 +16,10 @@ static readonly "Y_AXIS": integer
 
 constructor(arg0: $Element$Type, arg1: integer)
 
+public "setSize"(arg0: float, arg1: float): void
+public "replace"(arg0: integer, arg1: integer, arg2: ($View$Type)[]): void
 public "getWidth"(): integer
 public "getHeight"(): integer
-public "replace"(arg0: integer, arg1: integer, arg2: ($View$Type)[]): void
-public "setSize"(arg0: float, arg1: float): void
 public "preferenceChanged"(arg0: $View$Type, arg1: boolean, arg2: boolean): void
 public "getChildAllocation"(arg0: integer, arg1: $Shape$Type): $Shape
 public "modelToView"(arg0: integer, arg1: $Shape$Type, arg2: $Position$Bias$Type): $Shape
@@ -111,15 +111,15 @@ import {$Enumeration, $Enumeration$Type} from "packages/java/util/$Enumeration"
 
 export interface $AttributeSet {
 
- "getAttributeNames"(): $Enumeration<(any)>
- "isDefined"(arg0: any): boolean
- "isEqual"(arg0: $AttributeSet$Type): boolean
  "getAttribute"(arg0: any): any
+ "isEqual"(arg0: $AttributeSet$Type): boolean
  "getAttributeCount"(): integer
- "containsAttribute"(arg0: any, arg1: any): boolean
+ "isDefined"(arg0: any): boolean
+ "getAttributeNames"(): $Enumeration<(any)>
  "containsAttributes"(arg0: $AttributeSet$Type): boolean
  "getResolveParent"(): $AttributeSet
  "copyAttributes"(): $AttributeSet
+ "containsAttribute"(arg0: any, arg1: any): boolean
 }
 
 export namespace $AttributeSet {
@@ -160,11 +160,11 @@ constructor(arg0: $Element$Type, arg1: integer)
 
 public "setParent"(arg0: $View$Type): void
 public "getAttributes"(): $AttributeSet
-public "changedUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
 public "getPreferredSpan"(arg0: integer): float
 public "getMinimumSpan"(arg0: integer): float
 public "getMaximumSpan"(arg0: integer): float
 public "getResizeWeight"(arg0: integer): integer
+public "changedUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
 public "getAlignment"(arg0: integer): float
 public "paint"(arg0: $Graphics$Type, arg1: $Shape$Type): void
 set "parent"(value: $View$Type)
@@ -226,12 +226,12 @@ export interface $Document {
  "createPosition"(arg0: integer): $Position
  "getRootElements"(): ($Element)[]
  "getDefaultRootElement"(): $Element
- "putProperty"(arg0: any, arg1: any): void
  "getStartPosition"(): $Position
  "getEndPosition"(): $Position
- "render"(arg0: $Runnable$Type): void
- "getText"(arg0: integer, arg1: integer, arg2: $Segment$Type): void
  "getText"(arg0: integer, arg1: integer): string
+ "getText"(arg0: integer, arg1: integer, arg2: $Segment$Type): void
+ "render"(arg0: $Runnable$Type): void
+ "putProperty"(arg0: any, arg1: any): void
 }
 
 export namespace $Document {
@@ -260,9 +260,12 @@ export class $Segment implements $Cloneable, $CharacterIterator, charseq {
  "offset": integer
  "count": integer
 
-constructor()
 constructor(arg0: (character)[], arg1: integer, arg2: integer)
+constructor()
 
+public "setIndex"(arg0: integer): character
+public "getBeginIndex"(): integer
+public "getEndIndex"(): integer
 public "length"(): integer
 public "toString"(): string
 public "clone"(): any
@@ -276,19 +279,16 @@ public "previous"(): character
 public "getIndex"(): integer
 public "setPartialReturn"(arg0: boolean): void
 public "isPartialReturn"(): boolean
-public "setIndex"(arg0: integer): character
-public "getBeginIndex"(): integer
-public "getEndIndex"(): integer
 public static "compare"(arg0: charseq, arg1: charseq): integer
 public "isEmpty"(): boolean
 public "codePoints"(): $IntStream
 public "chars"(): $IntStream
-get "index"(): integer
-set "partialReturn"(value: boolean)
-get "partialReturn"(): boolean
 set "index"(value: integer)
 get "beginIndex"(): integer
 get "endIndex"(): integer
+get "index"(): integer
+set "partialReturn"(value: boolean)
+get "partialReturn"(): boolean
 get "empty"(): boolean
 }
 /**
@@ -325,7 +325,8 @@ static readonly "Y_AXIS": integer
 
 constructor(arg0: $Element$Type)
 
-public "getGraphics"(): $Graphics
+public "setSize"(arg0: float, arg1: float): void
+public "getElement"(): $Element
 public "remove"(arg0: integer): void
 public "append"(arg0: $View$Type): void
 public "insert"(arg0: integer, arg1: $View$Type): void
@@ -334,34 +335,26 @@ public "getParent"(): $View
 public "setParent"(arg0: $View$Type): void
 public "getAttributes"(): $AttributeSet
 public "removeAll"(): void
+public "getGraphics"(): $Graphics
 public "getContainer"(): $Container
-public "setSize"(arg0: float, arg1: float): void
-public "getElement"(): $Element
 public "getDocument"(): $Document
-public "getViewIndex"(arg0: float, arg1: float, arg2: $Shape$Type): integer
-public "getViewIndex"(arg0: integer, arg1: $Position$Bias$Type): integer
-public "insertUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
-public "removeUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
-public "changedUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
-public "breakView"(arg0: integer, arg1: integer, arg2: float, arg3: float): $View
-public "createFragment"(arg0: integer, arg1: integer): $View
-public "getBreakWeight"(arg0: integer, arg1: float, arg2: float): integer
 public "preferenceChanged"(arg0: $View$Type, arg1: boolean, arg2: boolean): void
+public "getView"(arg0: integer): $View
 public "getViewCount"(): integer
 public "getChildAllocation"(arg0: integer, arg1: $Shape$Type): $Shape
+/**
+ * 
+ * @deprecated
+ */
+public "modelToView"(arg0: integer, arg1: $Shape$Type): $Shape
 public "modelToView"(arg0: integer, arg1: $Position$Bias$Type, arg2: integer, arg3: $Position$Bias$Type, arg4: $Shape$Type): $Shape
 public "modelToView"(arg0: integer, arg1: $Shape$Type, arg2: $Position$Bias$Type): $Shape
 /**
  * 
  * @deprecated
  */
-public "modelToView"(arg0: integer, arg1: $Shape$Type): $Shape
-public "viewToModel"(arg0: float, arg1: float, arg2: $Shape$Type, arg3: ($Position$Bias$Type)[]): integer
-/**
- * 
- * @deprecated
- */
 public "viewToModel"(arg0: float, arg1: float, arg2: $Shape$Type): integer
+public "viewToModel"(arg0: float, arg1: float, arg2: $Shape$Type, arg3: ($Position$Bias$Type)[]): integer
 public "getPreferredSpan"(arg0: integer): float
 public "getMinimumSpan"(arg0: integer): float
 public "getMaximumSpan"(arg0: integer): float
@@ -370,17 +363,24 @@ public "getViewFactory"(): $ViewFactory
 public "getStartOffset"(): integer
 public "getEndOffset"(): integer
 public "getNextVisualPositionFrom"(arg0: integer, arg1: $Position$Bias$Type, arg2: $Shape$Type, arg3: integer, arg4: ($Position$Bias$Type)[]): integer
-public "getToolTipText"(arg0: float, arg1: float, arg2: $Shape$Type): string
+public "getViewIndex"(arg0: float, arg1: float, arg2: $Shape$Type): integer
+public "getViewIndex"(arg0: integer, arg1: $Position$Bias$Type): integer
+public "insertUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
+public "removeUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
+public "changedUpdate"(arg0: $DocumentEvent$Type, arg1: $Shape$Type, arg2: $ViewFactory$Type): void
+public "breakView"(arg0: integer, arg1: integer, arg2: float, arg3: float): $View
+public "createFragment"(arg0: integer, arg1: integer): $View
+public "getBreakWeight"(arg0: integer, arg1: float, arg2: float): integer
 public "getAlignment"(arg0: integer): float
-public "isVisible"(): boolean
+public "getToolTipText"(arg0: float, arg1: float, arg2: $Shape$Type): string
 public "paint"(arg0: $Graphics$Type, arg1: $Shape$Type): void
-public "getView"(arg0: integer): $View
-get "graphics"(): $Graphics
+public "isVisible"(): boolean
+get "element"(): $Element
 get "parent"(): $View
 set "parent"(value: $View$Type)
 get "attributes"(): $AttributeSet
+get "graphics"(): $Graphics
 get "container"(): $Container
-get "element"(): $Element
 get "document"(): $Document
 get "viewCount"(): integer
 get "viewFactory"(): $ViewFactory
@@ -462,8 +462,8 @@ export interface $UndoableEdit {
  "getPresentationName"(): string
  "getUndoPresentationName"(): string
  "getRedoPresentationName"(): string
- "redo"(): void
  "undo"(): void
+ "redo"(): void
  "canUndo"(): boolean
  "canRedo"(): boolean
  "die"(): void
@@ -558,9 +558,9 @@ import {$AttributeSet, $AttributeSet$Type} from "packages/javax/swing/text/$Attr
 
 export interface $Element {
 
+ "getElement"(arg0: integer): $Element
  "getName"(): string
  "getAttributes"(): $AttributeSet
- "getElement"(arg0: integer): $Element
  "getDocument"(): $Document
  "getStartOffset"(): integer
  "getEndOffset"(): integer
@@ -603,14 +603,14 @@ constructor(arg0: $Element$Type)
 
 public "replace"(arg0: integer, arg1: integer, arg2: ($View$Type)[]): void
 public "setParent"(arg0: $View$Type): void
-public "getViewIndex"(arg0: integer, arg1: $Position$Bias$Type): integer
+public "getView"(arg0: integer): $View
 public "getViewCount"(): integer
 public "getChildAllocation"(arg0: integer, arg1: $Shape$Type): $Shape
-public "modelToView"(arg0: integer, arg1: $Shape$Type, arg2: $Position$Bias$Type): $Shape
 public "modelToView"(arg0: integer, arg1: $Position$Bias$Type, arg2: integer, arg3: $Position$Bias$Type, arg4: $Shape$Type): $Shape
+public "modelToView"(arg0: integer, arg1: $Shape$Type, arg2: $Position$Bias$Type): $Shape
 public "viewToModel"(arg0: float, arg1: float, arg2: $Shape$Type, arg3: ($Position$Bias$Type)[]): integer
 public "getNextVisualPositionFrom"(arg0: integer, arg1: $Position$Bias$Type, arg2: $Shape$Type, arg3: integer, arg4: ($Position$Bias$Type)[]): integer
-public "getView"(arg0: integer): $View
+public "getViewIndex"(arg0: integer, arg1: $Position$Bias$Type): integer
 set "parent"(value: $View$Type)
 get "viewCount"(): integer
 }
@@ -670,8 +670,8 @@ import {$Element, $Element$Type} from "packages/javax/swing/text/$Element"
 
 export interface $DocumentEvent$ElementChange {
 
- "getIndex"(): integer
  "getElement"(): $Element
+ "getIndex"(): integer
  "getChildrenRemoved"(): ($Element)[]
  "getChildrenAdded"(): ($Element)[]
 }

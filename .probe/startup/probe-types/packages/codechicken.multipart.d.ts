@@ -14,8 +14,8 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$CapabilityCache, $CapabilityCache$Type} from "packages/codechicken/lib/capability/$CapabilityCache"
@@ -30,25 +30,13 @@ export interface $PartialOcclusionPart extends $MultiPart {
 
  "getPartialOcclusionShape"(): $VoxelShape
  "allowCompleteOcclusion"(): boolean
+ "level"(): $Level
+ "readDesc"(arg0: $MCDataInput$Type): void
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "readDesc"(arg0: $MCDataInput$Type): void
- "level"(): $Level
  "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "scheduleTick"(arg0: integer): void
- "scheduledTick"(): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onChunkUnload"(): void
- "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
@@ -56,8 +44,6 @@ export interface $PartialOcclusionPart extends $MultiPart {
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "onWorldJoin"(): void
  "occlusionTest"(arg0: $MultiPart$Type): boolean
  "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
  "onWorldSeparate"(): void
@@ -66,11 +52,24 @@ export interface $PartialOcclusionPart extends $MultiPart {
  "onEntityStanding"(arg0: $Entity$Type): void
  "onPartChanged"(arg0: $MultiPart$Type): void
  "getRenderBounds"(): $Cuboid6
- "onAdded"(): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "getLightEmission"(): integer
+ "onWorldJoin"(): void
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "onChunkUnload"(): void
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "scheduleTick"(arg0: integer): void
+ "scheduledTick"(): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
  "tile"(): $TileMultipart
- "getDrops"(): $Iterable<($ItemStack)>
+ "onAdded"(): void
  "onMoved"(): void
- "writeDesc"(arg0: $MCDataOutput$Type): void
+ "getDrops"(): $Iterable<($ItemStack)>
  "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
@@ -80,6 +79,7 @@ export interface $PartialOcclusionPart extends $MultiPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
+ "writeDesc"(arg0: $MCDataOutput$Type): void
 }
 
 export namespace $PartialOcclusionPart {
@@ -126,25 +126,13 @@ import {$MCDataOutput, $MCDataOutput$Type} from "packages/codechicken/lib/data/$
 
 export interface $MultiPart {
 
+ "level"(): $Level
+ "readDesc"(arg0: $MCDataInput$Type): void
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "readDesc"(arg0: $MCDataInput$Type): void
- "level"(): $Level
  "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "scheduleTick"(arg0: integer): void
- "scheduledTick"(): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onChunkUnload"(): void
- "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
@@ -152,8 +140,6 @@ export interface $MultiPart {
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "onWorldJoin"(): void
  "occlusionTest"(arg0: $MultiPart$Type): boolean
  "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
  "onWorldSeparate"(): void
@@ -162,11 +148,24 @@ export interface $MultiPart {
  "onEntityStanding"(arg0: $Entity$Type): void
  "onPartChanged"(arg0: $MultiPart$Type): void
  "getRenderBounds"(): $Cuboid6
- "onAdded"(): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "getLightEmission"(): integer
+ "onWorldJoin"(): void
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "onChunkUnload"(): void
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "scheduleTick"(arg0: integer): void
+ "scheduledTick"(): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
  "tile"(): $TileMultipart
- "getDrops"(): $Iterable<($ItemStack)>
+ "onAdded"(): void
  "onMoved"(): void
- "writeDesc"(arg0: $MCDataOutput$Type): void
+ "getDrops"(): $Iterable<($ItemStack)>
  "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
@@ -176,6 +175,7 @@ export interface $MultiPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
+ "writeDesc"(arg0: $MCDataOutput$Type): void
 }
 
 export namespace $MultiPart {
@@ -208,9 +208,9 @@ export class $MultipartPlaceContext extends $BlockPlaceContext {
 constructor(arg0: $UseOnContext$Type)
 constructor(arg0: $Player$Type, arg1: $InteractionHand$Type, arg2: $BlockHitResult$Type)
 
-public "applyOffset"(): $MultipartPlaceContext
-public "canPlacePart"(arg0: $MultiPart$Type): boolean
 public "getHitDepth"(): double
+public "canPlacePart"(arg0: $MultiPart$Type): boolean
+public "applyOffset"(): $MultipartPlaceContext
 public "getClickedPos"(): $BlockPos
 public "isOffset"(): boolean
 get "hitDepth"(): double
@@ -271,8 +271,8 @@ import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$PartRayTraceResult, $PartRayTraceResult$Type} from "packages/codechicken/multipart/util/$PartRayTraceResult"
 import {$List, $List$Type} from "packages/java/util/$List"
-import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 import {$IClientBlockExtensions, $IClientBlockExtensions$Type} from "packages/net/minecraftforge/client/extensions/common/$IClientBlockExtensions"
@@ -336,19 +336,21 @@ constructor()
 
 public static "getTile"(arg0: $BlockEntity$Type): $TileMultipart
 public static "getTile"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type): $TileMultipart
+public static "retracePart"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Player$Type): $PartRayTraceResult
+public static "dropAndDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type): void
+public "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
+public "addLandingEffects"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $LivingEntity$Type, arg5: integer): boolean
+public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
 public "initializeClient"(arg0: $Consumer$Type<($IClientBlockExtensions$Type)>): void
 public "getLightEmission"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type): integer
 public "onDestroyedByPlayer"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: boolean, arg5: $FluidState$Type): boolean
-public "getExplosionResistance"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Explosion$Type): float
-public "addLandingEffects"(arg0: $BlockState$Type, arg1: $ServerLevel$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type, arg4: $LivingEntity$Type, arg5: integer): boolean
-public "addRunningEffects"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): boolean
-public "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
 public "getWeakChanges"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type): boolean
+public "onNeighborChange"(arg0: $BlockState$Type, arg1: $LevelReader$Type, arg2: $BlockPos$Type, arg3: $BlockPos$Type): void
 public "canConnectRedstone"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): boolean
 public "getCloneItemStack"(arg0: $BlockState$Type, arg1: $HitResult$Type, arg2: $BlockGetter$Type, arg3: $BlockPos$Type, arg4: $Player$Type): $ItemStack
-public static "retracePart"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: $Player$Type): $PartRayTraceResult
-public static "dropAndDestroy"(arg0: $Level$Type, arg1: $BlockPos$Type): void
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
+public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
 public "neighborChanged"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Block$Type, arg4: $BlockPos$Type, arg5: boolean): void
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "isSignalSource"(arg0: $BlockState$Type): boolean
@@ -364,9 +366,7 @@ public "attack"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type,
 public "getSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
 public "entityInside"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Entity$Type): void
 public "getDirectSignal"(arg0: $BlockState$Type, arg1: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $Direction$Type): integer
-public "stepOn"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $Entity$Type): void
-public "isRandomlyTicking"(arg0: $BlockState$Type): boolean
-public "animateTick"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $RandomSource$Type): void
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getPart"(arg0: $BlockGetter$Type, arg1: $BlockPos$Type, arg2: integer): $MultiPart
 public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
@@ -400,8 +400,8 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$CapabilityCache, $CapabilityCache$Type} from "packages/codechicken/lib/capability/$CapabilityCache"
@@ -415,25 +415,13 @@ import {$MCDataOutput, $MCDataOutput$Type} from "packages/codechicken/lib/data/$
 export interface $SlottedPart extends $MultiPart {
 
  "getSlotMask"(): integer
+ "level"(): $Level
+ "readDesc"(arg0: $MCDataInput$Type): void
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "readDesc"(arg0: $MCDataInput$Type): void
- "level"(): $Level
  "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "scheduleTick"(arg0: integer): void
- "scheduledTick"(): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onChunkUnload"(): void
- "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
@@ -441,8 +429,6 @@ export interface $SlottedPart extends $MultiPart {
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "onWorldJoin"(): void
  "occlusionTest"(arg0: $MultiPart$Type): boolean
  "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
  "onWorldSeparate"(): void
@@ -451,11 +437,24 @@ export interface $SlottedPart extends $MultiPart {
  "onEntityStanding"(arg0: $Entity$Type): void
  "onPartChanged"(arg0: $MultiPart$Type): void
  "getRenderBounds"(): $Cuboid6
- "onAdded"(): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "getLightEmission"(): integer
+ "onWorldJoin"(): void
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "onChunkUnload"(): void
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "scheduleTick"(arg0: integer): void
+ "scheduledTick"(): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
  "tile"(): $TileMultipart
- "getDrops"(): $Iterable<($ItemStack)>
+ "onAdded"(): void
  "onMoved"(): void
- "writeDesc"(arg0: $MCDataOutput$Type): void
+ "getDrops"(): $Iterable<($ItemStack)>
  "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
@@ -465,6 +464,7 @@ export interface $SlottedPart extends $MultiPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
+ "writeDesc"(arg0: $MCDataOutput$Type): void
 }
 
 export namespace $SlottedPart {
@@ -531,8 +531,8 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$CapabilityCache, $CapabilityCache$Type} from "packages/codechicken/lib/capability/$CapabilityCache"
@@ -547,27 +547,17 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 export interface $IconHitEffectsPart extends $MultiPart {
 
  "getBounds"(): $Cuboid6
- "getBreakingIcon"(arg0: $PartRayTraceResult$Type): $TextureAtlasSprite
- "getBrokenIcon"(arg0: integer): $TextureAtlasSprite
  "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
  "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "getBreakingIcon"(arg0: $PartRayTraceResult$Type): $TextureAtlasSprite
+ "getBrokenIcon"(arg0: integer): $TextureAtlasSprite
+ "level"(): $Level
+ "readDesc"(arg0: $MCDataInput$Type): void
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "readDesc"(arg0: $MCDataInput$Type): void
- "level"(): $Level
  "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "scheduleTick"(arg0: integer): void
- "scheduledTick"(): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onChunkUnload"(): void
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
@@ -575,8 +565,6 @@ export interface $IconHitEffectsPart extends $MultiPart {
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "onWorldJoin"(): void
  "occlusionTest"(arg0: $MultiPart$Type): boolean
  "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
  "onWorldSeparate"(): void
@@ -585,11 +573,22 @@ export interface $IconHitEffectsPart extends $MultiPart {
  "onEntityStanding"(arg0: $Entity$Type): void
  "onPartChanged"(arg0: $MultiPart$Type): void
  "getRenderBounds"(): $Cuboid6
- "onAdded"(): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "getLightEmission"(): integer
+ "onWorldJoin"(): void
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "onChunkUnload"(): void
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "scheduleTick"(arg0: integer): void
+ "scheduledTick"(): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
  "tile"(): $TileMultipart
- "getDrops"(): $Iterable<($ItemStack)>
+ "onAdded"(): void
  "onMoved"(): void
- "writeDesc"(arg0: $MCDataOutput$Type): void
+ "getDrops"(): $Iterable<($ItemStack)>
  "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
@@ -599,6 +598,7 @@ export interface $IconHitEffectsPart extends $MultiPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
+ "writeDesc"(arg0: $MCDataOutput$Type): void
 }
 
 export namespace $IconHitEffectsPart {
@@ -629,9 +629,9 @@ static readonly "MULTIPART_TYPES": $ResourceLocation
 
 constructor()
 
-public "getRegistryName"(): $ResourceLocation
-public "createPartClient"(arg0: $MCDataInput$Type): T
 public "createPartServer"(arg0: $CompoundTag$Type): T
+public "createPartClient"(arg0: $MCDataInput$Type): T
+public "getRegistryName"(): $ResourceLocation
 get "registryName"(): $ResourceLocation
 }
 /**
@@ -678,25 +678,13 @@ export interface $NormalOcclusionPart extends $MultiPart {
 
  "getOcclusionShape"(): $VoxelShape
  "occlusionTest"(arg0: $MultiPart$Type): boolean
+ "level"(): $Level
+ "readDesc"(arg0: $MCDataInput$Type): void
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "readDesc"(arg0: $MCDataInput$Type): void
- "level"(): $Level
  "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "scheduleTick"(arg0: integer): void
- "scheduledTick"(): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onChunkUnload"(): void
- "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
@@ -704,8 +692,6 @@ export interface $NormalOcclusionPart extends $MultiPart {
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "onWorldJoin"(): void
  "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
  "onWorldSeparate"(): void
  "onConverted"(): void
@@ -713,11 +699,24 @@ export interface $NormalOcclusionPart extends $MultiPart {
  "onEntityStanding"(arg0: $Entity$Type): void
  "onPartChanged"(arg0: $MultiPart$Type): void
  "getRenderBounds"(): $Cuboid6
- "onAdded"(): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "getLightEmission"(): integer
+ "onWorldJoin"(): void
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "onChunkUnload"(): void
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "scheduleTick"(arg0: integer): void
+ "scheduledTick"(): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
  "tile"(): $TileMultipart
- "getDrops"(): $Iterable<($ItemStack)>
+ "onAdded"(): void
  "onMoved"(): void
- "writeDesc"(arg0: $MCDataOutput$Type): void
+ "getDrops"(): $Iterable<($ItemStack)>
  "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
@@ -727,6 +726,7 @@ export interface $NormalOcclusionPart extends $MultiPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
+ "writeDesc"(arg0: $MCDataOutput$Type): void
 }
 
 export namespace $NormalOcclusionPart {
@@ -786,38 +786,15 @@ export class $TileMultipart extends $BlockEntity implements $IChunkLoadTile {
 
 constructor(arg0: $BlockPos$Type, arg1: $BlockState$Type)
 
-public "from"(arg0: $TileMultipart$Type): void
 public "copyFrom"(arg0: $TileMultipart$Type): void
-public "getShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "from"(arg0: $TileMultipart$Type): void
 public "use"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $InteractionHand$Type): $InteractionResult
-public "onChunkLoad"(arg0: $LevelChunk$Type): void
-public "onChunkUnloaded"(): void
-public "getRenderBoundingBox"(): $AABB
-public static "replaceable"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $UseOnContext$Type): boolean
-public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
-public "getLightEmission"(): integer
-public "getExplosionResistance"(arg0: $Explosion$Type): float
-public "addLandingEffects"(arg0: $Vector3$Type, arg1: integer): void
-public "addRunningEffects"(arg0: $Entity$Type): void
-public "getWeakChanges"(): boolean
-public "canConnectRedstone"(arg0: integer): boolean
-public "animateTick"(arg0: $RandomSource$Type): void
-public "addPart_impl"(arg0: $MultiPart$Type): void
-public "remPart_impl"(arg0: $MultiPart$Type): $TileMultipart
-public "recalcLight"(arg0: boolean, arg1: boolean): void
-public "internalPartChange"(arg0: $MultiPart$Type): void
-public "multiPartChange"(arg0: $Collection$Type<($MultiPart$Type)>): void
-public "notifyNeighborChange"(arg0: integer): void
-public "notifyNeighborChange"(arg0: $Direction$Type): void
-public static "canPlacePart"(arg0: $UseOnContext$Type, arg1: $MultiPart$Type): boolean
-public static "isUnobstructed"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $MultiPart$Type): boolean
-public static "handleDescPacket"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $MCDataInput$Type): void
-public "canReplacePart"(arg0: $MultiPart$Type, arg1: $MultiPart$Type): boolean
-public "notifyPartChange"(arg0: $MultiPart$Type): void
-public "notifyTileChange"(): void
-public "notifyShapeChange"(): void
+public "getShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "getDestroyProgress"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
 public "partRemoved"(arg0: $MultiPart$Type, arg1: integer): void
 public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
+public "markShapeChange"(): void
+public "canReplacePart"(arg0: $MultiPart$Type, arg1: $MultiPart$Type): boolean
 public "getRenderOcclusionShape"(): $VoxelShape
 public "getInteractionShape"(): $VoxelShape
 public "getBlockSupportShape"(): $VoxelShape
@@ -831,49 +808,72 @@ public "onNeighborTileChange"(arg0: $BlockPos$Type): void
 public "getDirectSignal"(arg0: integer): integer
 public "getPartList"(): $List<($MultiPart)>
 public "getSlottedPart"(arg0: integer): $MultiPart
-public "markShapeChange"(): void
-public "getDestroyProgress"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
-public "loadFrom"(arg0: $TileMultipart$Type): void
+public "notifyTileChange"(): void
+public "notifyShapeChange"(): void
 public "getCapCache"(): $CapabilityCache
 public "occlusionTest"(arg0: $Iterable$Type<($MultiPart$Type)>, arg1: $MultiPart$Type): boolean
-public "attack"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): void
+public "notifyPartChange"(arg0: $MultiPart$Type): void
+public "addPart_impl"(arg0: $MultiPart$Type): void
+public "remPart_impl"(arg0: $MultiPart$Type): $TileMultipart
+public "recalcLight"(arg0: boolean, arg1: boolean): void
+public "internalPartChange"(arg0: $MultiPart$Type): void
+public "multiPartChange"(arg0: $Collection$Type<($MultiPart$Type)>): void
+public "notifyNeighborChange"(arg0: $Direction$Type): void
+public "notifyNeighborChange"(arg0: integer): void
+public static "canPlacePart"(arg0: $UseOnContext$Type, arg1: $MultiPart$Type): boolean
+public static "isUnobstructed"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $MultiPart$Type): boolean
+public static "handleDescPacket"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $MCDataInput$Type): void
+public "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
+public "addRunningEffects"(arg0: $Entity$Type): void
+public "addLandingEffects"(arg0: $Vector3$Type, arg1: integer): void
+public "getExplosionResistance"(arg0: $Explosion$Type): float
+public "getLightEmission"(): integer
+public "getWeakChanges"(): boolean
+public "canConnectRedstone"(arg0: integer): boolean
+public "animateTick"(arg0: $RandomSource$Type): void
+public static "replaceable"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $UseOnContext$Type): boolean
+public "onChunkUnloaded"(): void
+public "getRenderBoundingBox"(): $AABB
+public "onChunkLoad"(arg0: $LevelChunk$Type): void
+public "loadFrom"(arg0: $TileMultipart$Type): void
 public "setChanged"(): void
-public "getDrops"(): $List<($ItemStack)>
-public static "dropItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Vector3$Type): void
+public "attack"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): void
 public "onMoved"(): void
 public "setLevel"(arg0: $Level$Type): void
 public "getUpdateTag"(): $CompoundTag
 public "setRemoved"(): void
 public static "fromNBT"(arg0: $CompoundTag$Type, arg1: $BlockPos$Type): $TileMultipart
-public "operate"(arg0: $Consumer$Type<($MultiPart$Type)>): void
-public "bindPart"(arg0: $MultiPart$Type): void
-public "canAddPart"(arg0: $MultiPart$Type): boolean
-public "writeDesc"(arg0: $MCDataOutput$Type): void
-public "loadTo"(arg0: $TileMultipart$Type): void
-public "clearParts"(): void
-public "partAdded"(arg0: $MultiPart$Type): void
+public static "dropItem"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $Vector3$Type): void
+public "getDrops"(): $List<($ItemStack)>
 public "stepOn"(arg0: $Entity$Type): void
 public "getSignal"(arg0: integer): integer
 public "dropItems"(arg0: $Iterable$Type<($ItemStack$Type)>): void
 public "markRender"(): void
 public "remPart"(arg0: $MultiPart$Type): $TileMultipart
 public "onRemoved"(): void
+public "operate"(arg0: $Consumer$Type<($MultiPart$Type)>): void
+public "writeDesc"(arg0: $MCDataOutput$Type): void
+public "bindPart"(arg0: $MultiPart$Type): void
+public "canAddPart"(arg0: $MultiPart$Type): boolean
+public "loadTo"(arg0: $TileMultipart$Type): void
+public "clearParts"(): void
+public "partAdded"(arg0: $MultiPart$Type): void
 public "addPart_do"(arg0: $MultiPart$Type): void
 public "setValid"(arg0: boolean): void
 public static "addPart"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $MultiPart$Type): $TileMultipart
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
-get "renderBoundingBox"(): $AABB
-get "lightEmission"(): integer
-get "weakChanges"(): boolean
 get "renderOcclusionShape"(): $VoxelShape
 get "interactionShape"(): $VoxelShape
 get "blockSupportShape"(): $VoxelShape
 get "clientTile"(): boolean
 get "partList"(): $List<($MultiPart)>
 get "capCache"(): $CapabilityCache
-get "drops"(): $List<($ItemStack)>
+get "lightEmission"(): integer
+get "weakChanges"(): boolean
+get "renderBoundingBox"(): $AABB
 set "level"(value: $Level$Type)
 get "updateTag"(): $CompoundTag
+get "drops"(): $List<($ItemStack)>
 set "valid"(value: boolean)
 }
 /**
@@ -905,8 +905,8 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$CapabilityCache, $CapabilityCache$Type} from "packages/codechicken/lib/capability/$CapabilityCache"
@@ -921,25 +921,13 @@ export interface $FacePart extends $SlottedPart {
 
  "redstoneConductionMap"(): integer
  "getSlotMask"(): integer
+ "level"(): $Level
+ "readDesc"(arg0: $MCDataInput$Type): void
  "load"(arg0: $CompoundTag$Type): void
  "save"(arg0: $CompoundTag$Type): void
  "getType"(): $MultipartType<(any)>
  "pos"(): $BlockPos
- "readDesc"(arg0: $MCDataInput$Type): void
- "level"(): $Level
  "getShape"(arg0: $CollisionContext$Type): $VoxelShape
- "scheduleTick"(arg0: integer): void
- "scheduledTick"(): void
- "onChunkLoad"(arg0: $LevelChunk$Type): void
- "onChunkUnload"(): void
- "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
- "getLightEmission"(): integer
- "getExplosionResistance"(arg0: $Explosion$Type): float
- "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
- "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
- "onEntityCollision"(arg0: $Entity$Type): void
- "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
  "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getRenderOcclusionShape"(): $VoxelShape
  "getInteractionShape"(): $VoxelShape
@@ -947,8 +935,6 @@ export interface $FacePart extends $SlottedPart {
  "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
  "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
  "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
- "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
- "onWorldJoin"(): void
  "occlusionTest"(arg0: $MultiPart$Type): boolean
  "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
  "onWorldSeparate"(): void
@@ -957,11 +943,24 @@ export interface $FacePart extends $SlottedPart {
  "onEntityStanding"(arg0: $Entity$Type): void
  "onPartChanged"(arg0: $MultiPart$Type): void
  "getRenderBounds"(): $Cuboid6
- "onAdded"(): void
+ "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+ "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+ "getExplosionResistance"(arg0: $Explosion$Type): float
+ "getLightEmission"(): integer
+ "onWorldJoin"(): void
+ "onEntityCollision"(arg0: $Entity$Type): void
+ "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+ "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+ "onChunkUnload"(): void
+ "onChunkLoad"(arg0: $LevelChunk$Type): void
+ "scheduleTick"(arg0: integer): void
+ "scheduledTick"(): void
+ "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
  "tile"(): $TileMultipart
- "getDrops"(): $Iterable<($ItemStack)>
+ "onAdded"(): void
  "onMoved"(): void
- "writeDesc"(arg0: $MCDataOutput$Type): void
+ "getDrops"(): $Iterable<($ItemStack)>
  "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
  "hasTile"(): boolean
  "hasLevel"(): boolean
@@ -971,6 +970,7 @@ export interface $FacePart extends $SlottedPart {
  "preRemove"(): void
  "onRemoved"(): void
  "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
+ "writeDesc"(arg0: $MCDataOutput$Type): void
 }
 
 export namespace $FacePart {
@@ -1004,8 +1004,8 @@ import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity
 import {$TileMultipart, $TileMultipart$Type} from "packages/codechicken/multipart/block/$TileMultipart"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
-import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$MultiPart, $MultiPart$Type} from "packages/codechicken/multipart/api/part/$MultiPart"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
 import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
 import {$MultipartType, $MultipartType$Type} from "packages/codechicken/multipart/api/$MultipartType"
 import {$CapabilityCache, $CapabilityCache$Type} from "packages/codechicken/lib/capability/$CapabilityCache"
@@ -1023,25 +1023,13 @@ constructor()
 public "bind"(arg0: $TileMultipart$Type): void
 public "tile"(): $TileMultipart
 public "hasTile"(): boolean
+public "level"(): $Level
+public "readDesc"(arg0: $MCDataInput$Type): void
 public "load"(arg0: $CompoundTag$Type): void
 public "save"(arg0: $CompoundTag$Type): void
 public "getType"(): $MultipartType<(any)>
 public "pos"(): $BlockPos
-public "readDesc"(arg0: $MCDataInput$Type): void
-public "level"(): $Level
 public "getShape"(arg0: $CollisionContext$Type): $VoxelShape
-public "scheduleTick"(arg0: integer): void
-public "scheduledTick"(): void
-public "onChunkLoad"(arg0: $LevelChunk$Type): void
-public "onChunkUnload"(): void
-public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
-public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
-public "getLightEmission"(): integer
-public "getExplosionResistance"(arg0: $Explosion$Type): float
-public "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
-public "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
-public "onEntityCollision"(arg0: $Entity$Type): void
-public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
 public "getCollisionShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getRenderOcclusionShape"(): $VoxelShape
 public "getInteractionShape"(): $VoxelShape
@@ -1049,8 +1037,6 @@ public "getBlockSupportShape"(): $VoxelShape
 public "getVisualShape"(arg0: $CollisionContext$Type): $VoxelShape
 public "getCloneStack"(arg0: $PartRayTraceResult$Type): $ItemStack
 public "onNeighborBlockChanged"(arg0: $BlockPos$Type): void
-public "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
-public "onWorldJoin"(): void
 public "occlusionTest"(arg0: $MultiPart$Type): boolean
 public "getPlacementSound"(arg0: $UseOnContext$Type): $SoundType
 public "onWorldSeparate"(): void
@@ -1059,10 +1045,23 @@ public "invalidateConvertedTile"(): void
 public "onEntityStanding"(arg0: $Entity$Type): void
 public "onPartChanged"(arg0: $MultiPart$Type): void
 public "getRenderBounds"(): $Cuboid6
+public "addRunningEffects"(arg0: $PartRayTraceResult$Type, arg1: $Entity$Type): void
+public "addLandingEffects"(arg0: $PartRayTraceResult$Type, arg1: $Vector3$Type, arg2: integer): void
+public "getExplosionResistance"(arg0: $Explosion$Type): float
+public "getLightEmission"(): integer
+public "onWorldJoin"(): void
+public "onEntityCollision"(arg0: $Entity$Type): void
+public "getStrength"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): float
+public "addHitEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+public "addDestroyEffects"(arg0: $PartRayTraceResult$Type, arg1: $ParticleEngine$Type): void
+public "onChunkUnload"(): void
+public "onChunkLoad"(arg0: $LevelChunk$Type): void
+public "scheduleTick"(arg0: integer): void
+public "scheduledTick"(): void
+public "activate"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type, arg3: $InteractionHand$Type): $InteractionResult
 public "onAdded"(): void
-public "getDrops"(): $Iterable<($ItemStack)>
 public "onMoved"(): void
-public "writeDesc"(arg0: $MCDataOutput$Type): void
+public "getDrops"(): $Iterable<($ItemStack)>
 public "sendUpdate"(arg0: $Consumer$Type<($MCDataOutput$Type)>): void
 public "hasLevel"(): boolean
 public "capCache"(): $CapabilityCache
@@ -1071,12 +1070,13 @@ public "harvest"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type): void
 public "preRemove"(): void
 public "onRemoved"(): void
 public "click"(arg0: $Player$Type, arg1: $PartRayTraceResult$Type, arg2: $ItemStack$Type): void
+public "writeDesc"(arg0: $MCDataOutput$Type): void
 get "type"(): $MultipartType<(any)>
-get "lightEmission"(): integer
 get "renderOcclusionShape"(): $VoxelShape
 get "interactionShape"(): $VoxelShape
 get "blockSupportShape"(): $VoxelShape
 get "renderBounds"(): $Cuboid6
+get "lightEmission"(): integer
 get "drops"(): $Iterable<($ItemStack)>
 }
 /**

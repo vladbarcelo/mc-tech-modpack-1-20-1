@@ -57,15 +57,15 @@ static readonly "MAPS_PER_ATLAS": integer
 
 constructor(id: integer)
 
+public "getIdentifier"(): $ResourceLocation
 public "getId"(): integer
 public "close"(): void
-public "getIdentifier"(): $ResourceLocation
-public "getNextMapLocation"(): integer
 public "getTexture"(): $DynamicTexture
-get "id"(): integer
+public "getNextMapLocation"(): integer
 get "identifier"(): $ResourceLocation
-get "nextMapLocation"(): integer
+get "id"(): integer
 get "texture"(): $DynamicTexture
+get "nextMapLocation"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_

@@ -12,4 +12,6 @@
 !modlist.json
 !options.txt
 
+!*.list
+
 .DS_Store

@@ -76,24 +76,24 @@ export type $SmithingRecipeAccessor_ = $SmithingRecipeAccessor$Type;
 declare module "packages/steve_gall/minecolonies_compatibility/api/common/building/module/$IRestrictableModule" {
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
-import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$IBuilding, $IBuilding$Type} from "packages/com/minecolonies/api/colony/buildings/$IBuilding"
+import {$IBuildingModule, $IBuildingModule$Type} from "packages/com/minecolonies/api/colony/buildings/modules/$IBuildingModule"
 import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from "packages/com/minecolonies/api/colony/buildings/registry/$BuildingEntry$ModuleProducer"
 
 export interface $IRestrictableModule extends $IBuildingModule {
 
- "setRestrictArea"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
- "getRestrictAreaPos1"(): $BlockPos
- "getRestrictAreaPos2"(): $BlockPos
- "getSearchRange"(): integer
  "setRestrictEnabled"(arg0: boolean): void
  "isRestrictEnabled"(): boolean
- "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
- "serializeToView"(arg0: $FriendlyByteBuf$Type): void
+ "getSearchRange"(): integer
+ "getRestrictAreaPos1"(): $BlockPos
+ "getRestrictAreaPos2"(): $BlockPos
+ "setRestrictArea"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
+ "getBuilding"(): $IBuilding
  "setBuilding"(arg0: $IBuilding$Type): $IBuildingModule
  "setProducer"(arg0: $BuildingEntry$ModuleProducer$Type<(any), (any)>): $IBuildingModule
  "getProducer"(): $BuildingEntry$ModuleProducer<(any), (any)>
- "getBuilding"(): $IBuilding
+ "serializeToView"(arg0: $FriendlyByteBuf$Type, arg1: boolean): void
+ "serializeToView"(arg0: $FriendlyByteBuf$Type): void
  "markDirty"(): void
  "clearDirty"(): void
  "checkDirty"(): boolean
@@ -126,19 +126,19 @@ import {$BuildingEntry$ModuleProducer, $BuildingEntry$ModuleProducer$Type} from 
 
 export interface $IRestrictableModuleView extends $IBuildingModuleView {
 
- "setRestrictArea"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
- "getRestrictAreaPos1"(): $BlockPos
- "getRestrictAreaPos2"(): $BlockPos
  "setRestrictEnabled"(arg0: boolean): void
  "isRestrictEnabled"(): boolean
+ "getRestrictAreaPos1"(): $BlockPos
+ "getRestrictAreaPos2"(): $BlockPos
+ "setRestrictArea"(arg0: $BlockPos$Type, arg1: $BlockPos$Type): void
  "getDesc"(): string
- "setProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): $IBuildingModuleView
- "getProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(): $BuildingEntry$ModuleProducer<(M), (V)>
- "getBuildingView"(): $IBuildingView
+ "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getIcon"(): string
  "setBuildingView"(arg0: $IBuildingView$Type): $IBuildingModuleView
  "isPageVisible"(): boolean
- "getIcon"(): string
- "deserialize"(arg0: $FriendlyByteBuf$Type): void
+ "getBuildingView"(): $IBuildingView
+ "setProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(arg0: $BuildingEntry$ModuleProducer$Type<(M), (V)>): $IBuildingModuleView
+ "getProducer"<M extends $IBuildingModule, V extends $IBuildingModuleView>(): $BuildingEntry$ModuleProducer<(M), (V)>
  "getWindow"(): $BOWindow
  "getColony"(): $IColonyView
 }
@@ -174,8 +174,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
 import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
 import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
-import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
 import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
 import {$BaseEntityBlock, $BaseEntityBlock$Type} from "packages/net/minecraft/world/level/block/$BaseEntityBlock"
@@ -220,9 +220,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(arg0: $BlockBehaviour$Properties$Type)
 
-public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "use"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type, arg4: $InteractionHand$Type, arg5: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(arg0: $BlockState$Type): $RenderShape
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(arg0: $BlockPos$Type, arg1: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -309,13 +309,13 @@ readonly "canRepair": boolean
 constructor(arg0: $Item$Properties$Type)
 
 public "getModule"(arg0: $ItemStack$Type): $IRestrictableModule
-public "getModulePos"(arg0: $ItemStack$Type): $ModulePos
-public "getModuleView"(arg0: $ItemStack$Type): $IRestrictableModuleView
 public "getOverlayBoxes"(arg0: $Level$Type, arg1: $Player$Type, arg2: $ItemStack$Type): $List<($IBlockOverlayItem$OverlayBox)>
 public "updateModuleArea"(arg0: $Player$Type, arg1: $ItemStack$Type): void
-public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
-public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "getModulePos"(arg0: $ItemStack$Type): $ModulePos
+public "getModuleView"(arg0: $ItemStack$Type): $IRestrictableModuleView
 public "setModule"(arg0: $ItemStack$Type, arg1: $IRestrictableModule$Type, arg2: $Component$Type): void
+public "useOn"(arg0: $UseOnContext$Type): $InteractionResult
+public "canAttackBlock"(arg0: $BlockState$Type, arg1: $Level$Type, arg2: $BlockPos$Type, arg3: $Player$Type): boolean
 public "appendHoverText"(arg0: $ItemStack$Type, arg1: $Level$Type, arg2: $List$Type<($Component$Type)>, arg3: $TooltipFlag$Type): void
 public "setPos2"(arg0: $ItemStack$Type, arg1: $BlockPos$Type): void
 public "setPos1"(arg0: $ItemStack$Type, arg1: $BlockPos$Type): void

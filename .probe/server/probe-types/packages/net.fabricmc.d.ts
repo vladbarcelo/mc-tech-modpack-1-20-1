@@ -111,8 +111,8 @@ import {$BlockApiCacheImpl, $BlockApiCacheImpl$Type} from "packages/net/fabricmc
 
 export interface $ServerWorldCache {
 
- "fabric_registerCache"(arg0: $BlockPos$Type, arg1: $BlockApiCacheImpl$Type<(any), (any)>): void
  "fabric_invalidateCache"(arg0: $BlockPos$Type): void
+ "fabric_registerCache"(arg0: $BlockPos$Type, arg1: $BlockApiCacheImpl$Type<(any), (any)>): void
 }
 
 export namespace $ServerWorldCache {
@@ -233,47 +233,47 @@ export interface $AbstractBlockSettingsAccessor {
 
  "getOpaque"(): boolean
  "setOpaque"(arg0: boolean): void
- "getEmissiveLightingPredicate"(): $BlockBehaviour$StatePredicate
- "getHardness"(): float
- "getResistance"(): float
- "getCollidable"(): boolean
- "getRandomTicks"(): boolean
- "getLuminance"(): $ToIntFunction<($BlockState)>
- "getMapColorProvider"(): $Function<($BlockState), ($MapColor)>
- "getSlipperiness"(): float
- "getVelocityMultiplier"(): float
- "getJumpVelocityMultiplier"(): float
- "getDynamicBounds"(): boolean
- "isToolRequired"(): boolean
- "getAllowsSpawningPredicate"(): $BlockBehaviour$StateArgumentPredicate<($EntityType<(any)>)>
- "getSolidBlockPredicate"(): $BlockBehaviour$StatePredicate
- "getSuffocationPredicate"(): $BlockBehaviour$StatePredicate
- "getBlockVisionPredicate"(): $BlockBehaviour$StatePredicate
- "getPostProcessPredicate"(): $BlockBehaviour$StatePredicate
- "getOffsetter"(): $Optional<($BlockBehaviour$OffsetFunction)>
- "getLootTableId"(): $ResourceLocation
- "getBlockBreakParticles"(): boolean
- "getRequiredFeatures"(): $FeatureFlagSet
- "getBurnable"(): boolean
- "getForceNotSolid"(): boolean
- "getForceSolid"(): boolean
- "getPistonBehavior"(): $PushReaction
- "getReplaceable"(): boolean
- "setCollidable"(arg0: boolean): void
- "setRandomTicks"(arg0: boolean): void
+ "getSoundGroup"(): $SoundType
+ "getInstrument"(): $NoteBlockInstrument
+ "setReplaceable"(arg0: boolean): void
  "setMapColorProvider"(arg0: $Function$Type<($BlockState$Type), ($MapColor$Type)>): void
  "setDynamicBounds"(arg0: boolean): void
  "setLootTableId"(arg0: $ResourceLocation$Type): void
+ "setBurnable"(arg0: boolean): void
  "setToolRequired"(arg0: boolean): void
  "setBlockBreakParticles"(arg0: boolean): void
  "setRequiredFeatures"(arg0: $FeatureFlagSet$Type): void
  "setOffsetter"(arg0: $Optional$Type<($BlockBehaviour$OffsetFunction$Type)>): void
- "setBurnable"(arg0: boolean): void
  "setForceNotSolid"(arg0: boolean): void
  "setForceSolid"(arg0: boolean): void
- "setReplaceable"(arg0: boolean): void
- "getInstrument"(): $NoteBlockInstrument
- "getSoundGroup"(): $SoundType
+ "setCollidable"(arg0: boolean): void
+ "setRandomTicks"(arg0: boolean): void
+ "getPistonBehavior"(): $PushReaction
+ "getReplaceable"(): boolean
+ "getForceSolid"(): boolean
+ "getRequiredFeatures"(): $FeatureFlagSet
+ "getBurnable"(): boolean
+ "getForceNotSolid"(): boolean
+ "getLootTableId"(): $ResourceLocation
+ "getBlockBreakParticles"(): boolean
+ "getOffsetter"(): $Optional<($BlockBehaviour$OffsetFunction)>
+ "getSlipperiness"(): float
+ "getVelocityMultiplier"(): float
+ "getJumpVelocityMultiplier"(): float
+ "getSuffocationPredicate"(): $BlockBehaviour$StatePredicate
+ "getDynamicBounds"(): boolean
+ "isToolRequired"(): boolean
+ "getAllowsSpawningPredicate"(): $BlockBehaviour$StateArgumentPredicate<($EntityType<(any)>)>
+ "getSolidBlockPredicate"(): $BlockBehaviour$StatePredicate
+ "getBlockVisionPredicate"(): $BlockBehaviour$StatePredicate
+ "getPostProcessPredicate"(): $BlockBehaviour$StatePredicate
+ "getLuminance"(): $ToIntFunction<($BlockState)>
+ "getMapColorProvider"(): $Function<($BlockState), ($MapColor)>
+ "getRandomTicks"(): boolean
+ "getResistance"(): float
+ "getCollidable"(): boolean
+ "getHardness"(): float
+ "getEmissiveLightingPredicate"(): $BlockBehaviour$StatePredicate
  "getIsAir"(): boolean
  "getLiquid"(): boolean
  "setIsAir"(arg0: boolean): void
@@ -324,13 +324,13 @@ import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/
 
 export interface $ModelLoaderHooks {
 
- "fabric_queueModelDependencies"(arg0: $UnbakedModel$Type): void
  "fabric_getDispatcher"(): $ModelLoadingEventDispatcher
  "fabric_getMissingModel"(): $UnbakedModel
  "fabric_getOrLoadModel"(arg0: $ResourceLocation$Type): $UnbakedModel
  "fabric_putModel"(arg0: $ResourceLocation$Type, arg1: $UnbakedModel$Type): void
  "fabric_putModelDirectly"(arg0: $ResourceLocation$Type, arg1: $UnbakedModel$Type): void
  "fabric_loadModelFromJson"(arg0: $ResourceLocation$Type): $BlockModel
+ "fabric_queueModelDependencies"(arg0: $UnbakedModel$Type): void
 }
 
 export namespace $ModelLoaderHooks {
@@ -383,8 +383,8 @@ import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunc
 import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
-import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$Biome, $Biome$Type} from "packages/net/minecraft/world/level/biome/$Biome"
 import {$ColorResolver, $ColorResolver$Type} from "packages/net/minecraft/world/level/$ColorResolver"
 import {$ClipContext, $ClipContext$Type} from "packages/net/minecraft/world/level/$ClipContext"
@@ -395,9 +395,9 @@ import {$LightLayer, $LightLayer$Type} from "packages/net/minecraft/world/level/
 import {$LevelHeightAccessor, $LevelHeightAccessor$Type} from "packages/net/minecraft/world/level/$LevelHeightAccessor"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$ClipBlockStateContext, $ClipBlockStateContext$Type} from "packages/net/minecraft/world/level/$ClipBlockStateContext"
-import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$Holder, $Holder$Type} from "packages/net/minecraft/core/$Holder"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 
@@ -408,27 +408,28 @@ export interface $WorldViewMixin extends $RenderAttachedBlockView {
  * @deprecated
  */
  "getBlockEntityRenderAttachment"(pos: $BlockPos$Type): any
- "canSeeSky"(arg0: $BlockPos$Type): boolean
- "getBlockTint"(arg0: $BlockPos$Type, arg1: $ColorResolver$Type): integer
  "getRawBrightness"(arg0: $BlockPos$Type, arg1: integer): integer
- "getShade"(arg0: $Direction$Type, arg1: boolean): float
- "getLightEngine"(): $LevelLightEngine
  "getBrightness"(arg0: $LightLayer$Type, arg1: $BlockPos$Type): integer
- "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
- "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
+ "getLightEngine"(): $LevelLightEngine
+ "getBlockTint"(arg0: $BlockPos$Type, arg1: $ColorResolver$Type): integer
+ "getShade"(arg0: $Direction$Type, arg1: boolean): float
+ "canSeeSky"(arg0: $BlockPos$Type): boolean
+ "getBlockState"(arg0: $BlockPos$Type): $BlockState
+ "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
+ "getFluidState"(arg0: $BlockPos$Type): $FluidState
+ "getMaxLightLevel"(): integer
  "getLightEmission"(arg0: $BlockPos$Type): integer
  "isBlockInLine"(arg0: $ClipBlockStateContext$Type): $BlockHitResult
  "clip"(arg0: $ClipContext$Type): $BlockHitResult
  "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $BlockPos$Type, arg3: $VoxelShape$Type, arg4: $BlockState$Type): $BlockHitResult
  "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
  "getBlockFloorHeight"(arg0: $BlockPos$Type): double
- "getMaxLightLevel"(): integer
- "getFluidState"(arg0: $BlockPos$Type): $FluidState
- "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
- "getBlockState"(arg0: $BlockPos$Type): $BlockState
+ "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
+ "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
  "getShade"(arg0: float, arg1: float, arg2: float, arg3: boolean): float
- "getHeight"(): integer
  "getMaxBuildHeight"(): integer
+ "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
+ "getMinBuildHeight"(): integer
  "getSectionsCount"(): integer
  "getMaxSection"(): integer
  "getMinSection"(): integer
@@ -436,12 +437,11 @@ export interface $WorldViewMixin extends $RenderAttachedBlockView {
  "getSectionIndex"(arg0: integer): integer
  "getSectionIndexFromSectionY"(arg0: integer): integer
  "getSectionYFromSectionIndex"(arg0: integer): integer
- "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
- "getMinBuildHeight"(): integer
- "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
+ "getHeight"(): integer
  "getModelDataManager"(): $ModelDataManager
- "getBlockEntityRenderData"(pos: $BlockPos$Type): any
+ "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
  "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
+ "getBlockEntityRenderData"(pos: $BlockPos$Type): any
  "hasBiomes"(): boolean
 }
 
@@ -494,10 +494,10 @@ import {$TransactionContext$OuterCloseCallback, $TransactionContext$OuterCloseCa
 
 export interface $TransactionContext {
 
+ "addOuterCloseCallback"(arg0: $TransactionContext$OuterCloseCallback$Type): void
  "nestingDepth"(): integer
  "addCloseCallback"(arg0: $TransactionContext$CloseCallback$Type): void
  "getOpenTransaction"(arg0: integer): $Transaction
- "addOuterCloseCallback"(arg0: $TransactionContext$OuterCloseCallback$Type): void
  "openNested"(): $Transaction
 }
 
@@ -584,13 +584,13 @@ import {$BlockApiLookup$BlockEntityApiProvider, $BlockApiLookup$BlockEntityApiPr
 export class $BlockApiLookupImpl<A, C> implements $BlockApiLookup<(A), (C)> {
 
 
+public "getProvider"(block: $Block$Type): $BlockApiLookup$BlockApiProvider<(A), (C)>
 public static "get"<A, C>(lookupId: $ResourceLocation$Type, apiClass: $Class$Type<(A)>, contextClass: $Class$Type<(C)>): $BlockApiLookup<(A), (C)>
 public "find"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, blockEntity: $BlockEntity$Type, context: C): A
 public "getId"(): $ResourceLocation
-public "getProvider"(block: $Block$Type): $BlockApiLookup$BlockApiProvider<(A), (C)>
+public "contextClass"(): $Class<(C)>
 public "registerSelf"(...blockEntityTypes: ($BlockEntityType$Type<(any)>)[]): void
 public "registerFallback"(fallbackProvider: $BlockApiLookup$BlockApiProvider$Type<(A), (C)>): void
-public "contextClass"(): $Class<(C)>
 public "getFallbackProviders"(): $List<($BlockApiLookup$BlockApiProvider<(A), (C)>)>
 public "registerForBlocks"(provider: $BlockApiLookup$BlockApiProvider$Type<(A), (C)>, ...blocks: ($Block$Type)[]): void
 public "registerForBlockEntities"(provider: $BlockApiLookup$BlockEntityApiProvider$Type<(A), (C)>, ...blockEntityTypes: ($BlockEntityType$Type<(any)>)[]): void
@@ -624,11 +624,11 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 
 export interface $FabricItem {
 
- "allowContinuingBlockBreaking"(player: $Player$Type, oldStack: $ItemStack$Type, newStack: $ItemStack$Type): boolean
- "allowNbtUpdateAnimation"(player: $Player$Type, hand: $InteractionHand$Type, oldStack: $ItemStack$Type, newStack: $ItemStack$Type): boolean
- "isSuitableFor"(stack: $ItemStack$Type, state: $BlockState$Type): boolean
- "getAttributeModifiers"(stack: $ItemStack$Type, slot: $EquipmentSlot$Type): $Multimap<($Attribute), ($AttributeModifier)>
  "getRecipeRemainder"(stack: $ItemStack$Type): $ItemStack
+ "isSuitableFor"(stack: $ItemStack$Type, state: $BlockState$Type): boolean
+ "allowNbtUpdateAnimation"(player: $Player$Type, hand: $InteractionHand$Type, oldStack: $ItemStack$Type, newStack: $ItemStack$Type): boolean
+ "getAttributeModifiers"(stack: $ItemStack$Type, slot: $EquipmentSlot$Type): $Multimap<($Attribute), ($AttributeModifier)>
+ "allowContinuingBlockBreaking"(player: $Player$Type, oldStack: $ItemStack$Type, newStack: $ItemStack$Type): boolean
 }
 
 export namespace $FabricItem {
@@ -807,17 +807,17 @@ import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
 
 export interface $AttachmentTarget {
 
- "getAttachedOrThrow"<A>(type: $AttachmentType$Type<(A)>): A
- "getAttachedOrSet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
- "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>): A
- "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>, initializer: $Supplier$Type<(A)>): A
- "getAttachedOrElse"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
- "getAttachedOrGet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: $Supplier$Type<(A)>): A
- "removeAttached"<A>(type: $AttachmentType$Type<(A)>): A
- "modifyAttached"<A>(type: $AttachmentType$Type<(A)>, modifier: $UnaryOperator$Type<(A)>): A
  "getAttached"<A>(type: $AttachmentType$Type<(A)>): A
  "setAttached"<A>(type: $AttachmentType$Type<(A)>, value: A): A
  "hasAttached"(type: $AttachmentType$Type<(any)>): boolean
+ "getAttachedOrThrow"<A>(type: $AttachmentType$Type<(A)>): A
+ "getAttachedOrSet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
+ "removeAttached"<A>(type: $AttachmentType$Type<(A)>): A
+ "getAttachedOrGet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: $Supplier$Type<(A)>): A
+ "modifyAttached"<A>(type: $AttachmentType$Type<(A)>, modifier: $UnaryOperator$Type<(A)>): A
+ "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>, initializer: $Supplier$Type<(A)>): A
+ "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>): A
+ "getAttachedOrElse"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
 }
 
 export namespace $AttachmentTarget {
@@ -1048,20 +1048,9 @@ export interface $FabricItemStack extends $IForgeItemStack {
 
  "getRecipeRemainder"(): $ItemStack
  "equals"(arg0: $ItemStack$Type, arg1: boolean): boolean
- "isNotReplaceableByPickAction"(arg0: $Player$Type, arg1: integer): boolean
- "areShareTagsEqual"(arg0: $ItemStack$Type): boolean
- "getSweepHitBox"(arg0: $Player$Type, arg1: $Entity$Type): $AABB
- "canDisableShield"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: $LivingEntity$Type): boolean
+ "serializeNBT"(): $CompoundTag
+ "canPerformAction"(arg0: $ToolAction$Type): boolean
  "isRepairable"(): boolean
- "getEnchantmentLevel"(arg0: $Enchantment$Type): integer
- "getAllEnchantments"(): $Map<($Enchantment), (integer)>
- "onDroppedByPlayer"(arg0: $Player$Type): boolean
- "getHighlightTip"(arg0: $Component$Type): $Component
- "onItemUseFirst"(arg0: $UseOnContext$Type): $InteractionResult
- "isPiglinCurrency"(): boolean
- "makesPiglinsNeutral"(arg0: $LivingEntity$Type): boolean
- "getXpRepairRatio"(): float
- "onBlockStartBreak"(arg0: $BlockPos$Type, arg1: $Player$Type): boolean
  "doesSneakBypassUse"(arg0: $LevelReader$Type, arg1: $BlockPos$Type, arg2: $Player$Type): boolean
 /**
  * 
@@ -1069,29 +1058,41 @@ export interface $FabricItemStack extends $IForgeItemStack {
  */
  "onArmorTick"(arg0: $Level$Type, arg1: $Player$Type): void
  "onInventoryTick"(arg0: $Level$Type, arg1: $Player$Type, arg2: integer, arg3: integer): void
- "isBookEnchantable"(arg0: $ItemStack$Type): boolean
+ "onItemUseFirst"(arg0: $UseOnContext$Type): $InteractionResult
  "getEnchantmentValue"(): integer
+ "getXpRepairRatio"(): float
+ "isBookEnchantable"(arg0: $ItemStack$Type): boolean
  "canApplyAtEnchantingTable"(arg0: $Enchantment$Type): boolean
- "shouldCauseBlockBreakReset"(arg0: $ItemStack$Type): boolean
- "getBurnTime"(arg0: $RecipeType$Type<(any)>): integer
- "onHorseArmorTick"(arg0: $Level$Type, arg1: $Mob$Type): void
- "isEnderMask"(arg0: $Player$Type, arg1: $EnderMan$Type): boolean
- "canWalkOnPowderedSnow"(arg0: $LivingEntity$Type): boolean
+ "makesPiglinsNeutral"(arg0: $LivingEntity$Type): boolean
+ "onBlockStartBreak"(arg0: $BlockPos$Type, arg1: $Player$Type): boolean
+ "isPiglinCurrency"(): boolean
+ "getShareTag"(): $CompoundTag
+ "readShareTag"(arg0: $CompoundTag$Type): void
  "canGrindstoneRepair"(): boolean
- "onEntityItemUpdate"(arg0: $ItemEntity$Type): boolean
+ "isEnderMask"(arg0: $Player$Type, arg1: $EnderMan$Type): boolean
+ "getBurnTime"(arg0: $RecipeType$Type<(any)>): integer
+ "shouldCauseBlockBreakReset"(arg0: $ItemStack$Type): boolean
+ "canWalkOnPowderedSnow"(arg0: $LivingEntity$Type): boolean
+ "onHorseArmorTick"(arg0: $Level$Type, arg1: $Mob$Type): void
  "getEntityLifespan"(arg0: $Level$Type): integer
+ "onEntityItemUpdate"(arg0: $ItemEntity$Type): boolean
  "onDestroyed"(arg0: $ItemEntity$Type, arg1: $DamageSource$Type): void
- "canPerformAction"(arg0: $ToolAction$Type): boolean
  "onEntitySwing"(arg0: $LivingEntity$Type): boolean
  "canElytraFly"(arg0: $LivingEntity$Type): boolean
  "elytraFlightTick"(arg0: $LivingEntity$Type, arg1: integer): boolean
  "getFoodProperties"(arg0: $LivingEntity$Type): $FoodProperties
  "onStopUsing"(arg0: $LivingEntity$Type, arg1: integer): void
- "readShareTag"(arg0: $CompoundTag$Type): void
- "getShareTag"(): $CompoundTag
- "getCraftingRemainingItem"(): $ItemStack
+ "canDisableShield"(arg0: $ItemStack$Type, arg1: $LivingEntity$Type, arg2: $LivingEntity$Type): boolean
+ "getSweepHitBox"(arg0: $Player$Type, arg1: $Entity$Type): $AABB
+ "areShareTagsEqual"(arg0: $ItemStack$Type): boolean
+ "getEnchantmentLevel"(arg0: $Enchantment$Type): integer
+ "getAllEnchantments"(): $Map<($Enchantment), (integer)>
+ "onDroppedByPlayer"(arg0: $Player$Type): boolean
  "hasCraftingRemainingItem"(): boolean
+ "getCraftingRemainingItem"(): $ItemStack
  "getEquipmentSlot"(): $EquipmentSlot
+ "getHighlightTip"(arg0: $Component$Type): $Component
+ "isNotReplaceableByPickAction"(arg0: $Player$Type, arg1: integer): boolean
  "canEquip"(arg0: $EquipmentSlot$Type, arg1: $Entity$Type): boolean
  "getCapability"<T>(arg0: $Capability$Type<(T)>, arg1: $Direction$Type): $LazyOptional<(T)>
  "getCapability"<T>(arg0: $Capability$Type<(T)>): $LazyOptional<(T)>
@@ -1200,18 +1201,18 @@ export class $BlockApiCacheImpl<A, C> implements $BlockApiCache<(A), (C)> {
 
 constructor(lookup: $BlockApiLookupImpl$Type<(A), (C)>, world: $ServerLevel$Type, pos: $BlockPos$Type)
 
+public "getLookup"(): $BlockApiLookupImpl<(A), (C)>
 public "find"(state: $BlockState$Type, context: C): A
 public "invalidate"(): void
-public "getLookup"(): $BlockApiLookupImpl<(A), (C)>
 public "getBlockEntity"(): $BlockEntity
-public "getWorld"(): $ServerLevel
 public "getPos"(): $BlockPos
+public "getWorld"(): $ServerLevel
 public "find"(context: C): A
 public static "create"<A, C>(lookup: $BlockApiLookup$Type<(A), (C)>, world: $ServerLevel$Type, pos: $BlockPos$Type): $BlockApiCache<(A), (C)>
 get "lookup"(): $BlockApiLookupImpl<(A), (C)>
 get "blockEntity"(): $BlockEntity
-get "world"(): $ServerLevel
 get "pos"(): $BlockPos
+get "world"(): $ServerLevel
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -1257,8 +1258,8 @@ import {$Minecraft, $Minecraft$Type} from "packages/net/minecraft/client/$Minecr
 
 export interface $ScreenAccessor {
 
- "getClient"(): $Minecraft
  "getTextRenderer"(): $Font
+ "getClient"(): $Minecraft
 }
 
 export namespace $ScreenAccessor {
@@ -1309,9 +1310,9 @@ import {$Codec, $Codec$Type} from "packages/com/mojang/serialization/$Codec"
 export interface $AttachmentType<A> {
 
  "identifier"(): $ResourceLocation
+ "persistenceCodec"(): $Codec<(A)>
  "copyOnDeath"(): boolean
  "isPersistent"(): boolean
- "persistenceCodec"(): $Codec<(A)>
  "initializer"(): $Supplier<(A)>
 }
 
@@ -1545,10 +1546,10 @@ export class $AbstractNetworkAddon<H> {
 
 
 public "getHandler"(channel: $ResourceLocation$Type): H
-public "handleDisconnect"(): void
 public "registerChannel"(channelName: $ResourceLocation$Type, handler: H): boolean
 public "unregisterChannel"(channelName: $ResourceLocation$Type): H
 public "getReceivableChannels"(): $Set<($ResourceLocation)>
+public "handleDisconnect"(): void
 get "receivableChannels"(): $Set<($ResourceLocation)>
 }
 /**
@@ -1671,8 +1672,8 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $FabricBlockView {
 
- "getBlockEntityRenderData"(pos: $BlockPos$Type): any
  "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
+ "getBlockEntityRenderData"(pos: $BlockPos$Type): any
  "hasBiomes"(): boolean
 }
 
@@ -1700,9 +1701,9 @@ import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$It
 export interface $CustomIngredient {
 
  "test"(arg0: $ItemStack$Type): boolean
- "getMatchingStacks"(): $List<($ItemStack)>
- "getSerializer"(): $CustomIngredientSerializer<(any)>
  "requiresTesting"(): boolean
+ "getSerializer"(): $CustomIngredientSerializer<(any)>
+ "getMatchingStacks"(): $List<($ItemStack)>
  "toVanilla"(): $Ingredient
 }
 
@@ -1860,8 +1861,8 @@ import {$TransferVariant, $TransferVariant$Type} from "packages/net/fabricmc/fab
 
 export interface $ItemVariant extends $TransferVariant<($Item)> {
 
- "matches"(stack: $ItemStack$Type): boolean
  "getItem"(): $Item
+ "matches"(stack: $ItemStack$Type): boolean
  "toStack"(count: integer): $ItemStack
  "toStack"(): $ItemStack
  "isBlank"(): boolean
@@ -1910,8 +1911,8 @@ import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Blo
 export interface $ModelLoadingPlugin$Context {
 
  "modifyModelOnLoad"(): $Event<($ModelModifier$OnLoad)>
- "modifyModelBeforeBake"(): $Event<($ModelModifier$BeforeBake)>
  "resolveModel"(): $Event<($ModelResolver)>
+ "modifyModelBeforeBake"(): $Event<($ModelModifier$BeforeBake)>
  "modifyModelAfterBake"(): $Event<($ModelModifier$AfterBake)>
  "registerBlockStateResolver"(arg0: $Block$Type, arg1: $BlockStateResolver$Type): void
  "addModels"(arg0: $Collection$Type<(any)>): void
@@ -2069,8 +2070,8 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $BlockViewMixin extends $FabricBlockView {
 
- "getBlockEntityRenderData"(pos: $BlockPos$Type): any
  "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
+ "getBlockEntityRenderData"(pos: $BlockPos$Type): any
  "hasBiomes"(): boolean
 }
 
@@ -2176,8 +2177,8 @@ export class $ServerPlayNetworkAddon extends $AbstractChanneledNetworkAddon<($Se
 constructor(handler: $ServerGamePacketListenerImpl$Type, server: $MinecraftServer$Type)
 
 public "handle"(packet: $ServerboundCustomPayloadPacket$Type): boolean
-public "onClientReady"(): void
 public "createPacket"(channelName: $ResourceLocation$Type, buf: $FriendlyByteBuf$Type): $Packet<(any)>
+public "onClientReady"(): void
 public "lateInit"(): void
 }
 /**
@@ -2355,8 +2356,8 @@ import {$ScreenKeyboardEvents$BeforeKeyRelease, $ScreenKeyboardEvents$BeforeKeyR
 import {$Screen, $Screen$Type} from "packages/net/minecraft/client/gui/screens/$Screen"
 import {$ScreenEvents$AfterTick, $ScreenEvents$AfterTick$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenEvents$AfterTick"
 import {$ScreenMouseEvents$AllowMouseRelease, $ScreenMouseEvents$AllowMouseRelease$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenMouseEvents$AllowMouseRelease"
-import {$ScreenKeyboardEvents$AllowKeyRelease, $ScreenKeyboardEvents$AllowKeyRelease$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenKeyboardEvents$AllowKeyRelease"
 import {$ScreenEvents$AfterRender, $ScreenEvents$AfterRender$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenEvents$AfterRender"
+import {$ScreenKeyboardEvents$AllowKeyRelease, $ScreenKeyboardEvents$AllowKeyRelease$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenKeyboardEvents$AllowKeyRelease"
 import {$ScreenMouseEvents$AllowMouseClick, $ScreenMouseEvents$AllowMouseClick$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenMouseEvents$AllowMouseClick"
 import {$List, $List$Type} from "packages/java/util/$List"
 import {$Event, $Event$Type} from "packages/net/fabricmc/fabric/api/event/$Event"
@@ -2364,9 +2365,9 @@ import {$ScreenKeyboardEvents$AfterKeyPress, $ScreenKeyboardEvents$AfterKeyPress
 import {$ScreenMouseEvents$BeforeMouseScroll, $ScreenMouseEvents$BeforeMouseScroll$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenMouseEvents$BeforeMouseScroll"
 import {$ScreenMouseEvents$BeforeMouseRelease, $ScreenMouseEvents$BeforeMouseRelease$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenMouseEvents$BeforeMouseRelease"
 import {$ScreenMouseEvents$AfterMouseRelease, $ScreenMouseEvents$AfterMouseRelease$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenMouseEvents$AfterMouseRelease"
+import {$AbstractWidget, $AbstractWidget$Type} from "packages/net/minecraft/client/gui/components/$AbstractWidget"
 import {$ScreenKeyboardEvents$BeforeKeyPress, $ScreenKeyboardEvents$BeforeKeyPress$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenKeyboardEvents$BeforeKeyPress"
 import {$ScreenMouseEvents$AfterMouseClick, $ScreenMouseEvents$AfterMouseClick$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenMouseEvents$AfterMouseClick"
-import {$AbstractWidget, $AbstractWidget$Type} from "packages/net/minecraft/client/gui/components/$AbstractWidget"
 import {$ScreenKeyboardEvents$AllowKeyPress, $ScreenKeyboardEvents$AllowKeyPress$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenKeyboardEvents$AllowKeyPress"
 import {$ScreenEvents$BeforeRender, $ScreenEvents$BeforeRender$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenEvents$BeforeRender"
 import {$ScreenKeyboardEvents$AfterKeyRelease, $ScreenKeyboardEvents$AfterKeyRelease$Type} from "packages/net/fabricmc/fabric/api/client/screen/v1/$ScreenKeyboardEvents$AfterKeyRelease"
@@ -2377,6 +2378,11 @@ import {$ScreenMouseEvents$AfterMouseScroll, $ScreenMouseEvents$AfterMouseScroll
 
 export interface $ScreenExtensions {
 
+ "fabric_getButtons"(): $List<($AbstractWidget)>
+ "fabric_getRemoveEvent"(): $Event<($ScreenEvents$Remove)>
+ "fabric_getBeforeTickEvent"(): $Event<($ScreenEvents$BeforeTick)>
+ "fabric_getAfterTickEvent"(): $Event<($ScreenEvents$AfterTick)>
+ "fabric_getAfterRenderEvent"(): $Event<($ScreenEvents$AfterRender)>
  "fabric_getBeforeRenderEvent"(): $Event<($ScreenEvents$BeforeRender)>
  "fabric_getAllowKeyPressEvent"(): $Event<($ScreenKeyboardEvents$AllowKeyPress)>
  "fabric_getBeforeKeyPressEvent"(): $Event<($ScreenKeyboardEvents$BeforeKeyPress)>
@@ -2393,11 +2399,6 @@ export interface $ScreenExtensions {
  "fabric_getAllowMouseScrollEvent"(): $Event<($ScreenMouseEvents$AllowMouseScroll)>
  "fabric_getBeforeMouseScrollEvent"(): $Event<($ScreenMouseEvents$BeforeMouseScroll)>
  "fabric_getAfterMouseScrollEvent"(): $Event<($ScreenMouseEvents$AfterMouseScroll)>
- "fabric_getButtons"(): $List<($AbstractWidget)>
- "fabric_getRemoveEvent"(): $Event<($ScreenEvents$Remove)>
- "fabric_getBeforeTickEvent"(): $Event<($ScreenEvents$BeforeTick)>
- "fabric_getAfterTickEvent"(): $Event<($ScreenEvents$AfterTick)>
- "fabric_getAfterRenderEvent"(): $Event<($ScreenEvents$AfterRender)>
 }
 
 export namespace $ScreenExtensions {
@@ -2470,40 +2471,40 @@ export interface $FabricClientCommandSource extends $SharedSuggestionProvider {
 
  "getPosition"(): $Vec3
  "getEntity"(): $Entity
- "getRotation"(): $Vec2
  "sendFeedback"(arg0: $Component$Type): void
+ "getRotation"(): $Vec2
  "getClient"(): $Minecraft
  "getMeta"(key: string): any
- "getWorld"(): $ClientLevel
  "getPlayer"(): $LocalPlayer
+ "getWorld"(): $ClientLevel
  "sendError"(arg0: $Component$Type): void
- "hasPermission"(arg0: integer): boolean
- "getAbsoluteCoordinates"(): $Collection<($SharedSuggestionProvider$TextCoordinates)>
  "customSuggestion"(arg0: $CommandContext$Type<(any)>): $CompletableFuture<($Suggestions)>
  "getAllTeams"(): $Collection<(string)>
- "levels"(): $Set<($ResourceKey<($Level)>)>
- "suggestRegistryElements"(arg0: $ResourceKey$Type<(any)>, arg1: $SharedSuggestionProvider$ElementSuggestionType$Type, arg2: $SuggestionsBuilder$Type, arg3: $CommandContext$Type<(any)>): $CompletableFuture<($Suggestions)>
  "getOnlinePlayerNames"(): $Collection<(string)>
  "getSelectedEntities"(): $Collection<(string)>
  "getRelevantCoordinates"(): $Collection<($SharedSuggestionProvider$TextCoordinates)>
+ "getAbsoluteCoordinates"(): $Collection<($SharedSuggestionProvider$TextCoordinates)>
+ "levels"(): $Set<($ResourceKey<($Level)>)>
+ "suggestRegistryElements"(arg0: $ResourceKey$Type<(any)>, arg1: $SharedSuggestionProvider$ElementSuggestionType$Type, arg2: $SuggestionsBuilder$Type, arg3: $CommandContext$Type<(any)>): $CompletableFuture<($Suggestions)>
+ "getCustomTabSugggestions"(): $Collection<(string)>
+ "hasPermission"(arg0: integer): boolean
  "getAvailableSounds"(): $Stream<($ResourceLocation)>
  "getRecipeNames"(): $Stream<($ResourceLocation)>
  "registryAccess"(): $RegistryAccess
  "enabledFeatures"(): $FeatureFlagSet
  "suggestRegistryElements"(arg0: $Registry$Type<(any)>, arg1: $SharedSuggestionProvider$ElementSuggestionType$Type, arg2: $SuggestionsBuilder$Type): void
- "getCustomTabSugggestions"(): $Collection<(string)>
 }
 
 export namespace $FabricClientCommandSource {
+function suggest(arg0: $Iterable$Type<(string)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 function suggestResource(arg0: $Iterable$Type<($ResourceLocation$Type)>, arg1: $SuggestionsBuilder$Type, arg2: string): $CompletableFuture<($Suggestions)>
 function suggestResource(arg0: $Stream$Type<($ResourceLocation$Type)>, arg1: $SuggestionsBuilder$Type, arg2: string): $CompletableFuture<($Suggestions)>
 function suggestResource(arg0: $Iterable$Type<($ResourceLocation$Type)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
-function suggest(arg0: $Iterable$Type<(string)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 function suggest(arg0: (string)[], arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 function suggestResource(arg0: $Stream$Type<($ResourceLocation$Type)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
-function suggest(arg0: $Stream$Type<(string)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 function suggestCoordinates(arg0: string, arg1: $Collection$Type<($SharedSuggestionProvider$TextCoordinates$Type)>, arg2: $SuggestionsBuilder$Type, arg3: $Predicate$Type<(string)>): $CompletableFuture<($Suggestions)>
 function suggest2DCoordinates(arg0: string, arg1: $Collection$Type<($SharedSuggestionProvider$TextCoordinates$Type)>, arg2: $SuggestionsBuilder$Type, arg3: $Predicate$Type<(string)>): $CompletableFuture<($Suggestions)>
+function suggest(arg0: $Stream$Type<(string)>, arg1: $SuggestionsBuilder$Type): $CompletableFuture<($Suggestions)>
 function filterResources<T>(arg0: $Iterable$Type<(T)>, arg1: string, arg2: $Function$Type<(T), ($ResourceLocation$Type)>, arg3: $Consumer$Type<(T)>): void
 function matchesSubStr(arg0: string, arg1: string): boolean
 function filterResources<T>(arg0: $Iterable$Type<(T)>, arg1: string, arg2: string, arg3: $Function$Type<(T), ($ResourceLocation$Type)>, arg4: $Consumer$Type<(T)>): void
@@ -2587,13 +2588,13 @@ import {$BlockApiLookup$BlockEntityApiProvider, $BlockApiLookup$BlockEntityApiPr
 
 export interface $BlockApiLookup<A, C> {
 
- "find"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockEntity$Type, arg4: C): A
- "find"(world: $Level$Type, pos: $BlockPos$Type, context: C): A
- "getId"(): $ResourceLocation
  "getProvider"(arg0: $Block$Type): $BlockApiLookup$BlockApiProvider<(A), (C)>
+ "find"(world: $Level$Type, pos: $BlockPos$Type, context: C): A
+ "find"(arg0: $Level$Type, arg1: $BlockPos$Type, arg2: $BlockState$Type, arg3: $BlockEntity$Type, arg4: C): A
+ "getId"(): $ResourceLocation
+ "contextClass"(): $Class<(C)>
  "registerSelf"(...arg0: ($BlockEntityType$Type<(any)>)[]): void
  "registerFallback"(arg0: $BlockApiLookup$BlockApiProvider$Type<(A), (C)>): void
- "contextClass"(): $Class<(C)>
  "registerForBlocks"(arg0: $BlockApiLookup$BlockApiProvider$Type<(A), (C)>, ...arg1: ($Block$Type)[]): void
  "registerForBlockEntity"<T extends $BlockEntity>(provider: $BiFunction$Type<(any), (C), (A)>, blockEntityType: $BlockEntityType$Type<(T)>): void
  "registerForBlockEntities"(arg0: $BlockApiLookup$BlockEntityApiProvider$Type<(A), (C)>, ...arg1: ($BlockEntityType$Type<(any)>)[]): void
@@ -2642,80 +2643,87 @@ import {$RenderMaterial, $RenderMaterial$Type} from "packages/net/fabricmc/fabri
 import {$Vector3f, $Vector3f$Type} from "packages/org/joml/$Vector3f"
 import {$Vector2f, $Vector2f$Type} from "packages/org/joml/$Vector2f"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$Vec2, $Vec2$Type} from "packages/net/minecraft/world/phys/$Vec2"
 import {$MutableQuadView, $MutableQuadView$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/mesh/$MutableQuadView"
 import {$QuadView, $QuadView$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/mesh/$QuadView"
-import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlasSprite"
 import {$BakedQuad, $BakedQuad$Type} from "packages/net/minecraft/client/renderer/block/model/$BakedQuad"
+import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecraft/client/renderer/texture/$TextureAtlasSprite"
 
 export interface $QuadEmitter extends $MutableQuadView {
 
- "normal"(arg0: integer, arg1: float, arg2: float, arg3: float): $QuadEmitter
  "normal"(vertexIndex: integer, normal: $Vector3f$Type): $QuadEmitter
+ "normal"(arg0: integer, arg1: float, arg2: float, arg3: float): $QuadEmitter
+ "tag"(arg0: integer): $QuadEmitter
  "copyFrom"(arg0: $QuadView$Type): $QuadEmitter
+ "color"(arg0: integer, arg1: integer): $QuadEmitter
  "square"(nominalFace: $Direction$Type, left: float, bottom: float, right: float, top: float, depth: float): $QuadEmitter
  "emit"(): $QuadEmitter
+/**
+ * 
+ * @deprecated
+ */
+ "fromVanilla"(quadData: (integer)[], startIndex: integer, isItem: boolean): $QuadEmitter
+ "fromVanilla"(arg0: $BakedQuad$Type, arg1: $RenderMaterial$Type, arg2: $Direction$Type): $QuadEmitter
+ "uv"(vertexIndex: integer, uv: $Vector2f$Type): $QuadEmitter
  "uvUnitSquare"(): $QuadEmitter
 /**
  * 
  * @deprecated
  */
  "spriteUnitSquare"(spriteIndex: integer): $QuadEmitter
- "uv"(vertexIndex: integer, uv: $Vector2f$Type): $QuadEmitter
- "uv"(arg0: integer, arg1: float, arg2: float): $QuadEmitter
+ "nominalFace"(arg0: $Direction$Type): $QuadEmitter
 /**
  * 
  * @deprecated
  */
  "sprite"(vertexIndex: integer, spriteIndex: integer, u: float, v: float): $QuadEmitter
- "lightmap"(arg0: integer, arg1: integer): $QuadEmitter
- "colorIndex"(arg0: integer): $QuadEmitter
- "cullFace"(arg0: $Direction$Type): $QuadEmitter
 /**
  * 
  * @deprecated
  */
- "spriteBake"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, bakeFlags: integer): $QuadEmitter
+ "sprite"(vertexIndex: integer, spriteIndex: integer, uv: $Vec2$Type): $QuadEmitter
+ "material"(arg0: $RenderMaterial$Type): $QuadEmitter
+ "colorIndex"(arg0: integer): $QuadEmitter
+/**
+ * 
+ * @deprecated
+ */
+ "copyTo"(target: $MutableQuadView$Type): void
+ "normalX"(arg0: integer): float
+ "normalY"(arg0: integer): float
+ "tag"(): integer
  "x"(arg0: integer): float
  "v"(arg0: integer): float
  "z"(arg0: integer): float
  "u"(arg0: integer): float
  "y"(arg0: integer): float
  "color"(arg0: integer): integer
- "normalX"(arg0: integer): float
- "normalY"(arg0: integer): float
- "tag"(): integer
-/**
- * 
- * @deprecated
- */
- "copyTo"(target: $MutableQuadView$Type): void
-/**
- * 
- * @deprecated
- */
- "toBakedQuad"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, isItem: boolean): $BakedQuad
- "toBakedQuad"(sprite: $TextureAtlasSprite$Type): $BakedQuad
- "nominalFace"(): $Direction
 /**
  * 
  * @deprecated
  */
  "spriteColor"(vertexIndex: integer, spriteIndex: integer): integer
+ "toBakedQuad"(sprite: $TextureAtlasSprite$Type): $BakedQuad
+/**
+ * 
+ * @deprecated
+ */
+ "toBakedQuad"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, isItem: boolean): $BakedQuad
+ "nominalFace"(): $Direction
  "normalZ"(arg0: integer): float
- "toVanilla"(arg0: (integer)[], arg1: integer): void
 /**
  * 
  * @deprecated
  */
  "toVanilla"(spriteIndex: integer, target: (integer)[], targetIndex: integer, isItem: boolean): void
- "material"(): $RenderMaterial
- "hasNormal"(arg0: integer): boolean
+ "toVanilla"(arg0: (integer)[], arg1: integer): void
  "lightmap"(arg0: integer): integer
+ "hasNormal"(arg0: integer): boolean
+ "material"(): $RenderMaterial
  "colorIndex"(): integer
  "faceNormal"(): $Vector3f
  "lightFace"(): $Direction
  "cullFace"(): $Direction
- "copyNormal"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
  "posByIndex"(arg0: integer, arg1: integer): float
  "copyPos"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
  "copyUv"(arg0: integer, arg1: $Vector2f$Type): $Vector2f
@@ -2729,6 +2737,7 @@ export interface $QuadEmitter extends $MutableQuadView {
  * @deprecated
  */
  "spriteV"(vertexIndex: integer, spriteIndex: integer): float
+ "copyNormal"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
 }
 
 export namespace $QuadEmitter {
@@ -2843,9 +2852,9 @@ import {$NumberProvider, $NumberProvider$Type} from "packages/net/minecraft/worl
 export interface $LootPoolAccessor {
 
  "fabric_getFunctions"(): ($LootItemFunction)[]
- "fabric_getEntries"(): ($LootPoolEntryContainer)[]
  "fabric_getRolls"(): $NumberProvider
  "fabric_getBonusRolls"(): $NumberProvider
+ "fabric_getEntries"(): ($LootPoolEntryContainer)[]
  "fabric_getConditions"(): ($LootItemCondition)[]
 }
 
@@ -2875,47 +2884,46 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 
 export interface $QuadView {
 
+/**
+ * 
+ * @deprecated
+ */
+ "copyTo"(target: $MutableQuadView$Type): void
+ "normalX"(arg0: integer): float
+ "normalY"(arg0: integer): float
+ "tag"(): integer
  "x"(arg0: integer): float
  "v"(arg0: integer): float
  "z"(arg0: integer): float
  "u"(arg0: integer): float
  "y"(arg0: integer): float
  "color"(arg0: integer): integer
- "normalX"(arg0: integer): float
- "normalY"(arg0: integer): float
- "tag"(): integer
-/**
- * 
- * @deprecated
- */
- "copyTo"(target: $MutableQuadView$Type): void
-/**
- * 
- * @deprecated
- */
- "toBakedQuad"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, isItem: boolean): $BakedQuad
- "toBakedQuad"(sprite: $TextureAtlasSprite$Type): $BakedQuad
- "nominalFace"(): $Direction
 /**
  * 
  * @deprecated
  */
  "spriteColor"(vertexIndex: integer, spriteIndex: integer): integer
+ "toBakedQuad"(sprite: $TextureAtlasSprite$Type): $BakedQuad
+/**
+ * 
+ * @deprecated
+ */
+ "toBakedQuad"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, isItem: boolean): $BakedQuad
+ "nominalFace"(): $Direction
  "normalZ"(arg0: integer): float
- "toVanilla"(arg0: (integer)[], arg1: integer): void
 /**
  * 
  * @deprecated
  */
  "toVanilla"(spriteIndex: integer, target: (integer)[], targetIndex: integer, isItem: boolean): void
- "material"(): $RenderMaterial
- "hasNormal"(arg0: integer): boolean
+ "toVanilla"(arg0: (integer)[], arg1: integer): void
  "lightmap"(arg0: integer): integer
+ "hasNormal"(arg0: integer): boolean
+ "material"(): $RenderMaterial
  "colorIndex"(): integer
  "faceNormal"(): $Vector3f
  "lightFace"(): $Direction
  "cullFace"(): $Direction
- "copyNormal"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
  "posByIndex"(arg0: integer, arg1: integer): float
  "copyPos"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
  "copyUv"(arg0: integer, arg1: $Vector2f$Type): $Vector2f
@@ -2929,6 +2937,7 @@ export interface $QuadView {
  * @deprecated
  */
  "spriteV"(vertexIndex: integer, spriteIndex: integer): float
+ "copyNormal"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
 }
 
 export namespace $QuadView {
@@ -3014,9 +3023,9 @@ export interface $RenderMaterial extends $MaterialView {
  * @deprecated
  */
  "spriteDepth"(): integer
+ "ambientOcclusion"(): $TriState
  "disableColorIndex"(): boolean
  "disableDiffuse"(): boolean
- "ambientOcclusion"(): $TriState
  "glint"(): $TriState
  "blendMode"(): $BlendMode
  "emissive"(): boolean
@@ -3071,12 +3080,12 @@ import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
 
 export interface $BlockApiCache<A, C> {
 
+ "getLookup"(): $BlockApiLookup<(A), (C)>
  "find"(context: C): A
  "find"(arg0: $BlockState$Type, arg1: C): A
- "getLookup"(): $BlockApiLookup<(A), (C)>
  "getBlockEntity"(): $BlockEntity
- "getWorld"(): $ServerLevel
  "getPos"(): $BlockPos
+ "getWorld"(): $ServerLevel
 }
 
 export namespace $BlockApiCache {
@@ -3167,20 +3176,23 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 
 export interface $MutableQuadView extends $QuadView {
 
- "pos"(arg0: integer, arg1: float, arg2: float, arg3: float): $MutableQuadView
- "pos"(vertexIndex: integer, pos: $Vector3f$Type): $MutableQuadView
- "color"(c0: integer, c1: integer, c2: integer, c3: integer): $MutableQuadView
- "color"(arg0: integer, arg1: integer): $MutableQuadView
  "normal"(vertexIndex: integer, normal: $Vector3f$Type): $MutableQuadView
  "normal"(arg0: integer, arg1: float, arg2: float, arg3: float): $MutableQuadView
- "copyFrom"(arg0: $QuadView$Type): $MutableQuadView
  "tag"(arg0: integer): $MutableQuadView
- "nominalFace"(arg0: $Direction$Type): $MutableQuadView
+ "copyFrom"(arg0: $QuadView$Type): $MutableQuadView
+ "pos"(arg0: integer, arg1: float, arg2: float, arg3: float): $MutableQuadView
+ "pos"(vertexIndex: integer, pos: $Vector3f$Type): $MutableQuadView
+ "color"(arg0: integer, arg1: integer): $MutableQuadView
+ "color"(c0: integer, c1: integer, c2: integer, c3: integer): $MutableQuadView
+ "fromVanilla"(arg0: (integer)[], arg1: integer): $MutableQuadView
 /**
  * 
  * @deprecated
  */
- "spriteColor"(spriteIndex: integer, c0: integer, c1: integer, c2: integer, c3: integer): $MutableQuadView
+ "fromVanilla"(quadData: (integer)[], startIndex: integer, isItem: boolean): $MutableQuadView
+ "fromVanilla"(arg0: $BakedQuad$Type, arg1: $RenderMaterial$Type, arg2: $Direction$Type): $MutableQuadView
+ "uv"(vertexIndex: integer, uv: $Vector2f$Type): $MutableQuadView
+ "uv"(arg0: integer, arg1: float, arg2: float): $MutableQuadView
 /**
  * 
  * @deprecated
@@ -3190,11 +3202,8 @@ export interface $MutableQuadView extends $QuadView {
  * 
  * @deprecated
  */
- "fromVanilla"(quadData: (integer)[], startIndex: integer, isItem: boolean): $MutableQuadView
- "fromVanilla"(arg0: $BakedQuad$Type, arg1: $RenderMaterial$Type, arg2: $Direction$Type): $MutableQuadView
- "fromVanilla"(arg0: (integer)[], arg1: integer): $MutableQuadView
- "uv"(arg0: integer, arg1: float, arg2: float): $MutableQuadView
- "uv"(vertexIndex: integer, uv: $Vector2f$Type): $MutableQuadView
+ "spriteColor"(spriteIndex: integer, c0: integer, c1: integer, c2: integer, c3: integer): $MutableQuadView
+ "nominalFace"(arg0: $Direction$Type): $MutableQuadView
 /**
  * 
  * @deprecated
@@ -3205,9 +3214,9 @@ export interface $MutableQuadView extends $QuadView {
  * @deprecated
  */
  "sprite"(vertexIndex: integer, spriteIndex: integer, uv: $Vec2$Type): $MutableQuadView
- "material"(arg0: $RenderMaterial$Type): $MutableQuadView
  "lightmap"(b0: integer, b1: integer, b2: integer, b3: integer): $MutableQuadView
  "lightmap"(arg0: integer, arg1: integer): $MutableQuadView
+ "material"(arg0: $RenderMaterial$Type): $MutableQuadView
  "colorIndex"(arg0: integer): $MutableQuadView
  "cullFace"(arg0: $Direction$Type): $MutableQuadView
 /**
@@ -3216,47 +3225,46 @@ export interface $MutableQuadView extends $QuadView {
  */
  "spriteBake"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, bakeFlags: integer): $MutableQuadView
  "spriteBake"(arg0: $TextureAtlasSprite$Type, arg1: integer): $MutableQuadView
+/**
+ * 
+ * @deprecated
+ */
+ "copyTo"(target: $MutableQuadView$Type): void
+ "normalX"(arg0: integer): float
+ "normalY"(arg0: integer): float
+ "tag"(): integer
  "x"(arg0: integer): float
  "v"(arg0: integer): float
  "z"(arg0: integer): float
  "u"(arg0: integer): float
  "y"(arg0: integer): float
  "color"(arg0: integer): integer
- "normalX"(arg0: integer): float
- "normalY"(arg0: integer): float
- "tag"(): integer
-/**
- * 
- * @deprecated
- */
- "copyTo"(target: $MutableQuadView$Type): void
-/**
- * 
- * @deprecated
- */
- "toBakedQuad"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, isItem: boolean): $BakedQuad
- "toBakedQuad"(sprite: $TextureAtlasSprite$Type): $BakedQuad
- "nominalFace"(): $Direction
 /**
  * 
  * @deprecated
  */
  "spriteColor"(vertexIndex: integer, spriteIndex: integer): integer
+ "toBakedQuad"(sprite: $TextureAtlasSprite$Type): $BakedQuad
+/**
+ * 
+ * @deprecated
+ */
+ "toBakedQuad"(spriteIndex: integer, sprite: $TextureAtlasSprite$Type, isItem: boolean): $BakedQuad
+ "nominalFace"(): $Direction
  "normalZ"(arg0: integer): float
- "toVanilla"(arg0: (integer)[], arg1: integer): void
 /**
  * 
  * @deprecated
  */
  "toVanilla"(spriteIndex: integer, target: (integer)[], targetIndex: integer, isItem: boolean): void
- "material"(): $RenderMaterial
- "hasNormal"(arg0: integer): boolean
+ "toVanilla"(arg0: (integer)[], arg1: integer): void
  "lightmap"(arg0: integer): integer
+ "hasNormal"(arg0: integer): boolean
+ "material"(): $RenderMaterial
  "colorIndex"(): integer
  "faceNormal"(): $Vector3f
  "lightFace"(): $Direction
  "cullFace"(): $Direction
- "copyNormal"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
  "posByIndex"(arg0: integer, arg1: integer): float
  "copyPos"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
  "copyUv"(arg0: integer, arg1: $Vector2f$Type): $Vector2f
@@ -3270,6 +3278,7 @@ export interface $MutableQuadView extends $QuadView {
  * @deprecated
  */
  "spriteV"(vertexIndex: integer, spriteIndex: integer): float
+ "copyNormal"(arg0: integer, arg1: $Vector3f$Type): $Vector3f
 }
 
 export namespace $MutableQuadView {
@@ -3304,10 +3313,10 @@ import {$LootTable, $LootTable$Type} from "packages/net/minecraft/world/level/st
 
 export interface $FabricLootTableBuilder {
 
+ "pool"(pool: $LootPool$Type): $LootTable$Builder
  "apply"(functions: $Collection$Type<(any)>): $LootTable$Builder
  "apply"(arg0: $LootItemFunction$Type): $LootTable$Builder
  "pools"(pools: $Collection$Type<(any)>): $LootTable$Builder
- "pool"(pool: $LootPool$Type): $LootTable$Builder
  "modifyPools"(modifier: $Consumer$Type<(any)>): $LootTable$Builder
 }
 
@@ -3377,9 +3386,9 @@ declare global {
 export type $ScreenKeyboardEvents$BeforeKeyPress_ = $ScreenKeyboardEvents$BeforeKeyPress$Type;
 }}
 declare module "packages/net/fabricmc/fabric/impl/client/indigo/renderer/render/$AbstractBlockRenderContext" {
-import {$ItemDisplayContext, $ItemDisplayContext$Type} from "packages/net/minecraft/world/item/$ItemDisplayContext"
 import {$ModelData, $ModelData$Type} from "packages/net/minecraftforge/client/model/data/$ModelData"
 import {$QuadEmitter, $QuadEmitter$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/mesh/$QuadEmitter"
+import {$ItemDisplayContext, $ItemDisplayContext$Type} from "packages/net/minecraft/world/item/$ItemDisplayContext"
 import {$RenderContext$BakedModelConsumer, $RenderContext$BakedModelConsumer$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/render/$RenderContext$BakedModelConsumer"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
 import {$AbstractRenderContext, $AbstractRenderContext$Type} from "packages/net/fabricmc/fabric/impl/client/indigo/renderer/render/$AbstractRenderContext"
@@ -3388,16 +3397,16 @@ import {$RenderType, $RenderType$Type} from "packages/net/minecraft/client/rende
 export class $AbstractBlockRenderContext extends $AbstractRenderContext {
 
 
+public "getModelData"(): $ModelData
+public "getVanillaModelEmitter"(): $QuadEmitter
 public "getRenderLayer"(): $RenderType
 public "isFaceCulled"(face: $Direction$Type): boolean
 public "itemTransformationMode"(): $ItemDisplayContext
 public "bakedModelConsumer"(): $RenderContext$BakedModelConsumer
-public "getModelData"(): $ModelData
-public "getVanillaModelEmitter"(): $QuadEmitter
 public "getEmitter"(): $QuadEmitter
-get "renderLayer"(): $RenderType
 get "modelData"(): $ModelData
 get "vanillaModelEmitter"(): $QuadEmitter
+get "renderLayer"(): $RenderType
 get "emitter"(): $QuadEmitter
 }
 /**
@@ -3447,9 +3456,9 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 
 export interface $ModelModifier$BeforeBake$Context {
 
+ "settings"(): $ModelState
  "loader"(): $ModelBakery
  "id"(): $ResourceLocation
- "settings"(): $ModelState
  "textureGetter"(): $Function<($Material), ($TextureAtlasSprite)>
  "baker"(): $ModelBaker
 }
@@ -3661,10 +3670,10 @@ export class $AbstractChanneledNetworkAddon<H> extends $AbstractNetworkAddon<(H)
 
 
 public "getSendableChannels"(): $Set<($ResourceLocation)>
-public "lateInit"(): void
-public "sendPacket"(packet: $Packet$Type<(any)>): void
 public "sendPacket"(packet: $Packet$Type<(any)>, callback: $GenericFutureListener$Type<(any)>): void
 public "sendPacket"(packet: $Packet$Type<(any)>, callback: $PacketSendListener$Type): void
+public "sendPacket"(packet: $Packet$Type<(any)>): void
+public "lateInit"(): void
 public "createPacket"(arg0: $ResourceLocation$Type, arg1: $FriendlyByteBuf$Type): $Packet<(any)>
 public "sendPacket"(channel: $ResourceLocation$Type, buf: $FriendlyByteBuf$Type): void
 public "sendPacket"<T extends $FabricPacket>(packet: T, callback: $PacketSendListener$Type): void
@@ -3701,8 +3710,8 @@ export class $ClientPlayNetworkAddon extends $AbstractChanneledNetworkAddon<($Cl
 constructor(handler: $ClientPacketListener$Type, client: $Minecraft$Type)
 
 public "handle"(packet: $ClientboundCustomPayloadPacket$Type): boolean
-public "createPacket"(channelName: $ResourceLocation$Type, buf: $FriendlyByteBuf$Type): $Packet<(any)>
 public "onServerReady"(): void
+public "createPacket"(channelName: $ResourceLocation$Type, buf: $FriendlyByteBuf$Type): $Packet<(any)>
 public "lateInit"(): void
 }
 /**
@@ -3751,8 +3760,8 @@ import {$BiFunction, $BiFunction$Type} from "packages/java/util/function/$BiFunc
 import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
 import {$Function, $Function$Type} from "packages/java/util/function/$Function"
 import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
-import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$Stream, $Stream$Type} from "packages/java/util/stream/$Stream"
 import {$Biome, $Biome$Type} from "packages/net/minecraft/world/level/biome/$Biome"
 import {$ColorResolver, $ColorResolver$Type} from "packages/net/minecraft/world/level/$ColorResolver"
 import {$ClipContext, $ClipContext$Type} from "packages/net/minecraft/world/level/$ClipContext"
@@ -3763,9 +3772,9 @@ import {$LightLayer, $LightLayer$Type} from "packages/net/minecraft/world/level/
 import {$LevelHeightAccessor, $LevelHeightAccessor$Type} from "packages/net/minecraft/world/level/$LevelHeightAccessor"
 import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
 import {$ClipBlockStateContext, $ClipBlockStateContext$Type} from "packages/net/minecraft/world/level/$ClipBlockStateContext"
-import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
 import {$Vec3, $Vec3$Type} from "packages/net/minecraft/world/phys/$Vec3"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
 import {$Holder, $Holder$Type} from "packages/net/minecraft/core/$Holder"
 import {$Optional, $Optional$Type} from "packages/java/util/$Optional"
 import {$BlockAndTintGetter, $BlockAndTintGetter$Type} from "packages/net/minecraft/world/level/$BlockAndTintGetter"
@@ -3781,27 +3790,28 @@ export interface $RenderAttachedBlockView extends $BlockAndTintGetter {
  * @deprecated
  */
  "getBlockEntityRenderAttachment"(pos: $BlockPos$Type): any
- "canSeeSky"(arg0: $BlockPos$Type): boolean
- "getBlockTint"(arg0: $BlockPos$Type, arg1: $ColorResolver$Type): integer
  "getRawBrightness"(arg0: $BlockPos$Type, arg1: integer): integer
- "getShade"(arg0: $Direction$Type, arg1: boolean): float
- "getLightEngine"(): $LevelLightEngine
  "getBrightness"(arg0: $LightLayer$Type, arg1: $BlockPos$Type): integer
- "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
- "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
+ "getLightEngine"(): $LevelLightEngine
+ "getBlockTint"(arg0: $BlockPos$Type, arg1: $ColorResolver$Type): integer
+ "getShade"(arg0: $Direction$Type, arg1: boolean): float
+ "canSeeSky"(arg0: $BlockPos$Type): boolean
+ "getBlockState"(arg0: $BlockPos$Type): $BlockState
+ "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
+ "getFluidState"(arg0: $BlockPos$Type): $FluidState
+ "getMaxLightLevel"(): integer
  "getLightEmission"(arg0: $BlockPos$Type): integer
  "isBlockInLine"(arg0: $ClipBlockStateContext$Type): $BlockHitResult
  "clip"(arg0: $ClipContext$Type): $BlockHitResult
  "clipWithInteractionOverride"(arg0: $Vec3$Type, arg1: $Vec3$Type, arg2: $BlockPos$Type, arg3: $VoxelShape$Type, arg4: $BlockState$Type): $BlockHitResult
  "getBlockFloorHeight"(arg0: $VoxelShape$Type, arg1: $Supplier$Type<($VoxelShape$Type)>): double
  "getBlockFloorHeight"(arg0: $BlockPos$Type): double
- "getMaxLightLevel"(): integer
- "getFluidState"(arg0: $BlockPos$Type): $FluidState
- "getBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
- "getBlockState"(arg0: $BlockPos$Type): $BlockState
+ "getBlockEntity"<T extends $BlockEntity>(arg0: $BlockPos$Type, arg1: $BlockEntityType$Type<(T)>): $Optional<(T)>
+ "getBlockStates"(arg0: $AABB$Type): $Stream<($BlockState)>
  "getShade"(arg0: float, arg1: float, arg2: float, arg3: boolean): float
- "getHeight"(): integer
  "getMaxBuildHeight"(): integer
+ "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
+ "getMinBuildHeight"(): integer
  "getSectionsCount"(): integer
  "getMaxSection"(): integer
  "getMinSection"(): integer
@@ -3809,12 +3819,11 @@ export interface $RenderAttachedBlockView extends $BlockAndTintGetter {
  "getSectionIndex"(arg0: integer): integer
  "getSectionIndexFromSectionY"(arg0: integer): integer
  "getSectionYFromSectionIndex"(arg0: integer): integer
- "isOutsideBuildHeight"(arg0: $BlockPos$Type): boolean
- "getMinBuildHeight"(): integer
- "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
+ "getHeight"(): integer
  "getModelDataManager"(): $ModelDataManager
- "getBlockEntityRenderData"(pos: $BlockPos$Type): any
+ "getExistingBlockEntity"(arg0: $BlockPos$Type): $BlockEntity
  "getBiomeFabric"(pos: $BlockPos$Type): $Holder<($Biome)>
+ "getBlockEntityRenderData"(pos: $BlockPos$Type): any
  "hasBiomes"(): boolean
 }
 
@@ -4101,18 +4110,18 @@ declare global {
 export type $RenderContext$QuadTransform_ = $RenderContext$QuadTransform$Type;
 }}
 declare module "packages/net/fabricmc/fabric/api/recipe/v1/ingredient/$CustomIngredientSerializer" {
-import {$CustomIngredient, $CustomIngredient$Type} from "packages/net/fabricmc/fabric/api/recipe/v1/ingredient/$CustomIngredient"
 import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
+import {$CustomIngredient, $CustomIngredient$Type} from "packages/net/fabricmc/fabric/api/recipe/v1/ingredient/$CustomIngredient"
 import {$FriendlyByteBuf, $FriendlyByteBuf$Type} from "packages/net/minecraft/network/$FriendlyByteBuf"
 import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
 
 export interface $CustomIngredientSerializer<T extends $CustomIngredient> {
 
- "write"(arg0: $FriendlyByteBuf$Type, arg1: T): void
+ "getIdentifier"(): $ResourceLocation
  "write"(arg0: $JsonObject$Type, arg1: T): void
+ "write"(arg0: $FriendlyByteBuf$Type, arg1: T): void
  "read"(arg0: $FriendlyByteBuf$Type): T
  "read"(arg0: $JsonObject$Type): T
- "getIdentifier"(): $ResourceLocation
 }
 
 export namespace $CustomIngredientSerializer {
@@ -4165,9 +4174,9 @@ import {$ImprovedNoise, $ImprovedNoise$Type} from "packages/net/minecraft/world/
 
 export interface $MultiNoiseSamplerHooks {
 
- "fabric_setSeed"(arg0: long): void
  "fabric_getSeed"(): long
  "fabric_getEndBiomesSampler"(): $ImprovedNoise
+ "fabric_setSeed"(arg0: long): void
 }
 
 export namespace $MultiNoiseSamplerHooks {
@@ -4197,11 +4206,11 @@ import {$TextureAtlasSprite, $TextureAtlasSprite$Type} from "packages/net/minecr
 
 export interface $ModelModifier$AfterBake$Context {
 
+ "settings"(): $ModelState
  "loader"(): $ModelBakery
  "id"(): $ResourceLocation
- "settings"(): $ModelState
- "sourceModel"(): $UnbakedModel
  "textureGetter"(): $Function<($Material), ($TextureAtlasSprite)>
+ "sourceModel"(): $UnbakedModel
  "baker"(): $ModelBaker
 }
 
@@ -4261,6 +4270,7 @@ static readonly "DEFAULT": $TriState
 static readonly "TRUE": $TriState
 
 
+public "orElseGet"(supplier: $BooleanSupplier$Type): boolean
 public "get"(): boolean
 public static "values"(): ($TriState)[]
 public static "valueOf"(name: string): $TriState
@@ -4269,7 +4279,6 @@ public static "of"(bool: boolean): $TriState
 public static "of"(bool: boolean): $TriState
 public "orElse"(value: boolean): boolean
 public "orElseThrow"<X extends $Throwable>(exceptionSupplier: $Supplier$Type<(X)>): boolean
-public "orElseGet"(supplier: $BooleanSupplier$Type): boolean
 public "getBoxed"(): boolean
 get "boxed"(): boolean
 }
@@ -4318,13 +4327,13 @@ import {$TransactionContext$OuterCloseCallback, $TransactionContext$OuterCloseCa
 
 export interface $Transaction extends $AutoCloseable, $TransactionContext {
 
- "close"(): void
- "abort"(): void
  "commit"(): void
+ "abort"(): void
+ "close"(): void
+ "addOuterCloseCallback"(arg0: $TransactionContext$OuterCloseCallback$Type): void
  "nestingDepth"(): integer
  "addCloseCallback"(arg0: $TransactionContext$CloseCallback$Type): void
  "getOpenTransaction"(arg0: integer): $Transaction
- "addOuterCloseCallback"(arg0: $TransactionContext$OuterCloseCallback$Type): void
  "openNested"(): $Transaction
 }
 
@@ -4332,8 +4341,8 @@ export namespace $Transaction {
 function isOpen(): boolean
 function getLifecycle(): $Transaction$Lifecycle
 function getCurrentUnsafe(): $TransactionContext
-function openOuter(): $Transaction
 function openNested(maybeParent: $TransactionContext$Type): $Transaction
+function openOuter(): $Transaction
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -4357,21 +4366,21 @@ import {$Map, $Map$Type} from "packages/java/util/$Map"
 
 export interface $AttachmentTargetImpl extends $AttachmentTarget {
 
- "fabric_hasPersistentAttachments"(): boolean
- "fabric_readAttachmentsFromNbt"(nbt: $CompoundTag$Type): void
- "fabric_writeAttachmentsToNbt"(nbt: $CompoundTag$Type): void
  "fabric_getAttachments"(): $Map<($AttachmentType<(any)>), (any)>
- "getAttachedOrThrow"<A>(type: $AttachmentType$Type<(A)>): A
- "getAttachedOrSet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
- "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>): A
- "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>, initializer: $Supplier$Type<(A)>): A
- "getAttachedOrElse"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
- "getAttachedOrGet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: $Supplier$Type<(A)>): A
- "removeAttached"<A>(type: $AttachmentType$Type<(A)>): A
- "modifyAttached"<A>(type: $AttachmentType$Type<(A)>, modifier: $UnaryOperator$Type<(A)>): A
+ "fabric_writeAttachmentsToNbt"(nbt: $CompoundTag$Type): void
+ "fabric_readAttachmentsFromNbt"(nbt: $CompoundTag$Type): void
+ "fabric_hasPersistentAttachments"(): boolean
  "getAttached"<A>(type: $AttachmentType$Type<(A)>): A
  "setAttached"<A>(type: $AttachmentType$Type<(A)>, value: A): A
  "hasAttached"(type: $AttachmentType$Type<(any)>): boolean
+ "getAttachedOrThrow"<A>(type: $AttachmentType$Type<(A)>): A
+ "getAttachedOrSet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
+ "removeAttached"<A>(type: $AttachmentType$Type<(A)>): A
+ "getAttachedOrGet"<A>(type: $AttachmentType$Type<(A)>, defaultValue: $Supplier$Type<(A)>): A
+ "modifyAttached"<A>(type: $AttachmentType$Type<(A)>, modifier: $UnaryOperator$Type<(A)>): A
+ "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>, initializer: $Supplier$Type<(A)>): A
+ "getAttachedOrCreate"<A>(type: $AttachmentType$Type<(A)>): A
+ "getAttachedOrElse"<A>(type: $AttachmentType$Type<(A)>, defaultValue: A): A
 }
 
 export namespace $AttachmentTargetImpl {
@@ -4495,12 +4504,12 @@ import {$LootItemCondition, $LootItemCondition$Type} from "packages/net/minecraf
 
 export interface $FabricLootPoolBuilder {
 
- "apply"(arg0: $LootItemFunction$Type): $LootPool$Builder
- "apply"(functions: $Collection$Type<(any)>): $LootPool$Builder
  "with"(entry: $LootPoolEntryContainer$Type): $LootPool$Builder
  "with"(entries: $Collection$Type<(any)>): $LootPool$Builder
- "conditionally"(condition: $LootItemCondition$Type): $LootPool$Builder
+ "apply"(functions: $Collection$Type<(any)>): $LootPool$Builder
+ "apply"(arg0: $LootItemFunction$Type): $LootPool$Builder
  "conditionally"(conditions: $Collection$Type<(any)>): $LootPool$Builder
+ "conditionally"(condition: $LootItemCondition$Type): $LootPool$Builder
 }
 
 export namespace $FabricLootPoolBuilder {
@@ -4519,10 +4528,10 @@ declare global {
 export type $FabricLootPoolBuilder_ = $FabricLootPoolBuilder$Type;
 }}
 declare module "packages/net/fabricmc/fabric/api/renderer/v1/render/$RenderContext" {
+import {$ModelData, $ModelData$Type} from "packages/net/minecraftforge/client/model/data/$ModelData"
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$RenderContext$QuadTransform, $RenderContext$QuadTransform$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/render/$RenderContext$QuadTransform"
 import {$ItemDisplayContext, $ItemDisplayContext$Type} from "packages/net/minecraft/world/item/$ItemDisplayContext"
-import {$ModelData, $ModelData$Type} from "packages/net/minecraftforge/client/model/data/$ModelData"
 import {$QuadEmitter, $QuadEmitter$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/mesh/$QuadEmitter"
 import {$RenderContext$BakedModelConsumer, $RenderContext$BakedModelConsumer$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/render/$RenderContext$BakedModelConsumer"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -4532,7 +4541,7 @@ import {$RenderType, $RenderType$Type} from "packages/net/minecraft/client/rende
 
 export interface $RenderContext {
 
- "hasTransform"(): boolean
+ "getModelData"(): $ModelData
 /**
  * 
  * @deprecated
@@ -4553,7 +4562,7 @@ export interface $RenderContext {
  * @deprecated
  */
  "fallbackConsumer"(): $Consumer<($BakedModel)>
- "getModelData"(): $ModelData
+ "hasTransform"(): boolean
  "getEmitter"(): $QuadEmitter
 }
 
@@ -4618,10 +4627,10 @@ import {$EquipmentSlotProvider, $EquipmentSlotProvider$Type} from "packages/net/
 
 export interface $ItemExtensions {
 
+ "fabric_getCustomDamageHandler"(): $CustomDamageHandler
+ "fabric_getEquipmentSlotProvider"(): $EquipmentSlotProvider
  "fabric_setEquipmentSlotProvider"(arg0: $EquipmentSlotProvider$Type): void
  "fabric_setCustomDamageHandler"(arg0: $CustomDamageHandler$Type): void
- "fabric_getEquipmentSlotProvider"(): $EquipmentSlotProvider
- "fabric_getCustomDamageHandler"(): $CustomDamageHandler
 }
 
 export namespace $ItemExtensions {
@@ -4754,9 +4763,9 @@ import {$BlendMode, $BlendMode$Type} from "packages/net/fabricmc/fabric/api/rend
 
 export interface $MaterialView {
 
+ "ambientOcclusion"(): $TriState
  "disableColorIndex"(): boolean
  "disableDiffuse"(): boolean
- "ambientOcclusion"(): $TriState
  "glint"(): $TriState
  "blendMode"(): $BlendMode
  "emissive"(): boolean
@@ -4803,8 +4812,8 @@ import {$TerrainRenderContext, $TerrainRenderContext$Type} from "packages/net/fa
 
 export interface $AccessChunkRendererRegion {
 
- "fabric_setRenderer"(arg0: $TerrainRenderContext$Type): void
  "fabric_getRenderer"(): $TerrainRenderContext
+ "fabric_setRenderer"(arg0: $TerrainRenderContext$Type): void
 }
 
 export namespace $AccessChunkRendererRegion {
@@ -4872,8 +4881,8 @@ export type $BlockApiLookup$BlockEntityApiProvider_<A, C> = $BlockApiLookup$Bloc
 declare module "packages/net/fabricmc/fabric/impl/client/indigo/renderer/render/$AbstractRenderContext" {
 import {$Consumer, $Consumer$Type} from "packages/java/util/function/$Consumer"
 import {$RenderContext$QuadTransform, $RenderContext$QuadTransform$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/render/$RenderContext$QuadTransform"
-import {$ItemDisplayContext, $ItemDisplayContext$Type} from "packages/net/minecraft/world/item/$ItemDisplayContext"
 import {$ModelData, $ModelData$Type} from "packages/net/minecraftforge/client/model/data/$ModelData"
+import {$ItemDisplayContext, $ItemDisplayContext$Type} from "packages/net/minecraft/world/item/$ItemDisplayContext"
 import {$QuadEmitter, $QuadEmitter$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/mesh/$QuadEmitter"
 import {$RenderContext$BakedModelConsumer, $RenderContext$BakedModelConsumer$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/render/$RenderContext$BakedModelConsumer"
 import {$RenderContext, $RenderContext$Type} from "packages/net/fabricmc/fabric/api/renderer/v1/render/$RenderContext"
@@ -4885,7 +4894,6 @@ import {$RenderType, $RenderType$Type} from "packages/net/minecraft/client/rende
 export class $AbstractRenderContext implements $RenderContext {
 
 
-public "hasTransform"(): boolean
 /**
  * 
  * @deprecated
@@ -4893,6 +4901,8 @@ public "hasTransform"(): boolean
 public "meshConsumer"(): $Consumer<($Mesh)>
 public "pushTransform"(transform: $RenderContext$QuadTransform$Type): void
 public "popTransform"(): void
+public "hasTransform"(): boolean
+public "getModelData"(): $ModelData
 public "getRenderLayer"(): $RenderType
 public "isFaceCulled"(face: $Direction$Type): boolean
 public "itemTransformationMode"(): $ItemDisplayContext
@@ -4906,10 +4916,9 @@ public "bakedModelConsumer"(): $RenderContext$BakedModelConsumer
  * @deprecated
  */
 public "fallbackConsumer"(): $Consumer<($BakedModel)>
-public "getModelData"(): $ModelData
 public "getEmitter"(): $QuadEmitter
-get "renderLayer"(): $RenderType
 get "modelData"(): $ModelData
+get "renderLayer"(): $RenderType
 get "emitter"(): $QuadEmitter
 }
 /**

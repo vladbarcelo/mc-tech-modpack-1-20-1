@@ -54,6 +54,16 @@ ServerEvents.recipes((event) => {
         'immersiveengineering:hammer',
         'keep_engineering_hammer'
       ).customIngredientAction(`kubejs:hot_${metal}_ingot_in_tongs`, 'keep_tongs');
+      event.shapeless(
+        Item.of(sheetItem, 1),
+        [
+          `kubejs:hot_${metal}_ingot`,
+          'immersiveengineering:hammer'
+        ]
+      ).customIngredientAction(
+        'immersiveengineering:hammer',
+        'keep_engineering_hammer'
+      )
       event.custom({
         type: "vintageimprovements:hammering",
         hammerBlows: 1,

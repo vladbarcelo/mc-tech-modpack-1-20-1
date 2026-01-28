@@ -6,10 +6,10 @@ export class $EMFModelPart$Animator implements $Runnable {
 
 public "run"(): void
 public "hasAnimation"(): boolean
-public "setAnimation"(animation: $Runnable$Type): void
 public "getAnimation"(): $Runnable
-set "animation"(value: $Runnable$Type)
+public "setAnimation"(animation: $Runnable$Type): void
 get "animation"(): $Runnable
+set "animation"(value: $Runnable$Type)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -214,6 +214,9 @@ export interface $EMFEntity extends $ETFEntity {
  "emf$isWet"(): boolean
  "emf$age"(): float
  "emf$getYaw"(): float
+ "etf$getEntityKey"(): string
+ "etf$getWorld"(): $Level
+ "etf$getBlockPos"(): $BlockPos
  "etf$getType"(): $EntityType<(any)>
  "etf$getUuid"(): $UUID
  "etf$getOptifineId"(): integer
@@ -233,9 +236,6 @@ export interface $EMFEntity extends $ETFEntity {
  "etf$getPose"(): $Pose
  "etf$canBeBright"(): boolean
  "etf$isBlockEntity"(): boolean
- "etf$getEntityKey"(): string
- "etf$getWorld"(): $Level
- "etf$getBlockPos"(): $BlockPos
  "etf$getNbt"(): $CompoundTag
 }
 
@@ -268,18 +268,18 @@ export class $EMFModelPartWithState$EMFModelState extends $Record {
 
 constructor(defaultTransform: $PartPose$Type, cuboids: $List$Type<($ModelPart$Cube$Type)>, variantChildren: $Map$Type<(string), ($ModelPart$Type)>, xScale: float, yScale: float, zScale: float, visible: boolean, hidden: boolean, texture: $ResourceLocation$Type, animation: $EMFModelPart$Animator$Type)
 
+public "visible"(): boolean
 public "equals"(o: any): boolean
 public "toString"(): string
 public "hashCode"(): integer
 public static "copy"(copyFrom: $EMFModelPartWithState$EMFModelState$Type): $EMFModelPartWithState$EMFModelState
-public "visible"(): boolean
+public "texture"(): $ResourceLocation
 public "defaultTransform"(): $PartPose
 public "variantChildren"(): $Map<(string), ($ModelPart)>
-public "texture"(): $ResourceLocation
+public "hidden"(): boolean
+public "animation"(): $EMFModelPart$Animator
 public "xScale"(): float
 public "yScale"(): float
-public "animation"(): $EMFModelPart$Animator
-public "hidden"(): boolean
 public "cuboids"(): $List<($ModelPart$Cube)>
 public "zScale"(): float
 }
@@ -338,15 +338,15 @@ static readonly "DEFAULT_SCALE": float
 constructor(name: string, vanillaPart: $ModelPart$Type, optifinePartNames: $Collection$Type<(string)>, allVanillaParts: $Map$Type<(string), ($EMFModelPartVanilla$Type)>)
 
 public "toString"(): string
-public "receiveRootAnimationRunnable"(variant: integer, run: $Runnable$Type): void
-public "setHideInTheseStates"(variant: integer): void
-public "getAllEMFCustomChildren"(): ($ModelPart)[]
 public "toStringShort"(): string
+public "receiveRootAnimationRunnable"(variant: integer, run: $Runnable$Type): void
+public "getAllEMFCustomChildren"(): ($ModelPart)[]
+public "setHideInTheseStates"(variant: integer): void
 public "render"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type, light: integer, overlay: integer, red: float, green: float, blue: float, alpha: float): void
 public static "of"(arg0: $ModelPart$Type): $ModelPartExtended
 public static "from"(arg0: $ModelPart$Type): $ModelPartData
-set "hideInTheseStates"(value: integer)
 get "allEMFCustomChildren"(): ($ModelPart)[]
+set "hideInTheseStates"(value: integer)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -392,8 +392,8 @@ public static "valueOf"(name: string): $EMFModelOrRenderVariable
 public "getValue"(arg0: $ModelPart$Type): float
 public "getValue"(): float
 public "setValue"(arg0: $EMFModelPart$Type, arg1: float): void
-public static "getRenderVariable"(id: string): $EMFModelOrRenderVariable
 public "isBoolean"(): boolean
+public static "getRenderVariable"(id: string): $EMFModelOrRenderVariable
 public "isRenderVariable"(): boolean
 get "value"(): float
 get "boolean"(): boolean
@@ -514,20 +514,20 @@ static readonly "DEFAULT_SCALE": float
 constructor(mobNameForFileAndMap: $EMFModel_ID$Type, directoryContext: $EMFDirectoryHandler$Type, vanillaRoot: $ModelPart$Type, optifinePartNames: $Collection$Type<(string)>, mapForCreatedParts: $Map$Type<(string), ($EMFModelPartVanilla$Type)>)
 
 public "toString"(): string
+public "hasAnimation"(): boolean
+public "tryRenderVanillaFormatRoot"(matrixStack: $PoseStack$Type, vertexConsumer: $VertexConsumer$Type, light: integer, overlay: integer): void
+public "getTopLevelJemTexture"(): $ResourceLocation
+public "toStringShort"(): string
 public "resetVanillaPartsToDefaults"(): void
 public "tryRenderVanillaRootNormally"(matrixStack: $PoseStack$Type, vertexConsumer: $VertexConsumer$Type, light: integer, overlay: integer): void
+public "receiveAnimations"(variant: integer, animationList: $Collection$Type<($EMFAnimation$Type)>): void
 public "addVariantOfJem"(jemData: $EMFJemData$Type, variant: integer): void
 public "discoverAndInitVariants"(fallbackPropertiesName: string): void
 public "setVariant1ToVanilla0"(): void
-public "receiveAnimations"(variant: integer, animationList: $Collection$Type<($EMFAnimation$Type)>): void
-public "tryRenderVanillaFormatRoot"(matrixStack: $PoseStack$Type, vertexConsumer: $VertexConsumer$Type, light: integer, overlay: integer): void
-public "getTopLevelJemTexture"(): $ResourceLocation
-public "hasAnimation"(): boolean
 public "getAllVanillaPartsEMF"(): $Collection<($EMFModelPartVanilla)>
-public "checkIfShouldExpireEntity"(id: $UUID$Type): void
 public "doVariantCheck"(): void
+public "checkIfShouldExpireEntity"(id: $UUID$Type): void
 public "getVanillaFormatRoot"(): $ModelPart
-public "toStringShort"(): string
 public static "of"(arg0: $ModelPart$Type): $ModelPartExtended
 public static "from"(arg0: $ModelPart$Type): $ModelPartData
 get "topLevelJemTexture"(): $ResourceLocation
@@ -589,15 +589,15 @@ constructor(partToApplyTo: $EMFModelPart$Type, modelOrRenderVariableToChange: $E
 public "toString"(): string
 public "isValid"(): boolean
 public "initExpression"(emfAnimationVariables: $Object2ObjectLinkedOpenHashMap$Type<(string), ($EMFAnimation$Type)>, allPartByName: $Object2ObjectOpenHashMap$Type<(string), ($EMFModelPart$Type)>): void
-public "calculateAndSet"(): void
 public "calculateAndSetIfNotPaused"(paused: ($ModelPart$Type)[]): void
-public "isVar"(): boolean
+public "calculateAndSet"(): void
 public "getLastResultOnly"(): float
 public "getResultViaCalculate"(): float
+public "isVar"(): boolean
 get "valid"(): boolean
-get "var"(): boolean
 get "lastResultOnly"(): float
 get "resultViaCalculate"(): float
+get "var"(): boolean
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -626,27 +626,27 @@ public "toString"(): string
 public "hashCode"(): integer
 public "compareTo"(o: $EMFModel_ID$Type): integer
 public "getNamespace"(): string
-public "setMapIdAndAddFallbackModel"(mapId: string, fileName: string): $EMFModel_ID
+public "setFileName"(fileName: string): $EMFModel_ID
 public "setMapIdAndAddFallbackModel"(both: string): $EMFModel_ID
+public "setMapIdAndAddFallbackModel"(mapId: string, fileName: string): $EMFModel_ID
 public "finishAndPrepAutomatedFallbacks"(): void
+public "getDisplayFileName"(): string
 public "areBothSame"(): boolean
 public "getfileName"(): string
-public "addFallbackModel"(fileName: string): $EMFModel_ID
 public "addFallbackModel"(namespace: string, fileName: string): $EMFModel_ID
+public "addFallbackModel"(fileName: string): $EMFModel_ID
 public "hasFallbackModels"(): boolean
 public "getNextFallbackModel"(): $EMFModel_ID
 public "forEachFallback"(action: $Consumer$Type<($EMFModel_ID$Type)>): void
-public "getDisplayFileName"(): string
-public "setFileName"(fileName: string): $EMFModel_ID
-public "setBoth"(fileName: string, mapId: string): $EMFModel_ID
 public "setBoth"(both: string): $EMFModel_ID
+public "setBoth"(fileName: string, mapId: string): $EMFModel_ID
 public "getMapId"(): string
 get "namespace"(): string
+set "fileName"(value: string)
 set "mapIdAndAddFallbackModel"(value: string)
+get "displayFileName"(): string
 get "fileName"(): string
 get "nextFallbackModel"(): $EMFModel_ID
-get "displayFileName"(): string
-set "fileName"(value: string)
 set "both"(value: string)
 get "mapId"(): string
 }
@@ -768,10 +768,10 @@ export interface $CuboidAccessor {
 
  "setPolygons"(arg0: ($ModelPart$Polygon$Type)[]): void
  "setMinX"(arg0: float): void
- "setMinY"(arg0: float): void
- "setMinZ"(arg0: float): void
  "setMaxX"(arg0: float): void
+ "setMinY"(arg0: float): void
  "setMaxY"(arg0: float): void
+ "setMinZ"(arg0: float): void
  "setMaxZ"(arg0: float): void
 }
 
@@ -852,12 +852,12 @@ static readonly "DEFAULT_SCALE": float
 constructor(cuboids: $List$Type<($ModelPart$Cube$Type)>, children: $Map$Type<(string), ($ModelPart$Type)>)
 
 public "toString"(): string
-public "getVanillaModelPartsOfCurrentState"(): $ModelPart
-public "getAllChildPartsAsAnimationMap"(prefixableParents: string, variantNum: integer, optifinePartNameMap: $Map$Type<(string), (string)>): $Object2ReferenceOpenHashMap<(string), ($EMFModelPart)>
 public "renderBoxes"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type): void
+public "toStringShort"(): string
+public "getAllChildPartsAsAnimationMap"(prefixableParents: string, variantNum: integer, optifinePartNameMap: $Map$Type<(string), (string)>): $Object2ReferenceOpenHashMap<(string), ($EMFModelPart)>
+public "getVanillaModelPartsOfCurrentState"(): $ModelPart
 public "renderBoxesNoChildren"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type, alpha: float): void
 public "simplePrintChildren"(depth: integer): string
-public "toStringShort"(): string
 public "compile"(pose: $PoseStack$Pose$Type, vertexConsumer: $VertexConsumer$Type, i: integer, j: integer, red: float, green: float, blue: float, alpha: float): void
 public "render"(matrices: $PoseStack$Type, vertices: $VertexConsumer$Type, light: integer, overlay: integer, red: float, green: float, blue: float, alpha: float): void
 public static "of"(arg0: $ModelPart$Type): $ModelPartExtended
@@ -907,8 +907,8 @@ declare module "packages/traben/entity_model_features/utils/$IEMFTextureSizeSupp
 export {} // Mark the file as a module, do not remove unless there are other import/exports!
 export interface $IEMFTextureSizeSupplier {
 
- "emf$getTextureSize"(): (integer)[]
  "emf$setTextureSize"(arg0: (integer)[]): void
+ "emf$getTextureSize"(): (integer)[]
 }
 
 export namespace $IEMFTextureSizeSupplier {

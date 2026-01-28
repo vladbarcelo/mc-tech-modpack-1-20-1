@@ -1,3 +1,264 @@
+declare module "packages/net/satisfy/bloomingnature/core/block/$StorageBlock" {
+import {$SoundEvent, $SoundEvent$Type} from "packages/net/minecraft/sounds/$SoundEvent"
+import {$EntityBlock, $EntityBlock$Type} from "packages/net/minecraft/world/level/block/$EntityBlock"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$StorageBlockEntity, $StorageBlockEntity$Type} from "packages/net/satisfy/bloomingnature/core/block/entity/$StorageBlockEntity"
+import {$FacingBlock, $FacingBlock$Type} from "packages/net/satisfy/bloomingnature/core/block/$FacingBlock"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+import {$GameEventListener, $GameEventListener$Type} from "packages/net/minecraft/world/level/gameevent/$GameEventListener"
+import {$RenderShape, $RenderShape$Type} from "packages/net/minecraft/world/level/block/$RenderShape"
+
+export class $StorageBlock extends $FacingBlock implements $EntityBlock {
+static readonly "event": $SoundEvent
+static readonly "FACING": $DirectionProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(settings: $BlockBehaviour$Properties$Type)
+
+public "add"(level: $Level$Type, blockPos: $BlockPos$Type, player: $Player$Type, shelfBlockEntity: $StorageBlockEntity$Type, itemStack: $ItemStack$Type, i: integer): void
+public "remove"(level: $Level$Type, blockPos: $BlockPos$Type, player: $Player$Type, shelfBlockEntity: $StorageBlockEntity$Type, i: integer): void
+public "type"(): $ResourceLocation
+public "size"(): integer
+public "getAddSound"(level: $Level$Type, blockPos: $BlockPos$Type, player: $Player$Type, i: integer): $SoundEvent
+public "getRemoveSound"(level: $Level$Type, blockPos: $BlockPos$Type, player: $Player$Type, i: integer): $SoundEvent
+public "unAllowedDirections"(): ($Direction)[]
+public "canInsertStack"(arg0: $ItemStack$Type): boolean
+public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, moved: boolean): void
+public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
+public "getRenderShape"(state: $BlockState$Type): $RenderShape
+public "newBlockEntity"(pos: $BlockPos$Type, state: $BlockState$Type): $BlockEntity
+public "getSection"(arg0: float, arg1: float): integer
+public "getTicker"<T extends $BlockEntity>(arg0: $Level$Type, arg1: $BlockState$Type, arg2: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getListener"<T extends $BlockEntity>(arg0: $ServerLevel$Type, arg1: T): $GameEventListener
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $StorageBlock$Type = ($StorageBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $StorageBlock_ = $StorageBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$CattailBlock" {
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$LiquidBlockContainer, $LiquidBlockContainer$Type} from "packages/net/minecraft/world/level/block/$LiquidBlockContainer"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$FluidState, $FluidState$Type} from "packages/net/minecraft/world/level/material/$FluidState"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$EnumProperty, $EnumProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$EnumProperty"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$TallFlowerBlock, $TallFlowerBlock$Type} from "packages/net/minecraft/world/level/block/$TallFlowerBlock"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$DoubleBlockHalf, $DoubleBlockHalf$Type} from "packages/net/minecraft/world/level/block/state/properties/$DoubleBlockHalf"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+
+export class $CattailBlock extends $TallFlowerBlock implements $LiquidBlockContainer {
+static readonly "HALF": $EnumProperty<($DoubleBlockHalf)>
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, newState: $BlockState$Type, level: $LevelAccessor$Type, pos: $BlockPos$Type, posFrom: $BlockPos$Type): $BlockState
+public "getFluidState"(blockState: $BlockState$Type): $FluidState
+public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
+public "canPlaceLiquid"(blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, fluid: $Fluid$Type): boolean
+public "placeLiquid"(levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, fluidState: $FluidState$Type): boolean
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $CattailBlock$Type = ($CattailBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $CattailBlock_ = $CattailBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$LateritGrassBlock" {
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BonemealableBlock, $BonemealableBlock$Type} from "packages/net/minecraft/world/level/block/$BonemealableBlock"
+import {$SnowyDirtBlock, $SnowyDirtBlock$Type} from "packages/net/minecraft/world/level/block/$SnowyDirtBlock"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $LateritGrassBlock extends $SnowyDirtBlock implements $BonemealableBlock {
+static readonly "SNOWY": $BooleanProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "randomTick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, blockPos: $BlockPos$Type, randomSource: $RandomSource$Type): void
+public "isValidBonemealTarget"(levelReader: $LevelReader$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, bl: boolean): boolean
+public "isBonemealSuccess"(level: $Level$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): boolean
+public "performBonemeal"(serverLevel: $ServerLevel$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $LateritGrassBlock$Type = ($LateritGrassBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $LateritGrassBlock_ = $LateritGrassBlock$Type;
+}}
 declare module "packages/net/satisfy/wildernature/block/$BisonTrophyBlock" {
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
 import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
@@ -113,9 +374,9 @@ readonly "canRepair": boolean
 constructor(properties: $Item$Properties$Type, damage: integer)
 
 public "consume"(stack: $ItemStack$Type, player: $Player$Type): void
+public "modifyDamage"(damage: double, projectile: $BulletEntity$Type, target: $Entity$Type, shooter: $Entity$Type, world: $Level$Type): double
 public static "onLivingEntityHit"(target: $LivingEntity$Type, shooter: $Entity$Type, world: $Level$Type): void
 public "createProjectile"(world: $Level$Type, stack: $ItemStack$Type, shooter: $LivingEntity$Type): $BulletEntity
-public "modifyDamage"(damage: double, projectile: $BulletEntity$Type, target: $Entity$Type, shooter: $Entity$Type, world: $Level$Type): double
 public "appendHoverText"(stack: $ItemStack$Type, world: $Level$Type, tooltip: $List$Type<($Component$Type)>, flag: $TooltipFlag$Type): void
 public "hasAmmo"(stack: $ItemStack$Type): boolean
 }
@@ -130,6 +391,299 @@ export type $AmmunitionItem$Type = ($AmmunitionItem);
  */
 declare global {
 export type $AmmunitionItem_ = $AmmunitionItem$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$ModWallHangingSignBlock" {
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$WallHangingSignBlock, $WallHangingSignBlock$Type} from "packages/net/minecraft/world/level/block/$WallHangingSignBlock"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+
+export class $ModWallHangingSignBlock extends $WallHangingSignBlock {
+static readonly "FACING": $DirectionProperty
+static readonly "PLANK_NORTHSOUTH": $VoxelShape
+static readonly "PLANK_EASTWEST": $VoxelShape
+static readonly "SHAPE_NORTHSOUTH": $VoxelShape
+static readonly "SHAPE_EASTWEST": $VoxelShape
+static readonly "WATERLOGGED": $BooleanProperty
+static readonly "AABB_OFFSET": float
+static readonly "SHAPE": $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(pProperties: $BlockBehaviour$Properties$Type, pType: $WoodType$Type)
+
+public "newBlockEntity"(pPos: $BlockPos$Type, pState: $BlockState$Type): $BlockEntity
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ModWallHangingSignBlock$Type = ($ModWallHangingSignBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ModWallHangingSignBlock_ = $ModWallHangingSignBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$FloatingLeavesBlock" {
+import {$WaterlilyBlock, $WaterlilyBlock$Type} from "packages/net/minecraft/world/level/block/$WaterlilyBlock"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $FloatingLeavesBlock extends $WaterlilyBlock {
+static readonly "AABB": $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $FloatingLeavesBlock$Type = ($FloatingLeavesBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $FloatingLeavesBlock_ = $FloatingLeavesBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$FanPalmSproutBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$SaplingBlock, $SaplingBlock$Type} from "packages/net/minecraft/world/level/block/$SaplingBlock"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+
+export class $FanPalmSproutBlock extends $SaplingBlock {
+static readonly "STAGE": $IntegerProperty
+static readonly "AABB_OFFSET": float
+static readonly "SHAPE": $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor()
+
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $FanPalmSproutBlock$Type = ($FanPalmSproutBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $FanPalmSproutBlock_ = $FanPalmSproutBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$TermiteBlock" {
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $TermiteBlock extends $Block {
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(block: $Block$Type, properties: $BlockBehaviour$Properties$Type)
+
+public "spawnAfterBreak"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, blockPos: $BlockPos$Type, itemStack: $ItemStack$Type, bl: boolean): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $TermiteBlock$Type = ($TermiteBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $TermiteBlock_ = $TermiteBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/entity/$BulletEntity" {
 import {$Fluid, $Fluid$Type} from "packages/net/minecraft/world/level/material/$Fluid"
@@ -241,36 +795,37 @@ static readonly "DATA_POSE": $EntityDataAccessor<($Pose)>
  "wasOnFire": boolean
  "mainSupportingBlockPos": $Optional<($BlockPos)>
  "forgeFluidTypeHeight": $Object2DoubleMap<($FluidType)>
+ "self": $Entity
  "sodiumdynamiclights$luminance": integer
 
 constructor(worldIn: $Level$Type, shooter: $LivingEntity$Type, accelX: double, accelY: double, accelZ: double)
 constructor(worldIn: $Level$Type, shooter: $LivingEntity$Type)
 constructor(entityType: $EntityType$Type<(any)>, level: $Level$Type)
 
-public "setIgnoreInvulnerability"(ignoreInvulnerability: boolean): void
-public "attack"(source: $DamageSource$Type, amount: float): boolean
-public "isPickable"(): boolean
 public "addAdditionalSaveData"(compound: $CompoundTag$Type): void
 public "readAdditionalSaveData"(compound: $CompoundTag$Type): void
-public "getDamage"(): double
+public "setIgnoreInvulnerability"(ignoreInvulnerability: boolean): void
 public "tick"(): void
-public "shootFromRotation"(shooter: $Entity$Type, xRot: float, yRot: float, p_37255_: float, speed: float, spread: float): void
-public "setDamage"(damage: double): void
+public "getDamage"(): double
+public "attack"(source: $DamageSource$Type, amount: float): boolean
+public "isPickable"(): boolean
 public "getAddEntityPacket"(): $Packet<($ClientGamePacketListener)>
-public "sdl$shouldUpdateDynamicLight"(): boolean
-public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
+public "setDamage"(damage: double): void
+public "shootFromRotation"(shooter: $Entity$Type, xRot: float, yRot: float, p_37255_: float, speed: float, spread: float): void
 public "sdl$getDynamicLightX"(): double
 public "sdl$getDynamicLightY"(): double
 public "sdl$getDynamicLightZ"(): double
 public "sdl$getDynamicLightLevel"(): $Level
 public "sdl$resetDynamicLight"(): void
+public "sdl$shouldUpdateDynamicLight"(): boolean
+public "sodiumdynamiclights$updateDynamicLight"(arg0: $LevelRenderer$Type): boolean
 public "sodiumdynamiclights$scheduleTrackedChunksRebuild"(arg0: $LevelRenderer$Type): void
 public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
 set "ignoreInvulnerability"(value: boolean)
-get "pickable"(): boolean
 get "damage"(): double
-set "damage"(value: double)
+get "pickable"(): boolean
 get "addEntityPacket"(): $Packet<($ClientGamePacketListener)>
+set "damage"(value: double)
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -283,6 +838,162 @@ export type $BulletEntity$Type = ($BulletEntity);
  */
 declare global {
 export type $BulletEntity_ = $BulletEntity$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$SinkInBlock" {
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+
+export class $SinkInBlock extends $Block {
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "fallOn"(level: $Level$Type, blockState: $BlockState$Type, blockPos: $BlockPos$Type, entity: $Entity$Type, f: float): void
+public "isPathfindable"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, pathComputationType: $PathComputationType$Type): boolean
+public "skipRendering"(blockState: $BlockState$Type, blockState2: $BlockState$Type, direction: $Direction$Type): boolean
+public "getOcclusionShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type): $VoxelShape
+public "getCollisionShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public "getVisualShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public "entityInside"(blockState: $BlockState$Type, level: $Level$Type, blockPos: $BlockPos$Type, entity: $Entity$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SinkInBlock$Type = ($SinkInBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SinkInBlock_ = $SinkInBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$ModStandingSignBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$StandingSignBlock, $StandingSignBlock$Type} from "packages/net/minecraft/world/level/block/$StandingSignBlock"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $ModStandingSignBlock extends $StandingSignBlock {
+static readonly "ROTATION": $IntegerProperty
+static readonly "WATERLOGGED": $BooleanProperty
+static readonly "AABB_OFFSET": float
+static readonly "SHAPE": $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(pProperties: $BlockBehaviour$Properties$Type, pType: $WoodType$Type)
+
+public "newBlockEntity"(pPos: $BlockPos$Type, pState: $BlockState$Type): $BlockEntity
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ModStandingSignBlock$Type = ($ModStandingSignBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ModStandingSignBlock_ = $ModStandingSignBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/block/$CompletionistBannerBlock" {
 import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
@@ -349,13 +1060,13 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(properties: $BlockBehaviour$Properties$Type)
 
 public "getRenderTexture"(): $ResourceLocation
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPossibleToRespawnInThis"(blockState: $BlockState$Type): boolean
+public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
 public "rotate"(blockState: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(blockState: $BlockState$Type, mirror: $Mirror$Type): $BlockState
 public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
 public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "isPossibleToRespawnInThis"(blockState: $BlockState$Type): boolean
-public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
 public "newBlockEntity"(blockPos: $BlockPos$Type, blockState: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "renderTexture"(): $ResourceLocation
@@ -371,6 +1082,183 @@ export type $CompletionistBannerBlock$Type = ($CompletionistBannerBlock);
  */
 declare global {
 export type $CompletionistBannerBlock_ = $CompletionistBannerBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/entity/$ModBoatEntity$Type" {
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$Enum, $Enum$Type} from "packages/java/lang/$Enum"
+import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+
+export class $ModBoatEntity$Type extends $Enum<($ModBoatEntity$Type)> {
+static readonly "ASPEN": $ModBoatEntity$Type
+static readonly "BAOBAB": $ModBoatEntity$Type
+static readonly "LARCH": $ModBoatEntity$Type
+static readonly "EBONY": $ModBoatEntity$Type
+static readonly "CHESTNUT": $ModBoatEntity$Type
+static readonly "SWAMP_OAK": $ModBoatEntity$Type
+static readonly "SWAMP_CYPRESS": $ModBoatEntity$Type
+static readonly "FAN_PALM": $ModBoatEntity$Type
+static readonly "FIR": $ModBoatEntity$Type
+static readonly "CACTUS": $ModBoatEntity$Type
+
+
+public "getItem"(): $Supplier<($Item)>
+public "getName"(): string
+public static "values"(): ($ModBoatEntity$Type)[]
+public static "valueOf"(name: string): $ModBoatEntity$Type
+public "getModelLocation"(): string
+public "getTexture"(hasChest: boolean): $ResourceLocation
+public "getChestModelLocation"(): string
+public "getChestItem"(): $Supplier<($Item)>
+public static "byName"(name: string): $ModBoatEntity$Type
+public static "byId"(id: integer): $ModBoatEntity$Type
+get "item"(): $Supplier<($Item)>
+get "name"(): string
+get "modelLocation"(): string
+get "chestModelLocation"(): string
+get "chestItem"(): $Supplier<($Item)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ModBoatEntity$Type$Type = (("ebony") | ("swamp_cypress") | ("baobab") | ("fan_palm") | ("swamp_oak") | ("cactus") | ("aspen") | ("chestnut") | ("larch") | ("fir")) | ($ModBoatEntity$Type);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ModBoatEntity$Type_ = $ModBoatEntity$Type$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/item/$ModBoatItem" {
+import {$ModBoatEntity$Type, $ModBoatEntity$Type$Type} from "packages/net/satisfy/bloomingnature/core/entity/$ModBoatEntity$Type"
+import {$UUID, $UUID$Type} from "packages/java/util/$UUID"
+import {$Item$Properties, $Item$Properties$Type} from "packages/net/minecraft/world/item/$Item$Properties"
+import {$BoatItem, $BoatItem$Type} from "packages/net/minecraft/world/item/$BoatItem"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$FoodProperties, $FoodProperties$Type} from "packages/net/minecraft/world/food/$FoodProperties"
+import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
+import {$InteractionResultHolder, $InteractionResultHolder$Type} from "packages/net/minecraft/world/$InteractionResultHolder"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $ModBoatItem extends $BoatItem {
+static readonly "BY_BLOCK": $Map<($Block), ($Item)>
+static readonly "BASE_ATTACK_DAMAGE_UUID": $UUID
+static readonly "BASE_ATTACK_SPEED_UUID": $UUID
+static readonly "MAX_STACK_SIZE": integer
+static readonly "EAT_DURATION": integer
+static readonly "MAX_BAR_WIDTH": integer
+ "craftingRemainingItem": $Item
+ "descriptionId": string
+ "foodProperties": $FoodProperties
+readonly "canRepair": boolean
+ "renderProperties": any
+ "moonlight$clientAnimationProvider": any
+
+constructor(hasChest: boolean, type: $ModBoatEntity$Type$Type, pProperties: $Item$Properties$Type)
+
+public "use"(pLevel: $Level$Type, pPlayer: $Player$Type, pHand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ModBoatItem$Type = ($ModBoatItem);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ModBoatItem_ = $ModBoatItem$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$ExtendedLeavesBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$LeavesBlock, $LeavesBlock$Type} from "packages/net/minecraft/world/level/block/$LeavesBlock"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$OptionalInt, $OptionalInt$Type} from "packages/java/util/$OptionalInt"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+
+export class $ExtendedLeavesBlock extends $LeavesBlock {
+static readonly "DISTANCE_11": $IntegerProperty
+static readonly "DECAY_DISTANCE": integer
+static readonly "DISTANCE": $IntegerProperty
+static readonly "PERSISTENT": $BooleanProperty
+static readonly "WATERLOGGED": $BooleanProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public static "getOptionalDistanceAt"(blockState: $BlockState$Type): $OptionalInt
+public "isRandomlyTicking"(state: $BlockState$Type): boolean
+public "getStateForPlacement"(pContext: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(pState: $BlockState$Type, pFacing: $Direction$Type, pFacingState: $BlockState$Type, pLevel: $LevelAccessor$Type, pCurrentPos: $BlockPos$Type, pFacingPos: $BlockPos$Type): $BlockState
+public "randomTick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, blockPos: $BlockPos$Type, randomSource: $RandomSource$Type): void
+public "tick"(pState: $BlockState$Type, pLevel: $ServerLevel$Type, pPos: $BlockPos$Type, pRandom: $RandomSource$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ExtendedLeavesBlock$Type = ($ExtendedLeavesBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ExtendedLeavesBlock_ = $ExtendedLeavesBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/item/$ContractItem" {
 import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
@@ -423,6 +1311,75 @@ export type $ContractItem$Type = ($ContractItem);
  */
 declare global {
 export type $ContractItem_ = $ContractItem$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$DeadBushTallBlock" {
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$EnumProperty, $EnumProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$EnumProperty"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$TallFlowerBlock, $TallFlowerBlock$Type} from "packages/net/minecraft/world/level/block/$TallFlowerBlock"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$DoubleBlockHalf, $DoubleBlockHalf$Type} from "packages/net/minecraft/world/level/block/state/properties/$DoubleBlockHalf"
+
+export class $DeadBushTallBlock extends $TallFlowerBlock {
+static readonly "HALF": $EnumProperty<($DoubleBlockHalf)>
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(settings: $BlockBehaviour$Properties$Type)
+
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $DeadBushTallBlock$Type = ($DeadBushTallBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $DeadBushTallBlock_ = $DeadBushTallBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/block/$DeerTrophyBlock" {
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
@@ -504,6 +1461,199 @@ export type $DeerTrophyBlock$Type = ($DeerTrophyBlock);
  */
 declare global {
 export type $DeerTrophyBlock_ = $DeerTrophyBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$SmallCactusBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$CactusBlock, $CactusBlock$Type} from "packages/net/minecraft/world/level/block/$CactusBlock"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $SmallCactusBlock extends $CactusBlock {
+static readonly "AGE": $IntegerProperty
+static readonly "MAX_AGE": integer
+static readonly "AABB_OFFSET": integer
+static readonly "COLLISION_SHAPE": $VoxelShape
+static readonly "OUTLINE_SHAPE": $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
+public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SmallCactusBlock$Type = ($SmallCactusBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SmallCactusBlock_ = $SmallCactusBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$FacingBlock" {
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$HorizontalDirectionalBlock, $HorizontalDirectionalBlock$Type} from "packages/net/minecraft/world/level/block/$HorizontalDirectionalBlock"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+
+export class $FacingBlock extends $HorizontalDirectionalBlock {
+static readonly "FACING": $DirectionProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(settings: $BlockBehaviour$Properties$Type)
+
+public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $FacingBlock$Type = ($FacingBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $FacingBlock_ = $FacingBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/entity/$StorageBlockEntity" {
+import {$AttachmentTarget, $AttachmentTarget$Type} from "packages/net/fabricmc/fabric/api/attachment/v1/$AttachmentTarget"
+import {$CompoundTag, $CompoundTag$Type} from "packages/net/minecraft/nbt/$CompoundTag"
+import {$NonNullList, $NonNullList$Type} from "packages/net/minecraft/core/$NonNullList"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ClientboundBlockEntityDataPacket, $ClientboundBlockEntityDataPacket$Type} from "packages/net/minecraft/network/protocol/game/$ClientboundBlockEntityDataPacket"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $StorageBlockEntity extends $BlockEntity {
+ "level": $Level
+ "worldPosition": $BlockPos
+ "remove": boolean
+ "blockState": $BlockState
+
+constructor(pos: $BlockPos$Type, state: $BlockState$Type)
+constructor(pos: $BlockPos$Type, state: $BlockState$Type, size: integer)
+
+public "setStack"(slot: integer, stack: $ItemStack$Type): void
+public "getInventory"(): $NonNullList<($ItemStack)>
+public "getUpdatePacket"(): $ClientboundBlockEntityDataPacket
+public "removeStack"(slot: integer): $ItemStack
+public "setChanged"(): void
+public "load"(nbt: $CompoundTag$Type): void
+public "getUpdateTag"(): $CompoundTag
+public static "transfer"(original: $AttachmentTarget$Type, target: $AttachmentTarget$Type, isDeath: boolean): void
+get "inventory"(): $NonNullList<($ItemStack)>
+get "updatePacket"(): $ClientboundBlockEntityDataPacket
+get "updateTag"(): $CompoundTag
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $StorageBlockEntity$Type = ($StorageBlockEntity);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $StorageBlockEntity_ = $StorageBlockEntity$Type;
 }}
 declare module "packages/net/satisfy/wildernature/recipe/$TrufflingRecipe$Serializer" {
 import {$JsonObject, $JsonObject$Type} from "packages/com/google/gson/$JsonObject"
@@ -634,10 +1784,10 @@ readonly "properties": $BlockBehaviour$Properties
 constructor(settings: $BlockBehaviour$Properties$Type)
 
 public static "getBoundingShape"(state: $BlockState$Type): $VoxelShape
-public "canSurvive"(state: $BlockState$Type, world: $LevelReader$Type, pos: $BlockPos$Type): boolean
-public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public "getStateForPlacement"(ctx: $BlockPlaceContext$Type): $BlockState
 public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
+public "canSurvive"(state: $BlockState$Type, world: $LevelReader$Type, pos: $BlockPos$Type): boolean
+public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -651,6 +1801,93 @@ export type $WallDecorationBlock$Type = ($WallDecorationBlock);
  */
 declare global {
 export type $WallDecorationBlock_ = $WallDecorationBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$CompletionistWallBannerBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$CompletionistBannerBlock, $CompletionistBannerBlock$Type} from "packages/net/satisfy/bloomingnature/core/block/$CompletionistBannerBlock"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$Rotation, $Rotation$Type} from "packages/net/minecraft/world/level/block/$Rotation"
+
+export class $CompletionistWallBannerBlock extends $CompletionistBannerBlock {
+static readonly "FACING": $DirectionProperty
+static readonly "ROTATION": $IntegerProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "getDescriptionId"(): string
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
+public "rotate"(blockState: $BlockState$Type, rotation: $Rotation$Type): $BlockState
+public "mirror"(blockState: $BlockState$Type, mirror: $Mirror$Type): $BlockState
+public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
+public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "descriptionId"(): string
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $CompletionistWallBannerBlock$Type = ($CompletionistWallBannerBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $CompletionistWallBannerBlock_ = $CompletionistWallBannerBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/block/$RedWolfTrophyBlock" {
 import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
@@ -800,9 +2037,9 @@ readonly "canRepair": boolean
 
 constructor(properties: $Item$Properties$Type, soundEvent: $SoundEvent$Type)
 
+public "getUseDuration"(itemStack: $ItemStack$Type): integer
 public "use"(level: $Level$Type, player: $Player$Type, interactionHand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
 public "getUseAnimation"(itemStack: $ItemStack$Type): $UseAnim
-public "getUseDuration"(itemStack: $ItemStack$Type): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -815,6 +2052,93 @@ export type $BisonHornItem$Type = ($BisonHornItem);
  */
 declare global {
 export type $BisonHornItem_ = $BisonHornItem$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$SandLayerBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$PathComputationType, $PathComputationType$Type} from "packages/net/minecraft/world/level/pathfinder/$PathComputationType"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+
+export class $SandLayerBlock extends $Block {
+static readonly "LAYERS": $IntegerProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "getStateForPlacement"(blockPlaceContext: $BlockPlaceContext$Type): $BlockState
+public "isPathfindable"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, pathComputationType: $PathComputationType$Type): boolean
+public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
+public "useShapeForLightOcclusion"(blockState: $BlockState$Type): boolean
+public "canBeReplaced"(blockState: $BlockState$Type, blockPlaceContext: $BlockPlaceContext$Type): boolean
+public "getBlockSupportShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type): $VoxelShape
+public "getCollisionShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public "getShadeBrightness"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type): float
+public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public "getVisualShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public "randomTick"(blockState: $BlockState$Type, serverLevel: $ServerLevel$Type, blockPos: $BlockPos$Type, randomSource: $RandomSource$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SandLayerBlock$Type = ($SandLayerBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SandLayerBlock_ = $SandLayerBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/block/$CompletionistWallBannerBlock" {
 import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
@@ -881,13 +2205,13 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
+public "getDescriptionId"(): string
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
 public "rotate"(blockState: $BlockState$Type, rotation: $Rotation$Type): $BlockState
 public "mirror"(blockState: $BlockState$Type, mirror: $Mirror$Type): $BlockState
 public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
 public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "getDescriptionId"(): string
-public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 get "descriptionId"(): string
 }
@@ -936,26 +2260,26 @@ readonly "canRepair": boolean
 
 constructor()
 
+public "getDamageMultiplier"(): double
+public "getInaccuracy"(): double
 public "shouldConsumeAmmo"(): boolean
 public "getFireDelay"(): integer
 public "getProjectileSpeed"(): double
 public "getBonusDamage"(): double
-public "getInaccuracy"(): double
-public "getDamageMultiplier"(): double
+public "getAllSupportedProjectiles"(): $Predicate<($ItemStack)>
 public "use"(world: $Level$Type, player: $Player$Type, hand: $InteractionHand$Type): $InteractionResultHolder<($ItemStack)>
-public "getDefaultProjectileRange"(): integer
 public "getUseAnimation"(stack: $ItemStack$Type): $UseAnim
 public "getEnchantmentValue"(): integer
 public "isValidRepairItem"(toRepair: $ItemStack$Type, repair: $ItemStack$Type): boolean
-public "getAllSupportedProjectiles"(): $Predicate<($ItemStack)>
+public "getDefaultProjectileRange"(): integer
+get "damageMultiplier"(): double
+get "inaccuracy"(): double
 get "fireDelay"(): integer
 get "projectileSpeed"(): double
 get "bonusDamage"(): double
-get "inaccuracy"(): double
-get "damageMultiplier"(): double
-get "defaultProjectileRange"(): integer
-get "enchantmentValue"(): integer
 get "allSupportedProjectiles"(): $Predicate<($ItemStack)>
+get "enchantmentValue"(): integer
+get "defaultProjectileRange"(): integer
 }
 /**
  * Class-specific type exported by ProbeJS, use global Type_
@@ -968,6 +2292,487 @@ export type $BlunderBussItem$Type = ($BlunderBussItem);
  */
 declare global {
 export type $BlunderBussItem_ = $BlunderBussItem$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$ForestMossBlock" {
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BonemealableBlock, $BonemealableBlock$Type} from "packages/net/minecraft/world/level/block/$BonemealableBlock"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$MudBlock, $MudBlock$Type} from "packages/net/minecraft/world/level/block/$MudBlock"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+
+export class $ForestMossBlock extends $MudBlock implements $BonemealableBlock {
+static readonly "SHAPE": $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "entityInside"(state: $BlockState$Type, level: $Level$Type, pos: $BlockPos$Type, entity: $Entity$Type): void
+public "isValidBonemealTarget"(levelReader: $LevelReader$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, bl: boolean): boolean
+public "isBonemealSuccess"(level: $Level$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): boolean
+public "performBonemeal"(serverLevel: $ServerLevel$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ForestMossBlock$Type = ($ForestMossBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ForestMossBlock_ = $ForestMossBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$ModWallSignBlock" {
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$WallSignBlock, $WallSignBlock$Type} from "packages/net/minecraft/world/level/block/$WallSignBlock"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+
+export class $ModWallSignBlock extends $WallSignBlock {
+static readonly "FACING": $DirectionProperty
+static readonly "AABB_THICKNESS": float
+static readonly "AABB_BOTTOM": float
+static readonly "AABB_TOP": float
+static readonly "WATERLOGGED": $BooleanProperty
+static readonly "AABB_OFFSET": float
+static readonly "SHAPE": $VoxelShape
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(pProperties: $BlockBehaviour$Properties$Type, pType: $WoodType$Type)
+
+public "newBlockEntity"(pPos: $BlockPos$Type, pState: $BlockState$Type): $BlockEntity
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ModWallSignBlock$Type = ($ModWallSignBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ModWallSignBlock_ = $ModWallSignBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$ModHangingSignBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$WoodType, $WoodType$Type} from "packages/net/minecraft/world/level/block/state/properties/$WoodType"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$CeilingHangingSignBlock, $CeilingHangingSignBlock$Type} from "packages/net/minecraft/world/level/block/$CeilingHangingSignBlock"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+
+export class $ModHangingSignBlock extends $CeilingHangingSignBlock {
+static readonly "ROTATION": $IntegerProperty
+static readonly "ATTACHED": $BooleanProperty
+static readonly "AABB_OFFSET": float
+static readonly "SHAPE": $VoxelShape
+static readonly "WATERLOGGED": $BooleanProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(pProperties: $BlockBehaviour$Properties$Type, pType: $WoodType$Type)
+
+public "newBlockEntity"(pPos: $BlockPos$Type, pState: $BlockState$Type): $BlockEntity
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $ModHangingSignBlock$Type = ($ModHangingSignBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $ModHangingSignBlock_ = $ModHangingSignBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$SinkInSandBlock" {
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SinkInBlock, $SinkInBlock$Type} from "packages/net/satisfy/bloomingnature/core/block/$SinkInBlock"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$Entity, $Entity$Type} from "packages/net/minecraft/world/entity/$Entity"
+
+export class $SinkInSandBlock extends $SinkInBlock {
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "entityInside"(blockState: $BlockState$Type, level: $Level$Type, blockPos: $BlockPos$Type, entity: $Entity$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $SinkInSandBlock$Type = ($SinkInSandBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $SinkInSandBlock_ = $SinkInSandBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$FlowerPotBigBlock" {
+import {$SoundEvent, $SoundEvent$Type} from "packages/net/minecraft/sounds/$SoundEvent"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$StorageBlock, $StorageBlock$Type} from "packages/net/satisfy/bloomingnature/core/block/$StorageBlock"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+
+export class $FlowerPotBigBlock extends $StorageBlock {
+static readonly "event": $SoundEvent
+static readonly "FACING": $DirectionProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(settings: $BlockBehaviour$Properties$Type)
+
+public "type"(): $ResourceLocation
+public "size"(): integer
+public "getAddSound"(level: $Level$Type, blockPos: $BlockPos$Type, player: $Player$Type, i: integer): $SoundEvent
+public "getRemoveSound"(level: $Level$Type, blockPos: $BlockPos$Type, player: $Player$Type, i: integer): $SoundEvent
+public "unAllowedDirections"(): ($Direction)[]
+public "canInsertStack"(stack: $ItemStack$Type): boolean
+public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
+public "getSection"(x: float, y: float): integer
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $FlowerPotBigBlock$Type = ($FlowerPotBigBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $FlowerPotBigBlock_ = $FlowerPotBigBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$FlowerBoxBlock" {
+import {$SoundEvent, $SoundEvent$Type} from "packages/net/minecraft/sounds/$SoundEvent"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$Player, $Player$Type} from "packages/net/minecraft/world/entity/player/$Player"
+import {$BlockHitResult, $BlockHitResult$Type} from "packages/net/minecraft/world/phys/$BlockHitResult"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$DirectionProperty, $DirectionProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$DirectionProperty"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$InteractionResult, $InteractionResult$Type} from "packages/net/minecraft/world/$InteractionResult"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StorageBlock, $StorageBlock$Type} from "packages/net/satisfy/bloomingnature/core/block/$StorageBlock"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$InteractionHand, $InteractionHand$Type} from "packages/net/minecraft/world/$InteractionHand"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $FlowerBoxBlock extends $StorageBlock {
+static readonly "SHAPE": $Map<($Direction), ($VoxelShape)>
+static readonly "event": $SoundEvent
+static readonly "FACING": $DirectionProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(settings: $BlockBehaviour$Properties$Type)
+
+public "type"(): $ResourceLocation
+public "size"(): integer
+public "unAllowedDirections"(): ($Direction)[]
+public "canInsertStack"(stack: $ItemStack$Type): boolean
+public "use"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, player: $Player$Type, hand: $InteractionHand$Type, hit: $BlockHitResult$Type): $InteractionResult
+public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
+public "getSection"(x: float, y: float): integer
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $FlowerBoxBlock$Type = ($FlowerBoxBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $FlowerBoxBlock_ = $FlowerBoxBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/block/$HazelnutBushBlock" {
 import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
@@ -1033,9 +2838,9 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
+public "getCloneItemStack"(arg: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): $ItemStack
 public "use"(arg: $BlockState$Type, arg2: $Level$Type, arg3: $BlockPos$Type, arg4: $Player$Type, arg5: $InteractionHand$Type, arg6: $BlockHitResult$Type): $InteractionResult
 public "entityInside"(arg: $BlockState$Type, arg2: $Level$Type, arg3: $BlockPos$Type, arg4: $Entity$Type): void
-public "getCloneItemStack"(arg: $BlockGetter$Type, arg2: $BlockPos$Type, arg3: $BlockState$Type): $ItemStack
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
 /**
@@ -1049,6 +2854,93 @@ export type $HazelnutBushBlock$Type = ($HazelnutBushBlock);
  */
 declare global {
 export type $HazelnutBushBlock_ = $HazelnutBushBlock$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$WindowBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$BooleanProperty, $BooleanProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$BooleanProperty"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IronBarsBlock, $IronBarsBlock$Type} from "packages/net/minecraft/world/level/block/$IronBarsBlock"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$LivingEntity, $LivingEntity$Type} from "packages/net/minecraft/world/entity/$LivingEntity"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$Map, $Map$Type} from "packages/java/util/$Map"
+
+export class $WindowBlock extends $IronBarsBlock {
+static readonly "PART": $IntegerProperty
+static readonly "NORTH": $BooleanProperty
+static readonly "EAST": $BooleanProperty
+static readonly "SOUTH": $BooleanProperty
+static readonly "WEST": $BooleanProperty
+static readonly "WATERLOGGED": $BooleanProperty
+static readonly "PROPERTY_BY_DIRECTION": $Map<($Direction), ($BooleanProperty)>
+readonly "collisionShapeByIndex": ($VoxelShape)[]
+readonly "shapeByIndex": ($VoxelShape)[]
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(settings: $BlockBehaviour$Properties$Type)
+
+public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, itemStack: $ItemStack$Type): void
+public "updateShape"(state: $BlockState$Type, direction: $Direction$Type, neighborState: $BlockState$Type, world: $LevelAccessor$Type, pos: $BlockPos$Type, neighborPos: $BlockPos$Type): $BlockState
+public "neighborChanged"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, block: $Block$Type, fromPos: $BlockPos$Type, isMoving: boolean): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $WindowBlock$Type = ($WindowBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $WindowBlock_ = $WindowBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/item/$FurCloakItem" {
 import {$SoundEvent, $SoundEvent$Type} from "packages/net/minecraft/sounds/$SoundEvent"
@@ -1103,6 +2995,103 @@ export type $FurCloakItem$Type = ($FurCloakItem);
  */
 declare global {
 export type $FurCloakItem_ = $FurCloakItem$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$CompletionistBannerBlock" {
+import {$IntegerProperty, $IntegerProperty$Type} from "packages/net/minecraft/world/level/block/state/properties/$IntegerProperty"
+import {$LevelAccessor, $LevelAccessor$Type} from "packages/net/minecraft/world/level/$LevelAccessor"
+import {$Component, $Component$Type} from "packages/net/minecraft/network/chat/$Component"
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ItemStack, $ItemStack$Type} from "packages/net/minecraft/world/item/$ItemStack"
+import {$Mirror, $Mirror$Type} from "packages/net/minecraft/world/level/block/$Mirror"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$BlockGetter, $BlockGetter$Type} from "packages/net/minecraft/world/level/$BlockGetter"
+import {$TooltipFlag, $TooltipFlag$Type} from "packages/net/minecraft/world/item/$TooltipFlag"
+import {$BlockEntity, $BlockEntity$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntity"
+import {$List, $List$Type} from "packages/java/util/$List"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BlockPlaceContext, $BlockPlaceContext$Type} from "packages/net/minecraft/world/item/context/$BlockPlaceContext"
+import {$VoxelShape, $VoxelShape$Type} from "packages/net/minecraft/world/phys/shapes/$VoxelShape"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$CollisionContext, $CollisionContext$Type} from "packages/net/minecraft/world/phys/shapes/$CollisionContext"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$BlockEntityType, $BlockEntityType$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityType"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$BaseEntityBlock, $BaseEntityBlock$Type} from "packages/net/minecraft/world/level/block/$BaseEntityBlock"
+import {$Rotation, $Rotation$Type} from "packages/net/minecraft/world/level/block/$Rotation"
+import {$BlockEntityTicker, $BlockEntityTicker$Type} from "packages/net/minecraft/world/level/block/entity/$BlockEntityTicker"
+
+export class $CompletionistBannerBlock extends $BaseEntityBlock {
+static readonly "ROTATION": $IntegerProperty
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type)
+
+public "getRenderTexture"(): $ResourceLocation
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "isPossibleToRespawnInThis"(blockState: $BlockState$Type): boolean
+public "appendHoverText"(stack: $ItemStack$Type, level: $BlockGetter$Type, tooltip: $List$Type<($Component$Type)>, flag: $TooltipFlag$Type): void
+public "updateShape"(blockState: $BlockState$Type, direction: $Direction$Type, blockState2: $BlockState$Type, levelAccessor: $LevelAccessor$Type, blockPos: $BlockPos$Type, blockPos2: $BlockPos$Type): $BlockState
+public "rotate"(blockState: $BlockState$Type, rotation: $Rotation$Type): $BlockState
+public "mirror"(blockState: $BlockState$Type, mirror: $Mirror$Type): $BlockState
+public "canSurvive"(blockState: $BlockState$Type, levelReader: $LevelReader$Type, blockPos: $BlockPos$Type): boolean
+public "getShape"(blockState: $BlockState$Type, blockGetter: $BlockGetter$Type, blockPos: $BlockPos$Type, collisionContext: $CollisionContext$Type): $VoxelShape
+public "getTicker"<T extends $BlockEntity>(level: $Level$Type, state: $BlockState$Type, type: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "newBlockEntity"(blockPos: $BlockPos$Type, blockState: $BlockState$Type): $BlockEntity
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+get "renderTexture"(): $ResourceLocation
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $CompletionistBannerBlock$Type = ($CompletionistBannerBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $CompletionistBannerBlock_ = $CompletionistBannerBlock$Type;
 }}
 declare module "packages/net/satisfy/wildernature/item/$LootBagItem" {
 import {$Item, $Item$Type} from "packages/net/minecraft/world/item/$Item"
@@ -1223,15 +3212,15 @@ readonly "properties": $BlockBehaviour$Properties
 
 constructor(properties: $BlockBehaviour$Properties$Type)
 
-public "getTicker"<T extends $BlockEntity>(level: $Level$Type, blockState: $BlockState$Type, blockEntityType: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
+public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
+public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
+public "playerWillDestroy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
 public "onRemove"(state: $BlockState$Type, world: $Level$Type, pos: $BlockPos$Type, newState: $BlockState$Type, isMoving: boolean): void
 public "use"(blockState: $BlockState$Type, level: $Level$Type, originalBlockPos: $BlockPos$Type, player: $Player$Type, interactionHand: $InteractionHand$Type, blockHitResult: $BlockHitResult$Type): $InteractionResult
 public "getRenderShape"(blockState: $BlockState$Type): $RenderShape
 public "getMenuProvider"(blockState: $BlockState$Type, level: $Level$Type, blockPos: $BlockPos$Type): $MenuProvider
 public "getShape"(state: $BlockState$Type, world: $BlockGetter$Type, pos: $BlockPos$Type, context: $CollisionContext$Type): $VoxelShape
-public "getStateForPlacement"(context: $BlockPlaceContext$Type): $BlockState
-public "setPlacedBy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, placer: $LivingEntity$Type, stack: $ItemStack$Type): void
-public "playerWillDestroy"(world: $Level$Type, pos: $BlockPos$Type, state: $BlockState$Type, player: $Player$Type): void
+public "getTicker"<T extends $BlockEntity>(level: $Level$Type, blockState: $BlockState$Type, blockEntityType: $BlockEntityType$Type<(T)>): $BlockEntityTicker<(T)>
 public "newBlockEntity"(blockPos: $BlockPos$Type, blockState: $BlockState$Type): $BlockEntity
 public static "getBaseOf"(state: $BlockState$Type): $BlockState
 }
@@ -1291,9 +3280,9 @@ readonly "canRepair": boolean
 
 constructor(armorMaterial: $ArmorMaterial$Type, type: $ArmorItem$Type$Type, properties: $Item$Properties$Type, hatTexture: $ResourceLocation$Type)
 
-public "getHatTexture"(): $ResourceLocation
-public "getArmorTexture"(stack: $ItemStack$Type, entity: $Entity$Type, slot: $EquipmentSlot$Type, type: string): string
 public "initializeClient"(consumer: $Consumer$Type<(any)>): void
+public "getArmorTexture"(stack: $ItemStack$Type, entity: $Entity$Type, slot: $EquipmentSlot$Type, type: string): string
+public "getHatTexture"(): $ResourceLocation
 public "getEquipmentSlot"(): $EquipmentSlot
 public static "get"(arg0: $ItemStack$Type): $Equipable
 get "hatTexture"(): $ResourceLocation
@@ -1310,4 +3299,80 @@ export type $StylinPurpleHatItem$Type = ($StylinPurpleHatItem);
  */
 declare global {
 export type $StylinPurpleHatItem_ = $StylinPurpleHatItem$Type;
+}}
+declare module "packages/net/satisfy/bloomingnature/core/block/$BonemealableTallGrassBlock" {
+import {$Object2ByteLinkedOpenHashMap, $Object2ByteLinkedOpenHashMap$Type} from "packages/it/unimi/dsi/fastutil/objects/$Object2ByteLinkedOpenHashMap"
+import {$Block$BlockStatePairKey, $Block$BlockStatePairKey$Type} from "packages/net/minecraft/world/level/block/$Block$BlockStatePairKey"
+import {$Direction, $Direction$Type} from "packages/net/minecraft/core/$Direction"
+import {$BlockBehaviour$Properties, $BlockBehaviour$Properties$Type} from "packages/net/minecraft/world/level/block/state/$BlockBehaviour$Properties"
+import {$BonemealableBlock, $BonemealableBlock$Type} from "packages/net/minecraft/world/level/block/$BonemealableBlock"
+import {$BlockState, $BlockState$Type} from "packages/net/minecraft/world/level/block/state/$BlockState"
+import {$Level, $Level$Type} from "packages/net/minecraft/world/level/$Level"
+import {$IdMapper, $IdMapper$Type} from "packages/net/minecraft/core/$IdMapper"
+import {$FeatureFlagSet, $FeatureFlagSet$Type} from "packages/net/minecraft/world/flag/$FeatureFlagSet"
+import {$ResourceLocation, $ResourceLocation$Type} from "packages/net/minecraft/resources/$ResourceLocation"
+import {$Block, $Block$Type} from "packages/net/minecraft/world/level/block/$Block"
+import {$ThreadLocal, $ThreadLocal$Type} from "packages/java/lang/$ThreadLocal"
+import {$LevelReader, $LevelReader$Type} from "packages/net/minecraft/world/level/$LevelReader"
+import {$StateDefinition, $StateDefinition$Type} from "packages/net/minecraft/world/level/block/state/$StateDefinition"
+import {$SoundType, $SoundType$Type} from "packages/net/minecraft/world/level/block/$SoundType"
+import {$RandomSource, $RandomSource$Type} from "packages/net/minecraft/util/$RandomSource"
+import {$Supplier, $Supplier$Type} from "packages/java/util/function/$Supplier"
+import {$ServerLevel, $ServerLevel$Type} from "packages/net/minecraft/server/level/$ServerLevel"
+import {$BlockPos, $BlockPos$Type} from "packages/net/minecraft/core/$BlockPos"
+import {$BushBlock, $BushBlock$Type} from "packages/net/minecraft/world/level/block/$BushBlock"
+
+export class $BonemealableTallGrassBlock extends $BushBlock implements $BonemealableBlock {
+/**
+ * 
+ * @deprecated
+ */
+static readonly "BLOCK_STATE_REGISTRY": $IdMapper<($BlockState)>
+static readonly "UPDATE_NEIGHBORS": integer
+static readonly "UPDATE_CLIENTS": integer
+static readonly "UPDATE_INVISIBLE": integer
+static readonly "UPDATE_IMMEDIATE": integer
+static readonly "UPDATE_KNOWN_SHAPE": integer
+static readonly "UPDATE_SUPPRESS_DROPS": integer
+static readonly "UPDATE_MOVE_BY_PISTON": integer
+static readonly "UPDATE_NONE": integer
+static readonly "UPDATE_ALL": integer
+static readonly "UPDATE_ALL_IMMEDIATE": integer
+static readonly "INDESTRUCTIBLE": float
+static readonly "INSTANT": float
+static readonly "UPDATE_LIMIT": integer
+ "stateDefinition": $StateDefinition<($Block), ($BlockState)>
+ "descriptionId": string
+static readonly "OCCLUSION_CACHE": $ThreadLocal<($Object2ByteLinkedOpenHashMap<($Block$BlockStatePairKey)>)>
+static readonly "UPDATE_SHAPE_ORDER": ($Direction)[]
+ "hasCollision": boolean
+ "explosionResistance": float
+ "isRandomlyTicking": boolean
+ "soundType": $SoundType
+ "friction": float
+ "speedFactor": float
+ "jumpFactor": float
+readonly "dynamicShape": boolean
+readonly "requiredFeatures": $FeatureFlagSet
+readonly "properties": $BlockBehaviour$Properties
+ "drops": $ResourceLocation
+
+constructor(properties: $BlockBehaviour$Properties$Type, tallVariant: $Supplier$Type<($Block$Type)>)
+
+public "isValidBonemealTarget"(levelReader: $LevelReader$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type, bl: boolean): boolean
+public "isBonemealSuccess"(level: $Level$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): boolean
+public "performBonemeal"(serverLevel: $ServerLevel$Type, randomSource: $RandomSource$Type, blockPos: $BlockPos$Type, blockState: $BlockState$Type): void
+public static "getBaseOf"(state: $BlockState$Type): $BlockState
+}
+/**
+ * Class-specific type exported by ProbeJS, use global Type_
+ * types for convenience unless there's a naming conflict.
+ */
+export type $BonemealableTallGrassBlock$Type = ($BonemealableTallGrassBlock);
+/**
+ * Global type exported for convenience, use class-specific
+ * types if there's a naming conflict.
+ */
+declare global {
+export type $BonemealableTallGrassBlock_ = $BonemealableTallGrassBlock$Type;
 }}
