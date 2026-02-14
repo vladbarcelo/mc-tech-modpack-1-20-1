@@ -25,6 +25,28 @@ global.moltenMaterialFluids = {
   'lava': 'minecraft:lava'
 }
 
+global.tconstructMoltenMetals = {
+  'tin': 'tconstruct:molten_tin',
+  'lead': 'tconstruct:molten_lead',
+  'zinc': 'tconstruct:molten_zinc',
+  'aluminum': 'tconstruct:molten_aluminum',
+  'brass': 'tconstruct:molten_brass',
+  'bronze': 'tconstruct:molten_bronze',
+  'electrum': 'tconstruct:molten_electrum',
+  'silver': 'tconstruct:molten_silver',
+  'gold': 'tconstruct:molten_gold',
+  'copper': 'tconstruct:molten_copper',
+  'uranium': 'tconstruct:molten_uranium',
+  'constantan': 'tconstruct:molten_constantan',
+  'nickel': 'tconstruct:molten_nickel',
+  'iron': 'tconstruct:molten_iron',
+  'steel': 'tconstruct:molten_steel',
+  'platinum': 'tconstruct:molten_platinum',
+  'chromium': 'tconstruct:molten_chromium',
+  'rhodium': 'kubejs:molten_rhodium',
+  'tungsten': 'tconstruct:molten_tungsten',
+}
+
 global.materialMeltingPointTemps = {
   'tin': 230,
   'plastic': 250,

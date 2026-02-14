@@ -26,5 +26,5 @@ function getTempText(temp) {
   if (temp >= 20) return Text.gold('Slightly warm')
   if (temp >= 10) return Text.blue('Slightly cold')
   if (temp >= 4) return Text.blue('Cold')
-  return Text.aqua('Ice-Cold')
+  return Text.aqua('Frozen')
 }

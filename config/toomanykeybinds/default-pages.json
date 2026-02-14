@@ -188,73 +188,63 @@
     },
     {
       "name": "jei.key.category.mouse.hover",
-      "index": 15,
+      "index": 17,
       "hidden": false,
       "keys": [
         "key.jei.showRecipe",
-        "key.jei.transferRecipeBookmark",
+        "key.jei.showRecipe2",
         "key.jei.showUses",
-        "key.jei.maxTransferRecipeBookmark",
-        "key.jei.showUses2",
         "key.jei.bookmark",
-        "key.jei.showRecipe2"
-      ]
-    },
-    {
-      "name": "jei.key.category.overlays",
-      "index": 16,
-      "hidden": false,
-      "keys": [
-        "key.jei.toggleOverlay",
-        "key.jei.nextPage",
-        "key.jei.toggleBookmarkOverlay",
-        "key.jei.previousPage",
-        "key.jei.focusSearch"
+        "key.jei.showUses2",
+        "key.jei.transferRecipeBookmark",
+        "key.jei.maxTransferRecipeBookmark"
       ]
     },
     {
       "name": "jei.key.category.recipe.gui",
-      "index": 17,
-      "hidden": false,
-      "keys": [
-        "key.jei.previousCategory",
-        "key.jei.nextCategory",
-        "key.jei.recipeBack",
-        "key.jei.nextRecipePage",
-        "key.jei.closeRecipeGui",
-        "key.jei.previousRecipePage"
-      ]
-    },
-    {
-      "name": "jei.key.category.cheat.mode",
       "index": 18,
       "hidden": false,
       "keys": [
-        "key.jei.cheatOneItem",
-        "key.jei.cheatItemStack",
-        "key.jei.cheatOneItem2",
-        "key.jei.cheatItemStack2",
-        "key.jei.toggleCheatMode"
+        "key.jei.previousRecipePage",
+        "key.jei.recipeBack",
+        "key.jei.nextRecipePage",
+        "key.jei.previousCategory",
+        "key.jei.nextCategory",
+        "key.jei.closeRecipeGui"
+      ]
+    },
+    {
+      "name": "jei.key.category.overlays",
+      "index": 19,
+      "hidden": false,
+      "keys": [
+        "key.jei.toggleBookmarkOverlay",
+        "key.jei.toggleOverlay",
+        "key.jei.focusSearch",
+        "key.jei.previousPage",
+        "key.jei.nextPage"
       ]
     },
     {
       "name": "jei.key.category.edit.mode",
-      "index": 19,
-      "hidden": false,
-      "keys": [
-        "key.jei.toggleWildcardHideIngredient",
-        "key.jei.toggleHideIngredient",
-        "key.jei.toggleEditMode"
-      ]
-    },
-    {
-      "name": "jei.key.category.search",
       "index": 20,
       "hidden": false,
       "keys": [
-        "key.jei.nextSearch",
-        "key.jei.clearSearchBar",
-        "key.jei.previousSearch"
+        "key.jei.toggleWildcardHideIngredient",
+        "key.jei.toggleEditMode",
+        "key.jei.toggleHideIngredient"
+      ]
+    },
+    {
+      "name": "jei.key.category.cheat.mode",
+      "index": 21,
+      "hidden": false,
+      "keys": [
+        "key.jei.cheatOneItem",
+        "key.jei.cheatItemStack2",
+        "key.jei.toggleCheatMode",
+        "key.jei.cheatItemStack",
+        "key.jei.cheatOneItem2"
       ]
     },
     {
@@ -263,6 +253,16 @@
       "hidden": false,
       "keys": [
         "key.jei.copy.recipe.id"
+      ]
+    },
+    {
+      "name": "jei.key.category.search",
+      "index": 22,
+      "hidden": false,
+      "keys": [
+        "key.jei.previousSearch",
+        "key.jei.nextSearch",
+        "key.jei.clearSearchBar"
       ]
     },
     {
@@ -303,16 +303,16 @@
       "index": 25,
       "hidden": false,
       "keys": [
-        "xaeroplus.setting.new_chunks_highlighting",
-        "xaeroplus.setting.old_chunks_highlighting",
-        "xaeroplus.setting.show_render_distance",
-        "xaeroplus.setting.old_biomes_enabled",
-        "xaeroplus.keybind.world_map_baritone_elytra_here",
-        "xaeroplus.setting.2b2t_highways_enabled",
-        "xaeroplus.setting.portals",
         "xaeroplus.setting.map_art_grid",
         "xaeroplus.keybind.world_map_baritone_goal_here",
-        "xaeroplus.setting.portal_skip_detection"
+        "xaeroplus.keybind.switch_to_nether",
+        "xaeroplus.setting.portal_skip_detection",
+        "xaeroplus.setting.player_spawn_chunks",
+        "xaeroplus.setting.spawn_chunks",
+        "xaeroplus.setting.palette_new_chunks_highlighting",
+        "xaeroplus.setting.world_tools",
+        "xaeroplus.keybind.switch_to_overworld",
+        "xaeroplus.keybind.world_map_baritone_path_here"
       ]
     },
     {
@@ -320,14 +320,14 @@
       "index": 26,
       "hidden": false,
       "keys": [
-        "xaeroplus.keybind.switch_to_nether",
-        "xaeroplus.setting.spawn_chunks",
-        "xaeroplus.keybind.world_map_baritone_path_here",
-        "xaeroplus.setting.player_spawn_chunks",
+        "xaeroplus.setting.old_biomes_enabled",
+        "xaeroplus.keybind.world_map_baritone_elytra_here",
+        "xaeroplus.setting.old_chunks_highlighting",
+        "xaeroplus.setting.2b2t_highways_enabled",
+        "xaeroplus.setting.new_chunks_highlighting",
         "xaeroplus.keybind.switch_to_end",
-        "xaeroplus.setting.palette_new_chunks_highlighting",
-        "xaeroplus.keybind.switch_to_overworld",
-        "xaeroplus.setting.world_tools"
+        "xaeroplus.setting.show_render_distance",
+        "xaeroplus.setting.portals"
       ]
     },
     {
@@ -462,11 +462,11 @@
         "keybind.sophisticatedbackpacks.inventory_interaction",
         "keybind.sophisticatedbackpacks.tool_swap",
         "keybind.sophisticatedbackpacks.sort",
+        "keybind.sophisticatedbackpacks.toggle_upgrade_1",
         "keybind.sophisticatedbackpacks.toggle_upgrade_5",
         "keybind.sophisticatedbackpacks.toggle_upgrade_4",
         "keybind.sophisticatedbackpacks.toggle_upgrade_3",
-        "keybind.sophisticatedbackpacks.toggle_upgrade_2",
-        "keybind.sophisticatedbackpacks.toggle_upgrade_1"
+        "keybind.sophisticatedbackpacks.toggle_upgrade_2"
       ]
     },
     {

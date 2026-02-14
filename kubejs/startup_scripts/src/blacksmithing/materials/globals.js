@@ -99,3 +99,28 @@ global.metalPlates = {
   'rhodium': 'vintageimprovements:rhodium_sheet',
   'tungsten': 'createmetallurgy:tungsten_sheet',
 }
+
+global.metalLadders = {
+  'tin': '',
+  'lead': '',
+  'zinc': 'createdeco:zinc_ladder',
+  'aluminum': 'tfmg:aluminum_ladder',
+  'brass': 'create:brass_ladder',
+  'bronze': '',
+  'electrum': '',
+  'silver': '',
+  'gold': '',
+  'copper': 'create:copper_ladder',
+  'cast_iron': 'tfmg:cast_iron_ladder',
+  'uranium': '',
+  'constantan': '',
+  'nickel': 'tfmg:nickel_ladder',
+  'iron': 'createdeco:iron_ladder',
+  'steel': 'tfmg:steel_ladder',
+  'palladium': '',
+  'platinum': '',
+  'chromium': '',
+  'vanadium': '',
+  'rhodium': '',
+  'tungsten': '',
+}

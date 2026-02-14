@@ -119,5 +119,23 @@
     "dimension": "minecraft:overworld",
     "when": "onjoin",
     "result": "deny"
+  },
+  {
+    "mob": "alexsmobs:froststalker",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "cave_stuff:zombieangler",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
+  },
+  {
+    "mob": "minecraft:zombie_horse",
+    "dimension": "minecraft:overworld",
+    "when": "onjoin",
+    "result": "deny"
   }
 ]

@@ -20,3 +20,12 @@ ServerEvents.recipes((event) => {
     }
   )
 });
+
+ItemEvents.rightClicked('', event => {
+  if (!String(event.item.id).match(/_in_tongs/)) return
+  if (String(event.item.id).match(/:hot_/)) return
+
+  event.player.give(Item.of(event.item.nbt.ItemHeld, 1))
+  event.player.give(Item.of('hot_iron:smithing_tongs', 1))
+  event.item.shrink(1)
+})

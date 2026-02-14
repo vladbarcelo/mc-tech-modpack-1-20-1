@@ -76,7 +76,552 @@ to make editing this file much easier.
 	    	}
 	    ]
 	*/
-	"state_swapper": [],
+	"state_swapper": [
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "north"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "north"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "south"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "west"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "true",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "true",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Name": "kubejs:smouldering_block"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "true",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "true",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		},
+		{
+			"old": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "minecraft:campfire"
+			},
+			"new": {
+				"Properties": {
+					"waterlogged": "false",
+					"signal_fire": "false",
+					"lit": "false",
+					"facing": "east"
+				},
+				"Name": "hardcore_torches:hardcore_campfire"
+			}
+		}
+	],
 	/* A map of blocks that specifies what the "old" block is and what its "new" block is.
 	   Example:
 	   	"swapper": {
@@ -85,7 +630,6 @@ to make editing this file much easier.
 	   	}
 	*/
 	"swapper": {
-		"minecraft:campfire": "kubejs:smouldering_block",
 		"minecraft:soul_campfire": "kubejs:smouldering_block",
 		"minecraft:torch": "hardcore_torches:unlit_torch",
 		"minecraft:wall_torch": "hardcore_torches:unlit_wall_torch",
@@ -116,5 +660,9 @@ to make editing this file much easier.
 		"tconstruct:small_sky_slime_crystal_bud": "minecraft:air",
 		"tconstruct:medium_sky_slime_crystal_bud": "minecraft:air",
 		"tconstruct:large_sky_slime_crystal_bud": "minecraft:air",
+		"tconstruct:earth_slime_dirt": "minecraft:air",
+		"tconstruct:skyroot_log": "minecraft:air",
+		"quark:monster_box": "minecraft:air",
+		"minecraft:spawner": "minecraft:air",
 	}
 }

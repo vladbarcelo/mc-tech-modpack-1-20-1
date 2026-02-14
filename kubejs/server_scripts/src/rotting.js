@@ -6,6 +6,19 @@ ServerEvents.tick(event => {
 
   if (level.levelData.getGameTime() % 120 !== 0) return
 
+  event.server.getPlayers().forEach(
+    /** @param {$Player_} player */
+    player => {
+      let temp = TemperatureHelper.getTemperatureAt(level, player.blockPosition()) * 23.5
+      player.inventory.getAllItems().forEach(
+        /** @param {$Item_} item */
+        item => {
+          rotItemTick(item, level, temp)
+        }
+      )
+    }
+  )
+
   level.getChunkSource().chunkMap.getChunks().forEach(chunk => {
 
     /** @type {$LevelChunk_} */
@@ -27,67 +40,77 @@ ServerEvents.tick(event => {
         inventory.getAllItems().forEach(
           /** @param {$Item_} item */
           item => {
-
-            if (!item.hasTag('forge:food')) return
-
-            item.nbt = item.nbt || {}
-
-            item.nbt.putDouble("KubeJSRotting_LastCheck", level.levelData.getGameTime()) 
-
-            if (!item.nbt.KubeJSRotting_State) {
-              item.nbt.putDouble("KubeJSRotting_State", 0)
-            }
-
-            if (!item.nbt.KubeJSRotting_Temp) {
-              item.nbt.putDouble("KubeJSRotting_Temp", temp)
-            }
-
-            let itemTemp = item.nbt.KubeJSRotting_Temp
-
-            if (itemTemp > temp) {
-              itemTemp = itemTemp - 2 <= temp ? temp : itemTemp - 2
-            } else if (itemTemp < temp) {
-              itemTemp = itemTemp + 2 >= temp ? temp : itemTemp + 2
-            }
-
-            item.nbt.putDouble("KubeJSRotting_Temp", itemTemp)
-
-            if (itemTemp <= 4 || itemTemp >= 60) return
-
-            if (level.levelData.getGameTime() - item.nbt.KubeJSRotting_LastCheck <= 20 * 60 * 15) return
-
-            let rottingModifier = 10
-
-            if (itemTemp >= 25) rottingModifier *= 1.3
-            else if (itemTemp <= 20) rottingModifier *= 0.7
-
-            if (
-              item.hasTag('forge:meat/foods/raw') ||
-              item.hasTag('forge:milk')
-            ) rottingModifier *= 2
-            else if (
-              item.hasTag('forge:crops/onion') ||
-              item.hasTag('forge:crops/garlic')
-            ) rottingModifier *= 0.5
-            else if (item.hasTag('forge:vegetables')) rottingModifier *= 0.8
-
-            if (
-              item.hasTag('minecolonies_tweaks:fine_food') || 
-              item.hasTag('minecolonies_tweaks:decent_food') || 
-              item.hasTag('minecolonies:cook_product') ||
-              item.hasTag('minecolonies:baker_product')
-            ) rottingModifier *= 0.8
-
-            if (item.nbt.Salted) rottingModifier *= 0.1
-
-            let newState = item.nbt.KubeJSRotting_State + rottingModifier
-
-            if (newState >= 100) newState = 100
-
-            item.nbt.putDouble("KubeJSRotting_State", newState)
+            rotItemTick(item, level, temp)
           }
         )
       }
     )
   })
 })
+
+/** @param {$Item_} item */
+function rotItemTick(item, level, temp) {
+  if (!item.hasTag('forge:food')) return
+
+  let gameTime = level.levelData.getGameTime()
+
+  item.nbt = item.nbt || {}
+
+  if (!item.nbt.KubeJSRotting_State) {
+    item.nbt.putDouble("KubeJSRotting_State", 0)
+  }
+
+  if (!item.nbt.KubeJSRotting_Temp) {
+    item.nbt.putDouble("KubeJSRotting_Temp", temp)
+  }
+
+  let itemTemp = item.nbt.KubeJSRotting_Temp
+
+  if (itemTemp > temp) {
+    itemTemp = itemTemp - 2 <= temp ? temp : itemTemp - 2
+  } else if (itemTemp < temp) {
+    itemTemp = itemTemp + 2 >= temp ? temp : itemTemp + 2
+  }
+
+  item.nbt.putDouble("KubeJSRotting_Temp", itemTemp)
+
+  if (itemTemp <= 4 || itemTemp >= 60) return
+
+  if (gameTime - item.nbt.KubeJSRotting_LastCheck < 0) {
+    item.nbt.putDouble("KubeJSRotting_LastCheck", gameTime)
+  }
+
+  if (gameTime - item.nbt.KubeJSRotting_LastCheck <= 20 * 60 * 15) return
+
+  item.nbt.putDouble("KubeJSRotting_LastCheck", gameTime) 
+
+  let rottingModifier = 10
+
+  if (itemTemp >= 25) rottingModifier *= 1.3
+  else if (itemTemp <= 20) rottingModifier *= 0.7
+
+  if (
+    item.hasTag('forge:meat/foods/raw') ||
+    item.hasTag('forge:milk')
+  ) rottingModifier *= 2
+  else if (
+    item.hasTag('forge:crops/onion') ||
+    item.hasTag('forge:crops/garlic')
+  ) rottingModifier *= 0.5
+  else if (item.hasTag('forge:vegetables')) rottingModifier *= 0.8
+
+  if (
+    item.hasTag('minecolonies_tweaks:fine_food') || 
+    item.hasTag('minecolonies_tweaks:decent_food') || 
+    item.hasTag('minecolonies:cook_product') ||
+    item.hasTag('minecolonies:baker_product')
+  ) rottingModifier *= 0.8
+
+  if (item.nbt.Salted) rottingModifier *= 0.1
+
+  let newState = item.nbt.KubeJSRotting_State + rottingModifier
+
+  if (newState >= 100) newState = 100
+
+  item.nbt.putDouble("KubeJSRotting_State", newState)
+}

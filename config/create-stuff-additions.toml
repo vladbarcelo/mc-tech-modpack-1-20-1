@@ -20,10 +20,10 @@
 	largeTankCapacity = 3200.0
 
 [Enchantments]
-	enableDiggingEnchant = true
-	enableImpactEnchant = true
-	enableGravityGunEnchant = true
-	enableHellfireEnchant = true
+	enableDiggingEnchant = false
+	enableImpactEnchant = false
+	enableGravityGunEnchant = false
+	enableHellfireEnchant = false
 
 ["Drone Module"]
 	enableDrillDroneModule = true

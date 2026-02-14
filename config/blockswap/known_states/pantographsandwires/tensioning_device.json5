@@ -1,0 +1,1604 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "north",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "north",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "north",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "north",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "north",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "north",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "north",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "south",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "west",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "east",
+			"connection": "16px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "north",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "south",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "west",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "east",
+			"connection": "12px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "north",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "south",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "west",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "east",
+			"connection": "8px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "north",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "south",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "west",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "east",
+			"connection": "5px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "north",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "south",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "west",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "true",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "true",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "true",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "true",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"helper": "false",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"helper": "false",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"helper": "false",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"helper": "false",
+			"facing": "east",
+			"connection": "4px"
+		},
+		"Name": "pantographsandwires:tensioning_device"
+	}
+]

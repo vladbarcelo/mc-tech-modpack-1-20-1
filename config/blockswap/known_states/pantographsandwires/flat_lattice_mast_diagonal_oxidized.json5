@@ -1,0 +1,437 @@
+/*
+This file uses the ".json5" file extension which allows for comments like this in a json file!
+Your text editor may show this file with invalid/no syntax, if so, we recommend you download:
+
+VSCode: https://code.visualstudio.com/
+JSON5 plugin(for VSCode): https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5
+
+to make editing this file much easier.
+*/
+[
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "bottom",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "bottom",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "bottom",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "bottom",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "in_between",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "in_between",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "in_between",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "top",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "top",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "top",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "top",
+			"facing": "north"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "bottom",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "bottom",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "bottom",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "bottom",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "in_between",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "in_between",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "in_between",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "in_between",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "top",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "top",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "top",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "top",
+			"facing": "south"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "bottom",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "bottom",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "bottom",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "bottom",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "in_between",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "in_between",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "in_between",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "in_between",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "top",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "top",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "top",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "top",
+			"facing": "west"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "bottom",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "bottom",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "bottom",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "bottom",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "in_between",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "in_between",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "in_between",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "in_between",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "0",
+			"part": "top",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "1",
+			"part": "top",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "2",
+			"part": "top",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	},
+	{
+		// Properties define the state of this block/fluid.
+		"Properties": {
+			"rotation": "3",
+			"part": "top",
+			"facing": "east"
+		},
+		"Name": "pantographsandwires:flat_lattice_mast_diagonal_oxidized"
+	}
+]

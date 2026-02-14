@@ -1,5 +1,9 @@
 [
   {
+    "cull": true,
+    "soundEventId": "createdieselgenerators:diesel_engine_sound"
+  },
+  {
     "block": true,
     "soundEventId": "mca:villager.female.cry"
   },
